@@ -29,7 +29,8 @@
     "ts",
     "typescript"
   ],
-  "author": "TheDrone7",
+  "files": ["dist"],
+  "author": "TheDrone7 <hsbhatia765@outlook.com> (https://thedrone7.repl.co)",
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/TheDrone7/league.ts/issues"
