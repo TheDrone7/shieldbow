@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "An all purpose League of Legends API Client",
   "main": "dist/index.js",
+  "exports": "./dist/index.js",
   "type": "module",
   "devDependencies": {
     "@types/node": "^17.0.17",
