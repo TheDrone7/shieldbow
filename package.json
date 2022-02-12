@@ -1,6 +1,6 @@
 {
   "name": "league.ts",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "An all purpose League of Legends API Client",
   "main": "dist/index.js",
   "exports": "./dist/index.js",
@@ -19,7 +19,7 @@
     "watch": "tsc -w",
     "format": "prettier --write \"src/**/**.ts\"",
     "lint": "eslint --fix --color \"src/**/**.ts\"",
-    "test": "node test/index.js"
+    "test": "node dev/test/index.js"
   },
   "repository": {
     "type": "git",
