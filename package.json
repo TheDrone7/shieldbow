@@ -29,11 +29,17 @@
     "ts",
     "typescript"
   ],
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "author": "TheDrone7 <hsbhatia765@outlook.com> (https://thedrone7.repl.co)",
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/TheDrone7/league.ts/issues"
   },
-  "homepage": "https://github.com/TheDrone7/league.ts#readme"
+  "homepage": "https://github.com/TheDrone7/league.ts#readme",
+  "dependencies": {
+    "@discordjs/collection": "^0.5.0",
+    "node-fetch": "^3.2.0"
+  }
 }
