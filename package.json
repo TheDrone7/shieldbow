@@ -1,0 +1,38 @@
+{
+  "name": "league.ts",
+  "version": "0.0.0",
+  "description": "An all purpose League of Legends API Client",
+  "main": "dist/index.js",
+  "devDependencies": {
+    "@types/node": "^17.0.17",
+    "@typescript-eslint/parser": "^5.11.0",
+    "eslint": "^8.9.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.5.1",
+    "typescript": "^4.5.5"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "format": "prettier --write \"src/**/**.ts\"",
+    "lint": "eslint --fix --color \"src/**/**.ts\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheDrone7/league.ts.git"
+  },
+  "keywords": [
+    "league",
+    "leagueoflegends",
+    "lol",
+    "ts",
+    "typescript"
+  ],
+  "author": "TheDrone7",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/TheDrone7/league.ts/issues"
+  },
+  "homepage": "https://github.com/TheDrone7/league.ts#readme"
+}
