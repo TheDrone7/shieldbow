@@ -1,12 +1,12 @@
 import fetch from './fetch.js';
-import type { regions } from './types';
+import type { locales, regions } from "./types";
 import Collection from '@discordjs/collection';
 
 export class Client {
   private readonly dDragonBase: string;
   private readonly versions: string;
   private version: string;
-  private _language: string;
+  private _language: locales;
   private readonly _champions: Collection<string, {}>;
 
   constructor() {
@@ -21,7 +21,7 @@ export class Client {
     const response = await fetch(region ? `https://ddragon.leagueoflegends.com/realms/${region}.json` : this.versions);
     if (!response.ok) throw new Error('Unable to fetch data dragon version. Please confirm the region exists.');
     else {
-      const result = <string[] | { v: string; l: string }>await response.json();
+      const result = <string[] | { v: string; l: locales }>await response.json();
       if (Array.isArray(result)) this.version = result[0];
       else {
         this.version = result.v;
@@ -48,7 +48,7 @@ export class Client {
   get champions() {
     return this._champions;
   }
-  set language(locale: string) {
+  set language(locale: locales) {
     this._language = locale;
   }
 }
