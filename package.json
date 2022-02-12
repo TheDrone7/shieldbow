@@ -3,8 +3,6 @@
   "version": "0.0.1",
   "description": "An all purpose League of Legends API Client",
   "main": "dist/index.js",
-  "exports": "./dist/index.js",
-  "type": "module",
   "devDependencies": {
     "@types/node": "^17.0.17",
     "@typescript-eslint/parser": "^5.11.0",
@@ -43,6 +41,7 @@
   "homepage": "https://github.com/TheDrone7/league.ts#readme",
   "dependencies": {
     "@discordjs/collection": "^0.5.0",
-    "node-fetch": "^3.2.0"
+    "axiom": "^0.1.6",
+    "axios": "^0.25.0"
   }
 }

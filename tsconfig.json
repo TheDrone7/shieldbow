@@ -12,7 +12,7 @@
     "importsNotUsedAsValues": "error",
     "incremental": true,
     "lib": ["esnext"],
-    "module": "es2022",
+    "module": "commonjs",
     "moduleResolution": "node",
     "newLine": "lf",
     "noEmitHelpers": true,
