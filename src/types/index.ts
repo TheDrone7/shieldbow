@@ -28,4 +28,19 @@ const locale = [
   'zh_TW'
 ] as const;
 export type regions = 'br' | 'eune' | 'euw' | 'lan' | 'las' | 'na' | 'oce' | 'ru' | 'tr' | 'jp' | 'kr' | 'pbe';
+export type stats =
+  | 'hp'
+  | 'mp'
+  | 'ms'
+  | 'armor'
+  | 'spellBlock'
+  | 'attackRange'
+  | 'hpRegen'
+  | 'mpRegen'
+  | 'crit'
+  | 'attackDamage'
+  | 'attackSpeed';
 export type locales = typeof locale[number];
+
+export type { ChampionData, SpellData } from './champion';
+export type { ImageData } from './image';
