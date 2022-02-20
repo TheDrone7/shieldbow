@@ -1,3 +1,6 @@
+/**
+ * A representation of any image data returned by Data Dragon.
+ */
 export interface ImageData {
   full: string;
   sprite: string;

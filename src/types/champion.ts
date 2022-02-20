@@ -1,5 +1,8 @@
 import type { ImageData } from './index';
 
+/**
+ * A representation of the champion spell data returned by Data Dragon.
+ */
 export interface SpellData {
   id: string;
   name: string;
@@ -30,6 +33,16 @@ export interface SpellData {
   resource: string;
 }
 
+/**
+ * A representation of the champion spell data returned by Community Dragon.
+ */
+export interface SpellDamageData {
+  [id: string]: any;
+}
+
+/**
+ * A representation of the champion data returned by Data Dragon.
+ */
 export interface ChampionData {
   id: string;
   key: string;

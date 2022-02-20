@@ -1,4 +1,4 @@
-const locale = [
+export const locale = [
   'en_US',
   'cs_CZ',
   'de_DE',
@@ -42,5 +42,6 @@ export type stats =
   | 'attackSpeed';
 export type locales = typeof locale[number];
 
-export type { ChampionData, SpellData } from './champion';
+export type { ChampionData, SpellData, SpellDamageData } from './champion';
 export type { ImageData } from './image';
+export type { BaseManager } from './BaseManager';

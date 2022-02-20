@@ -1,25 +1,37 @@
 import axios, { AxiosInstance } from 'axios';
-import type { ChampionData, locales, regions } from './types';
-import Collection from '@discordjs/collection';
-import { Champion } from './data';
+import type { locales, regions } from './types';
+import { ChampionManager } from './managers';
 
+/**
+ * The league.ts client that enables you to interact with Riot Games' League of Legends API.
+ * Also connects to the Data Dragon + Community Dragon CDNs.
+ *
+ * @example
+ * Here is how to use the client:
+ * ```ts
+ * const myClient = new Client();
+ * client.initialize('euw').then(() => {
+ *   // All your code goes here.
+ * });
+ * ```
+ */
 export class Client {
-  readonly base: string;
+  private readonly _base: string;
   private readonly versions: string;
   private _version: string;
   private _patch: string;
   private _language: locales;
-  private readonly _champions: Collection<string, Champion>;
-  private http: AxiosInstance;
+  private readonly _champions: ChampionManager;
+  private readonly _http: AxiosInstance;
 
   constructor() {
-    this.base = 'https://ddragon.leagueoflegends.com/cdn/';
+    this._base = 'https://ddragon.leagueoflegends.com/cdn/';
     this.versions = 'https://ddragon.leagueoflegends.com/api/versions.json';
     this._version = 'null';
     this._patch = 'null';
     this._language = 'en_US';
-    this._champions = new Collection();
-    this.http = axios.create({ baseURL: this.base });
+    this._champions = new ChampionManager(this);
+    this._http = axios.create({ baseURL: this._base });
   }
 
   async initialize(region?: regions) {
@@ -42,31 +54,53 @@ export class Client {
     }
   }
 
-  async fetchAllChampions() {
-    return new Promise(async (resolve, reject) => {
-      if (this._version === 'null') reject('Please initialize the client first.');
-      else {
-        const response = await this.http.get(this._version + '/data/' + this._language + '/championFull.json');
-        if (response.status !== 200) reject('Unable to fetch the champions data.');
-        else {
-          const champs = <{ data: { [champ: string]: ChampionData } }>response.data;
-          for (const key of Object.keys(champs.data)) this._champions.set(key, new Champion(this, champs.data[key]));
-          resolve(this._champions);
-        }
-      }
-    });
+  /**
+   * The axios instance that handles all the requests being made to the API.
+   */
+  get http() {
+    return this._http;
   }
 
+  /**
+   * The Data Dragon CDN Base URL
+   */
+  get base() {
+    return this._base;
+  }
+
+  /**
+   * The default champions manager used by the client;
+   */
   get champions() {
     return this._champions;
   }
+
+  /**
+   * The current Data Dragon CDN version.
+   */
   get version() {
     return this._version;
   }
+
+  /**
+   * The patch of the game currently in use.
+   */
   get patch() {
     return this._patch;
   }
+
+  /**
+   * The locale in which all the data is going to be fetched in.
+   */
+  get language() {
+    return this._language;
+  }
+
   set language(locale: locales) {
     this._language = locale;
+  }
+
+  set patch(patch: string) {
+    this._patch = patch;
   }
 }
