@@ -20,7 +20,7 @@
     "format": "prettier --write \"src/**/**.ts\"",
     "lint": "eslint --fix --color \"src/**/**.ts\"",
     "test": "node dev/test/index.js",
-    "document": "typedoc --plugin typedoc-plugin-markdown src/index.ts --readme README.md --excludePrivate"
+    "document": "typedoc --plugin none src/index.ts --readme README.md --excludePrivate"
   },
   "repository": {
     "type": "git",
