@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 import type { locales, regions } from './types';
-import { ChampionManager } from './managers';
+import { ChampionManager } from './util';
 
 /**
  * The league.ts client that enables you to interact with Riot Games' League of Legends API.
@@ -17,7 +17,7 @@ import { ChampionManager } from './managers';
  */
 export class Client {
   private readonly _base: string;
-  private readonly versions: string;
+  private readonly _versions: string;
   private _version: string;
   private _patch: string;
   private _language: locales;
@@ -26,7 +26,7 @@ export class Client {
 
   constructor() {
     this._base = 'https://ddragon.leagueoflegends.com/cdn/';
-    this.versions = 'https://ddragon.leagueoflegends.com/api/versions.json';
+    this._versions = 'https://ddragon.leagueoflegends.com/api/versions.json';
     this._version = 'null';
     this._patch = 'null';
     this._language = 'en_US';
@@ -36,7 +36,7 @@ export class Client {
 
   async initialize(region?: regions) {
     const response = await axios
-      .get(region ? `https://ddragon.leagueoflegends.com/realms/${region}.json` : this.versions)
+      .get(region ? `https://ddragon.leagueoflegends.com/realms/${region}.json` : this._versions)
       .catch(() => {});
     if (response?.status !== 200)
       throw new Error('Unable to fetch data dragon version. Please confirm the region exists.');

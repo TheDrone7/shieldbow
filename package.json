@@ -4,6 +4,7 @@
   "description": "An all purpose League of Legends API Client",
   "main": "dist/index.js",
   "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
     "@types/node": "^17.0.17",
     "@typescript-eslint/parser": "^5.11.0",
     "eslint": "^8.9.0",
@@ -11,7 +12,6 @@
     "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.5.1",
     "typedoc": "^0.22.11",
-    "typedoc-plugin-markdown": "^3.11.14",
     "typescript": "^4.5.5"
   },
   "scripts": {
@@ -20,7 +20,7 @@
     "format": "prettier --write \"src/**/**.ts\"",
     "lint": "eslint --fix --color \"src/**/**.ts\"",
     "test": "node dev/test/index.js",
-    "document": "typedoc --plugin typedoc-plugin-markdown src/index.ts --readme README.md --excludePrivate"
+    "document": "typedoc src/index.ts --readme README.md --excludePrivate"
   },
   "repository": {
     "type": "git",
@@ -45,6 +45,7 @@
   "dependencies": {
     "@discordjs/collection": "^0.5.0",
     "axios": "^0.25.0",
+    "fs-extra": "^10.0.0",
     "tslib": "^2.3.1"
   }
 }

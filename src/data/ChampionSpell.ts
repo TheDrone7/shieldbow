@@ -86,14 +86,14 @@ export class ChampionSpell {
     this.maxAmmo = parseInt(data.maxammo);
 
     const hashedRoot = `{${hash(`characters/${this.champ.id.toLowerCase()}/characterrecords/root`)}}`;
-    const rootRecordKey = Object.keys(damage.data).find(
+    const rootRecordKey = Object.keys(damage).find(
       (k) => k.toLowerCase() === `characters/${this.champ.id.toLowerCase()}/characterrecords/root` || k === hashedRoot
     )!;
-    const spells: string[] = damage.data[rootRecordKey].spellNames;
+    const spells: string[] = damage[rootRecordKey].spellNames;
 
     const spellName = spells.find((s: string) => s.includes(this.id))!;
     const hashedSpell = `{${hash(`characters/${this.champ.id.toLowerCase()}/spells/${spellName.toLowerCase()}`)}}`;
-    const spell = (damage.data[`Characters/${this.champ.id}/Spells/${spellName}`] || damage.data[hashedSpell]).mSpell;
+    const spell = (damage[`Characters/${this.champ.id}/Spells/${spellName}`] || damage[hashedSpell]).mSpell;
 
     this._rawTooltip = data.tooltip;
     for (let i = 0; i < data.effectBurn.length; i++) {
@@ -139,7 +139,6 @@ export class ChampionSpell {
   }
 
   private _parseTooltip(damage: SpellDamageData, spell: any) {
-    const { data } = damage;
     const tokens = this._rawTooltip.match(/(?<={{\s*)[^}]+(?=\s*}})/g)?.map((t) => t.trim());
     if (!tokens) return;
 
@@ -161,9 +160,9 @@ export class ChampionSpell {
           const toReplace = ammo.every((a) => a === ammo[0]) ? ammo[1] : ammo.join('/');
           this._rawTooltip = this._rawTooltip.replaceAll('{{ ammorechargetime }}', toReplace);
         } else if (external) {
-          const externalSpellKey = Object.keys(data).find((k) => k.toLowerCase().endsWith(external));
+          const externalSpellKey = Object.keys(damage).find((k) => k.toLowerCase().endsWith(external));
           if (!externalSpellKey) return;
-          const externalSpell = data[externalSpellKey].mSpell;
+          const externalSpell = damage[externalSpellKey].mSpell;
           const externalData = ChampionSpell._parseDataValues(externalSpell.mDataValues);
           const externalEffects: { value: number[] }[] = externalSpell.mEffectAmount || [];
           const values = externalData[actualToken]?.slice(1, this.maxRank + 1);
