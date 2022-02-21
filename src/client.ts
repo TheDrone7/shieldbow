@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
-import type { locales, regions } from './types';
+import type { Locales, Region } from './types';
 import { ChampionManager } from './util';
 
 /**
@@ -20,7 +20,7 @@ export class Client {
   private readonly _versions: string;
   private _version: string;
   private _patch: string;
-  private _language: locales;
+  private _language: Locales;
   private readonly _champions: ChampionManager;
   private readonly _http: AxiosInstance;
 
@@ -34,7 +34,7 @@ export class Client {
     this._http = axios.create({ baseURL: this._base });
   }
 
-  async initialize(region?: regions) {
+  async initialize(region?: Region) {
     const response = await axios
       .get(region ? `https://ddragon.leagueoflegends.com/realms/${region}.json` : this._versions)
       .catch(() => {});
@@ -42,7 +42,7 @@ export class Client {
       throw new Error('Unable to fetch data dragon version. Please confirm the region exists.');
     else {
       const patchRegex = /\d+\.\d+/;
-      const result = <string[] | { v: string; l: locales }>response.data;
+      const result = <string[] | { v: string; l: Locales }>response.data;
       if (Array.isArray(result)) {
         this._version = result[0];
         this._patch = result[0].match(patchRegex)!.shift()!;
@@ -96,7 +96,7 @@ export class Client {
     return this._language;
   }
 
-  set language(locale: locales) {
+  set language(locale: Locales) {
     this._language = locale;
   }
 

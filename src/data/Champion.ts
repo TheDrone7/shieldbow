@@ -1,4 +1,4 @@
-import type { ChampionData, SpellDamageData, stats } from '../types';
+import type { ChampionData, SpellDamageData, Stats } from '../types';
 import type { Client } from '../client';
 import Collection from '@discordjs/collection';
 import { ChampionStat, ChampionSkin, ChampionSpell } from './index';
@@ -67,7 +67,7 @@ export class Champion {
   /**
    * A collection of the champion's base stats.
    */
-  readonly stats: Collection<stats, ChampionStat>;
+  readonly stats: Collection<Stats, ChampionStat>;
   /**
    * A collection of the available skins for this champion.
    * The default skin always has the id - `0`.

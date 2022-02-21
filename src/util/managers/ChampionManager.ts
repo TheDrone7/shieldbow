@@ -2,7 +2,7 @@ import type { ChampionData, SpellDamageData, BaseManager } from '../../types';
 import type { Client } from '../../client';
 import Collection from '@discordjs/collection';
 import { Champion } from '../../data';
-import { StorageManager } from './StorageManager';
+import { StorageManager } from './index';
 import path from 'path';
 
 /**

@@ -27,8 +27,8 @@ export const locale = [
   'zh_MY',
   'zh_TW'
 ] as const;
-export type regions = 'br' | 'eune' | 'euw' | 'lan' | 'las' | 'na' | 'oce' | 'ru' | 'tr' | 'jp' | 'kr' | 'pbe';
-export type stats =
+export type Region = 'br' | 'eune' | 'euw' | 'lan' | 'las' | 'na' | 'oce' | 'ru' | 'tr' | 'jp' | 'kr' | 'pbe';
+export type Stats =
   | 'hp'
   | 'mp'
   | 'ms'
@@ -40,7 +40,7 @@ export type stats =
   | 'crit'
   | 'attackDamage'
   | 'attackSpeed';
-export type locales = typeof locale[number];
+export type Locales = typeof locale[number];
 
 export type { ChampionData, SpellData, SpellDamageData } from './champion';
 export type { ImageData } from './image';
