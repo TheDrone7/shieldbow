@@ -24,7 +24,20 @@ export class ChampionSkin {
   /**
    * Whether the skin has chromas or not.
    */
-  readonly chromas: { name: string; id: number; image: string }[];
+  readonly chromas: {
+    /**
+     * The name of the chroma
+     */
+    name: string;
+    /**
+     * The unique ID of the chroma.
+     */
+    id: number;
+    /**
+     * A link to the preview image for this chroma.
+     */
+    image: string;
+  }[];
   /**
    * The availability of this skin - Available or Legacy.
    */
@@ -34,11 +47,18 @@ export class ChampionSkin {
    */
   readonly isBase: boolean;
   /**
-   * The price of the skin. Contains 2 properties:
-   * 1. `rp` - The RP amount required to buy this skin.
-   * 2. `sale` - If more than 0, the skin can be bought for less RP, the amount being the value of this field.
+   * The in-game price of the skin.
    */
-  readonly price: { rp: number; sale: number };
+  readonly price: {
+    /**
+     * The RP amount required to buy this skin.
+     */
+    rp: number;
+    /**
+     * If more than 0, the skin can be bought for less RP, the amount being the value of this field.
+     */
+    sale: number;
+  };
   /**
    *  How rare is this skin - 'Epic', 'Legendary', etc.
    */
@@ -78,6 +98,6 @@ export class ChampionSkin {
     this.loadingScreen = meraki.loadScreenPath;
     this.vintageLoadingScreen = meraki.loadScreenVintagePath || undefined;
     this.internalId = data.id;
-    this.chromas = meraki.chromas.map((c) => ({ id: c.id, name: c.name, image: c.chromaPath }));
+    this.chromas = meraki.chromas.filter((c) => c).map((c) => ({ id: c.id, name: c.name, image: c.chromaPath }));
   }
 }

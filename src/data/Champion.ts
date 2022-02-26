@@ -84,14 +84,37 @@ export class Champion {
   /**
    * The champion's passive ability summarized.
    */
-  readonly passive: { name: string; icon: string; description: string };
+  readonly passive: {
+    /**
+     * The name of the champion's passive ability.
+     */
+    name: string;
+    /**
+     * A link to the icon used in game to represent this champion's passive ability.
+     */
+    icon: string;
+    /**
+     * A short textual description of this champion's passive ability.
+     */
+    description: string;
+  };
   /**
-   * The pricing of the champion. Contains 3 parts: -
-   * 1. `be` - The amount of blue essence required to buy this champion.
-   * 2. `rp` - The amount of RP required to buy this champion.
-   * 3, `sale` - If more than 0, this champion is available for a less RP, the amount being the value of this field.
+   * The in-game pricing of the champion.
    */
-  readonly pricing: { be: number; rp: number; sale: number };
+  readonly pricing: {
+    /**
+     * The amount of blue essence required to buy this champion.
+     */
+    be: number;
+    /**
+     * The amount of RP required to buy this champion.
+     */
+    rp: number;
+    /**
+     * If more than 0, this champion is available for a less RP, the amount being the value of this field.
+     */
+    sale: number;
+  };
   /**
    * The type of this champion's basic attacks - RANGED or MELEE.
    */
@@ -141,9 +164,11 @@ export class Champion {
       sale: meraki.price.saleRp
     };
 
-    data.skins.map((s) =>
-      this.skins.set(s.num, new ChampionSkin(this, s, meraki.skins.find((ms) => ms.id.toString() === s.id)!))
-    );
+    data.skins
+      .filter((s) => meraki.skins.find((ms) => ms.id.toString() === s.id))
+      .map((s) =>
+        this.skins.set(s.num, new ChampionSkin(this, s, meraki.skins.find((ms) => ms.id.toString() === s.id)!))
+      );
     data.spells.map((s, i) => {
       const keys = ['Q', 'W', 'E', 'R'] as const;
       const key = keys[i];

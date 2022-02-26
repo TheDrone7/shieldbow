@@ -19,22 +19,25 @@ export class ChampionManager implements BaseManager {
    */
   readonly client: Client;
 
-  private readonly _champData: StorageManager;
-  private readonly _damageData: StorageManager;
-  private readonly _pricingData: StorageManager;
+  private readonly _champData?: StorageManager;
+  private readonly _damageData?: StorageManager;
+  private readonly _pricingData?: StorageManager;
 
-  constructor(client: Client) {
+  constructor(client: Client, cacheSettings: { enable: boolean; root: string }) {
     this.client = client;
     this.cache = new Collection<string, Champion>();
-    this._champData = new StorageManager(client, 'dDragon/champions');
-    this._damageData = new StorageManager(client, 'cDragon/champions');
-    this._pricingData = new StorageManager(client, 'meraki/champions');
+    if (cacheSettings.enable) {
+      this._champData = new StorageManager(client, 'dDragon/champions', cacheSettings.root);
+      this._damageData = new StorageManager(client, 'cDragon/champions', cacheSettings.root);
+      this._pricingData = new StorageManager(client, 'meraki/champions', cacheSettings.root);
+    }
   }
 
   private async _fetchLocalChamp(name: string) {
-    this._champData.pathName = path.join('data', 'dDragon', this.client.version, this.client.language, 'champions');
+    if (this._champData)
+      this._champData.pathName = path.join('dDragon', this.client.version, this.client.language, 'champions');
     return new Promise(async (resolve, reject) => {
-      const data = await this._champData.fetch(name);
+      const data = await this._champData?.fetch(name);
       if (data) resolve(data);
       else {
         const response = await this.client.http.get(
@@ -42,7 +45,7 @@ export class ChampionManager implements BaseManager {
         );
         if (response.status !== 200) reject("Unable to fetch the champion's data");
         else {
-          await this._champData.store(name, response.data);
+          await this._champData?.store(name, response.data);
           resolve(response.data);
         }
       }
@@ -50,9 +53,9 @@ export class ChampionManager implements BaseManager {
   }
 
   private async _fetchLocalPricing(name: string) {
-    this._pricingData.pathName = path.join('data', 'meraki', 'champions');
+    if (this._pricingData) this._pricingData.pathName = path.join('meraki', 'champions');
     return new Promise(async (resolve, reject) => {
-      const data = this._pricingData.fetch(name);
+      const data = this._pricingData?.fetch(name);
       if (data) resolve(data);
       else {
         const response = await this.client.http.get(
@@ -60,7 +63,7 @@ export class ChampionManager implements BaseManager {
         );
         if (response.status !== 200) reject("Unable to fetch the champion's pricing.");
         else {
-          await this._pricingData.store(name, response.data);
+          await this._pricingData?.store(name, response.data);
           resolve(response.data);
         }
       }
@@ -68,9 +71,9 @@ export class ChampionManager implements BaseManager {
   }
 
   private async _fetchLocalDamage(name: string) {
-    this._damageData.pathName = path.join('data', 'cDragon', this.client.patch, 'champions');
+    if (this._damageData) this._damageData.pathName = path.join('cDragon', this.client.patch, 'champions');
     return new Promise(async (resolve, reject) => {
-      const data = this._damageData.fetch(name);
+      const data = this._damageData?.fetch(name);
       if (data) resolve(data);
       else {
         const response = await this.client.http.get(
@@ -80,7 +83,7 @@ export class ChampionManager implements BaseManager {
         );
         if (response.status !== 200) reject("Unable to fetch the champion's damage data");
         else {
-          this._damageData.store(name, response.data);
+          this._damageData?.store(name, response.data);
           resolve(response.data);
         }
       }

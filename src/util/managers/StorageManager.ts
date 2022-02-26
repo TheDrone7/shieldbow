@@ -8,6 +8,7 @@ import fs from 'fs-extra';
  * A basic manager for storing and fetching the local cached JSON files.
  */
 export class StorageManager implements BaseManager {
+  private readonly _root: string;
   private _pathName: string;
   /**
    * An in-memory cache that stores the JSON data to serve data faster.
@@ -18,9 +19,10 @@ export class StorageManager implements BaseManager {
    */
   readonly client: Client;
 
-  constructor(client: Client, pathName: string) {
+  constructor(client: Client, pathName: string, root: string) {
     this.client = client;
-    this._pathName = path.join(process.cwd(), pathName);
+    this._root = root;
+    this._pathName = path.join(process.cwd(), root, pathName);
     this.cache = new Collection<string, any>();
   }
 
@@ -58,6 +60,6 @@ export class StorageManager implements BaseManager {
    * @param newPath The new path.
    */
   set pathName(newPath: string) {
-    this._pathName = path.join(process.cwd(), newPath);
+    this._pathName = path.join(process.cwd(), this._root, newPath);
   }
 }

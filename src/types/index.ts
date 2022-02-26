@@ -27,7 +27,13 @@ export const locale = [
   'zh_MY',
   'zh_TW'
 ] as const;
+/**
+ * A valid League of Legends region.
+ */
 export type Region = 'br' | 'eune' | 'euw' | 'lan' | 'las' | 'na' | 'oce' | 'ru' | 'tr' | 'jp' | 'kr' | 'pbe';
+/**
+ * A valid champion stat that affects their in-game interactions.
+ */
 export type Stats =
   | 'hp'
   | 'mp'
@@ -40,8 +46,12 @@ export type Stats =
   | 'crit'
   | 'attackDamage'
   | 'attackSpeed';
+/**
+ * A valid locale to fetch the data in.
+ */
 export type Locales = typeof locale[number];
 
 export type { ChampionData, SpellData, SpellDamageData, MerakiSkin, MerakiChampion } from './champion';
 export type { ImageData } from './image';
 export type { BaseManager } from './BaseManager';
+export type { ClientConfig } from './ClientConfig';
