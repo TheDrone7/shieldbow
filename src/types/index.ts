@@ -42,6 +42,6 @@ export type Stats =
   | 'attackSpeed';
 export type Locales = typeof locale[number];
 
-export type { ChampionData, SpellData, SpellDamageData } from './champion';
+export type { ChampionData, SpellData, SpellDamageData, MerakiSkin, MerakiChampion } from './champion';
 export type { ImageData } from './image';
 export type { BaseManager } from './BaseManager';
