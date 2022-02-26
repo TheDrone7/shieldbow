@@ -2,6 +2,7 @@ import type { ChampionData, SpellDamageData, Stats } from '../types';
 import type { Client } from '../client';
 import Collection from '@discordjs/collection';
 import { ChampionStat, ChampionSkin, ChampionSpell } from './index';
+import type { MerakiChampion } from '../types/champion';
 
 /**
  * The representation of a League of Legends champion.
@@ -85,8 +86,27 @@ export class Champion {
    * The champion's passive ability summarized.
    */
   readonly passive: { name: string; icon: string; description: string };
+  /**
+   * The pricing of the champion. Contains 3 parts: -
+   * 1. `be` - The amount of blue essence required to buy this champion.
+   * 2. `rp` - The amount of RP required to buy this champion.
+   * 3, `sale` - If more than 0, this champion is available for a less RP, the amount being the value of this field.
+   */
+  readonly pricing: { be: number; rp: number; sale: number };
+  /**
+   * The type of this champion's basic attacks - RANGED or MELEE.
+   */
+  readonly attackType: string;
+  /**
+   * The date this champion was released on.
+   */
+  readonly releaseDate: string;
+  /**
+   * The patch this champion was introduced to the live servers.
+   */
+  readonly releasePatch: string;
 
-  constructor(client: Client, data: ChampionData, damage: SpellDamageData) {
+  constructor(client: Client, data: ChampionData, damage: SpellDamageData, meraki: MerakiChampion) {
     this.client = client;
     this.name = data.name;
     this.id = data.id;
@@ -113,8 +133,18 @@ export class Champion {
     this.stats.set('crit', new ChampionStat(data.stats.crit, data.stats.critperlevel));
     this.skins = new Collection<number, ChampionSkin>();
     this.spells = new Collection<'Q' | 'W' | 'E' | 'R', ChampionSpell>();
+    this.attackType = meraki.attackType;
+    this.releaseDate = meraki.releaseDate;
+    this.releasePatch = meraki.releasePatch;
+    this.pricing = {
+      be: meraki.price.blueEssence,
+      rp: meraki.price.rp,
+      sale: meraki.price.saleRp
+    };
 
-    data.skins.map((s) => this.skins.set(s.num, new ChampionSkin(this, s)));
+    data.skins.map((s) =>
+      this.skins.set(s.num, new ChampionSkin(this, s, meraki.skins.find((ms) => ms.id.toString() === s.id)!))
+    );
     data.spells.map((s, i) => {
       const keys = ['Q', 'W', 'E', 'R'] as const;
       const key = keys[i];

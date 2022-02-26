@@ -41,6 +41,56 @@ export interface SpellDamageData {
 }
 
 /**
+ * A representation of a champion's skin data returned by meraki analytics.
+ * These are used in the LoL wiki.
+ */
+export interface MerakiSkin {
+  name: string;
+  id: number;
+  isBase: boolean;
+  cost: number;
+  sale: number;
+  rarity: string;
+  availability: string;
+  chromas: {
+    name: string;
+    id: number;
+    chromaPath: string;
+  }[];
+  lore: string;
+  splashPath: string;
+  uncenteredSplashPath: string;
+  tilePath: string;
+  loadScreenPath: string;
+  loadScreenVintagePath: string;
+  newEffects: boolean;
+  newAnimations: boolean;
+  newRecall: boolean;
+  newVoice: boolean;
+  newQuotes: boolean;
+}
+
+/**
+ * A representation of the champion data returned by meraki analytics.
+ * These are used in the LoL wiki.
+ */
+export interface MerakiChampion {
+  id: string;
+  key: string;
+  name: string;
+  title: string;
+  attackType: string;
+  releaseDate: string;
+  releasePatch: string;
+  price: {
+    blueEssence: number;
+    rp: number;
+    saleRp: number;
+  };
+  skins: MerakiSkin[];
+}
+
+/**
  * A representation of the champion data returned by Data Dragon.
  */
 export interface ChampionData {
