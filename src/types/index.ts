@@ -55,3 +55,4 @@ export type { ChampionData, SpellData, SpellDamageData, MerakiSkin, MerakiChampi
 export type { ImageData } from './image';
 export type { BaseManager } from './BaseManager';
 export type { ClientConfig } from './ClientConfig';
+export type { ItemData } from './item';
