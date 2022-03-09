@@ -108,8 +108,8 @@ export class ChampionSpell {
       const format = `{{ ${key.toLowerCase()} }}`;
       const strings = arrToString(values[key].slice(1, this.maxRank));
       const value = strings.every((s) => s === strings[0]) ? strings[0] : strings.join('/');
+      this._rawTooltip = this._rawTooltip.replaceAll(format, value);
       this.cost = this.cost.replaceAll(format, value);
-      this._rawTooltip = this.cost.replaceAll(format, value);
     }
     this._parseTooltip(damage, spell);
   }
