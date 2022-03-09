@@ -9,7 +9,7 @@ import type {
   Region,
   SeasonData
 } from './types';
-import { ChampionManager, ItemManager } from './util';
+import { ChampionManager, ItemManager } from './managers';
 
 const patchRegex = /\d+\.\d+/;
 

@@ -1,12 +1,18 @@
-import type { Client } from '../../client';
-import type { BaseManager, ItemData } from '../../types';
-import { Item } from '../../data';
+import type { Client } from '../client';
+import type { BaseManager, ItemData } from '../types';
+import { Item } from '../data';
 import Collection from '@discordjs/collection';
 import { StorageManager } from './index';
 import path from 'path';
 
 export class ItemManager implements BaseManager {
+  /**
+   * A collection of the items cached in the memory.
+   */
   readonly cache: Collection<string, Item>;
+  /**
+   * The client this manager belongs to.
+   */
   readonly client: Client;
   private readonly _itemData?: StorageManager;
 
@@ -47,5 +53,16 @@ export class ItemManager implements BaseManager {
         else reject('There is no item with that ID');
       }
     });
+  }
+
+  /**
+   * Find an item by its name.
+   * The search is case-insensitive.
+   * The special characters are NOT ignored.
+   * @param name The name of the item to look for.
+   */
+  async findByName(name: string) {
+    if (!this.cache.has('1001')) await this.fetch('1001');
+    return this.cache.find((i) => i.name.toLowerCase().includes(name.toLowerCase()));
   }
 }

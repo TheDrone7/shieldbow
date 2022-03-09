@@ -1,5 +1,5 @@
-import type { BaseManager } from '../../types';
-import type { Client } from '../../client';
+import type { BaseManager } from '../types';
+import type { Client } from '../client';
 import Collection from '@discordjs/collection';
 import path from 'path';
 import fs from 'fs-extra';

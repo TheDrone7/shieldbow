@@ -1,7 +1,7 @@
-import type { ChampionData, SpellDamageData, BaseManager, MerakiChampion } from '../../types';
-import type { Client } from '../../client';
+import type { ChampionData, SpellDamageData, BaseManager, MerakiChampion } from '../types';
+import type { Client } from '../client';
 import Collection from '@discordjs/collection';
-import { Champion } from '../../data';
+import { Champion } from '../data';
 import { StorageManager } from './index';
 import path from 'path';
 

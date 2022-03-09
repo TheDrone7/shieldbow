@@ -1,6 +1,7 @@
 import type { Client } from '../client';
 import type { ItemData, MapData } from '../types';
 import type { Champion } from './index';
+import type Collection from '@discordjs/collection';
 
 export class Item {
   /**
@@ -43,22 +44,9 @@ export class Item {
    * The value indicates the quantity of this item you can store in one slot.
    */
   readonly stacks?: number;
-  /**
-   * IDs of the components of this item.
-   * You combine the components with some additional gold to get this item.
-   */
-  readonly fromIds: string[];
-  /**
-   * IDs of the items this item is a component of.
-   * You can use gold and other items with this item to form a new item.
-   */
-  readonly intoIds: string[];
-  /**
-   * If this exists, then this item can not be formed by combining items.
-   *
-   * Instead, you need to buy the special recipe and complete a quest to get this item.
-   */
-  readonly specialRecipeId?: string;
+  private readonly fromIds: string[];
+  private readonly intoIds: string[];
+  private readonly specialRecipeId?: string;
   /**
    * Whether this item is listed in the in-game store.
    */
@@ -159,6 +147,29 @@ export class Item {
       .replace(/\.(?=[A-Z])/g, '.\n\n')
       .replaceAll(/<(br|li|p)\s*\/?>/g, '\n')
       .replace(/<\/?[^>]+(>|$)/g, '');
+  }
+
+  /**
+   * The components of this item.
+   * You need to buy these item and spend additional gold to get this item.
+   */
+  get from(): Collection<string, Item> {
+    return this.client.items.cache.filter((i) => this.fromIds.includes(i.id));
+  }
+
+  /**
+   * A collection of items the current item is a component of.
+   */
+  get into(): Collection<string, Item> {
+    return this.client.items.cache.filter((i) => this.intoIds.includes(i.id));
+  }
+
+  /**
+   * If this is not undefined, you cannot buy this item from the store.
+   * Instead, you need to buy the `specialRecipe` item and complete a quest to get it.
+   */
+  get specialRecipe(): Item | undefined {
+    return this.specialRecipeId ? this.client.items.cache.get(this.specialRecipeId) : undefined;
   }
 
   private parseDepth(depth: number) {
