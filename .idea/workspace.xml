@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d7c5e2f4-ada1-44dc-8c44-7faf8269be2d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/Item.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/GameConstants.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/util/managers/ItemManager.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/assets/highlight.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/assets/highlight.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/assets/icons.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/assets/icons.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/assets/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/assets/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/assets/search.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/assets/search.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/assets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/assets/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/Champion.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/Champion.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/ChampionManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ChampionManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/ChampionSkin.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ChampionSkin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/ChampionSpell.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ChampionSpell.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/ChampionStat.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ChampionStat.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/Client.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/Client.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/StorageManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/StorageManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/BaseManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/BaseManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/ChampionData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/ChampionData.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/ClientConfig.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/ClientConfig.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/ImageData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/ImageData.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/MerakiChampion.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/MerakiChampion.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/MerakiSkin.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/MerakiSkin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/SpellDamageData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/SpellDamageData.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/SpellData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/SpellData.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/modules.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prettier.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/prettier.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/client.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/ClientConfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/ClientConfig.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/item.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/item.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/managers/ChampionManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/managers/ChampionManager.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/managers/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/managers/index.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="265pHAelMNo7OuBinkmNbKAvmCh" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_MARK_IGNORED_FILES_AS_EXCLUDED" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/src/data/Item.ts&#10;C:/Users/hsbha/Desktop/league.ts/dev/index.js&#10;C:/Users/hsbha/Desktop/league.ts/dev/test/index.js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\hsbha\Desktop\league.ts\node_modules\prettier" />
+    <property name="settings.editor.selected.configurable" value="power.mode.ii" />
+    <property name="ts.external.directory.path" value="C:\Users\hsbha\Desktop\league.ts\node_modules\typescript\lib" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\hsbha\Desktop\league.ts\dev\test" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.format">
+    <configuration name="build" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2">
+        <option name="RunConfigurationTask" enabled="true" run_configuration_name="lint" run_configuration_type="js.build_tools.npm" />
+      </method>
+    </configuration>
+    <configuration name="document" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="document" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="format" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="format" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="lint" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="lint" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2">
+        <option name="RunConfigurationTask" enabled="true" run_configuration_name="format" run_configuration_type="js.build_tools.npm" />
+      </method>
+    </configuration>
+    <configuration name="test" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="test" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="npm.format" />
+      <item itemvalue="npm.lint" />
+      <item itemvalue="npm.build" />
+      <item itemvalue="npm.test" />
+      <item itemvalue="npm.document" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d7c5e2f4-ada1-44dc-8c44-7faf8269be2d" name="Changes" comment="" />
+      <created>1646723211039</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1646723211039</updated>
+      <workItem from="1646723212597" duration="4383000" />
+      <workItem from="1646785631462" duration="3646000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

@@ -1,10 +1,9 @@
-import type { ChampionData, SpellDamageData, BaseManager } from '../../types';
+import type { ChampionData, SpellDamageData, BaseManager, MerakiChampion } from '../../types';
 import type { Client } from '../../client';
 import Collection from '@discordjs/collection';
 import { Champion } from '../../data';
 import { StorageManager } from './index';
 import path from 'path';
-import type { MerakiChampion } from '../../types/champion';
 
 /**
  * A champion manager - to help fetch and manage all the champion data.
@@ -37,7 +36,7 @@ export class ChampionManager implements BaseManager {
     if (this._champData)
       this._champData.pathName = path.join('dDragon', this.client.version, this.client.language, 'champions');
     return new Promise(async (resolve, reject) => {
-      const data = await this._champData?.fetch(name);
+      const data = this._champData?.fetch(name);
       if (data) resolve(data);
       else {
         const response = await this.client.http.get(
@@ -45,7 +44,7 @@ export class ChampionManager implements BaseManager {
         );
         if (response.status !== 200) reject("Unable to fetch the champion's data");
         else {
-          await this._champData?.store(name, response.data);
+          this._champData?.store(name, response.data);
           resolve(response.data);
         }
       }
@@ -63,7 +62,7 @@ export class ChampionManager implements BaseManager {
         );
         if (response.status !== 200) reject("Unable to fetch the champion's pricing.");
         else {
-          await this._pricingData?.store(name, response.data);
+          this._pricingData?.store(name, response.data);
           resolve(response.data);
         }
       }
@@ -95,7 +94,7 @@ export class ChampionManager implements BaseManager {
    *
    * This always fetches freshly from data dragon and community dragon.
    */
-  async fetchAll() {
+  async fetchAll(): Promise<Collection<string, Champion>> {
     return new Promise(async (resolve, reject) => {
       if (this.client.version === 'null') reject('Please initialize the client first.');
       else {
@@ -123,13 +122,14 @@ export class ChampionManager implements BaseManager {
    * @param options The options to modify the behavior of this method. If force is set to `true`, cache will be ignored.
    */
   async fetch(id: string, options: { force: boolean } = { force: false }) {
-    return new Promise(async (resolve, reject) => {
-      if (this.cache.has(id) && !options.force) resolve(this.cache.get(id));
+    if (id === 'FiddleSticks') id = 'Fiddlesticks'; // There is some internal inconsistency in Riot's JSON files.
+    return new Promise<Champion>(async (resolve, reject) => {
+      if (this.cache.has(id) && !options.force) resolve(this.cache.get(id)!);
       else if (this.client.version === 'null') reject('Please initialize the client first.');
       else {
-        const champs = <{ data: { [key: string]: ChampionData } }>await this._fetchLocalChamp(id);
+        const champs = <{ data: { [key: string]: ChampionData } }>await this._fetchLocalChamp(id).catch(reject);
         const key = Object.keys(champs.data)[0];
-        const damage = <SpellDamageData>await this._fetchLocalDamage(id);
+        const damage = <SpellDamageData>await this._fetchLocalDamage(id).catch(reject);
         const meraki = <MerakiChampion>await this._fetchLocalPricing(id).catch(reject);
         const champ = new Champion(this.client, champs.data[key], damage, meraki);
         this.cache.set(key, champ);

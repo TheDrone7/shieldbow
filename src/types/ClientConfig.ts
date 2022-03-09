@@ -26,6 +26,10 @@ export interface ClientConfig {
      * Whether to fetch the champions' data during initialization.
      */
     champions?: boolean;
+    /**
+     * Whether to fetch the items' data during initialization.
+     */
+    items?: boolean;
   };
   /**
    * The data dragon CDN version (defaults to latest as per the specified region)

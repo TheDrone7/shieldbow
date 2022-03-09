@@ -3,12 +3,19 @@ import type { ImageData } from './index';
 /**
  * A representation of the item data returned by Data Dragon.
  */
-export default interface ItemData {
+export interface ItemData {
   name: string;
-  description: string;
   plaintext: string;
+  description: string;
+  consumed?: boolean;
+  consumeOnFull?: boolean;
+  stacks?: number;
   from?: string[];
   into?: string[];
+  specialRecipe?: number;
+  inStore?: boolean;
+  hideFromAll?: boolean;
+  requiredChampion?: string;
   image: ImageData;
   gold: {
     base: number;

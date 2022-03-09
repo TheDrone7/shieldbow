@@ -51,8 +51,9 @@ export type Stats =
  */
 export type Locales = typeof locale[number];
 
-export type { ChampionData, SpellData, SpellDamageData, MerakiSkin, MerakiChampion } from './champion';
-export type { ImageData } from './image';
+export type { ChampionData, SpellData, SpellDamageData, MerakiSkin, MerakiChampion } from './Champion';
+export type { ImageData } from './Image';
 export type { BaseManager } from './BaseManager';
 export type { ClientConfig } from './ClientConfig';
-export type { ItemData } from './item';
+export type { ItemData } from './Item';
+export type { SeasonData, QueueData, MapData, GameModeData, GameTypeData } from './GameConstants';
