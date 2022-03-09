@@ -237,11 +237,6 @@ export class ChampionSpell {
       }
     } catch (e: any) {
       console.error(e.stack || e.message);
-      console.info(
-        `URL was: ${`https://raw.communitydragon.org/${
-          this.champ.client.patch
-        }/game/data/characters/${this.champ.id.toLowerCase()}/${this.champ.id.toLowerCase()}.bin.json`}`
-      );
       console.info(`Champ ID: ${this.champ.id}`);
       console.info(`Spell name: ${this.name}`);
     }
@@ -279,7 +274,6 @@ export class ChampionSpell {
       const newCalcs = calculations[calcs.mModifiedGameCalculation];
       const multiplier = calcs.mMultiplier;
       let part1 = '';
-      let part2 = '';
       const newPercentage = newCalcs.mDisplayAsPercent;
       for (const someCalc of newCalcs.mFormulaParts) {
         const brackets = !!part1.length;
@@ -289,7 +283,7 @@ export class ChampionSpell {
         });
         if (brackets) part1 += ')';
       }
-      part2 = performMath(multiplier, effects, dataValues, this.maxRank, {
+      const part2 = performMath(multiplier, effects, dataValues, this.maxRank, {
         percent: !!percentage
       });
       result = multiply(part1, part2);

@@ -3,31 +3,114 @@ import type { ItemData, MapData } from '../types';
 import type { Champion } from './index';
 
 export class Item {
-  client: Client;
+  /**
+   * The client this item's manager is a part of.
+   */
+  readonly client: Client;
+  /**
+   * The 4-digit unique ID (numerical ID as a string) of the item.
+   */
   readonly id: string;
+  /**
+   * The displayed name of this item.
+   */
   readonly name: string;
+  /**
+   * A short-description of this object.
+   * `plaintext` attribute in the data dragon file.
+   */
   readonly description: string;
+  /**
+   * More detailed description of the item.
+   * Raw details contain some html-like tags.
+   * This is the raw details from the data dragon API.
+   *
+   * See {@link details | details} if you want to see it with the tags processed out.
+   */
   readonly rawDetails: string;
+  /**
+   * Whether this item is a consumable.
+   *
+   * Consumables give you temporary buffs or vision after consumption.
+   */
   readonly consumable: boolean;
+  /**
+   * Whether this item is automatically consumed if you do not have an available item slot.
+   */
   readonly consumeOnFull: boolean;
+  /**
+   * If this has a value, it means this item can be stacked in the same item slot.
+   * The value indicates the quantity of this item you can store in one slot.
+   */
   readonly stacks?: number;
+  /**
+   * IDs of the components of this item.
+   * You combine the components with some additional gold to get this item.
+   */
   readonly fromIds: string[];
+  /**
+   * IDs of the items this item is a component of.
+   * You can use gold and other items with this item to form a new item.
+   */
   readonly intoIds: string[];
+  /**
+   * If this exists, then this item can not be formed by combining items.
+   *
+   * Instead, you need to buy the special recipe and complete a quest to get this item.
+   */
   readonly specialRecipeId?: string;
+  /**
+   * Whether this item is listed in the in-game store.
+   */
   readonly inStore: boolean;
+  /**
+   * Whether this item can be bought from the store.
+   */
   readonly hideFromAll: boolean;
   private _requiredChampion?: Champion;
+  /**
+   * A link to the image assigned to this item in-game.
+   */
   readonly image: string;
+  /**
+   * The value of this item in terms of in-game gold.
+   */
   readonly goldValue: {
+    /**
+     * The base value for this item.
+     * This does not include the value of this item's components.
+     */
     base: number;
+    /**
+     * The total gold value for this item.
+     * This includes the value of this item's components.
+     */
     total: number;
+    /**
+     * The selling price of this item.
+     */
     sell: number;
   };
+  /**
+   * Some tags assigned to this item.
+   */
   readonly tags: string[];
+  /**
+   * The list of maps on which you can buy this item.
+   */
   readonly availability: MapData[];
+  /**
+   * A list of stats this item provides.
+   * To learn more about these stats, {@link https://developer.riotgames.com/docs/lol#data-dragon_items | documentation}
+   */
   readonly stats: {
     [key: string]: number;
   };
+  /**
+   * The kind of item this is in-game.
+   * By default, all items are set to be `Basic`.
+   * There might be some issues with items that do not have their `depth` set in the data dragon JSON.
+   */
   readonly kind: 'Basic' | 'Epic' | 'Legendary' | 'Mythic';
 
   constructor(client: Client, id: string, data: ItemData) {
@@ -57,8 +140,25 @@ export class Item {
       });
   }
 
-  get requiredChampion() {
+  /**
+   * If this is not undefined, then this item can only be bought/owned by this champion.
+   */
+  get requiredChampion(): Champion | undefined {
     return this._requiredChampion;
+  }
+
+  /**
+   * More detailed description of the item.
+   * This is the processed details.
+   * With all the HTML-like tags removed.
+   *
+   * See {@link rawDetails | rawDetails} if you want the raw data.
+   */
+  get details() {
+    return this.rawDetails
+      .replace(/\.(?=[A-Z])/g, '.\n\n')
+      .replaceAll(/<(br|li|p)\s*\/?>/g, '\n')
+      .replace(/<\/?[^>]+(>|$)/g, '');
   }
 
   private parseDepth(depth: number) {
