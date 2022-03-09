@@ -149,10 +149,13 @@ export class ChampionManager implements BaseManager {
 
   /**
    * Find a champion by their name (instead of ID, which is very similar but not the same as the name).
+   * The search is case-insensitive.
+   * The special characters are NOT ignored.
    *
    * @param name The name of the champion to look for.
    */
-  findByName(name: string) {
-    return this.cache.find((champ) => champ.name === name);
+  async findByName(name: string) {
+    if (!this.cache.size) await this.fetchAll();
+    return this.cache.find((champ) => champ.name.toLowerCase().includes(name.toLowerCase()));
   }
 }

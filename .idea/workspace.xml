@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7c5e2f4-ada1-44dc-8c44-7faf8269be2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/client.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Item.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Item.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/managers/ChampionManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/ChampionManager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/managers/ItemManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/ItemManager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/managers/StorageManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/StorageManager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/managers/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/index.ts" afterDir="false" />
+    <list default="true" id="d7c5e2f4-ada1-44dc-8c44-7faf8269be2d" name="Changes" comment="Added more item utilities">
+      <change beforePath="$PROJECT_DIR$/src/managers/ChampionManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/ChampionManager.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +136,7 @@
       <updated>1646723211039</updated>
       <workItem from="1646723212597" duration="4383000" />
       <workItem from="1646785631462" duration="3925000" />
-      <workItem from="1646812926805" duration="3575000" />
+      <workItem from="1646812926805" duration="3717000" />
     </task>
     <task id="LOCAL-00001" summary="Added items support">
       <created>1646791598105</created>
@@ -174,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646814999227</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added more item utilities">
+      <created>1646816551352</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1646816551352</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,6 +193,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added items support" />
     <MESSAGE value="Improved code quality, added tsdoc for Item" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved code quality, added tsdoc for Item" />
+    <MESSAGE value="Added more item utilities" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added more item utilities" />
   </component>
 </project>
