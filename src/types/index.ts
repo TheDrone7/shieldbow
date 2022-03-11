@@ -56,4 +56,5 @@ export type { ImageData } from './Image';
 export type { BaseManager } from './BaseManager';
 export type { ClientConfig } from './ClientConfig';
 export type { ItemData } from './Item';
+export type { RuneData, RuneTreeData } from './Rune';
 export type { SeasonData, QueueData, MapData, GameModeData, GameTypeData } from './GameConstants';

@@ -30,6 +30,10 @@ export interface ClientConfig {
      * Whether to fetch the items' data during initialization.
      */
     items?: boolean;
+    /**
+     * Whether to fetch the runes' data during initialization.
+     */
+    runes?: boolean;
   };
   /**
    * The data dragon CDN version (defaults to latest as per the specified region)

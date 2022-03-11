@@ -4,9 +4,43 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7c5e2f4-ada1-44dc-8c44-7faf8269be2d" name="Changes" comment="Lint and document">
+    <list default="true" id="d7c5e2f4-ada1-44dc-8c44-7faf8269be2d" name="Changes" comment="Added rune and rune trees support">
+      <change afterPath="$PROJECT_DIR$/docs/classes/Rune.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/classes/RuneTree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/classes/RuneTreeManager.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/interfaces/RuneData.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/interfaces/RuneTreeData.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/Rune.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/RuneTree.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/managers/RuneTreeManager.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/Rune.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/ChampionSpell.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/ChampionSpell.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/assets/search.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/assets/search.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/Champion.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/Champion.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/ChampionManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ChampionManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/ChampionSkin.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ChampionSkin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/ChampionSpell.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ChampionSpell.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/ChampionStat.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ChampionStat.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/Client.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/Client.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/Item.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/Item.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/ItemManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ItemManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/StorageManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/StorageManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/BaseManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/BaseManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/ClientConfig.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/ClientConfig.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/GameModeData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/GameModeData.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/GameTypeData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/GameTypeData.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/MapData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/MapData.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/QueueData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/QueueData.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/SeasonData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/SeasonData.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/modules.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/client.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/managers/ItemManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/ItemManager.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/managers/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/ClientConfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/ClientConfig.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/GameConstants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/GameConstants.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +50,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="JavaScript File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -47,7 +81,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="add_unversioned_files" value="$PROJECT_DIR$/src/data/Item.ts&#10;C:/Users/hsbha/Desktop/league.ts/dev/index.js&#10;C:/Users/hsbha/Desktop/league.ts/dev/test/index.js" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/src/data/Item.ts&#10;C:/Users/hsbha/Desktop/league.ts/dev/index.js&#10;C:/Users/hsbha/Desktop/league.ts/dev/test/index.js&#10;C:/Users/hsbha/Desktop/league.ts/dev/data/cDragon/12.5/champions/Viego.json" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -65,7 +99,7 @@
       <recent name="C:\Users\hsbha\Desktop\league.ts\dev\test" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.test">
+  <component name="RunManager" selected="npm.document">
     <configuration name="build" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -139,7 +173,9 @@
       <workItem from="1646723212597" duration="4383000" />
       <workItem from="1646785631462" duration="3925000" />
       <workItem from="1646812926805" duration="3859000" />
-      <workItem from="1646861114548" duration="195000" />
+      <workItem from="1646861114548" duration="327000" />
+      <workItem from="1646886862471" duration="2549000" />
+      <workItem from="1646973836338" duration="11970000" />
     </task>
     <task id="LOCAL-00001" summary="Added items support">
       <created>1646791598105</created>
@@ -190,7 +226,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646816758019</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Fix champion spell tooltips">
+      <created>1646861434640</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1646861434640</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,6 +256,8 @@
     <MESSAGE value="Added more item utilities" />
     <MESSAGE value="Improve champion utilities." />
     <MESSAGE value="Lint and document" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lint and document" />
+    <MESSAGE value="Fix champion spell tooltips" />
+    <MESSAGE value="Added rune and rune trees support" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added rune and rune trees support" />
   </component>
 </project>

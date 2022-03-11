@@ -1,27 +1,81 @@
+/**
+ * Basic data of seasons of the game.
+ */
 export interface SeasonData {
+  /**
+   * The ID that refers to this season.
+   */
   id: number;
+  /**
+   * The displayed name for the season.
+   */
   season: string;
 }
 
+/**
+ * Basic data for types of queues (matches) in the game.
+ */
 export interface QueueData {
+  /**
+   * The ID that refers to this type of queue.
+   */
   queueId: number;
+  /**
+   * The name of the map being used for this type of queue.
+   */
   map: string;
+  /**
+   * A textual description for this type of queue.
+   */
   description: string;
+  /**
+   * Additional notes about the queue.
+   */
   notes: string | null;
 }
 
+/**
+ * Basic data for types of Maps available in the game.
+ */
 export interface MapData {
+  /**
+   * The ID that refers to this map.
+   */
   mapId: number;
+  /**
+   * The name of this map.
+   */
   mapName: string;
+  /**
+   * Additional notes about the map.
+   */
   notes: string;
 }
 
+/**
+ * Basic data for types of game modes.
+ */
 export interface GameModeData {
+  /**
+   * The name of the game mode.
+   */
   gameMode: string;
+  /**
+   * A textual description of the game mode.
+   */
   description: string;
 }
 
+/**
+ * Basic data for types of games.
+ */
 export interface GameTypeData {
+  /**
+   * The name of this type of game.
+   */
   gametype: string;
+  /**
+   * A short description about the game type.
+   */
   description: string;
 }

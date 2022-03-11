@@ -9,7 +9,7 @@ import type {
   Region,
   SeasonData
 } from './types';
-import { ChampionManager, ItemManager } from './managers';
+import { ChampionManager, ItemManager, RuneTreeManager } from './managers';
 
 const patchRegex = /\d+\.\d+/;
 
@@ -37,6 +37,7 @@ export class Client {
   private _cacheRoot: string;
   private _champions: ChampionManager;
   private _items: ItemManager;
+  private _runes: RuneTreeManager;
   private readonly _http: AxiosInstance;
   private _seasons: SeasonData[];
   private _queues: QueueData[];
@@ -62,6 +63,7 @@ export class Client {
 
     this._champions = new ChampionManager(this, { enable: true, root: 'data' });
     this._items = new ItemManager(this, { enable: true, root: 'data' });
+    this._runes = new RuneTreeManager(this, { enable: true, root: 'data' });
 
     this._http = axios.create({ baseURL: this._base });
   }
@@ -140,11 +142,13 @@ export class Client {
 
       this._champions = new ChampionManager(this, { enable: this._cacheEnabled, root: this._cacheRoot });
       this._items = new ItemManager(this, { enable: this._cacheEnabled, root: this._cacheRoot });
+      this._runes = new RuneTreeManager(this, { enable: this._cacheEnabled, root: this._cacheRoot });
     }
 
     // Fetch the data and cache it for faster data retrieval.
-    if (options?.fetch?.champions) await this.champions.fetchAll();
-    if (options?.fetch?.items) await this.items.fetch('1001');
+    if (options?.fetch?.champions ?? true) await this.champions.fetchAll();
+    if (options?.fetch?.items ?? true) await this.items.fetch('1001');
+    if (options?.fetch?.runes ?? true) await this.runes.fetch('Domination');
   }
 
   /**
@@ -180,6 +184,13 @@ export class Client {
    */
   get items() {
     return this._items;
+  }
+
+  /**
+   * The default runes manager used by the client.
+   */
+  get runes() {
+    return this._runes;
   }
 
   /**
