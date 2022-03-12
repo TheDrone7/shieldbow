@@ -55,16 +55,16 @@ export class ItemManager implements BaseManager {
 
   /**
    * Fetch an item by its 4-digit ID. The ID must be a string of 4 digits (not a number)
-   * @param id The ID of the item to fetch.
+   * @param key The ID of the item to fetch.
    * @param options The basic fetching options.
    */
-  async fetch(id: string, options: { force: boolean } = { force: false }) {
+  async fetch(key: string, options: { force: boolean } = { force: false }) {
     return new Promise<Item>(async (resolve, reject) => {
-      if (this.cache.has(id) && !options.force) resolve(this.cache.get(id)!);
+      if (this.cache.has(key) && !options.force) resolve(this.cache.get(key)!);
       else if (this.client.version === 'null') reject('Please initialize the client first.');
       else {
         await this._fetchAll();
-        if (this.cache.has(id)) resolve(this.cache.get(id)!);
+        if (this.cache.has(key)) resolve(this.cache.get(key)!);
         else reject('There is no item with that ID');
       }
     });

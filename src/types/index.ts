@@ -57,4 +57,5 @@ export type { BaseManager } from './BaseManager';
 export type { ClientConfig } from './ClientConfig';
 export type { ItemData } from './Item';
 export type { RuneData, RuneTreeData } from './Rune';
-export type { SeasonData, QueueData, MapData, GameModeData, GameTypeData } from './GameConstants';
+export type { SummonerSpellData } from './SummonerSpell';
+export type { Season, Queue, GameMap, GameMode, GameType } from './GameConstants';

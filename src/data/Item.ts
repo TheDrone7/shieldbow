@@ -1,5 +1,5 @@
 import type { Client } from '../client';
-import type { ItemData, MapData } from '../types';
+import type { ItemData, GameMap } from '../types';
 import type { Champion } from './index';
 import type Collection from '@discordjs/collection';
 
@@ -86,7 +86,7 @@ export class Item {
   /**
    * The list of maps on which you can buy this item.
    */
-  readonly availability: MapData[];
+  readonly availability: GameMap[];
   /**
    * A list of stats this item provides.
    * To learn more about these stats, {@link https://developer.riotgames.com/docs/lol#data-dragon_items | documentation}

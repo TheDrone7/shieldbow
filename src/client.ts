@@ -1,15 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
-import type {
-  ClientConfig,
-  GameModeData,
-  GameTypeData,
-  Locales,
-  MapData,
-  QueueData,
-  Region,
-  SeasonData
-} from './types';
-import { ChampionManager, ItemManager, RuneTreeManager } from './managers';
+import type { ClientConfig, GameMode, GameType, Locales, GameMap, Queue, Region, Season } from './types';
+import { ChampionManager, ItemManager, RuneTreeManager, SummonerSpellManager } from './managers';
 
 const patchRegex = /\d+\.\d+/;
 
@@ -38,12 +29,13 @@ export class Client {
   private _champions: ChampionManager;
   private _items: ItemManager;
   private _runes: RuneTreeManager;
+  private _summonerSpells: SummonerSpellManager;
   private readonly _http: AxiosInstance;
-  private _seasons: SeasonData[];
-  private _queues: QueueData[];
-  private _maps: MapData[];
-  private _gameModes: GameModeData[];
-  private _gameTypes: GameTypeData[];
+  private _seasons: Season[];
+  private _queues: Queue[];
+  private _maps: GameMap[];
+  private _gameModes: GameMode[];
+  private _gameTypes: GameType[];
 
   constructor() {
     this._base = 'https://ddragon.leagueoflegends.com/cdn/';
@@ -64,6 +56,7 @@ export class Client {
     this._champions = new ChampionManager(this, { enable: true, root: 'data' });
     this._items = new ItemManager(this, { enable: true, root: 'data' });
     this._runes = new RuneTreeManager(this, { enable: true, root: 'data' });
+    this._summonerSpells = new SummonerSpellManager(this, { enable: true, root: 'data' });
 
     this._http = axios.create({ baseURL: this._base });
   }
@@ -108,11 +101,11 @@ export class Client {
     if (gameModesResponse?.status !== 200) throw new Error('Unable to fetch game modes static data from data dragon.');
     if (gameTypesResponse?.status !== 200) throw new Error('Unable to fetch game types static data from data dragon.');
 
-    this._seasons = <SeasonData[]>seasonsResponse.data;
-    this._queues = <QueueData[]>queuesResponse.data;
-    this._maps = <MapData[]>mapsResponse.data;
-    this._gameModes = <GameModeData[]>gameModesResponse.data;
-    this._gameTypes = <GameTypeData[]>gameTypesResponse.data;
+    this._seasons = <Season[]>seasonsResponse.data;
+    this._queues = <Queue[]>queuesResponse.data;
+    this._maps = <GameMap[]>mapsResponse.data;
+    this._gameModes = <GameMode[]>gameModesResponse.data;
+    this._gameTypes = <GameType[]>gameTypesResponse.data;
 
     // Update the client configuration.
     if (version === 'null' || language === 'null') {
@@ -143,12 +136,14 @@ export class Client {
       this._champions = new ChampionManager(this, { enable: this._cacheEnabled, root: this._cacheRoot });
       this._items = new ItemManager(this, { enable: this._cacheEnabled, root: this._cacheRoot });
       this._runes = new RuneTreeManager(this, { enable: this._cacheEnabled, root: this._cacheRoot });
+      this._summonerSpells = new SummonerSpellManager(this, { enable: this._cacheEnabled, root: this._cacheRoot });
     }
 
     // Fetch the data and cache it for faster data retrieval.
     if (options?.fetch?.champions ?? true) await this.champions.fetchAll();
     if (options?.fetch?.items ?? true) await this.items.fetch('1001');
     if (options?.fetch?.runes ?? true) await this.runes.fetch('Domination');
+    if (options?.fetch?.summonerSpells ?? true) await this.summonerSpells.fetch('SummonerFlash');
   }
 
   /**
@@ -191,6 +186,13 @@ export class Client {
    */
   get runes() {
     return this._runes;
+  }
+
+  /**
+   * The default summoner spells manager used by the client.
+   */
+  get summonerSpells() {
+    return this._summonerSpells;
   }
 
   /**

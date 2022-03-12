@@ -1,7 +1,7 @@
 /**
  * Basic data of seasons of the game.
  */
-export interface SeasonData {
+export interface Season {
   /**
    * The ID that refers to this season.
    */
@@ -15,7 +15,7 @@ export interface SeasonData {
 /**
  * Basic data for types of queues (matches) in the game.
  */
-export interface QueueData {
+export interface Queue {
   /**
    * The ID that refers to this type of queue.
    */
@@ -37,7 +37,7 @@ export interface QueueData {
 /**
  * Basic data for types of Maps available in the game.
  */
-export interface MapData {
+export interface GameMap {
   /**
    * The ID that refers to this map.
    */
@@ -55,7 +55,7 @@ export interface MapData {
 /**
  * Basic data for types of game modes.
  */
-export interface GameModeData {
+export interface GameMode {
   /**
    * The name of the game mode.
    */
@@ -69,7 +69,7 @@ export interface GameModeData {
 /**
  * Basic data for types of games.
  */
-export interface GameTypeData {
+export interface GameType {
   /**
    * The name of this type of game.
    */

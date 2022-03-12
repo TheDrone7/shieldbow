@@ -5,3 +5,4 @@ export { ChampionSpell } from './ChampionSpell';
 export { Item } from './Item';
 export { Rune } from './Rune';
 export { RuneTree } from './RuneTree';
+export { SummonerSpell } from './SummonerSpell';

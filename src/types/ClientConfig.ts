@@ -34,6 +34,10 @@ export interface ClientConfig {
      * Whether to fetch the runes' data during initialization.
      */
     runes?: boolean;
+    /**
+     * Whether to fetch the summoner spells' data during initialization.
+     */
+    summonerSpells?: boolean;
   };
   /**
    * The data dragon CDN version (defaults to latest as per the specified region)
