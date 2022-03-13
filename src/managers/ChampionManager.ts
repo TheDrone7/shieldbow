@@ -6,11 +6,11 @@ import { StorageManager } from './index';
 import path from 'path';
 
 /**
- * A champion manager - to help fetch and manage all the champion data.
+ * A champion manager - to fetch and manage all the champion data.
  */
-export class ChampionManager implements BaseManager {
+export class ChampionManager implements BaseManager<Champion> {
   /**
-   * The in-memory cache that contains all the champion data that has been fetched so far.
+   * The champions cached in the memory.
    */
   readonly cache: Collection<string, Champion>;
   /**
@@ -22,6 +22,12 @@ export class ChampionManager implements BaseManager {
   private readonly _damageData?: StorageManager;
   private readonly _pricingData?: StorageManager;
 
+  /**
+   * Create a new Champions Manager
+   *
+   * @param client The client this manager belongs to.
+   * @param cacheSettings The basic caching settings.
+   */
   constructor(client: Client, cacheSettings: { enable: boolean; root: string }) {
     this.client = client;
     this.cache = new Collection<string, Champion>();
@@ -90,7 +96,7 @@ export class ChampionManager implements BaseManager {
   }
 
   /**
-   * Fetch all the champions' data and store it in the cache.
+   * Fetch all the champions and store it in the cache.
    *
    * This always fetches freshly from data dragon and community dragon.
    */
@@ -117,7 +123,7 @@ export class ChampionManager implements BaseManager {
   }
 
   /**
-   * Fetches a champion's data (from the cache, if already available), or from data dragon and community dragon.
+   * Fetches a champion (from the cache, if already available), or from data dragon and community dragon.
    * @param id The {@link Champion.id | ID} of the champion whose data needs to be fetched.
    * @param options The options to modify the behavior of this method. If force is set to `true`, cache will be ignored.
    */

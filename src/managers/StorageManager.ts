@@ -7,7 +7,7 @@ import fs from 'fs-extra';
 /**
  * A basic manager for storing and fetching the local cached JSON files.
  */
-export class StorageManager implements BaseManager {
+export class StorageManager implements BaseManager<any> {
   private readonly _root: string;
   private _pathName: string;
   /**
@@ -28,6 +28,7 @@ export class StorageManager implements BaseManager {
 
   /**
    * Fetch the locally stored JSON file by its name.
+   *
    * @param id The name of the JSON file.
    */
   fetch(id: string) {
@@ -57,6 +58,7 @@ export class StorageManager implements BaseManager {
 
   /**
    * The path of the base directory to fetch/store files from/in.
+   *
    * @param newPath The new path.
    */
   set pathName(newPath: string) {

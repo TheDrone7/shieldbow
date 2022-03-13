@@ -6,3 +6,5 @@ export { Item } from './Item';
 export { Rune } from './Rune';
 export { RuneTree } from './RuneTree';
 export { SummonerSpell } from './SummonerSpell';
+export { Summoner } from './Summoner';
+export { Account } from './Account';

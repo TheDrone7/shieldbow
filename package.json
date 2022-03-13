@@ -1,6 +1,6 @@
 {
-  "name": "league.ts",
-  "version": "0.0.4",
+  "name": "shieldbow",
+  "version": "0.1.0",
   "description": "An all purpose League of Legends API Client",
   "main": "dist/index.js",
   "devDependencies": {
@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TheDrone7/league.ts.git"
+    "url": "git+https://github.com/TheDrone7/shieldbow.git"
   },
   "keywords": [
     "league",
@@ -39,9 +39,9 @@
   "author": "TheDrone7 <hsbhatia765@outlook.com> (https://thedrone7.repl.co)",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/TheDrone7/league.ts/issues"
+    "url": "https://github.com/TheDrone7/shieldbow/issues"
   },
-  "homepage": "https://github.com/TheDrone7/league.ts#readme",
+  "homepage": "https://thedrone7.github.io/shieldbow/",
   "dependencies": {
     "@discordjs/collection": "^0.5.0",
     "axios": "^0.25.0",

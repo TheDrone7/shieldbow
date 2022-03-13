@@ -1,7 +1,7 @@
 import type { Locales, Region } from './index';
 
 /**
- * The basic configuration for the league.ts Client.
+ * The basic configuration for the shieldbow Client.
  */
 export interface ClientConfig {
   /**

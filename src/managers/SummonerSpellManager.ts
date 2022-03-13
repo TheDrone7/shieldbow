@@ -6,9 +6,9 @@ import { StorageManager } from './index';
 import path from 'path';
 
 /**
- * A spell manager - to help fetch and manage all summoner spell data.
+ * A spell manager - to fetch and manage all summoner spell data.
  */
-export class SummonerSpellManager implements BaseManager {
+export class SummonerSpellManager implements BaseManager<SummonerSpell> {
   /**
    * A collection of the summoner spells cached in the memory.
    */
@@ -59,6 +59,7 @@ export class SummonerSpellManager implements BaseManager {
    * Fetch a spell by its ID. The ID is usually something like Summoner\{Spell\}
    * For example, for the spell `Flash`, the ID is `SummonerFlash`.
    * But there are a lot of exceptions to this, so it is recommended to use {@link findByName} instead.
+   *
    * @param key The ID of the spell to fetch.
    * @param options The basic fetching options.
    */

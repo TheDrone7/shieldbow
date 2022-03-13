@@ -51,6 +51,9 @@ export type Stats =
  */
 export type Locales = typeof locale[number];
 
+export type { AccountData } from './Account';
+export type { SummonerData } from './Summoner';
+
 export type { ChampionData, SpellData, SpellDamageData, MerakiSkin, MerakiChampion } from './Champion';
 export type { ImageData } from './Image';
 export type { BaseManager } from './BaseManager';

@@ -6,9 +6,9 @@ import { StorageManager } from './index';
 import path from 'path';
 
 /**
- * An item manager - to help fetch and manage all item data.
+ * An item manager - to fetch and manage all item data.
  */
-export class ItemManager implements BaseManager {
+export class ItemManager implements BaseManager<Item> {
   /**
    * A collection of the items cached in the memory.
    */
@@ -19,6 +19,12 @@ export class ItemManager implements BaseManager {
   readonly client: Client;
   private readonly _itemData?: StorageManager;
 
+  /**
+   * Create a new item manager.
+   *
+   * @param client The client this manager belongs to.
+   * @param cacheSettings The basic caching settings.
+   */
   constructor(client: Client, cacheSettings: { enable: boolean; root: string }) {
     this.client = client;
     this.cache = new Collection<string, Item>();
@@ -55,6 +61,7 @@ export class ItemManager implements BaseManager {
 
   /**
    * Fetch an item by its 4-digit ID. The ID must be a string of 4 digits (not a number)
+   *
    * @param key The ID of the item to fetch.
    * @param options The basic fetching options.
    */
@@ -74,6 +81,7 @@ export class ItemManager implements BaseManager {
    * Find an item by its name.
    * The search is case-insensitive.
    * The special characters are NOT ignored.
+   *
    * @param name The name of the item to look for.
    */
   async findByName(name: string) {

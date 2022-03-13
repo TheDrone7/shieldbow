@@ -1,11 +1,19 @@
 import axios, { AxiosInstance } from 'axios';
 import type { ClientConfig, GameMode, GameType, Locales, GameMap, Queue, Region, Season } from './types';
-import { ChampionManager, ItemManager, RuneTreeManager, SummonerSpellManager } from './managers';
+import {
+  ChampionManager,
+  ItemManager,
+  RuneTreeManager,
+  SummonerManager,
+  SummonerSpellManager,
+  AccountManager
+} from './managers';
+import { ApiHandler } from './util';
 
 const patchRegex = /\d+\.\d+/;
 
 /**
- * The league.ts client that enables you to interact with Riot Games' League of Legends API.
+ * The shieldbow client that enables you to interact with Riot Games' League of Legends API.
  * Also connects to the Data Dragon + Community Dragon CDNs.
  *
  * @example
@@ -30,14 +38,17 @@ export class Client {
   private _items: ItemManager;
   private _runes: RuneTreeManager;
   private _summonerSpells: SummonerSpellManager;
+  private readonly _summoners: SummonerManager;
+  private readonly _accounts: AccountManager;
   private readonly _http: AxiosInstance;
+  private readonly _api: ApiHandler;
   private _seasons: Season[];
   private _queues: Queue[];
   private _maps: GameMap[];
   private _gameModes: GameMode[];
   private _gameTypes: GameType[];
 
-  constructor() {
+  constructor(apiKey: string) {
     this._cdnBase = 'https://ddragon.leagueoflegends.com/cdn/';
     this._versions = 'https://ddragon.leagueoflegends.com/api/versions.json';
     this._version = 'null';
@@ -57,8 +68,11 @@ export class Client {
     this._items = new ItemManager(this, { enable: true, root: 'data' });
     this._runes = new RuneTreeManager(this, { enable: true, root: 'data' });
     this._summonerSpells = new SummonerSpellManager(this, { enable: true, root: 'data' });
+    this._summoners = new SummonerManager(this);
+    this._accounts = new AccountManager(this);
 
     this._http = axios.create({ baseURL: this._cdnBase });
+    this._api = new ApiHandler('na', apiKey);
   }
 
   /**
@@ -71,6 +85,7 @@ export class Client {
     // Parse the configuration
     const region = options?.region || 'na';
     this._region = region;
+    this._api.region = region;
     const version = options?.version || 'null';
     this._version = version;
     this._patch = version !== 'null' ? version.match(patchRegex)!.shift()! : 'null';
@@ -150,10 +165,17 @@ export class Client {
   }
 
   /**
-   * The axios instance that handles all the requests being made to the API.
+   * The axios instance that handles all the CDN requests being made.
    */
   get http() {
     return this._http;
+  }
+
+  /**
+   * The default API interactions handler used by the client.
+   */
+  get api() {
+    return this._api;
   }
 
   /**
@@ -196,6 +218,21 @@ export class Client {
    */
   get summonerSpells() {
     return this._summonerSpells;
+  }
+
+  /**
+   * The default summoners manager used by the client.
+   */
+  get summoners() {
+    return this._summoners;
+  }
+
+  /**
+   * The default riot accounts manager used by the client.
+   * This is mostly for internal usage. You may want to use {@link summoners} instead.
+   */
+  get accounts() {
+    return this._accounts;
   }
 
   /**

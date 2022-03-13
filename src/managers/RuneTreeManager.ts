@@ -6,9 +6,9 @@ import { StorageManager } from './index';
 import path from 'path';
 
 /**
- * A rune trees manager - to help fetch and manage rune trees data.
+ * A rune trees manager - to fetch and manage rune trees data.
  */
-export class RuneTreeManager implements BaseManager {
+export class RuneTreeManager implements BaseManager<RuneTree> {
   /**
    * A collection of the rune trees cached in the memory.
    */
@@ -19,6 +19,11 @@ export class RuneTreeManager implements BaseManager {
   readonly client: Client;
   private readonly _runesData?: StorageManager;
 
+  /**
+   * Create a new rune trees manager.
+   * @param client The client this manager belongs to.
+   * @param cacheSettings The basic caching settings.
+   */
   constructor(client: Client, cacheSettings: { enable: boolean; root: string }) {
     this.client = client;
     this.cache = new Collection<string, RuneTree>();
@@ -66,6 +71,7 @@ export class RuneTreeManager implements BaseManager {
 
   /**
    * Fetch a rune tree by its key. The key is the same as the rune tree's name, for example - `Domination`.
+   *
    * @param key The key of the rune tree to fetch.
    * @param options Additional fetch options.
    */
@@ -83,6 +89,7 @@ export class RuneTreeManager implements BaseManager {
 
   /**
    * Fetch a rune by its key. The key is mostly the same as the rune name, for example - `Electrocute`.
+   *
    * @param key The key of the rune.
    * @param options Additional fetch options.
    */
@@ -104,6 +111,7 @@ export class RuneTreeManager implements BaseManager {
    * Find a rune tree by its name.
    * The search is case-insensitive.
    * The special characters are NOT ignored.
+   *
    * @param name The name of the rune tree to look for.
    */
   async findByName(name: string) {
@@ -115,6 +123,7 @@ export class RuneTreeManager implements BaseManager {
    * Find a rune by its name.
    * The search is case-insensitive.
    * The special characters are not ignored.
+   *
    * @param name The name of the rune to look for.
    */
   async findRuneByName(name: string) {
