@@ -7,7 +7,6 @@ import { ChampionStat, ChampionSkin, ChampionSpell } from './index';
  * The representation of a League of Legends champion.
  */
 export class Champion {
-  readonly client: Client;
   /**
    * The name of the champion.
    */
@@ -31,7 +30,7 @@ export class Champion {
   /**
    * The key - a 3-digit number, that is used to identify the champion.
    */
-  readonly key: string;
+  readonly key: number;
   /**
    * A title given to the champion based on their lore.
    */
@@ -129,12 +128,11 @@ export class Champion {
   readonly releasePatch: string;
 
   constructor(client: Client, data: ChampionData, damage: SpellDamageData, meraki: MerakiChampion) {
-    this.client = client;
     this.name = data.name;
     this.id = data.id;
-    this.key = data.key;
+    this.key = parseInt(data.key);
     this.title = data.title;
-    this.icon = `${client.base}${client.version}/img/champion/${data.image.full}`;
+    this.icon = `${client.cdnBase}${client.version}/img/champion/${data.image.full}`;
     this.lore = data.lore;
     this.blurb = data.blurb;
     this.enemyTips = data.enemytips;
@@ -172,7 +170,7 @@ export class Champion {
     data.spells.map((s, i) => {
       const keys = ['Q', 'W', 'E', 'R'] as const;
       const key = keys[i];
-      this.spells.set(key, new ChampionSpell(this, s, damage));
+      this.spells.set(key, new ChampionSpell(client, this, s, damage));
     });
 
     this.ratings = {
@@ -185,7 +183,7 @@ export class Champion {
     this.passive = {
       name: data.passive.name,
       description: data.passive.description.replace(/<\/?[^>]+(>|$)/g, '').replace(/\.(?=\w\D)/g, '.\n\n'),
-      icon: `${client.base}${client.version}/img/passive/${data.passive.image.full}`
+      icon: `${client.cdnBase}${client.version}/img/passive/${data.passive.image.full}`
     };
   }
 

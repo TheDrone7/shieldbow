@@ -6,10 +6,6 @@ import type { RuneData } from '../types';
  */
 export class Rune {
   /**
-   * The client this rune object's manager belongs to.
-   */
-  readonly client: Client;
-  /**
    * The numerical unique ID of this rune.
    */
   readonly id: number;
@@ -29,11 +25,10 @@ export class Rune {
   private readonly _rawDetails: string;
 
   constructor(client: Client, data: RuneData) {
-    this.client = client;
     this.id = data.id;
     this.key = data.key;
     this.name = data.name;
-    this.icon = client.base + 'img/' + data.icon;
+    this.icon = client.cdnBase + 'img/' + data.icon;
     this._rawDescription = data.shortDesc;
     this._rawDetails = data.longDesc;
   }

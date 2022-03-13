@@ -1,6 +1,7 @@
 import type { SpellDamageData, SpellData } from '../types';
 import type { Champion } from './index';
 import { arrToString, hash, performMath, multiply, round } from '../util';
+import type { Client } from '../client';
 
 /**
  * The representation of a champion's spell (ability).
@@ -65,7 +66,7 @@ export class ChampionSpell {
    */
   readonly maxAmmo: number;
 
-  constructor(champ: Champion, data: SpellData, damage: SpellDamageData) {
+  constructor(client: Client, champ: Champion, data: SpellData, damage: SpellDamageData) {
     this.champ = champ;
 
     this.id = data.id;
@@ -74,7 +75,7 @@ export class ChampionSpell {
       .replace(/\.(?=[A-Z])/g, '.\n\n')
       .replaceAll(/<(br|li|p)\s*\/?>/g, '\n')
       .replace(/<\/?[^>]+(>|$)/g, '');
-    this.icon = `${this.champ.client.base}${this.champ.client.version}/img/spell/${data.image.full}`;
+    this.icon = `${client.cdnBase}${client.version}/img/spell/${data.image.full}`;
     this.maxRank = data.maxrank;
     this.cooldown = data.cooldownBurn;
     this.cooldownByLevel = data.cooldown;
@@ -214,7 +215,7 @@ export class ChampionSpell {
             for (const multiple of multiples) {
               const parts = multiple.split('.');
               if (parts.length - 1) newMultiples.push(parts[0] + '.' + parts.slice(1).join(''));
-              else newMultiples.push(multiple);
+              else newMultiples.push(parseFloat(multiple).toString());
             }
             values.push(eval(newMultiples.join('*')));
           }

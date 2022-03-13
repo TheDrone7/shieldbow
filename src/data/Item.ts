@@ -4,10 +4,7 @@ import type { Champion } from './index';
 import type Collection from '@discordjs/collection';
 
 export class Item {
-  /**
-   * The client this item's manager is a part of.
-   */
-  readonly client: Client;
+  private readonly client: Client;
   /**
    * The 4-digit unique ID (numerical ID as a string) of the item.
    */
@@ -115,7 +112,7 @@ export class Item {
     this.specialRecipeId = data.specialRecipe?.toString();
     this.inStore = data.inStore ?? true;
     this.hideFromAll = data.hideFromAll || false;
-    this.image = `${client.base}${client.version}/img/item/${id}.png`;
+    this.image = `${client.cdnBase}${client.version}/img/item/${id}.png`;
     this.goldValue = data.gold;
     this.tags = data.tags;
     this.availability = client.maps.filter((m) => data.maps[m.mapId.toString()]);

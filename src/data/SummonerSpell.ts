@@ -6,10 +6,6 @@ import type { Client } from '../client';
  */
 export class SummonerSpell {
   /**
-   * The client this summoner spell's manager belongs to.
-   */
-  readonly client: Client;
-  /**
    * The ID of this summoner spell.
    */
   readonly id: string;
@@ -64,7 +60,6 @@ export class SummonerSpell {
   readonly image: string;
 
   constructor(client: Client, data: SummonerSpellData) {
-    this.client = client;
     this.id = data.id;
     this.key = parseInt(data.key);
     this.name = data.name;
@@ -75,7 +70,7 @@ export class SummonerSpell {
     this.modes = client.gameModes.filter((m) => data.modes.includes(m.gameMode));
     this.maxAmmo = parseInt(data.maxammo);
     this.range = parseInt(data.rangeBurn);
-    this.image = client.base + client.version + `/img/spell/${data.image.full}`;
+    this.image = client.cdnBase + client.version + `/img/spell/${data.image.full}`;
   }
 
   /**

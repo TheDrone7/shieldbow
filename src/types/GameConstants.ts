@@ -50,6 +50,9 @@ export interface GameMap {
    * Additional notes about the map.
    */
   notes: string;
+  /**
+   * A link to the minimap image.
+   */
 }
 
 /**

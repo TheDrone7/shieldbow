@@ -143,7 +143,7 @@ export class ChampionManager implements BaseManager {
    *
    * @param key The 3-digit key of the champion to look for.
    */
-  findByKey(key: string) {
+  findByKey(key: number) {
     return this.cache.find((champ) => champ.key === key);
   }
 

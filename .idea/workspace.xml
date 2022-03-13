@@ -4,19 +4,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7c5e2f4-ada1-44dc-8c44-7faf8269be2d" name="Changes" comment="Added rune and rune trees support">
-      <change afterPath="$PROJECT_DIR$/src/data/SummonerSpell.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/managers/SummonerSpellManager.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/SummonerSpell.ts" afterDir="false" />
+    <list default="true" id="d7c5e2f4-ada1-44dc-8c44-7faf8269be2d" name="Changes" comment="Added summoner spells support">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/Champion.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/Champion.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/ChampionManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ChampionManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/ChampionSkin.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ChampionSkin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/ChampionSpell.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ChampionSpell.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/ChampionStat.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ChampionStat.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/Client.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/Client.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/Item.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/Item.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/ItemManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ItemManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/Rune.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/Rune.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/RuneTree.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/RuneTree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/RuneTreeManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/RuneTreeManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/StorageManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/StorageManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/SummonerSpell.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/SummonerSpell.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/SummonerSpellManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/SummonerSpellManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/BaseManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/BaseManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/ClientConfig.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/ClientConfig.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/GameMap.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/GameMap.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/GameMode.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/GameMode.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/GameType.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/GameType.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/Queue.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/Queue.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/RuneData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/RuneData.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/RuneTreeData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/RuneTreeData.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/Season.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/Season.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/SummonerSpellData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/SummonerSpellData.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/modules.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/client.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/Champion.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Champion.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/ChampionSpell.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/ChampionSpell.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/Item.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Item.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/ItemManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/ItemManager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/ClientConfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/ClientConfig.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/Rune.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Rune.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/RuneTree.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/RuneTree.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/SummonerSpell.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/SummonerSpell.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/managers/ChampionManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/ChampionManager.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/types/GameConstants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/GameConstants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +151,9 @@
       </scripts>
       <node-interpreter value="project" />
       <envs />
-      <method v="2" />
+      <method v="2">
+        <option name="RunConfigurationTask" enabled="true" run_configuration_name="build" run_configuration_type="js.build_tools.npm" />
+      </method>
     </configuration>
     <list>
       <item itemvalue="npm.format" />
@@ -153,7 +178,8 @@
       <workItem from="1646886862471" duration="2549000" />
       <workItem from="1646973836338" duration="12002000" />
       <workItem from="1647050305854" duration="11091000" />
-      <workItem from="1647071986846" duration="888000" />
+      <workItem from="1647071986846" duration="1366000" />
+      <workItem from="1647132443734" duration="5052000" />
     </task>
     <task id="LOCAL-00001" summary="Added items support">
       <created>1646791598105</created>
@@ -218,7 +244,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646992510336</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Added summoner spells support">
+      <created>1647072984077</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1647072984077</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,6 +276,7 @@
     <MESSAGE value="Lint and document" />
     <MESSAGE value="Fix champion spell tooltips" />
     <MESSAGE value="Added rune and rune trees support" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added rune and rune trees support" />
+    <MESSAGE value="Added summoner spells support" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added summoner spells support" />
   </component>
 </project>

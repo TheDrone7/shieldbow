@@ -18,7 +18,7 @@ const patchRegex = /\d+\.\d+/;
  * ```
  */
 export class Client {
-  private readonly _base: string;
+  private readonly _cdnBase: string;
   private readonly _versions: string;
   private _version: string;
   private _patch: string;
@@ -38,7 +38,7 @@ export class Client {
   private _gameTypes: GameType[];
 
   constructor() {
-    this._base = 'https://ddragon.leagueoflegends.com/cdn/';
+    this._cdnBase = 'https://ddragon.leagueoflegends.com/cdn/';
     this._versions = 'https://ddragon.leagueoflegends.com/api/versions.json';
     this._version = 'null';
     this._region = 'na';
@@ -58,7 +58,7 @@ export class Client {
     this._runes = new RuneTreeManager(this, { enable: true, root: 'data' });
     this._summonerSpells = new SummonerSpellManager(this, { enable: true, root: 'data' });
 
-    this._http = axios.create({ baseURL: this._base });
+    this._http = axios.create({ baseURL: this._cdnBase });
   }
 
   /**
@@ -79,6 +79,27 @@ export class Client {
 
     const enableCache = options?.cache?.enable ?? true;
     const cacheRoot = options?.cache?.localRoot || 'data';
+
+    // Update the client configuration.
+    if (version === 'null' || language === 'null') {
+      const response = await axios
+        .get(region ? `https://ddragon.leagueoflegends.com/realms/${region}.json` : this._versions)
+        .catch(() => {});
+      if (response?.status !== 200)
+        throw new Error('Unable to fetch data dragon version. Please confirm the region exists.');
+      else {
+        const result = <string[] | { v: string; l: Locales }>response.data;
+        if (Array.isArray(result)) {
+          this._version = version !== 'null' ? version : result[0];
+          this._patch = this._version.match(patchRegex)!.shift()!;
+          this._language = 'en_US';
+        } else {
+          this._version = version !== 'null' ? version : result.v;
+          this._language = language !== 'null' ? language : result.l;
+          this._patch = this._version.match(patchRegex)!.shift()!;
+        }
+      }
+    }
 
     // Get the game constants from data dragon (this is static data)
     const seasonsResponse = await axios
@@ -103,30 +124,12 @@ export class Client {
 
     this._seasons = <Season[]>seasonsResponse.data;
     this._queues = <Queue[]>queuesResponse.data;
-    this._maps = <GameMap[]>mapsResponse.data;
+    this._maps = <GameMap[]>mapsResponse.data.map((m: { mapId: number; mapName: string; notes: string }) => ({
+      ...m,
+      image: this.cdnBase + this.version + `/img/map/map${m.mapId}.png`
+    }));
     this._gameModes = <GameMode[]>gameModesResponse.data;
     this._gameTypes = <GameType[]>gameTypesResponse.data;
-
-    // Update the client configuration.
-    if (version === 'null' || language === 'null') {
-      const response = await axios
-        .get(region ? `https://ddragon.leagueoflegends.com/realms/${region}.json` : this._versions)
-        .catch(() => {});
-      if (response?.status !== 200)
-        throw new Error('Unable to fetch data dragon version. Please confirm the region exists.');
-      else {
-        const result = <string[] | { v: string; l: Locales }>response.data;
-        if (Array.isArray(result)) {
-          this._version = version !== 'null' ? version : result[0];
-          this._patch = this._version.match(patchRegex)!.shift()!;
-          this._language = 'en_US';
-        } else {
-          this._version = version !== 'null' ? version : result.v;
-          this._language = language !== 'null' ? language : result.l;
-          this._patch = this._version.match(patchRegex)!.shift()!;
-        }
-      }
-    }
 
     // Update the cache config
     if (this._cacheEnabled !== enableCache || this._cacheRoot !== cacheRoot) {
@@ -163,8 +166,8 @@ export class Client {
   /**
    * The Data Dragon CDN Base URL
    */
-  get base() {
-    return this._base;
+  get cdnBase() {
+    return this._cdnBase;
   }
 
   /**

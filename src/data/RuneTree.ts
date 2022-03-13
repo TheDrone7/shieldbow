@@ -8,10 +8,6 @@ import type { RuneTreeData } from '../types';
  */
 export class RuneTree {
   /**
-   * The client this rune tree's manager belongs to.
-   */
-  client: Client;
-  /**
    * The unique numerical ID of this Rune Tree.
    */
   id: number;
@@ -35,10 +31,9 @@ export class RuneTree {
   slots: Collection<number, Collection<number, Rune>>;
 
   constructor(client: Client, data: RuneTreeData) {
-    this.client = client;
     this.id = data.id;
     this.key = data.key;
-    this.icon = client.base + 'img/' + data.icon;
+    this.icon = client.cdnBase + 'img/' + data.icon;
     this.name = data.name;
     this.slots = new Collection<number, Collection<number, Rune>>();
     this.slots.set(1, new Collection<number, Rune>());
