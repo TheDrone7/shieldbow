@@ -62,7 +62,7 @@ export class ApiHandler {
           if (response?.status === 403) reject('This was an unauthorized request: ' + request);
           if (response?.status === 404) reject('This does not exist: ' + request);
           if (response?.status === 429) {
-            const timeout = parseInt(response.headers.RetryAfter);
+            const timeout = parseInt(response.headers.RetryAfter) * 1000;
             const endTime = Date.now() + timeout;
             this.limits.set(options.name, new Date(endTime));
             reject('You have hit the rate limit for request: ' + request);

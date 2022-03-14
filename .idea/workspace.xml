@@ -4,31 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7c5e2f4-ada1-44dc-8c44-7faf8269be2d" name="Changes" comment="Polish CDN-based client changes">
-      <change afterPath="$PROJECT_DIR$/src/data/Account.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/Summoner.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/managers/AccountManager.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/managers/SummonerManager.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/Account.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/Summoner.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/util/apiHandler.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/util/urls.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="d7c5e2f4-ada1-44dc-8c44-7faf8269be2d" name="Changes" comment="Add support for summoner v4 and account v1 endpoints">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/client.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/ChampionManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/ChampionManager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/ItemManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/ItemManager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/RuneTreeManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/RuneTreeManager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/StorageManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/StorageManager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/SummonerSpellManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/SummonerSpellManager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/BaseManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/BaseManager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/ClientConfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/ClientConfig.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/apiHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/apiHandler.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +82,7 @@
       <recent name="C:\Users\hsbha\Desktop\league.ts\dev\test" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.document">
+  <component name="RunManager" selected="npm.test">
     <configuration name="build" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -186,7 +164,8 @@
       <workItem from="1647050305854" duration="11091000" />
       <workItem from="1647071986846" duration="1366000" />
       <workItem from="1647132443734" duration="15632000" />
-      <workItem from="1647165440813" duration="18910000" />
+      <workItem from="1647165440813" duration="20413000" />
+      <workItem from="1647244992460" duration="263000" />
     </task>
     <task id="LOCAL-00001" summary="Added items support">
       <created>1646791598105</created>
@@ -265,7 +244,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647143734458</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Add support for summoner v4 and account v1 endpoints">
+      <created>1647195725184</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1647195725184</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,6 +278,7 @@
     <MESSAGE value="Added rune and rune trees support" />
     <MESSAGE value="Added summoner spells support" />
     <MESSAGE value="Polish CDN-based client changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Polish CDN-based client changes" />
+    <MESSAGE value="Add support for summoner v4 and account v1 endpoints" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add support for summoner v4 and account v1 endpoints" />
   </component>
 </project>
