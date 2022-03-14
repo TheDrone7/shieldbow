@@ -53,6 +53,7 @@ export type Locales = typeof locale[number];
 
 export type { AccountData } from './Account';
 export type { SummonerData } from './Summoner';
+export type { ChampionMasteryData } from './ChampionMastery';
 
 export type { ChampionData, SpellData, SpellDamageData, MerakiSkin, MerakiChampion } from './Champion';
 export type { ImageData } from './Image';

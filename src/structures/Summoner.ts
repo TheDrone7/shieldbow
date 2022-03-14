@@ -1,6 +1,7 @@
-import type { Account } from './Account';
-import type { SummonerData } from '../types';
-import type { Client } from '../client';
+import type { Account } from "./Account";
+import type { SummonerData } from "../types";
+import type { Client } from "../client";
+import { ChampionMasteryManager } from "../managers";
 
 /**
  * A class representing a summoner (player).
@@ -39,6 +40,10 @@ export class Summoner {
    * The current profile icon of this summoner.
    */
   readonly profileIcon: string;
+  /**
+   * A manager for the summoner's champion mastery.
+   */
+  readonly championMastery: ChampionMasteryManager;
 
   constructor(client: Client, account: Account, summoner: SummonerData) {
     this.id = summoner.id;
@@ -49,5 +54,6 @@ export class Summoner {
     this.revisionDate = new Date(summoner.revisionDate);
     this.profileIcon = `${client.cdnBase}${client.version}/img/profileicon/${summoner.profileIconId}.png`;
     this.account = account;
+    this.championMastery = new ChampionMasteryManager(client, summoner.id);
   }
 }

@@ -5,3 +5,4 @@ export { RuneTreeManager } from './RuneTreeManager';
 export { SummonerSpellManager } from './SummonerSpellManager';
 export { SummonerManager } from './SummonerManager';
 export { AccountManager } from './AccountManager';
+export { ChampionMasteryManager } from './ChampionMasteryManager';

@@ -8,3 +8,4 @@ export { RuneTree } from './RuneTree';
 export { SummonerSpell } from './SummonerSpell';
 export { Summoner } from './Summoner';
 export { Account } from './Account';
+export { ChampionMastery } from './ChampionMastery';

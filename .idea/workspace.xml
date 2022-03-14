@@ -4,27 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7c5e2f4-ada1-44dc-8c44-7faf8269be2d" name="Changes" comment="Fix rate limiting">
+    <list default="true" id="d7c5e2f4-ada1-44dc-8c44-7faf8269be2d" name="Changes" comment="Rename data -&gt; structures">
+      <change afterPath="$PROJECT_DIR$/src/managers/ChampionMasteryManager.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/structures/ChampionMastery.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/ChampionMastery.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/structures/Account.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Champion.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/structures/Champion.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/ChampionSkin.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/structures/ChampionSkin.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/ChampionSpell.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/structures/ChampionSpell.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/ChampionStat.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/structures/ChampionStat.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Item.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/structures/Item.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Rune.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/structures/Rune.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/RuneTree.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/structures/RuneTree.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Summoner.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/structures/Summoner.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/SummonerSpell.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/structures/SummonerSpell.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/structures/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/AccountManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/AccountManager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/ChampionManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/ChampionManager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/ItemManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/ItemManager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/RuneTreeManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/RuneTreeManager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/SummonerManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/SummonerManager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/SummonerSpellManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/SummonerSpellManager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/apiHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/apiHandler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/managers/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/structures/Summoner.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/structures/Summoner.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/structures/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/structures/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,6 +172,7 @@
       <workItem from="1647132443734" duration="15632000" />
       <workItem from="1647165440813" duration="20413000" />
       <workItem from="1647244992460" duration="4411000" />
+      <workItem from="1647249877641" duration="4055000" />
     </task>
     <task id="LOCAL-00001" summary="Added items support">
       <created>1646791598105</created>
@@ -276,7 +265,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647245275692</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Rename data -&gt; structures">
+      <created>1647250019008</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1647250019008</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -305,6 +301,7 @@
     <MESSAGE value="Polish CDN-based client changes" />
     <MESSAGE value="Add support for summoner v4 and account v1 endpoints" />
     <MESSAGE value="Fix rate limiting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix rate limiting" />
+    <MESSAGE value="Rename data -&gt; structures" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rename data -&gt; structures" />
   </component>
 </project>
