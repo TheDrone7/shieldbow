@@ -1,7 +1,7 @@
 import type { BaseManager, SummonerData } from '../types';
 import type { Client } from '../client';
 import Collection from '@discordjs/collection';
-import { Account, Summoner } from '../data';
+import { Account, Summoner } from '../structures';
 
 /**
  * A summoner manager - to fetch and manage all the summoner data.

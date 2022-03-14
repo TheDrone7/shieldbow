@@ -1,6 +1,6 @@
 import type { Client } from '../client';
 import type { BaseManager, SummonerSpellData } from '../types';
-import { SummonerSpell } from '../data';
+import { SummonerSpell } from '../structures';
 import Collection from '@discordjs/collection';
 import { StorageManager } from './index';
 import path from 'path';

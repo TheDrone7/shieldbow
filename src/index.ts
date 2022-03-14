@@ -1,5 +1,5 @@
 export { Client } from './client';
 export * from './types';
-export * from './data';
+export * from './structures';
 export * from './util';
 export * from './managers';

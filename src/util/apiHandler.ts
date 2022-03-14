@@ -10,7 +10,8 @@ export class ApiHandler {
   private _http: AxiosInstance;
   private _apiBase: string;
   private _regionalBase: string;
-  private limits: Collection<string, Date>;
+  private _region: Region;
+  private limits: Collection<Region, Collection<string, Date>>;
 
   /**
    * Create a new API handler.
@@ -19,6 +20,7 @@ export class ApiHandler {
    * @param apiKey your RIOT API key.
    */
   constructor(region: Region, apiKey: string) {
+    this._region = region;
     this._apiBase = apiBaseURLs[region];
     this._regionalBase = regionalURLs[region];
     this._http = axios.create({
@@ -26,7 +28,8 @@ export class ApiHandler {
         'X-Riot-Token': apiKey
       }
     });
-    this.limits = new Collection<string, Date>();
+    this.limits = new Collection<Region, Collection<string, Date>>();
+    this.limits.set(region, new Collection<string, Date>());
   }
 
   /**
@@ -35,8 +38,10 @@ export class ApiHandler {
    * @param region The new region to make requests to.
    */
   set region(region: Region) {
+    this._region = region;
     this._apiBase = apiBaseURLs[region];
     this._regionalBase = regionalURLs[region];
+    if (!this.limits.has(region)) this.limits.set(region, new Collection<string, Date>());
   }
 
   /**
@@ -47,9 +52,9 @@ export class ApiHandler {
   async makeApiRequest(url: string, options: { name: string; params: string; regional: boolean }) {
     const request = `${options.name} (${options.params})`;
     return new Promise<AxiosResponse>(async (resolve, reject) => {
-      const requestLimit = this.limits.get(options.name);
+      const requestLimit = this.limits.get(this._region)!.get(options.name);
       if (requestLimit && requestLimit.getTime() > Date.now())
-        reject('You have hit the rate limit for request: ' + request);
+        reject('You are still being rate limited for the request: ' + request);
       else
         try {
           const base = options.regional ? this._regionalBase : this._apiBase;
@@ -61,15 +66,19 @@ export class ApiHandler {
           if (response?.status === 401) reject('This was an unauthorized request: ' + request);
           if (response?.status === 403) reject('This was an unauthorized request: ' + request);
           if (response?.status === 404) reject('This does not exist: ' + request);
-          if (response?.status === 429) {
-            const timeout = parseInt(response.headers.RetryAfter) * 1000;
-            const endTime = Date.now() + timeout;
-            this.limits.set(options.name, new Date(endTime));
-            reject('You have hit the rate limit for request: ' + request);
-          }
+          if (response?.status === 429) reject(this._handleRateLimit(response, options) + request);
           if (response?.status === 500) reject('There seems to have been an internal error with RIOT API: ' + request);
           if (response?.status === 503) reject('This service is no longer available: ' + request);
         }
     });
+  }
+
+  private _handleRateLimit(response: AxiosResponse, options: { name: string; params: string }): string {
+    const timeout = parseInt(response.headers.RetryAfter) * 1000;
+    const endTime = Date.now() + timeout;
+    const limiter = this.limits.get(this._region)!;
+    limiter.set(options.name, new Date(endTime));
+    this.limits.set(this._region, limiter);
+    return `You have hit the rate limit for the request:`;
   }
 }

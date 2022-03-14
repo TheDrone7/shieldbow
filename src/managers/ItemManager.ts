@@ -1,6 +1,6 @@
 import type { Client } from '../client';
 import type { BaseManager, ItemData } from '../types';
-import { Item } from '../data';
+import { Item } from '../structures';
 import Collection from '@discordjs/collection';
 import { StorageManager } from './index';
 import path from 'path';

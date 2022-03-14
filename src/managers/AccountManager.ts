@@ -1,7 +1,7 @@
 import type { BaseManager, AccountData } from '../types';
 import type { Client } from '../client';
 import Collection from '@discordjs/collection';
-import { Account } from '../data';
+import { Account } from '../structures';
 
 /**
  * An account manager - to fetch and manage all the RIOT accounts.
