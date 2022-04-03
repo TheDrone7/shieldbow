@@ -1,7 +1,7 @@
-import type { Account } from "./Account";
-import type { SummonerData } from "../types";
-import type { Client } from "../client";
-import { ChampionMasteryManager } from "../managers";
+import type { Account } from './Account';
+import type { SummonerData } from '../types';
+import type { Client } from '../client';
+import { ChampionMasteryManager } from '../managers';
 
 /**
  * A class representing a summoner (player).

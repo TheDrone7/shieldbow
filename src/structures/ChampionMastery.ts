@@ -1,6 +1,6 @@
-import type { Champion } from "./index";
-import type { Client } from "../client";
-import type { ChampionMasteryData } from "../types";
+import type { Champion } from './index';
+import type { Client } from '../client';
+import type { ChampionMasteryData } from '../types';
 
 /**
  * A representation of a summoner's mastery over a champion.
