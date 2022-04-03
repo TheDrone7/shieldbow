@@ -1,4 +1,3 @@
-import type { Account } from './Account';
 import type { SummonerData } from '../types';
 import type { Client } from '../client';
 import { ChampionMasteryManager } from '../managers';
@@ -7,6 +6,7 @@ import { ChampionMasteryManager } from '../managers';
  * A class representing a summoner (player).
  */
 export class Summoner {
+  private readonly client: Client;
   /**
    * The summoner ID for this summoner.
    */
@@ -15,10 +15,6 @@ export class Summoner {
    * The account ID for this summoner.
    */
   readonly accountId: string;
-  /**
-   * The RIOT account for this summoner.
-   */
-  readonly account: Account;
   /**
    * The unique player ID for this summoner.
    * This is also called the PUUID.
@@ -45,7 +41,8 @@ export class Summoner {
    */
   readonly championMastery: ChampionMasteryManager;
 
-  constructor(client: Client, account: Account, summoner: SummonerData) {
+  constructor(client: Client, summoner: SummonerData) {
+    this.client = client;
     this.id = summoner.id;
     this.accountId = summoner.accountId;
     this.playerId = summoner.puuid;
@@ -53,7 +50,10 @@ export class Summoner {
     this.level = summoner.summonerLevel;
     this.revisionDate = new Date(summoner.revisionDate);
     this.profileIcon = `${client.cdnBase}${client.version}/img/profileicon/${summoner.profileIconId}.png`;
-    this.account = account;
     this.championMastery = new ChampionMasteryManager(client, summoner.id);
+  }
+
+  get account() {
+    return this.client.accounts.fetch(this.id);
   }
 }

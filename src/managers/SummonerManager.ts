@@ -40,12 +40,9 @@ export class SummonerManager implements BaseManager<Summoner> {
           .catch(reject);
         if (response) {
           const data = <SummonerData>response.data;
-          const account = await this.client.accounts.fetch(data.puuid).catch(reject);
-          if (account) {
-            const summoner = new Summoner(this.client, account, data);
-            this.cache.set(summoner.id, summoner);
-            resolve(summoner);
-          }
+          const summoner = new Summoner(this.client, data);
+          this.cache.set(summoner.id, summoner);
+          resolve(summoner);
         }
       }
     });
@@ -71,12 +68,9 @@ export class SummonerManager implements BaseManager<Summoner> {
           .catch(reject);
         if (response) {
           const data = <SummonerData>response.data;
-          const account = await this.client.accounts.fetch(data.puuid).catch(reject);
-          if (account) {
-            const summoner = new Summoner(this.client, account, data);
-            this.cache.set(summoner.id, summoner);
-            resolve(summoner);
-          }
+          const summoner = new Summoner(this.client, data);
+          this.cache.set(summoner.id, summoner);
+          resolve(summoner);
         }
       }
     });
@@ -102,12 +96,9 @@ export class SummonerManager implements BaseManager<Summoner> {
           .catch(reject);
         if (response) {
           const data = <SummonerData>response.data;
-          const account = await this.client.accounts.fetch(data.puuid).catch(reject);
-          if (account) {
-            const summoner = new Summoner(this.client, account, data);
-            this.cache.set(summoner.id, summoner);
-            resolve(summoner);
-          }
+          const summoner = new Summoner(this.client, data);
+          this.cache.set(summoner.id, summoner);
+          resolve(summoner);
         }
       }
     });
@@ -132,12 +123,9 @@ export class SummonerManager implements BaseManager<Summoner> {
           .catch(reject);
         if (response) {
           const data = <SummonerData>response.data;
-          const account = await this.client.accounts.fetch(data.puuid).catch(reject);
-          if (account) {
-            const summoner = new Summoner(this.client, account, data);
-            this.cache.set(summoner.id, summoner);
-            resolve(summoner);
-          }
+          const summoner = new Summoner(this.client, data);
+          this.cache.set(summoner.id, summoner);
+          resolve(summoner);
         }
       }
     });
