@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d7c5e2f4-ada1-44dc-8c44-7faf8269be2d" name="Changes" comment="Added champion mastery support">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/SummonerManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/SummonerManager.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/managers/ChampionMasteryManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/ChampionMasteryManager.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/structures/Summoner.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/structures/Summoner.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +86,7 @@
       <recent name="C:\Users\hsbha\Desktop\league.ts\dev\test" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build">
+  <component name="RunManager" selected="npm.test">
     <configuration name="build" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -176,6 +176,7 @@
       <workItem from="1647740675146" duration="3000" />
       <workItem from="1647742302950" duration="38000" />
       <workItem from="1648954290988" duration="2614000" />
+      <workItem from="1649118504567" duration="4078000" />
     </task>
     <task id="LOCAL-00001" summary="Added items support">
       <created>1646791598105</created>

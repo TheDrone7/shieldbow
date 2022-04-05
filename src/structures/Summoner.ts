@@ -56,4 +56,25 @@ export class Summoner {
   get account() {
     return this.client.accounts.fetch(this.id);
   }
+
+  /**
+   * Check a summoner's third party verification code.
+   *
+   * @param code The code that the summoner's code should match with.
+   */
+  verifyCode(code: string) {
+    return new Promise<boolean>(async (resolve, reject) => {
+      const response = await this.client.api
+        .makeApiRequest('/lol/platform/v4/third-party-code/by-summoner/' + this.id, {
+          regional: false,
+          name: 'Verify third party code',
+          params: `Summoner ID: ${this.id}`
+        })
+        .catch(reject);
+      if (response && response.status === 200) {
+        const codeData = <string>response.data;
+        resolve(codeData === code);
+      } else resolve(false);
+    });
+  }
 }

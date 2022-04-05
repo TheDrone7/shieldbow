@@ -37,6 +37,20 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
   }
 
   /**
+   * The cached champion masteries of the summoner as a sorted array.
+   *
+   * The array is sorted from the highest mastery to lowest.
+   * While sorting, the mastery level is prioritized over the number of points.
+   */
+  get sortedCache() {
+    const sorter = (a: ChampionMastery, b: ChampionMastery) => b.points - a.points;
+    const m7 = [...this.cache.filter((cm) => cm.level === 7).values()].sort(sorter);
+    const m6 = [...this.cache.filter((cm) => cm.level === 6).values()].sort(sorter);
+    const m5 = [...this.cache.filter((cm) => cm.level < 6).values()].sort(sorter);
+    return [...m7, ...m6, ...m5];
+  }
+
+  /**
    * Fetch a champion's mastery data for the summoner.
    *
    * @param champion The champion (or its ID) whose mastery data needs to be fetched.
@@ -78,11 +92,7 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
       if (n < 0) reject('The value of `n` must be >= 0.');
       else {
         if (!this.cache.size) await this.refreshAll().catch(reject);
-        const sorter = (a: ChampionMastery, b: ChampionMastery) => b.points - a.points;
-        const m7 = [...this.cache.filter((cm) => cm.level === 7).values()].sort(sorter);
-        const m6 = [...this.cache.filter((cm) => cm.level === 6).values()].sort(sorter);
-        const m5 = [...this.cache.filter((cm) => cm.level < 6).values()].sort(sorter);
-        const ordered = [...m7, ...m6, ...m5];
+        const ordered = this.sortedCache;
         if (ordered[n]) resolve(ordered[n]);
         else reject('This summoner does not have mastery points for' + n + ' champions');
       }
