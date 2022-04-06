@@ -63,3 +63,5 @@ export type { ItemData } from './Item';
 export type { RuneData, RuneTreeData } from './Rune';
 export type { SummonerSpellData } from './SummonerSpell';
 export type { Season, Queue, GameMap, GameMode, GameType } from './GameConstants';
+export type { LeagueEntryData } from './LeagueEntry';
+export type { LeagueListData } from './LeagueList';

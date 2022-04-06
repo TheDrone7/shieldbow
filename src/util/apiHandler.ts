@@ -64,7 +64,7 @@ export class ApiHandler {
           const { response } = error as AxiosError;
           if (response?.status === 400) reject('This was a bad request: ' + request);
           if (response?.status === 401) reject('This was an unauthorized request: ' + request);
-          if (response?.status === 403) reject('This was an unauthorized request: ' + request);
+          if (response?.status === 403) reject('This was an forbidden request: ' + request);
           if (response?.status === 404) reject('This does not exist: ' + request);
           if (response?.status === 429) reject(this._handleRateLimit(response, options) + request);
           if (response?.status === 500) reject('There seems to have been an internal error with RIOT API: ' + request);

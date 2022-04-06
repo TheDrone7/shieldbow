@@ -1,6 +1,8 @@
 import type { SummonerData } from '../types';
 import type { Client } from '../client';
 import { ChampionMasteryManager } from '../managers';
+import type Collection from '@discordjs/collection';
+import type { LeagueEntry } from './LeagueEntry';
 
 /**
  * A class representing a summoner (player).
@@ -53,8 +55,18 @@ export class Summoner {
     this.championMastery = new ChampionMasteryManager(client, summoner.id);
   }
 
+  /**
+   * Get the summoner's RIOT account info.
+   */
   get account() {
     return this.client.accounts.fetch(this.id);
+  }
+
+  /**
+   * Get the summoner's competitive placement info.
+   */
+  get league(): Promise<Collection<string, LeagueEntry>> {
+    return this.client.leagues.fetch(this.id);
   }
 
   /**

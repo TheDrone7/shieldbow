@@ -6,7 +6,8 @@ import {
   RuneTreeManager,
   SummonerManager,
   SummonerSpellManager,
-  AccountManager
+  AccountManager,
+  LeagueManager
 } from './managers';
 import { ApiHandler } from './util';
 
@@ -40,6 +41,7 @@ export class Client {
   private _summonerSpells: SummonerSpellManager;
   private readonly _summoners: SummonerManager;
   private readonly _accounts: AccountManager;
+  private readonly _leagues: LeagueManager;
   private readonly _http: AxiosInstance;
   private readonly _api: ApiHandler;
   private _seasons: Season[];
@@ -70,6 +72,7 @@ export class Client {
     this._summonerSpells = new SummonerSpellManager(this, { enable: true, root: 'data' });
     this._summoners = new SummonerManager(this);
     this._accounts = new AccountManager(this);
+    this._leagues = new LeagueManager(this);
 
     this._http = axios.create({ baseURL: this._cdnBase });
     this._api = new ApiHandler('na', apiKey);
@@ -233,6 +236,17 @@ export class Client {
    */
   get accounts() {
     return this._accounts;
+  }
+
+  /**
+   * The default summoner competitive league data manager used by the client.
+   *
+   * Highly recommended using {@link summoners} if you are looking to find a specific summoner's competitive info.
+   *
+   * Use this only if you want to query a list of users by rank-division.
+   */
+  get leagues() {
+    return this._leagues;
   }
 
   /**

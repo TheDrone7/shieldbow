@@ -5,9 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7c5e2f4-ada1-44dc-8c44-7faf8269be2d" name="Changes" comment="Added champion mastery support">
+      <change afterPath="$PROJECT_DIR$/src/managers/LeagueManager.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/structures/LeagueEntry.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/structures/LeagueList.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/LeagueEntry.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/LeagueList.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/ChampionMasteryManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/ChampionMasteryManager.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/client.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/managers/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/structures/Summoner.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/structures/Summoner.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/structures/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/structures/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/apiHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/apiHandler.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +95,7 @@
       <recent name="C:\Users\hsbha\Desktop\league.ts\dev\test" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.test">
+  <component name="RunManager" selected="npm.build">
     <configuration name="build" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -176,7 +185,12 @@
       <workItem from="1647740675146" duration="3000" />
       <workItem from="1647742302950" duration="38000" />
       <workItem from="1648954290988" duration="2614000" />
-      <workItem from="1649118504567" duration="4078000" />
+      <workItem from="1649118504567" duration="4581000" />
+      <workItem from="1649125471246" duration="205000" />
+      <workItem from="1649125694736" duration="250000" />
+      <workItem from="1649125960876" duration="1421000" />
+      <workItem from="1649190697001" duration="6875000" />
+      <workItem from="1649219350715" duration="2822000" />
     </task>
     <task id="LOCAL-00001" summary="Added items support">
       <created>1646791598105</created>
