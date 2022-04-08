@@ -77,7 +77,7 @@ export class SummonerSpell {
    * The tooltip of this summoner spell.
    * This does not contain the HTML-like tags to help view this better on console and other output media.
    *
-   * See {@link _rawTooltip | _rawTooltip} to view this with the HTML-like tags included.
+   * See {@link _rawTooltip} to view this with the HTML-like tags included.
    */
   get tooltip() {
     return this._rawTooltip

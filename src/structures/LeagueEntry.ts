@@ -1,4 +1,4 @@
-import type { LeagueEntryData } from '../types';
+import type { LeagueEntryData, QueueType } from '../types';
 import type { Client } from '../client';
 
 /**
@@ -6,7 +6,14 @@ import type { Client } from '../client';
  */
 export class LeagueEntry {
   private readonly client: Client;
-  private readonly summonerId: string;
+  /**
+   * The ID of the summoner this data belongs to.
+   */
+  readonly summonerId: string;
+  /**
+   * The name of the summoner this data belongs to.
+   */
+  readonly summonerName: string;
   /**
    * The league ID.
    */
@@ -14,7 +21,7 @@ export class LeagueEntry {
   /**
    * The type of queue - such as RANKED_SOLO_5x5, RANKED_FLEX_SR or RANKED_FLEX_TT.
    */
-  readonly queueType: string;
+  readonly queueType: QueueType;
   /**
    * The tier the summoner belongs to - such as BRONZE, GOLD, etc.
    */
@@ -80,6 +87,7 @@ export class LeagueEntry {
     this.client = client;
     this.league = data.leagueId;
     this.summonerId = data.summonerId;
+    this.summonerName = data.summonerName;
     this.queueType = data.queueType;
     this.tier = data.tier;
     this.division = data.rank;
@@ -95,6 +103,8 @@ export class LeagueEntry {
 
   /**
    * The summoner this data belongs to.
+   *
+   * Uses {@link SummonerManager.fetch} to get the summoner.
    */
   get summoner() {
     return this.client.summoners.fetch(this.summonerId);

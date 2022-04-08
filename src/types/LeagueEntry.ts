@@ -1,10 +1,12 @@
+import type { DivisionType, QueueType, TierType } from './LeagueConstants';
+
 export interface LeagueEntryData {
   leagueId: string;
   summonerId: string;
   summonerName: string;
-  queueType: string;
-  tier: string;
-  rank: string;
+  queueType: QueueType;
+  tier: TierType;
+  rank: DivisionType;
   leaguePoints: number;
   wins: number;
   losses: number;

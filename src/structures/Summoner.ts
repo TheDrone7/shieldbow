@@ -57,6 +57,8 @@ export class Summoner {
 
   /**
    * Get the summoner's RIOT account info.
+   *
+   * Uses {@link AccountManager.fetch} to get the details.
    */
   get account() {
     return this.client.accounts.fetch(this.id);
@@ -64,6 +66,8 @@ export class Summoner {
 
   /**
    * Get the summoner's competitive placement info.
+   *
+   * Uses {@link LeagueManager.fetch} to get the details.
    */
   get league(): Promise<Collection<string, LeagueEntry>> {
     return this.client.leagues.fetch(this.id);
