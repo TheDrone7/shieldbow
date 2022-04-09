@@ -1,5 +1,5 @@
 import type { Client } from '../client';
-import type { LeagueListData } from '../types';
+import type { LeagueListData, QueueType, TierType } from '../types';
 import Collection from '@discordjs/collection';
 import { LeagueEntry } from './LeagueEntry';
 
@@ -14,7 +14,7 @@ export class LeagueList {
   /**
    * The tier of the entries in this list.
    */
-  readonly tier: string;
+  readonly tier: TierType;
   /**
    * The name for the league of the entries in this list.
    */
@@ -22,7 +22,7 @@ export class LeagueList {
   /**
    * The type of queue - such as RANKED_SOLO_5x5, RANKED_FLEX_SR, RANKED_FLEX_TT.
    */
-  readonly queue: string;
+  readonly queue: QueueType;
   /**
    * The list of entries of the league ID.
    *
@@ -37,6 +37,11 @@ export class LeagueList {
     this.queue = data.queue;
     this.entries = new Collection<string, LeagueEntry>();
 
-    for (const entry of data.entries) this.entries.set(entry.summonerName, new LeagueEntry(client, entry));
+    for (const entry of data.entries) {
+      entry.queueType = this.queue;
+      entry.leagueId = this.leagueId;
+      entry.tier = this.tier;
+      this.entries.set(entry.summonerName, new LeagueEntry(client, entry));
+    }
   }
 }

@@ -1,4 +1,4 @@
-import type { LeagueEntryData, QueueType } from '../types';
+import type { DivisionType, LeagueEntryData, QueueType, TierType } from '../types';
 import type { Client } from '../client';
 
 /**
@@ -25,11 +25,11 @@ export class LeagueEntry {
   /**
    * The tier the summoner belongs to - such as BRONZE, GOLD, etc.
    */
-  readonly tier: string;
+  readonly tier: TierType;
   /**
    * The division under the tier - From 1 to 4 (I - IV).
    */
-  readonly division: string;
+  readonly division: DivisionType;
   /**
    * The amount of league points (LP) the summoner has.
    */

@@ -1,6 +1,6 @@
-import type { BaseManager, LeagueEntryData, QueueType, TierType, DivisionType } from '../types';
+import type { BaseManager, LeagueEntryData, QueueType, TierType, DivisionType, LeagueListData } from '../types';
 import type { Client } from '../client';
-import { LeagueEntry } from '../structures';
+import { LeagueEntry, LeagueList } from '../structures';
 import Collection from '@discordjs/collection';
 
 /**
@@ -53,6 +53,13 @@ export class LeagueManager implements BaseManager<Collection<string, LeagueEntry
     });
   }
 
+  /**
+   * Fetch a collection of league entries by the queue type, tier and division.
+   * @param queue The type of queue - RANKED_SOLO_5x5, RANKED_FLEX_SR, etc.
+   * @param tier The tier of the entries - IRON to CHALLENGER.
+   * @param division The division of the entries - I, II, III, IV.
+   * @param page The page number (defaults to 1).
+   */
   fetchByQueueAndTier(queue: QueueType, tier: TierType, division: DivisionType, page: number = 1) {
     return new Promise<Collection<string, LeagueEntry>>(async (resolve, reject) => {
       const response = await this.client.api
@@ -77,6 +84,34 @@ export class LeagueManager implements BaseManager<Collection<string, LeagueEntry
           resolve(result);
         } else reject('No league entries found for the provided parameters.');
       }
+    });
+  }
+
+  /**
+   * Fetch the league entries by a league ID.
+   *
+   * @param leagueId The League ID.
+   */
+  fetchByLeagueId(leagueId: string) {
+    return new Promise<LeagueList>(async (resolve, reject) => {
+      const response = await this.client.api
+        .makeApiRequest(`/lol/league/v4/leagues/${leagueId}`, {
+          regional: false,
+          name: 'League Entry by league ID',
+          params: `League ID: ${leagueId}`
+        })
+        .catch(reject);
+      if (response && response.data) {
+        const data = <LeagueListData>response.data;
+        const list = new LeagueList(this.client, data);
+        for (const entry of list.entries.values()) {
+          const { summonerId, queueType } = entry;
+          const entries = this.cache.get(summonerId) || new Collection<QueueType, LeagueEntry>();
+          entries.set(queueType, entry);
+          this.cache.set(summonerId, entries);
+        }
+        resolve(list);
+      } else reject('No league entries found for the provided parameters.');
     });
   }
 }
