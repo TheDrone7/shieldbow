@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7c5e2f4-ada1-44dc-8c44-7faf8269be2d" name="Changes" comment="Added champion mastery support" />
+    <list default="true" id="d7c5e2f4-ada1-44dc-8c44-7faf8269be2d" name="Changes" comment="Added champion mastery support">
+      <change beforePath="$PROJECT_DIR$/src/managers/LeagueManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/LeagueManager.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -181,7 +183,7 @@
       <workItem from="1649375293635" duration="44000" />
       <workItem from="1649375353392" duration="8546000" />
       <workItem from="1649390335981" duration="488000" />
-      <workItem from="1649502357053" duration="3151000" />
+      <workItem from="1649502357053" duration="3644000" />
     </task>
     <task id="LOCAL-00001" summary="Added items support">
       <created>1646791598105</created>
