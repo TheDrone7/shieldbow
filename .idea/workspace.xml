@@ -4,50 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7c5e2f4-ada1-44dc-8c44-7faf8269be2d" name="Changes" comment="Added champion mastery support">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/assets/search.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/assets/search.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/classes/Account.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/Account.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/classes/AccountManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/AccountManager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/classes/ApiHandler.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ApiHandler.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/classes/Champion.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/Champion.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/classes/ChampionManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ChampionManager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/classes/ChampionMastery.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ChampionMastery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/classes/ChampionMasteryManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ChampionMasteryManager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/classes/ChampionSkin.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ChampionSkin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/classes/ChampionSpell.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ChampionSpell.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/classes/ChampionStat.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ChampionStat.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/classes/Client.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/Client.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/classes/Item.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/Item.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/classes/ItemManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ItemManager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/classes/LeagueEntry.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/LeagueEntry.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/classes/LeagueList.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/LeagueList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/classes/LeagueManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/LeagueManager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/classes/Rune.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/Rune.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/classes/RuneTree.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/RuneTree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/classes/RuneTreeManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/RuneTreeManager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/classes/StorageManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/StorageManager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/classes/Summoner.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/Summoner.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/classes/SummonerManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/SummonerManager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/classes/SummonerSpell.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/SummonerSpell.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/classes/SummonerSpellManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/SummonerSpellManager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/interfaces/AccountData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/AccountData.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/interfaces/BaseManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/BaseManager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/interfaces/ChampionMasteryData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/ChampionMasteryData.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/interfaces/ClientConfig.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/ClientConfig.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/interfaces/GameMap.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/GameMap.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/interfaces/GameMode.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/GameMode.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/interfaces/GameType.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/GameType.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/interfaces/LeagueEntryData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/LeagueEntryData.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/interfaces/LeagueListData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/LeagueListData.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/interfaces/Queue.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/Queue.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/interfaces/RuneData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/RuneData.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/interfaces/RuneTreeData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/RuneTreeData.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/interfaces/Season.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/Season.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/interfaces/SummonerData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/SummonerData.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/interfaces/SummonerSpellData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/SummonerSpellData.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/modules.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules.html" afterDir="false" />
-    </list>
+    <list default="true" id="d7c5e2f4-ada1-44dc-8c44-7faf8269be2d" name="Changes" comment="Added champion mastery support" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -224,7 +181,7 @@
       <workItem from="1649375293635" duration="44000" />
       <workItem from="1649375353392" duration="8546000" />
       <workItem from="1649390335981" duration="488000" />
-      <workItem from="1649502357053" duration="2566000" />
+      <workItem from="1649502357053" duration="3151000" />
     </task>
     <task id="LOCAL-00001" summary="Added items support">
       <created>1646791598105</created>
