@@ -5,9 +5,55 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7c5e2f4-ada1-44dc-8c44-7faf8269be2d" name="Changes" comment="Added champion mastery support">
-      <change afterPath="$PROJECT_DIR$/src/structures/Match.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/structures/Bounty.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/structures/Participant.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/structures/Team.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/assets/search.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/assets/search.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/Account.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/Account.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/AccountManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/AccountManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/ApiHandler.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ApiHandler.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/Champion.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/Champion.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/ChampionManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ChampionManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/ChampionMastery.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ChampionMastery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/ChampionMasteryManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ChampionMasteryManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/ChampionSkin.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ChampionSkin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/ChampionSpell.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ChampionSpell.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/ChampionStat.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ChampionStat.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/Client.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/Client.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/Item.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/Item.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/ItemManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/ItemManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/LeagueEntry.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/LeagueEntry.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/LeagueList.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/LeagueList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/LeagueManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/LeagueManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/Rune.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/Rune.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/RuneTree.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/RuneTree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/RuneTreeManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/RuneTreeManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/StorageManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/StorageManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/Summoner.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/Summoner.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/SummonerManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/SummonerManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/SummonerSpell.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/SummonerSpell.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes/SummonerSpellManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/classes/SummonerSpellManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/AccountData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/AccountData.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/BaseManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/BaseManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/ChampionMasteryData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/ChampionMasteryData.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/ClientConfig.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/ClientConfig.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/GameMap.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/GameMap.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/GameMode.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/GameMode.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/GameType.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/GameType.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/LeagueEntryData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/LeagueEntryData.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/LeagueListData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/LeagueListData.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/Queue.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/Queue.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/RuneData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/RuneData.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/RuneTreeData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/RuneTreeData.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/Season.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/Season.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/SummonerData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/SummonerData.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/SummonerSpellData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/SummonerSpellData.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/modules.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/structures/Match.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/structures/Match.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/Participant.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/Participant.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/Team.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/Team.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +119,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\hsbha\Desktop\league.ts\node_modules\prettier" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
+    <property name="settings.editor.selected.configurable" value="0d570cb2-96df-43cc-80da-7f777e6d0afe" />
     <property name="ts.external.directory.path" value="C:\Users\hsbha\Desktop\league.ts\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -86,7 +132,7 @@
       <recent name="C:\Users\hsbha\Desktop\league.ts\dev\test" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.test">
+  <component name="RunManager" selected="npm.document">
     <configuration name="build" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -141,12 +187,23 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="watch" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="watch" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="npm.build" />
       <item itemvalue="npm.document" />
       <item itemvalue="npm.format" />
       <item itemvalue="npm.lint" />
       <item itemvalue="npm.test" />
+      <item itemvalue="npm.watch" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -191,7 +248,11 @@
       <workItem from="1649612892409" duration="3902000" />
       <workItem from="1649618675104" duration="22000" />
       <workItem from="1649701982611" duration="2676000" />
-      <workItem from="1649735452636" duration="2399000" />
+      <workItem from="1649735452636" duration="12303000" />
+      <workItem from="1649757569147" duration="326000" />
+      <workItem from="1649757955684" duration="399000" />
+      <workItem from="1649758372288" duration="447000" />
+      <workItem from="1649759222681" duration="14339000" />
     </task>
     <task id="LOCAL-00001" summary="Added items support">
       <created>1646791598105</created>

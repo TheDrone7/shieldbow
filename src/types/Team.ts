@@ -19,7 +19,7 @@ export interface TeamObjectivesData {
 
 export interface TeamData {
   bans: TeamBanData[];
-  objectives: TeamObjectivesData[];
+  objectives: TeamObjectivesData;
   teamId: number;
   win: boolean;
 }
