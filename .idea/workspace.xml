@@ -13,6 +13,9 @@
       <change afterPath="$PROJECT_DIR$/src/structures/Bounty.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/structures/Participant.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/structures/Team.ts" afterDir="false" />
+<<<<<<< HEAD
+>>>>>>> 1d8696c9fb0e2173d67fe20760a28d394e47f64a
+=======
 >>>>>>> 1d8696c9fb0e2173d67fe20760a28d394e47f64a
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/assets/search.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/assets/search.js" afterDir="false" />
@@ -58,6 +61,7 @@
       <change beforePath="$PROJECT_DIR$/docs/interfaces/SummonerSpellData.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/interfaces/SummonerSpellData.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/modules.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules.html" afterDir="false" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/client.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/managers/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/structures/Match.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/structures/Match.ts" afterDir="false" />
@@ -66,6 +70,11 @@
       <change beforePath="$PROJECT_DIR$/src/structures/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/structures/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/types/Participant.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/Participant.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/index.ts" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/structures/Match.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/structures/Match.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/Participant.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/Participant.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/Team.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/Team.ts" afterDir="false" />
+>>>>>>> 1d8696c9fb0e2173d67fe20760a28d394e47f64a
 =======
       <change beforePath="$PROJECT_DIR$/src/structures/Match.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/structures/Match.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/types/Participant.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/Participant.ts" afterDir="false" />
@@ -137,7 +146,11 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\hsbha\Desktop\league.ts\node_modules\prettier" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+=======
+    <property name="settings.editor.selected.configurable" value="0d570cb2-96df-43cc-80da-7f777e6d0afe" />
+>>>>>>> 1d8696c9fb0e2173d67fe20760a28d394e47f64a
 =======
     <property name="settings.editor.selected.configurable" value="0d570cb2-96df-43cc-80da-7f777e6d0afe" />
 >>>>>>> 1d8696c9fb0e2173d67fe20760a28d394e47f64a
@@ -274,7 +287,11 @@
       <workItem from="1649757955684" duration="399000" />
       <workItem from="1649758372288" duration="447000" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <workItem from="1649759222681" duration="21626000" />
+=======
+      <workItem from="1649759222681" duration="14339000" />
+>>>>>>> 1d8696c9fb0e2173d67fe20760a28d394e47f64a
 =======
       <workItem from="1649759222681" duration="14339000" />
 >>>>>>> 1d8696c9fb0e2173d67fe20760a28d394e47f64a
