@@ -53,6 +53,8 @@ export type Locales = typeof locale[number];
 
 export * from './LeagueConstants';
 
+export { MatchByPlayerOptions } from './MatchByPlayerOptions';
+
 export type { AccountData } from './Account';
 export type { SummonerData } from './Summoner';
 export type { ChampionMasteryData } from './ChampionMastery';

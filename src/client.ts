@@ -1,13 +1,14 @@
 import axios, { AxiosInstance } from 'axios';
-import type { ClientConfig, GameMode, GameType, Locales, GameMap, Queue, Region, Season } from './types';
+import type { ClientConfig, GameMap, GameMode, GameType, Locales, Queue, Region, Season } from './types';
 import {
+  AccountManager,
   ChampionManager,
   ItemManager,
+  LeagueManager,
+  MatchManager,
   RuneTreeManager,
   SummonerManager,
-  SummonerSpellManager,
-  AccountManager,
-  LeagueManager
+  SummonerSpellManager
 } from './managers';
 import { ApiHandler } from './util';
 
@@ -42,6 +43,7 @@ export class Client {
   private readonly _summoners: SummonerManager;
   private readonly _accounts: AccountManager;
   private readonly _leagues: LeagueManager;
+  private readonly _matches: MatchManager;
   private readonly _http: AxiosInstance;
   private readonly _api: ApiHandler;
   private _seasons: Season[];
@@ -73,6 +75,7 @@ export class Client {
     this._summoners = new SummonerManager(this);
     this._accounts = new AccountManager(this);
     this._leagues = new LeagueManager(this);
+    this._matches = new MatchManager(this);
 
     this._http = axios.create({ baseURL: this._cdnBase });
     this._api = new ApiHandler('na', apiKey);
@@ -247,6 +250,13 @@ export class Client {
    */
   get leagues() {
     return this._leagues;
+  }
+
+  /**
+   * The default match manager used by the client.
+   */
+  get matches() {
+    return this._matches;
   }
 
   /**

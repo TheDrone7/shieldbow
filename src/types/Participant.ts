@@ -73,7 +73,7 @@ export interface ParticipantData {
   spell4Casts: number;
   summoner1Casts: number;
   summoner1Id: number;
-  summoner2Casts: string;
+  summoner2Casts: number;
   summoner2Id: number;
   summonerId: string;
   summonerLevel: number;

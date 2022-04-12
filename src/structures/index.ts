@@ -11,3 +11,7 @@ export { Account } from './Account';
 export { ChampionMastery } from './ChampionMastery';
 export { LeagueEntry } from './LeagueEntry';
 export { LeagueList } from './LeagueList';
+export { Bounty } from './Bounty';
+export { Match } from './Match';
+export { Participant } from './Participant';
+export { Team } from './Team';

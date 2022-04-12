@@ -7,3 +7,4 @@ export { SummonerManager } from './SummonerManager';
 export { AccountManager } from './AccountManager';
 export { ChampionMasteryManager } from './ChampionMasteryManager';
 export { LeagueManager } from './LeagueManager';
+export { MatchManager } from './MatchManager';
