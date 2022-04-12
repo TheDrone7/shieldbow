@@ -3,6 +3,19 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d7c5e2f4-ada1-44dc-8c44-7faf8269be2d" name="Changes" comment="Added champion mastery support">
+      <change afterPath="$PROJECT_DIR$/src/types/Match.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/Participant.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/Perks.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/Team.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -62,9 +75,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\hsbha\Desktop\league.ts\node_modules\prettier" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
-    <property name="settings.editor.selected.configurable" value="0d570cb2-96df-43cc-80da-7f777e6d0afe" />
-    <property name="settings.editor.selected.configurable" value="0d570cb2-96df-43cc-80da-7f777e6d0afe" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
     <property name="ts.external.directory.path" value="C:\Users\hsbha\Desktop\league.ts\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -77,7 +88,7 @@
       <recent name="C:\Users\hsbha\Desktop\league.ts\dev\test" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.document">
+  <component name="RunManager" selected="npm.test">
     <configuration name="build" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -132,23 +143,12 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="watch" type="js.build_tools.npm" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="watch" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="npm.build" />
       <item itemvalue="npm.document" />
       <item itemvalue="npm.format" />
       <item itemvalue="npm.lint" />
       <item itemvalue="npm.test" />
-      <item itemvalue="npm.watch" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -193,13 +193,6 @@
       <workItem from="1649612892409" duration="3902000" />
       <workItem from="1649618675104" duration="22000" />
       <workItem from="1649701982611" duration="2676000" />
-      <workItem from="1649735452636" duration="12303000" />
-      <workItem from="1649757569147" duration="326000" />
-      <workItem from="1649757955684" duration="399000" />
-      <workItem from="1649758372288" duration="447000" />
-      <workItem from="1649759222681" duration="21626000" />
-      <workItem from="1649759222681" duration="14339000" />
-      <workItem from="1649759222681" duration="14339000" />
     </task>
     <task id="LOCAL-00001" summary="Added items support">
       <created>1646791598105</created>
@@ -306,14 +299,7 @@
       <option name="project" value="LOCAL" />
       <updated>1647254032276</updated>
     </task>
-    <task id="LOCAL-00016" summary="Updates">
-      <created>1649778987869</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1649778987869</updated>
-    </task>
-    <option name="localTasksCounter" value="17" />
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -347,9 +333,7 @@
     <MESSAGE value="Fix rate limiting" />
     <MESSAGE value="Rename data -&gt; structures" />
     <MESSAGE value="Added champion mastery support" />
-    <MESSAGE value="Add match data structure" />
-    <MESSAGE value="Updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added champion mastery support" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
