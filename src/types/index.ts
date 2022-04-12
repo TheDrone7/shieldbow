@@ -56,6 +56,12 @@ export * from './LeagueConstants';
 export type { AccountData } from './Account';
 export type { SummonerData } from './Summoner';
 export type { ChampionMasteryData } from './ChampionMastery';
+export type { LeagueEntryData } from './LeagueEntry';
+export type { LeagueListData } from './LeagueList';
+export type { MatchData } from './Match';
+export type { TeamData, TeamObjectiveData, TeamObjectivesData, TeamBanData } from './Team';
+export type { ParticipantData } from './Participant';
+export type { PerksData } from './Perks';
 
 export type { ChampionData, SpellData, SpellDamageData, MerakiSkin, MerakiChampion } from './Champion';
 export type { ImageData } from './Image';
@@ -65,5 +71,3 @@ export type { ItemData } from './Item';
 export type { RuneData, RuneTreeData } from './Rune';
 export type { SummonerSpellData } from './SummonerSpell';
 export type { Season, Queue, GameMap, GameMode, GameType } from './GameConstants';
-export type { LeagueEntryData } from './LeagueEntry';
-export type { LeagueListData } from './LeagueList';
