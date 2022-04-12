@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7c5e2f4-ada1-44dc-8c44-7faf8269be2d" name="Changes" comment="Added champion mastery support">
-      <change beforePath="$PROJECT_DIR$/src/managers/LeagueManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/LeagueManager.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/Match.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/Participant.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/Perks.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/Team.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +187,12 @@
       <workItem from="1649375293635" duration="44000" />
       <workItem from="1649375353392" duration="8546000" />
       <workItem from="1649390335981" duration="488000" />
-      <workItem from="1649502357053" duration="3644000" />
+      <workItem from="1649502357053" duration="4267000" />
+      <workItem from="1649534789152" duration="3470000" />
+      <workItem from="1649600178926" duration="1516000" />
+      <workItem from="1649612892409" duration="3902000" />
+      <workItem from="1649618675104" duration="22000" />
+      <workItem from="1649701982611" duration="2676000" />
     </task>
     <task id="LOCAL-00001" summary="Added items support">
       <created>1646791598105</created>
