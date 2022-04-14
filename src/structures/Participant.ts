@@ -6,6 +6,7 @@ import Collection from '@discordjs/collection';
 import type { Item } from './Item';
 import { Summoner } from './Summoner';
 import type { SummonerSpell } from './SummonerSpell';
+import { Perks } from './Perks';
 
 /**
  * Represents a participant in a match.
@@ -15,6 +16,10 @@ export class Participant {
    * The participant ID.
    */
   readonly id: number;
+  /**
+   * The perks (runes) selected by the participant.
+   */
+  readonly perks: Perks;
   /**
    * The number of kills scored by this participant.
    */
@@ -419,6 +424,7 @@ export class Participant {
 
   constructor(client: Client, data: ParticipantData) {
     this.id = data.participantId;
+    this.perks = new Perks(client, data.perks);
 
     this.kills = data.kills;
     this.deaths = data.deaths;

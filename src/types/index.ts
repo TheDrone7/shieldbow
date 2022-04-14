@@ -63,7 +63,7 @@ export type { LeagueListData } from './LeagueList';
 export type { MatchData } from './Match';
 export type { TeamData, TeamObjectiveData, TeamObjectivesData, TeamBanData } from './Team';
 export type { ParticipantData } from './Participant';
-export type { PerksData } from './Perks';
+export type { PerksData, StatPerk } from './Perks';
 
 export type { ChampionData, SpellData, SpellDamageData, MerakiSkin, MerakiChampion } from './Champion';
 export type { ImageData } from './Image';

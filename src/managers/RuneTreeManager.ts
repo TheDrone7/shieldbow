@@ -94,7 +94,7 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
    * @param options Additional fetch options.
    */
   async fetchRune(key: string, options: { force: boolean } = { force: false }) {
-    return new Promise(async (resolve, reject) => {
+    return new Promise<Rune>(async (resolve, reject) => {
       const rune = this.cachedRunes.find((r) => r.key === key);
       if (rune && !options.force) resolve(rune!);
       else if (this.client.version === 'null') reject('Please initialize the client first.');
@@ -129,5 +129,24 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
   async findRuneByName(name: string) {
     if (!this.cache.size) await this._fetchAll().catch(() => {});
     return this.cachedRunes.find((i) => i.name.toLowerCase().includes(name.toLowerCase()));
+  }
+  /**
+   * Find a rune tree by its numerical ID.
+   *
+   * @param id The numerical ID of the rune tree to look for.
+   */
+  async findById(id: number) {
+    if (!this.cache.size) await this._fetchAll().catch(() => {});
+    return this.cache.find((i) => i.id === id);
+  }
+
+  /**
+   * Find a rune by its numerical ID.
+   *
+   * @param id The numerical ID of the rune to look for.
+   */
+  async findRuneById(id: number) {
+    if (!this.cache.size) await this._fetchAll().catch(() => {});
+    return this.cachedRunes.find((i) => i.id === id);
   }
 }

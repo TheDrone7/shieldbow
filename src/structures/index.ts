@@ -14,4 +14,5 @@ export { LeagueList } from './LeagueList';
 export { Bounty } from './Bounty';
 export { Match } from './Match';
 export { Participant } from './Participant';
+export { Perks, PerkStyle } from './Perks';
 export { Team } from './Team';

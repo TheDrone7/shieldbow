@@ -15,3 +15,9 @@ export interface PerksData {
     style: number;
   }[];
 }
+
+export interface StatPerk {
+  id: number;
+  name: string;
+  description: string;
+}
