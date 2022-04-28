@@ -16,3 +16,7 @@ export { Match } from './Match';
 export { Participant } from './Participant';
 export { Perks, PerkStyle } from './Perks';
 export { Team } from './Team';
+export { CurrentGame } from './CurrentGame';
+export { CurrentGamePerks } from './CurrentGamePerks';
+export { CurrentGameParticipant } from './CurrentGameParticipant';
+export { CurrentGameTeam } from './CurrentGameTeam';

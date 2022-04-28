@@ -61,9 +61,13 @@ export type { ChampionMasteryData } from './ChampionMastery';
 export type { LeagueEntryData } from './LeagueEntry';
 export type { LeagueListData } from './LeagueList';
 export type { MatchData } from './Match';
-export type { TeamData, TeamObjectiveData, TeamObjectivesData, TeamBanData } from './Team';
+export type { TeamData, TeamObjectiveData, TeamObjectivesData } from './Team';
+export type { CurrentGameBanData, TeamBanData } from './ChampionBan';
 export type { ParticipantData } from './Participant';
 export type { PerksData, StatPerk } from './Perks';
+export type { CurrentGameData } from './CurrentGame';
+export type { CurrentGameParticipantData } from './CurrentGameParticipant';
+export type { CurrentGamePerksData } from './CurrentGamePerks';
 
 export type { ChampionData, SpellData, SpellDamageData, MerakiSkin, MerakiChampion } from './Champion';
 export type { ImageData } from './Image';

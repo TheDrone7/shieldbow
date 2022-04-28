@@ -1,7 +1,4 @@
-export interface TeamBanData {
-  championId: number;
-  pickTurn: number;
-}
+import type { TeamBanData } from './ChampionBan';
 
 export interface TeamObjectiveData {
   first: boolean;

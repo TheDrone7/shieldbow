@@ -8,7 +8,8 @@ import {
   MatchManager,
   RuneTreeManager,
   SummonerManager,
-  SummonerSpellManager
+  SummonerSpellManager,
+  CurrentGameManager
 } from './managers';
 import { ApiHandler } from './util';
 
@@ -44,6 +45,7 @@ export class Client {
   private readonly _accounts: AccountManager;
   private readonly _leagues: LeagueManager;
   private readonly _matches: MatchManager;
+  private readonly _spectator: CurrentGameManager;
   private readonly _http: AxiosInstance;
   private readonly _api: ApiHandler;
   private _seasons: Season[];
@@ -76,6 +78,7 @@ export class Client {
     this._accounts = new AccountManager(this);
     this._leagues = new LeagueManager(this);
     this._matches = new MatchManager(this);
+    this._spectator = new CurrentGameManager(this);
 
     this._http = axios.create({ baseURL: this._cdnBase });
     this._api = new ApiHandler('na', apiKey);
@@ -257,6 +260,13 @@ export class Client {
    */
   get matches() {
     return this._matches;
+  }
+
+  /**
+   * The default live match manager used by the client.
+   */
+  get spectator() {
+    return this._spectator;
   }
 
   /**

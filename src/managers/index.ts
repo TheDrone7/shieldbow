@@ -8,3 +8,4 @@ export { AccountManager } from './AccountManager';
 export { ChampionMasteryManager } from './ChampionMasteryManager';
 export { LeagueManager } from './LeagueManager';
 export { MatchManager } from './MatchManager';
+export { CurrentGameManager } from './CurrentGameManager';
