@@ -5,10 +5,25 @@ import type { RuneTree } from './RuneTree';
 
 import { statPerks } from '../util';
 
+/**
+ * A class representing the rune setup of a live game participant.
+ */
 export class CurrentGamePerks {
+  /**
+   * The runes selected by the participant.
+   */
   readonly selected: Rune[];
+  /**
+   * The stat runes selected by the participant.
+   */
   readonly stats: StatPerk[];
+  /**
+   * The primary rune tree selected by the participant.
+   */
   readonly primaryTree: RuneTree;
+  /**
+   * The secondary rune tree selected by the participant.
+   */
   readonly secondaryTree: RuneTree;
   constructor(client: Client, data: CurrentGamePerksData) {
     this.primaryTree = client.runes.cache.find((r) => r.id === data.perkStyle)!;

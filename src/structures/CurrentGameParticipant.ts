@@ -5,14 +5,38 @@ import type { Champion } from './Champion';
 import Collection from '@discordjs/collection';
 import { CurrentGamePerks } from './CurrentGamePerks';
 
+/**
+ * A class representing a participant in a live game.
+ */
 export class CurrentGameParticipant {
+  /**
+   * The ID of the team this participant belongs to.
+   */
   readonly teamId: number;
+  /**
+   * The summoner spells being used by this participant.
+   */
   readonly summonerSpells: Collection<'D' | 'F', SummonerSpell>;
+  /**
+   * The champion being played by this participant.
+   */
   readonly champion: Champion;
+  /**
+   * Whether the participant is a bot.
+   */
   readonly bot: boolean;
+  /**
+   * The summoner name of this participant.
+   */
   readonly summonerName: string;
+  /**
+   * A link to the participant's profile icon.
+   */
   readonly profileIcon: string;
-  readonly perks: CurrentGamePerks;
+  /**
+   * The rune setups of this participant.
+   */
+  readonly perks?: CurrentGamePerks;
   constructor(client: Client, data: CurrentGameParticipantData) {
     this.teamId = data.teamId;
     this.summonerSpells = new Collection<'D' | 'F', SummonerSpell>();
@@ -22,6 +46,6 @@ export class CurrentGameParticipant {
     this.bot = data.bot;
     this.summonerName = data.summonerName;
     this.profileIcon = `${client.cdnBase}${client.version}/img/profileicon/${data.profileIconId}.png`;
-    this.perks = new CurrentGamePerks(client, data.perks);
+    if (data.perks) this.perks = new CurrentGamePerks(client, data.perks);
   }
 }

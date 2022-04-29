@@ -3,13 +3,28 @@ import type { CurrentGameBanData, CurrentGameParticipantData } from '../types';
 import type { Champion } from './Champion';
 import { CurrentGameParticipant } from './CurrentGameParticipant';
 
+/**
+ * A class representing a team in a live game.
+ */
 export class CurrentGameTeam {
+  /**
+   * The team's ID.
+   */
   readonly id: number;
+  /**
+   * The team's side.
+   */
   readonly side: 'red' | 'blue';
+  /**
+   * The champions banned by this team.
+   */
   readonly bans: {
     champion: Champion;
     turn: number;
   }[];
+  /**
+   * The team's participants.
+   */
   readonly participants: CurrentGameParticipant[];
   constructor(client: Client, bans: CurrentGameBanData[], participants: CurrentGameParticipantData[]) {
     this.id = participants[0].teamId;

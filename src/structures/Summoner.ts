@@ -74,6 +74,15 @@ export class Summoner {
   }
 
   /**
+   * Get the summoner's live game data.
+   *
+   * Uses {@link CurrentGameManager.fetch} to get the details.
+   */
+  get live() {
+    return this.client.spectator.fetch(this.id);
+  }
+
+  /**
    * Check a summoner's third party verification code.
    *
    * @param code The code that the summoner's code should match with.
