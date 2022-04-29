@@ -270,6 +270,24 @@ export class Client {
   }
 
   /**
+   * Get the current status of the RIOT API.
+   *
+   * No type support for this (yet).
+   */
+  get status() {
+    return new Promise(async (resolve, reject) => {
+      const response = await this.api
+        .makeApiRequest('/lol/status/v4/platform-data', {
+          name: 'Get API Status',
+          params: 'no params',
+          regional: false
+        })
+        .catch(reject);
+      if (response) resolve(response.data);
+    });
+  }
+
+  /**
    * The current Data Dragon CDN version.
    */
   get version() {
