@@ -107,7 +107,7 @@ export class ChampionSpell {
     const values = ChampionSpell._parseDataValues(spell.mDataValues);
     for (const key of Object.keys(values)) {
       const format = `{{ ${key.toLowerCase()} }}`;
-      const strings = arrToString(values[key].slice(1, this.maxRank));
+      const strings = arrToString(values[key].slice(1, this.maxRank + 1));
       const value = strings.every((s) => s === strings[0]) ? strings[0] : strings.join('/');
       this._rawTooltip = this._rawTooltip.replaceAll(format, value);
       this.cost = this.cost.replaceAll(format, value);
