@@ -9,7 +9,8 @@ import {
   RuneTreeManager,
   SummonerManager,
   SummonerSpellManager,
-  CurrentGameManager
+  CurrentGameManager,
+  ClashManager
 } from './managers';
 import { ApiHandler } from './util';
 
@@ -46,6 +47,7 @@ export class Client {
   private readonly _leagues: LeagueManager;
   private readonly _matches: MatchManager;
   private readonly _spectator: CurrentGameManager;
+  private readonly _clash: ClashManager;
   private readonly _http: AxiosInstance;
   private readonly _api: ApiHandler;
   private _seasons: Season[];
@@ -79,6 +81,7 @@ export class Client {
     this._leagues = new LeagueManager(this);
     this._matches = new MatchManager(this);
     this._spectator = new CurrentGameManager(this);
+    this._clash = new ClashManager(this);
 
     this._http = axios.create({ baseURL: this._cdnBase });
     this._api = new ApiHandler('na', apiKey);
@@ -267,6 +270,13 @@ export class Client {
    */
   get spectator() {
     return this._spectator;
+  }
+
+  /**
+   * The default clash tournaments manager used by the client.
+   */
+  get clash() {
+    return this._clash;
   }
 
   /**

@@ -20,3 +20,7 @@ export { CurrentGame } from './CurrentGame';
 export { CurrentGamePerks } from './CurrentGamePerks';
 export { CurrentGameParticipant } from './CurrentGameParticipant';
 export { CurrentGameTeam } from './CurrentGameTeam';
+export { Tournament } from './Tournament';
+export { TournamentSchedule } from './TournamentSchedule';
+export { TournamentTeam } from './TournamentTeam';
+export { TournamentPlayer } from './TournamentPlayer';
