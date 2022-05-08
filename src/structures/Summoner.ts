@@ -61,7 +61,7 @@ export class Summoner {
    * Uses {@link AccountManager.fetch} to get the details.
    */
   get account() {
-    return this.client.accounts.fetch(this.id);
+    return this.client.accounts.fetch(this.playerId);
   }
 
   /**
