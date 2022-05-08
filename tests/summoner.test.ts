@@ -32,4 +32,10 @@ describe('Test Summoner v4 and Account v1 API', () => {
     const account = await client.accounts.fetchByNameAndTag('TheDrone7', '1624');
     expect(account?.username).toBe('TheDrone7');
   });
+
+  test('Check third-party-verification-code', async () => {
+    const match = await summoner.verifyCode('random-code').catch(() => {});
+    if (match) expect(match).toBeFalsy();
+    else expect(match).toBeUndefined();
+  });
 });
