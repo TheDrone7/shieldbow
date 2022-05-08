@@ -68,6 +68,9 @@ export type { PerksData, StatPerk } from './Perks';
 export type { CurrentGameData } from './CurrentGame';
 export type { CurrentGameParticipantData } from './CurrentGameParticipant';
 export type { CurrentGamePerksData } from './CurrentGamePerks';
+export type { TournamentData, TournamentScheduleData } from './Tournament';
+export type { TournamentPlayerData, TournamentPlayerFullData } from './TournamentPlayer';
+export type { TournamentTeamData } from './TournamentTeam';
 
 export type { ChampionData, SpellData, SpellDamageData, MerakiSkin, MerakiChampion } from './Champion';
 export type { ImageData } from './Image';
