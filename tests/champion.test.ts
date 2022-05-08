@@ -1,7 +1,7 @@
 import { Champion, Client } from "../dist";
 
 describe('Test champion fetching.', () => {
-  const client = new Client('RGAPI-...');
+  const client = new Client(process.env.riot_api_key!);
 
   let kayn: Champion;
 
@@ -18,7 +18,7 @@ describe('Test champion fetching.', () => {
     kayn = await client.champions.fetch('Kayn');
   });
 
-  test('Check champion fetching by ID', async () => {
+  test('Check champion fetching by ID', () => {
     expect(kayn.name).toBe('Kayn');
   });
 
@@ -29,7 +29,7 @@ describe('Test champion fetching.', () => {
     expect(champion).toBe(kayn);
   });
 
-  test('Check champion spells', async () => {
+  test('Check champion spells', () => {
     expect(kayn.spells.has('Q')).toBeTruthy();
     expect(kayn.spells.get('Q')!.name).toBe('Reaping Slash');
 
@@ -43,12 +43,17 @@ describe('Test champion fetching.', () => {
     expect(kayn.spells.get('R')!.name).toBe('Umbral Trespass');
   });
 
-  test('Check champion passive', async () => {
+  test('Check champion passive', () => {
     expect(kayn.passive.name).toBe('The Darkin Scythe');
   });
 
-  test('Check champion classes', async () => {
+  test('Check champion classes', () => {
     expect(kayn.classes).toContain('Assassin');
     expect(kayn.classes).toContain('Fighter');
+  });
+
+  test('Check champion assets', () => {
+    expect(kayn.defaultSplashArt).toBe('http://raw.communitydragon.org/pbe/plugins/rcp-be-lol-game-data/global/default/v1/champion-splashes/uncentered/141/141000.jpg')
+    expect(kayn.defaultLoadingScreen).toBe('https://raw.communitydragon.org/pbe/plugins/rcp-be-lol-game-data/global/default/assets/characters/kayn/skins/base/kaynloadscreen.jpg');
   });
 });
