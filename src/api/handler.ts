@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import type { Region } from '../types';
-import { apiBaseURLs, regionalURLs } from './urls';
+import { apiBaseURLs, regionalURLs } from '../util/urls';
 import Collection from '@discordjs/collection';
 
 /**

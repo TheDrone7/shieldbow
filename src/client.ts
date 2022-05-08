@@ -12,7 +12,7 @@ import {
   CurrentGameManager,
   ClashManager
 } from './managers';
-import { ApiHandler } from './util';
+import { ApiHandler } from './api';
 
 const patchRegex = /\d+\.\d+/;
 
