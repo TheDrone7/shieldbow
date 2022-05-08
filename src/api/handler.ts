@@ -2,6 +2,7 @@ import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import type { Region } from '../types';
 import { apiBaseURLs, regionalURLs } from '../util/urls';
 import Collection from '@discordjs/collection';
+import { ApiError } from './error';
 
 /**
  * A class that handles API requests and rate limits for the RIOT API.
@@ -62,23 +63,8 @@ export class ApiHandler {
           if (response.status === 200) resolve(response);
         } catch (error: any) {
           const { response } = error as AxiosError;
-          if (response?.status === 400) reject('This was a bad request: ' + request);
-          if (response?.status === 401) reject('This was an unauthorized request: ' + request);
-          if (response?.status === 403) reject('This was an forbidden request: ' + request);
-          if (response?.status === 404) reject('This does not exist: ' + request);
-          if (response?.status === 429) reject(this._handleRateLimit(response, options) + request);
-          if (response?.status === 500) reject('There seems to have been an internal error with RIOT API: ' + request);
-          if (response?.status === 503) reject('This service is no longer available: ' + request);
+          reject(new ApiError(response!));
         }
     });
-  }
-
-  private _handleRateLimit(response: AxiosResponse, options: { name: string; params: string }): string {
-    const timeout = parseInt(response.headers.RetryAfter) * 1000;
-    const endTime = Date.now() + timeout;
-    const limiter = this.limits.get(this._region)!;
-    limiter.set(options.name, new Date(endTime));
-    this.limits.set(this._region, limiter);
-    return `You have hit the rate limit for the request:`;
   }
 }
