@@ -1,6 +1,6 @@
 import { Summoner, Client } from "../dist";
 
-describe('Test Summoner v4 API', () => {
+describe('Test Summoner v4 and Account v1 API', () => {
   const client = new Client(process.env.riot_api_key!);
 
   let summoner: Summoner;
@@ -25,6 +25,11 @@ describe('Test Summoner v4 API', () => {
 
   test('Check summoner account details', async () => {
     const account = await summoner.account.catch(console.error);
+    expect(account?.username).toBe('TheDrone7');
+  });
+
+  test('Check account by username and tag', async () => {
+    const account = await client.accounts.fetchByNameAndTag('TheDrone7', '1624');
     expect(account?.username).toBe('TheDrone7');
   });
 });
