@@ -23,6 +23,20 @@ describe('Test Summoner v4 and Account v1 API', () => {
     expect(summoner.name).toBe('TheDrone7');
   });
 
+  test('Check other ways of fetching summoners', async () => {
+    const summoner2 = await client.summoners.fetch(summoner.id, { force: true });
+    const summoner3 = await client.summoners.fetchByPlayerId(summoner.playerId, { force: true});
+    expect(summoner2.name).toBe(summoner.name);
+    expect(summoner3.name).toBe(summoner.name);
+  });
+
+  test('Check summoner in cache', async () => {
+    const cachedSummoner2 = await client.summoners.fetch(summoner.id);
+    const cachedSummoner3 = await client.summoners.fetchByPlayerId(summoner.playerId);
+    expect(cachedSummoner2.name).toBe(summoner.name);
+    expect(cachedSummoner3.name).toBe(summoner.name);
+  });
+
   test('Check summoner account details', async () => {
     const account = await summoner.account.catch(console.error);
     expect(account?.username).toBe('TheDrone7');

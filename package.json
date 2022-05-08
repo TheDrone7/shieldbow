@@ -23,7 +23,7 @@
     "watch": "tsc -w",
     "format": "prettier --write \"src/**/**.ts\"",
     "lint": "eslint --fix --color \"src/**/**.ts\"",
-    "test": "jest --silent",
+    "test": "jest --silent --runInBand",
     "document": "typedoc src/index.ts --readme README.md --excludePrivate"
   },
   "repository": {
