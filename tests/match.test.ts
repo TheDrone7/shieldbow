@@ -3,6 +3,7 @@ import { Match, Client } from "../dist";
 describe('Test Summoner v4 and Account v1 API', () => {
   const client = new Client(process.env.riot_api_key!);
 
+  let matches: string[];
   let match: Match;
 
   beforeAll(async () => {
@@ -16,7 +17,14 @@ describe('Test Summoner v4 and Account v1 API', () => {
         summonerSpells: false
       }
     });
-    match = await client.matches.fetch('EUW1_5861359615');
+    const summoner = await client.summoners.fetchBySummonerName('TheDrone7');
+    matches = await client.matches.fetchMatchListByPlayer(summoner);
+    match = await client.matches.fetch(matches[0]);
+  });
+
+  test('Check match list fetching', () => {
+    expect(matches.length).toBeGreaterThan(0);
+    expect(matches[0]).toBe(match.id);
   });
 
   test('Check match exists', () => {
@@ -33,6 +41,6 @@ describe('Test Summoner v4 and Account v1 API', () => {
   test('Check participant data', () => {
     const participant = match.teams.get('red')!.participants[1];
     expect(participant.summoner.name).toBe('TheDrone7');
-    expect(participant.bounty.level).toBe(0);
+    expect(participant.bounty.level).toBeDefined();
   })
 });
