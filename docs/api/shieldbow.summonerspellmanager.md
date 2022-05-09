@@ -30,6 +30,6 @@ export declare class SummonerSpellManager implements BaseManager<SummonerSpell>
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
-|  [fetch(key, options)](./shieldbow.summonerspellmanager.fetch.md) |  | Fetch a spell by its ID. The ID is usually something like Summoner<!-- -->{<!-- -->Spell<!-- -->} For example, for the spell <code>Flash</code>, the ID is <code>SummonerFlash</code>. But there are a lot of exceptions to this, so it is recommended to use  instead. |
+|  [fetch(key, options)](./shieldbow.summonerspellmanager.fetch.md) |  | Fetch a spell by its ID. The ID is usually something like Summoner<!-- -->{<!-- -->Spell<!-- -->} For example, for the spell <code>Flash</code>, the ID is <code>SummonerFlash</code>. But there are a lot of exceptions to this, so it is recommended to use [findByName](./shieldbow.summonerspellmanager.findbyname.md) instead. |
 |  [findByName(name)](./shieldbow.summonerspellmanager.findbyname.md) |  | Find a spell by its name. The search is case-insensitive. The special characters are NOT ignored. |
 
