@@ -22,7 +22,7 @@ describe('Test champion fetching.', () => {
     expect(kayn.name).toBe('Kayn');
   });
 
-  test('Champion fetching by name and key', async () => {
+  test('Check champion fetching by name and key', async () => {
     const byName = await client.champions.findByName('Kayn');
     const champion = client.champions.findByKey(kayn.key);
     expect(byName).toBe(kayn);

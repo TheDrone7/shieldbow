@@ -22,7 +22,7 @@ describe('Test item fetching.', () => {
     expect(boots.name).toBe('Boots');
   });
 
-  test('Item fetching by name', async () => {
+  test('Check item fetching by name', async () => {
     const byName = await client.items.findByName('Boots');
     expect(byName).toBe(boots);
   });

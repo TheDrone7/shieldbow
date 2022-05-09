@@ -1,6 +1,6 @@
 import { Client, Tournament } from "../dist";
 
-describe('Test Champion Mastery v4 API', () => {
+describe('Test Clash v1 API', () => {
   const client = new Client(process.env.riot_api_key!);
 
   let tournaments: Tournament[];

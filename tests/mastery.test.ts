@@ -32,7 +32,7 @@ describe('Test Champion Mastery v4 API', () => {
     expect(mastery.level).toBe(7);
   });
 
-  test('Get points', async () => {
+  test('Check total points', async () => {
     await masteries.updateTotalScore();
     const points = masteries.totalScore;
     expect(points).toBeGreaterThan(296);
