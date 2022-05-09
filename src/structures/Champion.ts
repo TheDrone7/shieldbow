@@ -1,4 +1,4 @@
-import type { ChampionData, SpellDamageData, Stats, MerakiChampion } from '../types';
+import type { ChampionData, SpellDamageData, Stats, MerakiChampion, MerakiSkin, SpellData } from "../types";
 import type { Client } from '../client';
 import Collection from '@discordjs/collection';
 import { ChampionStat, ChampionSkin, ChampionSpell } from './index';
@@ -163,11 +163,11 @@ export class Champion {
     };
 
     data.skins
-      .filter((s) => meraki.skins.find((ms) => ms.id.toString() === s.id))
-      .map((s) =>
-        this.skins.set(s.num, new ChampionSkin(this, s, meraki.skins.find((ms) => ms.id.toString() === s.id)!))
+      .filter((s: { id: string }) => meraki.skins.find((ms: MerakiSkin) => ms.id.toString() === s.id))
+      .map((s: { id: string; name: string; num: number; chromas: boolean }) =>
+        this.skins.set(s.num, new ChampionSkin(this, s, meraki.skins.find((ms: MerakiSkin) => ms.id.toString() === s.id)!))
       );
-    data.spells.map((s, i) => {
+    data.spells.map((s: SpellData, i: number) => {
       const keys = ['Q', 'W', 'E', 'R'] as const;
       const key = keys[i];
       this.spells.set(key, new ChampionSpell(client, this, s, damage));
