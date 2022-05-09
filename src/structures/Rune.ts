@@ -37,7 +37,7 @@ export class Rune {
    * The raw description (short version) provided by Data Dragon.
    * This contains some HTML-like tags that help to display it on webpages.
    *
-   * See {@link description | description} to view the description with all the HTML-like tags stripped out.
+   * See {@link Rune.description | description} to view the description with all the HTML-like tags stripped out.
    */
   get rawDescription() {
     return this._rawDescription;
@@ -47,7 +47,7 @@ export class Rune {
    * The description (short version) of this rune provided by Data Dragon.
    * This does not contain the HTML-like tags to help view this better on console or other output media.
    *
-   * See {@link rawDescription | rawDescription} to view the description with the HTML-like tags included.
+   * See {@link Rune.rawDescription | rawDescription} to view the description with the HTML-like tags included.
    */
   get description() {
     return this.rawDescription
@@ -60,7 +60,7 @@ export class Rune {
    * The details (long version) about this rune provided by Data Dragon.
    * This contains some HTML-like tags that help to display it on webpages.
    *
-   * See {@link details | details} to view the details with all the HTML-like tags stripped out.
+   * See {@link Rune.details | details} to view the details with all the HTML-like tags stripped out.
    */
   get rawDetails() {
     return this._rawDetails;
@@ -70,7 +70,7 @@ export class Rune {
    * The details (long version) about this rune provided by Data Dragon.
    * This does not contain the HTML-like tags to help view this better on console or other output media.
    *
-   * See {@link rawDetails | rawDetails} to view the details with all the HTML-like tags included.
+   * See {@link Rune.rawDetails | rawDetails} to view the details with all the HTML-like tags included.
    */
   get details() {
     return this.rawDetails

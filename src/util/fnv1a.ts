@@ -14,8 +14,8 @@ const FNV_OFFSETS: { [size: number]: bigint } = {
 
 /**
  * A simple fnv1a hashing utility - to help with community dragon data parsing.
- * @param str The string that needs to be hashed.
- * @param size The offset/primes size - defaults to 32.
+ * @param str - The string that needs to be hashed.
+ * @param size - The offset/primes size - defaults to 32.
  */
 export function hash(str: string, { size = 32 } = {}) {
   if (!FNV_PRIMES[size]) throw new Error('The `size` option must be one of 32, 64, 128 or 256.');

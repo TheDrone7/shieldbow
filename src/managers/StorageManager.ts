@@ -29,7 +29,7 @@ export class StorageManager implements BaseManager<any> {
   /**
    * Fetch the locally stored JSON file by its name.
    *
-   * @param id The name of the JSON file.
+   * @param id - The name of the JSON file.
    */
   fetch(id: string) {
     if (this.cache.has(id)) return this.cache.get(id);
@@ -42,8 +42,8 @@ export class StorageManager implements BaseManager<any> {
   /**
    * Store a JSON file locally.
    *
-   * @param id The name of the JSON file.
-   * @param data The JSON data that needs to be stored.
+   * @param id - The name of the JSON file.
+   * @param data - The JSON data that needs to be stored.
    */
   store(id: string, data: any) {
     const contentPath = path.join(this._pathName, id + '.json');
@@ -57,10 +57,12 @@ export class StorageManager implements BaseManager<any> {
   }
 
   /**
-   * The path of the base directory to fetch/store files from/in.
-   *
-   * @param newPath The new path.
+   * The path of the base directory to fetch/store files from/in
    */
+  get pathName() {
+    return this._pathName;
+  }
+
   set pathName(newPath: string) {
     this._pathName = path.join(process.cwd(), this._root, newPath);
   }

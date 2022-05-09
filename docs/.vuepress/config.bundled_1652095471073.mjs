@@ -1,0 +1,10 @@
+// docs/.vuepress/config.ts
+import { defineConfig } from "vuepress/config";
+var config_default = defineConfig({
+  title: "Shieldbow",
+  description: "An all-purpose, easy-to-use API wrapper for the league of legends API."
+});
+export {
+  config_default as default
+};
+//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsiZG9jcy8udnVlcHJlc3MvY29uZmlnLnRzIl0sCiAgInNvdXJjZXNDb250ZW50IjogWyJpbXBvcnQgeyBkZWZpbmVDb25maWcgfSBmcm9tICd2dWVwcmVzcy9jb25maWcnO1xuXG5leHBvcnQgZGVmYXVsdCBkZWZpbmVDb25maWcoe1xuICB0aXRsZTogJ1NoaWVsZGJvdycsXG4gIGRlc2NyaXB0aW9uOiAnQW4gYWxsLXB1cnBvc2UsIGVhc3ktdG8tdXNlIEFQSSB3cmFwcGVyIGZvciB0aGUgbGVhZ3VlIG9mIGxlZ2VuZHMgQVBJLidcbn0pO1xuIl0sCiAgIm1hcHBpbmdzIjogIjtBQUFBO0FBRUEsSUFBTyxpQkFBUSxhQUFhO0FBQUEsRUFDMUIsT0FBTztBQUFBLEVBQ1AsYUFBYTtBQUFBOyIsCiAgIm5hbWVzIjogW10KfQo=

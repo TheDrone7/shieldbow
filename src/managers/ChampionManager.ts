@@ -25,8 +25,8 @@ export class ChampionManager implements BaseManager<Champion> {
   /**
    * Create a new Champions Manager
    *
-   * @param client The client this manager belongs to.
-   * @param cacheSettings The basic caching settings.
+   * @param client - The client this manager belongs to.
+   * @param cacheSettings - The basic caching settings.
    */
   constructor(client: Client, cacheSettings: { enable: boolean; root: string }) {
     this.client = client;
@@ -40,13 +40,13 @@ export class ChampionManager implements BaseManager<Champion> {
 
   private async _fetchLocalChamp(name: string) {
     if (this._champData)
-      this._champData.pathName = path.join('dDragon', this.client.version, this.client.language, 'champions');
+      this._champData.pathName = path.join('dDragon', this.client.version, this.client.locale, 'champions');
     return new Promise(async (resolve, reject) => {
       const data = this._champData?.fetch(name);
       if (data) resolve(data);
       else {
         const response = await this.client.http.get(
-          `${this.client.version}/data/${this.client.language}/champion/${name}.json`
+          `${this.client.version}/data/${this.client.locale}/champion/${name}.json`
         );
         if (response.status !== 200) reject("Unable to fetch the champion's data");
         else {
@@ -105,7 +105,7 @@ export class ChampionManager implements BaseManager<Champion> {
       if (this.client.version === 'null') reject('Please initialize the client first.');
       else {
         const response = await this.client.http.get(
-          this.client.version + '/data/' + this.client.language + '/championFull.json'
+          this.client.version + '/data/' + this.client.locale + '/championFull.json'
         );
         if (response.status !== 200) reject('Unable to fetch the champions data.');
         else {
@@ -124,8 +124,8 @@ export class ChampionManager implements BaseManager<Champion> {
 
   /**
    * Fetches a champion (from the cache, if already available), or from data dragon and community dragon.
-   * @param id The {@link Champion.id | ID} of the champion whose data needs to be fetched.
-   * @param options The options to modify the behavior of this method. If force is set to `true`, cache will be ignored.
+   * @param id - The {@link Champion.id | ID} of the champion whose data needs to be fetched.
+   * @param options - The basic fetching options.
    */
   async fetch(id: string, options: { force: boolean } = { force: false }) {
     if (id === 'FiddleSticks') id = 'Fiddlesticks'; // There is some internal inconsistency in Riot's JSON files.
@@ -147,7 +147,7 @@ export class ChampionManager implements BaseManager<Champion> {
   /**
    * Find a champion by their 3-digit key.
    *
-   * @param key The 3-digit key of the champion to look for.
+   * @param key - The 3-digit key of the champion to look for.
    */
   findByKey(key: number) {
     return this.cache.find((champ) => champ.key === key);
@@ -158,7 +158,7 @@ export class ChampionManager implements BaseManager<Champion> {
    * The search is case-insensitive.
    * The special characters are NOT ignored.
    *
-   * @param name The name of the champion to look for.
+   * @param name - The name of the champion to look for.
    */
   async findByName(name: string) {
     if (!this.cache.size) await this.fetchAll();

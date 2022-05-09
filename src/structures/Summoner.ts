@@ -85,7 +85,7 @@ export class Summoner {
   /**
    * Check a summoner's third party verification code.
    *
-   * @param code The code that the summoner's code should match with.
+   * @param code - The code that the summoner's code should match with.
    */
   verifyCode(code: string) {
     return new Promise<boolean>(async (resolve, reject) => {

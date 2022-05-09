@@ -24,8 +24,8 @@ export class SummonerManager implements BaseManager<Summoner> {
   /**
    * Fetch a summoner by its summoner ID.
    *
-   * @param id The summoner ID of the summoner.
-   * @param options The basic fetching options.
+   * @param id - The summoner ID of the summoner.
+   * @param options - The basic fetching options.
    */
   fetch(id: string, options: { force: boolean } = { force: false }) {
     return new Promise<Summoner>(async (resolve, reject) => {
@@ -51,8 +51,8 @@ export class SummonerManager implements BaseManager<Summoner> {
   /**
    * Fetch a summoner by its account ID.
    *
-   * @param id The account ID of the summoner to fetch.
-   * @param options The basic fetching options.
+   * @param id - The account ID of the summoner to fetch.
+   * @param options - The basic fetching options.
    */
   fetchByAccountId(id: string, options: { force: boolean } = { force: false }) {
     return new Promise<Summoner>(async (resolve, reject) => {
@@ -79,8 +79,8 @@ export class SummonerManager implements BaseManager<Summoner> {
   /**
    * Fetch a summoner by its unique PUUID.
    *
-   * @param id The PUUID of the summoner to fetch.
-   * @param options The basic fetching options.
+   * @param id - The PUUID of the summoner to fetch.
+   * @param options - The basic fetching options.
    */
   async fetchByPlayerId(id: string, options: { force: boolean } = { force: false }) {
     return new Promise<Summoner>(async (resolve, reject) => {
@@ -107,8 +107,8 @@ export class SummonerManager implements BaseManager<Summoner> {
   /**
    * Fetch a summoner by its summoner name.
    *
-   * @param name The summoner name of the summoner to fetch.
-   * @param options The basic fetching options.
+   * @param name - The summoner name of the summoner to fetch.
+   * @param options - The basic fetching options.
    */
   async fetchBySummonerName(name: string, options: { force: boolean } = { force: false }) {
     return new Promise<Summoner>(async (resolve, reject) => {
@@ -134,8 +134,8 @@ export class SummonerManager implements BaseManager<Summoner> {
   /**
    * Fetch a summoner by a RIOT account associated to it.
    *
-   * @param account The associated RIOT account.
-   * @param options The basic fetching options.
+   * @param account - The associated RIOT account.
+   * @param options - The basic fetching options.
    */
   async fetchByAccount(account: Account, options: { force: boolean } = { force: false }) {
     return this.fetchByPlayerId(account.playerId, options);

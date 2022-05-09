@@ -21,8 +21,8 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
 
   /**
    * Create a new rune trees manager.
-   * @param client The client this manager belongs to.
-   * @param cacheSettings The basic caching settings.
+   * @param client - The client this manager belongs to.
+   * @param cacheSettings - The basic caching settings.
    */
   constructor(client: Client, cacheSettings: { enable: boolean; root: string }) {
     this.client = client;
@@ -41,13 +41,13 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
 
   private async _fetchLocalRunes() {
     if (this._runesData)
-      this._runesData.pathName = path.join('dDragon', this.client.version, this.client.language, 'runes');
+      this._runesData.pathName = path.join('dDragon', this.client.version, this.client.locale, 'runes');
     return new Promise(async (resolve, reject) => {
       const data = this._runesData?.fetch('runes');
       if (data) resolve(data);
       else {
         const response = await this.client.http.get(
-          `${this.client.version}/data/${this.client.language}/runesReforged.json`
+          `${this.client.version}/data/${this.client.locale}/runesReforged.json`
         );
         if (response.status !== 200) reject('Unable to fetch runes from Data dragon');
         else {
@@ -72,8 +72,8 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
   /**
    * Fetch a rune tree by its key. The key is the same as the rune tree's name, for example - `Domination`.
    *
-   * @param key The key of the rune tree to fetch.
-   * @param options Additional fetch options.
+   * @param key - The key of the rune tree to fetch.
+   * @param options - Additional fetch options.
    */
   async fetch(key: string, options: { force: boolean } = { force: false }) {
     return new Promise<RuneTree>(async (resolve, reject) => {
@@ -90,8 +90,8 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
   /**
    * Fetch a rune by its key. The key is mostly the same as the rune name, for example - `Electrocute`.
    *
-   * @param key The key of the rune.
-   * @param options Additional fetch options.
+   * @param key - The key of the rune.
+   * @param options - Additional fetch options.
    */
   async fetchRune(key: string, options: { force: boolean } = { force: false }) {
     return new Promise<Rune>(async (resolve, reject) => {
@@ -112,7 +112,7 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
    * The search is case-insensitive.
    * The special characters are NOT ignored.
    *
-   * @param name The name of the rune tree to look for.
+   * @param name - The name of the rune tree to look for.
    */
   async findByName(name: string) {
     if (!this.cache.size) await this._fetchAll().catch(() => {});
@@ -124,7 +124,7 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
    * The search is case-insensitive.
    * The special characters are not ignored.
    *
-   * @param name The name of the rune to look for.
+   * @param name - The name of the rune to look for.
    */
   async findRuneByName(name: string) {
     if (!this.cache.size) await this._fetchAll().catch(() => {});
@@ -133,7 +133,7 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
   /**
    * Find a rune tree by its numerical ID.
    *
-   * @param id The numerical ID of the rune tree to look for.
+   * @param id - The numerical ID of the rune tree to look for.
    */
   async findById(id: number) {
     if (!this.cache.size) await this._fetchAll().catch(() => {});
@@ -143,7 +143,7 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
   /**
    * Find a rune by its numerical ID.
    *
-   * @param id The numerical ID of the rune to look for.
+   * @param id - The numerical ID of the rune to look for.
    */
   async findRuneById(id: number) {
     if (!this.cache.size) await this._fetchAll().catch(() => {});

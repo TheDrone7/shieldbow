@@ -23,8 +23,8 @@ export class ClashManager implements BaseManager<Tournament> {
 
   /**
    * Fetches a tournament by its ID.
-   * @param id The ID of the tournament.
-   * @param options The basic fetch options.
+   * @param id - The ID of the tournament.
+   * @param options - The basic fetch options.
    */
   fetch(id: number, options: { force: boolean } = { force: false }) {
     return new Promise<Tournament>(async (resolve, reject) => {
@@ -68,7 +68,7 @@ export class ClashManager implements BaseManager<Tournament> {
 
   /**
    * Fetch tournament by participating team's ID.
-   * @param teamId The ID of the team.
+   * @param teamId - The ID of the team.
    */
   fetchByTeamId(teamId: string) {
     return new Promise<Tournament>(async (resolve, reject) => {
@@ -89,7 +89,7 @@ export class ClashManager implements BaseManager<Tournament> {
 
   /**
    * Fetch a team participating in a tournament by the team ID.
-   * @param teamId The ID of the team.
+   * @param teamId - The ID of the team.
    */
   fetchTeam(teamId: string) {
     return new Promise<TournamentTeam>(async (resolve, reject) => {
@@ -109,7 +109,7 @@ export class ClashManager implements BaseManager<Tournament> {
 
   /**
    * Fetch participation info of a summoner in tournaments by the summoner ID.
-   * @param summonerId The ID of the summoner.
+   * @param summonerId - The ID of the summoner.
    */
   fetchPlayer(summonerId: string) {
     return new Promise<TournamentPlayer[]>(async (resolve, reject) => {

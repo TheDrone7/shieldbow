@@ -25,14 +25,14 @@ export class SummonerSpell {
    * The raw tooltip of this summoner spell.
    * This contains some HTML-like tags to help view this better on webpages.
    *
-   * Even though, these are supposed to be more detailed than the {@link description}.
-   * It is not recommended using either this OR {@link tooltip}.
+   * Even though, these are supposed to be more detailed than the {@link SummonerSpell.description}.
+   * It is not recommended using either this OR {@link SummonerSpell.tooltip}.
    * This is because they contain placeholders without values to fill them with.
-   * Use {@link description} instead.
+   * Use {@link SummonerSpell.description} instead.
    *
-   * See {@link tooltip | tooltip} to view this with the HTML-like tags stripped out.
+   * See {@link SummonerSpell.tooltip | tooltip} to view this with the HTML-like tags stripped out.
    */
-  readonly _rawTooltip: string;
+  readonly rawTooltip: string;
   /**
    * The cooldown of this summoner spell (in seconds)
    */
@@ -64,7 +64,7 @@ export class SummonerSpell {
     this.key = parseInt(data.key);
     this.name = data.name;
     this.description = data.description;
-    this._rawTooltip = data.tooltip;
+    this.rawTooltip = data.tooltip;
     this.cooldown = parseInt(data.cooldownBurn);
     this.summonerLevel = data.summonerLevel;
     this.modes = client.gameModes.filter((m) => data.modes.includes(m.gameMode));
@@ -77,10 +77,10 @@ export class SummonerSpell {
    * The tooltip of this summoner spell.
    * This does not contain the HTML-like tags to help view this better on console and other output media.
    *
-   * See {@link _rawTooltip} to view this with the HTML-like tags included.
+   * See {@link SummonerSpell.rawTooltip | rawTooltip} to view this with the HTML-like tags included.
    */
   get tooltip() {
-    return this._rawTooltip
+    return this.rawTooltip
       .replace(/\.(?=[A-Z])/g, '.\n\n')
       .replaceAll(/<(br|li|p)\s*\/?>/g, '\n')
       .replace(/<\/?[^>]+(>|$)/g, '');

@@ -26,8 +26,8 @@ export class CurrentGameManager implements BaseManager<CurrentGame> {
    *
    * This method is a special case where the cache is ignored by default.
    *
-   * @param id The summoner ID to fetch the live game for.
-   * @param options The basic fetching options.
+   * @param id - The summoner ID to fetch the live game for.
+   * @param options - The basic fetching options.
    */
   fetch(id: string, options: { force: boolean } = { force: true }) {
     return new Promise<CurrentGame>(async (resolve, reject) => {

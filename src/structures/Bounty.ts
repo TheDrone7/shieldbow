@@ -28,7 +28,7 @@ export class Bounty {
   /**
    * The announcement that is made when the participant kills an enemy.
    *
-   * This is only available for bounty levels > 2.
+   * This is only available for bounty levels \> 2.
    */
   readonly announcement?: string;
   constructor(level: number) {

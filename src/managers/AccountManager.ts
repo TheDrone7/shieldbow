@@ -24,8 +24,8 @@ export class AccountManager implements BaseManager<Account> {
   /**
    * Fetch a RIOT account by its unique PUUID.
    *
-   * @param id The PUUID of the RIOT account.
-   * @param options The basic fetching options.
+   * @param id - The PUUID of the RIOT account.
+   * @param options - The basic fetching options.
    */
   fetch(id: string, options: { force: boolean } = { force: false }) {
     return new Promise<Account>(async (resolve, reject) => {
@@ -49,9 +49,9 @@ export class AccountManager implements BaseManager<Account> {
   /**
    * Fetch a RIOT account by its name and tag.
    *
-   * @param name The name of this RIOT account.
-   * @param tag The tag of this RIOT account.
-   * @param options The basic fetching options.
+   * @param name - The name of this RIOT account.
+   * @param tag - The tag of this RIOT account.
+   * @param options - The basic fetching options.
    */
   fetchByNameAndTag(name: string, tag: string, options: { force: boolean } = { force: false }) {
     return new Promise<Account>(async (resolve, reject) => {

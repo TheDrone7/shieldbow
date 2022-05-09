@@ -17,7 +17,7 @@ export class ChampionStat {
 
   /**
    * A utility to calculate the base value of this stat at a certain level.
-   * @param level The level at which the base value of this stat is needed.
+   * @param level - The level at which the base value of this stat is needed.
    */
   at(level: number): number {
     if (level < 1) throw Error('Level cannot be less than 1');

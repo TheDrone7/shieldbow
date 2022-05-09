@@ -27,14 +27,12 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
 
   private async _fetchLocalSpells() {
     if (this._spellsData)
-      this._spellsData.pathName = path.join('dDragon', this.client.version, this.client.language, 'spells');
+      this._spellsData.pathName = path.join('dDragon', this.client.version, this.client.locale, 'spells');
     return new Promise(async (resolve, reject) => {
       const data = this._spellsData?.fetch('spells');
       if (data) resolve(data);
       else {
-        const response = await this.client.http.get(
-          `${this.client.version}/data/${this.client.language}/summoner.json`
-        );
+        const response = await this.client.http.get(`${this.client.version}/data/${this.client.locale}/summoner.json`);
         if (response.status !== 200) reject('Unable to fetch summoner spells from Data dragon');
         else {
           this._spellsData?.store('spells', response.data.data);
@@ -58,10 +56,11 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
   /**
    * Fetch a spell by its ID. The ID is usually something like Summoner\{Spell\}
    * For example, for the spell `Flash`, the ID is `SummonerFlash`.
-   * But there are a lot of exceptions to this, so it is recommended to use {@link findByName} instead.
+   * But there are a lot of exceptions to this,
+   * so it is recommended to use {@link SummonerSpellManager#findByName | findByName} instead.
    *
-   * @param key The ID of the spell to fetch.
-   * @param options The basic fetching options.
+   * @param key - The ID of the spell to fetch.
+   * @param options - The basic fetching options.
    */
   async fetch(key: string, options: { force: boolean } = { force: false }) {
     return new Promise<SummonerSpell>(async (resolve, reject) => {
@@ -80,7 +79,7 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
    * The search is case-insensitive.
    * The special characters are NOT ignored.
    *
-   * @param name The name of the spell to look for.
+   * @param name - The name of the spell to look for.
    */
   async findByName(name: string) {
     if (!this.cache.size) await this._fetchAll();

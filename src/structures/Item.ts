@@ -26,7 +26,7 @@ export class Item {
    * Raw details contain some html-like tags.
    * This is the raw details from the data dragon API.
    *
-   * See {@link details | details} if you want to see it with the tags processed out.
+   * See {@link Item.details | details} if you want to see it with the tags processed out.
    */
   readonly rawDetails: string;
   /**
@@ -140,7 +140,7 @@ export class Item {
    * This is the processed details.
    * With all the HTML-like tags removed.
    *
-   * See {@link rawDetails | rawDetails} if you want the raw data.
+   * See {@link Item.rawDetails | rawDetails} if you want the raw data.
    */
   get details() {
     return this.rawDetails

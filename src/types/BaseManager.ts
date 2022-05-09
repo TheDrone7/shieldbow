@@ -16,8 +16,8 @@ export interface BaseManager<T> {
 
   /**
    * The method to actually fetch the data.
-   * @param id The ID of the data entity being fetched.
-   * @param options Basic fetch options, setting the force option to `true` must ignore the cache.
+   * @param id - The ID of the data entity being fetched.
+   * @param options - Basic fetch options, setting the force option to `true` must ignore the cache.
    */
   fetch: (id: any, options: { force: boolean }) => Promise<T>;
 }

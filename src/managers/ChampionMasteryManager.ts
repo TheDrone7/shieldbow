@@ -53,8 +53,8 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
   /**
    * Fetch a champion's mastery data for the summoner.
    *
-   * @param champion The champion (or its ID) whose mastery data needs to be fetched.
-   * @param options The basic fetching options.
+   * @param champion - The champion (or its ID) whose mastery data needs to be fetched.
+   * @param options - The basic fetching options.
    */
   fetch(champion: Champion | string, options: { force: boolean } = { force: false }) {
     const id = champion instanceof Champion ? champion.id : champion;
@@ -85,7 +85,7 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
 
   /**
    * Get the nth highest champion mastery for the summoner.
-   * @param n The ranking of the champion in the summoner's champions mastery, defaults to 0 (highest).
+   * @param n - The ranking of the champion in the summoner's champions mastery, defaults to 0 (highest).
    */
   highest(n: number = 0) {
     return new Promise<ChampionMastery>(async (resolve, reject) => {

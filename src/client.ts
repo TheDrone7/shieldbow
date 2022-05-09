@@ -36,7 +36,7 @@ export class Client {
   private readonly _versions: string;
   private _version: string;
   private _patch: string;
-  private _language: Locales;
+  private _locale: Locales;
   private _region: Region;
   private _cacheEnabled: boolean;
   private _cacheRoot: string;
@@ -64,7 +64,7 @@ export class Client {
     this._version = 'null';
     this._region = 'na';
     this._patch = 'null';
-    this._language = 'en_US';
+    this._locale = 'en_US';
     this._cacheEnabled = true;
     this._cacheRoot = 'data';
 
@@ -93,7 +93,7 @@ export class Client {
    * Initialize the client to prepare it for interacting with the API.
    * This can also be rerun if you want to configure anything and quickly fetch any required data.
    *
-   * @param options The client configuration.
+   * @param options - The client configuration.
    */
   async initialize(options?: ClientConfig) {
     // Parse the configuration
@@ -104,7 +104,7 @@ export class Client {
     this._version = version;
     this._patch = version !== 'null' ? version.match(patchRegex)!.shift()! : 'null';
     const language = options?.locale || 'null';
-    if (language !== 'null') this._language = language;
+    if (language !== 'null') this._locale = language;
 
     const enableCache = options?.cache?.enable ?? true;
     const cacheRoot = options?.cache?.localRoot || 'data';
@@ -121,10 +121,10 @@ export class Client {
         if (Array.isArray(result)) {
           this._version = version !== 'null' ? version : result[0];
           this._patch = this._version.match(patchRegex)!.shift()!;
-          this._language = 'en_US';
+          this._locale = 'en_US';
         } else {
           this._version = version !== 'null' ? version : result.v;
-          this._language = language !== 'null' ? language : result.l;
+          this._locale = language !== 'null' ? language : result.l;
           this._patch = this._version.match(patchRegex)!.shift()!;
         }
       }
@@ -243,7 +243,7 @@ export class Client {
 
   /**
    * The default riot accounts manager used by the client.
-   * This is mostly for internal usage. You may want to use {@link summoners} instead.
+   * This is mostly for internal usage. You may want to use {@link Client.summoners} instead.
    */
   get accounts() {
     return this._accounts;
@@ -252,7 +252,7 @@ export class Client {
   /**
    * The default summoner competitive league data manager used by the client.
    *
-   * Highly recommended using {@link summoners} if you are looking to find a specific summoner's competitive info.
+   * Highly recommended using {@link Client.summoners} for a specific summoner's competitive info.
    *
    * Use this only if you want to query a list of users by rank-division.
    */
@@ -308,6 +308,8 @@ export class Client {
 
   /**
    * The patch of the game currently in use.
+   *
+   * Must be above 5.1 for proper functionality.
    */
   get patch() {
     return this._patch;
@@ -316,24 +318,14 @@ export class Client {
   /**
    * The locale in which all the data is going to be fetched in.
    */
-  get language() {
-    return this._language;
+  get locale() {
+    return this._locale;
   }
 
-  /**
-   * Update the locale to interact with the API in.
-   * @param locale The new locale.
-   */
-  set language(locale: Locales) {
-    this._language = locale;
+  set locale(locale: Locales) {
+    this._locale = locale;
   }
 
-  /**
-   * Set the current patch to fetch the data from.
-   * Keep this above 5.1 to make sure this doesn't break anything.
-   * This also automatically updates the Data Dragon CDN version to fetch data from the respective patch.
-   * @param patch The new patch to fetch the data from.
-   */
   set patch(patch: string) {
     this._patch = patch;
     this._version = patch + '.1';

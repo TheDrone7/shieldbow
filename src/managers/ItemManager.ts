@@ -22,8 +22,8 @@ export class ItemManager implements BaseManager<Item> {
   /**
    * Create a new item manager.
    *
-   * @param client The client this manager belongs to.
-   * @param cacheSettings The basic caching settings.
+   * @param client - The client this manager belongs to.
+   * @param cacheSettings - The basic caching settings.
    */
   constructor(client: Client, cacheSettings: { enable: boolean; root: string }) {
     this.client = client;
@@ -33,12 +33,12 @@ export class ItemManager implements BaseManager<Item> {
 
   private async _fetchLocalItems() {
     if (this._itemData)
-      this._itemData.pathName = path.join('dDragon', this.client.version, this.client.language, 'items');
+      this._itemData.pathName = path.join('dDragon', this.client.version, this.client.locale, 'items');
     return new Promise(async (resolve, reject) => {
       const data = this._itemData?.fetch('items');
       if (data) resolve(data);
       else {
-        const response = await this.client.http.get(`${this.client.version}/data/${this.client.language}/item.json`);
+        const response = await this.client.http.get(`${this.client.version}/data/${this.client.locale}/item.json`);
         if (response.status !== 200) reject('Unable to fetch items from Data dragon');
         else {
           this._itemData?.store('items', response.data.data);
@@ -62,8 +62,8 @@ export class ItemManager implements BaseManager<Item> {
   /**
    * Fetch an item by its 4-digit ID. The ID must be a string of 4 digits (not a number)
    *
-   * @param key The ID of the item to fetch.
-   * @param options The basic fetching options.
+   * @param key - The ID of the item to fetch.
+   * @param options - The basic fetching options.
    */
   async fetch(key: string, options: { force: boolean } = { force: false }) {
     return new Promise<Item>(async (resolve, reject) => {
@@ -82,7 +82,7 @@ export class ItemManager implements BaseManager<Item> {
    * The search is case-insensitive.
    * The special characters are NOT ignored.
    *
-   * @param name The name of the item to look for.
+   * @param name - The name of the item to look for.
    */
   async findByName(name: string) {
     if (!this.cache.size) await this._fetchAll();

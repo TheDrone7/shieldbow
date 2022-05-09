@@ -10,7 +10,7 @@ export class CurrentGame {
   /**
    * The numerical ID of the game.
    *
-   * Combining this with the {@link platform} gives the full ID of the game.
+   * Combining this with the {@link CurrentGame.platform} gives the full ID of the game.
    * The full ID can be used to fetch all the details of the match after it has ended using {@link MatchManager.fetch}.
    */
   readonly id: number;

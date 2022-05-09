@@ -23,8 +23,8 @@ export class MatchManager implements BaseManager<Match> {
 
   /**
    * Fetch a match by its ID.
-   * @param id The ID of the match
-   * @param options The basic fetch options
+   * @param id - The ID of the match
+   * @param options - The basic fetch options
    */
   fetch(id: string, options: { force: boolean } = { force: false }) {
     return new Promise<Match>(async (resolve, reject) => {
@@ -50,8 +50,8 @@ export class MatchManager implements BaseManager<Match> {
   /**
    * Fetch a list of match IDs by a player ID.
    *
-   * @param player The summoner or their player ID whose matches need to be fetched.
-   * @param options The options for filtering the matches.
+   * @param player - The summoner or their player ID whose matches need to be fetched.
+   * @param options - The options for filtering the matches.
    */
   fetchMatchListByPlayer(player: Summoner | string, options?: MatchByPlayerOptions) {
     return new Promise<string[]>(async (resolve, reject) => {

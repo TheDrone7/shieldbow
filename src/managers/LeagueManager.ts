@@ -24,8 +24,8 @@ export class LeagueManager implements BaseManager<Collection<string, LeagueEntry
   /**
    * Fetch a summoner's competitive info by the summoner's ID.
    *
-   * @param id The ID of the summoner whose competitive info you want to find.
-   * @param options The basic fetching options.
+   * @param id - The ID of the summoner whose competitive info you want to find.
+   * @param options - The basic fetching options.
    */
   fetch(id: string, options: { force: boolean } = { force: false }) {
     return new Promise<Collection<QueueType, LeagueEntry>>(async (resolve, reject) => {
@@ -54,10 +54,10 @@ export class LeagueManager implements BaseManager<Collection<string, LeagueEntry
   /**
    * Fetch a collection of league entries by the queue type, tier and division.
    *
-   * @param queue The type of queue - RANKED_SOLO_5x5, RANKED_FLEX_SR, etc.
-   * @param tier The tier of the entries - IRON to CHALLENGER.
-   * @param division The division of the entries - I, II, III, IV.
-   * @param page The page number (defaults to 1).
+   * @param queue - The type of queue - RANKED_SOLO_5x5, RANKED_FLEX_SR, etc.
+   * @param tier - The tier of the entries - IRON to CHALLENGER.
+   * @param division - The division of the entries - I, II, III, IV.
+   * @param page - The page number (defaults to 1).
    */
   fetchByQueueAndTier(queue: QueueType, tier: TierType, division: DivisionType, page: number = 1) {
     return new Promise<Collection<string, LeagueEntry>>(async (resolve, reject) => {
@@ -89,7 +89,7 @@ export class LeagueManager implements BaseManager<Collection<string, LeagueEntry
   /**
    * Fetch the league entries by a league ID.
    *
-   * @param leagueId The League ID.
+   * @param leagueId - The League ID.
    */
   fetchByLeagueId(leagueId: string) {
     return new Promise<LeagueList>(async (resolve, reject) => {

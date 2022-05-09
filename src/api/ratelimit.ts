@@ -24,13 +24,12 @@ export class Ratelimiter {
 
   /**
    * Parse and update ratelimits from a response.
-   * @param region The region the response is from.
-   * @param response The response to parse.
-   * @param method The method the response is for.
+   * @param region - The region the response is from.
+   * @param response - The response to parse.
+   * @param method - The method the response is for.
    */
   update(region: Region, response: AxiosResponse, method: string) {
     const { headers } = response;
-    // console.log(headers);
 
     if (!headers['x-app-rate-limit']) return;
     if (!headers['x-app-rate-limit-count']) return;
@@ -104,8 +103,8 @@ export class Ratelimiter {
 
   /**
    * Verify if the request is going beyond the ratelimit.
-   * @param region The region the request is for.
-   * @param method The method the request is for.
+   * @param region - The region the request is for.
+   * @param method - The method the request is for.
    */
   verify(region: Region, method: string): { pass: boolean; wait: number } {
     const appLimits = this.appLimit.get(region);

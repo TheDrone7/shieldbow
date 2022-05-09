@@ -3,7 +3,7 @@ import { Stat, StatFormula } from './constants';
 
 /**
  * Rounds the value to up to 2 decimal points.
- * @param value The value that needs to be rounded off.
+ * @param value - The value that needs to be rounded off.
  */
 export const round = (value: number) => {
   const m = Number((Math.abs(value) * 100).toPrecision(15));

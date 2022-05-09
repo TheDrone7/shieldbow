@@ -18,13 +18,13 @@ export class Champion {
    * - The words after a `'` - such as in Kai'sa, remain lowercase.
    *
    * Examples:
-   * - Kayn -> Kayn
-   * - Cho'Gath -> Chogath
-   * - Dr. Mundo -> DrMundo
+   * - Kayn -\> Kayn
+   * - Cho'Gath -\> Chogath
+   * - Dr. Mundo -\> DrMundo
    *
    * There are 2 exceptions to this rule.
-   * 1. Wukong -> MonkeyKing
-   * 2. Renata Glasc -> Renata
+   * 1. Wukong -\> MonkeyKing
+   * 2. Renata Glasc -\> Renata
    */
   readonly id: string;
   /**

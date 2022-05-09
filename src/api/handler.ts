@@ -17,8 +17,8 @@ export class ApiHandler {
   /**
    * Create a new API handler.
    *
-   * @param region the region to use for the API requests.
-   * @param apiKey your RIOT API key.
+   * @param region - the region to use for the API requests.
+   * @param apiKey - your RIOT API key.
    */
   constructor(region: Region, apiKey: string) {
     this._region = region;
@@ -33,10 +33,12 @@ export class ApiHandler {
   }
 
   /**
-   * Update the regional base URLs for API requests.
-   *
-   * @param region The new region to make requests to.
+   * The region that the API handler will send the request to.
    */
+  get region() {
+    return this._region;
+  }
+
   set region(region: Region) {
     this._region = region;
     this._apiBase = apiBaseURLs[region];
@@ -45,8 +47,8 @@ export class ApiHandler {
 
   /**
    * Make an API request
-   * @param url The path to make the request to.
-   * @param options Some options to make the promise rejection messages more meaningful.
+   * @param url - The path to make the request to.
+   * @param options - Some options to make the promise rejection messages more meaningful.
    */
   async makeApiRequest(url: string, options: { name: string; params: string; regional: boolean }) {
     const request = `${options.name} (${options.params})`;
