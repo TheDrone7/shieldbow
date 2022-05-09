@@ -15,8 +15,8 @@
     "jest": "^28.1.0",
     "prettier": "^2.5.1",
     "ts-jest": "^28.0.2",
-    "typedoc": "^0.22.11",
-    "typescript": "^4.5.5"
+    "typescript": "^4.5.5",
+    "vuepress": "^1.9.7"
   },
   "scripts": {
     "build": "tsc",
@@ -24,7 +24,8 @@
     "format": "prettier --write \"src/**/**.ts\"",
     "lint": "eslint --fix --color \"src/**/**.ts\"",
     "test": "jest --silent --runInBand",
-    "document": "typedoc src/index.ts --readme README.md --excludePrivate"
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "repository": {
     "type": "git",
