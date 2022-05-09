@@ -2,6 +2,7 @@ import { defaultTheme, defineUserConfig } from "vuepress";
 import { searchPlugin } from '@vuepress/plugin-search';
 
 export default defineUserConfig({
+  base: '/shieldbow/',
   theme: defaultTheme({
     navbar: [
       { text: "Home", link: "/" },
