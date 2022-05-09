@@ -39,8 +39,8 @@ describe('Test Summoner v4 and Account v1 API', () => {
   });
 
   test('Check participant data', () => {
-    const participant = match.teams.get('red')!.participants[1];
-    expect(participant.summoner.name).toBe('TheDrone7');
+    const participant = match.teams.get('red')!.participants[0];
+    expect(participant.summoner.name).toBeDefined();
     expect(participant.bounty.level).toBeDefined();
   })
 });
