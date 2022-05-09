@@ -8,6 +8,7 @@ export default defineUserConfig({
       { text: "Home", link: "/" },
       { text: "Guide", link: "/guide/getting-started.html" },
       { text: "API Documentation", link: "/api/shieldbow.html" },
+      { text: "Github", link: "https://github.com/TheDrone7/shieldbow" },
     ]
   }),
   title: 'Shieldbow',
