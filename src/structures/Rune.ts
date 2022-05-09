@@ -2,7 +2,7 @@ import type { Client } from '../client';
 import type { RuneData } from '../types';
 
 /**
- * A class representing a rune.
+ * A representation of an in-game rune.
  */
 export class Rune {
   /**

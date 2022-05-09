@@ -6,7 +6,7 @@ import type { RuneTree } from './RuneTree';
 import { statPerks } from '../util';
 
 /**
- * A class representing the rune setup of a live game participant.
+ * A representation of the rune setup of a live game participant.
  */
 export class CurrentGamePerks {
   /**

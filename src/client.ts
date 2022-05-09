@@ -24,7 +24,9 @@ const patchRegex = /\d+\.\d+/;
  * Here is how to use the client:
  * ```ts
  * const myClient = new Client();
- * client.initialize('euw').then(() => {
+ * client.initialize({
+ *   region: 'euw' // defaults to `na`.
+ * }).then(() => {
  *   // All your code goes here.
  * });
  * ```

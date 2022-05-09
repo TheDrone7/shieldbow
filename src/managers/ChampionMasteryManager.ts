@@ -4,7 +4,7 @@ import Collection from '@discordjs/collection';
 import { Champion, ChampionMastery } from '../structures';
 
 /**
- * A champion master manager - to fetch and manage all summoner's champion mastery data.
+ * A champion mastery manager - to fetch and manage all summoner's champion mastery data.
  */
 export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
   /**

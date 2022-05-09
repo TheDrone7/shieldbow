@@ -5,7 +5,7 @@ import type { RuneTree } from './RuneTree';
 import type { Rune } from './Rune';
 
 /**
- * Represents a perk style - a tree and 4 (if primary) or 2 (if secondary) runes that were selected.
+ * A representation of a perk style - a tree and 4 (if primary) or 2 (if secondary) runes that were selected.
  */
 export class PerkStyle {
   /**
@@ -30,7 +30,7 @@ export class PerkStyle {
 }
 
 /**
- * Represents the perks (runes) selected by a summoner for a match.
+ * A representation of the perks (runes) selected by a summoner for a match.
  */
 export class Perks {
   /**

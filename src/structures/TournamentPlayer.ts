@@ -2,7 +2,7 @@ import type { Client } from '../client';
 import type { TournamentPlayerData } from '../types';
 
 /**
- * A class representing a player in a clash tournament.
+ * A representation of a player in a clash tournament.
  */
 export class TournamentPlayer {
   private readonly client: Client;

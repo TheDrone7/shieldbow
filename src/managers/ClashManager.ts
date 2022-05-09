@@ -4,7 +4,7 @@ import { Tournament, TournamentPlayer, TournamentTeam } from '../structures';
 import Collection from '@discordjs/collection';
 
 /**
- * A clash manager to fetch and store clash tournaments and related data.
+ * A clash manager - to fetch and store clash tournaments and related data.
  */
 export class ClashManager implements BaseManager<Tournament> {
   /**

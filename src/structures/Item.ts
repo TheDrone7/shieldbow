@@ -3,6 +3,9 @@ import type { ItemData, GameMap } from '../types';
 import type { Champion } from './index';
 import type Collection from '@discordjs/collection';
 
+/**
+ * A representation of an in-game item.
+ */
 export class Item {
   private readonly client: Client;
   /**

@@ -3,7 +3,7 @@ import type { Client } from '../client';
 import { TournamentPlayer } from './TournamentPlayer';
 
 /**
- * A class representing a team in a clash tournament.
+ * A representation of a team in a clash tournament.
  */
 export class TournamentTeam {
   /**

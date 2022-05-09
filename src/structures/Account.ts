@@ -1,7 +1,7 @@
 import type { AccountData } from '../types';
 
 /**
- * A class representing a RIOT account.
+ * A representation of a RIOT account.
  */
 export class Account {
   /**

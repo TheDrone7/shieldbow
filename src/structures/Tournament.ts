@@ -2,7 +2,7 @@ import type { TournamentData } from '../types';
 import { TournamentSchedule } from './TournamentSchedule';
 
 /**
- * A class representing a clash tournament.
+ * A representation of a clash tournament.
  */
 export class Tournament {
   /**

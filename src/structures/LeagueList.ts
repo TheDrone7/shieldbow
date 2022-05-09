@@ -4,7 +4,7 @@ import Collection from '@discordjs/collection';
 import { LeagueEntry } from './LeagueEntry';
 
 /**
- * A class representing a list of league entries.
+ * A representation of a list of league entries.
  */
 export class LeagueList {
   /**

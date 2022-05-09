@@ -4,7 +4,7 @@ import Collection from '@discordjs/collection';
 import { Team } from './Team';
 
 /**
- * Represents a league of legends match.
+ * A representation of a league of legends match.
  */
 export class Match {
   /**

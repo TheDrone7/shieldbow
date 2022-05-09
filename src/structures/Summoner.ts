@@ -5,7 +5,7 @@ import type Collection from '@discordjs/collection';
 import type { LeagueEntry } from './LeagueEntry';
 
 /**
- * A class representing a summoner (player).
+ * A representation of a summoner (player).
  */
 export class Summoner {
   private readonly client: Client;

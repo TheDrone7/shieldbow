@@ -6,7 +6,7 @@ import Collection from '@discordjs/collection';
 import { CurrentGamePerks } from './CurrentGamePerks';
 
 /**
- * A class representing a participant in a live game.
+ * A representation of a participant in a live game.
  */
 export class CurrentGameParticipant {
   /**

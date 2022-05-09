@@ -2,7 +2,7 @@ import type { DivisionType, LeagueEntryData, QueueType, TierType } from '../type
 import type { Client } from '../client';
 
 /**
- * A class representing a summoner's competitive details.
+ * A representation of a summoner's competitive details.
  */
 export class LeagueEntry {
   private readonly client: Client;

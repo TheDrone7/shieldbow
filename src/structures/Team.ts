@@ -4,7 +4,7 @@ import type { Champion } from './Champion';
 import { Participant } from './Participant';
 
 /**
- * Represents a team in a match.
+ * A representation of a team in a match.
  */
 export class Team {
   /**

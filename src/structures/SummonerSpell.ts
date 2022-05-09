@@ -2,7 +2,7 @@ import type { GameMode, SummonerSpellData } from '../types';
 import type { Client } from '../client';
 
 /**
- * A class representing an in-game summoner spell.
+ * A representation of an in-game summoner spell.
  */
 export class SummonerSpell {
   /**

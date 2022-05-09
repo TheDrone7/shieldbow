@@ -9,7 +9,7 @@ import type { SummonerSpell } from './SummonerSpell';
 import { Perks } from './Perks';
 
 /**
- * Represents a participant in a match.
+ * A representation of a participant in a match.
  */
 export class Participant {
   /**

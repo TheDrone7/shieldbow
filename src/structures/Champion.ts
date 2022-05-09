@@ -4,7 +4,7 @@ import Collection from '@discordjs/collection';
 import { ChampionStat, ChampionSkin, ChampionSpell } from './index';
 
 /**
- * The representation of a League of Legends champion.
+ * A representation of a League of Legends champion.
  */
 export class Champion {
   /**

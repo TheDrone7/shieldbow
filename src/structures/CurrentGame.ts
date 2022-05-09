@@ -4,7 +4,7 @@ import Collection from '@discordjs/collection';
 import { CurrentGameTeam } from './CurrentGameTeam';
 
 /**
- * A class representing an ongoing game.
+ * A representation of an ongoing game.
  */
 export class CurrentGame {
   /**
