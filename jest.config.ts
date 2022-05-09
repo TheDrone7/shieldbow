@@ -19,5 +19,6 @@ export default {
   coverageReporters: ['html', 'text-summary'],
   coverageProvider: 'v8',
   testTimeout: 30000,
+  slowTestThreshold: 15,
   verbose: true
 };
