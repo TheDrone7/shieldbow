@@ -11,5 +11,5 @@ Uses [CurrentGameManager.fetch()](./shieldbow.currentgamemanager.fetch.md) to ge
 <b>Signature:</b>
 
 ```typescript
-get live(): Promise<import("./CurrentGame").CurrentGame>;
+get live(): Promise<CurrentGame>;
 ```

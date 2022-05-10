@@ -11,5 +11,5 @@ Uses [SummonerManager.fetch()](./shieldbow.summonermanager.fetch.md) to get the 
 <b>Signature:</b>
 
 ```typescript
-get summoner(): Promise<import("./Summoner").Summoner>;
+get summoner(): Promise<Summoner>;
 ```

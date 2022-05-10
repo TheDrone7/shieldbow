@@ -22,13 +22,13 @@ export declare class Summoner
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [account](./shieldbow.summoner.account.md) |  | Promise&lt;import("./Account").[Account](./shieldbow.account.md)<!-- -->&gt; | Get the summoner's RIOT account info.<!-- -->Uses [AccountManager.fetch()](./shieldbow.accountmanager.fetch.md) to get the details. |
+|  [account](./shieldbow.summoner.account.md) |  | Promise&lt;[Account](./shieldbow.account.md)<!-- -->&gt; | Get the summoner's RIOT account info.<!-- -->Uses [AccountManager.fetch()](./shieldbow.accountmanager.fetch.md) to get the details. |
 |  [accountId](./shieldbow.summoner.accountid.md) |  | string | The account ID for this summoner. |
 |  [championMastery](./shieldbow.summoner.championmastery.md) |  | [ChampionMasteryManager](./shieldbow.championmasterymanager.md) | A manager for the summoner's champion mastery. |
 |  [id](./shieldbow.summoner.id.md) |  | string | The summoner ID for this summoner. |
 |  [league](./shieldbow.summoner.league.md) |  | Promise&lt;Collection&lt;string, [LeagueEntry](./shieldbow.leagueentry.md)<!-- -->&gt;&gt; | Get the summoner's competitive placement info.<!-- -->Uses [LeagueManager.fetch()](./shieldbow.leaguemanager.fetch.md) to get the details. |
 |  [level](./shieldbow.summoner.level.md) |  | number | The summoner level of this summoner. |
-|  [live](./shieldbow.summoner.live.md) |  | Promise&lt;import("./CurrentGame").[CurrentGame](./shieldbow.currentgame.md)<!-- -->&gt; | Get the summoner's live game data.<!-- -->Uses [CurrentGameManager.fetch()](./shieldbow.currentgamemanager.fetch.md) to get the details. |
+|  [live](./shieldbow.summoner.live.md) |  | Promise&lt;[CurrentGame](./shieldbow.currentgame.md)<!-- -->&gt; | Get the summoner's live game data.<!-- -->Uses [CurrentGameManager.fetch()](./shieldbow.currentgamemanager.fetch.md) to get the details. |
 |  [name](./shieldbow.summoner.name.md) |  | string | The summoner name for this summoner. |
 |  [playerId](./shieldbow.summoner.playerid.md) |  | string | The unique player ID for this summoner. This is also called the PUUID. |
 |  [profileIcon](./shieldbow.summoner.profileicon.md) |  | string | The current profile icon of this summoner. |

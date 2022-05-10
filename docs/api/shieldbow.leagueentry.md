@@ -31,7 +31,7 @@ export declare class LeagueEntry
 |  [lp](./shieldbow.leagueentry.lp.md) |  | number | The amount of league points (LP) the summoner has. |
 |  [promos?](./shieldbow.leagueentry.promos.md) |  | { readonly target: number; readonly wins: number; readonly losses: number; readonly progress: string; } | <i>(Optional)</i> This only exists if the summoner is in a promotion series. |
 |  [queueType](./shieldbow.leagueentry.queuetype.md) |  | [QueueType](./shieldbow.queuetype.md) | The type of queue - such as RANKED\_SOLO\_5x5, RANKED\_FLEX\_SR or RANKED\_FLEX\_TT. |
-|  [summoner](./shieldbow.leagueentry.summoner.md) |  | Promise&lt;import("./Summoner").[Summoner](./shieldbow.summoner.md)<!-- -->&gt; | The summoner this data belongs to.<!-- -->Uses [SummonerManager.fetch()](./shieldbow.summonermanager.fetch.md) to get the summoner. |
+|  [summoner](./shieldbow.leagueentry.summoner.md) |  | Promise&lt;[Summoner](./shieldbow.summoner.md)<!-- -->&gt; | The summoner this data belongs to.<!-- -->Uses [SummonerManager.fetch()](./shieldbow.summonermanager.fetch.md) to get the summoner. |
 |  [summonerId](./shieldbow.leagueentry.summonerid.md) |  | string | The ID of the summoner this data belongs to. |
 |  [summonerName](./shieldbow.leagueentry.summonername.md) |  | string | The name of the summoner this data belongs to. |
 |  [tier](./shieldbow.leagueentry.tier.md) |  | [TierType](./shieldbow.tiertype.md) | The tier the summoner belongs to - such as BRONZE, GOLD, etc. |

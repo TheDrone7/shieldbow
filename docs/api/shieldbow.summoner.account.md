@@ -11,5 +11,5 @@ Uses [AccountManager.fetch()](./shieldbow.accountmanager.fetch.md) to get the de
 <b>Signature:</b>
 
 ```typescript
-get account(): Promise<import("./Account").Account>;
+get account(): Promise<Account>;
 ```

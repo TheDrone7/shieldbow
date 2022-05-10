@@ -3,6 +3,8 @@ import type { Client } from '../client';
 import { ChampionMasteryManager } from '../managers';
 import type Collection from '@discordjs/collection';
 import type { LeagueEntry } from './LeagueEntry';
+import type { Account } from './Account';
+import type { CurrentGame } from './CurrentGame';
 
 /**
  * A representation of a summoner (player).
@@ -60,7 +62,7 @@ export class Summoner {
    *
    * Uses {@link AccountManager.fetch} to get the details.
    */
-  get account() {
+  get account(): Promise<Account> {
     return this.client.accounts.fetch(this.playerId);
   }
 
@@ -78,7 +80,7 @@ export class Summoner {
    *
    * Uses {@link CurrentGameManager.fetch} to get the details.
    */
-  get live() {
+  get live(): Promise<CurrentGame> {
     return this.client.spectator.fetch(this.id);
   }
 
@@ -87,7 +89,7 @@ export class Summoner {
    *
    * @param code - The code that the summoner's code should match with.
    */
-  verifyCode(code: string) {
+  verifyCode(code: string): Promise<boolean> {
     return new Promise<boolean>(async (resolve, reject) => {
       const response = await this.client.api
         .makeApiRequest('/lol/platform/v4/third-party-code/by-summoner/' + this.id, {

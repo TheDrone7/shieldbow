@@ -1,5 +1,6 @@
 import type { DivisionType, LeagueEntryData, QueueType, TierType } from '../types';
 import type { Client } from '../client';
+import type { Summoner } from './Summoner';
 
 /**
  * A representation of a summoner's competitive details.
@@ -106,7 +107,7 @@ export class LeagueEntry {
    *
    * Uses {@link SummonerManager.fetch} to get the summoner.
    */
-  get summoner() {
+  get summoner(): Promise<Summoner> {
     return this.client.summoners.fetch(this.summonerId);
   }
 }
