@@ -74,6 +74,10 @@ Replace `euw` (line 6) with the region you play in and `TheDrone7` (line 14) wit
 
 ### Next steps
 
+Next up, you can continue the guide and learn more about [the Client](/shieldbow/guide/client.html).
+
+Or you can check out the following resources:
+
 - [API Documentation](https://thedrone7.github.io/shieldbow/api/shieldbow/)
 - [Website](https://thedrone7.github.io/shieldbow/)
 - [Github](https://github.com/TheDrone7/shieldbow)
