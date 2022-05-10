@@ -78,7 +78,7 @@ Next up, you can continue the guide and learn more about [the Client](/shieldbow
 
 Or you can check out the following resources:
 
-- [API Documentation](https://thedrone7.github.io/shieldbow/api/shieldbow/)
+- [API Documentation](https://thedrone7.github.io/shieldbow/api/shieldbow.html/)
 - [Website](https://thedrone7.github.io/shieldbow/)
 - [Github](https://github.com/TheDrone7/shieldbow)
 - [Riot Games Third Party Developers Discord](https://discord.gg/riotgamesdevrel)

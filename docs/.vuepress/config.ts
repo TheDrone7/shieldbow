@@ -14,6 +14,7 @@ export default defineUserConfig({
         children: [
           { text: "Getting started", link: "/guide/getting-started.html" },
           { text: "Client", link: "/guide/client.html" },
+          { text: "Data Fetching", link: "/guide/fetching.html" },
         ]
       },
       { text: "API Documentation", link: "/api/shieldbow.html" }
