@@ -31,6 +31,7 @@
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
     "extract": "api-extractor run",
+    "docs:test": "tsc docs/generator.ts --outDir docs/ && node docs/generator.js",
     "document": "api-documenter markdown -i ./docs/.vuepress/.temp/api-reference/ -o ./docs/api/"
   },
   "repository": {

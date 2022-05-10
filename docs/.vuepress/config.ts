@@ -17,7 +17,7 @@ export default defineUserConfig({
           { text: "Data Fetching", link: "/guide/fetching.html" },
         ]
       },
-      { text: "API Documentation", link: "/api/shieldbow.html" }
+      { text: "API Documentation", link: "/api" }
     ]
   }),
   title: 'Shieldbow',

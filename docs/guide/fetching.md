@@ -135,7 +135,7 @@ Currently, unsupported (under development) API features are:
 Using the client with other unsupported APIs is not recommended but is possible.
 :::
 
-For this example, we will simply fetch the match timelines (which is not officially supported but is as state above, possible).
+For this example, we will simply fetch the match timelines.
 
 The shieldbow client uses an `ApiHandler` to fetch the data from the API.
 This take cares of stuff such as ratelimiting but needs additional parameters to provided proper errors when encountered.
