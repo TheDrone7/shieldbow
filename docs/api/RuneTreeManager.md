@@ -13,7 +13,7 @@ A rune trees manager - to fetch and manage rune trees data.
 export declare class RuneTreeManager implements BaseManager<RuneTree> 
 ```
 
-Implements: [BaseManager](/shieldbow/api/BaseManager.md)<[RuneTree](/shieldbow/api/RuneTree.md)>
+Implements: BaseManager<RuneTree\>
 
 **References:** [BaseManager](/shieldbow/api/BaseManager.md), [RuneTree](/shieldbow/api/RuneTree.md)
 

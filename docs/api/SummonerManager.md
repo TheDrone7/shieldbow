@@ -13,7 +13,7 @@ A summoner manager - to fetch and manage all the summoner data.
 export declare class SummonerManager implements BaseManager<Summoner> 
 ```
 
-Implements: [BaseManager](/shieldbow/api/BaseManager.md)<[Summoner](/shieldbow/api/Summoner.md)>
+Implements: BaseManager<Summoner\>
 
 **References:** [BaseManager](/shieldbow/api/BaseManager.md), [Summoner](/shieldbow/api/Summoner.md)
 

@@ -13,7 +13,7 @@ A match manager - to fetch and manage matches.
 export declare class MatchManager implements BaseManager<Match> 
 ```
 
-Implements: [BaseManager](/shieldbow/api/BaseManager.md)<[Match](/shieldbow/api/Match.md)>
+Implements: BaseManager<Match\>
 
 **References:** [BaseManager](/shieldbow/api/BaseManager.md), [Match](/shieldbow/api/Match.md)
 

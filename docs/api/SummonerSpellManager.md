@@ -13,7 +13,7 @@ A spell manager - to fetch and manage all summoner spell data.
 export declare class SummonerSpellManager implements BaseManager<SummonerSpell> 
 ```
 
-Implements: [BaseManager](/shieldbow/api/BaseManager.md)<[SummonerSpell](/shieldbow/api/SummonerSpell.md)>
+Implements: BaseManager<SummonerSpell\>
 
 **References:** [BaseManager](/shieldbow/api/BaseManager.md), [SummonerSpell](/shieldbow/api/SummonerSpell.md)
 

@@ -13,7 +13,7 @@ An account manager - to fetch and manage all the RIOT accounts.
 export declare class AccountManager implements BaseManager<Account> 
 ```
 
-Implements: [BaseManager](/shieldbow/api/BaseManager.md)<[Account](/shieldbow/api/Account.md)>
+Implements: BaseManager<Account\>
 
 **References:** [BaseManager](/shieldbow/api/BaseManager.md), [Account](/shieldbow/api/Account.md)
 

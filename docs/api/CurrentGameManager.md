@@ -13,7 +13,7 @@ A current game manager - to fetch and manage the live games.
 export declare class CurrentGameManager implements BaseManager<CurrentGame> 
 ```
 
-Implements: [BaseManager](/shieldbow/api/BaseManager.md)<[CurrentGame](/shieldbow/api/CurrentGame.md)>
+Implements: BaseManager<CurrentGame\>
 
 **References:** [BaseManager](/shieldbow/api/BaseManager.md), [CurrentGame](/shieldbow/api/CurrentGame.md)
 

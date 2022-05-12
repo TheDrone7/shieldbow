@@ -13,7 +13,7 @@ An item manager - to fetch and manage all item data.
 export declare class ItemManager implements BaseManager<Item> 
 ```
 
-Implements: [BaseManager](/shieldbow/api/BaseManager.md)<[Item](/shieldbow/api/Item.md)>
+Implements: BaseManager<Item\>
 
 **References:** [BaseManager](/shieldbow/api/BaseManager.md), [Item](/shieldbow/api/Item.md)
 

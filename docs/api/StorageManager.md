@@ -13,7 +13,7 @@ A basic manager for storing and fetching the local cached JSON files.
 export declare class StorageManager implements BaseManager<any> 
 ```
 
-Implements: [BaseManager](/shieldbow/api/BaseManager.md)>
+Implements: BaseManager\>
 
 **References:** [BaseManager](/shieldbow/api/BaseManager.md)
 

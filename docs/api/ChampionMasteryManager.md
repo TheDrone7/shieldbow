@@ -13,7 +13,7 @@ A champion mastery manager - to fetch and manage all summoner's champion mastery
 export declare class ChampionMasteryManager implements BaseManager<ChampionMastery> 
 ```
 
-Implements: [BaseManager](/shieldbow/api/BaseManager.md)<[ChampionMastery](/shieldbow/api/ChampionMastery.md)>
+Implements: BaseManager<ChampionMastery\>
 
 **References:** [BaseManager](/shieldbow/api/BaseManager.md), [ChampionMastery](/shieldbow/api/ChampionMastery.md)
 

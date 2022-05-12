@@ -88,7 +88,7 @@ for (const cls of classes) {
     const implementTypes = cls.implementsTypes
       .map((t) => t.excerpt.text)
       .map((t) => {
-        return t.split('<').map((s) => s.split(', ').map((p) => linkTo(p)).join(', ')).join('<') + '>';
+        return t + '\\>';
       });
     doc += `Implements: ${implementTypes}\n\n`;
   }

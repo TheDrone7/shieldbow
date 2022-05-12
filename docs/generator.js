@@ -82,7 +82,7 @@ var _loop_1 = function (cls) {
         var implementTypes = cls.implementsTypes
             .map(function (t) { return t.excerpt.text; })
             .map(function (t) {
-            return t.split('<').map(function (s) { return s.split(', ').map(function (p) { return linkTo(p); }).join(', '); }).join('<') + '>';
+            return t + '\\>';
         });
         doc += "Implements: ".concat(implementTypes, "\n\n");
     }

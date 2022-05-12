@@ -13,7 +13,7 @@ A league manager - to fetch and manage all summoner competitive info.
 export declare class LeagueManager implements BaseManager<Collection<QueueType, LeagueEntry>> 
 ```
 
-Implements: [BaseManager](/shieldbow/api/BaseManager.md)<[Collection](/shieldbow/api/Collection.md)<[QueueType](/shieldbow/api/QueueType.md), [LeagueEntry](/shieldbow/api/LeagueEntry.md)>
+Implements: BaseManager<Collection<QueueType, LeagueEntry\>
 
 **References:** [BaseManager](/shieldbow/api/BaseManager.md), Collection, [QueueType](/shieldbow/api/QueueType.md), [LeagueEntry](/shieldbow/api/LeagueEntry.md)
 

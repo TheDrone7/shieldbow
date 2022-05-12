@@ -6,7 +6,7 @@ actions:
 - text: Get Started
   link: /guide/getting-started
   type: primary
-- text: API Documentation
+- text: API Reference
   link: /api
   type: secondary
 features:
