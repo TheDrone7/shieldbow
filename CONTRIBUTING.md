@@ -4,7 +4,7 @@ First of all, thanks a ton for using and wanting to contribute to shieldbow.
 
 If you have any questions, feel free to start a new [discussion](https://github.com/TheDrone7/shieldbow/discussions/new).
 
-If you have discovered a bug, or a vulnerability, please create a [bug report issue])(https://github.com/TheDrone7/shieldbow/issues/new?assignees=TheDrone7&labels=bug&template=bug_report.md&title=%5BBUG%5D)
+If you have discovered a bug, or a vulnerability, please create a [bug report issue](https://github.com/TheDrone7/shieldbow/issues/new?assignees=TheDrone7&labels=bug&template=bug_report.md&title=%5BBUG%5D)
 or if you feel like the library is missing a feature, create a new [feature request](https://github.com/TheDrone7/shieldbow/issues/new?assignees=TheDrone7&labels=enhancement&template=feature_request.md&title=).
 
 Do you want to make contributions to the code yourself? Head on to the next section to learn how.
