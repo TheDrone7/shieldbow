@@ -17,7 +17,8 @@ export default defineUserConfig({
           { text: "Data Fetching", link: "/guide/fetching.html" },
         ]
       },
-      { text: "API Reference", link: "/api" }
+      { text: "API Reference", link: "/api" },
+      { text: "NPM", link: "https://www.npmjs.com/package/shieldbow" }
     ]
   }),
   title: 'Shieldbow',

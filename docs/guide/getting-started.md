@@ -107,7 +107,7 @@ Or you can check out the following resources:
 Before creating an [issue](https://github.com/TheDrone7/shieldbow/issues), 
 please ensure that it hasn't already been reported or suggested, and double-check the **documentation**.
 
-See the contribution guide if you'd like to submit a PR.
+See the [contribution guide](https://github.com/TheDrone7/shieldbow/blob/main/CONTRIBUTING.md) if you'd like to submit a PR.
 
 ### Help
 
