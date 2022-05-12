@@ -31,7 +31,7 @@ The numerical order in which the champion was banned.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 

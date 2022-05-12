@@ -46,7 +46,7 @@ A collection of the items cached in the memory.
 
 
 
-**Type**: Collection\<string, [Item](/shieldbow/api/Item.md)\>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/shieldbow/api/Item.md) \>
 
 ---
 
@@ -81,10 +81,10 @@ fetch(key: string, options?: {
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| key | string | The ID of the item to fetch. |
+| key | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the item to fetch. |
 | options | {         force: boolean;     } | The basic fetching options. |
 
-**Return type**: Promise\<[Item](/shieldbow/api/Item.md)\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Item](/shieldbow/api/Item.md) \>
 
 ---
 
@@ -105,9 +105,9 @@ findByName(name: string): Promise<Item | undefined>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| name | string | The name of the item to look for. |
+| name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of the item to look for. |
 
-**Return type**: Promise\<[Item](/shieldbow/api/Item.md) \| undefined\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Item](/shieldbow/api/Item.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
 
 ---
 

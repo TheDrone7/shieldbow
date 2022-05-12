@@ -39,7 +39,7 @@ The timestamp of creation of the match (before summoners spawn on the rift).
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -49,7 +49,7 @@ The duration of the match (in seconds).
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -59,7 +59,7 @@ The timestamp of the end of the match.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -69,7 +69,7 @@ The ID of the game.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -89,7 +89,7 @@ The name of the match.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -109,7 +109,7 @@ The version of the game.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -119,7 +119,7 @@ The match ID.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -142,7 +142,7 @@ Eg: `NA1` or `EUW1`.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -162,7 +162,7 @@ The timestamp of the beginning of the match (when summoners spawn on the rift).
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -175,7 +175,7 @@ They are mapped by their map sides (`blue` and `red`).
 
 
 
-**Type**: Collection\<'blue' \| 'red', [Team](/shieldbow/api/Team.md)\>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< 'blue' \| 'red', [Team](/shieldbow/api/Team.md) \>
 
 ---
 
@@ -185,7 +185,7 @@ The tournament code of the match (if it is the part of a tournament).
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -195,7 +195,7 @@ The data version of the match.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 

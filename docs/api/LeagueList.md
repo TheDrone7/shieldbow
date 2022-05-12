@@ -42,7 +42,7 @@ These are mapped by the summoner name.
 
 
 
-**Type**: Collection\<string, [LeagueEntry](/shieldbow/api/LeagueEntry.md)\>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [LeagueEntry](/shieldbow/api/LeagueEntry.md) \>
 
 ---
 
@@ -52,7 +52,7 @@ The competitive league ID.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -62,7 +62,7 @@ The name for the league of the entries in this list.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 

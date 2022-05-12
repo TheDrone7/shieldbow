@@ -21,7 +21,7 @@ The number of turrets killed by the participant.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -31,7 +31,7 @@ The number of turrets lost by the participant.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -41,7 +41,7 @@ The number of turrets taken down by the participant.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 

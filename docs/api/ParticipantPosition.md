@@ -21,7 +21,7 @@ The individual position, ignoring any constraints.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -31,7 +31,7 @@ The position of the participant in the team. Assuming there must be at least one
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 

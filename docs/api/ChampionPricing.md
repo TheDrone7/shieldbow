@@ -21,7 +21,7 @@ The amount of blue essence required to buy this champion.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -31,7 +31,7 @@ The amount of RP required to buy this champion.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -41,7 +41,7 @@ If more than 0, this champion is available for a less RP, the amount being the v
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 

@@ -21,7 +21,7 @@ The amount of healing by the participant to allies.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -31,7 +31,7 @@ The total amount healed.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -41,7 +41,7 @@ The number of units healed by the participant.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 

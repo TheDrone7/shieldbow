@@ -28,7 +28,7 @@ Constructs a new instance of the `Item` class.
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | client | [Client](/shieldbow/api/Client.md) | The client requesting the data. |
-| id | string | The ID of the item. |
+| id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the item. |
 | data | [ItemData](/shieldbow/api/ItemData.md) | The raw item data from data dragon. |
 ---
 
@@ -53,7 +53,7 @@ Consumables give you temporary buffs or vision after consumption.
 
 
 
-**Type**: boolean
+**Type**: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
 ---
 
@@ -63,7 +63,7 @@ Whether this item is automatically consumed if you do not have an available item
 
 
 
-**Type**: boolean
+**Type**: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
 ---
 
@@ -73,7 +73,7 @@ A short-description of this object. `plaintext` attribute in the data dragon fil
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -86,7 +86,7 @@ See [rawDetails](/shieldbow/api/Item.md#rawDetails) if you want the raw data.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -96,7 +96,7 @@ The components of this item. You need to buy these item and spend additional gol
 
 
 
-**Type**: Collection\<string, [Item](/shieldbow/api/Item.md)\>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/shieldbow/api/Item.md) \>
 
 ---
 
@@ -116,7 +116,7 @@ Whether this item can be bought from the store.
 
 
 
-**Type**: boolean
+**Type**: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
 ---
 
@@ -126,7 +126,7 @@ The 4-digit unique ID (numerical ID as a string) of the item.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -136,7 +136,7 @@ A link to the image assigned to this item in-game.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -146,7 +146,7 @@ Whether this item is listed in the in-game store.
 
 
 
-**Type**: boolean
+**Type**: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
 ---
 
@@ -156,7 +156,7 @@ A collection of items the current item is a component of.
 
 
 
-**Type**: Collection\<string, [Item](/shieldbow/api/Item.md)\>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/shieldbow/api/Item.md) \>
 
 ---
 
@@ -176,7 +176,7 @@ The displayed name of this item.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -189,7 +189,7 @@ See [details](/shieldbow/api/Item.md#details) if you want to see it with the tag
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -199,7 +199,7 @@ If this is not undefined, then this item can only be bought/owned by this champi
 
 
 
-**Type**: [Champion](/shieldbow/api/Champion.md) \| undefined
+**Type**: [Champion](/shieldbow/api/Champion.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
 
 ---
 
@@ -209,7 +209,7 @@ If this is not undefined, you cannot buy this item from the store. Instead, you 
 
 
 
-**Type**: [Item](/shieldbow/api/Item.md) \| undefined
+**Type**: [Item](/shieldbow/api/Item.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
 
 ---
 
@@ -219,7 +219,7 @@ If this has a value, it means this item can be stacked in the same item slot. Th
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -239,7 +239,7 @@ Some tags assigned to this item.
 
 
 
-**Type**: string[]
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)[]
 
 ---
 

@@ -17,10 +17,10 @@ export declare function arrToString(values: number[]): string[];
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| values | number[] | The numerical values to parse. |
+| values | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)[] | The numerical values to parse. |
 
 
-**Return type :** string[]
+**Return type :** [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)[]
 
 ---
 

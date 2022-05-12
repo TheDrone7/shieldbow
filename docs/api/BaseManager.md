@@ -21,7 +21,7 @@ The cache to store any data that can be avoided fetching repeatedly.
 
 
 
-**Type**: Collection\<any, T\>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< any, T \>
 
 ---
 
@@ -59,7 +59,7 @@ fetch(id: any, options: {
 | id | any | The ID of the data entity being fetched. |
 | options | {         force: boolean;     } | Basic fetch options, setting the force option to `true` must ignore the cache. |
 
-**Return type**: Promise\<T\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< T \>
 
 ---
 

@@ -42,7 +42,7 @@ The collection of cached matches.
 
 
 
-**Type**: Collection\<string, [Match](/shieldbow/api/Match.md)\>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Match](/shieldbow/api/Match.md) \>
 
 ---
 
@@ -77,10 +77,10 @@ fetch(id: string, options?: {
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| id | string | The ID of the match |
+| id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the match |
 | options | {         force: boolean;     } | The basic fetch options |
 
-**Return type**: Promise\<[Match](/shieldbow/api/Match.md)\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Match](/shieldbow/api/Match.md) \>
 
 ---
 
@@ -101,10 +101,10 @@ fetchMatchListByPlayer(player: Summoner | string, options?: MatchByPlayerOptions
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| player | [Summoner](/shieldbow/api/Summoner.md) \| string | The summoner or their player ID whose matches need to be fetched. |
+| player | [Summoner](/shieldbow/api/Summoner.md) \| [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The summoner or their player ID whose matches need to be fetched. |
 | options | [MatchByPlayerOptions](/shieldbow/api/MatchByPlayerOptions.md) | The options for filtering the matches. |
 
-**Return type**: Promise\<string[]\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)[] \>
 
 ---
 

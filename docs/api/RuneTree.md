@@ -39,7 +39,7 @@ A link to the rune tree's icon.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -49,7 +49,7 @@ The unique numerical ID of this Rune Tree.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -59,7 +59,7 @@ The key of this rune tree. Usually the same as the rune's name.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -69,7 +69,7 @@ The name of this rune tree.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -79,7 +79,7 @@ The slots of this rune tree. The slots are numbered from 1 to 4. The first slot 
 
 
 
-**Type**: Collection\<number, Collection\<number, [Rune](/shieldbow/api/Rune.md)\>\>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [Rune](/shieldbow/api/Rune.md) \> \>
 
 ---
 

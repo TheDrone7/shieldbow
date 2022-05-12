@@ -50,7 +50,7 @@ update(region: Region, response: AxiosResponse, method: string): void;
 | --------- | ---- | ----------- |
 | region | [Region](/shieldbow/api/Region.md) | The region the response is from. |
 | response | AxiosResponse | The response to parse. |
-| method | string | The method the response is for. |
+| method | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The method the response is for. |
 
 **Return type**: void
 
@@ -77,7 +77,7 @@ verify(region: Region, method: string): {
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | region | [Region](/shieldbow/api/Region.md) | The region the request is for. |
-| method | string | The method the request is for. |
+| method | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The method the request is for. |
 
 **Return type**: {         pass: boolean;         wait: number;     }
 

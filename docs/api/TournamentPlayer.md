@@ -28,7 +28,7 @@ Constructs a new instance of the `TournamentPlayer` class.
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | client | [Client](/shieldbow/api/Client.md) | The client that requested this data. |
-| teamId | string | The ID of the team this player is on. |
+| teamId | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the team this player is on. |
 | data | [TournamentPlayerData](/shieldbow/api/TournamentPlayerData.md) | The raw player data from the API. |
 ---
 
@@ -60,7 +60,7 @@ Use [SummonerManager.fetch](/shieldbow/api/SummonerManager.md#fetch) to fetch th
 
 
 
-**Type**: Promise\<import("./Summoner").Summoner\>
+**Type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< import("./Summoner").Summoner \>
 
 ---
 
@@ -70,7 +70,7 @@ The summoner ID of this player.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -80,7 +80,7 @@ The ID of the team this player is on.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 

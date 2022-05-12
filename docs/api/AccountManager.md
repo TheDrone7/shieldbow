@@ -42,7 +42,7 @@ The accounts cached in the memory.
 
 
 
-**Type**: Collection\<string, [Account](/shieldbow/api/Account.md)\>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Account](/shieldbow/api/Account.md) \>
 
 ---
 
@@ -77,10 +77,10 @@ fetch(id: string, options?: {
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| id | string | The PUUID of the RIOT account. |
+| id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The PUUID of the RIOT account. |
 | options | {         force: boolean;     } | The basic fetching options. |
 
-**Return type**: Promise\<[Account](/shieldbow/api/Account.md)\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Account](/shieldbow/api/Account.md) \>
 
 ---
 
@@ -103,11 +103,11 @@ fetchByNameAndTag(name: string, tag: string, options?: {
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| name | string | The name of this RIOT account. |
-| tag | string | The tag of this RIOT account. |
+| name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of this RIOT account. |
+| tag | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The tag of this RIOT account. |
 | options | {         force: boolean;     } | The basic fetching options. |
 
-**Return type**: Promise\<[Account](/shieldbow/api/Account.md)\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Account](/shieldbow/api/Account.md) \>
 
 ---
 

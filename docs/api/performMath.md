@@ -29,11 +29,11 @@ export declare function performMath(calculation: {
 | calculation | {     [key: string]: any;     __type: string; } | The calculations. |
 | effects | {     value: number[]; }[] | The effect values. |
 | datavalue | {     [name: string]: number[]; } | The named data values. |
-| maxRank | number | The max applicable spell rank. |
+| maxRank | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The max applicable spell rank. |
 | options | {     percent: boolean; } | Additional spell math options. |
 
 
-**Return type :** string
+**Return type :** [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 

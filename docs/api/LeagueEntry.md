@@ -49,7 +49,7 @@ Whether the summoner is new to the game.
 
 
 
-**Type**: boolean
+**Type**: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
 ---
 
@@ -59,7 +59,7 @@ Whether the summoner is on a hot streak.
 
 
 
-**Type**: boolean
+**Type**: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
 ---
 
@@ -69,7 +69,7 @@ Whether the summoner has been inactive.
 
 
 
-**Type**: boolean
+**Type**: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
 ---
 
@@ -79,7 +79,7 @@ The league ID.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -89,7 +89,7 @@ The number of losses the summoner has in this queue.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -99,7 +99,7 @@ The amount of league points (LP) the summoner has.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -132,7 +132,7 @@ Uses [SummonerManager.fetch](/shieldbow/api/SummonerManager.md#fetch) to get the
 
 
 
-**Type**: Promise\<[Summoner](/shieldbow/api/Summoner.md)\>
+**Type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Summoner](/shieldbow/api/Summoner.md) \>
 
 ---
 
@@ -142,7 +142,7 @@ The ID of the summoner this data belongs to.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -152,7 +152,7 @@ The name of the summoner this data belongs to.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -172,7 +172,7 @@ Whether the summoner is a veteran or a pro player.
 
 
 
-**Type**: boolean
+**Type**: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
 ---
 
@@ -182,7 +182,7 @@ The number of wins the summoner has in this queue.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 

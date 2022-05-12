@@ -42,7 +42,7 @@ Uses [AccountManager.fetch](/shieldbow/api/AccountManager.md#fetch) to get the d
 
 
 
-**Type**: Promise\<[Account](/shieldbow/api/Account.md)\>
+**Type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Account](/shieldbow/api/Account.md) \>
 
 ---
 
@@ -52,7 +52,7 @@ The account ID for this summoner.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -72,7 +72,7 @@ The summoner ID for this summoner.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -85,7 +85,7 @@ Uses [LeagueManager.fetch](/shieldbow/api/LeagueManager.md#fetch) to get the det
 
 
 
-**Type**: Promise\<Collection\<string, [LeagueEntry](/shieldbow/api/LeagueEntry.md)\>\>
+**Type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [LeagueEntry](/shieldbow/api/LeagueEntry.md) \> \>
 
 ---
 
@@ -95,7 +95,7 @@ The summoner level of this summoner.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -108,7 +108,7 @@ Uses [CurrentGameManager.fetch](/shieldbow/api/CurrentGameManager.md#fetch) to g
 
 
 
-**Type**: Promise\<[CurrentGame](/shieldbow/api/CurrentGame.md)\>
+**Type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [CurrentGame](/shieldbow/api/CurrentGame.md) \>
 
 ---
 
@@ -118,7 +118,7 @@ The summoner name for this summoner.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -128,7 +128,7 @@ The unique player ID for this summoner. This is also called the PUUID.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -138,7 +138,7 @@ The current profile icon of this summoner.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -148,7 +148,7 @@ The last time this summoner was modified.
 
 
 
-**Type**: Date
+**Type**: [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
 
 ---
 
@@ -171,9 +171,9 @@ verifyCode(code: string): Promise<boolean>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| code | string | The code that the summoner's code should match with. |
+| code | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The code that the summoner's code should match with. |
 
-**Return type**: Promise\<boolean\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) \>
 
 ---
 

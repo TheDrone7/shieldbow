@@ -17,11 +17,11 @@ export declare function multiply(part1: string, part2: string): string;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| part1 | string | The first part. |
-| part2 | string | The second part. |
+| part1 | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The first part. |
+| part2 | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The second part. |
 
 
-**Return type :** string
+**Return type :** [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 

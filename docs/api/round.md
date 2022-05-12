@@ -17,10 +17,10 @@ export declare function round(value: number): number;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| value | number | The value that needs to be rounded off. |
+| value | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The value that needs to be rounded off. |
 
 
-**Return type :** number
+**Return type :** [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 

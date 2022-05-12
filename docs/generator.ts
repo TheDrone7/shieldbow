@@ -11,6 +11,21 @@ import {
 } from '@microsoft/api-extractor-model';
 import { DocNode, DocPlainText, DocSoftBreak, DocParagraph, DocEscapedText, DocCodeSpan, DocLinkTag } from '@microsoft/tsdoc';
 
+const builtins = {
+  '[]': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array',
+  'BigInt': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt',
+  'Boolean': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean',
+  'Date': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date',
+  'Error': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error',
+  'Map': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map',
+  'Number': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number',
+  'String': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String',
+  'Object': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object',
+  'Undefined': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined',
+  'Promise': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise',
+  'Collection': 'https://discord.js.org/#/docs/collection/stable/class/Collection'
+};
+
 const parseSummary = (summary: DocNode) => {
   let text = '';
   for (const node of summary.getChildNodes()) {
@@ -36,12 +51,16 @@ const parseSummary = (summary: DocNode) => {
 const linkTo = (name: string) => `[${name}](/shieldbow/api/${name}.md)`;
 
 const parseTypeString = (type: string) => {
-  type = type.replace(/(?<!\\)</g, '\\<');
-  type = type.replace(/(?<!\\)>/g, '\\>');
+  type = type.replace(/(?<!\\)</g, ' \\< ');
+  type = type.replace(/(?<!\\)>/g, ' \\>');
   type = type.replace(/\|/g, '\\|');
   type = type.replace(/\n/g, ' ');
+  for (const [key, value] of Object.entries(builtins)) {
+    const link = `[${key}](${value})`;
+    type = type.replace(new RegExp(`(?<=(< )|^|(, )|(\\\| ))${key}`, 'ig'), link);
+  }
   for (const entry of entries.sort((a, b) => b.length - a.length))
-    type = type.replace(new RegExp(`(?<=<|^|(, ))${entry}`, 'g'), linkTo(entry));
+    type = type.replace(new RegExp(`(?<=(< )|^|(, )|(\\\| ))${entry}`, 'g'), linkTo(entry));
   return type;
 }
 

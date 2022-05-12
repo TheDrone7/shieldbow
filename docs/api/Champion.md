@@ -41,7 +41,7 @@ An array of tips to play as/along this champion.
 
 
 
-**Type**: string[]
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)[]
 
 ---
 
@@ -51,7 +51,7 @@ The type of this champion's basic attacks - RANGED or MELEE.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -61,7 +61,7 @@ A shortened version of the champion's lore.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -71,7 +71,7 @@ The champion classes this champion belongs to, such as - Fighter, Tank, Assassin
 
 
 
-**Type**: string[]
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)[]
 
 ---
 
@@ -81,7 +81,7 @@ The champion's default skin loading screen art.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -91,7 +91,7 @@ The champion's default skin splash art.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -101,7 +101,7 @@ An array of tips to play against this champion.
 
 
 
-**Type**: string[]
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)[]
 
 ---
 
@@ -111,7 +111,7 @@ A URL to the champion's icon.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -151,7 +151,7 @@ There are 2 exceptions to this rule.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -161,7 +161,7 @@ The key - a 3-digit number, that is used to identify the champion.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -171,7 +171,7 @@ The complete lore of the champion.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -181,7 +181,7 @@ The name of the champion.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -221,7 +221,7 @@ The date this champion was released on.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -231,7 +231,7 @@ The patch this champion was introduced to the live servers.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -241,7 +241,7 @@ The resource represented by the bar below this champion's health bar in game.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -251,7 +251,7 @@ A collection of the available skins for this champion. The default skin always h
 
 
 
-**Type**: Collection\<number, [ChampionSkin](/shieldbow/api/ChampionSkin.md)\>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [ChampionSkin](/shieldbow/api/ChampionSkin.md) \>
 
 ---
 
@@ -261,7 +261,7 @@ The champion's spells (abilities), mapped by the key they are assigned to, by de
 
 
 
-**Type**: Collection\<'Q' \| 'W' \| 'E' \| 'R', [ChampionSpell](/shieldbow/api/ChampionSpell.md)\>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< 'Q' \| 'W' \| 'E' \| 'R', [ChampionSpell](/shieldbow/api/ChampionSpell.md) \>
 
 ---
 
@@ -271,7 +271,7 @@ A collection of the champion's base stats.
 
 
 
-**Type**: Collection\<[Stats](/shieldbow/api/Stats.md), [ChampionStat](/shieldbow/api/ChampionStat.md)\>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Stats](/shieldbow/api/Stats.md), [ChampionStat](/shieldbow/api/ChampionStat.md) \>
 
 ---
 
@@ -281,7 +281,7 @@ A title given to the champion based on their lore.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 

@@ -15,7 +15,7 @@ export declare class ApiError extends Error
 
 **Extends: Error**
 
-**References:** Error
+**References:** [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
 
 ---
 
@@ -32,8 +32,8 @@ Constructs a new instance of the `ApiError` class.
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | response | AxiosResponse |  |
-| request | string |  |
-| message | string |  |
+| request | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  |
+| message | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  |
 ---
 
 ### Properties
@@ -44,7 +44,7 @@ A textual representation of contents of the request that errored..
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 

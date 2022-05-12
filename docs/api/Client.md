@@ -27,7 +27,7 @@ Constructs a new instance of the `Client` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| apiKey | string |  |
+| apiKey | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  |
 ---
 
 ### Properties
@@ -58,7 +58,7 @@ The Data Dragon CDN Base URL
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -177,7 +177,7 @@ Must be above 5.1 for proper functionality.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -240,7 +240,7 @@ No type support for this (yet).
 
 
 
-**Type**: Promise\<unknown\>
+**Type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< unknown \>
 
 ---
 
@@ -270,7 +270,7 @@ The current Data Dragon CDN version.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -295,7 +295,7 @@ initialize(options?: ClientConfig): Promise<void>;
 | --------- | ---- | ----------- |
 | options | [ClientConfig](/shieldbow/api/ClientConfig.md) | The client configuration. |
 
-**Return type**: Promise\<void\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< void \>
 
 ---
 

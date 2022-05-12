@@ -28,7 +28,7 @@ Constructs a new instance of the `ApiHandler` class.
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | region | [Region](/shieldbow/api/Region.md) | the region to use for the API requests. |
-| apiKey | string | your RIOT API key. |
+| apiKey | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | your RIOT API key. |
 ---
 
 ### Properties
@@ -66,10 +66,10 @@ makeApiRequest(url: string, options: {
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| url | string | The path to make the request to. |
+| url | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The path to make the request to. |
 | options | {         name: string;         params: string;         regional: boolean;     } | Some options to make the promise rejection messages more meaningful. |
 
-**Return type**: Promise\<AxiosResponse\<any, any\>\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< AxiosResponse \< any, any \> \>
 
 ---
 

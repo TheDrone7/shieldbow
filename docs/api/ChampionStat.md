@@ -27,8 +27,8 @@ Constructs a new instance of the `ChampionStat` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| base | number | The base value of the stat. |
-| increment | number | The value at which this stat increases every level. |
+| base | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The base value of the stat. |
+| increment | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The value at which this stat increases every level. |
 ---
 
 ### Properties
@@ -39,7 +39,7 @@ The base value of the stat - the value at level 1.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -49,7 +49,7 @@ The value at which this stat increases every level (the scaling).
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -72,9 +72,9 @@ at(level: number): number;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| level | number | The level at which the base value of this stat is needed. |
+| level | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The level at which the base value of this stat is needed. |
 
-**Return type**: number
+**Return type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 

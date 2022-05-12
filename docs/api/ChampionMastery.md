@@ -49,7 +49,7 @@ Whether the summoner has earned the chest for this champion this season.
 
 
 
-**Type**: boolean
+**Type**: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
 ---
 
@@ -59,7 +59,7 @@ The time this summoner played the champion last time.
 
 
 
-**Type**: Date
+**Type**: [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
 
 ---
 
@@ -69,7 +69,7 @@ The mastery level, can be anywhere between 1 and 7.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -79,7 +79,7 @@ The total number of mastery points earned by this summoner on the champion.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -89,7 +89,7 @@ The number of mastery points earned by the summoner since they progressed from t
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -99,7 +99,7 @@ The number of mastery points required by the summoner to achieve the next level.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -109,7 +109,7 @@ This is only applicable if the mastery level is 5 or 6. The number of tokens ach
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 

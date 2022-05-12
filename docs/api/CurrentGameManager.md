@@ -42,7 +42,7 @@ The cached live games (mapped by summoner IDs).
 
 
 
-**Type**: Collection\<string, [CurrentGame](/shieldbow/api/CurrentGame.md)\>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [CurrentGame](/shieldbow/api/CurrentGame.md) \>
 
 ---
 
@@ -80,10 +80,10 @@ fetch(id: string, options?: {
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| id | string | The summoner ID to fetch the live game for. |
+| id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The summoner ID to fetch the live game for. |
 | options | {         force: boolean;     } | The basic fetching options. |
 
-**Return type**: Promise\<[CurrentGame](/shieldbow/api/CurrentGame.md)\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [CurrentGame](/shieldbow/api/CurrentGame.md) \>
 
 ---
 
@@ -100,7 +100,7 @@ fetchFeatured(): Promise<CurrentGame[]>;
 ```
 
 
-**Return type**: Promise\<[CurrentGame](/shieldbow/api/CurrentGame.md)[]\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [CurrentGame](/shieldbow/api/CurrentGame.md)[] \>
 
 ---
 

@@ -4,6 +4,20 @@ var fs_1 = require("fs");
 var path_1 = require("path");
 var api_extractor_model_1 = require("@microsoft/api-extractor-model");
 var tsdoc_1 = require("@microsoft/tsdoc");
+var builtins = {
+    '[]': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array',
+    'BigInt': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt',
+    'Boolean': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean',
+    'Date': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date',
+    'Error': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error',
+    'Map': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map',
+    'Number': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number',
+    'String': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String',
+    'Object': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object',
+    'Undefined': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined',
+    'Promise': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise',
+    'Collection': 'https://discord.js.org/#/docs/collection/stable/class/Collection'
+};
 var parseSummary = function (summary) {
     var _a;
     var text = '';
@@ -35,13 +49,18 @@ var parseSummary = function (summary) {
 };
 var linkTo = function (name) { return "[".concat(name, "](/shieldbow/api/").concat(name, ".md)"); };
 var parseTypeString = function (type) {
-    type = type.replace(/(?<!\\)</g, '\\<');
-    type = type.replace(/(?<!\\)>/g, '\\>');
+    type = type.replace(/(?<!\\)</g, ' \\< ');
+    type = type.replace(/(?<!\\)>/g, ' \\>');
     type = type.replace(/\|/g, '\\|');
     type = type.replace(/\n/g, ' ');
-    for (var _i = 0, _a = entries.sort(function (a, b) { return b.length - a.length; }); _i < _a.length; _i++) {
-        var entry = _a[_i];
-        type = type.replace(new RegExp("(?<=<|^|(, ))".concat(entry), 'g'), linkTo(entry));
+    for (var _i = 0, _a = Object.entries(builtins); _i < _a.length; _i++) {
+        var _b = _a[_i], key = _b[0], value = _b[1];
+        var link = "[".concat(key, "](").concat(value, ")");
+        type = type.replace(new RegExp("(?<=(< )|^|(, )|(\\| ))".concat(key), 'ig'), link);
+    }
+    for (var _c = 0, _d = entries.sort(function (a, b) { return b.length - a.length; }); _c < _d.length; _c++) {
+        var entry = _d[_c];
+        type = type.replace(new RegExp("(?<=(< )|^|(, )|(\\| ))".concat(entry), 'g'), linkTo(entry));
     }
     return type;
 };

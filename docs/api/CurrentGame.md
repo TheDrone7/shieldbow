@@ -42,7 +42,7 @@ Combining this with the [CurrentGame.platform](/shieldbow/api/CurrentGame.md#pla
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -52,7 +52,7 @@ The amount of time (in seconds) that has passed since the game started.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -82,7 +82,7 @@ The observer key for the game.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -92,7 +92,7 @@ The platform (server) on which the game is being played.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -112,7 +112,7 @@ The time at which the game started.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -122,7 +122,7 @@ A collection of the participating teams.
 
 
 
-**Type**: Collection\<'red' \| 'blue', [CurrentGameTeam](/shieldbow/api/CurrentGameTeam.md)\>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< 'red' \| 'blue', [CurrentGameTeam](/shieldbow/api/CurrentGameTeam.md) \>
 
 ---
 

@@ -38,7 +38,7 @@ Whether the events as per this schedule have been cancelled.
 
 
 
-**Type**: boolean
+**Type**: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
 ---
 
@@ -48,7 +48,7 @@ The ID of the tournament schedule.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -58,7 +58,7 @@ The time at which the registration begins.
 
 
 
-**Type**: Date
+**Type**: [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
 
 ---
 
@@ -68,7 +68,7 @@ The timestamp at which the registration begins.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -78,7 +78,7 @@ The time at which the tournament begins.
 
 
 
-**Type**: Date
+**Type**: [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
 
 ---
 
@@ -88,7 +88,7 @@ The timestamp at which the tournament begins.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 

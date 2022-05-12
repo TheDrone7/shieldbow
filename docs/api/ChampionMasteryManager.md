@@ -32,7 +32,7 @@ Constructs a new instance of the `ChampionMasteryManager` class.
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | client | [Client](/shieldbow/api/Client.md) |  |
-| summoner | string |  |
+| summoner | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  |
 ---
 
 ### Properties
@@ -43,7 +43,7 @@ The cached mastery data for the summoner.
 
 
 
-**Type**: Collection\<string, [ChampionMastery](/shieldbow/api/ChampionMastery.md)\>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [ChampionMastery](/shieldbow/api/ChampionMastery.md) \>
 
 ---
 
@@ -76,7 +76,7 @@ The ID of the summoner whose mastery is managed by this manager.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -86,7 +86,7 @@ The total mastery score of this summoner.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -111,10 +111,10 @@ fetch(champion: Champion | string, options?: {
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| champion | [Champion](/shieldbow/api/Champion.md) \| string | The champion (or its ID) whose mastery data needs to be fetched. |
+| champion | [Champion](/shieldbow/api/Champion.md) \| [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The champion (or its ID) whose mastery data needs to be fetched. |
 | options | {         force: boolean;     } | The basic fetching options. |
 
-**Return type**: Promise\<[ChampionMastery](/shieldbow/api/ChampionMastery.md)\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [ChampionMastery](/shieldbow/api/ChampionMastery.md) \>
 
 ---
 
@@ -135,9 +135,9 @@ highest(n?: number): Promise<ChampionMastery>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| n | number | The ranking of the champion in the summoner's champions mastery, defaults to 0 (highest). |
+| n | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The ranking of the champion in the summoner's champions mastery, defaults to 0 (highest). |
 
-**Return type**: Promise\<[ChampionMastery](/shieldbow/api/ChampionMastery.md)\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [ChampionMastery](/shieldbow/api/ChampionMastery.md) \>
 
 ---
 
@@ -154,7 +154,7 @@ refreshAll(): Promise<Collection<string, ChampionMastery>>;
 ```
 
 
-**Return type**: Promise\<Collection\<string, [ChampionMastery](/shieldbow/api/ChampionMastery.md)\>\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [ChampionMastery](/shieldbow/api/ChampionMastery.md) \> \>
 
 ---
 
@@ -171,7 +171,7 @@ updateTotalScore(): Promise<number>;
 ```
 
 
-**Return type**: Promise\<number\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) \>
 
 ---
 

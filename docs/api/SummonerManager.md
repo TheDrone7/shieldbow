@@ -42,7 +42,7 @@ The summoners cached in the memory.
 
 
 
-**Type**: Collection\<string, [Summoner](/shieldbow/api/Summoner.md)\>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Summoner](/shieldbow/api/Summoner.md) \>
 
 ---
 
@@ -77,10 +77,10 @@ fetch(id: string, options?: {
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| id | string | The summoner ID of the summoner. |
+| id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The summoner ID of the summoner. |
 | options | {         force: boolean;     } | The basic fetching options. |
 
-**Return type**: Promise\<[Summoner](/shieldbow/api/Summoner.md)\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Summoner](/shieldbow/api/Summoner.md) \>
 
 ---
 
@@ -106,7 +106,7 @@ fetchByAccount(account: Account, options?: {
 | account | [Account](/shieldbow/api/Account.md) | The associated RIOT account. |
 | options | {         force: boolean;     } | The basic fetching options. |
 
-**Return type**: Promise\<[Summoner](/shieldbow/api/Summoner.md)\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Summoner](/shieldbow/api/Summoner.md) \>
 
 ---
 
@@ -129,10 +129,10 @@ fetchByAccountId(id: string, options?: {
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| id | string | The account ID of the summoner to fetch. |
+| id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The account ID of the summoner to fetch. |
 | options | {         force: boolean;     } | The basic fetching options. |
 
-**Return type**: Promise\<[Summoner](/shieldbow/api/Summoner.md)\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Summoner](/shieldbow/api/Summoner.md) \>
 
 ---
 
@@ -155,10 +155,10 @@ fetchByPlayerId(id: string, options?: {
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| id | string | The PUUID of the summoner to fetch. |
+| id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The PUUID of the summoner to fetch. |
 | options | {         force: boolean;     } | The basic fetching options. |
 
-**Return type**: Promise\<[Summoner](/shieldbow/api/Summoner.md)\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Summoner](/shieldbow/api/Summoner.md) \>
 
 ---
 
@@ -181,10 +181,10 @@ fetchBySummonerName(name: string, options?: {
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| name | string | The summoner name of the summoner to fetch. |
+| name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The summoner name of the summoner to fetch. |
 | options | {         force: boolean;     } | The basic fetching options. |
 
-**Return type**: Promise\<[Summoner](/shieldbow/api/Summoner.md)\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Summoner](/shieldbow/api/Summoner.md) \>
 
 ---
 

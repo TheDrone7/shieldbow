@@ -32,8 +32,8 @@ Constructs a new instance of the `StorageManager` class.
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | client | [Client](/shieldbow/api/Client.md) |  |
-| pathName | string |  |
-| root | string |  |
+| pathName | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  |
+| root | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  |
 ---
 
 ### Properties
@@ -44,7 +44,7 @@ An in-memory cache that stores the JSON data to serve data faster.
 
 
 
-**Type**: Collection\<string, any\>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), any \>
 
 ---
 
@@ -64,7 +64,7 @@ The path of the base directory to fetch/store files from/in
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -87,7 +87,7 @@ fetch(id: string): any;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| id | string | The name of the JSON file. |
+| id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of the JSON file. |
 
 **Return type**: any
 
@@ -110,7 +110,7 @@ store(id: string, data: any): void;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| id | string | The name of the JSON file. |
+| id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of the JSON file. |
 | data | any | The JSON data that needs to be stored. |
 
 **Return type**: void

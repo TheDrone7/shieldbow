@@ -46,7 +46,7 @@ A collection of the rune trees cached in the memory.
 
 
 
-**Type**: Collection\<string, [RuneTree](/shieldbow/api/RuneTree.md)\>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/shieldbow/api/RuneTree.md) \>
 
 ---
 
@@ -94,10 +94,10 @@ fetch(key: string, options?: {
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| key | string | The key of the rune tree to fetch. |
+| key | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The key of the rune tree to fetch. |
 | options | {         force: boolean;     } | Additional fetch options. |
 
-**Return type**: Promise\<[RuneTree](/shieldbow/api/RuneTree.md)\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [RuneTree](/shieldbow/api/RuneTree.md) \>
 
 ---
 
@@ -120,10 +120,10 @@ fetchRune(key: string, options?: {
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| key | string | The key of the rune. |
+| key | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The key of the rune. |
 | options | {         force: boolean;     } | Additional fetch options. |
 
-**Return type**: Promise\<[Rune](/shieldbow/api/Rune.md)\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Rune](/shieldbow/api/Rune.md) \>
 
 ---
 
@@ -144,9 +144,9 @@ findById(id: number): Promise<RuneTree | undefined>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| id | number | The numerical ID of the rune tree to look for. |
+| id | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The numerical ID of the rune tree to look for. |
 
-**Return type**: Promise\<[RuneTree](/shieldbow/api/RuneTree.md) \| undefined\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [RuneTree](/shieldbow/api/RuneTree.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
 
 ---
 
@@ -167,9 +167,9 @@ findByName(name: string): Promise<RuneTree | undefined>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| name | string | The name of the rune tree to look for. |
+| name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of the rune tree to look for. |
 
-**Return type**: Promise\<[RuneTree](/shieldbow/api/RuneTree.md) \| undefined\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [RuneTree](/shieldbow/api/RuneTree.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
 
 ---
 
@@ -190,9 +190,9 @@ findRuneById(id: number): Promise<Rune | undefined>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| id | number | The numerical ID of the rune to look for. |
+| id | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The numerical ID of the rune to look for. |
 
-**Return type**: Promise\<[Rune](/shieldbow/api/Rune.md) \| undefined\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Rune](/shieldbow/api/Rune.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
 
 ---
 
@@ -213,9 +213,9 @@ findRuneByName(name: string): Promise<Rune | undefined>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| name | string | The name of the rune to look for. |
+| name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of the rune to look for. |
 
-**Return type**: Promise\<[Rune](/shieldbow/api/Rune.md) \| undefined\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Rune](/shieldbow/api/Rune.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
 
 ---
 

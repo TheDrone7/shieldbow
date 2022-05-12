@@ -19,11 +19,11 @@ export declare function hash(str: string, { size }?: {
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| str | string | The string that needs to be hashed. |
-| { size } | {     size?: number \| undefined; } |  |
+| str | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The string that needs to be hashed. |
+| { size } | {     size?: number \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined); } |  |
 
 
-**Return type :** string
+**Return type :** [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 

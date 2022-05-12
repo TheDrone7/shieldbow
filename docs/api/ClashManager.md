@@ -42,7 +42,7 @@ The in-memory cache of tournaments.
 
 
 
-**Type**: Collection\<number, [Tournament](/shieldbow/api/Tournament.md)\>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [Tournament](/shieldbow/api/Tournament.md) \>
 
 ---
 
@@ -77,10 +77,10 @@ fetch(id: number, options?: {
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| id | number | The ID of the tournament. |
+| id | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The ID of the tournament. |
 | options | {         force: boolean;     } | The basic fetch options. |
 
-**Return type**: Promise\<[Tournament](/shieldbow/api/Tournament.md)\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Tournament](/shieldbow/api/Tournament.md) \>
 
 ---
 
@@ -97,7 +97,7 @@ fetchAll(): Promise<Tournament[]>;
 ```
 
 
-**Return type**: Promise\<[Tournament](/shieldbow/api/Tournament.md)[]\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Tournament](/shieldbow/api/Tournament.md)[] \>
 
 ---
 
@@ -118,9 +118,9 @@ fetchByTeamId(teamId: string): Promise<Tournament>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| teamId | string | The ID of the team. |
+| teamId | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the team. |
 
-**Return type**: Promise\<[Tournament](/shieldbow/api/Tournament.md)\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Tournament](/shieldbow/api/Tournament.md) \>
 
 ---
 
@@ -141,9 +141,9 @@ fetchPlayer(summonerId: string): Promise<TournamentPlayer[]>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| summonerId | string | The ID of the summoner. |
+| summonerId | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the summoner. |
 
-**Return type**: Promise\<[TournamentPlayer](/shieldbow/api/TournamentPlayer.md)[]\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [TournamentPlayer](/shieldbow/api/TournamentPlayer.md)[] \>
 
 ---
 
@@ -164,9 +164,9 @@ fetchTeam(teamId: string): Promise<TournamentTeam>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| teamId | string | The ID of the team. |
+| teamId | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the team. |
 
-**Return type**: Promise\<[TournamentTeam](/shieldbow/api/TournamentTeam.md)\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [TournamentTeam](/shieldbow/api/TournamentTeam.md) \>
 
 ---
 

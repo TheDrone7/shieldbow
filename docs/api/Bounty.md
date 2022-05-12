@@ -27,7 +27,7 @@ Constructs a new instance of the `Bounty` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| level | number | the bounty level of the participant. |
+| level | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | the bounty level of the participant. |
 ---
 
 ### Properties
@@ -41,7 +41,7 @@ This is only available for bounty levels \> 2.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -51,7 +51,7 @@ The amount of gold assisting in killing the participant will earn.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -61,7 +61,7 @@ The number of consecutive deaths the participant has (to earn them this bounty).
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -71,7 +71,7 @@ The number of consecutive kills the participant has (to earn them this bounty).
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -84,7 +84,7 @@ The maximum amount that can be earned at once is 1000. The rest is carried over 
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -94,7 +94,7 @@ The bounty level.
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 

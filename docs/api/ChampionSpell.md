@@ -47,7 +47,7 @@ Where `r1` is the cooldown at rank 1, `r2` is the cooldown at rank 2, and so on.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -60,7 +60,7 @@ To get the cooldown at rank 3, you can use `spell.cooldownByLevel[2]`.
 
 
 
-**Type**: number[]
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)[]
 
 ---
 
@@ -70,7 +70,7 @@ The cost of using this spell (contains the resource used/generated).
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -83,7 +83,7 @@ To get the cost at rank 3, you can use `spell.costByLevel[2]`.
 
 
 
-**Type**: number[]
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)[]
 
 ---
 
@@ -93,7 +93,7 @@ The resource needed to use the ability.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -103,7 +103,7 @@ A short textual description of the ability.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -113,7 +113,7 @@ The URL to the icon of this ability.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -123,7 +123,7 @@ The ID of the spell.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -133,7 +133,7 @@ The number of times this ability can be used. -1 indicates it has no ammo system
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -143,7 +143,7 @@ The max number of skill points (gained by leveling up the champion) that can be 
 
 
 
-**Type**: number
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -153,7 +153,7 @@ The displayed name of the ability.
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -166,7 +166,7 @@ The raw tooltip also contains some HTML-like tags such as `<scaleAP>` to help st
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -179,7 +179,7 @@ The tooltip is cleaned off of any HTML-like tags to display text in a nicer form
 
 
 
-**Type**: string
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 

@@ -46,7 +46,7 @@ A collection of the summoner spells cached in the memory.
 
 
 
-**Type**: Collection\<string, [SummonerSpell](/shieldbow/api/SummonerSpell.md)\>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [SummonerSpell](/shieldbow/api/SummonerSpell.md) \>
 
 ---
 
@@ -81,10 +81,10 @@ fetch(key: string, options?: {
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| key | string | The ID of the spell to fetch. |
+| key | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the spell to fetch. |
 | options | {         force: boolean;     } | The basic fetching options. |
 
-**Return type**: Promise\<[SummonerSpell](/shieldbow/api/SummonerSpell.md)\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [SummonerSpell](/shieldbow/api/SummonerSpell.md) \>
 
 ---
 
@@ -105,9 +105,9 @@ findByName(name: string): Promise<SummonerSpell | undefined>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| name | string | The name of the spell to look for. |
+| name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of the spell to look for. |
 
-**Return type**: Promise\<[SummonerSpell](/shieldbow/api/SummonerSpell.md) \| undefined\>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [SummonerSpell](/shieldbow/api/SummonerSpell.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
 
 ---
 
