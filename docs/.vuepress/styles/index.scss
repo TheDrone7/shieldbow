@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&family=Fira+Code&display=swap');
+
+:root {
+  scroll-behavior: smooth;
+
+  --c-bg: #e3dfdf;
+  --c-bg-light: #fffafa;
+  --c-bg-lighter: #f6f3f3;
+  --c-bg-arrow: #9f9f9f;
+
+  --c-border: #999999;
+  --c-border-dark: #333333;
+
+  --c-text: #000000;
+  --c-text-light: #333333;
+  --c-text-lighter: #404040;
+  --c-text-lightest: #666666;
+  --c-text-quote: var(--c-text-lighter);
+
+  --c-brand: #dd0000;
+  --c-brand-light: #d00000;
+
+  --font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+  Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-family-code: 'Fira Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+}
+
+html.dark {
+  --c-bg: #1d1d1f;
+  --c-bg-light: #191717;
+  --c-bg-lighter: #f6f3f3;
+  --c-bg-arrow: #9f9f9f;
+
+  --c-text: #ffffff;
+  --c-text-light: #f0f0f0;
+  --c-text-lighter: #dcdcdc;
+  --c-text-lightest: #cccccc;
+  --c-text-quote: var(--c-text-lighter);
+
+  --c-brand: #FF4B33;
+  --c-brand-light: #FF5D47;
+}
+
+.action-button {
+  font-weight: 600;
+  letter-spacing: 0.05rem;
+}

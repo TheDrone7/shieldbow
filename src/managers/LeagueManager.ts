@@ -6,7 +6,7 @@ import Collection from '@discordjs/collection';
 /**
  * A league manager - to fetch and manage all summoner competitive info.
  */
-export class LeagueManager implements BaseManager<Collection<string, LeagueEntry>> {
+export class LeagueManager implements BaseManager<Collection<QueueType, LeagueEntry>> {
   /**
    * The client this manager belongs to.
    */

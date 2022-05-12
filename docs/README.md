@@ -17,7 +17,7 @@ features:
 - title: Performant
   details: Pre-fetching and caching to quickly resolve any and all data that might be needed.
 - title: Extensive Support
-  details: Full support for almost all API endpoints. The only exceptions are - match timeline and tournament/tournament-stub.
+  details: Full support for almost all API endpoints.
 - title: Feature Rich
   details: Tons of interconnected properties to allow quick fetching of related data.
 - title: Flexible

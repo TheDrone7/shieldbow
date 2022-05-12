@@ -1,0 +1,2 @@
+# SummonerSpellData
+

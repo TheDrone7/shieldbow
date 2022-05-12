@@ -19,17 +19,6 @@ const patchRegex = /\d+\.\d+/;
 /**
  * The shieldbow client that enables you to interact with Riot Games' League of Legends API.
  * Also connects to the Data Dragon + Community Dragon CDNs.
- *
- * @example
- * Here is how to use the client:
- * ```ts
- * const myClient = new Client();
- * client.initialize({
- *   region: 'euw' // defaults to `na`.
- * }).then(() => {
- *   // All your code goes here.
- * });
- * ```
  */
 export class Client {
   private readonly _cdnBase: string;

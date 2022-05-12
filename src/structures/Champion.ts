@@ -13,17 +13,25 @@ export class Champion {
   readonly name: string;
   /**
    * The ID of the champion. To get the ID, in the champion's name
+   *
    * - Capitalize the words
+   *
    * - Remove any spaces and special characters
+   *
    * - The words after a `'` - such as in Kai'sa, remain lowercase.
    *
    * Examples:
+   *
    * - Kayn -\> Kayn
+   *
    * - Cho'Gath -\> Chogath
+   *
    * - Dr. Mundo -\> DrMundo
    *
    * There are 2 exceptions to this rule.
+   *
    * 1. Wukong -\> MonkeyKing
+   *
    * 2. Renata Glasc -\> Renata
    */
   readonly id: string;

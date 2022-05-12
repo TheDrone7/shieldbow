@@ -1,0 +1,287 @@
+---
+title: Champion
+description: A representation of a League of Legends champion.
+---
+
+## Champion class
+
+A representation of a League of Legends champion.
+
+**Signature:**
+
+```ts
+export declare class Champion 
+```
+
+---
+
+### Constructor
+
+```ts
+new Champion (client: Client, data: ChampionData, damage: SpellDamageData, meraki: MerakiChampion)
+```
+
+Constructs a new instance of the `Champion` class.
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| client | [Client](/shieldbow/api/Client.html) |  |
+| data | [ChampionData](/shieldbow/api/ChampionData.html) |  |
+| damage | [SpellDamageData](/shieldbow/api/SpellDamageData.html) |  |
+| meraki | [MerakiChampion](/shieldbow/api/MerakiChampion.html) |  |
+---
+
+### Properties
+
+#### allyTips
+
+An array of tips to play as/along this champion.
+
+
+
+**Type**: string[]
+
+---
+
+#### attackType
+
+The type of this champion's basic attacks - RANGED or MELEE.
+
+
+
+**Type**: string
+
+---
+
+#### blurb
+
+A shortened version of the champion's lore.
+
+
+
+**Type**: string
+
+---
+
+#### classes
+
+The champion classes this champion belongs to, such as - Fighter, Tank, Assassin, etc.
+
+
+
+**Type**: string[]
+
+---
+
+#### defaultLoadingScreen
+
+The champion's default skin loading screen art.
+
+
+
+**Type**: string
+
+---
+
+#### defaultSplashArt
+
+The champion's default skin splash art.
+
+
+
+**Type**: string
+
+---
+
+#### enemyTips
+
+An array of tips to play against this champion.
+
+
+
+**Type**: string[]
+
+---
+
+#### icon
+
+A URL to the champion's icon.
+
+
+
+**Type**: string
+
+---
+
+#### id
+
+The ID of the champion. To get the ID, in the champion's name
+
+
+- Capitalize the words
+
+
+- Remove any spaces and special characters
+
+
+- The words after a `'` - such as in Kai'sa, remain lowercase.
+
+
+Examples:
+
+
+- Kayn -\> Kayn
+
+
+- Cho'Gath -\> Chogath
+
+
+- Dr. Mundo -\> DrMundo
+
+
+There are 2 exceptions to this rule.
+
+
+1. Wukong -\> MonkeyKing
+
+
+2. Renata Glasc -\> Renata
+
+
+
+**Type**: string
+
+---
+
+#### key
+
+The key - a 3-digit number, that is used to identify the champion.
+
+
+
+**Type**: number
+
+---
+
+#### lore
+
+The complete lore of the champion.
+
+
+
+**Type**: string
+
+---
+
+#### name
+
+The name of the champion.
+
+
+
+**Type**: string
+
+---
+
+#### passive
+
+The champion's passive ability summarized.
+
+
+
+**Type**: {         name: string;         icon: string;         description: string;     }
+
+---
+
+#### pricing
+
+The in-game pricing of the champion.
+
+
+
+**Type**: {         be: number;         rp: number;         sale: number;     }
+
+---
+
+#### ratings
+
+The champion's magic, defense, attack, difficulty ratings.
+
+
+
+**Type**: {         magic: number;         difficulty: number;         defense: number;         attack: number;     }
+
+---
+
+#### releaseDate
+
+The date this champion was released on.
+
+
+
+**Type**: string
+
+---
+
+#### releasePatch
+
+The patch this champion was introduced to the live servers.
+
+
+
+**Type**: string
+
+---
+
+#### resource
+
+The resource represented by the bar below this champion's health bar in game.
+
+
+
+**Type**: string
+
+---
+
+#### skins
+
+A collection of the available skins for this champion. The default skin always has the id - `0`.
+
+
+
+**Type**: Collection\<number, [ChampionSkin](/shieldbow/api/ChampionSkin.html)\>
+
+---
+
+#### spells
+
+The champion's spells (abilities), mapped by the key they are assigned to, by default - Q, W, E, R, respectively.
+
+
+
+**Type**: Collection\<'Q' \| 'W' \| 'E' \| 'R', [ChampionSpell](/shieldbow/api/ChampionSpell.html)\>
+
+---
+
+#### stats
+
+A collection of the champion's base stats.
+
+
+
+**Type**: Collection\<[Stats](/shieldbow/api/Stats.html), [ChampionStat](/shieldbow/api/ChampionStat.html)\>
+
+---
+
+#### title
+
+A title given to the champion based on their lore.
+
+
+
+**Type**: string
+
+---
+
