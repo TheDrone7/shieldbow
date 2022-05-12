@@ -1,5 +1,4 @@
 ## Contributing to Shieldbow
----
 
 First of all, thanks a ton for using and wanting to contribute to shieldbow. 
 
