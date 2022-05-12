@@ -66,6 +66,7 @@
 | --------- | ----------- |
 | [AccountData](/shieldbow/api/AccountData.md) | The account data structure as returned by the API. |
 | [BaseManager](/shieldbow/api/BaseManager.md) | A base for any manager classes. |
+| [CacheConfig](/shieldbow/api/CacheConfig.md) | Client's data dragon cache configuration. |
 | [ChampionBan](/shieldbow/api/ChampionBan.md) | A banned champion in a match. |
 | [ChampionData](/shieldbow/api/ChampionData.md) | A representation of the champion data returned by Data Dragon. |
 | [ChampionMasteryData](/shieldbow/api/ChampionMasteryData.md) | The champion mastery data as returned by the API. |
@@ -102,6 +103,7 @@
 | [ParticipantTurretStats](/shieldbow/api/ParticipantTurretStats.md) | The participant's turret interaction information. |
 | [ParticipantVision](/shieldbow/api/ParticipantVision.md) | The participant's vision details. |
 | [PerksData](/shieldbow/api/PerksData.md) | The perks data for a match participant as returned by the API. |
+| [PreFetchConfig](/shieldbow/api/PreFetchConfig.md) | Client's pre-fetching data from data dragon configuration |
 | [Promos](/shieldbow/api/Promos.md) | The league entry promotion series information. |
 | [Queue](/shieldbow/api/Queue.md) | Basic data for types of queues (matches) in the game. |
 | [RuneData](/shieldbow/api/RuneData.md) | The runes data as stored in data dragon. |

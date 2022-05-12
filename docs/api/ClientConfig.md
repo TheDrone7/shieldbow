@@ -21,7 +21,7 @@ The local caching settings.
 
 
 
-**Type**: {         enable?: boolean;         localRoot?: string;     }
+**Type**: [CacheConfig](/shieldbow/api/CacheConfig.md)
 
 ---
 
@@ -31,7 +31,7 @@ The data to fetch beforehand when initializing the client. This can delay the in
 
 
 
-**Type**: {         champions?: boolean;         items?: boolean;         runes?: boolean;         summonerSpells?: boolean;     }
+**Type**: [PreFetchConfig](/shieldbow/api/PreFetchConfig.md)
 
 ---
 
