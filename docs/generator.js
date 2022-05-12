@@ -158,16 +158,37 @@ for (var _i = 0, classes_1 = classes; _i < classes_1.length; _i++) {
 index += '---\n\n## Functions\n\n';
 index += '| Function | Description |\n';
 index += '| -------- | ----------- |\n';
-for (var _a = 0, functions_1 = functions; _a < functions_1.length; _a++) {
-    var func = functions_1[_a];
+var _loop_2 = function (func) {
     var summary = func.tsdocComment
         ? parseSummary(func.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd()
         : '';
     var name_1 = "".concat(func.name, "(").concat(func.parameters.map(function (p) { return p.name; }).join(', '), ")");
     index += "| [".concat(name_1, "](/shieldbow/api/").concat(func.displayName, ".html) | ").concat(summary, " |\n");
     // Create the function document.
-    var doc = "# ".concat(func.displayName, "\n\n");
+    var doc = "---\ntitle: ".concat(func.displayName, "() function\ndescription: ").concat(summary, "\n---\n\n");
+    doc += "## ".concat(func.displayName, "(").concat(func.parameters.map(function (p) { return p.name; }).join(', '), ") function\n\n");
+    doc += "".concat(summary, "\n\n**Signature:**\n\n");
+    doc += "```ts\n".concat(func.excerpt.text, "\n```\n\n");
+    if (func.parameters.length) {
+        doc += "### Parameters\n\n";
+        doc += "| Parameter | Type | Description |\n";
+        doc += "| --------- | ---- | ----------- |\n";
+        func.parameters.forEach(function (p) {
+            var summary = p.tsdocParamBlock
+                ? parseSummary(p.tsdocParamBlock.content).trim()
+                : '';
+            doc += "| ".concat(p.name, " | ").concat(parseTypeString(p.parameterTypeExcerpt.text), " | ").concat(summary, " |\n");
+        });
+        doc += '\n\n';
+        var returnType = parseTypeString(func.returnTypeExcerpt.text);
+        doc += "**Return type :** ".concat(returnType, "\n\n");
+        doc += '---\n\n';
+    }
     (0, fs_1.writeFileSync)((0, path_1.join)(pathToDocs, "".concat(func.displayName, ".md")), doc);
+};
+for (var _a = 0, functions_1 = functions; _a < functions_1.length; _a++) {
+    var func = functions_1[_a];
+    _loop_2(func);
 }
 index += '---\n\n## Interfaces\n\n';
 index += '| Interface | Description |\n';

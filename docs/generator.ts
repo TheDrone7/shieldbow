@@ -167,7 +167,26 @@ for (const func of functions) {
   index += `| [${name}](/shieldbow/api/${func.displayName}.html) | ${summary} |\n`;
 
   // Create the function document.
-  const doc = `# ${func.displayName}\n\n`;
+  let doc = `---\ntitle: ${func.displayName}() function\ndescription: ${summary}\n---\n\n`;
+  doc += `## ${func.displayName}(${func.parameters.map((p) => p.name).join(', ')}) function\n\n`;
+  doc += `${summary}\n\n**Signature:**\n\n`;
+  doc += `\`\`\`ts\n${func.excerpt.text}\n\`\`\`\n\n`;
+
+  if (func.parameters.length) {
+    doc += `### Parameters\n\n`;
+    doc += `| Parameter | Type | Description |\n`;
+    doc += `| --------- | ---- | ----------- |\n`;
+    func.parameters.forEach((p) => {
+      const summary = p.tsdocParamBlock
+        ? parseSummary(p.tsdocParamBlock.content).trim()
+        : '';
+      doc += `| ${p.name} | ${parseTypeString(p.parameterTypeExcerpt.text)} | ${summary} |\n`;
+    });
+    doc += '\n\n';
+    const returnType = parseTypeString(func.returnTypeExcerpt.text);
+    doc += `**Return type :** ${returnType}\n\n`;
+    doc += '---\n\n';
+  }
   writeFileSync(join(pathToDocs, `${func.displayName}.md`), doc);
 }
 
