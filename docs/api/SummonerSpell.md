@@ -27,8 +27,8 @@ Constructs a new instance of the `SummonerSpell` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
-| data | [SummonerSpellData](/shieldbow/api/SummonerSpellData.md) |  |
+| client | [Client](/shieldbow/api/Client.md) | The client that requested this data. |
+| data | [SummonerSpellData](/shieldbow/api/SummonerSpellData.md) | The raw summoner spell data from the API. |
 ---
 
 ### Properties

@@ -9,6 +9,223 @@ import type { SummonerSpell } from './SummonerSpell';
 import { Perks } from './Perks';
 
 /**
+ * The participant's turret interaction information.
+ */
+export interface ParticipantTurretStats {
+  /**
+   * The number of turrets lost by the participant.
+   */
+  lost: number;
+  /**
+   * The number of turrets killed by the participant.
+   */
+  killed: number;
+  /**
+   * The number of turrets taken down by the participant.
+   */
+  takenDown: number;
+}
+
+/**
+ * The participant's inhibitor interaction information.
+ */
+export interface ParticipantInhibitorStats {
+  /**
+   * The number of allied inhibitors killed by enemy team.
+   */
+  lost: number;
+  /**
+   * The number of enemy inhibitors killed by the participant.
+   */
+  killed: number;
+  /**
+   * The number of enemy inhibitors taken down by the participant.
+   */
+  takenDown: number;
+}
+
+/**
+ * The participant's vision details.
+ */
+export interface ParticipantVision {
+  /**
+   * The number of control wards placed on the map.
+   */
+  controlWardsUsed: number;
+  /**
+   * The number of sight wards bought from the shop.
+   */
+  sightWardsBought: number;
+  /**
+   * The number of control wards bought from the shop.
+   */
+  controlWardsBought: number;
+  /**
+   * The number of wards destroyed.
+   */
+  wardsKilled: number;
+  /**
+   * The number of wards placed.
+   */
+  wardsPlaced: number;
+  /**
+   * The vision score earned by the participant.
+   */
+  score: number;
+}
+
+/**
+ * The participant's champion details.
+ */
+export interface ParticipantChampion {
+  /**
+   * The numerical ID of the champion.
+   */
+  key: number;
+  /**
+   * The name of the champion.
+   */
+  id: string;
+  /**
+   * A reference to the actual champion.
+   */
+  champ: Champion;
+  /**
+   * The level of the champion.
+   */
+  level: number;
+  /**
+   * The amount of experience earned by this champion.
+   */
+  xp: number;
+  /**
+   * The count of how many times did the participant case each of the champion's abilities.
+   */
+  abilitiesCasted: Collection<'Q' | 'W' | 'E' | 'R', number>;
+  /**
+   * ONLY APPLICABLE FOR KAYN.
+   *
+   * 0 = No form. 1 = Darkin Slayer. 2 = Shadow Assassin.
+   */
+  form?: number;
+}
+
+/**
+ * The participant's damage stats.
+ */
+export interface ParticipantDamageStats {
+  /**
+   * The amount of damage taken from the enemies.
+   */
+  taken: number;
+  /**
+   * The amount of damage dealt by the participant.
+   */
+  dealt: number;
+  /**
+   * The amount of damage inflicted upon the enemy champions.
+   */
+  toChampions: number;
+}
+
+/**
+ * The participant's total damage stats.
+ */
+export interface ParticipantTotalDamage {
+  /**
+   * The total amount of damage dealt.
+   */
+  dealt: number;
+  /**
+   * The total amount of damage taken.
+   */
+  taken: number;
+  /**
+   * The total amount of damage shielded on allies.
+   */
+  shielded: number;
+  /**
+   * The total amount of damage dealt to buildings - inhibitors/nexus.
+   */
+  toBuildings: number;
+  /**
+   * The total amount of damage dealt to enemy champions.
+   */
+  toChampions: number;
+  /**
+   * The total amount of damage dealt to turrets.
+   */
+  toTurrets: number;
+  /**
+   * The total amount of damage dealt to objectives - drakes, rift heralds, etc.
+   */
+  toObjectives: number;
+  /**
+   * The total amount of self mitigated damage.
+   */
+  mitigated: number;
+}
+
+/**
+ * The participant's healing stats.
+ */
+export interface ParticipantHealingStats {
+  /**
+   * The total amount healed.
+   */
+  total: number;
+  /**
+   * The amount of healing by the participant to allies.
+   */
+  onTeam: number;
+  /**
+   * The number of units healed by the participant.
+   */
+  units: number;
+}
+
+/**
+ * The participant's multikill details.
+ */
+export interface ParticipantMultkills {
+  /**
+   * The number of double kills.
+   */
+  doubleKills: number;
+  /**
+   * The number of triple kills.
+   */
+  tripleKills: number;
+  /**
+   * The number of quadra kills.
+   */
+  quadraKills: number;
+  /**
+   * The number of penta kills.
+   */
+  pentaKills: number;
+  /**
+   * The number of 5+ kills (higher than penta).
+   */
+  unrealKills: number;
+}
+
+/**
+ * The participant position details.
+ */
+export interface ParticipantPosition {
+  /**
+   * The individual position, ignoring any constraints.
+   */
+  individual: string;
+  /**
+   * The position of the participant in the team.
+   * Assuming there must be at least one person in each role - TOP, JG, MID, etc.
+   */
+  team: string;
+}
+
+/**
  * A representation of a participant in a match.
  */
 export class Participant {
@@ -47,38 +264,7 @@ export class Participant {
   /**
    * The stats of the champion being played by this participant.
    */
-  readonly champion: {
-    /**
-     * The numerical ID of the champion.
-     */
-    key: number;
-    /**
-     * The name of the champion.
-     */
-    id: string;
-    /**
-     * A reference to the actual champion.
-     */
-    champ: Champion;
-    /**
-     * The level of the champion.
-     */
-    level: number;
-    /**
-     * The amount of experience earned by this champion.
-     */
-    xp: number;
-    /**
-     * The count of how many times did the participant case each of the champion's abilities.
-     */
-    abilitiesCasted: Collection<'Q' | 'W' | 'E' | 'R', number>;
-    /**
-     * ONLY APPLICABLE FOR KAYN.
-     *
-     * 0 = No form. 1 = Darkin Slayer. 2 = Shadow Assassin.
-     */
-    form?: number;
-  };
+  readonly champion: ParticipantChampion;
   /**
    * The number of consumable items purchased by the participant.
    */
@@ -86,69 +272,11 @@ export class Participant {
   /**
    * An overview of the damage dealt/taken/shielded by the participant.
    */
-  readonly totalDamage: {
-    /**
-     * The total amount of damage dealt.
-     */
-    dealt: number;
-    /**
-     * The total amount of damage taken.
-     */
-    taken: number;
-    /**
-     * The total amount of damage shielded on allies.
-     */
-    shielded: number;
-    /**
-     * The total amount of damage dealt to buildings - inhibitors/nexus.
-     */
-    toBuildings: number;
-    /**
-     * The total amount of damage dealt to enemy champions.
-     */
-    toChampions: number;
-    /**
-     * The total amount of damage dealt to turrets.
-     */
-    toTurrets: number;
-    /**
-     * The total amount of damage dealt to objectives - drakes, rift heralds, etc.
-     */
-    toObjectives: number;
-    /**
-     * The total amount of self mitigated damage.
-     */
-    mitigated: number;
-  };
+  readonly totalDamage: ParticipantTotalDamage;
   /**
    * The vision control stats of the participant.
    */
-  readonly vision: {
-    /**
-     * The number of control wards placed on the map.
-     */
-    controlWardsUsed: number;
-    /**
-     * The number of sight wards bought from the shop.
-     */
-    sightWardsBought: number;
-    /**
-     * The number of control wards bought from the shop.
-     */
-    controlWardsBought: number;
-    /**
-     * The number of wards destroyed.
-     */
-    wardsKilled: number;
-    /**
-     * The number of wards placed.
-     */
-    wardsPlaced: number;
-    /**
-     * The vision score earned by the participant.
-     */
-    score: number;
-  };
+  readonly vision: ParticipantVision;
   /**
    * Whether the participant won the game.
    */
@@ -156,28 +284,7 @@ export class Participant {
   /**
    * The number of multi-kills scored by this participant.
    */
-  readonly multiKills: {
-    /**
-     * The number of double kills.
-     */
-    doubleKills: number;
-    /**
-     * The number of triple kills.
-     */
-    tripleKills: number;
-    /**
-     * The number of quadra kills.
-     */
-    quadraKills: number;
-    /**
-     * The number of penta kills.
-     */
-    pentaKills: number;
-    /**
-     * The number of 5+ kills (higher than penta).
-     */
-    unrealKills: number;
-  };
+  readonly multiKills: ParticipantMultkills;
   /**
    * Whether the participant was the first to score a kill.
    */
@@ -213,51 +320,15 @@ export class Participant {
   /**
    * The participant's position in the team.
    */
-  readonly position: {
-    /**
-     * The individual position, ignoring any constraints.
-     */
-    individual: string;
-    /**
-     * The position of the participant in the team.
-     * Assuming there must be at least one person in each role - TOP, JG, MID, etc.
-     */
-    team: string;
-  };
+  readonly position: ParticipantPosition;
   /**
    * The number of turrets destroyed/lost.
    */
-  readonly turrets: {
-    /**
-     * The number of turrets lost by the participant.
-     */
-    lost: number;
-    /**
-     * The number of turrets killed by the participant.
-     */
-    killed: number;
-    /**
-     * The number of turrets taken down by the participant.
-     */
-    takenDown: number;
-  };
+  readonly turrets: ParticipantTurretStats;
   /**
    * The number of inhibitors killed/lost.
    */
-  readonly inhibitors: {
-    /**
-     * The number of allied inhibitors killed by enemy team.
-     */
-    lost: number;
-    /**
-     * The number of enemy inhibitors killed by the participant.
-     */
-    killed: number;
-    /**
-     * The number of enemy inhibitors taken down by the participant.
-     */
-    takenDown: number;
-  };
+  readonly inhibitors: ParticipantInhibitorStats;
   /**
    * The items in the participant's inventory.
    */
@@ -289,37 +360,11 @@ export class Participant {
   /**
    * An overview of the magic damage dealt/taken by the participant.
    */
-  readonly magicDamage: {
-    /**
-     * The amount of magic damage taken from the enemies.
-     */
-    taken: number;
-    /**
-     * The amount of magic damage dealt by the participant.
-     */
-    dealt: number;
-    /**
-     * The amount of magic damage inflicted upon the enemy champions.
-     */
-    toChampions: number;
-  };
+  readonly magicDamage: ParticipantDamageStats;
   /**
    * An overview of the physical damage dealt/taken by the participant.
    */
-  readonly physicalDamage: {
-    /**
-     * The amount of physical damage taken from the enemies.
-     */
-    taken: number;
-    /**
-     * The amount of physical damage dealt by the participant.
-     */
-    dealt: number;
-    /**
-     * The amount of physical damage inflicted upon the enemy champions.
-     */
-    toChampions: number;
-  };
+  readonly physicalDamage: ParticipantDamageStats;
   /**
    * Whether the participant killed the nexus.
    */
@@ -374,20 +419,7 @@ export class Participant {
   /**
    * An overview of the healing done by the participant.
    */
-  readonly healing: {
-    /**
-     * The total amount healed.
-     */
-    total: number;
-    /**
-     * The amount of healing by the participant to allies.
-     */
-    onTeam: number;
-    /**
-     * The number of units healed by the participant.
-     */
-    units: number;
-  };
+  readonly healing: ParticipantHealingStats;
   /**
    * The number of enemy minions killed by the participant.
    */
@@ -407,21 +439,13 @@ export class Participant {
   /**
    * An overview of the true damage dealt/taken by the participant.
    */
-  readonly trueDamage: {
-    /**
-     * The amount of true damage taken from the enemies.
-     */
-    taken: number;
-    /**
-     * The amount of true damage dealt by the participant.
-     */
-    dealt: number;
-    /**
-     * The amount of true damage inflicted upon the enemy champions.
-     */
-    toChampions: number;
-  };
+  readonly trueDamage: ParticipantDamageStats;
 
+  /**
+   * Creates a new participant instance.
+   * @param client - The client that requested this data.
+   * @param data - The raw participant data from the API.
+   */
   constructor(client: Client, data: ParticipantData) {
     this.id = data.participantId;
     this.perks = new Perks(client, data.perks);

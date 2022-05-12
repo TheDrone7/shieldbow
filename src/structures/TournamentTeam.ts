@@ -39,6 +39,11 @@ export class TournamentTeam {
    */
   readonly players: TournamentPlayer[];
 
+  /**
+   * Creates a new tournament team instance.
+   * @param client - The client that requested this data.
+   * @param data - The raw tournament team data from the API.
+   */
   constructor(client: Client, data: TournamentTeamData) {
     this.id = data.id;
     this.tournamentId = data.tournamentId;

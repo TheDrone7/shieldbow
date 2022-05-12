@@ -27,8 +27,8 @@ Constructs a new instance of the `ChampionStat` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| base | number |  |
-| increment | number |  |
+| base | number | The base value of the stat. |
+| increment | number | The value at which this stat increases every level. |
 ---
 
 ### Properties

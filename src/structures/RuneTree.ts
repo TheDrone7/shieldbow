@@ -30,6 +30,11 @@ export class RuneTree {
    */
   slots: Collection<number, Collection<number, Rune>>;
 
+  /**
+   * Creates a new RuneTree instance.
+   * @param client - The client that requested this data.
+   * @param data - The raw rune tree data from data dragon.
+   */
   constructor(client: Client, data: RuneTreeData) {
     this.id = data.id;
     this.key = data.key;

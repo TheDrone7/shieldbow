@@ -27,8 +27,8 @@ Constructs a new instance of the `LeagueEntry` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
-| data | [LeagueEntryData](/shieldbow/api/LeagueEntryData.md) |  |
+| client | [Client](/shieldbow/api/Client.md) | The client requesting the data. |
+| data | [LeagueEntryData](/shieldbow/api/LeagueEntryData.md) | The raw league entry data from the API. |
 ---
 
 ### Properties
@@ -109,7 +109,7 @@ This only exists if the summoner is in a promotion series.
 
 
 
-**Type**: {         readonly target: number;         readonly wins: number;         readonly losses: number;         readonly progress: string;     }
+**Type**: [Promos](/shieldbow/api/Promos.md)
 
 ---
 

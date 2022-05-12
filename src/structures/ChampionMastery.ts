@@ -40,6 +40,11 @@ export class ChampionMastery {
    */
   readonly tokens: number;
 
+  /**
+   * Creates a new ChampionMastery instance.
+   * @param client - The client creating this instance.
+   * @param data - The raw champion mastery data from the API.
+   */
   constructor(client: Client, data: ChampionMasteryData) {
     this.champion = client.champions.cache.find((c) => c.key === data.championId)!;
     this.level = data.championLevel;

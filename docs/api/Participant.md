@@ -27,8 +27,8 @@ Constructs a new instance of the `Participant` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
-| data | [ParticipantData](/shieldbow/api/ParticipantData.md) |  |
+| client | [Client](/shieldbow/api/Client.md) | The client that requested this data. |
+| data | [ParticipantData](/shieldbow/api/ParticipantData.md) | The raw participant data from the API. |
 ---
 
 ### Properties
@@ -69,7 +69,7 @@ The stats of the champion being played by this participant.
 
 
 
-**Type**: {         key: number;         id: string;         champ: Champion;         level: number;         xp: number;         abilitiesCasted: Collection\<'Q' \| 'W' \| 'E' \| 'R', number\>;         form?: number;     }
+**Type**: [ParticipantChampion](/shieldbow/api/ParticipantChampion.md)
 
 ---
 
@@ -199,7 +199,7 @@ An overview of the healing done by the participant.
 
 
 
-**Type**: {         total: number;         onTeam: number;         units: number;     }
+**Type**: [ParticipantHealingStats](/shieldbow/api/ParticipantHealingStats.md)
 
 ---
 
@@ -219,7 +219,7 @@ The number of inhibitors killed/lost.
 
 
 
-**Type**: {         lost: number;         killed: number;         takenDown: number;     }
+**Type**: [ParticipantInhibitorStats](/shieldbow/api/ParticipantInhibitorStats.md)
 
 ---
 
@@ -319,7 +319,7 @@ An overview of the magic damage dealt/taken by the participant.
 
 
 
-**Type**: {         taken: number;         dealt: number;         toChampions: number;     }
+**Type**: [ParticipantDamageStats](/shieldbow/api/ParticipantDamageStats.md)
 
 ---
 
@@ -339,7 +339,7 @@ The number of multi-kills scored by this participant.
 
 
 
-**Type**: {         doubleKills: number;         tripleKills: number;         quadraKills: number;         pentaKills: number;         unrealKills: number;     }
+**Type**: [ParticipantMultkills](/shieldbow/api/ParticipantMultkills.md)
 
 ---
 
@@ -409,7 +409,7 @@ An overview of the physical damage dealt/taken by the participant.
 
 
 
-**Type**: {         taken: number;         dealt: number;         toChampions: number;     }
+**Type**: [ParticipantDamageStats](/shieldbow/api/ParticipantDamageStats.md)
 
 ---
 
@@ -419,7 +419,7 @@ The participant's position in the team.
 
 
 
-**Type**: {         individual: string;         team: string;     }
+**Type**: [ParticipantPosition](/shieldbow/api/ParticipantPosition.md)
 
 ---
 
@@ -512,7 +512,7 @@ An overview of the damage dealt/taken/shielded by the participant.
 
 
 
-**Type**: {         dealt: number;         taken: number;         shielded: number;         toBuildings: number;         toChampions: number;         toTurrets: number;         toObjectives: number;         mitigated: number;     }
+**Type**: [ParticipantTotalDamage](/shieldbow/api/ParticipantTotalDamage.md)
 
 ---
 
@@ -522,7 +522,7 @@ An overview of the true damage dealt/taken by the participant.
 
 
 
-**Type**: {         taken: number;         dealt: number;         toChampions: number;     }
+**Type**: [ParticipantDamageStats](/shieldbow/api/ParticipantDamageStats.md)
 
 ---
 
@@ -532,7 +532,7 @@ The number of turrets destroyed/lost.
 
 
 
-**Type**: {         lost: number;         killed: number;         takenDown: number;     }
+**Type**: [ParticipantTurretStats](/shieldbow/api/ParticipantTurretStats.md)
 
 ---
 
@@ -542,7 +542,7 @@ The vision control stats of the participant.
 
 
 
-**Type**: {         controlWardsUsed: number;         sightWardsBought: number;         controlWardsBought: number;         wardsKilled: number;         wardsPlaced: number;         score: number;     }
+**Type**: [ParticipantVision](/shieldbow/api/ParticipantVision.md)
 
 ---
 

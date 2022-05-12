@@ -1,5 +1,5 @@
 import type { Champion } from './index';
-import type { MerakiSkin } from '../types/';
+import type { MerakiSkin, ChampionSkinData, SkinPricing, SkinChroma } from '../types/';
 
 /**
  * A representation of a champion's skin (visual modification).
@@ -22,22 +22,9 @@ export class ChampionSkin {
    */
   readonly internalId: string;
   /**
-   * Whether the skin has chromas or not.
+   * The skin's chromas.
    */
-  readonly chromas: {
-    /**
-     * The name of the chroma
-     */
-    name: string;
-    /**
-     * The unique ID of the chroma.
-     */
-    id: number;
-    /**
-     * A link to the preview image for this chroma.
-     */
-    image: string;
-  }[];
+  readonly chromas: SkinChroma[];
   /**
    * The availability of this skin - Available or Legacy.
    */
@@ -49,16 +36,7 @@ export class ChampionSkin {
   /**
    * The in-game price of the skin.
    */
-  readonly price: {
-    /**
-     * The RP amount required to buy this skin.
-     */
-    rp: number;
-    /**
-     * If more than 0, the skin can be bought for less RP, the amount being the value of this field.
-     */
-    sale: number;
-  };
+  readonly price: SkinPricing;
   /**
    *  How rare is this skin - 'Epic', 'Legendary', etc.
    */
@@ -84,7 +62,13 @@ export class ChampionSkin {
    */
   readonly vintageLoadingScreen?: string;
 
-  constructor(champ: Champion, data: { id: string; name: string; num: number; chromas: boolean }, meraki: MerakiSkin) {
+  /**
+   * Creates a new champion skin instance.
+   * @param champ - The champion this skin belongs to.
+   * @param data - The raw skin data from data dragon.
+   * @param meraki - The raw skin data from meraki.
+   */
+  constructor(champ: Champion, data: ChampionSkinData, meraki: MerakiSkin) {
     this.champ = champ;
     this.id = data.num;
     this.name = data.name;

@@ -1,74 +1,6 @@
 import type { ImageData } from './index';
-
-/**
- * A representation of the champion spell data returned by Data Dragon.
- */
-export interface SpellData {
-  id: string;
-  name: string;
-  description: string;
-  tooltip: string;
-  leveltip: {
-    label: string[];
-    effect: string[];
-  };
-  maxrank: number;
-  cooldown: number[];
-  cooldownBurn: string;
-  cost: number[];
-  costBurn: string;
-  datavalues: {};
-  effect: (null | number[])[];
-  effectBurn: (null | string)[];
-  vars: {
-    key: string;
-    link: string;
-    coeff: string;
-  }[];
-  costType: string;
-  maxammo: string;
-  range: number[];
-  rangeBurn: string;
-  image: ImageData;
-  resource: string;
-}
-
-/**
- * A representation of the champion spell data returned by Community Dragon.
- */
-export interface SpellDamageData {
-  [id: string]: any;
-}
-
-/**
- * A representation of a champion's skin data returned by meraki analytics.
- * These are used in the LoL wiki.
- */
-export interface MerakiSkin {
-  name: string;
-  id: number;
-  isBase: boolean;
-  cost: number;
-  sale: number;
-  rarity: string;
-  availability: string;
-  chromas: {
-    name: string;
-    id: number;
-    chromaPath: string;
-  }[];
-  lore: string;
-  splashPath: string;
-  uncenteredSplashPath: string;
-  tilePath: string;
-  loadScreenPath: string;
-  loadScreenVintagePath: string;
-  newEffects: boolean;
-  newAnimations: boolean;
-  newRecall: boolean;
-  newVoice: boolean;
-  newQuotes: boolean;
-}
+import type { ChampionSkinData, MerakiSkin } from './ChampionSkin';
+import type { SpellData } from './ChampionSpell';
 
 /**
  * A representation of the champion data returned by meraki analytics.
@@ -91,6 +23,64 @@ export interface MerakiChampion {
 }
 
 /**
+ * A representation of the champion rating data returned by Data Dragon.
+ */
+export interface ChampionRating {
+  /**
+   * The attack rating of the champion (0 - 10).
+   */
+  attack: number;
+  /**
+   * The defense rating of the champion (0 - 10).
+   */
+  defense: number;
+  /**
+   * The magic rating of the champion (0 - 10).
+   */
+  magic: number;
+  /**
+   * The difficulty rating of the champion (0 - 10).
+   */
+  difficulty: number;
+}
+
+/**
+ * The data about a champion's passive.
+ */
+export interface ChampionPassive {
+  /**
+   * The name of the champion's passive ability.
+   */
+  name: string;
+  /**
+   * A link to the icon used in game to represent this champion's passive ability.
+   */
+  icon: string;
+  /**
+   * A short textual description of this champion's passive ability.
+   */
+  description: string;
+}
+
+/**
+ * The pricing data of a champion.
+ */
+export interface ChampionPricing {
+  /**
+   * The amount of blue essence required to buy this champion.
+   */
+  be: number;
+  /**
+   * The amount of RP required to buy this champion.
+   */
+  rp: number;
+  /**
+   * If more than 0, this champion is available for a less RP, the amount being the value of this field.
+   */
+  sale: number;
+}
+
+/**
  * A representation of the champion data returned by Data Dragon.
  */
 export interface ChampionData {
@@ -99,24 +89,14 @@ export interface ChampionData {
   name: string;
   title: string;
   image: ImageData;
-  skins: {
-    id: string;
-    num: number;
-    name: string;
-    chromas: boolean;
-  }[];
+  skins: ChampionSkinData[];
   lore: string;
   blurb: string;
   allytips: string[];
   enemytips: string[];
   tags: string[];
   partype: string;
-  info: {
-    attack: number;
-    defense: number;
-    magic: number;
-    difficulty: number;
-  };
+  info: ChampionRating;
   stats: {
     hp: number;
     hpperlevel: number;

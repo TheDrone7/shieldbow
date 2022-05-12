@@ -21,6 +21,10 @@ export class TournamentSchedule {
    */
   readonly cancelled: boolean;
 
+  /**
+   * Creates a new tournament schedule instance.
+   * @param data - The raw tournament schedule data from the API.
+   */
   constructor(data: TournamentScheduleData) {
     this.id = data.id;
     this.registrationTimestamp = data.registrationTime;

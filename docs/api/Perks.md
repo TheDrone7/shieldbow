@@ -27,8 +27,8 @@ Constructs a new instance of the `Perks` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
-| data | [PerksData](/shieldbow/api/PerksData.md) |  |
+| client | [Client](/shieldbow/api/Client.md) | The client requesting this data. |
+| data | [PerksData](/shieldbow/api/PerksData.md) | The raw perks data from the API. |
 ---
 
 ### Properties
@@ -59,7 +59,7 @@ The stat runes that were picked by the player.
 
 
 
-**Type**: {         flex: StatPerk;         offense: StatPerk;         defense: StatPerk;     }
+**Type**: [StatPerks](/shieldbow/api/StatPerks.md)
 
 ---
 

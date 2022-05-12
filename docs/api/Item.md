@@ -27,9 +27,9 @@ Constructs a new instance of the `Item` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
-| id | string |  |
-| data | [ItemData](/shieldbow/api/ItemData.md) |  |
+| client | [Client](/shieldbow/api/Client.md) | The client requesting the data. |
+| id | string | The ID of the item. |
+| data | [ItemData](/shieldbow/api/ItemData.md) | The raw item data from data dragon. |
 ---
 
 ### Properties
@@ -106,7 +106,7 @@ The value of this item in terms of in-game gold.
 
 
 
-**Type**: {         base: number;         total: number;         sell: number;     }
+**Type**: [ItemGoldValue](/shieldbow/api/ItemGoldValue.md)
 
 ---
 

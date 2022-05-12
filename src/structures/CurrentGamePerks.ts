@@ -25,6 +25,12 @@ export class CurrentGamePerks {
    * The secondary rune tree selected by the participant.
    */
   readonly secondaryTree: RuneTree;
+
+  /**
+   * Creates a new Current Game perks instance.
+   * @param client - The client that requested this data.
+   * @param data - The raw current game participant perks data from the API.
+   */
   constructor(client: Client, data: CurrentGamePerksData) {
     this.primaryTree = client.runes.cache.find((r) => r.id === data.perkStyle)!;
     this.secondaryTree = client.runes.cache.find((r) => r.id === data.perkSubStyle)!;

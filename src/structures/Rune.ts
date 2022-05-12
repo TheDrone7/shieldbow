@@ -24,6 +24,11 @@ export class Rune {
   private readonly _rawDescription: string;
   private readonly _rawDetails: string;
 
+  /**
+   * Creates a new Rune instance.
+   * @param client - The client that requested this data.
+   * @param data - The raw rune data from data dragon.
+   */
   constructor(client: Client, data: RuneData) {
     this.id = data.id;
     this.key = data.key;

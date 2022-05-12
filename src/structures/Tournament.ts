@@ -26,6 +26,10 @@ export class Tournament {
    */
   readonly schedule: TournamentSchedule[];
 
+  /**
+   * Creates a new tournament instance.
+   * @param data - The raw tournament data from the API.
+   */
   constructor(data: TournamentData) {
     this.id = data.id;
     this.themeId = data.themeId;

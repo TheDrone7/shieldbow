@@ -59,7 +59,7 @@ export interface ChampionData
 
 
 
-**Type**: {         attack: number;         defense: number;         magic: number;         difficulty: number;     }
+**Type**: [ChampionRating](/shieldbow/api/ChampionRating.md)
 
 ---
 
@@ -107,7 +107,7 @@ export interface ChampionData
 
 
 
-**Type**: {         id: string;         num: number;         name: string;         chromas: boolean;     }[]
+**Type**: [ChampionSkinData](/shieldbow/api/ChampionSkinData.md)[]
 
 ---
 

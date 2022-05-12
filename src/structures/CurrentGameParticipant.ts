@@ -37,6 +37,12 @@ export class CurrentGameParticipant {
    * The rune setups of this participant.
    */
   readonly perks?: CurrentGamePerks;
+
+  /**
+   * Creates a new Current Game Participant instance.
+   * @param client - The client that requested this data.
+   * @param data - The raw current game participant data from the API.
+   */
   constructor(client: Client, data: CurrentGameParticipantData) {
     this.teamId = data.teamId;
     this.summonerSpells = new Collection<'D' | 'F', SummonerSpell>();

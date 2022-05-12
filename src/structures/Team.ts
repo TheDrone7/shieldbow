@@ -4,6 +4,20 @@ import type { Champion } from './Champion';
 import { Participant } from './Participant';
 
 /**
+ * A banned champion in a match.
+ */
+export interface ChampionBan {
+  /**
+   * The numerical order in which the champion was banned.
+   */
+  order: number;
+  /**
+   * The banned champion.
+   */
+  champion: Champion;
+}
+
+/**
  * A representation of a team in a match.
  */
 export class Team {
@@ -14,16 +28,7 @@ export class Team {
   /**
    * The champions banned by the team.
    */
-  readonly bans: {
-    /**
-     * The numerical order in which the champion was banned.
-     */
-    order: number;
-    /**
-     * The banned champion.
-     */
-    champion: Champion;
-  }[];
+  readonly bans: ChampionBan[];
   /**
    * The objectives secured by the team.
    */

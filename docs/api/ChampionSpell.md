@@ -27,10 +27,10 @@ Constructs a new instance of the `ChampionSpell` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
-| champ | [Champion](/shieldbow/api/Champion.md) |  |
-| data | [SpellData](/shieldbow/api/SpellData.md) |  |
-| damage | [SpellDamageData](/shieldbow/api/SpellDamageData.md) |  |
+| client | [Client](/shieldbow/api/Client.md) | The client creating this instance. |
+| champ | [Champion](/shieldbow/api/Champion.md) | The champion this spell belongs to. |
+| data | [SpellData](/shieldbow/api/SpellData.md) | The raw spell data from data dragon. |
+| damage | [SpellDamageData](/shieldbow/api/SpellDamageData.md) | The raw spell data from community dragon. |
 ---
 
 ### Properties

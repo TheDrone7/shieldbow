@@ -27,8 +27,8 @@ Constructs a new instance of the `CurrentGamePerks` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
-| data | [CurrentGamePerksData](/shieldbow/api/CurrentGamePerksData.md) |  |
+| client | [Client](/shieldbow/api/Client.md) | The client that requested this data. |
+| data | [CurrentGamePerksData](/shieldbow/api/CurrentGamePerksData.md) | The raw current game participant perks data from the API. |
 ---
 
 ### Properties

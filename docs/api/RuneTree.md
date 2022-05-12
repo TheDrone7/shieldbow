@@ -27,8 +27,8 @@ Constructs a new instance of the `RuneTree` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
-| data | [RuneTreeData](/shieldbow/api/RuneTreeData.md) |  |
+| client | [Client](/shieldbow/api/Client.md) | The client that requested this data. |
+| data | [RuneTreeData](/shieldbow/api/RuneTreeData.md) | The raw rune tree data from data dragon. |
 ---
 
 ### Properties

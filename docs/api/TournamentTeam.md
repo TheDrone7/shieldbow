@@ -27,8 +27,8 @@ Constructs a new instance of the `TournamentTeam` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
-| data | [TournamentTeamData](/shieldbow/api/TournamentTeamData.md) |  |
+| client | [Client](/shieldbow/api/Client.md) | The client that requested this data. |
+| data | [TournamentTeamData](/shieldbow/api/TournamentTeamData.md) | The raw tournament team data from the API. |
 ---
 
 ### Properties

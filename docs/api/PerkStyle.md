@@ -36,8 +36,8 @@ Constructs a new instance of the `PerkStyle` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
-| data | {         description: string;         selections: {             perk: number;             var1: number;             var2: number;             var3: number;         }[];         style: number;     } |  |
+| client | [Client](/shieldbow/api/Client.md) | The client requesting this data. |
+| data | {         description: string;         selections: {             perk: number;             var1: number;             var2: number;             var3: number;         }[];         style: number;     } | The raw perk style data from the API. |
 ---
 
 ### Properties

@@ -4,6 +4,26 @@ import type { Champion } from './index';
 import type Collection from '@discordjs/collection';
 
 /**
+ * The item's gold value information.
+ */
+export interface ItemGoldValue {
+  /**
+   * The base value for this item.
+   * This does not include the value of this item's components.
+   */
+  base: number;
+  /**
+   * The total gold value for this item.
+   * This includes the value of this item's components.
+   */
+  total: number;
+  /**
+   * The selling price of this item.
+   */
+  sell: number;
+}
+
+/**
  * A representation of an in-game item.
  */
 export class Item {
@@ -63,22 +83,7 @@ export class Item {
   /**
    * The value of this item in terms of in-game gold.
    */
-  readonly goldValue: {
-    /**
-     * The base value for this item.
-     * This does not include the value of this item's components.
-     */
-    base: number;
-    /**
-     * The total gold value for this item.
-     * This includes the value of this item's components.
-     */
-    total: number;
-    /**
-     * The selling price of this item.
-     */
-    sell: number;
-  };
+  readonly goldValue: ItemGoldValue;
   /**
    * Some tags assigned to this item.
    */
@@ -101,6 +106,12 @@ export class Item {
    */
   readonly kind: 'Basic' | 'Epic' | 'Legendary' | 'Mythic';
 
+  /**
+   * Create a new item instance.
+   * @param client - The client requesting the data.
+   * @param id - The ID of the item.
+   * @param data - The raw item data from data dragon.
+   */
   constructor(client: Client, id: string, data: ItemData) {
     this.client = client;
     this.id = id;

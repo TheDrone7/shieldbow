@@ -66,6 +66,13 @@ export class ChampionSpell {
    */
   readonly maxAmmo: number;
 
+  /**
+   * Creates a new Champion Spell instance.
+   * @param client - The client creating this instance.
+   * @param champ - The champion this spell belongs to.
+   * @param data - The raw spell data from data dragon.
+   * @param damage - The raw spell data from community dragon.
+   */
   constructor(client: Client, champ: Champion, data: SpellData, damage: SpellDamageData) {
     this.champ = champ;
 

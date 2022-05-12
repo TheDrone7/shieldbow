@@ -27,8 +27,8 @@ Constructs a new instance of the `ChampionMastery` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
-| data | [ChampionMasteryData](/shieldbow/api/ChampionMasteryData.md) |  |
+| client | [Client](/shieldbow/api/Client.md) | The client creating this instance. |
+| data | [ChampionMasteryData](/shieldbow/api/ChampionMasteryData.md) | The raw champion mastery data from the API. |
 ---
 
 ### Properties

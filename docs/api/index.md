@@ -66,10 +66,16 @@
 | --------- | ----------- |
 | [AccountData](/shieldbow/api/AccountData.md) | The account data structure as returned by the API. |
 | [BaseManager](/shieldbow/api/BaseManager.md) | A base for any manager classes. |
+| [ChampionBan](/shieldbow/api/ChampionBan.md) | A banned champion in a match. |
 | [ChampionData](/shieldbow/api/ChampionData.md) | A representation of the champion data returned by Data Dragon. |
 | [ChampionMasteryData](/shieldbow/api/ChampionMasteryData.md) | The champion mastery data as returned by the API. |
+| [ChampionPassive](/shieldbow/api/ChampionPassive.md) | The data about a champion's passive. |
+| [ChampionPricing](/shieldbow/api/ChampionPricing.md) | The pricing data of a champion. |
+| [ChampionRating](/shieldbow/api/ChampionRating.md) | A representation of the champion rating data returned by Data Dragon. |
+| [ChampionSkinData](/shieldbow/api/ChampionSkinData.md) | A representation of the champion skin data returned by Data Dragon. |
 | [ClientConfig](/shieldbow/api/ClientConfig.md) | The basic configuration for the shieldbow Client. |
 | [CurrentGameBanData](/shieldbow/api/CurrentGameBanData.md) | The champion ban data as returned by the API. |
+| [CurrentGameChampionBan](/shieldbow/api/CurrentGameChampionBan.md) | Current game's team's champion ban information. |
 | [CurrentGameData](/shieldbow/api/CurrentGameData.md) | The Current game data as returned by the API. |
 | [CurrentGameParticipantData](/shieldbow/api/CurrentGameParticipantData.md) | The Current game participant data as returned by the API. |
 | [CurrentGamePerksData](/shieldbow/api/CurrentGamePerksData.md) | The current game participant perks data as returned by the API. |
@@ -78,21 +84,35 @@
 | [GameType](/shieldbow/api/GameType.md) | Basic data for types of games. |
 | [ImageData](/shieldbow/api/ImageData.md) | A representation of any image data returned by Data Dragon. |
 | [ItemData](/shieldbow/api/ItemData.md) | A representation of the item data returned by Data Dragon. |
+| [ItemGoldValue](/shieldbow/api/ItemGoldValue.md) | The item's gold value information. |
 | [LeagueEntryData](/shieldbow/api/LeagueEntryData.md) | The league entry data as returned by the API. |
 | [LeagueListData](/shieldbow/api/LeagueListData.md) | The league list data as returned by the API. |
 | [MatchByPlayerOptions](/shieldbow/api/MatchByPlayerOptions.md) | Additional options for filtering a specific summoner's matches. |
 | [MatchData](/shieldbow/api/MatchData.md) | The match data as returned by the API. |
 | [MerakiChampion](/shieldbow/api/MerakiChampion.md) | A representation of the champion data returned by meraki analytics. These are used in the LoL wiki. |
 | [MerakiSkin](/shieldbow/api/MerakiSkin.md) | A representation of a champion's skin data returned by meraki analytics. These are used in the LoL wiki. |
+| [ParticipantChampion](/shieldbow/api/ParticipantChampion.md) | The participant's champion details. |
+| [ParticipantDamageStats](/shieldbow/api/ParticipantDamageStats.md) | The participant's damage stats. |
 | [ParticipantData](/shieldbow/api/ParticipantData.md) | Match participant data as returned by the API |
+| [ParticipantHealingStats](/shieldbow/api/ParticipantHealingStats.md) | The participant's healing stats. |
+| [ParticipantInhibitorStats](/shieldbow/api/ParticipantInhibitorStats.md) | The participant's inhibitor interaction information. |
+| [ParticipantMultkills](/shieldbow/api/ParticipantMultkills.md) | The participant's multikill details. |
+| [ParticipantPosition](/shieldbow/api/ParticipantPosition.md) | The participant position details. |
+| [ParticipantTotalDamage](/shieldbow/api/ParticipantTotalDamage.md) | The participant's total damage stats. |
+| [ParticipantTurretStats](/shieldbow/api/ParticipantTurretStats.md) | The participant's turret interaction information. |
+| [ParticipantVision](/shieldbow/api/ParticipantVision.md) | The participant's vision details. |
 | [PerksData](/shieldbow/api/PerksData.md) | The perks data for a match participant as returned by the API. |
+| [Promos](/shieldbow/api/Promos.md) | The league entry promotion series information. |
 | [Queue](/shieldbow/api/Queue.md) | Basic data for types of queues (matches) in the game. |
 | [RuneData](/shieldbow/api/RuneData.md) | The runes data as stored in data dragon. |
 | [RuneTreeData](/shieldbow/api/RuneTreeData.md) | The rune trees data as stored in data dragon. |
 | [Season](/shieldbow/api/Season.md) | Basic data of seasons of the game. |
+| [SkinChroma](/shieldbow/api/SkinChroma.md) | A representation of a champion's skin's chroma from meraki analytics. |
+| [SkinPricing](/shieldbow/api/SkinPricing.md) | A representation of a champion's skin's pricing from meraki analytics. |
 | [SpellDamageData](/shieldbow/api/SpellDamageData.md) | A representation of the champion spell data returned by Community Dragon. |
 | [SpellData](/shieldbow/api/SpellData.md) | A representation of the champion spell data returned by Data Dragon. |
 | [StatPerk](/shieldbow/api/StatPerk.md) | The stat perks data for a match participant as returned by the API. |
+| [StatPerks](/shieldbow/api/StatPerks.md) | A representation of the stat perks selected by the summoner. |
 | [SummonerData](/shieldbow/api/SummonerData.md) | The summoner data as returned by the API. |
 | [SummonerSpellData](/shieldbow/api/SummonerSpellData.md) | The summoner spell data as stored in data dragon. |
 | [TeamBanData](/shieldbow/api/TeamBanData.md) | The champion ban data as returned by the API. |

@@ -10,6 +10,12 @@ export class ChampionStat {
    * The value at which this stat increases every level (the scaling).
    */
   readonly increment: number;
+
+  /**
+   * Creates a new champion stat instance.
+   * @param base - The base value of the stat.
+   * @param increment - The value at which this stat increases every level.
+   */
   constructor(base: number, increment: number) {
     this.base = base;
     this.increment = increment;

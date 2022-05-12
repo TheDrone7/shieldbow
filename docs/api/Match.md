@@ -27,8 +27,8 @@ Constructs a new instance of the `Match` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
-| data | [MatchData](/shieldbow/api/MatchData.md) |  |
+| client | [Client](/shieldbow/api/Client.md) | The client requesting the data. |
+| data | [MatchData](/shieldbow/api/MatchData.md) | The raw match data from the API. |
 ---
 
 ### Properties

@@ -4,6 +4,20 @@ import type { Champion } from './Champion';
 import { CurrentGameParticipant } from './CurrentGameParticipant';
 
 /**
+ * Current game's team's champion ban information.
+ */
+export interface CurrentGameChampionBan {
+  /**
+   * The banned champion.
+   */
+  champion: Champion;
+  /**
+   * The order of the ban.
+   */
+  turn: number;
+}
+
+/**
  * A representation of a team in a live game.
  */
 export class CurrentGameTeam {
@@ -18,14 +32,18 @@ export class CurrentGameTeam {
   /**
    * The champions banned by this team.
    */
-  readonly bans: {
-    champion: Champion;
-    turn: number;
-  }[];
+  readonly bans: CurrentGameChampionBan[];
   /**
    * The team's participants.
    */
   readonly participants: CurrentGameParticipant[];
+
+  /**
+   * Creates a new Current Game Team instance.
+   * @param client - The client requesting the data.
+   * @param bans - The raw bans data for this team from the API.
+   * @param participants - The raw participants data for this team from the API.
+   */
   constructor(client: Client, bans: CurrentGameBanData[], participants: CurrentGameParticipantData[]) {
     this.id = participants[0].teamId;
     this.side = this.id === 100 ? 'blue' : 'red';

@@ -27,8 +27,8 @@ Constructs a new instance of the `CurrentGameParticipant` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
-| data | [CurrentGameParticipantData](/shieldbow/api/CurrentGameParticipantData.md) |  |
+| client | [Client](/shieldbow/api/Client.md) | The client that requested this data. |
+| data | [CurrentGameParticipantData](/shieldbow/api/CurrentGameParticipantData.md) | The raw current game participant data from the API. |
 ---
 
 ### Properties

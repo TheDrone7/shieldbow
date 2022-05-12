@@ -35,14 +35,31 @@ The client this manager is being used by.
 
 ---
 
-#### fetch
+### Methods
+
+#### .fetch (id, options)
 
 The method to actually fetch the data.
 
 
 
 
-**Type**: (id: any, options: {         force: boolean;     }) =\> Promise\<T\>
+**Signature:**
+
+```ts
+fetch(id: any, options: {
+        force: boolean;
+    }): Promise<T>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| id | any | The ID of the data entity being fetched. |
+| options | {         force: boolean;     } | Basic fetch options, setting the force option to `true` must ignore the cache. |
+
+**Return type**: Promise\<T\>
 
 ---
 

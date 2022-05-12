@@ -1,4 +1,14 @@
-import type { ChampionData, SpellDamageData, Stats, MerakiChampion, MerakiSkin, SpellData } from '../types';
+import type {
+  ChampionData,
+  SpellDamageData,
+  Stats,
+  MerakiChampion,
+  MerakiSkin,
+  SpellData,
+  ChampionRating,
+  ChampionPassive,
+  ChampionPricing
+} from '../types';
 import type { Client } from '../client';
 import Collection from '@discordjs/collection';
 import { ChampionStat, ChampionSkin, ChampionSpell } from './index';
@@ -87,41 +97,15 @@ export class Champion {
   /**
    * The champion's magic, defense, attack, difficulty ratings.
    */
-  readonly ratings: { magic: number; difficulty: number; defense: number; attack: number };
+  readonly ratings: ChampionRating;
   /**
    * The champion's passive ability summarized.
    */
-  readonly passive: {
-    /**
-     * The name of the champion's passive ability.
-     */
-    name: string;
-    /**
-     * A link to the icon used in game to represent this champion's passive ability.
-     */
-    icon: string;
-    /**
-     * A short textual description of this champion's passive ability.
-     */
-    description: string;
-  };
+  readonly passive: ChampionPassive;
   /**
    * The in-game pricing of the champion.
    */
-  readonly pricing: {
-    /**
-     * The amount of blue essence required to buy this champion.
-     */
-    be: number;
-    /**
-     * The amount of RP required to buy this champion.
-     */
-    rp: number;
-    /**
-     * If more than 0, this champion is available for a less RP, the amount being the value of this field.
-     */
-    sale: number;
-  };
+  readonly pricing: ChampionPricing;
   /**
    * The type of this champion's basic attacks - RANGED or MELEE.
    */
@@ -135,6 +119,13 @@ export class Champion {
    */
   readonly releasePatch: string;
 
+  /**
+   * Creates a new champion instance.
+   * @param client - The client creating this instance.
+   * @param data - The raw champion data from data dragon.
+   * @param damage - The raw champion data from community dragon
+   * @param meraki - The raw champion data from meraki analytics
+   */
   constructor(client: Client, data: ChampionData, damage: SpellDamageData, meraki: MerakiChampion) {
     this.name = data.name;
     this.id = data.id;
@@ -184,12 +175,7 @@ export class Champion {
       this.spells.set(key, new ChampionSpell(client, this, s, damage));
     });
 
-    this.ratings = {
-      attack: data.info.attack,
-      defense: data.info.defense,
-      magic: data.info.magic,
-      difficulty: data.info.difficulty
-    };
+    this.ratings = data.info;
 
     this.passive = {
       name: data.passive.name,

@@ -5,6 +5,24 @@ import type { RuneTree } from './RuneTree';
 import type { Rune } from './Rune';
 
 /**
+ * A representation of the stat perks selected by the summoner.
+ */
+export interface StatPerks {
+  /**
+   * The flex stat rune.
+   */
+  flex: StatPerk;
+  /**
+   * The offense stat rune.
+   */
+  offense: StatPerk;
+  /**
+   * The defense stat rune.
+   */
+  defense: StatPerk;
+}
+
+/**
  * A representation of a perk style - a tree and 4 (if primary) or 2 (if secondary) runes that were selected.
  */
 export class PerkStyle {
@@ -16,6 +34,12 @@ export class PerkStyle {
    * The selected runes.
    */
   readonly selected: Rune[];
+
+  /**
+   * Creates a new perk style instance.
+   * @param client - The client requesting this data.
+   * @param data - The raw perk style data from the API.
+   */
   constructor(
     client: Client,
     data: {
@@ -36,20 +60,7 @@ export class Perks {
   /**
    * The stat runes that were picked by the player.
    */
-  readonly stats: {
-    /**
-     * The flex stat rune.
-     */
-    flex: StatPerk;
-    /**
-     * The offense stat rune.
-     */
-    offense: StatPerk;
-    /**
-     * The defense stat rune.
-     */
-    defense: StatPerk;
-  };
+  readonly stats: StatPerks;
   /**
    * The primary perk style (keystone + primary runes).
    */
@@ -58,6 +69,12 @@ export class Perks {
    * The secondary perk style (secondary runes).
    */
   readonly secondaryStyle: PerkStyle;
+
+  /**
+   * Creates a new perks instance.
+   * @param client - The client requesting this data.
+   * @param data - The raw perks data from the API.
+   */
   constructor(client: Client, data: PerksData) {
     this.stats = {
       flex: statPerks[data.statPerks.flex],

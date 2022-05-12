@@ -27,8 +27,8 @@ Constructs a new instance of the `Summoner` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
-| summoner | [SummonerData](/shieldbow/api/SummonerData.md) |  |
+| client | [Client](/shieldbow/api/Client.md) | The client that requested this data. |
+| summoner | [SummonerData](/shieldbow/api/SummonerData.md) | The raw summoner data from the API. |
 ---
 
 ### Properties

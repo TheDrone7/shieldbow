@@ -30,6 +30,11 @@ export class LeagueList {
    */
   readonly entries: Collection<string, LeagueEntry>;
 
+  /**
+   * Creates a new League List instance.
+   * @param client - The client requesting the data.
+   * @param data - The raw league list data from the API.
+   */
   constructor(client: Client, data: LeagueListData) {
     this.leagueId = data.leagueId;
     this.tier = data.tier;

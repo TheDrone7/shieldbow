@@ -75,6 +75,12 @@ export class Match {
    * They are mapped by their map sides (`blue` and `red`).
    */
   readonly teams: Collection<'blue' | 'red', Team>;
+
+  /**
+   * Creates a new match instance.
+   * @param client - The client requesting the data.
+   * @param data - The raw match data from the API.
+   */
   constructor(client: Client, data: MatchData) {
     this.id = data.metadata.matchId;
     this.version = data.metadata.dataVersion;

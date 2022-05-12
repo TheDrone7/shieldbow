@@ -45,6 +45,11 @@ export class Summoner {
    */
   readonly championMastery: ChampionMasteryManager;
 
+  /**
+   * Creates a new summoner instance.
+   * @param client - The client that requested this data.
+   * @param summoner - The raw summoner data from the API.
+   */
   constructor(client: Client, summoner: SummonerData) {
     this.client = client;
     this.id = summoner.id;

@@ -27,8 +27,8 @@ Constructs a new instance of the `LeagueList` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
-| data | [LeagueListData](/shieldbow/api/LeagueListData.md) |  |
+| client | [Client](/shieldbow/api/Client.md) | The client requesting the data. |
+| data | [LeagueListData](/shieldbow/api/LeagueListData.md) | The raw league list data from the API. |
 ---
 
 ### Properties

@@ -27,8 +27,8 @@ Constructs a new instance of the `Rune` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
-| data | [RuneData](/shieldbow/api/RuneData.md) |  |
+| client | [Client](/shieldbow/api/Client.md) | The client that requested this data. |
+| data | [RuneData](/shieldbow/api/RuneData.md) | The raw rune data from data dragon. |
 ---
 
 ### Properties

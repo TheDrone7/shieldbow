@@ -23,6 +23,12 @@ export class TournamentPlayer {
    */
   readonly position: 'UNSELECTED' | 'FILL' | 'TOP' | 'JUNGLE' | 'MIDDLE' | 'BOTTOM' | 'UTILITY';
 
+  /**
+   * Creates a new tournament player instance.
+   * @param client - The client that requested this data.
+   * @param teamId - The ID of the team this player is on.
+   * @param data - The raw player data from the API.
+   */
   constructor(client: Client, teamId: string, data: TournamentPlayerData) {
     this.client = client;
     this.teamId = teamId;

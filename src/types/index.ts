@@ -75,7 +75,9 @@ export type { TournamentData, TournamentScheduleData } from './Tournament';
 export type { TournamentPlayerData, TournamentPlayerFullData } from './TournamentPlayer';
 export type { TournamentTeamData } from './TournamentTeam';
 
-export type { ChampionData, SpellData, SpellDamageData, MerakiSkin, MerakiChampion } from './Champion';
+export type { ChampionData, MerakiChampion, ChampionRating, ChampionPassive, ChampionPricing } from './Champion';
+export type { ChampionSkinData, MerakiSkin, SkinPricing, SkinChroma } from './ChampionSkin';
+export type { SpellData, SpellDamageData } from './ChampionSpell';
 export type { ImageData } from './Image';
 export type { BaseManager } from './BaseManager';
 export type { ClientConfig } from './ClientConfig';

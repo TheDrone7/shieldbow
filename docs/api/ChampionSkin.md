@@ -18,12 +18,7 @@ export declare class ChampionSkin
 ### Constructor
 
 ```ts
-new ChampionSkin (champ: Champion, data: {
-        id: string;
-        name: string;
-        num: number;
-        chromas: boolean;
-    }, meraki: MerakiSkin)
+new ChampionSkin (champ: Champion, data: ChampionSkinData, meraki: MerakiSkin)
 ```
 
 Constructs a new instance of the `ChampionSkin` class.
@@ -32,9 +27,9 @@ Constructs a new instance of the `ChampionSkin` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| champ | [Champion](/shieldbow/api/Champion.md) |  |
-| data | {         id: string;         name: string;         num: number;         chromas: boolean;     } |  |
-| meraki | [MerakiSkin](/shieldbow/api/MerakiSkin.md) |  |
+| champ | [Champion](/shieldbow/api/Champion.md) | The champion this skin belongs to. |
+| data | [ChampionSkinData](/shieldbow/api/ChampionSkinData.md) | The raw skin data from data dragon. |
+| meraki | [MerakiSkin](/shieldbow/api/MerakiSkin.md) | The raw skin data from meraki. |
 ---
 
 ### Properties
@@ -71,11 +66,11 @@ The champion this skin belongs to.
 
 #### chromas
 
-Whether the skin has chromas or not.
+The skin's chromas.
 
 
 
-**Type**: {         name: string;         id: number;         image: string;     }[]
+**Type**: [SkinChroma](/shieldbow/api/SkinChroma.md)[]
 
 ---
 
@@ -145,7 +140,7 @@ The in-game price of the skin.
 
 
 
-**Type**: {         rp: number;         sale: number;     }
+**Type**: [SkinPricing](/shieldbow/api/SkinPricing.md)
 
 ---
 

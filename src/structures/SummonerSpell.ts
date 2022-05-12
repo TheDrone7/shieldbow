@@ -59,6 +59,11 @@ export class SummonerSpell {
    */
   readonly image: string;
 
+  /**
+   * Creates a new Summoner Spell instance.
+   * @param client - The client that requested this data.
+   * @param data - The raw summoner spell data from the API.
+   */
   constructor(client: Client, data: SummonerSpellData) {
     this.id = data.id;
     this.key = parseInt(data.key);

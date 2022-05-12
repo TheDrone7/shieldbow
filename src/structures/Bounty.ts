@@ -31,6 +31,11 @@ export class Bounty {
    * This is only available for bounty levels \> 2.
    */
   readonly announcement?: string;
+
+  /**
+   * Creates a new bounty instance.
+   * @param level - the bounty level of the participant.
+   */
   constructor(level: number) {
     this.level = level;
     this.killBounty = 300;

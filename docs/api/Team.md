@@ -40,7 +40,7 @@ The champions banned by the team.
 
 
 
-**Type**: {         order: number;         champion: Champion;     }[]
+**Type**: [ChampionBan](/shieldbow/api/ChampionBan.md)[]
 
 ---
 

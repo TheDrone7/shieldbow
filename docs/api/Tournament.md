@@ -27,7 +27,7 @@ Constructs a new instance of the `Tournament` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [TournamentData](/shieldbow/api/TournamentData.md) |  |
+| data | [TournamentData](/shieldbow/api/TournamentData.md) | The raw tournament data from the API. |
 ---
 
 ### Properties

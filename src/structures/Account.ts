@@ -18,6 +18,10 @@ export class Account {
    */
   readonly userTag: string;
 
+  /**
+   * Creates a new Account object.
+   * @param data - The raw account data from the API.
+   */
   constructor(data: AccountData) {
     this.playerId = data.puuid;
     this.username = data.gameName;

@@ -27,10 +27,10 @@ Constructs a new instance of the `Champion` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
-| data | [ChampionData](/shieldbow/api/ChampionData.md) |  |
-| damage | [SpellDamageData](/shieldbow/api/SpellDamageData.md) |  |
-| meraki | [MerakiChampion](/shieldbow/api/MerakiChampion.md) |  |
+| client | [Client](/shieldbow/api/Client.md) | The client creating this instance. |
+| data | [ChampionData](/shieldbow/api/ChampionData.md) | The raw champion data from data dragon. |
+| damage | [SpellDamageData](/shieldbow/api/SpellDamageData.md) | The raw champion data from community dragon |
+| meraki | [MerakiChampion](/shieldbow/api/MerakiChampion.md) | The raw champion data from meraki analytics |
 ---
 
 ### Properties
@@ -191,7 +191,7 @@ The champion's passive ability summarized.
 
 
 
-**Type**: {         name: string;         icon: string;         description: string;     }
+**Type**: [ChampionPassive](/shieldbow/api/ChampionPassive.md)
 
 ---
 
@@ -201,7 +201,7 @@ The in-game pricing of the champion.
 
 
 
-**Type**: {         be: number;         rp: number;         sale: number;     }
+**Type**: [ChampionPricing](/shieldbow/api/ChampionPricing.md)
 
 ---
 
@@ -211,7 +211,7 @@ The champion's magic, defense, attack, difficulty ratings.
 
 
 
-**Type**: {         magic: number;         difficulty: number;         defense: number;         attack: number;     }
+**Type**: [ChampionRating](/shieldbow/api/ChampionRating.md)
 
 ---
 

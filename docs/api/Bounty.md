@@ -27,7 +27,7 @@ Constructs a new instance of the `Bounty` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| level | number |  |
+| level | number | the bounty level of the participant. |
 ---
 
 ### Properties

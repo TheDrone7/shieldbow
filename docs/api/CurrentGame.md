@@ -27,8 +27,8 @@ Constructs a new instance of the `CurrentGame` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
-| data | [CurrentGameData](/shieldbow/api/CurrentGameData.md) |  |
+| client | [Client](/shieldbow/api/Client.md) | The client that requested this data. |
+| data | [CurrentGameData](/shieldbow/api/CurrentGameData.md) | The raw current game data from the API. |
 ---
 
 ### Properties

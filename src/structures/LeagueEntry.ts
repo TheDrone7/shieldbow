@@ -3,6 +3,34 @@ import type { Client } from '../client';
 import type { Summoner } from './Summoner';
 
 /**
+ * The league entry promotion series information.
+ */
+export interface Promos {
+  /**
+   * The number of wins the summoner needs to advance to the next tier.
+   */
+  readonly target: number;
+  /**
+   * The number of times the summoner won (during this promotion series).
+   */
+  readonly wins: number;
+  /**
+   * The number of times the summoner lost (during this promotion series).
+   */
+  readonly losses: number;
+  /**
+   * The summoner's promotion progression - eg: `LLWNN`.
+   *
+   * `L` means a loss.
+   *
+   * `W` means a win.
+   *
+   * `N` means no data (the summoner needs to play more games).
+   */
+  readonly progress: string;
+}
+
+/**
  * A representation of a summoner's competitive details.
  */
 export class LeagueEntry {
@@ -62,28 +90,13 @@ export class LeagueEntry {
   /**
    * This only exists if the summoner is in a promotion series.
    */
-  readonly promos?: {
-    /**
-     * The number of wins the summoner needs to advance to the next tier.
-     */
-    readonly target: number;
-    /**
-     * The number of times the summoner won (during this promotion series).
-     */
-    readonly wins: number;
-    /**
-     * The number of times the summoner lost (during this promotion series).
-     */
-    readonly losses: number;
-    /**
-     * The summoner's promotion progression - eg: `LLWNN`.
-     * `L` means a loss.
-     * `W` means a win.
-     * `N` means no data (the summoner needs to play more games).
-     */
-    readonly progress: string;
-  };
+  readonly promos?: Promos;
 
+  /**
+   * Create a new League Entry instance.
+   * @param client - The client requesting the data.
+   * @param data - The raw league entry data from the API.
+   */
   constructor(client: Client, data: LeagueEntryData) {
     this.client = client;
     this.league = data.leagueId;

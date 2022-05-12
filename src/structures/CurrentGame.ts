@@ -51,6 +51,11 @@ export class CurrentGame {
    */
   readonly observerKey: string;
 
+  /**
+   * Create a new Current Game instance.
+   * @param client - The client that requested this data.
+   * @param data - The raw current game data from the API.
+   */
   constructor(client: Client, data: CurrentGameData) {
     this.id = data.gameId;
     this.type = client.gameTypes.find((t) => t.gametype === data.gameType)!;
