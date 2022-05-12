@@ -15,6 +15,8 @@ export declare class RuneTreeManager implements BaseManager<RuneTree>
 
 Implements: [BaseManager](/shieldbow/api/BaseManager.html)<[RuneTree](/shieldbow/api/RuneTree.html)>
 
+**References:** [BaseManager](/shieldbow/api/BaseManager.html), [RuneTree](/shieldbow/api/RuneTree.html)
+
 ---
 
 ### Constructor

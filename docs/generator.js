@@ -87,6 +87,12 @@ var _loop_1 = function (cls) {
         });
         doc += "Implements: ".concat(implementTypes, "\n\n");
     }
+    var references = cls.excerptTokens.filter(function (token) { return token.kind === 'Reference'; });
+    if (references.length) {
+        doc += '**References:** ';
+        doc += references.map(function (r) { return parseTypeString(r.text); }).join(', ');
+        doc += '\n\n';
+    }
     doc += '---\n\n';
     var ctr = cls.members.filter(function (member) { return member.kind === 'Constructor'; })[0];
     if (ctr) {
@@ -193,15 +199,70 @@ for (var _a = 0, functions_1 = functions; _a < functions_1.length; _a++) {
 index += '---\n\n## Interfaces\n\n';
 index += '| Interface | Description |\n';
 index += '| --------- | ----------- |\n';
-for (var _b = 0, interfaces_1 = interfaces; _b < interfaces_1.length; _b++) {
-    var ifc = interfaces_1[_b];
+var _loop_3 = function (ifc) {
     var summary = ifc.tsdocComment
         ? parseSummary(ifc.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd()
         : '';
     index += "| [".concat(ifc.displayName, "](/shieldbow/api/").concat(ifc.displayName, ".html) | ").concat(summary, " |\n");
     // Create the interface document.
-    var doc = "# ".concat(ifc.displayName, "\n\n");
+    var doc = "---\ntitle: ".concat(ifc.displayName, "\ndescription: ").concat(summary, "\n---\n\n");
+    doc += "## ".concat(ifc.displayName, " interface\n\n");
+    doc += "".concat(summary, "\n\n**Signature:**\n\n");
+    doc += "```ts\n".concat(ifc.excerpt.text, "\n```\n\n");
+    var references = ifc.excerptTokens.filter(function (token) { return token.kind === 'Reference'; });
+    if (references.length) {
+        doc += '**References:** ';
+        doc += references.map(function (r) { return parseTypeString(r.text); }).join(', ');
+        doc += '\n\n';
+    }
+    var properties = ifc.members.filter(function (member) { return member.kind === 'PropertySignature'; });
+    var methods = ifc.members.filter(function (member) { return member.kind === 'MethodSignature'; });
+    if (properties.length) {
+        doc += "### Properties\n\n";
+        for (var _g = 0, properties_2 = properties; _g < properties_2.length; _g++) {
+            var prop = properties_2[_g];
+            var summary_3 = prop.tsdocComment
+                ? parseSummary(prop.tsdocComment.summarySection)
+                : '';
+            var typeValue = parseTypeString(prop.propertyTypeExcerpt.text);
+            doc += '#### ' + prop.name + '\n\n';
+            doc += "".concat(summary_3, "\n\n");
+            doc += "**Type**: ".concat(typeValue, "\n\n");
+            doc += '---\n\n';
+        }
+    }
+    if (methods.length) {
+        doc += "### Methods\n\n";
+        for (var _h = 0, methods_2 = methods; _h < methods_2.length; _h++) {
+            var method = methods_2[_h];
+            var summary_4 = method.tsdocComment
+                ? parseSummary(method.tsdocComment.summarySection)
+                : '';
+            var typeValue = parseTypeString(method.returnTypeExcerpt.text);
+            doc += "#### .".concat(method.displayName, " (").concat(method.parameters.map(function (p) { return p.name; }).join(', '), ")\n\n");
+            doc += "".concat(summary_4, "\n\n");
+            doc += "**Signature:**\n\n";
+            doc += "```ts\n".concat(method.excerpt.text, "\n```\n\n");
+            if (method.parameters.length) {
+                doc += "**Parameters:**\n\n";
+                doc += "| Parameter | Type | Description |\n";
+                doc += "| --------- | ---- | ----------- |\n";
+                method.parameters.forEach(function (p) {
+                    var summary = p.tsdocParamBlock
+                        ? parseSummary(p.tsdocParamBlock.content).trim()
+                        : '';
+                    doc += "| ".concat(p.name, " | ").concat(parseTypeString(p.parameterTypeExcerpt.text), " | ").concat(summary, " |\n");
+                });
+            }
+            doc += "\n**Return type**: ".concat(typeValue, "\n\n");
+            doc += '---\n\n';
+        }
+    }
     (0, fs_1.writeFileSync)((0, path_1.join)(pathToDocs, "".concat(ifc.displayName, ".md")), doc);
+};
+for (var _b = 0, interfaces_1 = interfaces; _b < interfaces_1.length; _b++) {
+    var ifc = interfaces_1[_b];
+    _loop_3(ifc);
 }
 index += '---\n\n## Variables\n\n';
 index += '| Variable | Description |\n';
@@ -213,7 +274,16 @@ for (var _c = 0, variables_1 = variables; _c < variables_1.length; _c++) {
         : '';
     index += "| [".concat(v.displayName, "](/shieldbow/api/").concat(v.displayName, ".html) | ").concat(summary, " |\n");
     // Create the variable document.
-    var doc = "# ".concat(v.displayName, "\n\n");
+    var doc = "---\ntitle: ".concat(v.displayName, "\ndescription: ").concat(summary, "\n---\n\n");
+    doc += "## ".concat(v.displayName, " variable\n\n");
+    doc += "".concat(summary, "\n\n**Signature:**\n\n");
+    doc += "```ts\n".concat(v.excerpt.text, "\n```\n\n");
+    var references = v.excerptTokens.filter(function (token) { return token.kind === 'Reference'; });
+    if (references.length) {
+        doc += '**References:** ';
+        doc += references.map(function (r) { return parseTypeString(r.text); }).join(', ');
+        doc += '\n\n';
+    }
     (0, fs_1.writeFileSync)((0, path_1.join)(pathToDocs, "".concat(v.displayName, ".md")), doc);
 }
 index += '---\n\n## Type Aliases\n\n';
@@ -226,7 +296,16 @@ for (var _d = 0, types_1 = types; _d < types_1.length; _d++) {
         : '';
     index += "| [".concat(t.displayName, "](/shieldbow/api/").concat(t.displayName, ".html) | ").concat(summary, " |\n");
     // Create the type alias document.
-    var doc = "# ".concat(t.displayName, "\n\n");
+    var doc = "---\ntitle: ".concat(t.displayName, "\ndescription: ").concat(summary, "\n---\n\n");
+    doc += "## ".concat(t.displayName, " type\n\n");
+    doc += "".concat(summary, "\n\n**Signature:**\n\n");
+    doc += "```ts\n".concat(t.excerpt.text, "\n```\n\n");
+    var references = t.excerptTokens.filter(function (token) { return token.kind === 'Reference'; });
+    if (references.length) {
+        doc += '**References:** ';
+        doc += references.map(function (r) { return parseTypeString(r.text); }).join(', ');
+        doc += '\n\n';
+    }
     (0, fs_1.writeFileSync)((0, path_1.join)(pathToDocs, "".concat(t.displayName, ".md")), doc);
 }
 (0, fs_1.writeFileSync)((0, path_1.join)(pathToDocs, 'index.md'), index);

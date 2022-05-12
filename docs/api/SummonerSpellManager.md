@@ -15,6 +15,8 @@ export declare class SummonerSpellManager implements BaseManager<SummonerSpell>
 
 Implements: [BaseManager](/shieldbow/api/BaseManager.html)<[SummonerSpell](/shieldbow/api/SummonerSpell.html)>
 
+**References:** [BaseManager](/shieldbow/api/BaseManager.html), [SummonerSpell](/shieldbow/api/SummonerSpell.html)
+
 ---
 
 ### Constructor

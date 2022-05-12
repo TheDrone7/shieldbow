@@ -15,6 +15,8 @@ export declare class ItemManager implements BaseManager<Item>
 
 Implements: [BaseManager](/shieldbow/api/BaseManager.html)<[Item](/shieldbow/api/Item.html)>
 
+**References:** [BaseManager](/shieldbow/api/BaseManager.html), [Item](/shieldbow/api/Item.html)
+
 ---
 
 ### Constructor

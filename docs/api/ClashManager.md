@@ -15,6 +15,8 @@ export declare class ClashManager implements BaseManager<Tournament>
 
 Implements: [BaseManager](/shieldbow/api/BaseManager.html)<[Tournament](/shieldbow/api/Tournament.html)>
 
+**References:** [BaseManager](/shieldbow/api/BaseManager.html), [Tournament](/shieldbow/api/Tournament.html)
+
 ---
 
 ### Constructor

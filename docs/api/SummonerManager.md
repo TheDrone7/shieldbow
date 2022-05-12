@@ -15,6 +15,8 @@ export declare class SummonerManager implements BaseManager<Summoner>
 
 Implements: [BaseManager](/shieldbow/api/BaseManager.html)<[Summoner](/shieldbow/api/Summoner.html)>
 
+**References:** [BaseManager](/shieldbow/api/BaseManager.html), [Summoner](/shieldbow/api/Summoner.html)
+
 ---
 
 ### Constructor

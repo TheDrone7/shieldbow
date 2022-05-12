@@ -54,7 +54,6 @@ console.info('Deleting the existing docs...');
 const files = readdirSync(pathToDocs);
 files.forEach((file) => unlinkSync(join(pathToDocs, file)));
 
-console.info('Processing the index...');
 const apiModel = new ApiModel();
 apiModel.loadPackage(pathToApi);
 const api = apiModel.packages[0].members[0] as ApiEntryPoint;
@@ -66,7 +65,7 @@ const variables = <ApiFunction[]>api.members.filter((member) => member.kind === 
 const types = <ApiFunction[]>api.members.filter((member) => member.kind === 'TypeAlias');
 let index = `# API Reference\n\n`;
 
-console.info('Parsing the classes.');
+console.info('Processing the classes...');
 // The classes.
 index += `## Classes\n\n`;
 index += '| Class | Description |\n';
@@ -92,6 +91,12 @@ for (const cls of classes) {
         return t.split('<').map((s) => s.split(', ').map((p) => linkTo(p)).join(', ')).join('<') + '>';
       });
     doc += `Implements: ${implementTypes}\n\n`;
+  }
+  const references = cls.excerptTokens.filter((token) => token.kind === 'Reference');
+  if (references.length) {
+    doc += '**References:** ';
+    doc += references.map((r) => parseTypeString(r.text)).join(', ');
+    doc += '\n\n';
   }
   doc += '---\n\n';
   const ctr = <ApiConstructor>cls.members.filter((member) => member.kind === 'Constructor')[0];
@@ -155,6 +160,9 @@ for (const cls of classes) {
   }
   writeFileSync(join(pathToDocs, `${cls.displayName}.md`), doc);
 }
+
+console.info('Processing the functions...');
+
 index += '---\n\n## Functions\n\n';
 index += '| Function | Description |\n';
 index += '| -------- | ----------- |\n';
@@ -190,6 +198,8 @@ for (const func of functions) {
   writeFileSync(join(pathToDocs, `${func.displayName}.md`), doc);
 }
 
+console.info('Processing the interfaces...');
+
 index += '---\n\n## Interfaces\n\n';
 index += '| Interface | Description |\n';
 index += '| --------- | ----------- |\n';
@@ -201,9 +211,61 @@ for (const ifc of interfaces) {
   index += `| [${ifc.displayName}](/shieldbow/api/${ifc.displayName}.html) | ${summary} |\n`;
 
   // Create the interface document.
-  const doc = `# ${ifc.displayName}\n\n`;
+  let doc = `---\ntitle: ${ifc.displayName}\ndescription: ${summary}\n---\n\n`;
+  doc += `## ${ifc.displayName} interface\n\n`;
+  doc += `${summary}\n\n**Signature:**\n\n`;
+  doc += `\`\`\`ts\n${ifc.excerpt.text}\n\`\`\`\n\n`;
+  const references = ifc.excerptTokens.filter((token) => token.kind === 'Reference');
+  if (references.length) {
+    doc += '**References:** ';
+    doc += references.map((r) => parseTypeString(r.text)).join(', ');
+    doc += '\n\n';
+  }
+  const properties = <ApiProperty[]>ifc.members.filter((member) => member.kind === 'PropertySignature');
+  const methods = <ApiMethod[]>ifc.members.filter((member) => member.kind === 'MethodSignature');
+  if (properties.length) {
+    doc += `### Properties\n\n`;
+    for (const prop of properties) {
+      const summary = prop.tsdocComment
+        ? parseSummary(prop.tsdocComment.summarySection)
+        : '';
+      let typeValue = parseTypeString(prop.propertyTypeExcerpt.text);
+      doc += '#### ' + prop.name + '\n\n';
+      doc += `${summary}\n\n`;
+      doc += `**Type**: ${typeValue}\n\n`;
+      doc += '---\n\n';
+    }
+  }
+  if (methods.length) {
+    doc += `### Methods\n\n`;
+    for (const method of methods) {
+      const summary = method.tsdocComment
+        ? parseSummary(method.tsdocComment.summarySection)
+        : '';
+      const typeValue = parseTypeString(method.returnTypeExcerpt.text);
+      doc += `#### .${method.displayName} (${method.parameters.map((p) => p.name).join(', ')})\n\n`;
+      doc += `${summary}\n\n`;
+      doc += `**Signature:**\n\n`;
+      doc += `\`\`\`ts\n${method.excerpt.text}\n\`\`\`\n\n`;
+      if (method.parameters.length) {
+        doc += `**Parameters:**\n\n`;
+        doc += `| Parameter | Type | Description |\n`;
+        doc += `| --------- | ---- | ----------- |\n`;
+        method.parameters.forEach((p) => {
+          const summary = p.tsdocParamBlock
+            ? parseSummary(p.tsdocParamBlock.content).trim()
+            : '';
+          doc += `| ${p.name} | ${parseTypeString(p.parameterTypeExcerpt.text)} | ${summary} |\n`;
+        });
+      }
+      doc += `\n**Return type**: ${typeValue}\n\n`;
+      doc += '---\n\n';
+    }
+  }
   writeFileSync(join(pathToDocs, `${ifc.displayName}.md`), doc);
 }
+
+console.info('Processing the variables...');
 
 index += '---\n\n## Variables\n\n';
 index += '| Variable | Description |\n';
@@ -216,9 +278,20 @@ for (const v of variables) {
   index += `| [${v.displayName}](/shieldbow/api/${v.displayName}.html) | ${summary} |\n`;
 
   // Create the variable document.
-  const doc = `# ${v.displayName}\n\n`;
+  let doc = `---\ntitle: ${v.displayName}\ndescription: ${summary}\n---\n\n`;
+  doc += `## ${v.displayName} variable\n\n`;
+  doc += `${summary}\n\n**Signature:**\n\n`;
+  doc += `\`\`\`ts\n${v.excerpt.text}\n\`\`\`\n\n`;
+  const references = v.excerptTokens.filter((token) => token.kind === 'Reference');
+  if (references.length) {
+    doc += '**References:** ';
+    doc += references.map((r) => parseTypeString(r.text)).join(', ');
+    doc += '\n\n';
+  }
   writeFileSync(join(pathToDocs, `${v.displayName}.md`), doc);
 }
+
+console.info('Processing the types...');
 
 index += '---\n\n## Type Aliases\n\n';
 index += '| Type Alias | Description |\n';
@@ -231,8 +304,18 @@ for (const t of types) {
   index += `| [${t.displayName}](/shieldbow/api/${t.displayName}.html) | ${summary} |\n`;
 
   // Create the type alias document.
-  const doc = `# ${t.displayName}\n\n`;
+  let doc = `---\ntitle: ${t.displayName}\ndescription: ${summary}\n---\n\n`;
+  doc += `## ${t.displayName} type\n\n`;
+  doc += `${summary}\n\n**Signature:**\n\n`;
+  doc += `\`\`\`ts\n${t.excerpt.text}\n\`\`\`\n\n`;
+  const references = t.excerptTokens.filter((token) => token.kind === 'Reference');
+  if (references.length) {
+    doc += '**References:** ';
+    doc += references.map((r) => parseTypeString(r.text)).join(', ');
+    doc += '\n\n';
+  }
   writeFileSync(join(pathToDocs, `${t.displayName}.md`), doc);
 }
 
+console.info('Writing the index...');
 writeFileSync(join(pathToDocs, 'index.md'), index);

@@ -15,6 +15,8 @@ export declare class ApiError extends Error
 
 **Extends: Error**
 
+**References:** Error
+
 ---
 
 ### Constructor

@@ -15,6 +15,8 @@ export declare class StorageManager implements BaseManager<any>
 
 Implements: [BaseManager](/shieldbow/api/BaseManager.html)>
 
+**References:** [BaseManager](/shieldbow/api/BaseManager.html)
+
 ---
 
 ### Constructor

@@ -15,6 +15,8 @@ export declare class LeagueManager implements BaseManager<Collection<QueueType, 
 
 Implements: [BaseManager](/shieldbow/api/BaseManager.html)<[Collection](/shieldbow/api/Collection.html)<[QueueType](/shieldbow/api/QueueType.html), [LeagueEntry](/shieldbow/api/LeagueEntry.html)>
 
+**References:** [BaseManager](/shieldbow/api/BaseManager.html), Collection, [QueueType](/shieldbow/api/QueueType.html), [LeagueEntry](/shieldbow/api/LeagueEntry.html)
+
 ---
 
 ### Constructor

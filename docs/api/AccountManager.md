@@ -15,6 +15,8 @@ export declare class AccountManager implements BaseManager<Account>
 
 Implements: [BaseManager](/shieldbow/api/BaseManager.html)<[Account](/shieldbow/api/Account.html)>
 
+**References:** [BaseManager](/shieldbow/api/BaseManager.html), [Account](/shieldbow/api/Account.html)
+
 ---
 
 ### Constructor

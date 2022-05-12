@@ -15,6 +15,8 @@ export declare class ChampionManager implements BaseManager<Champion>
 
 Implements: [BaseManager](/shieldbow/api/BaseManager.html)<[Champion](/shieldbow/api/Champion.html)>
 
+**References:** [BaseManager](/shieldbow/api/BaseManager.html), [Champion](/shieldbow/api/Champion.html)
+
 ---
 
 ### Constructor

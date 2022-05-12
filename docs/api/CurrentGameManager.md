@@ -15,6 +15,8 @@ export declare class CurrentGameManager implements BaseManager<CurrentGame>
 
 Implements: [BaseManager](/shieldbow/api/BaseManager.html)<[CurrentGame](/shieldbow/api/CurrentGame.html)>
 
+**References:** [BaseManager](/shieldbow/api/BaseManager.html), [CurrentGame](/shieldbow/api/CurrentGame.html)
+
 ---
 
 ### Constructor

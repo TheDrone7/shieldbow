@@ -15,6 +15,8 @@ export declare class MatchManager implements BaseManager<Match>
 
 Implements: [BaseManager](/shieldbow/api/BaseManager.html)<[Match](/shieldbow/api/Match.html)>
 
+**References:** [BaseManager](/shieldbow/api/BaseManager.html), [Match](/shieldbow/api/Match.html)
+
 ---
 
 ### Constructor
