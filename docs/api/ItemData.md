@@ -75,7 +75,7 @@ export interface ItemData
 
 
 
-**Type**: [ImageData](/shieldbow/api/ImageData.html)
+**Type**: [ImageData](/shieldbow/api/ImageData.md)
 
 ---
 

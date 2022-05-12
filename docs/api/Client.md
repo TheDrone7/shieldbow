@@ -34,11 +34,11 @@ Constructs a new instance of the `Client` class.
 
 #### accounts
 
-The default riot accounts manager used by the client. This is mostly for internal usage. You may want to use [Client.summoners](/shieldbow/api/Client.html#summoners) instead.
+The default riot accounts manager used by the client. This is mostly for internal usage. You may want to use [Client.summoners](/shieldbow/api/Client.md#summoners) instead.
 
 
 
-**Type**: [AccountManager](/shieldbow/api/AccountManager.html)
+**Type**: [AccountManager](/shieldbow/api/AccountManager.md)
 
 ---
 
@@ -48,7 +48,7 @@ The default API interactions handler used by the client.
 
 
 
-**Type**: [ApiHandler](/shieldbow/api/ApiHandler.html)
+**Type**: [ApiHandler](/shieldbow/api/ApiHandler.md)
 
 ---
 
@@ -68,7 +68,7 @@ The default champions manager used by the client.
 
 
 
-**Type**: [ChampionManager](/shieldbow/api/ChampionManager.html)
+**Type**: [ChampionManager](/shieldbow/api/ChampionManager.md)
 
 ---
 
@@ -78,7 +78,7 @@ The default clash tournaments manager used by the client.
 
 
 
-**Type**: [ClashManager](/shieldbow/api/ClashManager.html)
+**Type**: [ClashManager](/shieldbow/api/ClashManager.md)
 
 ---
 
@@ -88,7 +88,7 @@ An array of all game modes and their respective data.
 
 
 
-**Type**: [GameMode](/shieldbow/api/GameMode.html)[]
+**Type**: [GameMode](/shieldbow/api/GameMode.md)[]
 
 ---
 
@@ -98,7 +98,7 @@ An array of all game types and their respective data.
 
 
 
-**Type**: [GameType](/shieldbow/api/GameType.html)[]
+**Type**: [GameType](/shieldbow/api/GameType.md)[]
 
 ---
 
@@ -118,7 +118,7 @@ The default items manager used by the client.
 
 
 
-**Type**: [ItemManager](/shieldbow/api/ItemManager.html)
+**Type**: [ItemManager](/shieldbow/api/ItemManager.md)
 
 ---
 
@@ -127,14 +127,14 @@ The default items manager used by the client.
 The default summoner competitive league data manager used by the client.
 
 
-Highly recommended using [Client.summoners](/shieldbow/api/Client.html#summoners) for a specific summoner's competitive info.
+Highly recommended using [Client.summoners](/shieldbow/api/Client.md#summoners) for a specific summoner's competitive info.
 
 
 Use this only if you want to query a list of users by rank-division.
 
 
 
-**Type**: [LeagueManager](/shieldbow/api/LeagueManager.html)
+**Type**: [LeagueManager](/shieldbow/api/LeagueManager.md)
 
 ---
 
@@ -144,7 +144,7 @@ The locale in which all the data is going to be fetched in.
 
 
 
-**Type**: [Locales](/shieldbow/api/Locales.html)
+**Type**: [Locales](/shieldbow/api/Locales.md)
 
 ---
 
@@ -154,7 +154,7 @@ An array of all maps and their respective data.
 
 
 
-**Type**: [GameMap](/shieldbow/api/GameMap.html)[]
+**Type**: [GameMap](/shieldbow/api/GameMap.md)[]
 
 ---
 
@@ -164,7 +164,7 @@ The default match manager used by the client.
 
 
 
-**Type**: [MatchManager](/shieldbow/api/MatchManager.html)
+**Type**: [MatchManager](/shieldbow/api/MatchManager.md)
 
 ---
 
@@ -187,7 +187,7 @@ An array of all queue types and their respective data.
 
 
 
-**Type**: [Queue](/shieldbow/api/Queue.html)[]
+**Type**: [Queue](/shieldbow/api/Queue.md)[]
 
 ---
 
@@ -197,7 +197,7 @@ The league of legends region from which the data is to be fetched.
 
 
 
-**Type**: [Region](/shieldbow/api/Region.html)
+**Type**: [Region](/shieldbow/api/Region.md)
 
 ---
 
@@ -207,7 +207,7 @@ The default runes manager used by the client.
 
 
 
-**Type**: [RuneTreeManager](/shieldbow/api/RuneTreeManager.html)
+**Type**: [RuneTreeManager](/shieldbow/api/RuneTreeManager.md)
 
 ---
 
@@ -217,7 +217,7 @@ An array of all seasons and their respective IDs.
 
 
 
-**Type**: [Season](/shieldbow/api/Season.html)[]
+**Type**: [Season](/shieldbow/api/Season.md)[]
 
 ---
 
@@ -227,7 +227,7 @@ The default live match manager used by the client.
 
 
 
-**Type**: [CurrentGameManager](/shieldbow/api/CurrentGameManager.html)
+**Type**: [CurrentGameManager](/shieldbow/api/CurrentGameManager.md)
 
 ---
 
@@ -250,7 +250,7 @@ The default summoners manager used by the client.
 
 
 
-**Type**: [SummonerManager](/shieldbow/api/SummonerManager.html)
+**Type**: [SummonerManager](/shieldbow/api/SummonerManager.md)
 
 ---
 
@@ -260,7 +260,7 @@ The default summoner spells manager used by the client.
 
 
 
-**Type**: [SummonerSpellManager](/shieldbow/api/SummonerSpellManager.html)
+**Type**: [SummonerSpellManager](/shieldbow/api/SummonerSpellManager.md)
 
 ---
 
@@ -293,7 +293,7 @@ initialize(options?: ClientConfig): Promise<void>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| options | [ClientConfig](/shieldbow/api/ClientConfig.html) | The client configuration. |
+| options | [ClientConfig](/shieldbow/api/ClientConfig.md) | The client configuration. |
 
 **Return type**: Promise\<void\>
 

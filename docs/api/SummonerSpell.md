@@ -27,8 +27,8 @@ Constructs a new instance of the `SummonerSpell` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) |  |
-| data | [SummonerSpellData](/shieldbow/api/SummonerSpellData.html) |  |
+| client | [Client](/shieldbow/api/Client.md) |  |
+| data | [SummonerSpellData](/shieldbow/api/SummonerSpellData.md) |  |
 ---
 
 ### Properties
@@ -99,7 +99,7 @@ The game modes you can pick this summoner spell in.
 
 
 
-**Type**: [GameMode](/shieldbow/api/GameMode.html)[]
+**Type**: [GameMode](/shieldbow/api/GameMode.md)[]
 
 ---
 
@@ -128,10 +128,10 @@ The range of this spell, i.e. how many units far away can you cast this from.
 The raw tooltip of this summoner spell. This contains some HTML-like tags to help view this better on webpages.
 
 
-Even though, these are supposed to be more detailed than the [SummonerSpell.description](/shieldbow/api/SummonerSpell.html#description). It is not recommended using either this OR [SummonerSpell.tooltip](/shieldbow/api/SummonerSpell.html#tooltip). This is because they contain placeholders without values to fill them with. Use [SummonerSpell.description](/shieldbow/api/SummonerSpell.html#description) instead.
+Even though, these are supposed to be more detailed than the [SummonerSpell.description](/shieldbow/api/SummonerSpell.md#description). It is not recommended using either this OR [SummonerSpell.tooltip](/shieldbow/api/SummonerSpell.md#tooltip). This is because they contain placeholders without values to fill them with. Use [SummonerSpell.description](/shieldbow/api/SummonerSpell.md#description) instead.
 
 
-See [tooltip](/shieldbow/api/SummonerSpell.html#tooltip) to view this with the HTML-like tags stripped out.
+See [tooltip](/shieldbow/api/SummonerSpell.md#tooltip) to view this with the HTML-like tags stripped out.
 
 
 
@@ -154,7 +154,7 @@ The level of this summoner spell. This is the summoner level at which you unlock
 The tooltip of this summoner spell. This does not contain the HTML-like tags to help view this better on console and other output media.
 
 
-See [rawTooltip](/shieldbow/api/SummonerSpell.html#rawTooltip) to view this with the HTML-like tags included.
+See [rawTooltip](/shieldbow/api/SummonerSpell.md#rawTooltip) to view this with the HTML-like tags included.
 
 
 

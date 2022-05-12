@@ -99,7 +99,7 @@ export interface SpellData
 
 
 
-**Type**: [ImageData](/shieldbow/api/ImageData.html)
+**Type**: [ImageData](/shieldbow/api/ImageData.md)
 
 ---
 

@@ -4,10 +4,10 @@ heroText: Shieldbow
 tagline: An all-purpose, easy-to-use API wrapper for the league of legends API
 actions:
 - text: Get Started
-  link: /guide/getting-started.html
+  link: /guide/getting-started
   type: primary
 - text: API Documentation
-  link: /api/shieldbow.html
+  link: /api
   type: secondary
 features:
 - title: Easy to use

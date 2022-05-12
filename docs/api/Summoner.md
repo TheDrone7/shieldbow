@@ -27,8 +27,8 @@ Constructs a new instance of the `Summoner` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) |  |
-| summoner | [SummonerData](/shieldbow/api/SummonerData.html) |  |
+| client | [Client](/shieldbow/api/Client.md) |  |
+| summoner | [SummonerData](/shieldbow/api/SummonerData.md) |  |
 ---
 
 ### Properties
@@ -38,11 +38,11 @@ Constructs a new instance of the `Summoner` class.
 Get the summoner's RIOT account info.
 
 
-Uses [AccountManager.fetch](/shieldbow/api/AccountManager.html#fetch) to get the details.
+Uses [AccountManager.fetch](/shieldbow/api/AccountManager.md#fetch) to get the details.
 
 
 
-**Type**: Promise\<[Account](/shieldbow/api/Account.html)\>
+**Type**: Promise\<[Account](/shieldbow/api/Account.md)\>
 
 ---
 
@@ -62,7 +62,7 @@ A manager for the summoner's champion mastery.
 
 
 
-**Type**: [ChampionMasteryManager](/shieldbow/api/ChampionMasteryManager.html)
+**Type**: [ChampionMasteryManager](/shieldbow/api/ChampionMasteryManager.md)
 
 ---
 
@@ -81,11 +81,11 @@ The summoner ID for this summoner.
 Get the summoner's competitive placement info.
 
 
-Uses [LeagueManager.fetch](/shieldbow/api/LeagueManager.html#fetch) to get the details.
+Uses [LeagueManager.fetch](/shieldbow/api/LeagueManager.md#fetch) to get the details.
 
 
 
-**Type**: Promise\<Collection\<string, [LeagueEntry](/shieldbow/api/LeagueEntry.html)\>\>
+**Type**: Promise\<Collection\<string, [LeagueEntry](/shieldbow/api/LeagueEntry.md)\>\>
 
 ---
 
@@ -104,11 +104,11 @@ The summoner level of this summoner.
 Get the summoner's live game data.
 
 
-Uses [CurrentGameManager.fetch](/shieldbow/api/CurrentGameManager.html#fetch) to get the details.
+Uses [CurrentGameManager.fetch](/shieldbow/api/CurrentGameManager.md#fetch) to get the details.
 
 
 
-**Type**: Promise\<[CurrentGame](/shieldbow/api/CurrentGame.html)\>
+**Type**: Promise\<[CurrentGame](/shieldbow/api/CurrentGame.md)\>
 
 ---
 

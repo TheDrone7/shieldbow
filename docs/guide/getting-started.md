@@ -12,15 +12,33 @@ Some features of shieldbow are
 
 ### Installation
 
-```shell
-$ npm install --save shieldbow
+Install using your favorite package manager.
+
+<CodeGroup>
+
+  <CodeGroupItem title="NPM" active>
+
+```shell:no-line-numbers
+  npm install --save shieldbow
 ```
 
-Or if you prefer yarn
+  </CodeGroupItem>
+  <CodeGroupItem title="YARN">
 
-```shell
-$ yarn add shieldbow
+```shell:no-line-numbers
+  yarn add shieldbow
 ```
+
+  </CodeGroupItem>
+
+  <CodeGroupItem title="PNPM">
+
+```shell:no-line-numbers
+  pnpm add shieldbow
+```
+
+  </CodeGroupItem>
+</CodeGroup>
 
 ### Example usage
 
@@ -74,11 +92,11 @@ Replace `euw` (line 6) with the region you play in and `TheDrone7` (line 14) wit
 
 ### Next steps
 
-Next up, you can continue the guide and learn more about [the Client](/shieldbow/guide/client.html).
+Next up, you can continue the guide and learn more about [the Client](/shieldbow/guide/client.md).
 
 Or you can check out the following resources:
 
-- [API Documentation](https://thedrone7.github.io/shieldbow/api/shieldbow.html/)
+- [API Reference](https://thedrone7.github.io/shieldbow/api/)
 - [Website](https://thedrone7.github.io/shieldbow/)
 - [Github](https://github.com/TheDrone7/shieldbow)
 - [Riot Games Third Party Developers Discord](https://discord.gg/riotgamesdevrel)

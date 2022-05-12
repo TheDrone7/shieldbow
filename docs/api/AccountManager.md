@@ -13,9 +13,9 @@ An account manager - to fetch and manage all the RIOT accounts.
 export declare class AccountManager implements BaseManager<Account> 
 ```
 
-Implements: [BaseManager](/shieldbow/api/BaseManager.html)<[Account](/shieldbow/api/Account.html)>
+Implements: [BaseManager](/shieldbow/api/BaseManager.md)<[Account](/shieldbow/api/Account.md)>
 
-**References:** [BaseManager](/shieldbow/api/BaseManager.html), [Account](/shieldbow/api/Account.html)
+**References:** [BaseManager](/shieldbow/api/BaseManager.md), [Account](/shieldbow/api/Account.md)
 
 ---
 
@@ -31,7 +31,7 @@ Constructs a new instance of the `AccountManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) |  |
+| client | [Client](/shieldbow/api/Client.md) |  |
 ---
 
 ### Properties
@@ -42,7 +42,7 @@ The accounts cached in the memory.
 
 
 
-**Type**: Collection\<string, [Account](/shieldbow/api/Account.html)\>
+**Type**: Collection\<string, [Account](/shieldbow/api/Account.md)\>
 
 ---
 
@@ -52,7 +52,7 @@ The client this accounts manager belongs to.
 
 
 
-**Type**: [Client](/shieldbow/api/Client.html)
+**Type**: [Client](/shieldbow/api/Client.md)
 
 ---
 
@@ -80,7 +80,7 @@ fetch(id: string, options?: {
 | id | string | The PUUID of the RIOT account. |
 | options | {         force: boolean;     } | The basic fetching options. |
 
-**Return type**: Promise\<[Account](/shieldbow/api/Account.html)\>
+**Return type**: Promise\<[Account](/shieldbow/api/Account.md)\>
 
 ---
 
@@ -107,7 +107,7 @@ fetchByNameAndTag(name: string, tag: string, options?: {
 | tag | string | The tag of this RIOT account. |
 | options | {         force: boolean;     } | The basic fetching options. |
 
-**Return type**: Promise\<[Account](/shieldbow/api/Account.html)\>
+**Return type**: Promise\<[Account](/shieldbow/api/Account.md)\>
 
 ---
 

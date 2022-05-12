@@ -43,7 +43,7 @@ export interface CurrentGameParticipantData
 
 
 
-**Type**: [CurrentGamePerksData](/shieldbow/api/CurrentGamePerksData.html)
+**Type**: [CurrentGamePerksData](/shieldbow/api/CurrentGamePerksData.md)
 
 ---
 

@@ -31,7 +31,7 @@ The client this manager is being used by.
 
 
 
-**Type**: [Client](/shieldbow/api/Client.html)
+**Type**: [Client](/shieldbow/api/Client.md)
 
 ---
 

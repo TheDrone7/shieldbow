@@ -13,9 +13,9 @@ A basic manager for storing and fetching the local cached JSON files.
 export declare class StorageManager implements BaseManager<any> 
 ```
 
-Implements: [BaseManager](/shieldbow/api/BaseManager.html)>
+Implements: [BaseManager](/shieldbow/api/BaseManager.md)>
 
-**References:** [BaseManager](/shieldbow/api/BaseManager.html)
+**References:** [BaseManager](/shieldbow/api/BaseManager.md)
 
 ---
 
@@ -31,7 +31,7 @@ Constructs a new instance of the `StorageManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) |  |
+| client | [Client](/shieldbow/api/Client.md) |  |
 | pathName | string |  |
 | root | string |  |
 ---
@@ -54,7 +54,7 @@ The client this Manager belongs to.
 
 
 
-**Type**: [Client](/shieldbow/api/Client.html)
+**Type**: [Client](/shieldbow/api/Client.md)
 
 ---
 

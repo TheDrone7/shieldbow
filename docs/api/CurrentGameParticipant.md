@@ -27,8 +27,8 @@ Constructs a new instance of the `CurrentGameParticipant` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) |  |
-| data | [CurrentGameParticipantData](/shieldbow/api/CurrentGameParticipantData.html) |  |
+| client | [Client](/shieldbow/api/Client.md) |  |
+| data | [CurrentGameParticipantData](/shieldbow/api/CurrentGameParticipantData.md) |  |
 ---
 
 ### Properties
@@ -49,7 +49,7 @@ The champion being played by this participant.
 
 
 
-**Type**: [Champion](/shieldbow/api/Champion.html)
+**Type**: [Champion](/shieldbow/api/Champion.md)
 
 ---
 
@@ -59,7 +59,7 @@ The rune setups of this participant.
 
 
 
-**Type**: [CurrentGamePerks](/shieldbow/api/CurrentGamePerks.html)
+**Type**: [CurrentGamePerks](/shieldbow/api/CurrentGamePerks.md)
 
 ---
 
@@ -89,7 +89,7 @@ The summoner spells being used by this participant.
 
 
 
-**Type**: Collection\<'D' \| 'F', [SummonerSpell](/shieldbow/api/SummonerSpell.html)\>
+**Type**: Collection\<'D' \| 'F', [SummonerSpell](/shieldbow/api/SummonerSpell.md)\>
 
 ---
 

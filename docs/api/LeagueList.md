@@ -27,8 +27,8 @@ Constructs a new instance of the `LeagueList` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) |  |
-| data | [LeagueListData](/shieldbow/api/LeagueListData.html) |  |
+| client | [Client](/shieldbow/api/Client.md) |  |
+| data | [LeagueListData](/shieldbow/api/LeagueListData.md) |  |
 ---
 
 ### Properties
@@ -42,7 +42,7 @@ These are mapped by the summoner name.
 
 
 
-**Type**: Collection\<string, [LeagueEntry](/shieldbow/api/LeagueEntry.html)\>
+**Type**: Collection\<string, [LeagueEntry](/shieldbow/api/LeagueEntry.md)\>
 
 ---
 
@@ -72,7 +72,7 @@ The type of queue - such as RANKED_SOLO_5x5, RANKED_FLEX_SR, RANKED_FLEX_TT.
 
 
 
-**Type**: [QueueType](/shieldbow/api/QueueType.html)
+**Type**: [QueueType](/shieldbow/api/QueueType.md)
 
 ---
 
@@ -82,7 +82,7 @@ The tier of the entries in this list.
 
 
 
-**Type**: [TierType](/shieldbow/api/TierType.html)
+**Type**: [TierType](/shieldbow/api/TierType.md)
 
 ---
 

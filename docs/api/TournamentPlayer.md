@@ -27,9 +27,9 @@ Constructs a new instance of the `TournamentPlayer` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) |  |
+| client | [Client](/shieldbow/api/Client.md) |  |
 | teamId | string |  |
-| data | [TournamentPlayerData](/shieldbow/api/TournamentPlayerData.html) |  |
+| data | [TournamentPlayerData](/shieldbow/api/TournamentPlayerData.md) |  |
 ---
 
 ### Properties
@@ -56,7 +56,7 @@ The role this player will be performing in the team - CAPTAIN or MEMBER.
 
 #### summoner
 
-Use [SummonerManager.fetch](/shieldbow/api/SummonerManager.html#fetch) to fetch the summoner for this player.
+Use [SummonerManager.fetch](/shieldbow/api/SummonerManager.md#fetch) to fetch the summoner for this player.
 
 
 

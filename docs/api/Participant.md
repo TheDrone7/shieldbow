@@ -27,8 +27,8 @@ Constructs a new instance of the `Participant` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) |  |
-| data | [ParticipantData](/shieldbow/api/ParticipantData.html) |  |
+| client | [Client](/shieldbow/api/Client.md) |  |
+| data | [ParticipantData](/shieldbow/api/ParticipantData.md) |  |
 ---
 
 ### Properties
@@ -59,7 +59,7 @@ The bounty on this participant's head.
 
 
 
-**Type**: [Bounty](/shieldbow/api/Bounty.html)
+**Type**: [Bounty](/shieldbow/api/Bounty.md)
 
 ---
 
@@ -229,7 +229,7 @@ The items in the participant's inventory.
 
 
 
-**Type**: Collection\<number, [Item](/shieldbow/api/Item.html) \| undefined\>
+**Type**: Collection\<number, [Item](/shieldbow/api/Item.md) \| undefined\>
 
 ---
 
@@ -399,7 +399,7 @@ The perks (runes) selected by the participant.
 
 
 
-**Type**: [Perks](/shieldbow/api/Perks.html)
+**Type**: [Perks](/shieldbow/api/Perks.md)
 
 ---
 
@@ -439,7 +439,7 @@ The summoner acting as the participant.
 
 
 
-**Type**: [Summoner](/shieldbow/api/Summoner.html)
+**Type**: [Summoner](/shieldbow/api/Summoner.md)
 
 ---
 
@@ -449,7 +449,7 @@ The summoner spells the participant chose for the match.
 
 
 
-**Type**: Collection\<'D' \| 'F', [SummonerSpell](/shieldbow/api/SummonerSpell.html)\>
+**Type**: Collection\<'D' \| 'F', [SummonerSpell](/shieldbow/api/SummonerSpell.md)\>
 
 ---
 

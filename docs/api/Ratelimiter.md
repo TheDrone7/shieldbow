@@ -48,7 +48,7 @@ update(region: Region, response: AxiosResponse, method: string): void;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| region | [Region](/shieldbow/api/Region.html) | The region the response is from. |
+| region | [Region](/shieldbow/api/Region.md) | The region the response is from. |
 | response | AxiosResponse | The response to parse. |
 | method | string | The method the response is for. |
 
@@ -76,7 +76,7 @@ verify(region: Region, method: string): {
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| region | [Region](/shieldbow/api/Region.html) | The region the request is for. |
+| region | [Region](/shieldbow/api/Region.md) | The region the request is for. |
 | method | string | The method the request is for. |
 
 **Return type**: {         pass: boolean;         wait: number;     }

@@ -19,7 +19,7 @@ export interface TeamObjectivesData
 
 
 
-**Type**: [TeamObjectiveData](/shieldbow/api/TeamObjectiveData.html)
+**Type**: [TeamObjectiveData](/shieldbow/api/TeamObjectiveData.md)
 
 ---
 
@@ -27,7 +27,7 @@ export interface TeamObjectivesData
 
 
 
-**Type**: [TeamObjectiveData](/shieldbow/api/TeamObjectiveData.html)
+**Type**: [TeamObjectiveData](/shieldbow/api/TeamObjectiveData.md)
 
 ---
 
@@ -35,7 +35,7 @@ export interface TeamObjectivesData
 
 
 
-**Type**: [TeamObjectiveData](/shieldbow/api/TeamObjectiveData.html)
+**Type**: [TeamObjectiveData](/shieldbow/api/TeamObjectiveData.md)
 
 ---
 
@@ -43,7 +43,7 @@ export interface TeamObjectivesData
 
 
 
-**Type**: [TeamObjectiveData](/shieldbow/api/TeamObjectiveData.html)
+**Type**: [TeamObjectiveData](/shieldbow/api/TeamObjectiveData.md)
 
 ---
 
@@ -51,7 +51,7 @@ export interface TeamObjectivesData
 
 
 
-**Type**: [TeamObjectiveData](/shieldbow/api/TeamObjectiveData.html)
+**Type**: [TeamObjectiveData](/shieldbow/api/TeamObjectiveData.md)
 
 ---
 
@@ -59,7 +59,7 @@ export interface TeamObjectivesData
 
 
 
-**Type**: [TeamObjectiveData](/shieldbow/api/TeamObjectiveData.html)
+**Type**: [TeamObjectiveData](/shieldbow/api/TeamObjectiveData.md)
 
 ---
 

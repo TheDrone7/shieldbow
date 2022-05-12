@@ -27,7 +27,7 @@ Constructs a new instance of the `Account` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [AccountData](/shieldbow/api/AccountData.html) |  |
+| data | [AccountData](/shieldbow/api/AccountData.md) |  |
 ---
 
 ### Properties

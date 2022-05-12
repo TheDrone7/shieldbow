@@ -13,5 +13,5 @@ A valid locale to fetch the data in.
 export declare type Locales = typeof locale[number];
 ```
 
-**References:** [locale](/shieldbow/api/locale.html)
+**References:** [locale](/shieldbow/api/locale.md)
 

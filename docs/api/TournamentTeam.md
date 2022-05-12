@@ -27,8 +27,8 @@ Constructs a new instance of the `TournamentTeam` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) |  |
-| data | [TournamentTeamData](/shieldbow/api/TournamentTeamData.html) |  |
+| client | [Client](/shieldbow/api/Client.md) |  |
+| data | [TournamentTeamData](/shieldbow/api/TournamentTeamData.md) |  |
 ---
 
 ### Properties
@@ -89,7 +89,7 @@ The list of players in the team.
 
 
 
-**Type**: [TournamentPlayer](/shieldbow/api/TournamentPlayer.html)[]
+**Type**: [TournamentPlayer](/shieldbow/api/TournamentPlayer.md)[]
 
 ---
 

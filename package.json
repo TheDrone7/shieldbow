@@ -4,7 +4,6 @@
   "description": "An all purpose League of Legends API Client",
   "main": "dist/index.js",
   "devDependencies": {
-    "@microsoft/api-documenter": "^7.17.12",
     "@microsoft/api-extractor": "^7.23.1",
     "@types/fs-extra": "^9.0.13",
     "@types/jest": "^27.5.0",

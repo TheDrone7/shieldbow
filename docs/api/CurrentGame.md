@@ -27,8 +27,8 @@ Constructs a new instance of the `CurrentGame` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) |  |
-| data | [CurrentGameData](/shieldbow/api/CurrentGameData.html) |  |
+| client | [Client](/shieldbow/api/Client.md) |  |
+| data | [CurrentGameData](/shieldbow/api/CurrentGameData.md) |  |
 ---
 
 ### Properties
@@ -38,7 +38,7 @@ Constructs a new instance of the `CurrentGame` class.
 The numerical ID of the game.
 
 
-Combining this with the [CurrentGame.platform](/shieldbow/api/CurrentGame.html#platform) gives the full ID of the game. The full ID can be used to fetch all the details of the match after it has ended using [MatchManager.fetch](/shieldbow/api/MatchManager.html#fetch).
+Combining this with the [CurrentGame.platform](/shieldbow/api/CurrentGame.md#platform) gives the full ID of the game. The full ID can be used to fetch all the details of the match after it has ended using [MatchManager.fetch](/shieldbow/api/MatchManager.md#fetch).
 
 
 
@@ -62,7 +62,7 @@ The map on which the game is being played.
 
 
 
-**Type**: [GameMap](/shieldbow/api/GameMap.html)
+**Type**: [GameMap](/shieldbow/api/GameMap.md)
 
 ---
 
@@ -72,7 +72,7 @@ The game mode.
 
 
 
-**Type**: [GameMode](/shieldbow/api/GameMode.html)
+**Type**: [GameMode](/shieldbow/api/GameMode.md)
 
 ---
 
@@ -102,7 +102,7 @@ The type of queue for the game.
 
 
 
-**Type**: [Queue](/shieldbow/api/Queue.html)
+**Type**: [Queue](/shieldbow/api/Queue.md)
 
 ---
 
@@ -122,7 +122,7 @@ A collection of the participating teams.
 
 
 
-**Type**: Collection\<'red' \| 'blue', [CurrentGameTeam](/shieldbow/api/CurrentGameTeam.html)\>
+**Type**: Collection\<'red' \| 'blue', [CurrentGameTeam](/shieldbow/api/CurrentGameTeam.md)\>
 
 ---
 
@@ -132,7 +132,7 @@ The type of game.
 
 
 
-**Type**: [GameType](/shieldbow/api/GameType.html)
+**Type**: [GameType](/shieldbow/api/GameType.md)
 
 ---
 

@@ -27,8 +27,8 @@ Constructs a new instance of the `LeagueEntry` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) |  |
-| data | [LeagueEntryData](/shieldbow/api/LeagueEntryData.html) |  |
+| client | [Client](/shieldbow/api/Client.md) |  |
+| data | [LeagueEntryData](/shieldbow/api/LeagueEntryData.md) |  |
 ---
 
 ### Properties
@@ -39,7 +39,7 @@ The division under the tier - From 1 to 4 (I - IV).
 
 
 
-**Type**: [DivisionType](/shieldbow/api/DivisionType.html)
+**Type**: [DivisionType](/shieldbow/api/DivisionType.md)
 
 ---
 
@@ -119,7 +119,7 @@ The type of queue - such as RANKED_SOLO_5x5, RANKED_FLEX_SR or RANKED_FLEX_TT.
 
 
 
-**Type**: [QueueType](/shieldbow/api/QueueType.html)
+**Type**: [QueueType](/shieldbow/api/QueueType.md)
 
 ---
 
@@ -128,11 +128,11 @@ The type of queue - such as RANKED_SOLO_5x5, RANKED_FLEX_SR or RANKED_FLEX_TT.
 The summoner this data belongs to.
 
 
-Uses [SummonerManager.fetch](/shieldbow/api/SummonerManager.html#fetch) to get the summoner.
+Uses [SummonerManager.fetch](/shieldbow/api/SummonerManager.md#fetch) to get the summoner.
 
 
 
-**Type**: Promise\<[Summoner](/shieldbow/api/Summoner.html)\>
+**Type**: Promise\<[Summoner](/shieldbow/api/Summoner.md)\>
 
 ---
 
@@ -162,7 +162,7 @@ The tier the summoner belongs to - such as BRONZE, GOLD, etc.
 
 
 
-**Type**: [TierType](/shieldbow/api/TierType.html)
+**Type**: [TierType](/shieldbow/api/TierType.md)
 
 ---
 

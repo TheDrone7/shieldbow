@@ -27,8 +27,8 @@ Constructs a new instance of the `Match` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) |  |
-| data | [MatchData](/shieldbow/api/MatchData.html) |  |
+| client | [Client](/shieldbow/api/Client.md) |  |
+| data | [MatchData](/shieldbow/api/MatchData.md) |  |
 ---
 
 ### Properties
@@ -79,7 +79,7 @@ The game mode for the match.
 
 
 
-**Type**: [GameMode](/shieldbow/api/GameMode.html)
+**Type**: [GameMode](/shieldbow/api/GameMode.md)
 
 ---
 
@@ -99,7 +99,7 @@ The type of game.
 
 
 
-**Type**: [GameType](/shieldbow/api/GameType.html)
+**Type**: [GameType](/shieldbow/api/GameType.md)
 
 ---
 
@@ -129,7 +129,7 @@ The map on which the match was played.
 
 
 
-**Type**: [GameMap](/shieldbow/api/GameMap.html)
+**Type**: [GameMap](/shieldbow/api/GameMap.md)
 
 ---
 
@@ -152,7 +152,7 @@ The queue type of the match.
 
 
 
-**Type**: [Queue](/shieldbow/api/Queue.html)
+**Type**: [Queue](/shieldbow/api/Queue.md)
 
 ---
 
@@ -175,7 +175,7 @@ They are mapped by their map sides (`blue` and `red`).
 
 
 
-**Type**: Collection\<'blue' \| 'red', [Team](/shieldbow/api/Team.html)\>
+**Type**: Collection\<'blue' \| 'red', [Team](/shieldbow/api/Team.md)\>
 
 ---
 

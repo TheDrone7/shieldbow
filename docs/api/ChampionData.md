@@ -51,7 +51,7 @@ export interface ChampionData
 
 
 
-**Type**: [ImageData](/shieldbow/api/ImageData.html)
+**Type**: [ImageData](/shieldbow/api/ImageData.md)
 
 ---
 
@@ -115,7 +115,7 @@ export interface ChampionData
 
 
 
-**Type**: [SpellData](/shieldbow/api/SpellData.html)[]
+**Type**: [SpellData](/shieldbow/api/SpellData.md)[]
 
 ---
 

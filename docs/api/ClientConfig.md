@@ -41,7 +41,7 @@ The locale in which to fetch all the data (defaults to region's default)
 
 
 
-**Type**: [Locales](/shieldbow/api/Locales.html)
+**Type**: [Locales](/shieldbow/api/Locales.md)
 
 ---
 
@@ -51,7 +51,7 @@ The initial region to fetch all the data from (defaults to `na`)
 
 
 
-**Type**: [Region](/shieldbow/api/Region.html)
+**Type**: [Region](/shieldbow/api/Region.md)
 
 ---
 

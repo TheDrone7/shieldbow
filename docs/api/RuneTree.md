@@ -27,8 +27,8 @@ Constructs a new instance of the `RuneTree` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) |  |
-| data | [RuneTreeData](/shieldbow/api/RuneTreeData.html) |  |
+| client | [Client](/shieldbow/api/Client.md) |  |
+| data | [RuneTreeData](/shieldbow/api/RuneTreeData.md) |  |
 ---
 
 ### Properties
@@ -79,7 +79,7 @@ The slots of this rune tree. The slots are numbered from 1 to 4. The first slot 
 
 
 
-**Type**: Collection\<number, Collection\<number, [Rune](/shieldbow/api/Rune.html)\>\>
+**Type**: Collection\<number, Collection\<number, [Rune](/shieldbow/api/Rune.md)\>\>
 
 ---
 

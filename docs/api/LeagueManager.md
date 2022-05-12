@@ -13,9 +13,9 @@ A league manager - to fetch and manage all summoner competitive info.
 export declare class LeagueManager implements BaseManager<Collection<QueueType, LeagueEntry>> 
 ```
 
-Implements: [BaseManager](/shieldbow/api/BaseManager.html)<[Collection](/shieldbow/api/Collection.html)<[QueueType](/shieldbow/api/QueueType.html), [LeagueEntry](/shieldbow/api/LeagueEntry.html)>
+Implements: [BaseManager](/shieldbow/api/BaseManager.md)<[Collection](/shieldbow/api/Collection.md)<[QueueType](/shieldbow/api/QueueType.md), [LeagueEntry](/shieldbow/api/LeagueEntry.md)>
 
-**References:** [BaseManager](/shieldbow/api/BaseManager.html), Collection, [QueueType](/shieldbow/api/QueueType.html), [LeagueEntry](/shieldbow/api/LeagueEntry.html)
+**References:** [BaseManager](/shieldbow/api/BaseManager.md), Collection, [QueueType](/shieldbow/api/QueueType.md), [LeagueEntry](/shieldbow/api/LeagueEntry.md)
 
 ---
 
@@ -31,7 +31,7 @@ Constructs a new instance of the `LeagueManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) |  |
+| client | [Client](/shieldbow/api/Client.md) |  |
 ---
 
 ### Properties
@@ -42,7 +42,7 @@ The competitive info (mapped by summoner ID) stored in the memory.
 
 
 
-**Type**: Collection\<string, Collection\<[QueueType](/shieldbow/api/QueueType.html), [LeagueEntry](/shieldbow/api/LeagueEntry.html)\>\>
+**Type**: Collection\<string, Collection\<[QueueType](/shieldbow/api/QueueType.md), [LeagueEntry](/shieldbow/api/LeagueEntry.md)\>\>
 
 ---
 
@@ -52,7 +52,7 @@ The client this manager belongs to.
 
 
 
-**Type**: [Client](/shieldbow/api/Client.html)
+**Type**: [Client](/shieldbow/api/Client.md)
 
 ---
 
@@ -80,7 +80,7 @@ fetch(id: string, options?: {
 | id | string | The ID of the summoner whose competitive info you want to find. |
 | options | {         force: boolean;     } | The basic fetching options. |
 
-**Return type**: Promise\<Collection\<[QueueType](/shieldbow/api/QueueType.html), [LeagueEntry](/shieldbow/api/LeagueEntry.html)\>\>
+**Return type**: Promise\<Collection\<[QueueType](/shieldbow/api/QueueType.md), [LeagueEntry](/shieldbow/api/LeagueEntry.md)\>\>
 
 ---
 
@@ -103,7 +103,7 @@ fetchByLeagueId(leagueId: string): Promise<LeagueList>;
 | --------- | ---- | ----------- |
 | leagueId | string | The League ID. |
 
-**Return type**: Promise\<[LeagueList](/shieldbow/api/LeagueList.html)\>
+**Return type**: Promise\<[LeagueList](/shieldbow/api/LeagueList.md)\>
 
 ---
 
@@ -124,12 +124,12 @@ fetchByQueueAndTier(queue: QueueType, tier: TierType, division: DivisionType, pa
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| queue | [QueueType](/shieldbow/api/QueueType.html) | The type of queue - RANKED_SOLO_5x5, RANKED_FLEX_SR, etc. |
-| tier | [TierType](/shieldbow/api/TierType.html) | The tier of the entries - IRON to CHALLENGER. |
-| division | [DivisionType](/shieldbow/api/DivisionType.html) | The division of the entries - I, II, III, IV. |
+| queue | [QueueType](/shieldbow/api/QueueType.md) | The type of queue - RANKED_SOLO_5x5, RANKED_FLEX_SR, etc. |
+| tier | [TierType](/shieldbow/api/TierType.md) | The tier of the entries - IRON to CHALLENGER. |
+| division | [DivisionType](/shieldbow/api/DivisionType.md) | The division of the entries - I, II, III, IV. |
 | page | number | The page number (defaults to 1). |
 
-**Return type**: Promise\<Collection\<string, [LeagueEntry](/shieldbow/api/LeagueEntry.html)\>\>
+**Return type**: Promise\<Collection\<string, [LeagueEntry](/shieldbow/api/LeagueEntry.md)\>\>
 
 ---
 

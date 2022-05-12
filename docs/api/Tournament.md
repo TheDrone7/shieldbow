@@ -27,7 +27,7 @@ Constructs a new instance of the `Tournament` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [TournamentData](/shieldbow/api/TournamentData.html) |  |
+| data | [TournamentData](/shieldbow/api/TournamentData.md) |  |
 ---
 
 ### Properties
@@ -48,7 +48,7 @@ The tournament's schedule.
 
 
 
-**Type**: [TournamentSchedule](/shieldbow/api/TournamentSchedule.html)[]
+**Type**: [TournamentSchedule](/shieldbow/api/TournamentSchedule.md)[]
 
 ---
 

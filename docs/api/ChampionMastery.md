@@ -27,8 +27,8 @@ Constructs a new instance of the `ChampionMastery` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) |  |
-| data | [ChampionMasteryData](/shieldbow/api/ChampionMasteryData.html) |  |
+| client | [Client](/shieldbow/api/Client.md) |  |
+| data | [ChampionMasteryData](/shieldbow/api/ChampionMasteryData.md) |  |
 ---
 
 ### Properties
@@ -39,7 +39,7 @@ The champion these details are for.
 
 
 
-**Type**: [Champion](/shieldbow/api/Champion.html)
+**Type**: [Champion](/shieldbow/api/Champion.md)
 
 ---
 

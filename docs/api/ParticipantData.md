@@ -459,7 +459,7 @@ export interface ParticipantData
 
 
 
-**Type**: [PerksData](/shieldbow/api/PerksData.html)
+**Type**: [PerksData](/shieldbow/api/PerksData.md)
 
 ---
 

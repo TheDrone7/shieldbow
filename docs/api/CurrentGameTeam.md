@@ -27,9 +27,9 @@ Constructs a new instance of the `CurrentGameTeam` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) |  |
-| bans | [CurrentGameBanData](/shieldbow/api/CurrentGameBanData.html)[] |  |
-| participants | [CurrentGameParticipantData](/shieldbow/api/CurrentGameParticipantData.html)[] |  |
+| client | [Client](/shieldbow/api/Client.md) |  |
+| bans | [CurrentGameBanData](/shieldbow/api/CurrentGameBanData.md)[] |  |
+| participants | [CurrentGameParticipantData](/shieldbow/api/CurrentGameParticipantData.md)[] |  |
 ---
 
 ### Properties
@@ -60,7 +60,7 @@ The team's participants.
 
 
 
-**Type**: [CurrentGameParticipant](/shieldbow/api/CurrentGameParticipant.html)[]
+**Type**: [CurrentGameParticipant](/shieldbow/api/CurrentGameParticipant.md)[]
 
 ---
 

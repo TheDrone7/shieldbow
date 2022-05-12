@@ -13,9 +13,9 @@ A current game manager - to fetch and manage the live games.
 export declare class CurrentGameManager implements BaseManager<CurrentGame> 
 ```
 
-Implements: [BaseManager](/shieldbow/api/BaseManager.html)<[CurrentGame](/shieldbow/api/CurrentGame.html)>
+Implements: [BaseManager](/shieldbow/api/BaseManager.md)<[CurrentGame](/shieldbow/api/CurrentGame.md)>
 
-**References:** [BaseManager](/shieldbow/api/BaseManager.html), [CurrentGame](/shieldbow/api/CurrentGame.html)
+**References:** [BaseManager](/shieldbow/api/BaseManager.md), [CurrentGame](/shieldbow/api/CurrentGame.md)
 
 ---
 
@@ -31,7 +31,7 @@ Constructs a new instance of the `CurrentGameManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) |  |
+| client | [Client](/shieldbow/api/Client.md) |  |
 ---
 
 ### Properties
@@ -42,7 +42,7 @@ The cached live games (mapped by summoner IDs).
 
 
 
-**Type**: Collection\<string, [CurrentGame](/shieldbow/api/CurrentGame.html)\>
+**Type**: Collection\<string, [CurrentGame](/shieldbow/api/CurrentGame.md)\>
 
 ---
 
@@ -52,7 +52,7 @@ The client that instantiated the manager.
 
 
 
-**Type**: [Client](/shieldbow/api/Client.html)
+**Type**: [Client](/shieldbow/api/Client.md)
 
 ---
 
@@ -83,7 +83,7 @@ fetch(id: string, options?: {
 | id | string | The summoner ID to fetch the live game for. |
 | options | {         force: boolean;     } | The basic fetching options. |
 
-**Return type**: Promise\<[CurrentGame](/shieldbow/api/CurrentGame.html)\>
+**Return type**: Promise\<[CurrentGame](/shieldbow/api/CurrentGame.md)\>
 
 ---
 
@@ -100,7 +100,7 @@ fetchFeatured(): Promise<CurrentGame[]>;
 ```
 
 
-**Return type**: Promise\<[CurrentGame](/shieldbow/api/CurrentGame.html)[]\>
+**Return type**: Promise\<[CurrentGame](/shieldbow/api/CurrentGame.md)[]\>
 
 ---
 

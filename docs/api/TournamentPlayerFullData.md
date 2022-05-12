@@ -13,7 +13,7 @@ description:
 export interface TournamentPlayerFullData extends TournamentPlayerData 
 ```
 
-**References:** [TournamentPlayerData](/shieldbow/api/TournamentPlayerData.html)
+**References:** [TournamentPlayerData](/shieldbow/api/TournamentPlayerData.md)
 
 ### Properties
 

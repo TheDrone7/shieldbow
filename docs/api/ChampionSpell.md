@@ -27,10 +27,10 @@ Constructs a new instance of the `ChampionSpell` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) |  |
-| champ | [Champion](/shieldbow/api/Champion.html) |  |
-| data | [SpellData](/shieldbow/api/SpellData.html) |  |
-| damage | [SpellDamageData](/shieldbow/api/SpellDamageData.html) |  |
+| client | [Client](/shieldbow/api/Client.md) |  |
+| champ | [Champion](/shieldbow/api/Champion.md) |  |
+| data | [SpellData](/shieldbow/api/SpellData.md) |  |
+| damage | [SpellDamageData](/shieldbow/api/SpellDamageData.md) |  |
 ---
 
 ### Properties

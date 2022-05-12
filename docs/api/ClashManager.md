@@ -13,9 +13,9 @@ A clash manager - to fetch and store clash tournaments and related data.
 export declare class ClashManager implements BaseManager<Tournament> 
 ```
 
-Implements: [BaseManager](/shieldbow/api/BaseManager.html)<[Tournament](/shieldbow/api/Tournament.html)>
+Implements: [BaseManager](/shieldbow/api/BaseManager.md)<[Tournament](/shieldbow/api/Tournament.md)>
 
-**References:** [BaseManager](/shieldbow/api/BaseManager.html), [Tournament](/shieldbow/api/Tournament.html)
+**References:** [BaseManager](/shieldbow/api/BaseManager.md), [Tournament](/shieldbow/api/Tournament.md)
 
 ---
 
@@ -31,7 +31,7 @@ Constructs a new instance of the `ClashManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) |  |
+| client | [Client](/shieldbow/api/Client.md) |  |
 ---
 
 ### Properties
@@ -42,7 +42,7 @@ The in-memory cache of tournaments.
 
 
 
-**Type**: Collection\<number, [Tournament](/shieldbow/api/Tournament.html)\>
+**Type**: Collection\<number, [Tournament](/shieldbow/api/Tournament.md)\>
 
 ---
 
@@ -52,7 +52,7 @@ The client that instantiated the manager.
 
 
 
-**Type**: [Client](/shieldbow/api/Client.html)
+**Type**: [Client](/shieldbow/api/Client.md)
 
 ---
 
@@ -80,7 +80,7 @@ fetch(id: number, options?: {
 | id | number | The ID of the tournament. |
 | options | {         force: boolean;     } | The basic fetch options. |
 
-**Return type**: Promise\<[Tournament](/shieldbow/api/Tournament.html)\>
+**Return type**: Promise\<[Tournament](/shieldbow/api/Tournament.md)\>
 
 ---
 
@@ -97,7 +97,7 @@ fetchAll(): Promise<Tournament[]>;
 ```
 
 
-**Return type**: Promise\<[Tournament](/shieldbow/api/Tournament.html)[]\>
+**Return type**: Promise\<[Tournament](/shieldbow/api/Tournament.md)[]\>
 
 ---
 
@@ -120,7 +120,7 @@ fetchByTeamId(teamId: string): Promise<Tournament>;
 | --------- | ---- | ----------- |
 | teamId | string | The ID of the team. |
 
-**Return type**: Promise\<[Tournament](/shieldbow/api/Tournament.html)\>
+**Return type**: Promise\<[Tournament](/shieldbow/api/Tournament.md)\>
 
 ---
 
@@ -143,7 +143,7 @@ fetchPlayer(summonerId: string): Promise<TournamentPlayer[]>;
 | --------- | ---- | ----------- |
 | summonerId | string | The ID of the summoner. |
 
-**Return type**: Promise\<[TournamentPlayer](/shieldbow/api/TournamentPlayer.html)[]\>
+**Return type**: Promise\<[TournamentPlayer](/shieldbow/api/TournamentPlayer.md)[]\>
 
 ---
 
@@ -166,7 +166,7 @@ fetchTeam(teamId: string): Promise<TournamentTeam>;
 | --------- | ---- | ----------- |
 | teamId | string | The ID of the team. |
 
-**Return type**: Promise\<[TournamentTeam](/shieldbow/api/TournamentTeam.html)\>
+**Return type**: Promise\<[TournamentTeam](/shieldbow/api/TournamentTeam.md)\>
 
 ---
 

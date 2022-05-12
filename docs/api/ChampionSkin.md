@@ -32,9 +32,9 @@ Constructs a new instance of the `ChampionSkin` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| champ | [Champion](/shieldbow/api/Champion.html) |  |
+| champ | [Champion](/shieldbow/api/Champion.md) |  |
 | data | {         id: string;         name: string;         num: number;         chromas: boolean;     } |  |
-| meraki | [MerakiSkin](/shieldbow/api/MerakiSkin.html) |  |
+| meraki | [MerakiSkin](/shieldbow/api/MerakiSkin.md) |  |
 ---
 
 ### Properties
@@ -65,7 +65,7 @@ The champion this skin belongs to.
 
 
 
-**Type**: [Champion](/shieldbow/api/Champion.html)
+**Type**: [Champion](/shieldbow/api/Champion.md)
 
 ---
 

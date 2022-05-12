@@ -13,9 +13,9 @@ A champion manager - to fetch and manage all the champion data.
 export declare class ChampionManager implements BaseManager<Champion> 
 ```
 
-Implements: [BaseManager](/shieldbow/api/BaseManager.html)<[Champion](/shieldbow/api/Champion.html)>
+Implements: [BaseManager](/shieldbow/api/BaseManager.md)<[Champion](/shieldbow/api/Champion.md)>
 
-**References:** [BaseManager](/shieldbow/api/BaseManager.html), [Champion](/shieldbow/api/Champion.html)
+**References:** [BaseManager](/shieldbow/api/BaseManager.md), [Champion](/shieldbow/api/Champion.md)
 
 ---
 
@@ -34,7 +34,7 @@ Constructs a new instance of the `ChampionManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) | The client this manager belongs to. |
+| client | [Client](/shieldbow/api/Client.md) | The client this manager belongs to. |
 | cacheSettings | {         enable: boolean;         root: string;     } | The basic caching settings. |
 ---
 
@@ -46,7 +46,7 @@ The champions cached in the memory.
 
 
 
-**Type**: Collection\<string, [Champion](/shieldbow/api/Champion.html)\>
+**Type**: Collection\<string, [Champion](/shieldbow/api/Champion.md)\>
 
 ---
 
@@ -56,7 +56,7 @@ The client that this manager belongs to.
 
 
 
-**Type**: [Client](/shieldbow/api/Client.html)
+**Type**: [Client](/shieldbow/api/Client.md)
 
 ---
 
@@ -81,10 +81,10 @@ fetch(id: string, options?: {
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| id | string | The [ID](/shieldbow/api/Champion.html#id) of the champion whose data needs to be fetched. |
+| id | string | The [ID](/shieldbow/api/Champion.md#id) of the champion whose data needs to be fetched. |
 | options | {         force: boolean;     } | The basic fetching options. |
 
-**Return type**: Promise\<[Champion](/shieldbow/api/Champion.html)\>
+**Return type**: Promise\<[Champion](/shieldbow/api/Champion.md)\>
 
 ---
 
@@ -104,7 +104,7 @@ fetchAll(): Promise<Collection<string, Champion>>;
 ```
 
 
-**Return type**: Promise\<Collection\<string, [Champion](/shieldbow/api/Champion.html)\>\>
+**Return type**: Promise\<Collection\<string, [Champion](/shieldbow/api/Champion.md)\>\>
 
 ---
 
@@ -127,7 +127,7 @@ findByKey(key: number): Champion | undefined;
 | --------- | ---- | ----------- |
 | key | number | The 3-digit key of the champion to look for. |
 
-**Return type**: [Champion](/shieldbow/api/Champion.html) \| undefined
+**Return type**: [Champion](/shieldbow/api/Champion.md) \| undefined
 
 ---
 
@@ -150,7 +150,7 @@ findByName(name: string): Promise<Champion | undefined>;
 | --------- | ---- | ----------- |
 | name | string | The name of the champion to look for. |
 
-**Return type**: Promise\<[Champion](/shieldbow/api/Champion.html) \| undefined\>
+**Return type**: Promise\<[Champion](/shieldbow/api/Champion.md) \| undefined\>
 
 ---
 

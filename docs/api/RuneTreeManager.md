@@ -13,9 +13,9 @@ A rune trees manager - to fetch and manage rune trees data.
 export declare class RuneTreeManager implements BaseManager<RuneTree> 
 ```
 
-Implements: [BaseManager](/shieldbow/api/BaseManager.html)<[RuneTree](/shieldbow/api/RuneTree.html)>
+Implements: [BaseManager](/shieldbow/api/BaseManager.md)<[RuneTree](/shieldbow/api/RuneTree.md)>
 
-**References:** [BaseManager](/shieldbow/api/BaseManager.html), [RuneTree](/shieldbow/api/RuneTree.html)
+**References:** [BaseManager](/shieldbow/api/BaseManager.md), [RuneTree](/shieldbow/api/RuneTree.md)
 
 ---
 
@@ -34,7 +34,7 @@ Constructs a new instance of the `RuneTreeManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) | The client this manager belongs to. |
+| client | [Client](/shieldbow/api/Client.md) | The client this manager belongs to. |
 | cacheSettings | {         enable: boolean;         root: string;     } | The basic caching settings. |
 ---
 
@@ -46,7 +46,7 @@ A collection of the rune trees cached in the memory.
 
 
 
-**Type**: Collection\<string, [RuneTree](/shieldbow/api/RuneTree.html)\>
+**Type**: Collection\<string, [RuneTree](/shieldbow/api/RuneTree.md)\>
 
 ---
 
@@ -59,7 +59,7 @@ This is similar to the cache but the cache is a collection of Rune Trees and thi
 
 
 
-**Type**: [Rune](/shieldbow/api/Rune.html)[]
+**Type**: [Rune](/shieldbow/api/Rune.md)[]
 
 ---
 
@@ -69,7 +69,7 @@ The client this manager belongs to.
 
 
 
-**Type**: [Client](/shieldbow/api/Client.html)
+**Type**: [Client](/shieldbow/api/Client.md)
 
 ---
 
@@ -97,7 +97,7 @@ fetch(key: string, options?: {
 | key | string | The key of the rune tree to fetch. |
 | options | {         force: boolean;     } | Additional fetch options. |
 
-**Return type**: Promise\<[RuneTree](/shieldbow/api/RuneTree.html)\>
+**Return type**: Promise\<[RuneTree](/shieldbow/api/RuneTree.md)\>
 
 ---
 
@@ -123,7 +123,7 @@ fetchRune(key: string, options?: {
 | key | string | The key of the rune. |
 | options | {         force: boolean;     } | Additional fetch options. |
 
-**Return type**: Promise\<[Rune](/shieldbow/api/Rune.html)\>
+**Return type**: Promise\<[Rune](/shieldbow/api/Rune.md)\>
 
 ---
 
@@ -146,7 +146,7 @@ findById(id: number): Promise<RuneTree | undefined>;
 | --------- | ---- | ----------- |
 | id | number | The numerical ID of the rune tree to look for. |
 
-**Return type**: Promise\<[RuneTree](/shieldbow/api/RuneTree.html) \| undefined\>
+**Return type**: Promise\<[RuneTree](/shieldbow/api/RuneTree.md) \| undefined\>
 
 ---
 
@@ -169,7 +169,7 @@ findByName(name: string): Promise<RuneTree | undefined>;
 | --------- | ---- | ----------- |
 | name | string | The name of the rune tree to look for. |
 
-**Return type**: Promise\<[RuneTree](/shieldbow/api/RuneTree.html) \| undefined\>
+**Return type**: Promise\<[RuneTree](/shieldbow/api/RuneTree.md) \| undefined\>
 
 ---
 
@@ -192,7 +192,7 @@ findRuneById(id: number): Promise<Rune | undefined>;
 | --------- | ---- | ----------- |
 | id | number | The numerical ID of the rune to look for. |
 
-**Return type**: Promise\<[Rune](/shieldbow/api/Rune.html) \| undefined\>
+**Return type**: Promise\<[Rune](/shieldbow/api/Rune.md) \| undefined\>
 
 ---
 
@@ -215,7 +215,7 @@ findRuneByName(name: string): Promise<Rune | undefined>;
 | --------- | ---- | ----------- |
 | name | string | The name of the rune to look for. |
 
-**Return type**: Promise\<[Rune](/shieldbow/api/Rune.html) \| undefined\>
+**Return type**: Promise\<[Rune](/shieldbow/api/Rune.md) \| undefined\>
 
 ---
 

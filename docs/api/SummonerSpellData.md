@@ -43,7 +43,7 @@ export interface SummonerSpellData
 
 
 
-**Type**: [ImageData](/shieldbow/api/ImageData.html)
+**Type**: [ImageData](/shieldbow/api/ImageData.md)
 
 ---
 

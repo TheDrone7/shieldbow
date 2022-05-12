@@ -27,7 +27,7 @@ Constructs a new instance of the `ApiHandler` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| region | [Region](/shieldbow/api/Region.html) | the region to use for the API requests. |
+| region | [Region](/shieldbow/api/Region.md) | the region to use for the API requests. |
 | apiKey | string | your RIOT API key. |
 ---
 
@@ -39,7 +39,7 @@ The region that the API handler will send the request to.
 
 
 
-**Type**: [Region](/shieldbow/api/Region.html)
+**Type**: [Region](/shieldbow/api/Region.md)
 
 ---
 

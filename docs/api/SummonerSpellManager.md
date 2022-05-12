@@ -13,9 +13,9 @@ A spell manager - to fetch and manage all summoner spell data.
 export declare class SummonerSpellManager implements BaseManager<SummonerSpell> 
 ```
 
-Implements: [BaseManager](/shieldbow/api/BaseManager.html)<[SummonerSpell](/shieldbow/api/SummonerSpell.html)>
+Implements: [BaseManager](/shieldbow/api/BaseManager.md)<[SummonerSpell](/shieldbow/api/SummonerSpell.md)>
 
-**References:** [BaseManager](/shieldbow/api/BaseManager.html), [SummonerSpell](/shieldbow/api/SummonerSpell.html)
+**References:** [BaseManager](/shieldbow/api/BaseManager.md), [SummonerSpell](/shieldbow/api/SummonerSpell.md)
 
 ---
 
@@ -34,7 +34,7 @@ Constructs a new instance of the `SummonerSpellManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) |  |
+| client | [Client](/shieldbow/api/Client.md) |  |
 | cacheSettings | {         enable: boolean;         root: string;     } |  |
 ---
 
@@ -46,7 +46,7 @@ A collection of the summoner spells cached in the memory.
 
 
 
-**Type**: Collection\<string, [SummonerSpell](/shieldbow/api/SummonerSpell.html)\>
+**Type**: Collection\<string, [SummonerSpell](/shieldbow/api/SummonerSpell.md)\>
 
 ---
 
@@ -56,7 +56,7 @@ The client this manager belongs to.
 
 
 
-**Type**: [Client](/shieldbow/api/Client.html)
+**Type**: [Client](/shieldbow/api/Client.md)
 
 ---
 
@@ -64,7 +64,7 @@ The client this manager belongs to.
 
 #### .fetch (key, options)
 
-Fetch a spell by its ID. The ID is usually something like Summoner\{Spell\} For example, for the spell `Flash`, the ID is `SummonerFlash`. But there are a lot of exceptions to this, so it is recommended to use [findByName](/shieldbow/api/SummonerSpellManager.html#findByName) instead.
+Fetch a spell by its ID. The ID is usually something like Summoner\{Spell\} For example, for the spell `Flash`, the ID is `SummonerFlash`. But there are a lot of exceptions to this, so it is recommended to use [findByName](/shieldbow/api/SummonerSpellManager.md#findByName) instead.
 
 
 
@@ -84,7 +84,7 @@ fetch(key: string, options?: {
 | key | string | The ID of the spell to fetch. |
 | options | {         force: boolean;     } | The basic fetching options. |
 
-**Return type**: Promise\<[SummonerSpell](/shieldbow/api/SummonerSpell.html)\>
+**Return type**: Promise\<[SummonerSpell](/shieldbow/api/SummonerSpell.md)\>
 
 ---
 
@@ -107,7 +107,7 @@ findByName(name: string): Promise<SummonerSpell | undefined>;
 | --------- | ---- | ----------- |
 | name | string | The name of the spell to look for. |
 
-**Return type**: Promise\<[SummonerSpell](/shieldbow/api/SummonerSpell.html) \| undefined\>
+**Return type**: Promise\<[SummonerSpell](/shieldbow/api/SummonerSpell.md) \| undefined\>
 
 ---
 

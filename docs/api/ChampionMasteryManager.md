@@ -13,9 +13,9 @@ A champion mastery manager - to fetch and manage all summoner's champion mastery
 export declare class ChampionMasteryManager implements BaseManager<ChampionMastery> 
 ```
 
-Implements: [BaseManager](/shieldbow/api/BaseManager.html)<[ChampionMastery](/shieldbow/api/ChampionMastery.html)>
+Implements: [BaseManager](/shieldbow/api/BaseManager.md)<[ChampionMastery](/shieldbow/api/ChampionMastery.md)>
 
-**References:** [BaseManager](/shieldbow/api/BaseManager.html), [ChampionMastery](/shieldbow/api/ChampionMastery.html)
+**References:** [BaseManager](/shieldbow/api/BaseManager.md), [ChampionMastery](/shieldbow/api/ChampionMastery.md)
 
 ---
 
@@ -31,7 +31,7 @@ Constructs a new instance of the `ChampionMasteryManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) |  |
+| client | [Client](/shieldbow/api/Client.md) |  |
 | summoner | string |  |
 ---
 
@@ -43,7 +43,7 @@ The cached mastery data for the summoner.
 
 
 
-**Type**: Collection\<string, [ChampionMastery](/shieldbow/api/ChampionMastery.html)\>
+**Type**: Collection\<string, [ChampionMastery](/shieldbow/api/ChampionMastery.md)\>
 
 ---
 
@@ -53,7 +53,7 @@ The client this manager belongs to.
 
 
 
-**Type**: [Client](/shieldbow/api/Client.html)
+**Type**: [Client](/shieldbow/api/Client.md)
 
 ---
 
@@ -66,7 +66,7 @@ The array is sorted from the highest mastery to lowest. While sorting, the maste
 
 
 
-**Type**: [ChampionMastery](/shieldbow/api/ChampionMastery.html)[]
+**Type**: [ChampionMastery](/shieldbow/api/ChampionMastery.md)[]
 
 ---
 
@@ -111,10 +111,10 @@ fetch(champion: Champion | string, options?: {
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| champion | [Champion](/shieldbow/api/Champion.html) \| string | The champion (or its ID) whose mastery data needs to be fetched. |
+| champion | [Champion](/shieldbow/api/Champion.md) \| string | The champion (or its ID) whose mastery data needs to be fetched. |
 | options | {         force: boolean;     } | The basic fetching options. |
 
-**Return type**: Promise\<[ChampionMastery](/shieldbow/api/ChampionMastery.html)\>
+**Return type**: Promise\<[ChampionMastery](/shieldbow/api/ChampionMastery.md)\>
 
 ---
 
@@ -137,7 +137,7 @@ highest(n?: number): Promise<ChampionMastery>;
 | --------- | ---- | ----------- |
 | n | number | The ranking of the champion in the summoner's champions mastery, defaults to 0 (highest). |
 
-**Return type**: Promise\<[ChampionMastery](/shieldbow/api/ChampionMastery.html)\>
+**Return type**: Promise\<[ChampionMastery](/shieldbow/api/ChampionMastery.md)\>
 
 ---
 
@@ -154,7 +154,7 @@ refreshAll(): Promise<Collection<string, ChampionMastery>>;
 ```
 
 
-**Return type**: Promise\<Collection\<string, [ChampionMastery](/shieldbow/api/ChampionMastery.html)\>\>
+**Return type**: Promise\<Collection\<string, [ChampionMastery](/shieldbow/api/ChampionMastery.md)\>\>
 
 ---
 

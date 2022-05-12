@@ -13,9 +13,9 @@ A summoner manager - to fetch and manage all the summoner data.
 export declare class SummonerManager implements BaseManager<Summoner> 
 ```
 
-Implements: [BaseManager](/shieldbow/api/BaseManager.html)<[Summoner](/shieldbow/api/Summoner.html)>
+Implements: [BaseManager](/shieldbow/api/BaseManager.md)<[Summoner](/shieldbow/api/Summoner.md)>
 
-**References:** [BaseManager](/shieldbow/api/BaseManager.html), [Summoner](/shieldbow/api/Summoner.html)
+**References:** [BaseManager](/shieldbow/api/BaseManager.md), [Summoner](/shieldbow/api/Summoner.md)
 
 ---
 
@@ -31,7 +31,7 @@ Constructs a new instance of the `SummonerManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) |  |
+| client | [Client](/shieldbow/api/Client.md) |  |
 ---
 
 ### Properties
@@ -42,7 +42,7 @@ The summoners cached in the memory.
 
 
 
-**Type**: Collection\<string, [Summoner](/shieldbow/api/Summoner.html)\>
+**Type**: Collection\<string, [Summoner](/shieldbow/api/Summoner.md)\>
 
 ---
 
@@ -52,7 +52,7 @@ The client this manager belongs to.
 
 
 
-**Type**: [Client](/shieldbow/api/Client.html)
+**Type**: [Client](/shieldbow/api/Client.md)
 
 ---
 
@@ -80,7 +80,7 @@ fetch(id: string, options?: {
 | id | string | The summoner ID of the summoner. |
 | options | {         force: boolean;     } | The basic fetching options. |
 
-**Return type**: Promise\<[Summoner](/shieldbow/api/Summoner.html)\>
+**Return type**: Promise\<[Summoner](/shieldbow/api/Summoner.md)\>
 
 ---
 
@@ -103,10 +103,10 @@ fetchByAccount(account: Account, options?: {
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| account | [Account](/shieldbow/api/Account.html) | The associated RIOT account. |
+| account | [Account](/shieldbow/api/Account.md) | The associated RIOT account. |
 | options | {         force: boolean;     } | The basic fetching options. |
 
-**Return type**: Promise\<[Summoner](/shieldbow/api/Summoner.html)\>
+**Return type**: Promise\<[Summoner](/shieldbow/api/Summoner.md)\>
 
 ---
 
@@ -132,7 +132,7 @@ fetchByAccountId(id: string, options?: {
 | id | string | The account ID of the summoner to fetch. |
 | options | {         force: boolean;     } | The basic fetching options. |
 
-**Return type**: Promise\<[Summoner](/shieldbow/api/Summoner.html)\>
+**Return type**: Promise\<[Summoner](/shieldbow/api/Summoner.md)\>
 
 ---
 
@@ -158,7 +158,7 @@ fetchByPlayerId(id: string, options?: {
 | id | string | The PUUID of the summoner to fetch. |
 | options | {         force: boolean;     } | The basic fetching options. |
 
-**Return type**: Promise\<[Summoner](/shieldbow/api/Summoner.html)\>
+**Return type**: Promise\<[Summoner](/shieldbow/api/Summoner.md)\>
 
 ---
 
@@ -184,7 +184,7 @@ fetchBySummonerName(name: string, options?: {
 | name | string | The summoner name of the summoner to fetch. |
 | options | {         force: boolean;     } | The basic fetching options. |
 
-**Return type**: Promise\<[Summoner](/shieldbow/api/Summoner.html)\>
+**Return type**: Promise\<[Summoner](/shieldbow/api/Summoner.md)\>
 
 ---
 

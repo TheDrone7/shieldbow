@@ -13,9 +13,9 @@ An item manager - to fetch and manage all item data.
 export declare class ItemManager implements BaseManager<Item> 
 ```
 
-Implements: [BaseManager](/shieldbow/api/BaseManager.html)<[Item](/shieldbow/api/Item.html)>
+Implements: [BaseManager](/shieldbow/api/BaseManager.md)<[Item](/shieldbow/api/Item.md)>
 
-**References:** [BaseManager](/shieldbow/api/BaseManager.html), [Item](/shieldbow/api/Item.html)
+**References:** [BaseManager](/shieldbow/api/BaseManager.md), [Item](/shieldbow/api/Item.md)
 
 ---
 
@@ -34,7 +34,7 @@ Constructs a new instance of the `ItemManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) | The client this manager belongs to. |
+| client | [Client](/shieldbow/api/Client.md) | The client this manager belongs to. |
 | cacheSettings | {         enable: boolean;         root: string;     } | The basic caching settings. |
 ---
 
@@ -46,7 +46,7 @@ A collection of the items cached in the memory.
 
 
 
-**Type**: Collection\<string, [Item](/shieldbow/api/Item.html)\>
+**Type**: Collection\<string, [Item](/shieldbow/api/Item.md)\>
 
 ---
 
@@ -56,7 +56,7 @@ The client this manager belongs to.
 
 
 
-**Type**: [Client](/shieldbow/api/Client.html)
+**Type**: [Client](/shieldbow/api/Client.md)
 
 ---
 
@@ -84,7 +84,7 @@ fetch(key: string, options?: {
 | key | string | The ID of the item to fetch. |
 | options | {         force: boolean;     } | The basic fetching options. |
 
-**Return type**: Promise\<[Item](/shieldbow/api/Item.html)\>
+**Return type**: Promise\<[Item](/shieldbow/api/Item.md)\>
 
 ---
 
@@ -107,7 +107,7 @@ findByName(name: string): Promise<Item | undefined>;
 | --------- | ---- | ----------- |
 | name | string | The name of the item to look for. |
 
-**Return type**: Promise\<[Item](/shieldbow/api/Item.html) \| undefined\>
+**Return type**: Promise\<[Item](/shieldbow/api/Item.md) \| undefined\>
 
 ---
 

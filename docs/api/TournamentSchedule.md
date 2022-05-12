@@ -27,7 +27,7 @@ Constructs a new instance of the `TournamentSchedule` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [TournamentScheduleData](/shieldbow/api/TournamentScheduleData.html) |  |
+| data | [TournamentScheduleData](/shieldbow/api/TournamentScheduleData.md) |  |
 ---
 
 ### Properties

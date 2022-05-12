@@ -13,7 +13,7 @@ description:
 export interface CurrentGameBanData extends TeamBanData 
 ```
 
-**References:** [TeamBanData](/shieldbow/api/TeamBanData.html)
+**References:** [TeamBanData](/shieldbow/api/TeamBanData.md)
 
 ### Properties
 

@@ -75,7 +75,7 @@ export interface MerakiChampion
 
 
 
-**Type**: [MerakiSkin](/shieldbow/api/MerakiSkin.html)[]
+**Type**: [MerakiSkin](/shieldbow/api/MerakiSkin.md)[]
 
 ---
 

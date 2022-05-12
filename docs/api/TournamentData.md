@@ -43,7 +43,7 @@ export interface TournamentData
 
 
 
-**Type**: [TournamentScheduleData](/shieldbow/api/TournamentScheduleData.html)[]
+**Type**: [TournamentScheduleData](/shieldbow/api/TournamentScheduleData.md)[]
 
 ---
 

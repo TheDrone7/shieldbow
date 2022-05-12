@@ -27,10 +27,10 @@ Constructs a new instance of the `Champion` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) |  |
-| data | [ChampionData](/shieldbow/api/ChampionData.html) |  |
-| damage | [SpellDamageData](/shieldbow/api/SpellDamageData.html) |  |
-| meraki | [MerakiChampion](/shieldbow/api/MerakiChampion.html) |  |
+| client | [Client](/shieldbow/api/Client.md) |  |
+| data | [ChampionData](/shieldbow/api/ChampionData.md) |  |
+| damage | [SpellDamageData](/shieldbow/api/SpellDamageData.md) |  |
+| meraki | [MerakiChampion](/shieldbow/api/MerakiChampion.md) |  |
 ---
 
 ### Properties
@@ -251,7 +251,7 @@ A collection of the available skins for this champion. The default skin always h
 
 
 
-**Type**: Collection\<number, [ChampionSkin](/shieldbow/api/ChampionSkin.html)\>
+**Type**: Collection\<number, [ChampionSkin](/shieldbow/api/ChampionSkin.md)\>
 
 ---
 
@@ -261,7 +261,7 @@ The champion's spells (abilities), mapped by the key they are assigned to, by de
 
 
 
-**Type**: Collection\<'Q' \| 'W' \| 'E' \| 'R', [ChampionSpell](/shieldbow/api/ChampionSpell.html)\>
+**Type**: Collection\<'Q' \| 'W' \| 'E' \| 'R', [ChampionSpell](/shieldbow/api/ChampionSpell.md)\>
 
 ---
 
@@ -271,7 +271,7 @@ A collection of the champion's base stats.
 
 
 
-**Type**: Collection\<[Stats](/shieldbow/api/Stats.html), [ChampionStat](/shieldbow/api/ChampionStat.html)\>
+**Type**: Collection\<[Stats](/shieldbow/api/Stats.md), [ChampionStat](/shieldbow/api/ChampionStat.md)\>
 
 ---
 

@@ -27,9 +27,9 @@ Constructs a new instance of the `Team` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) |  |
-| data | [TeamData](/shieldbow/api/TeamData.html) |  |
-| participants | [ParticipantData](/shieldbow/api/ParticipantData.html)[] |  |
+| client | [Client](/shieldbow/api/Client.md) |  |
+| data | [TeamData](/shieldbow/api/TeamData.md) |  |
+| participants | [ParticipantData](/shieldbow/api/ParticipantData.md)[] |  |
 ---
 
 ### Properties
@@ -60,7 +60,7 @@ The objectives secured by the team.
 
 
 
-**Type**: [TeamObjectivesData](/shieldbow/api/TeamObjectivesData.html)
+**Type**: [TeamObjectivesData](/shieldbow/api/TeamObjectivesData.md)
 
 ---
 
@@ -70,7 +70,7 @@ The participants in the team.
 
 
 
-**Type**: [Participant](/shieldbow/api/Participant.html)[]
+**Type**: [Participant](/shieldbow/api/Participant.md)[]
 
 ---
 

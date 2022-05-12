@@ -27,8 +27,8 @@ Constructs a new instance of the `CurrentGamePerks` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.html) |  |
-| data | [CurrentGamePerksData](/shieldbow/api/CurrentGamePerksData.html) |  |
+| client | [Client](/shieldbow/api/Client.md) |  |
+| data | [CurrentGamePerksData](/shieldbow/api/CurrentGamePerksData.md) |  |
 ---
 
 ### Properties
@@ -39,7 +39,7 @@ The primary rune tree selected by the participant.
 
 
 
-**Type**: [RuneTree](/shieldbow/api/RuneTree.html)
+**Type**: [RuneTree](/shieldbow/api/RuneTree.md)
 
 ---
 
@@ -49,7 +49,7 @@ The secondary rune tree selected by the participant.
 
 
 
-**Type**: [RuneTree](/shieldbow/api/RuneTree.html)
+**Type**: [RuneTree](/shieldbow/api/RuneTree.md)
 
 ---
 
@@ -59,7 +59,7 @@ The runes selected by the participant.
 
 
 
-**Type**: [Rune](/shieldbow/api/Rune.html)[]
+**Type**: [Rune](/shieldbow/api/Rune.md)[]
 
 ---
 
@@ -69,7 +69,7 @@ The stat runes selected by the participant.
 
 
 
-**Type**: [StatPerk](/shieldbow/api/StatPerk.html)[]
+**Type**: [StatPerk](/shieldbow/api/StatPerk.md)[]
 
 ---
 
