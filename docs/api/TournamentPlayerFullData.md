@@ -1,11 +1,11 @@
 ---
 title: TournamentPlayerFullData
-description: 
+description: The complete clash tournament player data as returned by the API.
 ---
 
 ## TournamentPlayerFullData interface
 
-
+The complete clash tournament player data as returned by the API.
 
 **Signature:**
 

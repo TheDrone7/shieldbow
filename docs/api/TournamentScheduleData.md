@@ -1,11 +1,11 @@
 ---
 title: TournamentScheduleData
-description: 
+description: The clash tournament schedule data as returned by the API.
 ---
 
 ## TournamentScheduleData interface
 
-
+The clash tournament schedule data as returned by the API.
 
 **Signature:**
 

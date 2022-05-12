@@ -1,11 +1,11 @@
 ---
 title: AccountData
-description: 
+description: The account data structure as returned by the API.
 ---
 
 ## AccountData interface
 
-
+The account data structure as returned by the API.
 
 **Signature:**
 

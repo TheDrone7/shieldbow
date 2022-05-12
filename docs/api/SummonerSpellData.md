@@ -1,11 +1,11 @@
 ---
 title: SummonerSpellData
-description: 
+description: The summoner spell data as stored in data dragon.
 ---
 
 ## SummonerSpellData interface
 
-
+The summoner spell data as stored in data dragon.
 
 **Signature:**
 

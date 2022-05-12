@@ -1,11 +1,11 @@
 ---
 title: TeamObjectiveData
-description: 
+description: The individual objective data as returned by the API.
 ---
 
 ## TeamObjectiveData interface
 
-
+The individual objective data as returned by the API.
 
 **Signature:**
 

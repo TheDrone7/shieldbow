@@ -1,11 +1,11 @@
 ---
 title: ParticipantData
-description: 
+description: Match participant data as returned by the API
 ---
 
 ## ParticipantData interface
 
-
+Match participant data as returned by the API
 
 **Signature:**
 

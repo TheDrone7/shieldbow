@@ -1,11 +1,11 @@
 ---
 title: MatchData
-description: 
+description: The match data as returned by the API.
 ---
 
 ## MatchData interface
 
-
+The match data as returned by the API.
 
 **Signature:**
 

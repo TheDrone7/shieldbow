@@ -1,11 +1,11 @@
 ---
 title: PerksData
-description: 
+description: The perks data for a match participant as returned by the API.
 ---
 
 ## PerksData interface
 
-
+The perks data for a match participant as returned by the API.
 
 **Signature:**
 

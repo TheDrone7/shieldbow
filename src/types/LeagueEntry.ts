@@ -1,5 +1,8 @@
 import type { DivisionType, QueueType, TierType } from './LeagueConstants';
 
+/**
+ * The league entry data as returned by the API.
+ */
 export interface LeagueEntryData {
   leagueId: string;
   summonerId: string;

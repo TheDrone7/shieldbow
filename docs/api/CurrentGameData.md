@@ -1,11 +1,11 @@
 ---
 title: CurrentGameData
-description: 
+description: The Current game data as returned by the API.
 ---
 
 ## CurrentGameData interface
 
-
+The Current game data as returned by the API.
 
 **Signature:**
 

@@ -1,3 +1,6 @@
+/**
+ * The champion mastery data as returned by the API.
+ */
 export interface ChampionMasteryData {
   championId: number;
   championLevel: number;

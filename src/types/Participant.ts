@@ -1,5 +1,8 @@
 import type { PerksData } from './Perks';
 
+/**
+ * Match participant data as returned by the API
+ */
 export interface ParticipantData {
   assists: number;
   baronKills: number;

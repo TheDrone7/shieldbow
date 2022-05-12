@@ -1,11 +1,11 @@
 ---
 title: TeamBanData
-description: 
+description: The champion ban data as returned by the API.
 ---
 
 ## TeamBanData interface
 
-
+The champion ban data as returned by the API.
 
 **Signature:**
 

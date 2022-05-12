@@ -1,6 +1,9 @@
 import type { ParticipantData } from './Participant';
 import type { TeamData } from './Team';
 
+/**
+ * The match data as returned by the API.
+ */
 export interface MatchData {
   metadata: {
     dataVersion: string;

@@ -1,11 +1,11 @@
 ---
 title: TeamData
-description: 
+description: The match team data as returned by the API.
 ---
 
 ## TeamData interface
 
-
+The match team data as returned by the API.
 
 **Signature:**
 

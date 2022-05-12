@@ -53,64 +53,64 @@
 
 | Function | Description |
 | -------- | ----------- |
+| [arrToString(values)](/shieldbow/api/arrToString.md) | Parses the float values and returns rounded strings. |
 | [hash(str, { size })](/shieldbow/api/hash.md) | A simple fnv1a hashing utility - to help with community dragon data parsing. |
+| [multiply(part1, part2)](/shieldbow/api/multiply.md) | Multiplies two spell calculation parts. |
+| [performMath(calculation, effects, datavalue, maxRank, options)](/shieldbow/api/performMath.md) | A function that takes in calculations and performs the necessary operations to generate appropriate tooltips. |
+| [round(value)](/shieldbow/api/round.md) | Rounds the value to up to 2 decimal points. |
 ---
 
 ## Interfaces
 
 | Interface | Description |
 | --------- | ----------- |
-| [AccountData](/shieldbow/api/AccountData.md) |  |
+| [AccountData](/shieldbow/api/AccountData.md) | The account data structure as returned by the API. |
 | [BaseManager](/shieldbow/api/BaseManager.md) | A base for any manager classes. |
 | [ChampionData](/shieldbow/api/ChampionData.md) | A representation of the champion data returned by Data Dragon. |
-| [ChampionMasteryData](/shieldbow/api/ChampionMasteryData.md) |  |
+| [ChampionMasteryData](/shieldbow/api/ChampionMasteryData.md) | The champion mastery data as returned by the API. |
 | [ClientConfig](/shieldbow/api/ClientConfig.md) | The basic configuration for the shieldbow Client. |
-| [CurrentGameBanData](/shieldbow/api/CurrentGameBanData.md) |  |
-| [CurrentGameData](/shieldbow/api/CurrentGameData.md) |  |
-| [CurrentGameParticipantData](/shieldbow/api/CurrentGameParticipantData.md) |  |
-| [CurrentGamePerksData](/shieldbow/api/CurrentGamePerksData.md) |  |
+| [CurrentGameBanData](/shieldbow/api/CurrentGameBanData.md) | The champion ban data as returned by the API. |
+| [CurrentGameData](/shieldbow/api/CurrentGameData.md) | The Current game data as returned by the API. |
+| [CurrentGameParticipantData](/shieldbow/api/CurrentGameParticipantData.md) | The Current game participant data as returned by the API. |
+| [CurrentGamePerksData](/shieldbow/api/CurrentGamePerksData.md) | The current game participant perks data as returned by the API. |
 | [GameMap](/shieldbow/api/GameMap.md) | Basic data for types of Maps available in the game. |
 | [GameMode](/shieldbow/api/GameMode.md) | Basic data for types of game modes. |
 | [GameType](/shieldbow/api/GameType.md) | Basic data for types of games. |
 | [ImageData](/shieldbow/api/ImageData.md) | A representation of any image data returned by Data Dragon. |
 | [ItemData](/shieldbow/api/ItemData.md) | A representation of the item data returned by Data Dragon. |
-| [LeagueEntryData](/shieldbow/api/LeagueEntryData.md) |  |
-| [LeagueListData](/shieldbow/api/LeagueListData.md) |  |
+| [LeagueEntryData](/shieldbow/api/LeagueEntryData.md) | The league entry data as returned by the API. |
+| [LeagueListData](/shieldbow/api/LeagueListData.md) | The league list data as returned by the API. |
 | [MatchByPlayerOptions](/shieldbow/api/MatchByPlayerOptions.md) | Additional options for filtering a specific summoner's matches. |
-| [MatchData](/shieldbow/api/MatchData.md) |  |
+| [MatchData](/shieldbow/api/MatchData.md) | The match data as returned by the API. |
 | [MerakiChampion](/shieldbow/api/MerakiChampion.md) | A representation of the champion data returned by meraki analytics. These are used in the LoL wiki. |
 | [MerakiSkin](/shieldbow/api/MerakiSkin.md) | A representation of a champion's skin data returned by meraki analytics. These are used in the LoL wiki. |
-| [ParticipantData](/shieldbow/api/ParticipantData.md) |  |
-| [PerksData](/shieldbow/api/PerksData.md) |  |
+| [ParticipantData](/shieldbow/api/ParticipantData.md) | Match participant data as returned by the API |
+| [PerksData](/shieldbow/api/PerksData.md) | The perks data for a match participant as returned by the API. |
 | [Queue](/shieldbow/api/Queue.md) | Basic data for types of queues (matches) in the game. |
-| [RuneData](/shieldbow/api/RuneData.md) |  |
-| [RuneTreeData](/shieldbow/api/RuneTreeData.md) |  |
+| [RuneData](/shieldbow/api/RuneData.md) | The runes data as stored in data dragon. |
+| [RuneTreeData](/shieldbow/api/RuneTreeData.md) | The rune trees data as stored in data dragon. |
 | [Season](/shieldbow/api/Season.md) | Basic data of seasons of the game. |
 | [SpellDamageData](/shieldbow/api/SpellDamageData.md) | A representation of the champion spell data returned by Community Dragon. |
 | [SpellData](/shieldbow/api/SpellData.md) | A representation of the champion spell data returned by Data Dragon. |
-| [StatPerk](/shieldbow/api/StatPerk.md) |  |
-| [SummonerData](/shieldbow/api/SummonerData.md) |  |
-| [SummonerSpellData](/shieldbow/api/SummonerSpellData.md) |  |
-| [TeamBanData](/shieldbow/api/TeamBanData.md) |  |
-| [TeamData](/shieldbow/api/TeamData.md) |  |
-| [TeamObjectiveData](/shieldbow/api/TeamObjectiveData.md) |  |
-| [TeamObjectivesData](/shieldbow/api/TeamObjectivesData.md) |  |
-| [TournamentData](/shieldbow/api/TournamentData.md) |  |
-| [TournamentPlayerData](/shieldbow/api/TournamentPlayerData.md) |  |
-| [TournamentPlayerFullData](/shieldbow/api/TournamentPlayerFullData.md) |  |
-| [TournamentScheduleData](/shieldbow/api/TournamentScheduleData.md) |  |
-| [TournamentTeamData](/shieldbow/api/TournamentTeamData.md) |  |
+| [StatPerk](/shieldbow/api/StatPerk.md) | The stat perks data for a match participant as returned by the API. |
+| [SummonerData](/shieldbow/api/SummonerData.md) | The summoner data as returned by the API. |
+| [SummonerSpellData](/shieldbow/api/SummonerSpellData.md) | The summoner spell data as stored in data dragon. |
+| [TeamBanData](/shieldbow/api/TeamBanData.md) | The champion ban data as returned by the API. |
+| [TeamData](/shieldbow/api/TeamData.md) | The match team data as returned by the API. |
+| [TeamObjectiveData](/shieldbow/api/TeamObjectiveData.md) | The individual objective data as returned by the API. |
+| [TeamObjectivesData](/shieldbow/api/TeamObjectivesData.md) | The match team objective data as returned by the API. |
+| [TournamentData](/shieldbow/api/TournamentData.md) | The clash tournament data as returned by the API. |
+| [TournamentPlayerData](/shieldbow/api/TournamentPlayerData.md) | The partial clash tournament player data as returned by the API. |
+| [TournamentPlayerFullData](/shieldbow/api/TournamentPlayerFullData.md) | The complete clash tournament player data as returned by the API. |
+| [TournamentScheduleData](/shieldbow/api/TournamentScheduleData.md) | The clash tournament schedule data as returned by the API. |
+| [TournamentTeamData](/shieldbow/api/TournamentTeamData.md) | The clash tournament team data as returned by the API. |
 ---
 
 ## Variables
 
 | Variable | Description |
 | -------- | ----------- |
-| [arrToString](/shieldbow/api/arrToString.md) |  |
-| [locale](/shieldbow/api/locale.md) |  |
-| [multiply](/shieldbow/api/multiply.md) |  |
-| [performMath](/shieldbow/api/performMath.md) |  |
-| [round](/shieldbow/api/round.md) | Rounds the value to up to 2 decimal points. |
+| [locale](/shieldbow/api/locale.md) | A list of all valid locales. |
 | [Stat](/shieldbow/api/Stat.md) | An array of all possible statistics needed for spell math. |
 | [StatFormula](/shieldbow/api/StatFormula.md) | The part of the stat that needs to be considered during spell math. |
 | [statPerks](/shieldbow/api/statPerks.md) | The available stat perks. |
@@ -120,9 +120,9 @@
 
 | Type Alias | Description |
 | ---------- | ----------- |
-| [DivisionType](/shieldbow/api/DivisionType.md) |  |
+| [DivisionType](/shieldbow/api/DivisionType.md) | Valid divisions for league entries. |
 | [Locales](/shieldbow/api/Locales.md) | A valid locale to fetch the data in. |
-| [QueueType](/shieldbow/api/QueueType.md) |  |
+| [QueueType](/shieldbow/api/QueueType.md) | The valid type of Queues by which league entries are mapped. |
 | [Region](/shieldbow/api/Region.md) | A valid League of Legends region. |
 | [Stats](/shieldbow/api/Stats.md) | A valid champion stat that affects their in-game interactions. |
-| [TierType](/shieldbow/api/TierType.md) |  |
+| [TierType](/shieldbow/api/TierType.md) | Valid tiers for league entries. |

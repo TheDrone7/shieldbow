@@ -1,3 +1,6 @@
+/**
+ * The summoner data as returned by the API.
+ */
 export interface SummonerData {
   id: string;
   accountId: string;

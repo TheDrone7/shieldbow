@@ -1,3 +1,6 @@
+/**
+ * The perks data for a match participant as returned by the API.
+ */
 export interface PerksData {
   statPerks: {
     defense: number;
@@ -16,6 +19,9 @@ export interface PerksData {
   }[];
 }
 
+/**
+ * The stat perks data for a match participant as returned by the API.
+ */
 export interface StatPerk {
   id: number;
   name: string;

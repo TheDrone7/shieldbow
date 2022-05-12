@@ -1,5 +1,8 @@
 import type { ImageData } from './index';
 
+/**
+ * The summoner spell data as stored in data dragon.
+ */
 export interface SummonerSpellData {
   id: string;
   name: string;

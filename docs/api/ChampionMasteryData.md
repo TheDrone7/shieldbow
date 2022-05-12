@@ -1,11 +1,11 @@
 ---
 title: ChampionMasteryData
-description: 
+description: The champion mastery data as returned by the API.
 ---
 
 ## ChampionMasteryData interface
 
-
+The champion mastery data as returned by the API.
 
 **Signature:**
 

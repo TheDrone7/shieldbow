@@ -1,3 +1,6 @@
+/**
+ * The runes data as stored in data dragon.
+ */
 export interface RuneData {
   id: number;
   key: string;
@@ -7,6 +10,9 @@ export interface RuneData {
   longDesc: string;
 }
 
+/**
+ * The rune trees data as stored in data dragon.
+ */
 export interface RuneTreeData {
   id: number;
   key: string;

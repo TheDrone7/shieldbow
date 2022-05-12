@@ -1,11 +1,11 @@
 ---
 title: LeagueEntryData
-description: 
+description: The league entry data as returned by the API.
 ---
 
 ## LeagueEntryData interface
 
-
+The league entry data as returned by the API.
 
 **Signature:**
 

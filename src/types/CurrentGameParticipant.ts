@@ -1,5 +1,8 @@
 import type { CurrentGamePerksData } from './CurrentGamePerks';
 
+/**
+ * The Current game participant data as returned by the API.
+ */
 export interface CurrentGameParticipantData {
   championId: number;
   perks?: CurrentGamePerksData;

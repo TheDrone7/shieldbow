@@ -1,11 +1,11 @@
 ---
 title: RuneData
-description: 
+description: The runes data as stored in data dragon.
 ---
 
 ## RuneData interface
 
-
+The runes data as stored in data dragon.
 
 **Signature:**
 

@@ -1,11 +1,11 @@
 ---
 title: locale
-description: 
+description: A list of all valid locales.
 ---
 
 ## locale variable
 
-
+A list of all valid locales.
 
 **Signature:**
 

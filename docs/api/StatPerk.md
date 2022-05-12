@@ -1,11 +1,11 @@
 ---
 title: StatPerk
-description: 
+description: The stat perks data for a match participant as returned by the API.
 ---
 
 ## StatPerk interface
 
-
+The stat perks data for a match participant as returned by the API.
 
 **Signature:**
 

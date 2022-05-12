@@ -1,11 +1,11 @@
 ---
 title: TierType
-description: 
+description: Valid tiers for league entries.
 ---
 
 ## TierType type
 
-
+Valid tiers for league entries.
 
 **Signature:**
 

@@ -1,6 +1,9 @@
 import type { CurrentGameBanData } from './ChampionBan';
 import type { CurrentGameParticipantData } from './CurrentGameParticipant';
 
+/**
+ * The Current game data as returned by the API.
+ */
 export interface CurrentGameData {
   gameId: number;
   gameType: string;

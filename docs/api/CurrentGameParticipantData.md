@@ -1,11 +1,11 @@
 ---
 title: CurrentGameParticipantData
-description: 
+description: The Current game participant data as returned by the API.
 ---
 
 ## CurrentGameParticipantData interface
 
-
+The Current game participant data as returned by the API.
 
 **Signature:**
 

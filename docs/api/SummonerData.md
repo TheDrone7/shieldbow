@@ -1,11 +1,11 @@
 ---
 title: SummonerData
-description: 
+description: The summoner data as returned by the API.
 ---
 
 ## SummonerData interface
 
-
+The summoner data as returned by the API.
 
 **Signature:**
 

@@ -1,3 +1,6 @@
+/**
+ * A list of all valid locales.
+ */
 export const locale = [
   'en_US',
   'cs_CZ',

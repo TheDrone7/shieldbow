@@ -1,11 +1,11 @@
 ---
 title: LeagueListData
-description: 
+description: The league list data as returned by the API.
 ---
 
 ## LeagueListData interface
 
-
+The league list data as returned by the API.
 
 **Signature:**
 

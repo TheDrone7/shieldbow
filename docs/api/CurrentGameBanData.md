@@ -1,11 +1,11 @@
 ---
 title: CurrentGameBanData
-description: 
+description: The champion ban data as returned by the API.
 ---
 
 ## CurrentGameBanData interface
 
-
+The champion ban data as returned by the API.
 
 **Signature:**
 

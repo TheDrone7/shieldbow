@@ -1,11 +1,11 @@
 ---
 title: QueueType
-description: 
+description: The valid type of Queues by which league entries are mapped.
 ---
 
 ## QueueType type
 
-
+The valid type of Queues by which league entries are mapped.
 
 **Signature:**
 

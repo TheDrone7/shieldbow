@@ -5,17 +5,29 @@ import { Stat, StatFormula } from './constants';
  * Rounds the value to up to 2 decimal points.
  * @param value - The value that needs to be rounded off.
  */
-export const round = (value: number) => {
+export function round(value: number) {
   const m = Number((Math.abs(value) * 100).toPrecision(15));
   return Math.round(m) / 100;
-};
+}
 
-export const arrToString = (values: number[]) => values.map((v) => round(v).toString());
+/**
+ * Parses the float values and returns rounded strings.
+ * @param values - The numerical values to parse.
+ */
+export function arrToString(values: number[]) {
+  return values.map((v) => round(v).toString());
+}
 
-const getJoined = (values: number[], maxRank: number) =>
-  values.slice(1, maxRank + 1).every((v) => v === values[1])
+/**
+ * Parses values and returns a string displaying them in appropriate format.
+ * @param values - The numerical values to parse.
+ * @param maxRank - The highest spell rank applicable.
+ */
+function getJoined(values: number[], maxRank: number) {
+  return values.slice(1, maxRank + 1).every((v) => v === values[1])
     ? values[1].toString()
     : arrToString(values.slice(1, maxRank + 1)).join('/');
+}
 
 const numberPart = (part: any, options = { percent: false }) => {
   const n = round(part.mNumber * (options.percent ? 100 : 1));
@@ -223,18 +235,31 @@ const statSubpartPart = (sub: string, part: any) => {
   return `(${sub})%${statType ? ` ${statType}` : ''} ${statName || 'AP'}`;
 };
 
-export const multiply = (part1: string, part2: string) => {
+/**
+ * Multiplies two spell calculation parts.
+ * @param part1 - The first part.
+ * @param part2 - The second part.
+ */
+export function multiply(part1: string, part2: string) {
   if (part2.match(/^\d+%$/)?.length) part2 = round(parseFloat(part2) / 100).toString();
   return productParts(part1, part2);
-};
+}
 
-export const performMath = (
+/**
+ * A function that takes in calculations and performs the necessary operations to generate appropriate tooltips.
+ * @param calculation - The calculations.
+ * @param effects - The effect values.
+ * @param datavalue - The named data values.
+ * @param maxRank - The max applicable spell rank.
+ * @param options - Additional spell math options.
+ */
+export function performMath(
   calculation: { [key: string]: any; __type: string },
   effects: { value: number[] }[],
   datavalue: { [name: string]: number[] },
   maxRank: number,
   options: { percent: boolean }
-): string => {
+): string {
   if (!calculation?.__type) return '0';
   switch (calculation.__type) {
     case 'EffectValueCalculationPart':
@@ -277,4 +302,4 @@ export const performMath = (
     default:
       return '?';
   }
-};
+}

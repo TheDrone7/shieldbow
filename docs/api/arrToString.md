@@ -1,15 +1,26 @@
 ---
-title: arrToString
-description: 
+title: arrToString() function
+description: Parses the float values and returns rounded strings.
 ---
 
-## arrToString variable
+## arrToString(values) function
 
-
+Parses the float values and returns rounded strings.
 
 **Signature:**
 
 ```ts
-arrToString: (values: number[]) => string[]
+export declare function arrToString(values: number[]): string[];
 ```
+
+### Parameters
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| values | number[] | The numerical values to parse. |
+
+
+**Return type :** string[]
+
+---
 
