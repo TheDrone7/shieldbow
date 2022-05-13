@@ -31,8 +31,8 @@ Constructs a new instance of the `ChampionMasteryManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
-| summoner | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  |
+| client | [Client](/shieldbow/api/Client.md) | The client that instantiated this manager. |
+| summoner | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The summoner this manager belongs to. |
 ---
 
 ### Properties
@@ -54,6 +54,16 @@ The client this manager belongs to.
 
 
 **Type**: [Client](/shieldbow/api/Client.md)
+
+---
+
+#### region
+
+The region the summoner for this manager belongs to.
+
+
+
+**Type**: [Region](/shieldbow/api/Region.md)
 
 ---
 
@@ -102,9 +112,7 @@ Fetch a champion's mastery data for the summoner.
 **Signature:**
 
 ```ts
-fetch(champion: Champion | string, options?: {
-        force: boolean;
-    }): Promise<ChampionMastery>;
+fetch(champion: Champion | string, options?: FetchOptions): Promise<ChampionMastery>;
 ```
 
 **Parameters:**
@@ -112,7 +120,7 @@ fetch(champion: Champion | string, options?: {
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | champion | [Champion](/shieldbow/api/Champion.md) \| [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The champion (or its ID) whose mastery data needs to be fetched. |
-| options | {         force: boolean;     } | The basic fetching options. |
+| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetching options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [ChampionMastery](/shieldbow/api/ChampionMastery.md) \>
 

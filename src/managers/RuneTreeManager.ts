@@ -1,5 +1,5 @@
 import type { Client } from '../client';
-import type { BaseManager, RuneTreeData } from '../types';
+import type { BaseManager, FetchOptions, RuneTreeData } from '../types';
 import { Rune, RuneTree } from '../structures';
 import Collection from '@discordjs/collection';
 import { StorageManager } from './index';
@@ -75,9 +75,10 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
    * @param key - The key of the rune tree to fetch.
    * @param options - Additional fetch options.
    */
-  async fetch(key: string, options: { force: boolean } = { force: false }) {
+  async fetch(key: string, options?: FetchOptions) {
+    const force = options?.force ?? false;
     return new Promise<RuneTree>(async (resolve, reject) => {
-      if (this.cache.has(key) && !options.force) resolve(this.cache.get(key)!);
+      if (this.cache.has(key) && !force) resolve(this.cache.get(key)!);
       else if (this.client.version === 'null') reject('Please initialize the client first.');
       else {
         await this._fetchAll().catch(reject);

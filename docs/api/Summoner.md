@@ -142,6 +142,16 @@ The current profile icon of this summoner.
 
 ---
 
+#### region
+
+The region this summoner is located in.
+
+
+
+**Type**: [Region](/shieldbow/api/Region.md)
+
+---
+
 #### revisionDate
 
 The last time this summoner was modified.

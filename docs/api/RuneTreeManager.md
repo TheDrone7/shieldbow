@@ -85,9 +85,7 @@ Fetch a rune tree by its key. The key is the same as the rune tree's name, for e
 **Signature:**
 
 ```ts
-fetch(key: string, options?: {
-        force: boolean;
-    }): Promise<RuneTree>;
+fetch(key: string, options?: FetchOptions): Promise<RuneTree>;
 ```
 
 **Parameters:**
@@ -95,7 +93,7 @@ fetch(key: string, options?: {
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | key | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The key of the rune tree to fetch. |
-| options | {         force: boolean;     } | Additional fetch options. |
+| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | Additional fetch options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [RuneTree](/shieldbow/api/RuneTree.md) \>
 

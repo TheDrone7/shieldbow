@@ -1,5 +1,5 @@
 import type { Client } from '../client';
-import type { BaseManager, TournamentData, TournamentPlayerFullData } from '../types';
+import type { BaseManager, FetchOptions, TournamentData, TournamentPlayerFullData } from '../types';
 import { Tournament, TournamentPlayer, TournamentTeam } from '../structures';
 import Collection from '@discordjs/collection';
 
@@ -16,6 +16,10 @@ export class ClashManager implements BaseManager<Tournament> {
    */
   readonly client: Client;
 
+  /**
+   * Creates a new clash manager.
+   * @param client - The client that instantiated the manager.
+   */
   constructor(client: Client) {
     this.client = client;
     this.cache = new Collection<number, Tournament>();
@@ -26,12 +30,16 @@ export class ClashManager implements BaseManager<Tournament> {
    * @param id - The ID of the tournament.
    * @param options - The basic fetch options.
    */
-  fetch(id: number, options: { force: boolean } = { force: false }) {
+  fetch(id: number, options?: FetchOptions) {
+    const force = options?.force ?? false;
+    const cache = options?.cache ?? true;
+    const region = options?.region ?? this.client.region;
     return new Promise<Tournament>(async (resolve, reject) => {
-      if (this.cache.has(id) && !options.force) resolve(this.cache.get(id)!);
+      if (this.cache.has(id) && !force) resolve(this.cache.get(id)!);
       else {
         const response = await this.client.api
           .makeApiRequest(`/lol/clash/v1/tournaments/${id}`, {
+            region,
             name: 'Get tournament by tournament ID',
             regional: false,
             params: `Tournament ID: ${id}`
@@ -39,7 +47,7 @@ export class ClashManager implements BaseManager<Tournament> {
           .catch(reject);
         if (response) {
           const tournament = new Tournament(response.data);
-          this.cache.set(id, tournament);
+          if (cache) this.cache.set(id, tournament);
           resolve(tournament);
         }
       }
@@ -53,6 +61,7 @@ export class ClashManager implements BaseManager<Tournament> {
     return new Promise<Tournament[]>(async (resolve, reject) => {
       const response = await this.client.api
         .makeApiRequest(`/lol/clash/v1/tournaments`, {
+          region: this.client.region,
           name: 'Get all upcoming and active tournaments',
           regional: false,
           params: `No parameters`
@@ -74,6 +83,7 @@ export class ClashManager implements BaseManager<Tournament> {
     return new Promise<Tournament>(async (resolve, reject) => {
       const response = await this.client.api
         .makeApiRequest(`/lol/clash/v1/tournaments/by-team/${teamId}`, {
+          region: this.client.region,
           name: 'Get tournament by team ID',
           regional: false,
           params: `Team ID: ${teamId}`
@@ -95,6 +105,7 @@ export class ClashManager implements BaseManager<Tournament> {
     return new Promise<TournamentTeam>(async (resolve, reject) => {
       const response = await this.client.api
         .makeApiRequest(`/lol/clash/v1/teams/${teamId}`, {
+          region: this.client.region,
           name: 'Get team by team ID',
           regional: false,
           params: `Team ID: ${teamId}`
@@ -115,6 +126,7 @@ export class ClashManager implements BaseManager<Tournament> {
     return new Promise<TournamentPlayer[]>(async (resolve, reject) => {
       const response = await this.client.api
         .makeApiRequest(`/lol/clash/v1/players/by-summoner/${summonerId}`, {
+          region: this.client.region,
           name: 'Get tournament player by summoner ID',
           regional: false,
           params: `Summoner ID: ${summonerId}`

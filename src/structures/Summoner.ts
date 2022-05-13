@@ -1,4 +1,4 @@
-import type { SummonerData } from '../types';
+import type { Region, SummonerData } from '../types';
 import type { Client } from '../client';
 import { ChampionMasteryManager } from '../managers';
 import type Collection from '@discordjs/collection';
@@ -44,6 +44,10 @@ export class Summoner {
    * A manager for the summoner's champion mastery.
    */
   readonly championMastery: ChampionMasteryManager;
+  /**
+   * The region this summoner is located in.
+   */
+  readonly region: Region;
 
   /**
    * Creates a new summoner instance.
@@ -52,6 +56,7 @@ export class Summoner {
    */
   constructor(client: Client, summoner: SummonerData) {
     this.client = client;
+    this.region = client.region;
     this.id = summoner.id;
     this.accountId = summoner.accountId;
     this.playerId = summoner.puuid;
@@ -98,6 +103,7 @@ export class Summoner {
     return new Promise<boolean>(async (resolve, reject) => {
       const response = await this.client.api
         .makeApiRequest('/lol/platform/v4/third-party-code/by-summoner/' + this.id, {
+          region: this.region,
           regional: false,
           name: 'Verify third party code',
           params: `Summoner ID: ${this.id}`

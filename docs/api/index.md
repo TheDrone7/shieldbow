@@ -65,6 +65,7 @@
 | Interface | Description |
 | --------- | ----------- |
 | [AccountData](/shieldbow/api/AccountData.md) | The account data structure as returned by the API. |
+| [ApiRequestOptions](/shieldbow/api/ApiRequestOptions.md) | The API request options. |
 | [BaseManager](/shieldbow/api/BaseManager.md) | A base for any manager classes. |
 | [CacheConfig](/shieldbow/api/CacheConfig.md) | Client's data dragon cache configuration. |
 | [ChampionBan](/shieldbow/api/ChampionBan.md) | A banned champion in a match. |
@@ -80,6 +81,7 @@
 | [CurrentGameData](/shieldbow/api/CurrentGameData.md) | The Current game data as returned by the API. |
 | [CurrentGameParticipantData](/shieldbow/api/CurrentGameParticipantData.md) | The Current game participant data as returned by the API. |
 | [CurrentGamePerksData](/shieldbow/api/CurrentGamePerksData.md) | The current game participant perks data as returned by the API. |
+| [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetching options for various fetch methods in the managers. |
 | [GameMap](/shieldbow/api/GameMap.md) | Basic data for types of Maps available in the game. |
 | [GameMode](/shieldbow/api/GameMode.md) | Basic data for types of game modes. |
 | [GameType](/shieldbow/api/GameType.md) | Basic data for types of games. |

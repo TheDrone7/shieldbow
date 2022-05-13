@@ -56,7 +56,9 @@ export type Locales = typeof locale[number];
 
 export * from './LeagueConstants';
 
-export { MatchByPlayerOptions } from './MatchByPlayerOptions';
+export type { ClientConfig, CacheConfig, PreFetchConfig } from './ClientConfig';
+export type { MatchByPlayerOptions } from './MatchByPlayerOptions';
+export type { FetchOptions } from './FetchOptions';
 
 export type { AccountData } from './Account';
 export type { SummonerData } from './Summoner';
@@ -80,7 +82,6 @@ export type { ChampionSkinData, MerakiSkin, SkinPricing, SkinChroma } from './Ch
 export type { SpellData, SpellDamageData } from './ChampionSpell';
 export type { ImageData } from './Image';
 export type { BaseManager } from './BaseManager';
-export type { ClientConfig, CacheConfig, PreFetchConfig } from './ClientConfig';
 export type { ItemData } from './Item';
 export type { RuneData, RuneTreeData } from './Rune';
 export type { SummonerSpellData } from './SummonerSpell';

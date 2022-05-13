@@ -31,7 +31,7 @@ Constructs a new instance of the `AccountManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
+| client | [Client](/shieldbow/api/Client.md) | The client this account manager belongs to. |
 ---
 
 ### Properties
@@ -68,9 +68,7 @@ Fetch a RIOT account by its unique PUUID.
 **Signature:**
 
 ```ts
-fetch(id: string, options?: {
-        force: boolean;
-    }): Promise<Account>;
+fetch(id: string, options?: FetchOptions): Promise<Account>;
 ```
 
 **Parameters:**
@@ -78,7 +76,7 @@ fetch(id: string, options?: {
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The PUUID of the RIOT account. |
-| options | {         force: boolean;     } | The basic fetching options. |
+| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetching options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Account](/shieldbow/api/Account.md) \>
 
@@ -94,9 +92,7 @@ Fetch a RIOT account by its name and tag.
 **Signature:**
 
 ```ts
-fetchByNameAndTag(name: string, tag: string, options?: {
-        force: boolean;
-    }): Promise<Account>;
+fetchByNameAndTag(name: string, tag: string, options?: FetchOptions): Promise<Account>;
 ```
 
 **Parameters:**
@@ -105,7 +101,7 @@ fetchByNameAndTag(name: string, tag: string, options?: {
 | --------- | ---- | ----------- |
 | name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of this RIOT account. |
 | tag | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The tag of this RIOT account. |
-| options | {         force: boolean;     } | The basic fetching options. |
+| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetching options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Account](/shieldbow/api/Account.md) \>
 

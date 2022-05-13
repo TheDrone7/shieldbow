@@ -31,7 +31,7 @@ Constructs a new instance of the `SummonerManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
+| client | [Client](/shieldbow/api/Client.md) | The client that instantiated this manager. |
 ---
 
 ### Properties
@@ -68,9 +68,7 @@ Fetch a summoner by its summoner ID.
 **Signature:**
 
 ```ts
-fetch(id: string, options?: {
-        force: boolean;
-    }): Promise<Summoner>;
+fetch(id: string, options?: FetchOptions): Promise<Summoner>;
 ```
 
 **Parameters:**
@@ -78,65 +76,13 @@ fetch(id: string, options?: {
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The summoner ID of the summoner. |
-| options | {         force: boolean;     } | The basic fetching options. |
+| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetching options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Summoner](/shieldbow/api/Summoner.md) \>
 
 ---
 
-#### .fetchByAccount (account, options)
-
-Fetch a summoner by a RIOT account associated to it.
-
-
-
-
-**Signature:**
-
-```ts
-fetchByAccount(account: Account, options?: {
-        force: boolean;
-    }): Promise<Summoner>;
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| account | [Account](/shieldbow/api/Account.md) | The associated RIOT account. |
-| options | {         force: boolean;     } | The basic fetching options. |
-
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Summoner](/shieldbow/api/Summoner.md) \>
-
----
-
-#### .fetchByAccountId (id, options)
-
-Fetch a summoner by its account ID.
-
-
-
-
-**Signature:**
-
-```ts
-fetchByAccountId(id: string, options?: {
-        force: boolean;
-    }): Promise<Summoner>;
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The account ID of the summoner to fetch. |
-| options | {         force: boolean;     } | The basic fetching options. |
-
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Summoner](/shieldbow/api/Summoner.md) \>
-
----
-
-#### .fetchByPlayerId (id, options)
+#### .fetchByPlayerId (playerId, options)
 
 Fetch a summoner by its unique PUUID.
 
@@ -146,17 +92,15 @@ Fetch a summoner by its unique PUUID.
 **Signature:**
 
 ```ts
-fetchByPlayerId(id: string, options?: {
-        force: boolean;
-    }): Promise<Summoner>;
+fetchByPlayerId(playerId: string | Account, options?: FetchOptions): Promise<Summoner>;
 ```
 
 **Parameters:**
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The PUUID of the summoner to fetch. |
-| options | {         force: boolean;     } | The basic fetching options. |
+| playerId | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Account](/shieldbow/api/Account.md) | The PUUID of the summoner or associated RIOT account. |
+| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetching options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Summoner](/shieldbow/api/Summoner.md) \>
 
@@ -172,9 +116,7 @@ Fetch a summoner by its summoner name.
 **Signature:**
 
 ```ts
-fetchBySummonerName(name: string, options?: {
-        force: boolean;
-    }): Promise<Summoner>;
+fetchBySummonerName(name: string, options?: FetchOptions): Promise<Summoner>;
 ```
 
 **Parameters:**
@@ -182,7 +124,7 @@ fetchBySummonerName(name: string, options?: {
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The summoner name of the summoner to fetch. |
-| options | {         force: boolean;     } | The basic fetching options. |
+| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetching options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Summoner](/shieldbow/api/Summoner.md) \>
 

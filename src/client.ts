@@ -75,7 +75,7 @@ export class Client {
     this._clash = new ClashManager(this);
 
     this._http = axios.create({ baseURL: this._cdnBase });
-    this._api = new ApiHandler('na', apiKey);
+    this._api = new ApiHandler(apiKey);
   }
 
   /**
@@ -88,7 +88,6 @@ export class Client {
     // Parse the configuration
     const region = options?.region || 'na';
     this._region = region;
-    this._api.region = region;
     const version = options?.version || 'null';
     this._version = version;
     this._patch = version !== 'null' ? version.match(patchRegex)!.shift()! : 'null';
@@ -188,6 +187,10 @@ export class Client {
     return this._region;
   }
 
+  set region(region: Region) {
+    this._region = region;
+  }
+
   /**
    * The Data Dragon CDN Base URL
    */
@@ -279,6 +282,7 @@ export class Client {
     return new Promise(async (resolve, reject) => {
       const response = await this.api
         .makeApiRequest('/lol/status/v4/platform-data', {
+          region: this.region,
           name: 'Get API Status',
           params: 'no params',
           regional: false

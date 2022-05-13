@@ -45,7 +45,7 @@ export class Team {
     this.id = data.teamId;
     this.bans = data.bans.map((b) => ({
       order: b.pickTurn,
-      champion: client.champions.findByKey(b.championId)!
+      champion: client.champions.cache.find((c) => c.key === b.championId)!
     }));
     this.objectives = data.objectives;
     this.participants = participants.map((p) => new Participant(client, p));

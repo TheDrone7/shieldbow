@@ -458,7 +458,7 @@ export class Participant {
     this.champion = {
       key: data.championId,
       id: data.championName,
-      champ: client.champions.findByKey(data.championId)!,
+      champ: client.champions.cache.find((c) => c.key === data.championId)!,
       level: data.champLevel,
       xp: data.champExperience,
       form: data.championTransform,

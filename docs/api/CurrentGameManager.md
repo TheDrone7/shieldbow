@@ -31,7 +31,7 @@ Constructs a new instance of the `CurrentGameManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
+| client | [Client](/shieldbow/api/Client.md) | The client that instantiated the manager. |
 ---
 
 ### Properties
@@ -71,9 +71,7 @@ This method is a special case where the cache is ignored by default.
 **Signature:**
 
 ```ts
-fetch(id: string, options?: {
-        force: boolean;
-    }): Promise<CurrentGame>;
+fetch(id: string, options?: FetchOptions): Promise<CurrentGame>;
 ```
 
 **Parameters:**
@@ -81,7 +79,7 @@ fetch(id: string, options?: {
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The summoner ID to fetch the live game for. |
-| options | {         force: boolean;     } | The basic fetching options. |
+| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetching options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [CurrentGame](/shieldbow/api/CurrentGame.md) \>
 

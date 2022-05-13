@@ -1,5 +1,5 @@
 import type { Client } from '../client';
-import type { BaseManager, SummonerSpellData } from '../types';
+import type { BaseManager, FetchOptions, SummonerSpellData } from '../types';
 import { SummonerSpell } from '../structures';
 import Collection from '@discordjs/collection';
 import { StorageManager } from './index';
@@ -19,6 +19,11 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
   readonly client: Client;
   private readonly _spellsData?: StorageManager;
 
+  /**
+   * Creates a new summoner spell manager.
+   * @param client - The client this manager belongs to.
+   * @param cacheSettings - The cache settings to use.
+   */
   constructor(client: Client, cacheSettings: { enable: boolean; root: string }) {
     this.client = client;
     this.cache = new Collection<string, SummonerSpell>();
@@ -62,9 +67,10 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
    * @param key - The ID of the spell to fetch.
    * @param options - The basic fetching options.
    */
-  async fetch(key: string, options: { force: boolean } = { force: false }) {
+  async fetch(key: string, options?: FetchOptions) {
+    const force = options?.force ?? false;
     return new Promise<SummonerSpell>(async (resolve, reject) => {
-      if (this.cache.has(key) && !options.force) resolve(this.cache.get(key)!);
+      if (this.cache.has(key) && !force) resolve(this.cache.get(key)!);
       else if (this.client.version === 'null') reject('Please initialize the client first.');
       else {
         await this._fetchAll();

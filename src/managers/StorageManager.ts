@@ -19,6 +19,12 @@ export class StorageManager implements BaseManager<any> {
    */
   readonly client: Client;
 
+  /**
+   * Creates a new StorageManager instance.
+   * @param client - The client this manager belongs to.
+   * @param pathName - The path to the directory where the JSON files are stored.
+   * @param root - The root directory of the project's storage.
+   */
   constructor(client: Client, pathName: string, root: string) {
     this.client = client;
     this._root = root;

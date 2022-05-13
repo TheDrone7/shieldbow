@@ -34,8 +34,8 @@ Constructs a new instance of the `SummonerSpellManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
-| cacheSettings | {         enable: boolean;         root: string;     } |  |
+| client | [Client](/shieldbow/api/Client.md) | The client this manager belongs to. |
+| cacheSettings | {         enable: boolean;         root: string;     } | The cache settings to use. |
 ---
 
 ### Properties
@@ -72,9 +72,7 @@ Fetch a spell by its ID. The ID is usually something like Summoner\{Spell\} For 
 **Signature:**
 
 ```ts
-fetch(key: string, options?: {
-        force: boolean;
-    }): Promise<SummonerSpell>;
+fetch(key: string, options?: FetchOptions): Promise<SummonerSpell>;
 ```
 
 **Parameters:**
@@ -82,7 +80,7 @@ fetch(key: string, options?: {
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | key | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the spell to fetch. |
-| options | {         force: boolean;     } | The basic fetching options. |
+| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetching options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [SummonerSpell](/shieldbow/api/SummonerSpell.md) \>
 

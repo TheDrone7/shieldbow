@@ -1,4 +1,4 @@
-import type { BaseManager, MatchByPlayerOptions, MatchData } from '../types';
+import type { BaseManager, FetchOptions, MatchByPlayerOptions, MatchData } from '../types';
 import { Match, type Summoner } from '../structures';
 import Collection from '@discordjs/collection';
 import type { Client } from '../client';
@@ -16,6 +16,10 @@ export class MatchManager implements BaseManager<Match> {
    */
   readonly client: Client;
 
+  /**
+   * Creates a new match manager.
+   * @param client - The client that instantiated the manager.
+   */
   constructor(client: Client) {
     this.client = client;
     this.cache = new Collection<string, Match>();
@@ -26,12 +30,16 @@ export class MatchManager implements BaseManager<Match> {
    * @param id - The ID of the match
    * @param options - The basic fetch options
    */
-  fetch(id: string, options: { force: boolean } = { force: false }) {
+  fetch(id: string, options?: FetchOptions) {
+    const force = options?.force ?? false;
+    const cache = options?.cache ?? true;
+    const region = options?.region ?? this.client.region;
     return new Promise<Match>(async (resolve, reject) => {
-      if (this.cache.has(id) && !options.force) resolve(this.cache.get(id)!);
+      if (this.cache.has(id) && !force) resolve(this.cache.get(id)!);
       else {
         const response = await this.client.api
           .makeApiRequest(`/lol/match/v5/matches/${id}`, {
+            region,
             regional: true,
             name: 'Get Match By Match ID',
             params: 'Match ID: ' + id
@@ -40,7 +48,7 @@ export class MatchManager implements BaseManager<Match> {
         if (response) {
           const data = <MatchData>response.data;
           const match = new Match(this.client, data);
-          this.cache.set(id, match);
+          if (cache) this.cache.set(id, match);
           resolve(match);
         }
       }
@@ -66,6 +74,7 @@ export class MatchManager implements BaseManager<Match> {
       if (options?.count) url.searchParams.set('count', options.count.toString());
       const response = await this.client.api
         .makeApiRequest(url.pathname + url.search, {
+          region: this.client.region,
           regional: true,
           name: 'Get Match List By Player ID',
           params: 'Player ID: ' + playerId

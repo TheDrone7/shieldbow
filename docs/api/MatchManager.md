@@ -31,7 +31,7 @@ Constructs a new instance of the `MatchManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
+| client | [Client](/shieldbow/api/Client.md) | The client that instantiated the manager. |
 ---
 
 ### Properties
@@ -68,9 +68,7 @@ Fetch a match by its ID.
 **Signature:**
 
 ```ts
-fetch(id: string, options?: {
-        force: boolean;
-    }): Promise<Match>;
+fetch(id: string, options?: FetchOptions): Promise<Match>;
 ```
 
 **Parameters:**
@@ -78,7 +76,7 @@ fetch(id: string, options?: {
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the match |
-| options | {         force: boolean;     } | The basic fetch options |
+| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetch options |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Match](/shieldbow/api/Match.md) \>
 

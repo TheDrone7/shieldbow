@@ -72,9 +72,7 @@ Fetches a champion (from the cache, if already available), or from data dragon a
 **Signature:**
 
 ```ts
-fetch(id: string, options?: {
-        force: boolean;
-    }): Promise<Champion>;
+fetch(id: string, options?: FetchOptions): Promise<Champion>;
 ```
 
 **Parameters:**
@@ -82,7 +80,7 @@ fetch(id: string, options?: {
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The [ID](/shieldbow/api/Champion.md#id) of the champion whose data needs to be fetched. |
-| options | {         force: boolean;     } | The basic fetching options. |
+| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetching options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Champion](/shieldbow/api/Champion.md) \>
 
@@ -118,7 +116,7 @@ Find a champion by their 3-digit key.
 **Signature:**
 
 ```ts
-findByKey(key: number): Champion | undefined;
+findByKey(key: number): Promise<Champion | undefined>;
 ```
 
 **Parameters:**
@@ -127,7 +125,7 @@ findByKey(key: number): Champion | undefined;
 | --------- | ---- | ----------- |
 | key | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The 3-digit key of the champion to look for. |
 
-**Return type**: [Champion](/shieldbow/api/Champion.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Champion](/shieldbow/api/Champion.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
 
 ---
 

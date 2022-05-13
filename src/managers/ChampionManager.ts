@@ -1,4 +1,4 @@
-import type { ChampionData, SpellDamageData, BaseManager, MerakiChampion } from '../types';
+import type { ChampionData, SpellDamageData, BaseManager, MerakiChampion, FetchOptions } from '../types';
 import type { Client } from '../client';
 import Collection from '@discordjs/collection';
 import { Champion } from '../structures';
@@ -127,10 +127,12 @@ export class ChampionManager implements BaseManager<Champion> {
    * @param id - The {@link Champion.id | ID} of the champion whose data needs to be fetched.
    * @param options - The basic fetching options.
    */
-  async fetch(id: string, options: { force: boolean } = { force: false }) {
+  async fetch(id: string, options?: FetchOptions) {
+    const force = options?.force ?? false;
+    const cache = options?.cache ?? true;
     if (id === 'FiddleSticks') id = 'Fiddlesticks'; // There is some internal inconsistency in Riot's JSON files.
     return new Promise<Champion>(async (resolve, reject) => {
-      if (this.cache.has(id) && !options.force) resolve(this.cache.get(id)!);
+      if (this.cache.has(id) && !force) resolve(this.cache.get(id)!);
       else if (this.client.version === 'null') reject('Please initialize the client first.');
       else {
         const champs = <{ data: { [key: string]: ChampionData } }>await this._fetchLocalChamp(id).catch(reject);
@@ -138,7 +140,7 @@ export class ChampionManager implements BaseManager<Champion> {
         const damage = <SpellDamageData>await this._fetchLocalDamage(id).catch(reject);
         const meraki = <MerakiChampion>await this._fetchLocalPricing(id).catch(reject);
         const champ = new Champion(this.client, champs.data[key], damage, meraki);
-        this.cache.set(key, champ);
+        if (cache) this.cache.set(key, champ);
         resolve(champ);
       }
     });
@@ -149,7 +151,8 @@ export class ChampionManager implements BaseManager<Champion> {
    *
    * @param key - The 3-digit key of the champion to look for.
    */
-  findByKey(key: number) {
+  async findByKey(key: number) {
+    if (!this.cache.size) await this.fetchAll();
     return this.cache.find((champ) => champ.key === key);
   }
 

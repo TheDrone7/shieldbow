@@ -31,9 +31,9 @@ Constructs a new instance of the `StorageManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
-| pathName | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  |
-| root | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  |
+| client | [Client](/shieldbow/api/Client.md) | The client this manager belongs to. |
+| pathName | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The path to the directory where the JSON files are stored. |
+| root | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The root directory of the project's storage. |
 ---
 
 ### Properties

@@ -31,7 +31,7 @@ Constructs a new instance of the `ClashManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
+| client | [Client](/shieldbow/api/Client.md) | The client that instantiated the manager. |
 ---
 
 ### Properties
@@ -68,9 +68,7 @@ Fetches a tournament by its ID.
 **Signature:**
 
 ```ts
-fetch(id: number, options?: {
-        force: boolean;
-    }): Promise<Tournament>;
+fetch(id: number, options?: FetchOptions): Promise<Tournament>;
 ```
 
 **Parameters:**
@@ -78,7 +76,7 @@ fetch(id: number, options?: {
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | id | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The ID of the tournament. |
-| options | {         force: boolean;     } | The basic fetch options. |
+| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetch options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Tournament](/shieldbow/api/Tournament.md) \>
 

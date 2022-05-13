@@ -72,9 +72,7 @@ Fetch an item by its 4-digit ID. The ID must be a string of 4 digits (not a numb
 **Signature:**
 
 ```ts
-fetch(key: string, options?: {
-        force: boolean;
-    }): Promise<Item>;
+fetch(key: string, options?: FetchOptions): Promise<Item>;
 ```
 
 **Parameters:**
@@ -82,7 +80,7 @@ fetch(key: string, options?: {
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | key | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the item to fetch. |
-| options | {         force: boolean;     } | The basic fetching options. |
+| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetching options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Item](/shieldbow/api/Item.md) \>
 

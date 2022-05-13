@@ -1,5 +1,5 @@
 import type { Client } from '../client';
-import type { BaseManager, ItemData } from '../types';
+import type { BaseManager, FetchOptions, ItemData } from '../types';
 import { Item } from '../structures';
 import Collection from '@discordjs/collection';
 import { StorageManager } from './index';
@@ -65,9 +65,10 @@ export class ItemManager implements BaseManager<Item> {
    * @param key - The ID of the item to fetch.
    * @param options - The basic fetching options.
    */
-  async fetch(key: string, options: { force: boolean } = { force: false }) {
+  async fetch(key: string, options?: FetchOptions) {
+    const force = options?.force ?? false;
     return new Promise<Item>(async (resolve, reject) => {
-      if (this.cache.has(key) && !options.force) resolve(this.cache.get(key)!);
+      if (this.cache.has(key) && !force) resolve(this.cache.get(key)!);
       else if (this.client.version === 'null') reject('Please initialize the client first.');
       else {
         await this._fetchAll();

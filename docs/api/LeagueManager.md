@@ -31,7 +31,7 @@ Constructs a new instance of the `LeagueManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
+| client | [Client](/shieldbow/api/Client.md) | The client that instantiated this manager. |
 ---
 
 ### Properties
@@ -68,9 +68,7 @@ Fetch a summoner's competitive info by the summoner's ID.
 **Signature:**
 
 ```ts
-fetch(id: string, options?: {
-        force: boolean;
-    }): Promise<Collection<QueueType, LeagueEntry>>;
+fetch(id: string, options?: FetchOptions): Promise<Collection<QueueType, LeagueEntry>>;
 ```
 
 **Parameters:**
@@ -78,7 +76,7 @@ fetch(id: string, options?: {
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the summoner whose competitive info you want to find. |
-| options | {         force: boolean;     } | The basic fetching options. |
+| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetching options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [QueueType](/shieldbow/api/QueueType.md), [LeagueEntry](/shieldbow/api/LeagueEntry.md) \> \>
 
