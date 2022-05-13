@@ -1,6 +1,6 @@
 {
   "name": "shieldbow",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "An all purpose League of Legends API Client",
   "main": "dist/index.js",
   "devDependencies": {
