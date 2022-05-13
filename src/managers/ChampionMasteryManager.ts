@@ -1,7 +1,7 @@
-import type { BaseManager, ChampionMasteryData, FetchOptions, Region } from '../types';
+import type { BaseManager, ChampionMasteryData, FetchOptions } from '../types';
 import type { Client } from '../client';
 import Collection from '@discordjs/collection';
-import { Champion, ChampionMastery } from '../structures';
+import { Champion, ChampionMastery, Summoner } from '../structures';
 
 /**
  * A champion mastery manager - to fetch and manage all summoner's champion mastery data.
@@ -18,11 +18,7 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
   /**
    * The ID of the summoner whose mastery is managed by this manager.
    */
-  readonly summonerId: string;
-  /**
-   * The region the summoner for this manager belongs to.
-   */
-  readonly region: Region;
+  readonly summoner: Summoner;
 
   /**
    * Creates a new champion mastery manager.
@@ -30,10 +26,9 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
    * @param client - The client that instantiated this manager.
    * @param summoner - The summoner this manager belongs to.
    */
-  constructor(client: Client, summoner: string) {
+  constructor(client: Client, summoner: Summoner) {
     this.client = client;
-    this.region = client.region;
-    this.summonerId = summoner;
+    this.summoner = summoner;
     this.cache = new Collection<string, ChampionMastery>();
     this._totalScore = 0;
   }
@@ -70,7 +65,7 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
   fetch(champion: Champion | string, options?: FetchOptions) {
     const force = options?.force ?? false;
     const cache = options?.cache ?? true;
-    const region = options?.region ?? this.region;
+    const region = options?.region ?? this.summoner.region;
     const id = champion instanceof Champion ? champion.id : champion;
     return new Promise<ChampionMastery>(async (resolve, reject) => {
       const champ = await this.client.champions.fetch(id).catch(() => undefined);
@@ -79,12 +74,12 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
       else {
         const response = await this.client.api
           .makeApiRequest(
-            `/lol/champion-mastery/v4/champion-masteries/by-summoner/${this.summonerId}/by-champion/${champ.key}`,
+            `/lol/champion-mastery/v4/champion-masteries/by-summoner/${this.summoner.id}/by-champion/${champ.key}`,
             {
               region,
               regional: false,
               name: 'Champion mastery by champion',
-              params: `Summoner ID: ${this.summonerId}, Champion ID: ${champ.key}`
+              params: `Summoner ID: ${this.summoner.id}, Champion ID: ${champ.key}`
             }
           )
           .catch(reject);
@@ -109,7 +104,7 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
         if (!this.cache.size) await this.refreshAll().catch(reject);
         const ordered = this.sortedCache;
         if (ordered[n]) resolve(ordered[n]);
-        else reject('This summoner does not have mastery points for' + n + ' champions');
+        else reject('This summoner does not have mastery points for ' + n + ' champions');
       }
     });
   }
@@ -120,15 +115,20 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
   refreshAll() {
     return new Promise<Collection<string, ChampionMastery>>(async (resolve, reject) => {
       const response = await this.client.api
-        .makeApiRequest(`/lol/champion-mastery/v4/champion-masteries/by-summoner/${this.summonerId}`, {
-          region: this.region,
+        .makeApiRequest(`/lol/champion-mastery/v4/champion-masteries/by-summoner/${this.summoner.id}`, {
+          region: this.summoner.region,
           regional: false,
           name: 'Champion mastery by summoner',
-          params: `Summoner ID: ${this.summonerId}`
+          params: `Summoner ID: ${this.summoner.id}`
         })
         .catch(reject);
       if (response) {
         const dataList = <ChampionMasteryData[]>response.data;
+        if (
+          this.client.champions.cache.filter((c) => dataList.map((m) => m.championId).includes(c.key)).size <
+          dataList.length
+        )
+          await this.client.champions.fetchAll();
         for (const data of dataList) {
           const mastery = new ChampionMastery(this.client, data);
           this.cache.set(mastery.champion.id, mastery);
@@ -144,11 +144,11 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
   updateTotalScore() {
     return new Promise<number>(async (resolve, reject) => {
       const response = await this.client.api
-        .makeApiRequest(`/lol/champion-mastery/v4/scores/by-summoner/${this.summonerId}`, {
-          region: this.region,
+        .makeApiRequest(`/lol/champion-mastery/v4/scores/by-summoner/${this.summoner.id}`, {
+          region: this.summoner.region,
           regional: false,
           name: 'Champion mastery score by summoner',
-          params: `Summoner ID: ${this.summonerId}`
+          params: `Summoner ID: ${this.summoner.id}`
         })
         .catch(reject);
       if (response) {

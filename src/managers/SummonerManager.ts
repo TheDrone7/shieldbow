@@ -48,7 +48,7 @@ export class SummonerManager implements BaseManager<Summoner> {
           .catch(reject);
         if (response) {
           const data = <SummonerData>response.data;
-          const summoner = new Summoner(this.client, data);
+          const summoner = new Summoner(this.client, data, region);
           if (cache) this.cache.set(summoner.id, summoner);
           resolve(summoner);
         }
@@ -80,7 +80,7 @@ export class SummonerManager implements BaseManager<Summoner> {
           .catch(reject);
         if (response) {
           const data = <SummonerData>response.data;
-          const summoner = new Summoner(this.client, data);
+          const summoner = new Summoner(this.client, data, region);
           if (cache) this.cache.set(summoner.id, summoner);
           resolve(summoner);
         }
@@ -111,7 +111,7 @@ export class SummonerManager implements BaseManager<Summoner> {
           .catch(reject);
         if (response) {
           const data = <SummonerData>response.data;
-          const summoner = new Summoner(this.client, data);
+          const summoner = new Summoner(this.client, data, region);
           if (cache) this.cache.set(summoner.id, summoner);
           resolve(summoner);
         }

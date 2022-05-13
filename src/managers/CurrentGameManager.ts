@@ -60,12 +60,15 @@ export class CurrentGameManager implements BaseManager<CurrentGame> {
   /**
    * Fetch a list of featured games.
    * These games are not cached.
+   *
+   * @param options - The basic fetching options (force and cache are ignored).
    */
-  fetchFeatured() {
+  fetchFeatured(options?: FetchOptions) {
+    const region = options?.region ?? this.client.region;
     return new Promise<CurrentGame[]>(async (resolve, reject) => {
       const response = await this.client.api
         .makeApiRequest('/lol/spectator/v4/featured-games', {
-          region: this.client.region,
+          region,
           regional: false,
           name: 'Featured matches',
           params: 'no params'

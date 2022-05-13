@@ -108,7 +108,119 @@ console.log(soloQ.tier); // IRON (or DIAMOND, etc.)
 console.log(flex.tier); // IRON (or DIAMOND, etc.)
 ```
 
-Similarly, the client has other managers to fetch other kinds of data from the API.
+---
+
+### Regional fetching.
+
+Now, for no reason, lets extend [the example from getting started page](/shieldbow/guide/getting-started.md#example-usage) 
+and compare the noob's details to the GOAT's.
+
+If we try the following
+```ts
+const summoner = await client.summoners.fetchBySummonerName('hide on bush');
+const leagueEntry = await summoner.league; 
+const championMastery = summoner.championMastery;
+  
+const soloQ = leagueEntry.get('RANKED_SOLO_5x5');
+const highest = await championMastery.highest();
+```
+Unfortunately, we will get errors because we initialized the client with the `euw` region. But `hide on bush` plays in the `kr` region.
+
+To avoid these errors, we can simply just provide additional options while fetching the summoner and include a region option as follows.
+
+```ts
+const summoner = await client.summoners.fetchBySummonerName('hide on bush', { region: 'kr' });
+const leagueEntry = await summoner.league; 
+const championMastery = summoner.championMastery;
+  
+const soloQ = leagueEntry.get('RANKED_SOLO_5x5');
+const highest = await championMastery.highest();
+```
+
+Shieldbow, will only use the region `kr` when fetching the summoner and any related details.
+
+To explain this further, lets take the above code and combine it with the code from the getting started page.
+
+We would get
+```ts
+import { Client } from 'shieldbow';
+
+const client = new Client('MY_API_KEY');
+
+client.initialize({
+  region: 'euw' // defaults to 'na'
+}).then(async () => {
+  // After initialization, you can use the client to make requests
+  const summoner1 = await client.summoners.fetchBySummonerName('TheDrone7');
+  const summoner2 = await client.summoners.fetchBySummonerName('hide on bush', { region: 'kr' });
+
+  const leagueEntry1 = await summoner1.league;
+  const leagueEntry2 = await summoner2.league;
+
+  const championMastery1 = summoner1.championMastery;
+  const championMastery2 = summoner2.championMastery;
+
+  const soloQ1 = leagueEntry1.get('RANKED_SOLO_5x5');
+  const soloQ2 = leagueEntry2.get('RANKED_SOLO_5x5');
+
+  const highest1 = await championMastery1.highest();
+  const highest2 = await championMastery2.highest();
+
+  console.log(`Summoner name: ${summoner1.name} (level: ${summoner1.level}).`);
+  console.log(`SoloQ: ${soloQ1.tier} ${soloQ1.division} (${soloQ1.lp} LP).`);
+  console.log(`Highest champion mastery: ${highest1.champion.name} (M${highest1.level} ${highest1.points} points).`);
+  console.log('\n\n');
+  console.log(`Summoner name: ${summoner2.name} (level: ${summoner2.level}).`);
+  console.log(`SoloQ: ${soloQ2.tier} ${soloQ2.division} (${soloQ2.lp} LP).`);
+  console.log(`Highest champion mastery: ${highest2.champion.name} (M${highest2.level} ${highest2.points} points).`);
+});
+```
+
+::: details Sample output
+```
+Summoner name: TheDrone7 (level: 261).
+SoloQ: BRONZE III (9 LP).
+Highest champion mastery: Kayn (M7 255687 points).
+
+
+
+Summoner name: Hide on bush (level: 565).
+SoloQ: CHALLENGER I (900 LP).
+Highest champion mastery: LeBlanc (M7 492301 points).
+```
+:::
+
+As stated above, the client will by default use the region it was initialized with, in this case `euw`.
+
+Therefore, when fetching the summoner 1 - `TheDrone7`, the request is sent to `euw`.
+
+However, while fetching summoner 2 - `hide on bush`, the request is sent to `kr`, as specified.
+
+Now when we fetch any related details for summoner 2, such as the league entry, 
+the shieldbow client learns the summoner's region and sends the request is sent to `kr` automatically.
+
+Therefore, you only need to specify the region while fetching the summoner and 
+the related details are automatically fetched from the appropriate region.
+
+This is also why it works fine for both summoners.
+
+NOTE: Since the region is still set to `euw`, the client will still send all requests 
+without a summoner or region specified to `euw`.
+
+To change the default region of the client, you can simply use the following line of code.
+
+```ts
+client.region = 'na';
+```
+
+Which will set the default region to `na`. You can also use any other region similarly to change the default region
+of the shieldbow client.
+
+---
+
+### Supported APIs
+
+The client has other managers to fetch other kinds of data from the API.
 
 1. [Account Manager](/shieldbow/api/AccountManager.md) - `client.accounts`.
 2. [Clash Manager](/shieldbow/api/ClashManager.md) - `client.clash`.

@@ -52,4 +52,10 @@ describe('Test Summoner v4 and Account v1 API', () => {
     if (match) expect(match).toBeFalsy();
     else expect(match).toBeUndefined();
   });
+
+  test('Check regional requests', async () => {
+    const faker = await client.summoners.fetchBySummonerName('hide on bush', { region: 'kr' });
+    expect(faker.name.toLowerCase()).toBe('hide on bush');
+    expect(faker.region).toBe('kr');
+  })
 });

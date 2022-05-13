@@ -8,13 +8,21 @@ import Collection from '@discordjs/collection';
  */
 export class ClashManager implements BaseManager<Tournament> {
   /**
+   * The client that instantiated the manager.
+   */
+  readonly client: Client;
+  /**
    * The in-memory cache of tournaments.
    */
   readonly cache: Collection<number, Tournament>;
   /**
-   * The client that instantiated the manager.
+   * The in-memory cache of the tournament teams.
    */
-  readonly client: Client;
+  readonly cachedTeams: Collection<string, TournamentTeam>;
+  /**
+   * The in-memory cache of the tournament players.
+   */
+  readonly cachedPlayers: Collection<string, TournamentPlayer[]>;
 
   /**
    * Creates a new clash manager.
@@ -23,6 +31,8 @@ export class ClashManager implements BaseManager<Tournament> {
   constructor(client: Client) {
     this.client = client;
     this.cache = new Collection<number, Tournament>();
+    this.cachedTeams = new Collection<string, TournamentTeam>();
+    this.cachedPlayers = new Collection<string, TournamentPlayer[]>();
   }
 
   /**
@@ -56,12 +66,16 @@ export class ClashManager implements BaseManager<Tournament> {
 
   /**
    * Fetch all upcoming and active tournaments.
+   *
+   * @param options - The basic fetch options (force is ignored, always true).
    */
-  fetchAll() {
+  fetchAll(options?: FetchOptions) {
+    const cache = options?.cache ?? true;
+    const region = options?.region ?? this.client.region;
     return new Promise<Tournament[]>(async (resolve, reject) => {
       const response = await this.client.api
         .makeApiRequest(`/lol/clash/v1/tournaments`, {
-          region: this.client.region,
+          region,
           name: 'Get all upcoming and active tournaments',
           regional: false,
           params: `No parameters`
@@ -69,7 +83,7 @@ export class ClashManager implements BaseManager<Tournament> {
         .catch(reject);
       if (response) {
         const tournaments = response.data.map((d: TournamentData) => new Tournament(d));
-        tournaments.forEach((t: Tournament) => this.cache.set(t.id, t));
+        if (cache) tournaments.forEach((t: Tournament) => this.cache.set(t.id, t));
         resolve(tournaments);
       }
     });
@@ -78,12 +92,15 @@ export class ClashManager implements BaseManager<Tournament> {
   /**
    * Fetch tournament by participating team's ID.
    * @param teamId - The ID of the team.
+   * @param options - The basic fetch options (force is ignored, always true).
    */
-  fetchByTeamId(teamId: string) {
+  fetchByTeamId(teamId: string, options?: FetchOptions) {
+    const cache = options?.cache ?? true;
+    const region = options?.region ?? this.client.region;
     return new Promise<Tournament>(async (resolve, reject) => {
       const response = await this.client.api
         .makeApiRequest(`/lol/clash/v1/tournaments/by-team/${teamId}`, {
-          region: this.client.region,
+          region,
           name: 'Get tournament by team ID',
           regional: false,
           params: `Team ID: ${teamId}`
@@ -91,7 +108,7 @@ export class ClashManager implements BaseManager<Tournament> {
         .catch(reject);
       if (response) {
         const tournament = new Tournament(response.data);
-        this.cache.set(tournament.id, tournament);
+        if (cache) this.cache.set(tournament.id, tournament);
         resolve(tournament);
       }
     });
@@ -100,20 +117,28 @@ export class ClashManager implements BaseManager<Tournament> {
   /**
    * Fetch a team participating in a tournament by the team ID.
    * @param teamId - The ID of the team.
+   * @param options - The basic fetch options.
    */
-  fetchTeam(teamId: string) {
+  fetchTeam(teamId: string, options?: FetchOptions) {
+    const force = options?.force ?? false;
+    const cache = options?.cache ?? true;
+    const region = options?.region ?? this.client.region;
     return new Promise<TournamentTeam>(async (resolve, reject) => {
-      const response = await this.client.api
-        .makeApiRequest(`/lol/clash/v1/teams/${teamId}`, {
-          region: this.client.region,
-          name: 'Get team by team ID',
-          regional: false,
-          params: `Team ID: ${teamId}`
-        })
-        .catch(reject);
-      if (response) {
-        const team = new TournamentTeam(this.client, response.data);
-        resolve(team);
+      if (this.cachedTeams.has(teamId) && !force) resolve(this.cachedTeams.get(teamId)!);
+      else {
+        const response = await this.client.api
+          .makeApiRequest(`/lol/clash/v1/teams/${teamId}`, {
+            region,
+            name: 'Get team by team ID',
+            regional: false,
+            params: `Team ID: ${teamId}`
+          })
+          .catch(reject);
+        if (response) {
+          const team = new TournamentTeam(this.client, response.data);
+          if (cache) this.cachedTeams.set(teamId, team);
+          resolve(team);
+        }
       }
     });
   }
@@ -121,21 +146,26 @@ export class ClashManager implements BaseManager<Tournament> {
   /**
    * Fetch participation info of a summoner in tournaments by the summoner ID.
    * @param summonerId - The ID of the summoner.
+   * @param options - The basic fetch options.
    */
-  fetchPlayer(summonerId: string) {
+  fetchPlayer(summonerId: string, options?: FetchOptions) {
+    const force = options?.force ?? false;
+    const cache = options?.cache ?? true;
+    const region = options?.region ?? this.client.region;
     return new Promise<TournamentPlayer[]>(async (resolve, reject) => {
+      if (this.cachedPlayers.has(summonerId) && !force) resolve(this.cachedPlayers.get(summonerId)!);
       const response = await this.client.api
         .makeApiRequest(`/lol/clash/v1/players/by-summoner/${summonerId}`, {
-          region: this.client.region,
+          region,
           name: 'Get tournament player by summoner ID',
           regional: false,
           params: `Summoner ID: ${summonerId}`
         })
         .catch(reject);
       if (response) {
-        const player = response.data.map(
-          (p: TournamentPlayerFullData) => new TournamentPlayer(this.client, p.teamId, p)
-        );
+        const data = <TournamentPlayerFullData[]>response.data;
+        const player = data.map((p) => new TournamentPlayer(this.client, p.teamId, p));
+        if (cache) this.cachedPlayers.set(summonerId, player);
         resolve(player);
       }
     });

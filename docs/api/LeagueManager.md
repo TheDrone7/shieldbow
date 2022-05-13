@@ -56,6 +56,16 @@ The client this manager belongs to.
 
 ---
 
+#### listCache
+
+The in-memory cache for league lists.
+
+
+
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [LeagueList](/shieldbow/api/LeagueList.md) \>
+
+---
+
 ### Methods
 
 #### .fetch (id, options)
@@ -82,7 +92,7 @@ fetch(id: string, options?: FetchOptions): Promise<Collection<QueueType, LeagueE
 
 ---
 
-#### .fetchByLeagueId (leagueId)
+#### .fetchByLeagueId (leagueId, options)
 
 Fetch the league entries by a league ID.
 
@@ -92,7 +102,7 @@ Fetch the league entries by a league ID.
 **Signature:**
 
 ```ts
-fetchByLeagueId(leagueId: string): Promise<LeagueList>;
+fetchByLeagueId(leagueId: string, options?: FetchOptions): Promise<LeagueList>;
 ```
 
 **Parameters:**
@@ -100,12 +110,13 @@ fetchByLeagueId(leagueId: string): Promise<LeagueList>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | leagueId | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The League ID. |
+| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetching options (exception: `force` defaults to true). |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [LeagueList](/shieldbow/api/LeagueList.md) \>
 
 ---
 
-#### .fetchByQueueAndTier (queue, tier, division, page)
+#### .fetchByQueueAndTier (queue, tier, division, options)
 
 Fetch a collection of league entries by the queue type, tier and division.
 
@@ -115,7 +126,9 @@ Fetch a collection of league entries by the queue type, tier and division.
 **Signature:**
 
 ```ts
-fetchByQueueAndTier(queue: QueueType, tier: TierType, division: DivisionType, page?: number): Promise<Collection<string, LeagueEntry>>;
+fetchByQueueAndTier(queue: QueueType, tier: TierType, division: DivisionType, options?: FetchOptions & {
+        page: number;
+    }): Promise<Collection<string, LeagueEntry>>;
 ```
 
 **Parameters:**
@@ -125,7 +138,7 @@ fetchByQueueAndTier(queue: QueueType, tier: TierType, division: DivisionType, pa
 | queue | [QueueType](/shieldbow/api/QueueType.md) | The type of queue - RANKED_SOLO_5x5, RANKED_FLEX_SR, etc. |
 | tier | [TierType](/shieldbow/api/TierType.md) | The tier of the entries - IRON to CHALLENGER. |
 | division | [DivisionType](/shieldbow/api/DivisionType.md) | The division of the entries - I, II, III, IV. |
-| page | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The page number (defaults to 1). |
+| options | [FetchOptions](/shieldbow/api/FetchOptions.md) & {         page: number;     } | The basic fetching options (and page number - defaults to 1, force is ignored - always true). |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [LeagueEntry](/shieldbow/api/LeagueEntry.md) \> \>
 

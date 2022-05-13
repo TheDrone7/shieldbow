@@ -22,7 +22,7 @@ Implements: BaseManager<ChampionMastery\>
 ### Constructor
 
 ```ts
-new ChampionMasteryManager (client: Client, summoner: string)
+new ChampionMasteryManager (client: Client, summoner: Summoner)
 ```
 
 Constructs a new instance of the `ChampionMasteryManager` class.
@@ -32,7 +32,7 @@ Constructs a new instance of the `ChampionMasteryManager` class.
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | client | [Client](/shieldbow/api/Client.md) | The client that instantiated this manager. |
-| summoner | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The summoner this manager belongs to. |
+| summoner | [Summoner](/shieldbow/api/Summoner.md) | The summoner this manager belongs to. |
 ---
 
 ### Properties
@@ -57,16 +57,6 @@ The client this manager belongs to.
 
 ---
 
-#### region
-
-The region the summoner for this manager belongs to.
-
-
-
-**Type**: [Region](/shieldbow/api/Region.md)
-
----
-
 #### sortedCache
 
 The cached champion masteries of the summoner as a sorted array.
@@ -80,13 +70,13 @@ The array is sorted from the highest mastery to lowest. While sorting, the maste
 
 ---
 
-#### summonerId
+#### summoner
 
 The ID of the summoner whose mastery is managed by this manager.
 
 
 
-**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
+**Type**: [Summoner](/shieldbow/api/Summoner.md)
 
 ---
 

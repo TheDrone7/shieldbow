@@ -18,7 +18,7 @@ export declare class Summoner
 ### Constructor
 
 ```ts
-new Summoner (client: Client, summoner: SummonerData)
+new Summoner (client: Client, summoner: SummonerData, region?: Region)
 ```
 
 Constructs a new instance of the `Summoner` class.
@@ -29,6 +29,7 @@ Constructs a new instance of the `Summoner` class.
 | --------- | ---- | ----------- |
 | client | [Client](/shieldbow/api/Client.md) | The client that requested this data. |
 | summoner | [SummonerData](/shieldbow/api/SummonerData.md) | The raw summoner data from the API. |
+| region | [Region](/shieldbow/api/Region.md) | The region this summoner is located in. |
 ---
 
 ### Properties

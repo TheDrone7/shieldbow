@@ -46,6 +46,26 @@ The in-memory cache of tournaments.
 
 ---
 
+#### cachedPlayers
+
+The in-memory cache of the tournament players.
+
+
+
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [TournamentPlayer](/shieldbow/api/TournamentPlayer.md)[] \>
+
+---
+
+#### cachedTeams
+
+The in-memory cache of the tournament teams.
+
+
+
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [TournamentTeam](/shieldbow/api/TournamentTeam.md) \>
+
+---
+
 #### client
 
 The client that instantiated the manager.
@@ -82,24 +102,30 @@ fetch(id: number, options?: FetchOptions): Promise<Tournament>;
 
 ---
 
-#### .fetchAll ()
+#### .fetchAll (options)
 
 Fetch all upcoming and active tournaments.
+
 
 
 
 **Signature:**
 
 ```ts
-fetchAll(): Promise<Tournament[]>;
+fetchAll(options?: FetchOptions): Promise<Tournament[]>;
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetch options (force is ignored, always true). |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Tournament](/shieldbow/api/Tournament.md)[] \>
 
 ---
 
-#### .fetchByTeamId (teamId)
+#### .fetchByTeamId (teamId, options)
 
 Fetch tournament by participating team's ID.
 
@@ -109,7 +135,7 @@ Fetch tournament by participating team's ID.
 **Signature:**
 
 ```ts
-fetchByTeamId(teamId: string): Promise<Tournament>;
+fetchByTeamId(teamId: string, options?: FetchOptions): Promise<Tournament>;
 ```
 
 **Parameters:**
@@ -117,12 +143,13 @@ fetchByTeamId(teamId: string): Promise<Tournament>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | teamId | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the team. |
+| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetch options (force is ignored, always true). |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Tournament](/shieldbow/api/Tournament.md) \>
 
 ---
 
-#### .fetchPlayer (summonerId)
+#### .fetchPlayer (summonerId, options)
 
 Fetch participation info of a summoner in tournaments by the summoner ID.
 
@@ -132,7 +159,7 @@ Fetch participation info of a summoner in tournaments by the summoner ID.
 **Signature:**
 
 ```ts
-fetchPlayer(summonerId: string): Promise<TournamentPlayer[]>;
+fetchPlayer(summonerId: string, options?: FetchOptions): Promise<TournamentPlayer[]>;
 ```
 
 **Parameters:**
@@ -140,12 +167,13 @@ fetchPlayer(summonerId: string): Promise<TournamentPlayer[]>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | summonerId | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the summoner. |
+| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetch options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [TournamentPlayer](/shieldbow/api/TournamentPlayer.md)[] \>
 
 ---
 
-#### .fetchTeam (teamId)
+#### .fetchTeam (teamId, options)
 
 Fetch a team participating in a tournament by the team ID.
 
@@ -155,7 +183,7 @@ Fetch a team participating in a tournament by the team ID.
 **Signature:**
 
 ```ts
-fetchTeam(teamId: string): Promise<TournamentTeam>;
+fetchTeam(teamId: string, options?: FetchOptions): Promise<TournamentTeam>;
 ```
 
 **Parameters:**
@@ -163,6 +191,7 @@ fetchTeam(teamId: string): Promise<TournamentTeam>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | teamId | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the team. |
+| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetch options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [TournamentTeam](/shieldbow/api/TournamentTeam.md) \>
 

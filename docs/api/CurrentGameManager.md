@@ -85,18 +85,24 @@ fetch(id: string, options?: FetchOptions): Promise<CurrentGame>;
 
 ---
 
-#### .fetchFeatured ()
+#### .fetchFeatured (options)
 
 Fetch a list of featured games. These games are not cached.
+
 
 
 
 **Signature:**
 
 ```ts
-fetchFeatured(): Promise<CurrentGame[]>;
+fetchFeatured(options?: FetchOptions): Promise<CurrentGame[]>;
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetching options (force and cache are ignored). |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [CurrentGame](/shieldbow/api/CurrentGame.md)[] \>
 

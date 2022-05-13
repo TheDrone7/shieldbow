@@ -1,6 +1,6 @@
 import { Client, CurrentGame } from "../dist";
 
-describe('Test Champion Mastery v4 API', () => {
+describe('Test Spectator v4 API', () => {
   const client = new Client(process.env.riot_api_key!);
 
   let games: CurrentGame[];

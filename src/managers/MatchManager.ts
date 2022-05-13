@@ -64,6 +64,8 @@ export class MatchManager implements BaseManager<Match> {
   fetchMatchListByPlayer(player: Summoner | string, options?: MatchByPlayerOptions) {
     return new Promise<string[]>(async (resolve, reject) => {
       const playerId = typeof player === 'string' ? player : player.playerId;
+      const region = typeof player === 'string' ? this.client.region : player.region;
+
       // The base is not used here, it is only there to prevent INVALID URL errors.
       const url = new URL('/lol/match/v5/matches/by-puuid/' + playerId + '/ids', 'https://na1.api.riotgames.com');
       if (options?.startTime) url.searchParams.set('startTime', options.startTime.toString());
@@ -74,7 +76,7 @@ export class MatchManager implements BaseManager<Match> {
       if (options?.count) url.searchParams.set('count', options.count.toString());
       const response = await this.client.api
         .makeApiRequest(url.pathname + url.search, {
-          region: this.client.region,
+          region,
           regional: true,
           name: 'Get Match List By Player ID',
           params: 'Player ID: ' + playerId

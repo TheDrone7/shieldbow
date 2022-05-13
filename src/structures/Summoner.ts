@@ -53,10 +53,11 @@ export class Summoner {
    * Creates a new summoner instance.
    * @param client - The client that requested this data.
    * @param summoner - The raw summoner data from the API.
+   * @param region - The region this summoner is located in.
    */
-  constructor(client: Client, summoner: SummonerData) {
+  constructor(client: Client, summoner: SummonerData, region?: Region) {
     this.client = client;
-    this.region = client.region;
+    this.region = region || client.region;
     this.id = summoner.id;
     this.accountId = summoner.accountId;
     this.playerId = summoner.puuid;
@@ -64,7 +65,7 @@ export class Summoner {
     this.level = summoner.summonerLevel;
     this.revisionDate = new Date(summoner.revisionDate);
     this.profileIcon = `${client.cdnBase}${client.version}/img/profileicon/${summoner.profileIconId}.png`;
-    this.championMastery = new ChampionMasteryManager(client, summoner.id);
+    this.championMastery = new ChampionMasteryManager(client, this);
   }
 
   /**
@@ -73,7 +74,7 @@ export class Summoner {
    * Uses {@link AccountManager.fetch} to get the details.
    */
   get account(): Promise<Account> {
-    return this.client.accounts.fetch(this.playerId);
+    return this.client.accounts.fetch(this.playerId, { region: this.region });
   }
 
   /**
@@ -82,7 +83,7 @@ export class Summoner {
    * Uses {@link LeagueManager.fetch} to get the details.
    */
   get league(): Promise<Collection<string, LeagueEntry>> {
-    return this.client.leagues.fetch(this.id);
+    return this.client.leagues.fetch(this.id, { region: this.region });
   }
 
   /**
@@ -91,7 +92,7 @@ export class Summoner {
    * Uses {@link CurrentGameManager.fetch} to get the details.
    */
   get live(): Promise<CurrentGame> {
-    return this.client.spectator.fetch(this.id);
+    return this.client.spectator.fetch(this.id, { region: this.region });
   }
 
   /**

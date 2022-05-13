@@ -1,6 +1,6 @@
 import { Match, Client } from "../dist";
 
-describe('Test Summoner v4 and Account v1 API', () => {
+describe('Test match v5 API', () => {
   const client = new Client(process.env.riot_api_key!);
 
   let matches: string[];
