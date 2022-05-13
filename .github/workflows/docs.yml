@@ -41,7 +41,7 @@ jobs:
 
       # run build script
       - name: Build Documentation site
-        run: yarn build && yarn extract && yarn document && yarn docs:build
+        run: yarn docs:gen && yarn docs:build
 
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v2
