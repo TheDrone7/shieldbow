@@ -61,9 +61,5 @@
     "fs-extra": "^10.0.0",
     "ts-node": "^10.7.0",
     "tslib": "^2.3.1"
-  },
-  "pre-commit": [
-    "test",
-    "docs:gen"
-  ]
+  }
 }
