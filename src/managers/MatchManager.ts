@@ -47,10 +47,10 @@ export class MatchManager implements BaseManager<Match> {
           .catch(reject);
         if (response) {
           const data = <MatchData>response.data;
-          for (const participant of data.info.participants) {
+          for (const participant of data.info.participants)
             if (!this.client.champions.cache.find((c) => c.key === participant.championId))
               await this.client.champions.fetchAll();
-          }
+
           if (this.client.items.cache.size === 0) await this.client.items.fetch('1001');
           if (this.client.summonerSpells.cache.size === 0) await this.client.summonerSpells.findByName('Flash');
           if (this.client.runes.cache.size === 0) await this.client.runes.fetch('Domination');

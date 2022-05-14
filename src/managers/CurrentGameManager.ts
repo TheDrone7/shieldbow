@@ -82,8 +82,8 @@ export class CurrentGameManager implements BaseManager<CurrentGame> {
         })
         .catch(reject);
       if (response) {
-        const data = <CurrentGameData[]>response.data;
-        for (const game of data)
+        const data = <{ gameList: CurrentGameData[] }>response.data;
+        for (const game of data.gameList)
           for (const participant of game.participants)
             if (!this.client.champions.cache.find((c) => c.key === participant.championId))
               await this.client.champions.fetchAll();
