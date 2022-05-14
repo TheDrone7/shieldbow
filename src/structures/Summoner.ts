@@ -1,4 +1,4 @@
-import type { Region, SummonerData } from '../types';
+import type { MatchByPlayerOptions, Region, SummonerData } from "../types";
 import type { Client } from '../client';
 import { ChampionMasteryManager } from '../managers';
 import type Collection from '@discordjs/collection';
@@ -93,6 +93,16 @@ export class Summoner {
    */
   get live(): Promise<CurrentGame> {
     return this.client.spectator.fetch(this.id, { region: this.region });
+  }
+
+  /**
+   * Fetch the summoner's recent matches (always fetches from API).
+   * @param options - The match list filtering options.
+   */
+  fetchMatchList(options?: MatchByPlayerOptions): Promise<string[]> {
+    options = options || { count: 20 };
+    options.count = options.count ?? 20;
+    return this.client.matches.fetchMatchListByPlayer(this, options)
   }
 
   /**
