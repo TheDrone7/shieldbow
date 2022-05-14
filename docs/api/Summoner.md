@@ -165,6 +165,29 @@ The last time this summoner was modified.
 
 ### Methods
 
+#### .fetchMatchList (options)
+
+Fetch the summoner's recent matches (always fetches from API).
+
+
+
+
+**Signature:**
+
+```ts
+fetchMatchList(options?: MatchByPlayerOptions): Promise<string[]>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| options | [MatchByPlayerOptions](/shieldbow/api/MatchByPlayerOptions.md) | The match list filtering options. |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)[] \>
+
+---
+
 #### .verifyCode (code)
 
 Check a summoner's third party verification code.

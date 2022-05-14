@@ -45,7 +45,19 @@ Most of which, is due to champions being fetched from 3 different sources and th
 This is done to have all sorts of data available about the champions.
 
 This can be sped up by either disabling the prefetching or enabling the cache.
-If the cache is enabled, the first initialization will still be slow but the subsequent ones will be significantly faster.
+If the cache is enabled, the first initialization will still be slow but the requests will be handled significantly faster.
+
+::: warning
+
+The data dragon files are fetched automatically when making a request to one of the following APIs.
+
+- Spectator v4
+- Match v5
+- Champion Mastery v4
+
+Therefore, it is recommended to prefetch them to avoid having to delay these requests.
+
+:::
 
 ::: details A sample configuration
 
