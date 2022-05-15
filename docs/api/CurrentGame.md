@@ -38,7 +38,7 @@ Constructs a new instance of the `CurrentGame` class.
 The numerical ID of the game.
 
 
-Combining this with the [CurrentGame.platform](/api/CurrentGame.md#platform) gives the full ID of the game. The full ID can be used to fetch all the details of the match after it has ended using [MatchManager.fetch](/api/MatchManager.md#fetch).
+Combining this with the [CurrentGame.platform](/shieldbow/api/CurrentGame.md#platform) gives the full ID of the game. The full ID can be used to fetch all the details of the match after it has ended using [MatchManager.fetch](/shieldbow/api/MatchManager.md#fetch).
 
 
 

@@ -38,7 +38,7 @@ const parseSummary = (summary: DocNode) => {
       const d = node.codeDestination?.memberReferences.map((r) => r.memberIdentifier?.identifier);
       const d2 = node.urlDestination;
       const link = d
-        ? `/api/${d[0]}.md#${d[1]}`
+        ? `/shieldbow/api/${d[0]}.md#${d[1]}`
         : d2;
       const linkText = node.linkText || d?.join('.') || d2;
       text += `[${linkText}](${link})`;

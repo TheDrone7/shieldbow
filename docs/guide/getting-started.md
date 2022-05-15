@@ -57,7 +57,7 @@ client.initialize({
   // - Highest champion mastery
   
   const summoner = await client.summoners.fetchBySummonerName('TheDrone7');
-  const leagueEntry = await summoner.league;
+  const leagueEntry = await summoner.fetchLeagueEntries();
   const championMastery = summoner.championMastery;
   
   const soloQ = leagueEntry.get('RANKED_SOLO_5x5');

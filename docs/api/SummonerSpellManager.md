@@ -64,7 +64,7 @@ The client this manager belongs to.
 
 #### .fetch (key, options)
 
-Fetch a spell by its ID. The ID is usually something like Summoner\{Spell\} For example, for the spell `Flash`, the ID is `SummonerFlash`. But there are a lot of exceptions to this, so it is recommended to use [findByName](/api/SummonerSpellManager.md#findByName) instead.
+Fetch a spell by its ID. The ID is usually something like Summoner\{Spell\} For example, for the spell `Flash`, the ID is `SummonerFlash`. But there are a lot of exceptions to this, so it is recommended to use [findByName](/shieldbow/api/SummonerSpellManager.md#findByName) instead.
 
 
 

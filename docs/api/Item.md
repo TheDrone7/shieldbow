@@ -82,7 +82,7 @@ A short-description of this object. `plaintext` attribute in the data dragon fil
 More detailed description of the item. This is the processed details. With all the HTML-like tags removed.
 
 
-See [rawDetails](/api/Item.md#rawDetails) if you want the raw data.
+See [rawDetails](/shieldbow/api/Item.md#rawDetails) if you want the raw data.
 
 
 
@@ -185,7 +185,7 @@ The displayed name of this item.
 More detailed description of the item. Raw details contain some html-like tags. This is the raw details from the data dragon API.
 
 
-See [details](/api/Item.md#details) if you want to see it with the tags processed out.
+See [details](/shieldbow/api/Item.md#details) if you want to see it with the tags processed out.
 
 
 

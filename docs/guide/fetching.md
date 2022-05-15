@@ -83,10 +83,10 @@ to fetch a summoner's details.
 The returned object is a [Summoner](/shieldbow/api/Summoner.md) object.
 
 Again, thanks to the design choices, you can also fetch other information about the summoner,
-such as their league rankings, by simply accessing the `summoner.league` property.
+such as their league rankings, by simply using the `summoner.fetchLeagueEntries()` method.
 
 ```ts
-const leagues = await summoner.league;
+const leagues = await summoner.fetchLeagueEntries();
 ```
 
 This will return a promise that will resolve to a collection of [LeagueEntry](/shieldbow/api/LeagueEntry.md) object.
@@ -118,7 +118,7 @@ and compare the noob's details to the GOAT's.
 If we try the following
 ```ts
 const summoner = await client.summoners.fetchBySummonerName('hide on bush');
-const leagueEntry = await summoner.league; 
+const leagueEntry = await summoner.fetchLeagueEntries(); 
 const championMastery = summoner.championMastery;
   
 const soloQ = leagueEntry.get('RANKED_SOLO_5x5');
@@ -130,7 +130,7 @@ To avoid these errors, we can simply just provide additional options while fetch
 
 ```ts
 const summoner = await client.summoners.fetchBySummonerName('hide on bush', { region: 'kr' });
-const leagueEntry = await summoner.league; 
+const leagueEntry = await summoner.fetchLeagueEntries(); 
 const championMastery = summoner.championMastery;
   
 const soloQ = leagueEntry.get('RANKED_SOLO_5x5');
@@ -154,8 +154,8 @@ client.initialize({
   const summoner1 = await client.summoners.fetchBySummonerName('TheDrone7');
   const summoner2 = await client.summoners.fetchBySummonerName('hide on bush', { region: 'kr' });
 
-  const leagueEntry1 = await summoner1.league;
-  const leagueEntry2 = await summoner2.league;
+  const leagueEntry1 = await summoner1.fetchLeagueEntries();
+  const leagueEntry2 = await summoner2.fetchLeagueEntries();
 
   const championMastery1 = summoner1.championMastery;
   const championMastery2 = summoner2.championMastery;
