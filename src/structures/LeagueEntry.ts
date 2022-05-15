@@ -1,4 +1,4 @@
-import type { DivisionType, LeagueEntryData, QueueType, TierType } from '../types';
+import type { DivisionType, FetchOptions, LeagueEntryData, QueueType, TierType } from "../types";
 import type { Client } from '../client';
 import type { Summoner } from './Summoner';
 
@@ -116,11 +116,11 @@ export class LeagueEntry {
   }
 
   /**
-   * The summoner this data belongs to.
+   * Fetch the summoner this data belongs to.
    *
-   * Uses {@link SummonerManager.fetch} to get the summoner.
+   * @param options - The basic fetching options.
    */
-  get summoner(): Promise<Summoner> {
-    return this.client.summoners.fetch(this.summonerId);
+  fetchSummoner(options?: FetchOptions): Promise<Summoner> {
+    return this.client.summoners.fetch(this.summonerId, options);
   }
 }

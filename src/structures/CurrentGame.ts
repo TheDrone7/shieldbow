@@ -84,4 +84,11 @@ export class CurrentGame {
       )
     );
   }
+
+  /**
+   * The match ID for fetching the match details after the game is over.
+   */
+  get matchId(): string {
+    return `${this.platform.toUpperCase()}_${this.id}`;
+  }
 }

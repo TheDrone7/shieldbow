@@ -38,7 +38,7 @@ const parseSummary = (summary: DocNode) => {
       const d = node.codeDestination?.memberReferences.map((r) => r.memberIdentifier?.identifier);
       const d2 = node.urlDestination;
       const link = d
-        ? `/shieldbow/api/${d[0]}.md#${d[1]}`
+        ? `/api/${d[0]}.md#${d[1]}`
         : d2;
       const linkText = node.linkText || d?.join('.') || d2;
       text += `[${linkText}](${link})`;
@@ -48,7 +48,7 @@ const parseSummary = (summary: DocNode) => {
   return text;
 };
 
-const linkTo = (name: string) => `[${name}](/shieldbow/api/${name}.md)`;
+const linkTo = (name: string) => `[${name}](/api/${name}.md)`;
 
 const parseTypeString = (type: string) => {
   type = type.replace(/(?<!\\)</g, ' \\< ');
@@ -94,7 +94,7 @@ for (const cls of classes) {
   const summary = cls.tsdocComment
     ? parseSummary(cls.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd()
     : '';
-  index += `| [${cls.displayName}](/shieldbow/api/${cls.displayName}.md) | ${summary} |\n`;
+  index += `| [${cls.displayName}](/api/${cls.displayName}.md) | ${summary} |\n`;
 
   // Create the class document.
   let doc = `---\ntitle: ${cls.displayName}\ndescription: ${summary}\n---\n\n`;
@@ -191,7 +191,7 @@ for (const func of functions) {
     ? parseSummary(func.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd()
     : '';
   const name = `${func.name}(${func.parameters.map((p) => p.name).join(', ')})`;
-  index += `| [${name}](/shieldbow/api/${func.displayName}.md) | ${summary} |\n`;
+  index += `| [${name}](/api/${func.displayName}.md) | ${summary} |\n`;
 
   // Create the function document.
   let doc = `---\ntitle: ${func.displayName}() function\ndescription: ${summary}\n---\n\n`;
@@ -227,7 +227,7 @@ for (const ifc of interfaces) {
   const summary = ifc.tsdocComment
     ? parseSummary(ifc.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd()
     : '';
-  index += `| [${ifc.displayName}](/shieldbow/api/${ifc.displayName}.md) | ${summary} |\n`;
+  index += `| [${ifc.displayName}](/api/${ifc.displayName}.md) | ${summary} |\n`;
 
   // Create the interface document.
   let doc = `---\ntitle: ${ifc.displayName}\ndescription: ${summary}\n---\n\n`;
@@ -294,7 +294,7 @@ for (const v of variables) {
   const summary = v.tsdocComment
     ? parseSummary(v.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd()
     : '';
-  index += `| [${v.displayName}](/shieldbow/api/${v.displayName}.md) | ${summary} |\n`;
+  index += `| [${v.displayName}](/api/${v.displayName}.md) | ${summary} |\n`;
 
   // Create the variable document.
   let doc = `---\ntitle: ${v.displayName}\ndescription: ${summary}\n---\n\n`;
@@ -320,7 +320,7 @@ for (const t of types) {
   const summary = t.tsdocComment
     ? parseSummary(t.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd()
     : '';
-  index += `| [${t.displayName}](/shieldbow/api/${t.displayName}.md) | ${summary} |\n`;
+  index += `| [${t.displayName}](/api/${t.displayName}.md) | ${summary} |\n`;
 
   // Create the type alias document.
   let doc = `---\ntitle: ${t.displayName}\ndescription: ${summary}\n---\n\n`;

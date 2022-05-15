@@ -1,14 +1,20 @@
 import type { Client } from '../client';
-import type { CurrentGameParticipantData } from '../types';
+import type { CurrentGameParticipantData, FetchOptions } from "../types";
 import type { SummonerSpell } from './SummonerSpell';
 import type { Champion } from './Champion';
 import Collection from '@discordjs/collection';
 import { CurrentGamePerks } from './CurrentGamePerks';
+import type { Summoner } from "./Summoner";
 
 /**
  * A representation of a participant in a live game.
  */
 export class CurrentGameParticipant {
+  /**
+   * The client that instantiated this participant.
+   * @private
+   */
+  private readonly _client;
   /**
    * The ID of the team this participant belongs to.
    */
@@ -44,6 +50,7 @@ export class CurrentGameParticipant {
    * @param data - The raw current game participant data from the API.
    */
   constructor(client: Client, data: CurrentGameParticipantData) {
+    this._client = client;
     this.teamId = data.teamId;
     this.summonerSpells = new Collection<'D' | 'F', SummonerSpell>();
     this.summonerSpells.set('D', client.summonerSpells.cache.find((s) => s.key === data.spell1Id)!);
@@ -53,5 +60,14 @@ export class CurrentGameParticipant {
     this.summonerName = data.summonerName;
     this.profileIcon = `${client.cdnBase}${client.version}/img/profileicon/${data.profileIconId}.png`;
     if (data.perks) this.perks = new CurrentGamePerks(client, data.perks);
+  }
+
+  /**
+   * Fetches the summoner info of this participant.
+   *
+   * @param options - The basic fetching options.
+   */
+  fetchSummoner(options?: FetchOptions): Promise<Summoner> {
+    return this._client.summoners.fetchBySummonerName(this.summonerName, options);
   }
 }
