@@ -38,7 +38,7 @@ describe('Test Summoner v4 and Account v1 API', () => {
   });
 
   test('Check summoner account details', async () => {
-    const account = await summoner.account.catch(console.error);
+    const account = await summoner.fetchAccount().catch(console.error);
     expect(account?.username).toBe('TheDrone7');
   });
 

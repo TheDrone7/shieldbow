@@ -1,4 +1,4 @@
-import type { DivisionType, FetchOptions, LeagueEntryData, QueueType, TierType } from "../types";
+import type { DivisionType, FetchOptions, LeagueEntryData, QueueType, TierType } from '../types';
 import type { Client } from '../client';
 import type { Summoner } from './Summoner';
 

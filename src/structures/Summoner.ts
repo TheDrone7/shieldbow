@@ -1,4 +1,4 @@
-import type { MatchByPlayerOptions, Region, SummonerData } from '../types';
+import type { FetchOptions, MatchByPlayerOptions, Region, SummonerData } from '../types';
 import type { Client } from '../client';
 import { ChampionMasteryManager } from '../managers';
 import type Collection from '@discordjs/collection';
@@ -69,40 +69,53 @@ export class Summoner {
   }
 
   /**
-   * Get the summoner's RIOT account info.
+   * Fetch the summoner's RIOT account info.
    *
-   * Uses {@link AccountManager.fetch} to get the details.
+   * @param options - The basic fetching options.
    */
-  get account(): Promise<Account> {
-    return this.client.accounts.fetch(this.playerId, { region: this.region });
+  fetchAccount(options?: FetchOptions): Promise<Account> {
+    if (options) options.region = this.region;
+    else options = { region: this.region };
+    return this.client.accounts.fetch(this.playerId, options);
   }
 
   /**
-   * Get the summoner's competitive placement info.
+   * Fetch the summoner's competitive placement info.
    *
-   * Uses {@link LeagueManager.fetch} to get the details.
+   * @param options - The basic fetching options.
    */
-  get league(): Promise<Collection<string, LeagueEntry>> {
-    return this.client.leagues.fetch(this.id, { region: this.region });
+  fetchLeagueEntries(options?: FetchOptions): Promise<Collection<string, LeagueEntry>> {
+    if (options) options.region = this.region;
+    else options = { region: this.region };
+    return this.client.leagues.fetch(this.id, options);
   }
 
   /**
-   * Get the summoner's live game data.
+   * Fetch the summoner's live game data.
    *
-   * Uses {@link CurrentGameManager.fetch} to get the details.
+   * @param options - The basic fetching options.
    */
-  get live(): Promise<CurrentGame> {
-    return this.client.spectator.fetch(this.id, { region: this.region });
+  fetchLiveMatch(options?: FetchOptions): Promise<CurrentGame> {
+    if (options) options.region = this.region;
+    else options = { region: this.region };
+    return this.client.spectator.fetch(this.id, options);
   }
 
   /**
    * Fetch the summoner's recent matches (always fetches from API).
+   *
    * @param options - The match list filtering options.
    */
   fetchMatchList(options?: MatchByPlayerOptions): Promise<string[]> {
     options = options || { count: 20 };
     options.count = options.count ?? 20;
     return this.client.matches.fetchMatchListByPlayer(this, options);
+  }
+
+  fetchClashEntries(options?: FetchOptions) {
+    if (options) options.region = this.region;
+    else options = { region: this.region };
+    return this.client.clash.fetchPlayer(this.id, options);
   }
 
   /**

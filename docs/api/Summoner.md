@@ -34,19 +34,6 @@ Constructs a new instance of the `Summoner` class.
 
 ### Properties
 
-#### account
-
-Get the summoner's RIOT account info.
-
-
-Uses [AccountManager.fetch](/api/AccountManager.md#fetch) to get the details.
-
-
-
-**Type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Account](/api/Account.md) \>
-
----
-
 #### accountId
 
 The account ID for this summoner.
@@ -77,19 +64,6 @@ The summoner ID for this summoner.
 
 ---
 
-#### league
-
-Get the summoner's competitive placement info.
-
-
-Uses [LeagueManager.fetch](/api/LeagueManager.md#fetch) to get the details.
-
-
-
-**Type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [LeagueEntry](/api/LeagueEntry.md) \> \>
-
----
-
 #### level
 
 The summoner level of this summoner.
@@ -97,19 +71,6 @@ The summoner level of this summoner.
 
 
 **Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
-
----
-
-#### live
-
-Get the summoner's live game data.
-
-
-Uses [CurrentGameManager.fetch](/api/CurrentGameManager.md#fetch) to get the details.
-
-
-
-**Type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [CurrentGame](/api/CurrentGame.md) \>
 
 ---
 
@@ -164,6 +125,95 @@ The last time this summoner was modified.
 ---
 
 ### Methods
+
+#### .fetchAccount (options)
+
+Fetch the summoner's RIOT account info.
+
+
+
+
+**Signature:**
+
+```ts
+fetchAccount(options?: FetchOptions): Promise<Account>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Account](/api/Account.md) \>
+
+---
+
+#### .fetchClashEntries (options)
+
+
+
+**Signature:**
+
+```ts
+fetchClashEntries(options?: FetchOptions): Promise<import("./TournamentPlayer").TournamentPlayer[]>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| options | [FetchOptions](/api/FetchOptions.md) |  |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< import("./TournamentPlayer").TournamentPlayer[] \>
+
+---
+
+#### .fetchLeagueEntries (options)
+
+Fetch the summoner's competitive placement info.
+
+
+
+
+**Signature:**
+
+```ts
+fetchLeagueEntries(options?: FetchOptions): Promise<Collection<string, LeagueEntry>>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [LeagueEntry](/api/LeagueEntry.md) \> \>
+
+---
+
+#### .fetchLiveMatch (options)
+
+Fetch the summoner's live game data.
+
+
+
+
+**Signature:**
+
+```ts
+fetchLiveMatch(options?: FetchOptions): Promise<CurrentGame>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [CurrentGame](/api/CurrentGame.md) \>
+
+---
 
 #### .fetchMatchList (options)
 
