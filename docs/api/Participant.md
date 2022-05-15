@@ -27,8 +27,8 @@ Constructs a new instance of the `Participant` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) | The client that requested this data. |
-| data | [ParticipantData](/shieldbow/api/ParticipantData.md) | The raw participant data from the API. |
+| client | [Client](/api/Client.md) | The client that requested this data. |
+| data | [ParticipantData](/api/ParticipantData.md) | The raw participant data from the API. |
 ---
 
 ### Properties
@@ -59,7 +59,7 @@ The bounty on this participant's head.
 
 
 
-**Type**: [Bounty](/shieldbow/api/Bounty.md)
+**Type**: [Bounty](/api/Bounty.md)
 
 ---
 
@@ -69,7 +69,7 @@ The stats of the champion being played by this participant.
 
 
 
-**Type**: [ParticipantChampion](/shieldbow/api/ParticipantChampion.md)
+**Type**: [ParticipantChampion](/api/ParticipantChampion.md)
 
 ---
 
@@ -199,7 +199,7 @@ An overview of the healing done by the participant.
 
 
 
-**Type**: [ParticipantHealingStats](/shieldbow/api/ParticipantHealingStats.md)
+**Type**: [ParticipantHealingStats](/api/ParticipantHealingStats.md)
 
 ---
 
@@ -219,7 +219,7 @@ The number of inhibitors killed/lost.
 
 
 
-**Type**: [ParticipantInhibitorStats](/shieldbow/api/ParticipantInhibitorStats.md)
+**Type**: [ParticipantInhibitorStats](/api/ParticipantInhibitorStats.md)
 
 ---
 
@@ -229,7 +229,7 @@ The items in the participant's inventory.
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [Item](/shieldbow/api/Item.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [Item](/api/Item.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
 
 ---
 
@@ -319,7 +319,7 @@ An overview of the magic damage dealt/taken by the participant.
 
 
 
-**Type**: [ParticipantDamageStats](/shieldbow/api/ParticipantDamageStats.md)
+**Type**: [ParticipantDamageStats](/api/ParticipantDamageStats.md)
 
 ---
 
@@ -339,7 +339,7 @@ The number of multi-kills scored by this participant.
 
 
 
-**Type**: [ParticipantMultkills](/shieldbow/api/ParticipantMultkills.md)
+**Type**: [ParticipantMultkills](/api/ParticipantMultkills.md)
 
 ---
 
@@ -399,7 +399,7 @@ The perks (runes) selected by the participant.
 
 
 
-**Type**: [Perks](/shieldbow/api/Perks.md)
+**Type**: [Perks](/api/Perks.md)
 
 ---
 
@@ -409,7 +409,7 @@ An overview of the physical damage dealt/taken by the participant.
 
 
 
-**Type**: [ParticipantDamageStats](/shieldbow/api/ParticipantDamageStats.md)
+**Type**: [ParticipantDamageStats](/api/ParticipantDamageStats.md)
 
 ---
 
@@ -419,7 +419,7 @@ The participant's position in the team.
 
 
 
-**Type**: [ParticipantPosition](/shieldbow/api/ParticipantPosition.md)
+**Type**: [ParticipantPosition](/api/ParticipantPosition.md)
 
 ---
 
@@ -439,7 +439,7 @@ The summoner acting as the participant.
 
 
 
-**Type**: [Summoner](/shieldbow/api/Summoner.md)
+**Type**: [Summoner](/api/Summoner.md)
 
 ---
 
@@ -449,7 +449,7 @@ The summoner spells the participant chose for the match.
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< 'D' \| 'F', [SummonerSpell](/shieldbow/api/SummonerSpell.md) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< 'D' \| 'F', [SummonerSpell](/api/SummonerSpell.md) \>
 
 ---
 
@@ -512,7 +512,7 @@ An overview of the damage dealt/taken/shielded by the participant.
 
 
 
-**Type**: [ParticipantTotalDamage](/shieldbow/api/ParticipantTotalDamage.md)
+**Type**: [ParticipantTotalDamage](/api/ParticipantTotalDamage.md)
 
 ---
 
@@ -522,7 +522,7 @@ An overview of the true damage dealt/taken by the participant.
 
 
 
-**Type**: [ParticipantDamageStats](/shieldbow/api/ParticipantDamageStats.md)
+**Type**: [ParticipantDamageStats](/api/ParticipantDamageStats.md)
 
 ---
 
@@ -532,7 +532,7 @@ The number of turrets destroyed/lost.
 
 
 
-**Type**: [ParticipantTurretStats](/shieldbow/api/ParticipantTurretStats.md)
+**Type**: [ParticipantTurretStats](/api/ParticipantTurretStats.md)
 
 ---
 
@@ -542,7 +542,7 @@ The vision control stats of the participant.
 
 
 
-**Type**: [ParticipantVision](/shieldbow/api/ParticipantVision.md)
+**Type**: [ParticipantVision](/api/ParticipantVision.md)
 
 ---
 

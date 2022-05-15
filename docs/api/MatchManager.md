@@ -15,7 +15,7 @@ export declare class MatchManager implements BaseManager<Match>
 
 Implements: BaseManager<Match\>
 
-**References:** [BaseManager](/shieldbow/api/BaseManager.md), [Match](/shieldbow/api/Match.md)
+**References:** [BaseManager](/api/BaseManager.md), [Match](/api/Match.md)
 
 ---
 
@@ -31,7 +31,7 @@ Constructs a new instance of the `MatchManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) | The client that instantiated the manager. |
+| client | [Client](/api/Client.md) | The client that instantiated the manager. |
 ---
 
 ### Properties
@@ -42,7 +42,7 @@ The collection of cached matches.
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Match](/shieldbow/api/Match.md) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Match](/api/Match.md) \>
 
 ---
 
@@ -52,7 +52,7 @@ The client that instantiated the manager.
 
 
 
-**Type**: [Client](/shieldbow/api/Client.md)
+**Type**: [Client](/api/Client.md)
 
 ---
 
@@ -76,9 +76,9 @@ fetch(id: string, options?: FetchOptions): Promise<Match>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the match |
-| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetch options |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetch options |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Match](/shieldbow/api/Match.md) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Match](/api/Match.md) \>
 
 ---
 
@@ -99,8 +99,8 @@ fetchMatchListByPlayer(player: Summoner | string, options?: MatchByPlayerOptions
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| player | [Summoner](/shieldbow/api/Summoner.md) \| [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The summoner or their player ID whose matches need to be fetched. |
-| options | [MatchByPlayerOptions](/shieldbow/api/MatchByPlayerOptions.md) | The options for filtering the matches. |
+| player | [Summoner](/api/Summoner.md) \| [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The summoner or their player ID whose matches need to be fetched. |
+| options | [MatchByPlayerOptions](/api/MatchByPlayerOptions.md) | The options for filtering the matches. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)[] \>
 

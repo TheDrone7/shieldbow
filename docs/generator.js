@@ -37,7 +37,7 @@ var parseSummary = function (summary) {
             var d = (_a = node.codeDestination) === null || _a === void 0 ? void 0 : _a.memberReferences.map(function (r) { var _a; return (_a = r.memberIdentifier) === null || _a === void 0 ? void 0 : _a.identifier; });
             var d2 = node.urlDestination;
             var link = d
-                ? "/shieldbow/api/".concat(d[0], ".md#").concat(d[1])
+                ? "/api/".concat(d[0], ".md#").concat(d[1])
                 : d2;
             var linkText = node.linkText || (d === null || d === void 0 ? void 0 : d.join('.')) || d2;
             text += "[".concat(linkText, "](").concat(link, ")");
@@ -47,7 +47,7 @@ var parseSummary = function (summary) {
     }
     return text;
 };
-var linkTo = function (name) { return "[".concat(name, "](/shieldbow/api/").concat(name, ".md)"); };
+var linkTo = function (name) { return "[".concat(name, "](/api/").concat(name, ".md)"); };
 var parseTypeString = function (type) {
     type = type.replace(/(?<!\\)</g, ' \\< ');
     type = type.replace(/(?<!\\)>/g, ' \\>');
@@ -89,7 +89,7 @@ var _loop_1 = function (cls) {
     var summary = cls.tsdocComment
         ? parseSummary(cls.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd()
         : '';
-    index += "| [".concat(cls.displayName, "](/shieldbow/api/").concat(cls.displayName, ".md) | ").concat(summary, " |\n");
+    index += "| [".concat(cls.displayName, "](/api/").concat(cls.displayName, ".md) | ").concat(summary, " |\n");
     // Create the class document.
     var doc = "---\ntitle: ".concat(cls.displayName, "\ndescription: ").concat(summary, "\n---\n\n");
     doc += "## ".concat(cls.displayName, " class\n\n");
@@ -188,7 +188,7 @@ var _loop_2 = function (func) {
         ? parseSummary(func.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd()
         : '';
     var name_1 = "".concat(func.name, "(").concat(func.parameters.map(function (p) { return p.name; }).join(', '), ")");
-    index += "| [".concat(name_1, "](/shieldbow/api/").concat(func.displayName, ".md) | ").concat(summary, " |\n");
+    index += "| [".concat(name_1, "](/api/").concat(func.displayName, ".md) | ").concat(summary, " |\n");
     // Create the function document.
     var doc = "---\ntitle: ".concat(func.displayName, "() function\ndescription: ").concat(summary, "\n---\n\n");
     doc += "## ".concat(func.displayName, "(").concat(func.parameters.map(function (p) { return p.name; }).join(', '), ") function\n\n");
@@ -223,7 +223,7 @@ var _loop_3 = function (ifc) {
     var summary = ifc.tsdocComment
         ? parseSummary(ifc.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd()
         : '';
-    index += "| [".concat(ifc.displayName, "](/shieldbow/api/").concat(ifc.displayName, ".md) | ").concat(summary, " |\n");
+    index += "| [".concat(ifc.displayName, "](/api/").concat(ifc.displayName, ".md) | ").concat(summary, " |\n");
     // Create the interface document.
     var doc = "---\ntitle: ".concat(ifc.displayName, "\ndescription: ").concat(summary, "\n---\n\n");
     doc += "## ".concat(ifc.displayName, " interface\n\n");
@@ -293,7 +293,7 @@ for (var _c = 0, variables_1 = variables; _c < variables_1.length; _c++) {
     var summary = v.tsdocComment
         ? parseSummary(v.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd()
         : '';
-    index += "| [".concat(v.displayName, "](/shieldbow/api/").concat(v.displayName, ".md) | ").concat(summary, " |\n");
+    index += "| [".concat(v.displayName, "](/api/").concat(v.displayName, ".md) | ").concat(summary, " |\n");
     // Create the variable document.
     var doc = "---\ntitle: ".concat(v.displayName, "\ndescription: ").concat(summary, "\n---\n\n");
     doc += "## ".concat(v.displayName, " variable\n\n");
@@ -316,7 +316,7 @@ for (var _d = 0, types_1 = types; _d < types_1.length; _d++) {
     var summary = t.tsdocComment
         ? parseSummary(t.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd()
         : '';
-    index += "| [".concat(t.displayName, "](/shieldbow/api/").concat(t.displayName, ".md) | ").concat(summary, " |\n");
+    index += "| [".concat(t.displayName, "](/api/").concat(t.displayName, ".md) | ").concat(summary, " |\n");
     // Create the type alias document.
     var doc = "---\ntitle: ".concat(t.displayName, "\ndescription: ").concat(summary, "\n---\n\n");
     doc += "## ".concat(t.displayName, " type\n\n");

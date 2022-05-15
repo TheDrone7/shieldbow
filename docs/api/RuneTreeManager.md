@@ -15,7 +15,7 @@ export declare class RuneTreeManager implements BaseManager<RuneTree>
 
 Implements: BaseManager<RuneTree\>
 
-**References:** [BaseManager](/shieldbow/api/BaseManager.md), [RuneTree](/shieldbow/api/RuneTree.md)
+**References:** [BaseManager](/api/BaseManager.md), [RuneTree](/api/RuneTree.md)
 
 ---
 
@@ -34,7 +34,7 @@ Constructs a new instance of the `RuneTreeManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) | The client this manager belongs to. |
+| client | [Client](/api/Client.md) | The client this manager belongs to. |
 | cacheSettings | {         enable: boolean;         root: string;     } | The basic caching settings. |
 ---
 
@@ -46,7 +46,7 @@ A collection of the rune trees cached in the memory.
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/shieldbow/api/RuneTree.md) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/api/RuneTree.md) \>
 
 ---
 
@@ -59,7 +59,7 @@ This is similar to the cache but the cache is a collection of Rune Trees and thi
 
 
 
-**Type**: [Rune](/shieldbow/api/Rune.md)[]
+**Type**: [Rune](/api/Rune.md)[]
 
 ---
 
@@ -69,7 +69,7 @@ The client this manager belongs to.
 
 
 
-**Type**: [Client](/shieldbow/api/Client.md)
+**Type**: [Client](/api/Client.md)
 
 ---
 
@@ -93,9 +93,9 @@ fetch(key: string, options?: FetchOptions): Promise<RuneTree>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | key | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The key of the rune tree to fetch. |
-| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | Additional fetch options. |
+| options | [FetchOptions](/api/FetchOptions.md) | Additional fetch options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [RuneTree](/shieldbow/api/RuneTree.md) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [RuneTree](/api/RuneTree.md) \>
 
 ---
 
@@ -121,7 +121,7 @@ fetchRune(key: string, options?: {
 | key | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The key of the rune. |
 | options | {         force: boolean;     } | Additional fetch options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Rune](/shieldbow/api/Rune.md) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Rune](/api/Rune.md) \>
 
 ---
 
@@ -144,7 +144,7 @@ findById(id: number): Promise<RuneTree | undefined>;
 | --------- | ---- | ----------- |
 | id | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The numerical ID of the rune tree to look for. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [RuneTree](/shieldbow/api/RuneTree.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [RuneTree](/api/RuneTree.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
 
 ---
 
@@ -167,7 +167,7 @@ findByName(name: string): Promise<RuneTree | undefined>;
 | --------- | ---- | ----------- |
 | name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of the rune tree to look for. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [RuneTree](/shieldbow/api/RuneTree.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [RuneTree](/api/RuneTree.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
 
 ---
 
@@ -190,7 +190,7 @@ findRuneById(id: number): Promise<Rune | undefined>;
 | --------- | ---- | ----------- |
 | id | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The numerical ID of the rune to look for. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Rune](/shieldbow/api/Rune.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Rune](/api/Rune.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
 
 ---
 
@@ -213,7 +213,7 @@ findRuneByName(name: string): Promise<Rune | undefined>;
 | --------- | ---- | ----------- |
 | name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of the rune to look for. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Rune](/shieldbow/api/Rune.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Rune](/api/Rune.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
 
 ---
 

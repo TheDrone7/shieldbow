@@ -27,9 +27,9 @@ Constructs a new instance of the `CurrentGameTeam` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) | The client requesting the data. |
-| bans | [CurrentGameBanData](/shieldbow/api/CurrentGameBanData.md)[] | The raw bans data for this team from the API. |
-| participants | [CurrentGameParticipantData](/shieldbow/api/CurrentGameParticipantData.md)[] | The raw participants data for this team from the API. |
+| client | [Client](/api/Client.md) | The client requesting the data. |
+| bans | [CurrentGameBanData](/api/CurrentGameBanData.md)[] | The raw bans data for this team from the API. |
+| participants | [CurrentGameParticipantData](/api/CurrentGameParticipantData.md)[] | The raw participants data for this team from the API. |
 ---
 
 ### Properties
@@ -40,7 +40,7 @@ The champions banned by this team.
 
 
 
-**Type**: [CurrentGameChampionBan](/shieldbow/api/CurrentGameChampionBan.md)[]
+**Type**: [CurrentGameChampionBan](/api/CurrentGameChampionBan.md)[]
 
 ---
 
@@ -60,7 +60,7 @@ The team's participants.
 
 
 
-**Type**: [CurrentGameParticipant](/shieldbow/api/CurrentGameParticipant.md)[]
+**Type**: [CurrentGameParticipant](/api/CurrentGameParticipant.md)[]
 
 ---
 

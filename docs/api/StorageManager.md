@@ -15,7 +15,7 @@ export declare class StorageManager implements BaseManager<any>
 
 Implements: BaseManager\>
 
-**References:** [BaseManager](/shieldbow/api/BaseManager.md)
+**References:** [BaseManager](/api/BaseManager.md)
 
 ---
 
@@ -31,7 +31,7 @@ Constructs a new instance of the `StorageManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) | The client this manager belongs to. |
+| client | [Client](/api/Client.md) | The client this manager belongs to. |
 | pathName | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The path to the directory where the JSON files are stored. |
 | root | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The root directory of the project's storage. |
 ---
@@ -54,7 +54,7 @@ The client this Manager belongs to.
 
 
 
-**Type**: [Client](/shieldbow/api/Client.md)
+**Type**: [Client](/api/Client.md)
 
 ---
 

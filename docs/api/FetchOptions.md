@@ -41,7 +41,7 @@ The region to fetch from. Defaults to the client's region.
 
 
 
-**Type**: [Region](/shieldbow/api/Region.md)
+**Type**: [Region](/api/Region.md)
 
 ---
 

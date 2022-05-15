@@ -27,8 +27,8 @@ Constructs a new instance of the `LeagueList` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) | The client requesting the data. |
-| data | [LeagueListData](/shieldbow/api/LeagueListData.md) | The raw league list data from the API. |
+| client | [Client](/api/Client.md) | The client requesting the data. |
+| data | [LeagueListData](/api/LeagueListData.md) | The raw league list data from the API. |
 ---
 
 ### Properties
@@ -42,7 +42,7 @@ These are mapped by the summoner name.
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [LeagueEntry](/shieldbow/api/LeagueEntry.md) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [LeagueEntry](/api/LeagueEntry.md) \>
 
 ---
 
@@ -72,7 +72,7 @@ The type of queue - such as RANKED_SOLO_5x5, RANKED_FLEX_SR, RANKED_FLEX_TT.
 
 
 
-**Type**: [QueueType](/shieldbow/api/QueueType.md)
+**Type**: [QueueType](/api/QueueType.md)
 
 ---
 
@@ -82,7 +82,7 @@ The tier of the entries in this list.
 
 
 
-**Type**: [TierType](/shieldbow/api/TierType.md)
+**Type**: [TierType](/api/TierType.md)
 
 ---
 

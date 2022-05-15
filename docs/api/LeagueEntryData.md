@@ -75,7 +75,7 @@ export interface LeagueEntryData
 
 
 
-**Type**: [QueueType](/shieldbow/api/QueueType.md)
+**Type**: [QueueType](/api/QueueType.md)
 
 ---
 
@@ -83,7 +83,7 @@ export interface LeagueEntryData
 
 
 
-**Type**: [DivisionType](/shieldbow/api/DivisionType.md)
+**Type**: [DivisionType](/api/DivisionType.md)
 
 ---
 
@@ -107,7 +107,7 @@ export interface LeagueEntryData
 
 
 
-**Type**: [TierType](/shieldbow/api/TierType.md)
+**Type**: [TierType](/api/TierType.md)
 
 ---
 

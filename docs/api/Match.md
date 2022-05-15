@@ -27,8 +27,8 @@ Constructs a new instance of the `Match` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) | The client requesting the data. |
-| data | [MatchData](/shieldbow/api/MatchData.md) | The raw match data from the API. |
+| client | [Client](/api/Client.md) | The client requesting the data. |
+| data | [MatchData](/api/MatchData.md) | The raw match data from the API. |
 ---
 
 ### Properties
@@ -79,7 +79,7 @@ The game mode for the match.
 
 
 
-**Type**: [GameMode](/shieldbow/api/GameMode.md)
+**Type**: [GameMode](/api/GameMode.md)
 
 ---
 
@@ -99,7 +99,7 @@ The type of game.
 
 
 
-**Type**: [GameType](/shieldbow/api/GameType.md)
+**Type**: [GameType](/api/GameType.md)
 
 ---
 
@@ -129,7 +129,7 @@ The map on which the match was played.
 
 
 
-**Type**: [GameMap](/shieldbow/api/GameMap.md)
+**Type**: [GameMap](/api/GameMap.md)
 
 ---
 
@@ -152,7 +152,7 @@ The queue type of the match.
 
 
 
-**Type**: [Queue](/shieldbow/api/Queue.md)
+**Type**: [Queue](/api/Queue.md)
 
 ---
 
@@ -175,7 +175,7 @@ They are mapped by their map sides (`blue` and `red`).
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< 'blue' \| 'red', [Team](/shieldbow/api/Team.md) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< 'blue' \| 'red', [Team](/api/Team.md) \>
 
 ---
 

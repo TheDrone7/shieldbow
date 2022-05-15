@@ -36,7 +36,7 @@ Constructs a new instance of the `PerkStyle` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) | The client requesting this data. |
+| client | [Client](/api/Client.md) | The client requesting this data. |
 | data | {         description: string;         selections: {             perk: number;             var1: number;             var2: number;             var3: number;         }[];         style: number;     } | The raw perk style data from the API. |
 ---
 
@@ -48,7 +48,7 @@ The selected runes.
 
 
 
-**Type**: [Rune](/shieldbow/api/Rune.md)[]
+**Type**: [Rune](/api/Rune.md)[]
 
 ---
 
@@ -58,7 +58,7 @@ The rune tree that this perk style is based on.
 
 
 
-**Type**: [RuneTree](/shieldbow/api/RuneTree.md)
+**Type**: [RuneTree](/api/RuneTree.md)
 
 ---
 

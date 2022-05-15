@@ -15,7 +15,7 @@ export declare class LeagueManager implements BaseManager<Collection<QueueType, 
 
 Implements: BaseManager<Collection<QueueType, LeagueEntry\>
 
-**References:** [BaseManager](/shieldbow/api/BaseManager.md), [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection), [QueueType](/shieldbow/api/QueueType.md), [LeagueEntry](/shieldbow/api/LeagueEntry.md)
+**References:** [BaseManager](/api/BaseManager.md), [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection), [QueueType](/api/QueueType.md), [LeagueEntry](/api/LeagueEntry.md)
 
 ---
 
@@ -31,7 +31,7 @@ Constructs a new instance of the `LeagueManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) | The client that instantiated this manager. |
+| client | [Client](/api/Client.md) | The client that instantiated this manager. |
 ---
 
 ### Properties
@@ -42,7 +42,7 @@ The competitive info (mapped by summoner ID) stored in the memory.
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [QueueType](/shieldbow/api/QueueType.md), [LeagueEntry](/shieldbow/api/LeagueEntry.md) \> \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [QueueType](/api/QueueType.md), [LeagueEntry](/api/LeagueEntry.md) \> \>
 
 ---
 
@@ -52,7 +52,7 @@ The client this manager belongs to.
 
 
 
-**Type**: [Client](/shieldbow/api/Client.md)
+**Type**: [Client](/api/Client.md)
 
 ---
 
@@ -62,7 +62,7 @@ The in-memory cache for league lists.
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [LeagueList](/shieldbow/api/LeagueList.md) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [LeagueList](/api/LeagueList.md) \>
 
 ---
 
@@ -86,9 +86,9 @@ fetch(id: string, options?: FetchOptions): Promise<Collection<QueueType, LeagueE
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the summoner whose competitive info you want to find. |
-| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetching options. |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [QueueType](/shieldbow/api/QueueType.md), [LeagueEntry](/shieldbow/api/LeagueEntry.md) \> \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [QueueType](/api/QueueType.md), [LeagueEntry](/api/LeagueEntry.md) \> \>
 
 ---
 
@@ -110,9 +110,9 @@ fetchByLeagueId(leagueId: string, options?: FetchOptions): Promise<LeagueList>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | leagueId | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The League ID. |
-| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetching options (exception: `force` defaults to true). |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options (exception: `force` defaults to true). |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [LeagueList](/shieldbow/api/LeagueList.md) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [LeagueList](/api/LeagueList.md) \>
 
 ---
 
@@ -135,12 +135,12 @@ fetchByQueueAndTier(queue: QueueType, tier: TierType, division: DivisionType, op
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| queue | [QueueType](/shieldbow/api/QueueType.md) | The type of queue - RANKED_SOLO_5x5, RANKED_FLEX_SR, etc. |
-| tier | [TierType](/shieldbow/api/TierType.md) | The tier of the entries - IRON to CHALLENGER. |
-| division | [DivisionType](/shieldbow/api/DivisionType.md) | The division of the entries - I, II, III, IV. |
-| options | [FetchOptions](/shieldbow/api/FetchOptions.md) & {         page: number;     } | The basic fetching options (and page number - defaults to 1, force is ignored - always true). |
+| queue | [QueueType](/api/QueueType.md) | The type of queue - RANKED_SOLO_5x5, RANKED_FLEX_SR, etc. |
+| tier | [TierType](/api/TierType.md) | The tier of the entries - IRON to CHALLENGER. |
+| division | [DivisionType](/api/DivisionType.md) | The division of the entries - I, II, III, IV. |
+| options | [FetchOptions](/api/FetchOptions.md) & {         page: number;     } | The basic fetching options (and page number - defaults to 1, force is ignored - always true). |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [LeagueEntry](/shieldbow/api/LeagueEntry.md) \> \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [LeagueEntry](/api/LeagueEntry.md) \> \>
 
 ---
 

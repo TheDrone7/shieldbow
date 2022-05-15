@@ -15,7 +15,7 @@ export declare class AccountManager implements BaseManager<Account>
 
 Implements: BaseManager<Account\>
 
-**References:** [BaseManager](/shieldbow/api/BaseManager.md), [Account](/shieldbow/api/Account.md)
+**References:** [BaseManager](/api/BaseManager.md), [Account](/api/Account.md)
 
 ---
 
@@ -31,7 +31,7 @@ Constructs a new instance of the `AccountManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) | The client this account manager belongs to. |
+| client | [Client](/api/Client.md) | The client this account manager belongs to. |
 ---
 
 ### Properties
@@ -42,7 +42,7 @@ The accounts cached in the memory.
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Account](/shieldbow/api/Account.md) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Account](/api/Account.md) \>
 
 ---
 
@@ -52,7 +52,7 @@ The client this accounts manager belongs to.
 
 
 
-**Type**: [Client](/shieldbow/api/Client.md)
+**Type**: [Client](/api/Client.md)
 
 ---
 
@@ -76,9 +76,9 @@ fetch(id: string, options?: FetchOptions): Promise<Account>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The PUUID of the RIOT account. |
-| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetching options. |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Account](/shieldbow/api/Account.md) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Account](/api/Account.md) \>
 
 ---
 
@@ -101,9 +101,9 @@ fetchByNameAndTag(name: string, tag: string, options?: FetchOptions): Promise<Ac
 | --------- | ---- | ----------- |
 | name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of this RIOT account. |
 | tag | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The tag of this RIOT account. |
-| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetching options. |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Account](/shieldbow/api/Account.md) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Account](/api/Account.md) \>
 
 ---
 

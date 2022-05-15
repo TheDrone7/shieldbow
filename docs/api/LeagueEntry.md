@@ -27,8 +27,8 @@ Constructs a new instance of the `LeagueEntry` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) | The client requesting the data. |
-| data | [LeagueEntryData](/shieldbow/api/LeagueEntryData.md) | The raw league entry data from the API. |
+| client | [Client](/api/Client.md) | The client requesting the data. |
+| data | [LeagueEntryData](/api/LeagueEntryData.md) | The raw league entry data from the API. |
 ---
 
 ### Properties
@@ -39,7 +39,7 @@ The division under the tier - From 1 to 4 (I - IV).
 
 
 
-**Type**: [DivisionType](/shieldbow/api/DivisionType.md)
+**Type**: [DivisionType](/api/DivisionType.md)
 
 ---
 
@@ -109,7 +109,7 @@ This only exists if the summoner is in a promotion series.
 
 
 
-**Type**: [Promos](/shieldbow/api/Promos.md)
+**Type**: [Promos](/api/Promos.md)
 
 ---
 
@@ -119,20 +119,7 @@ The type of queue - such as RANKED_SOLO_5x5, RANKED_FLEX_SR or RANKED_FLEX_TT.
 
 
 
-**Type**: [QueueType](/shieldbow/api/QueueType.md)
-
----
-
-#### summoner
-
-The summoner this data belongs to.
-
-
-Uses [SummonerManager.fetch](/shieldbow/api/SummonerManager.md#fetch) to get the summoner.
-
-
-
-**Type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Summoner](/shieldbow/api/Summoner.md) \>
+**Type**: [QueueType](/api/QueueType.md)
 
 ---
 
@@ -162,7 +149,7 @@ The tier the summoner belongs to - such as BRONZE, GOLD, etc.
 
 
 
-**Type**: [TierType](/shieldbow/api/TierType.md)
+**Type**: [TierType](/api/TierType.md)
 
 ---
 
@@ -183,6 +170,31 @@ The number of wins the summoner has in this queue.
 
 
 **Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
+### Methods
+
+#### .fetchSummoner (options)
+
+Fetch the summoner this data belongs to.
+
+
+
+
+**Signature:**
+
+```ts
+fetchSummoner(options?: FetchOptions): Promise<Summoner>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Summoner](/api/Summoner.md) \>
 
 ---
 

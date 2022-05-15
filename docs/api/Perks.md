@@ -27,8 +27,8 @@ Constructs a new instance of the `Perks` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) | The client requesting this data. |
-| data | [PerksData](/shieldbow/api/PerksData.md) | The raw perks data from the API. |
+| client | [Client](/api/Client.md) | The client requesting this data. |
+| data | [PerksData](/api/PerksData.md) | The raw perks data from the API. |
 ---
 
 ### Properties
@@ -39,7 +39,7 @@ The primary perk style (keystone + primary runes).
 
 
 
-**Type**: [PerkStyle](/shieldbow/api/PerkStyle.md)
+**Type**: [PerkStyle](/api/PerkStyle.md)
 
 ---
 
@@ -49,7 +49,7 @@ The secondary perk style (secondary runes).
 
 
 
-**Type**: [PerkStyle](/shieldbow/api/PerkStyle.md)
+**Type**: [PerkStyle](/api/PerkStyle.md)
 
 ---
 
@@ -59,7 +59,7 @@ The stat runes that were picked by the player.
 
 
 
-**Type**: [StatPerks](/shieldbow/api/StatPerks.md)
+**Type**: [StatPerks](/api/StatPerks.md)
 
 ---
 

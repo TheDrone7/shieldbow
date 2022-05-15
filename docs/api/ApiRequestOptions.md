@@ -41,7 +41,7 @@ The region to make the request to.
 
 
 
-**Type**: [Region](/shieldbow/api/Region.md)
+**Type**: [Region](/api/Region.md)
 
 ---
 

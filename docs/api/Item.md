@@ -27,9 +27,9 @@ Constructs a new instance of the `Item` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) | The client requesting the data. |
+| client | [Client](/api/Client.md) | The client requesting the data. |
 | id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the item. |
-| data | [ItemData](/shieldbow/api/ItemData.md) | The raw item data from data dragon. |
+| data | [ItemData](/api/ItemData.md) | The raw item data from data dragon. |
 ---
 
 ### Properties
@@ -40,7 +40,7 @@ The list of maps on which you can buy this item.
 
 
 
-**Type**: [GameMap](/shieldbow/api/GameMap.md)[]
+**Type**: [GameMap](/api/GameMap.md)[]
 
 ---
 
@@ -82,7 +82,7 @@ A short-description of this object. `plaintext` attribute in the data dragon fil
 More detailed description of the item. This is the processed details. With all the HTML-like tags removed.
 
 
-See [rawDetails](/shieldbow/api/Item.md#rawDetails) if you want the raw data.
+See [rawDetails](/api/Item.md#rawDetails) if you want the raw data.
 
 
 
@@ -96,7 +96,7 @@ The components of this item. You need to buy these item and spend additional gol
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/shieldbow/api/Item.md) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/Item.md) \>
 
 ---
 
@@ -106,7 +106,7 @@ The value of this item in terms of in-game gold.
 
 
 
-**Type**: [ItemGoldValue](/shieldbow/api/ItemGoldValue.md)
+**Type**: [ItemGoldValue](/api/ItemGoldValue.md)
 
 ---
 
@@ -156,7 +156,7 @@ A collection of items the current item is a component of.
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/shieldbow/api/Item.md) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/Item.md) \>
 
 ---
 
@@ -185,7 +185,7 @@ The displayed name of this item.
 More detailed description of the item. Raw details contain some html-like tags. This is the raw details from the data dragon API.
 
 
-See [details](/shieldbow/api/Item.md#details) if you want to see it with the tags processed out.
+See [details](/api/Item.md#details) if you want to see it with the tags processed out.
 
 
 
@@ -199,7 +199,7 @@ If this is not undefined, then this item can only be bought/owned by this champi
 
 
 
-**Type**: [Champion](/shieldbow/api/Champion.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
+**Type**: [Champion](/api/Champion.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
 
 ---
 
@@ -209,7 +209,7 @@ If this is not undefined, you cannot buy this item from the store. Instead, you 
 
 
 
-**Type**: [Item](/shieldbow/api/Item.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
+**Type**: [Item](/api/Item.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
 
 ---
 

@@ -15,7 +15,7 @@ export declare class ChampionManager implements BaseManager<Champion>
 
 Implements: BaseManager<Champion\>
 
-**References:** [BaseManager](/shieldbow/api/BaseManager.md), [Champion](/shieldbow/api/Champion.md)
+**References:** [BaseManager](/api/BaseManager.md), [Champion](/api/Champion.md)
 
 ---
 
@@ -34,7 +34,7 @@ Constructs a new instance of the `ChampionManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) | The client this manager belongs to. |
+| client | [Client](/api/Client.md) | The client this manager belongs to. |
 | cacheSettings | {         enable: boolean;         root: string;     } | The basic caching settings. |
 ---
 
@@ -46,7 +46,7 @@ The champions cached in the memory.
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/shieldbow/api/Champion.md) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/api/Champion.md) \>
 
 ---
 
@@ -56,7 +56,7 @@ The client that this manager belongs to.
 
 
 
-**Type**: [Client](/shieldbow/api/Client.md)
+**Type**: [Client](/api/Client.md)
 
 ---
 
@@ -79,10 +79,10 @@ fetch(id: string, options?: FetchOptions): Promise<Champion>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The [ID](/shieldbow/api/Champion.md#id) of the champion whose data needs to be fetched. |
-| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetching options. |
+| id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The [ID](/api/Champion.md#id) of the champion whose data needs to be fetched. |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Champion](/shieldbow/api/Champion.md) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Champion](/api/Champion.md) \>
 
 ---
 
@@ -102,7 +102,7 @@ fetchAll(): Promise<Collection<string, Champion>>;
 ```
 
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/shieldbow/api/Champion.md) \> \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/api/Champion.md) \> \>
 
 ---
 
@@ -125,7 +125,7 @@ findByKey(key: number): Promise<Champion | undefined>;
 | --------- | ---- | ----------- |
 | key | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The 3-digit key of the champion to look for. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Champion](/shieldbow/api/Champion.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Champion](/api/Champion.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
 
 ---
 
@@ -148,7 +148,7 @@ findByName(name: string): Promise<Champion | undefined>;
 | --------- | ---- | ----------- |
 | name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of the champion to look for. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Champion](/shieldbow/api/Champion.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Champion](/api/Champion.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
 
 ---
 

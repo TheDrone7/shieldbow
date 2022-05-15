@@ -51,7 +51,7 @@ export interface ChampionData
 
 
 
-**Type**: [ImageData](/shieldbow/api/ImageData.md)
+**Type**: [ImageData](/api/ImageData.md)
 
 ---
 
@@ -59,7 +59,7 @@ export interface ChampionData
 
 
 
-**Type**: [ChampionRating](/shieldbow/api/ChampionRating.md)
+**Type**: [ChampionRating](/api/ChampionRating.md)
 
 ---
 
@@ -107,7 +107,7 @@ export interface ChampionData
 
 
 
-**Type**: [ChampionSkinData](/shieldbow/api/ChampionSkinData.md)[]
+**Type**: [ChampionSkinData](/api/ChampionSkinData.md)[]
 
 ---
 
@@ -115,7 +115,7 @@ export interface ChampionData
 
 
 
-**Type**: [SpellData](/shieldbow/api/SpellData.md)[]
+**Type**: [SpellData](/api/SpellData.md)[]
 
 ---
 

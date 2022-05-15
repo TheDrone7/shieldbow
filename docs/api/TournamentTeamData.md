@@ -59,7 +59,7 @@ export interface TournamentTeamData
 
 
 
-**Type**: [TournamentPlayerData](/shieldbow/api/TournamentPlayerData.md)[]
+**Type**: [TournamentPlayerData](/api/TournamentPlayerData.md)[]
 
 ---
 

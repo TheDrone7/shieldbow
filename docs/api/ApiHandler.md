@@ -50,7 +50,7 @@ makeApiRequest(url: string, options: ApiRequestOptions): Promise<AxiosResponse<a
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | url | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The path to make the request to. |
-| options | [ApiRequestOptions](/shieldbow/api/ApiRequestOptions.md) | Some options to make the promise rejection messages more meaningful. |
+| options | [ApiRequestOptions](/api/ApiRequestOptions.md) | Some options to make the promise rejection messages more meaningful. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< AxiosResponse \< any, any \> \>
 

@@ -27,9 +27,9 @@ Constructs a new instance of the `Summoner` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) | The client that requested this data. |
-| summoner | [SummonerData](/shieldbow/api/SummonerData.md) | The raw summoner data from the API. |
-| region | [Region](/shieldbow/api/Region.md) | The region this summoner is located in. |
+| client | [Client](/api/Client.md) | The client that requested this data. |
+| summoner | [SummonerData](/api/SummonerData.md) | The raw summoner data from the API. |
+| region | [Region](/api/Region.md) | The region this summoner is located in. |
 ---
 
 ### Properties
@@ -39,11 +39,11 @@ Constructs a new instance of the `Summoner` class.
 Get the summoner's RIOT account info.
 
 
-Uses [AccountManager.fetch](/shieldbow/api/AccountManager.md#fetch) to get the details.
+Uses [AccountManager.fetch](/api/AccountManager.md#fetch) to get the details.
 
 
 
-**Type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Account](/shieldbow/api/Account.md) \>
+**Type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Account](/api/Account.md) \>
 
 ---
 
@@ -63,7 +63,7 @@ A manager for the summoner's champion mastery.
 
 
 
-**Type**: [ChampionMasteryManager](/shieldbow/api/ChampionMasteryManager.md)
+**Type**: [ChampionMasteryManager](/api/ChampionMasteryManager.md)
 
 ---
 
@@ -82,11 +82,11 @@ The summoner ID for this summoner.
 Get the summoner's competitive placement info.
 
 
-Uses [LeagueManager.fetch](/shieldbow/api/LeagueManager.md#fetch) to get the details.
+Uses [LeagueManager.fetch](/api/LeagueManager.md#fetch) to get the details.
 
 
 
-**Type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [LeagueEntry](/shieldbow/api/LeagueEntry.md) \> \>
+**Type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [LeagueEntry](/api/LeagueEntry.md) \> \>
 
 ---
 
@@ -105,11 +105,11 @@ The summoner level of this summoner.
 Get the summoner's live game data.
 
 
-Uses [CurrentGameManager.fetch](/shieldbow/api/CurrentGameManager.md#fetch) to get the details.
+Uses [CurrentGameManager.fetch](/api/CurrentGameManager.md#fetch) to get the details.
 
 
 
-**Type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [CurrentGame](/shieldbow/api/CurrentGame.md) \>
+**Type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [CurrentGame](/api/CurrentGame.md) \>
 
 ---
 
@@ -149,7 +149,7 @@ The region this summoner is located in.
 
 
 
-**Type**: [Region](/shieldbow/api/Region.md)
+**Type**: [Region](/api/Region.md)
 
 ---
 
@@ -182,7 +182,7 @@ fetchMatchList(options?: MatchByPlayerOptions): Promise<string[]>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| options | [MatchByPlayerOptions](/shieldbow/api/MatchByPlayerOptions.md) | The match list filtering options. |
+| options | [MatchByPlayerOptions](/api/MatchByPlayerOptions.md) | The match list filtering options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)[] \>
 

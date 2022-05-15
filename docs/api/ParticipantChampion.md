@@ -31,7 +31,7 @@ A reference to the actual champion.
 
 
 
-**Type**: [Champion](/shieldbow/api/Champion.md)
+**Type**: [Champion](/api/Champion.md)
 
 ---
 

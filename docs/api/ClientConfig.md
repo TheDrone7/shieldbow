@@ -21,7 +21,7 @@ The local caching settings.
 
 
 
-**Type**: [CacheConfig](/shieldbow/api/CacheConfig.md)
+**Type**: [CacheConfig](/api/CacheConfig.md)
 
 ---
 
@@ -31,7 +31,7 @@ The data to fetch beforehand when initializing the client. This can delay the in
 
 
 
-**Type**: [PreFetchConfig](/shieldbow/api/PreFetchConfig.md)
+**Type**: [PreFetchConfig](/api/PreFetchConfig.md)
 
 ---
 
@@ -41,7 +41,7 @@ The locale in which to fetch all the data (defaults to region's default)
 
 
 
-**Type**: [Locales](/shieldbow/api/Locales.md)
+**Type**: [Locales](/api/Locales.md)
 
 ---
 
@@ -51,7 +51,7 @@ The initial region to fetch all the data from (defaults to `na`)
 
 
 
-**Type**: [Region](/shieldbow/api/Region.md)
+**Type**: [Region](/api/Region.md)
 
 ---
 

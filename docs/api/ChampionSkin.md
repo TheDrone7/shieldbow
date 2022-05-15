@@ -27,9 +27,9 @@ Constructs a new instance of the `ChampionSkin` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| champ | [Champion](/shieldbow/api/Champion.md) | The champion this skin belongs to. |
-| data | [ChampionSkinData](/shieldbow/api/ChampionSkinData.md) | The raw skin data from data dragon. |
-| meraki | [MerakiSkin](/shieldbow/api/MerakiSkin.md) | The raw skin data from meraki. |
+| champ | [Champion](/api/Champion.md) | The champion this skin belongs to. |
+| data | [ChampionSkinData](/api/ChampionSkinData.md) | The raw skin data from data dragon. |
+| meraki | [MerakiSkin](/api/MerakiSkin.md) | The raw skin data from meraki. |
 ---
 
 ### Properties
@@ -60,7 +60,7 @@ The champion this skin belongs to.
 
 
 
-**Type**: [Champion](/shieldbow/api/Champion.md)
+**Type**: [Champion](/api/Champion.md)
 
 ---
 
@@ -70,7 +70,7 @@ The skin's chromas.
 
 
 
-**Type**: [SkinChroma](/shieldbow/api/SkinChroma.md)[]
+**Type**: [SkinChroma](/api/SkinChroma.md)[]
 
 ---
 
@@ -140,7 +140,7 @@ The in-game price of the skin.
 
 
 
-**Type**: [SkinPricing](/shieldbow/api/SkinPricing.md)
+**Type**: [SkinPricing](/api/SkinPricing.md)
 
 ---
 

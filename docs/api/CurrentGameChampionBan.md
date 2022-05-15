@@ -21,7 +21,7 @@ The banned champion.
 
 
 
-**Type**: [Champion](/shieldbow/api/Champion.md)
+**Type**: [Champion](/api/Champion.md)
 
 ---
 

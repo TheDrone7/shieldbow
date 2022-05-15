@@ -27,8 +27,8 @@ Constructs a new instance of the `CurrentGameParticipant` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) | The client that requested this data. |
-| data | [CurrentGameParticipantData](/shieldbow/api/CurrentGameParticipantData.md) | The raw current game participant data from the API. |
+| client | [Client](/api/Client.md) | The client that requested this data. |
+| data | [CurrentGameParticipantData](/api/CurrentGameParticipantData.md) | The raw current game participant data from the API. |
 ---
 
 ### Properties
@@ -49,7 +49,7 @@ The champion being played by this participant.
 
 
 
-**Type**: [Champion](/shieldbow/api/Champion.md)
+**Type**: [Champion](/api/Champion.md)
 
 ---
 
@@ -59,7 +59,7 @@ The rune setups of this participant.
 
 
 
-**Type**: [CurrentGamePerks](/shieldbow/api/CurrentGamePerks.md)
+**Type**: [CurrentGamePerks](/api/CurrentGamePerks.md)
 
 ---
 
@@ -89,7 +89,7 @@ The summoner spells being used by this participant.
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< 'D' \| 'F', [SummonerSpell](/shieldbow/api/SummonerSpell.md) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< 'D' \| 'F', [SummonerSpell](/api/SummonerSpell.md) \>
 
 ---
 
@@ -100,6 +100,31 @@ The ID of the team this participant belongs to.
 
 
 **Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
+### Methods
+
+#### .fetchSummoner (options)
+
+Fetches the summoner info of this participant.
+
+
+
+
+**Signature:**
+
+```ts
+fetchSummoner(options?: FetchOptions): Promise<Summoner>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Summoner](/api/Summoner.md) \>
 
 ---
 

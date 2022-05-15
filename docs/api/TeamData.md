@@ -19,7 +19,7 @@ export interface TeamData
 
 
 
-**Type**: [TeamBanData](/shieldbow/api/TeamBanData.md)[]
+**Type**: [TeamBanData](/api/TeamBanData.md)[]
 
 ---
 
@@ -27,7 +27,7 @@ export interface TeamData
 
 
 
-**Type**: [TeamObjectivesData](/shieldbow/api/TeamObjectivesData.md)
+**Type**: [TeamObjectivesData](/api/TeamObjectivesData.md)
 
 ---
 

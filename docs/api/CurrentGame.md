@@ -27,8 +27,8 @@ Constructs a new instance of the `CurrentGame` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) | The client that requested this data. |
-| data | [CurrentGameData](/shieldbow/api/CurrentGameData.md) | The raw current game data from the API. |
+| client | [Client](/api/Client.md) | The client that requested this data. |
+| data | [CurrentGameData](/api/CurrentGameData.md) | The raw current game data from the API. |
 ---
 
 ### Properties
@@ -38,7 +38,7 @@ Constructs a new instance of the `CurrentGame` class.
 The numerical ID of the game.
 
 
-Combining this with the [CurrentGame.platform](/shieldbow/api/CurrentGame.md#platform) gives the full ID of the game. The full ID can be used to fetch all the details of the match after it has ended using [MatchManager.fetch](/shieldbow/api/MatchManager.md#fetch).
+Combining this with the [CurrentGame.platform](/api/CurrentGame.md#platform) gives the full ID of the game. The full ID can be used to fetch all the details of the match after it has ended using [MatchManager.fetch](/api/MatchManager.md#fetch).
 
 
 
@@ -62,7 +62,17 @@ The map on which the game is being played.
 
 
 
-**Type**: [GameMap](/shieldbow/api/GameMap.md)
+**Type**: [GameMap](/api/GameMap.md)
+
+---
+
+#### matchId
+
+The match ID for fetching the match details after the game is over.
+
+
+
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -72,7 +82,7 @@ The game mode.
 
 
 
-**Type**: [GameMode](/shieldbow/api/GameMode.md)
+**Type**: [GameMode](/api/GameMode.md)
 
 ---
 
@@ -102,7 +112,7 @@ The type of queue for the game.
 
 
 
-**Type**: [Queue](/shieldbow/api/Queue.md)
+**Type**: [Queue](/api/Queue.md)
 
 ---
 
@@ -122,7 +132,7 @@ A collection of the participating teams.
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< 'red' \| 'blue', [CurrentGameTeam](/shieldbow/api/CurrentGameTeam.md) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< 'red' \| 'blue', [CurrentGameTeam](/api/CurrentGameTeam.md) \>
 
 ---
 
@@ -132,7 +142,7 @@ The type of game.
 
 
 
-**Type**: [GameType](/shieldbow/api/GameType.md)
+**Type**: [GameType](/api/GameType.md)
 
 ---
 

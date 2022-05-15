@@ -27,7 +27,7 @@ Constructs a new instance of the `Account` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [AccountData](/shieldbow/api/AccountData.md) | The raw account data from the API. |
+| data | [AccountData](/api/AccountData.md) | The raw account data from the API. |
 ---
 
 ### Properties

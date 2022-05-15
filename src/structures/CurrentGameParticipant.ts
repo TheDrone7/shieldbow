@@ -12,7 +12,6 @@ import type { Summoner } from "./Summoner";
 export class CurrentGameParticipant {
   /**
    * The client that instantiated this participant.
-   * @private
    */
   private readonly _client;
   /**

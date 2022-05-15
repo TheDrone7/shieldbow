@@ -15,5 +15,5 @@ statPerks: {
 }
 ```
 
-**References:** [StatPerk](/shieldbow/api/StatPerk.md)
+**References:** [StatPerk](/api/StatPerk.md)
 

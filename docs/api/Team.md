@@ -27,9 +27,9 @@ Constructs a new instance of the `Team` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) |  |
-| data | [TeamData](/shieldbow/api/TeamData.md) |  |
-| participants | [ParticipantData](/shieldbow/api/ParticipantData.md)[] |  |
+| client | [Client](/api/Client.md) |  |
+| data | [TeamData](/api/TeamData.md) |  |
+| participants | [ParticipantData](/api/ParticipantData.md)[] |  |
 ---
 
 ### Properties
@@ -40,7 +40,7 @@ The champions banned by the team.
 
 
 
-**Type**: [ChampionBan](/shieldbow/api/ChampionBan.md)[]
+**Type**: [ChampionBan](/api/ChampionBan.md)[]
 
 ---
 
@@ -60,7 +60,7 @@ The objectives secured by the team.
 
 
 
-**Type**: [TeamObjectivesData](/shieldbow/api/TeamObjectivesData.md)
+**Type**: [TeamObjectivesData](/api/TeamObjectivesData.md)
 
 ---
 
@@ -70,7 +70,7 @@ The participants in the team.
 
 
 
-**Type**: [Participant](/shieldbow/api/Participant.md)[]
+**Type**: [Participant](/api/Participant.md)[]
 
 ---
 

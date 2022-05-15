@@ -15,7 +15,7 @@ export declare class ItemManager implements BaseManager<Item>
 
 Implements: BaseManager<Item\>
 
-**References:** [BaseManager](/shieldbow/api/BaseManager.md), [Item](/shieldbow/api/Item.md)
+**References:** [BaseManager](/api/BaseManager.md), [Item](/api/Item.md)
 
 ---
 
@@ -34,7 +34,7 @@ Constructs a new instance of the `ItemManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) | The client this manager belongs to. |
+| client | [Client](/api/Client.md) | The client this manager belongs to. |
 | cacheSettings | {         enable: boolean;         root: string;     } | The basic caching settings. |
 ---
 
@@ -46,7 +46,7 @@ A collection of the items cached in the memory.
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/shieldbow/api/Item.md) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/Item.md) \>
 
 ---
 
@@ -56,7 +56,7 @@ The client this manager belongs to.
 
 
 
-**Type**: [Client](/shieldbow/api/Client.md)
+**Type**: [Client](/api/Client.md)
 
 ---
 
@@ -80,9 +80,9 @@ fetch(key: string, options?: FetchOptions): Promise<Item>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | key | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the item to fetch. |
-| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetching options. |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Item](/shieldbow/api/Item.md) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Item](/api/Item.md) \>
 
 ---
 
@@ -105,7 +105,7 @@ findByName(name: string): Promise<Item | undefined>;
 | --------- | ---- | ----------- |
 | name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of the item to look for. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Item](/shieldbow/api/Item.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Item](/api/Item.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
 
 ---
 

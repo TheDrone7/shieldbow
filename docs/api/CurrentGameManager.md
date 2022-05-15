@@ -15,7 +15,7 @@ export declare class CurrentGameManager implements BaseManager<CurrentGame>
 
 Implements: BaseManager<CurrentGame\>
 
-**References:** [BaseManager](/shieldbow/api/BaseManager.md), [CurrentGame](/shieldbow/api/CurrentGame.md)
+**References:** [BaseManager](/api/BaseManager.md), [CurrentGame](/api/CurrentGame.md)
 
 ---
 
@@ -31,7 +31,7 @@ Constructs a new instance of the `CurrentGameManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) | The client that instantiated the manager. |
+| client | [Client](/api/Client.md) | The client that instantiated the manager. |
 ---
 
 ### Properties
@@ -42,7 +42,7 @@ The cached live games (mapped by summoner IDs).
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [CurrentGame](/shieldbow/api/CurrentGame.md) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [CurrentGame](/api/CurrentGame.md) \>
 
 ---
 
@@ -52,7 +52,7 @@ The client that instantiated the manager.
 
 
 
-**Type**: [Client](/shieldbow/api/Client.md)
+**Type**: [Client](/api/Client.md)
 
 ---
 
@@ -79,9 +79,9 @@ fetch(id: string, options?: FetchOptions): Promise<CurrentGame>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The summoner ID to fetch the live game for. |
-| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetching options. |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [CurrentGame](/shieldbow/api/CurrentGame.md) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [CurrentGame](/api/CurrentGame.md) \>
 
 ---
 
@@ -102,9 +102,9 @@ fetchFeatured(options?: FetchOptions): Promise<CurrentGame[]>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| options | [FetchOptions](/shieldbow/api/FetchOptions.md) | The basic fetching options (force and cache are ignored). |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options (force and cache are ignored). |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [CurrentGame](/shieldbow/api/CurrentGame.md)[] \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [CurrentGame](/api/CurrentGame.md)[] \>
 
 ---
 

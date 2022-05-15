@@ -27,10 +27,10 @@ Constructs a new instance of the `Champion` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/shieldbow/api/Client.md) | The client creating this instance. |
-| data | [ChampionData](/shieldbow/api/ChampionData.md) | The raw champion data from data dragon. |
-| damage | [SpellDamageData](/shieldbow/api/SpellDamageData.md) | The raw champion data from community dragon |
-| meraki | [MerakiChampion](/shieldbow/api/MerakiChampion.md) | The raw champion data from meraki analytics |
+| client | [Client](/api/Client.md) | The client creating this instance. |
+| data | [ChampionData](/api/ChampionData.md) | The raw champion data from data dragon. |
+| damage | [SpellDamageData](/api/SpellDamageData.md) | The raw champion data from community dragon |
+| meraki | [MerakiChampion](/api/MerakiChampion.md) | The raw champion data from meraki analytics |
 ---
 
 ### Properties
@@ -191,7 +191,7 @@ The champion's passive ability summarized.
 
 
 
-**Type**: [ChampionPassive](/shieldbow/api/ChampionPassive.md)
+**Type**: [ChampionPassive](/api/ChampionPassive.md)
 
 ---
 
@@ -201,7 +201,7 @@ The in-game pricing of the champion.
 
 
 
-**Type**: [ChampionPricing](/shieldbow/api/ChampionPricing.md)
+**Type**: [ChampionPricing](/api/ChampionPricing.md)
 
 ---
 
@@ -211,7 +211,7 @@ The champion's magic, defense, attack, difficulty ratings.
 
 
 
-**Type**: [ChampionRating](/shieldbow/api/ChampionRating.md)
+**Type**: [ChampionRating](/api/ChampionRating.md)
 
 ---
 
@@ -251,7 +251,7 @@ A collection of the available skins for this champion. The default skin always h
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [ChampionSkin](/shieldbow/api/ChampionSkin.md) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [ChampionSkin](/api/ChampionSkin.md) \>
 
 ---
 
@@ -261,7 +261,7 @@ The champion's spells (abilities), mapped by the key they are assigned to, by de
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< 'Q' \| 'W' \| 'E' \| 'R', [ChampionSpell](/shieldbow/api/ChampionSpell.md) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< 'Q' \| 'W' \| 'E' \| 'R', [ChampionSpell](/api/ChampionSpell.md) \>
 
 ---
 
@@ -271,7 +271,7 @@ A collection of the champion's base stats.
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Stats](/shieldbow/api/Stats.md), [ChampionStat](/shieldbow/api/ChampionStat.md) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Stats](/api/Stats.md), [ChampionStat](/api/ChampionStat.md) \>
 
 ---
 

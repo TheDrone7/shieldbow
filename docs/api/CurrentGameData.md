@@ -19,7 +19,7 @@ export interface CurrentGameData
 
 
 
-**Type**: [CurrentGameBanData](/shieldbow/api/CurrentGameBanData.md)[]
+**Type**: [CurrentGameBanData](/api/CurrentGameBanData.md)[]
 
 ---
 
@@ -91,7 +91,7 @@ export interface CurrentGameData
 
 
 
-**Type**: [CurrentGameParticipantData](/shieldbow/api/CurrentGameParticipantData.md)[]
+**Type**: [CurrentGameParticipantData](/api/CurrentGameParticipantData.md)[]
 
 ---
 
