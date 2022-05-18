@@ -1,4 +1,4 @@
-# [Client](/shieldbow/api/client.md)
+# [Client](/api/client.md)
 
 ### Client constructor
 
