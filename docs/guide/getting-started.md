@@ -92,7 +92,7 @@ Replace `euw` (line 6) with the region you play in and `TheDrone7` (line 14) wit
 
 ### Next steps
 
-Next up, you can continue the guide and learn more about [the Client](/shieldbow/guide/client.md).
+Next up, you can continue the guide and learn more about [the Client](/guide/client.md).
 
 Or you can check out the following resources:
 

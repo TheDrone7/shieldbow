@@ -21,7 +21,7 @@ If your application needs only this, you can get away without providing a valid 
 const kayn = await client.champions.fetch('Kayn');
 ```
 
-Here, `kayn` is going to be a [Champion](/shieldbow/api/Champion.md) object.
+Here, `kayn` is going to be a [Champion](/api/Champion.md) object.
 
 We can use this object to get any kind of data about the champion. Some examples are shown below.
 
@@ -74,13 +74,13 @@ For instance, lets try fetching the summoner data for the summoner `TheDrone7` (
 const summoner = await client.summoners.fetchBySummonerName('TheDrone7');
 ```
 
-Here, we are using the client's default [Summoner Manager](/shieldbow/api/SummonerManager.md) 
+Here, we are using the client's default [Summoner Manager](/api/SummonerManager.md) 
 to fetch the summoner using their summoner name.
 
 As specified in the API docs, you can also use the summoner ID, account ID, or the puuid (referred to as playerId in shieldbow)
 to fetch a summoner's details.
 
-The returned object is a [Summoner](/shieldbow/api/Summoner.md) object.
+The returned object is a [Summoner](/api/Summoner.md) object.
 
 Again, thanks to the design choices, you can also fetch other information about the summoner,
 such as their league rankings, by simply using the `summoner.fetchLeagueEntries()` method.
@@ -89,7 +89,7 @@ such as their league rankings, by simply using the `summoner.fetchLeagueEntries(
 const leagues = await summoner.fetchLeagueEntries();
 ```
 
-This will return a promise that will resolve to a collection of [LeagueEntry](/shieldbow/api/LeagueEntry.md) object.
+This will return a promise that will resolve to a collection of [LeagueEntry](/api/LeagueEntry.md) object.
 
 A [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) is an extension of the 
 [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) builtin class.
@@ -112,7 +112,7 @@ console.log(flex.tier); // IRON (or DIAMOND, etc.)
 
 ### Regional fetching.
 
-Now, for no reason, lets extend [the example from getting started page](/shieldbow/guide/getting-started.md#example-usage) 
+Now, for no reason, lets extend [the example from getting started page](/guide/getting-started.md#example-usage) 
 and compare the noob's details to the GOAT's.
 
 If we try the following
@@ -222,12 +222,12 @@ of the shieldbow client.
 
 The client has other managers to fetch other kinds of data from the API.
 
-1. [Account Manager](/shieldbow/api/AccountManager.md) - `client.accounts`.
-2. [Clash Manager](/shieldbow/api/ClashManager.md) - `client.clash`.
-3. [Leagues Manager](/shieldbow/api/LeagueManager.md) - `client.leagues`.
-4. [Match Manager](/shieldbow/api/MatchManager.md) - `client.matches`.
-5. [Summoner Manager](/shieldbow/api/SummonerManager.md) - `client.summoners`.
-6. [Current Game manager](/shieldbow/api/CurrentGameManager.md) - `client.spectator`.
+1. [Account Manager](/api/AccountManager.md) - `client.accounts`.
+2. [Clash Manager](/api/ClashManager.md) - `client.clash`.
+3. [Leagues Manager](/api/LeagueManager.md) - `client.leagues`.
+4. [Match Manager](/api/MatchManager.md) - `client.matches`.
+5. [Summoner Manager](/api/SummonerManager.md) - `client.summoners`.
+6. [Current Game manager](/api/CurrentGameManager.md) - `client.spectator`.
 
 ---
 

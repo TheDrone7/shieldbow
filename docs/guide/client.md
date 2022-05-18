@@ -108,4 +108,4 @@ You probably won't have these issues in a development environment.
 From this point onwards, in the guide's code examples, we will be assuming, 
 we have initialized the client already as in the example above.
 
-You can move on to the next part of the guide - [Fetching data](/shieldbow/guide/fetching.md).
+You can move on to the next part of the guide - [Fetching data](/guide/fetching.md).
