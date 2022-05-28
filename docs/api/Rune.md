@@ -38,7 +38,7 @@ Constructs a new instance of the `Rune` class.
 The description (short version) of this rune provided by Data Dragon. This does not contain the HTML-like tags to help view this better on console or other output media.
 
 
-See [rawDescription](/shieldbow/api/Rune.md#rawDescription) to view the description with the HTML-like tags included.
+See [rawDescription](/api/Rune.md#rawDescription) to view the description with the HTML-like tags included.
 
 
 
@@ -51,7 +51,7 @@ See [rawDescription](/shieldbow/api/Rune.md#rawDescription) to view the descript
 The details (long version) about this rune provided by Data Dragon. This does not contain the HTML-like tags to help view this better on console or other output media.
 
 
-See [rawDetails](/shieldbow/api/Rune.md#rawDetails) to view the details with all the HTML-like tags included.
+See [rawDetails](/api/Rune.md#rawDetails) to view the details with all the HTML-like tags included.
 
 
 
@@ -104,7 +104,7 @@ The name of this rune.
 The raw description (short version) provided by Data Dragon. This contains some HTML-like tags that help to display it on webpages.
 
 
-See [description](/shieldbow/api/Rune.md#description) to view the description with all the HTML-like tags stripped out.
+See [description](/api/Rune.md#description) to view the description with all the HTML-like tags stripped out.
 
 
 
@@ -117,7 +117,7 @@ See [description](/shieldbow/api/Rune.md#description) to view the description wi
 The details (long version) about this rune provided by Data Dragon. This contains some HTML-like tags that help to display it on webpages.
 
 
-See [details](/shieldbow/api/Rune.md#details) to view the details with all the HTML-like tags stripped out.
+See [details](/api/Rune.md#details) to view the details with all the HTML-like tags stripped out.
 
 
 

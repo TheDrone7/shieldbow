@@ -56,7 +56,7 @@ The role this player will be performing in the team - CAPTAIN or MEMBER.
 
 #### summoner
 
-Use [SummonerManager.fetch](/shieldbow/api/SummonerManager.md#fetch) to fetch the summoner for this player.
+Use [SummonerManager.fetch](/api/SummonerManager.md#fetch) to fetch the summoner for this player.
 
 
 

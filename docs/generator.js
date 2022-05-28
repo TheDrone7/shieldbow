@@ -37,7 +37,7 @@ var parseSummary = function (summary) {
             var d = (_a = node.codeDestination) === null || _a === void 0 ? void 0 : _a.memberReferences.map(function (r) { var _a; return (_a = r.memberIdentifier) === null || _a === void 0 ? void 0 : _a.identifier; });
             var d2 = node.urlDestination;
             var link = d
-                ? "/shieldbow/api/".concat(d[0], ".md#").concat(d[1])
+                ? "/api/".concat(d[0], ".md#").concat(d[1])
                 : d2;
             var linkText = node.linkText || (d === null || d === void 0 ? void 0 : d.join('.')) || d2;
             text += "[".concat(linkText, "](").concat(link, ")");
