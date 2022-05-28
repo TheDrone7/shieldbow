@@ -1,5 +1,5 @@
 import { defaultTheme, defineUserConfig } from "vuepress";
-import { searchPlugin } from '@vuepress/plugin-search';
+const { docsearchPlugin } = require('@vuepress/plugin-docsearch')
 
 export default defineUserConfig({
   base: '/shieldbow/',
@@ -24,6 +24,10 @@ export default defineUserConfig({
   title: 'Shieldbow',
   description: 'An all-purpose, easy-to-use API wrapper for the league of legends API.',
   plugins: [
-    searchPlugin({})
+    docsearchPlugin({
+      appId: process.env.appId,
+      apiKey: process.env.docsearchApiKey,
+      indexName: 'shieldbow'
+    }),
   ],
 });

@@ -34,7 +34,7 @@ Constructs a new instance of the `Client` class.
 
 #### accounts
 
-The default riot accounts manager used by the client. This is mostly for internal usage. You may want to use [Client.summoners](/shieldbow/api/Client.md#summoners) instead.
+The default riot accounts manager used by the client. This is mostly for internal usage. You may want to use [Client.summoners](/api/Client.md#summoners) instead.
 
 
 
@@ -127,7 +127,7 @@ The default items manager used by the client.
 The default summoner competitive league data manager used by the client.
 
 
-Highly recommended using [Client.summoners](/shieldbow/api/Client.md#summoners) for a specific summoner's competitive info.
+Highly recommended using [Client.summoners](/api/Client.md#summoners) for a specific summoner's competitive info.
 
 
 Use this only if you want to query a list of users by rank-division.

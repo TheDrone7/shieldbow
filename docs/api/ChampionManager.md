@@ -79,7 +79,7 @@ fetch(id: string, options?: FetchOptions): Promise<Champion>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The [ID](/shieldbow/api/Champion.md#id) of the champion whose data needs to be fetched. |
+| id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The [ID](/api/Champion.md#id) of the champion whose data needs to be fetched. |
 | options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Champion](/api/Champion.md) \>
