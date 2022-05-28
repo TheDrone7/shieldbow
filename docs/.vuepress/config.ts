@@ -25,8 +25,8 @@ export default defineUserConfig({
   description: 'An all-purpose, easy-to-use API wrapper for the league of legends API.',
   plugins: [
     docsearchPlugin({
-      appId: process.env.appId,
-      apiKey: process.env.docsearchApiKey,
+      appId: 'BU2EAYG78F',
+      apiKey: '9ec0159c389f1b462ece11c3d5a70431',
       indexName: 'shieldbow'
     }),
   ],
