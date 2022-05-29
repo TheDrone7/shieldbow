@@ -144,7 +144,7 @@ The locale in which all the data is going to be fetched in.
 
 
 
-**Type**: [Locales](/api/Locales.md)
+**Type**: "en_US" \| "cs_CZ" \| "de_DE" \| "el_GR" \| "en_AU" \| "en_GB" \| "en_PH" \| "en_SG" \| "es_AR" \| "es_ES" \| "es_MX" \| "fr_FR" \| "hu_HU" \| "id_ID" \| "it_IT" \| "ja_JP" \| "ko_KR" \| "pl_PL" \| "pt_BR" \| "ro_RO" \| "ru_RU" \| "th_TH" \| "tr_TR" \| "vn_VN" \| "zh_CN" \| "zh_MY" \| "zh_TW"
 
 ---
 
@@ -294,6 +294,30 @@ initialize(options?: ClientConfig): Promise<void>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | options | [ClientConfig](/api/ClientConfig.md) | The client configuration. |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< void \>
+
+---
+
+#### .updateLocale (newLocale, refetch)
+
+Update the locale in which the data is fetched.
+
+
+
+
+**Signature:**
+
+```ts
+updateLocale(newLocale: Locales, refetch?: boolean): Promise<void>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| newLocale | [Locales](/api/Locales.md) | The new locale to use for the future requests. |
+| refetch | [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) | Whether to fetch all data dragon data in the new locale right away. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< void \>
 

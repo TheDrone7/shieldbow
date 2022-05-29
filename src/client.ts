@@ -293,6 +293,22 @@ export class Client {
   }
 
   /**
+   * Update the locale in which the data is fetched.
+   *
+   * @param newLocale - The new locale to use for the future requests.
+   * @param refetch - Whether to fetch all data dragon data in the new locale right away.
+   */
+  async updateLocale(newLocale: Locales, refetch: boolean = true) {
+    this._locale = newLocale;
+    if (refetch) {
+      await this.champions.fetchAll();
+      await this.items.fetch('1001');
+      await this.runes.fetch('Domination');
+      await this.summonerSpells.fetch('SummonerFlash');
+    }
+  }
+
+  /**
    * The current Data Dragon CDN version.
    */
   get version() {
@@ -313,10 +329,6 @@ export class Client {
    */
   get locale() {
     return this._locale;
-  }
-
-  set locale(locale: Locales) {
-    this._locale = locale;
   }
 
   set patch(patch: string) {
