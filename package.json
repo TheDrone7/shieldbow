@@ -27,7 +27,7 @@
     "format": "prettier --write \"src/**/**.ts\"",
     "lint": "eslint --fix --color \"src/**/**.ts\"",
     "pretest": "run-s format lint build",
-    "test": "jest --silent --runInBand",
+    "test": "jest --runInBand",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
     "extract": "api-extractor run",

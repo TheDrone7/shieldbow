@@ -10,9 +10,7 @@ describe('Test Spectator v4 API', () => {
   beforeAll(async () => {
     await client.initialize({
       region: 'euw',
-      cache: {
-        enable: false
-      },
+      cache: { enable: false },
       fetch: {
         champions: false,
         items: false,

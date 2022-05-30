@@ -50,9 +50,7 @@ export class CurrentGameManager implements BaseManager<CurrentGame> {
           .catch(reject);
         if (response) {
           const data = <CurrentGameData>response.data;
-          for (const participant of data.participants)
-            if (!this.client.champions.cache.find((c) => c.key === participant.championId))
-              await this.client.champions.fetchAll();
+          await this.client.champions.fetchByKeys(data.participants.map((p) => p.championId));
           if (this.client.items.cache.size === 0) await this.client.items.fetch('1001');
           if (this.client.summonerSpells.cache.size === 0) await this.client.summonerSpells.findByName('Flash');
           if (this.client.runes.cache.size === 0) await this.client.runes.fetch('Domination');
@@ -84,9 +82,7 @@ export class CurrentGameManager implements BaseManager<CurrentGame> {
       if (response) {
         const data = <{ gameList: CurrentGameData[] }>response.data;
         for (const game of data.gameList)
-          for (const participant of game.participants)
-            if (!this.client.champions.cache.find((c) => c.key === participant.championId))
-              await this.client.champions.fetchAll();
+          await this.client.champions.fetchByKeys(game.participants.map((p) => p.championId));
         if (this.client.items.cache.size === 0) await this.client.items.fetch('1001');
         if (this.client.summonerSpells.cache.size === 0) await this.client.summonerSpells.findByName('Flash');
         if (this.client.runes.cache.size === 0) await this.client.runes.fetch('Domination');
