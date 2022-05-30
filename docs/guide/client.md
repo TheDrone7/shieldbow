@@ -85,6 +85,31 @@ The fetched files will be stored locally under the `<root>/shieldbow/data` direc
 
 :::
 
+### Updating locale and patch/version
+
+League of Legends is a global, constantly-evolving game. There are players from a lot of different regions.
+To allow fetching data in locales of all these various regions, the shieldbow client has the `updateLocale` utility.
+
+It can be used as follows
+```ts
+await client.updateLocale('ko_KR', false);
+```
+Here, the first argument is the new locale you want to use. `ko_KR` is the default Korean locale.
+The second argument (optional), is a `refetch` option. This defaults to `true` and will fetch all the data dragon data
+right away using the new locale. This can take a while (almost the same amount as initialization)
+if the data has not already been fetched and cached.
+
+Similarly, every 2 weeks, the game is updated and all the values are updated. If you do not want to restart your app,
+you can simply use the `updatePatch` method which works in a similar way.
+
+```ts
+await client.updatePatch('11.10', false);
+```
+
+Here, the first argument is the new patch you want the information from.
+It must be the patch number and not the data dragon version.
+The second argument is the `refetch` option that works in the same way as `updateLocale`.
+
 ### Rate limiting
 
 As of now, the client can handle rate limiting automatically. But it is very limited.
