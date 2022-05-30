@@ -168,6 +168,13 @@ export class ChampionManager implements BaseManager<Champion> {
     return this.cache.find((champ) => champ.name.toLowerCase().includes(name.toLowerCase()));
   }
 
+  /**
+   * Fetch and cache champions by their unique 3-digit keys.
+   *
+   * This is mostly for internal use while fetching match (or live match) data to improve performance.
+   *
+   * @param keys - The keys of the champions to fetch.
+   */
   async fetchByKeys(keys: number[]) {
     return new Promise(async (resolve, reject) => {
       if (this.client.version === 'null') reject('Please initialize the client first.');

@@ -106,6 +106,32 @@ fetchAll(): Promise<Collection<string, Champion>>;
 
 ---
 
+#### .fetchByKeys (keys)
+
+Fetch and cache champions by their unique 3-digit keys.
+
+
+This is mostly for internal use while fetching match (or live match) data to improve performance.
+
+
+
+
+**Signature:**
+
+```ts
+fetchByKeys(keys: number[]): Promise<unknown>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| keys | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)[] | The keys of the champions to fetch. |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< unknown \>
+
+---
+
 #### .findByKey (key)
 
 Find a champion by their 3-digit key.
