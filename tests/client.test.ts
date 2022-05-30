@@ -22,4 +22,12 @@ describe('Test client configuration update', () => {
     expect(boots.name).toBe('Boots');
     expect(krBoots.name).toBe('장화');
   });
+
+  test('Check patch updating', async () => {
+    const boots = await client.items.fetch('1001', { force: true });
+    await client.updatePatch('12.9', false);
+    const oldBoots = await client.items.fetch('1001', { force: true });
+    expect(boots.name).toBeDefined();
+    expect(oldBoots.name).toBeDefined();
+  });
 });

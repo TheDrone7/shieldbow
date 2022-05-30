@@ -309,6 +309,23 @@ export class Client {
   }
 
   /**
+   * Update the patch from which the data is fetched.
+   *
+   * @param patch - The new patch to use for the future requests.
+   * @param refetch - Whether to fetch all data dragon data from the new patch right away.
+   */
+  async updatePatch(patch: string, refetch: boolean = true) {
+    this._patch = patch;
+    this._version = patch + '.1';
+    if (refetch) {
+      await this.champions.fetchAll();
+      await this.items.fetch('1001');
+      await this.runes.fetch('Domination');
+      await this.summonerSpells.fetch('SummonerFlash');
+    }
+  }
+
+  /**
    * The current Data Dragon CDN version.
    */
   get version() {
