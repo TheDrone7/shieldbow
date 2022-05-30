@@ -323,3 +323,33 @@ updateLocale(newLocale: Locales, refetch?: boolean): Promise<void>;
 
 ---
 
+#### .updatePatch (patch, refetch)
+
+Update the patch from which the data is fetched.
+
+
+NOTE: The patch must be 2 integers separated by a `.`. For example: `10.11` or `12.9`.
+
+
+This should NOT be the data dragon version.
+
+
+
+
+**Signature:**
+
+```ts
+updatePatch(patch: string, refetch?: boolean): Promise<void>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| patch | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The new patch to use for the future requests. |
+| refetch | [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) | Whether to fetch all data dragon data from the new patch right away. |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< void \>
+
+---
+

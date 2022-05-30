@@ -311,6 +311,11 @@ export class Client {
   /**
    * Update the patch from which the data is fetched.
    *
+   * NOTE: The patch must be 2 integers separated by a `.`.
+   * For example: `10.11` or `12.9`.
+   *
+   * This should NOT be the data dragon version.
+   *
    * @param patch - The new patch to use for the future requests.
    * @param refetch - Whether to fetch all data dragon data from the new patch right away.
    */
