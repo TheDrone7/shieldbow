@@ -76,6 +76,38 @@ export type { CurrentGamePerksData } from './CurrentGamePerks';
 export type { TournamentData, TournamentScheduleData } from './Tournament';
 export type { TournamentPlayerData, TournamentPlayerFullData } from './TournamentPlayer';
 export type { TournamentTeamData } from './TournamentTeam';
+export type {
+  MatchTimelineData,
+  MatchTimelineInfo,
+  MatchTimelineMetadata,
+  MatchTimelineFrameData
+} from './MatchTimeline';
+export type {
+  ParticipantFrameData,
+  ParticipantChampionStatsData,
+  ParticipantDamageStatsData
+} from './ParticipantFrame';
+export type {
+  TimelineEventData,
+  PositionData,
+  BuildingKillEventData,
+  ChampionKillEventData,
+  ChampionSpecialKillEventData,
+  EliteMonsterKillEventData,
+  WardKillEventData,
+  WardPlacedEventData,
+  DamageDealtData,
+  LevelUpEventData,
+  SkillLevelUpEventData,
+  GameEndEventData,
+  PauseEndEventData,
+  ItemDestroyedEventData,
+  ItemPurchasedEventData,
+  ItemUndoEventData,
+  ItemSoldEventData,
+  TurretPlateDestroyedEventData,
+  ObjectiveBountyPrestartEventData
+} from './TimelineEvent';
 
 export type { ChampionData, MerakiChampion, ChampionRating, ChampionPassive, ChampionPricing } from './Champion';
 export type { ChampionSkinData, MerakiSkin, SkinPricing, SkinChroma } from './ChampionSkin';

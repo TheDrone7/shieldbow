@@ -1,7 +1,8 @@
-import type { BaseManager, FetchOptions, MatchByPlayerOptions, MatchData } from '../types';
+import type { BaseManager, FetchOptions, MatchByPlayerOptions, MatchData, MatchTimelineData } from '../types';
 import { Match, type Summoner } from '../structures';
 import Collection from '@discordjs/collection';
 import type { Client } from '../client';
+import { MatchTimeline } from '../structures/MatchTimeline';
 
 /**
  * A match manager - to fetch and manage matches.
@@ -11,6 +12,10 @@ export class MatchManager implements BaseManager<Match> {
    * The collection of cached matches.
    */
   readonly cache: Collection<string, Match>;
+  /**
+   * The collection of cached match timelines.
+   */
+  readonly timelineCache: Collection<string, MatchTimeline>;
   /**
    * The client that instantiated the manager.
    */
@@ -23,6 +28,7 @@ export class MatchManager implements BaseManager<Match> {
   constructor(client: Client) {
     this.client = client;
     this.cache = new Collection<string, Match>();
+    this.timelineCache = new Collection<string, MatchTimeline>();
   }
 
   /**
@@ -55,6 +61,37 @@ export class MatchManager implements BaseManager<Match> {
           const match = new Match(this.client, data);
           if (cache) this.cache.set(id, match);
           resolve(match);
+        }
+      }
+    });
+  }
+
+  /**
+   * Fetch a match timeline by the match ID.
+   *
+   * @param matchId - The ID of the match
+   * @param options - The basic fetch options
+   */
+  fetchMatchTimeline(matchId: string, options?: FetchOptions) {
+    const force = options?.force ?? false;
+    const cache = options?.cache ?? true;
+    const region = options?.region ?? this.client.region;
+    return new Promise<MatchTimeline>(async (resolve, reject) => {
+      if (this.timelineCache.has(matchId) && !force) resolve(this.timelineCache.get(matchId)!);
+      else {
+        const response = await this.client.api
+          .makeApiRequest(`/lol/match/v5/matches/${matchId}/timeline`, {
+            region,
+            regional: true,
+            name: 'Get Match Timeline By Match ID',
+            params: 'Match ID: ' + matchId
+          })
+          .catch(reject);
+        if (response) {
+          const data = <MatchTimelineData>response.data;
+          const timeline = new MatchTimeline(data);
+          if (cache) this.timelineCache.set(matchId, timeline);
+          resolve(timeline);
         }
       }
     });
