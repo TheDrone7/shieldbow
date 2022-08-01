@@ -1,4 +1,4 @@
-import { Client } from "../dist";
+import { Client } from '../dist';
 
 describe('Test client configuration update', () => {
   const client = new Client(process.env.riot_api_key!);

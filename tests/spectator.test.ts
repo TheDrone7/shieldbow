@@ -1,4 +1,4 @@
-import { Client, CurrentGame } from "../dist";
+import { Client, CurrentGame } from '../dist';
 
 jest.setTimeout(300000);
 

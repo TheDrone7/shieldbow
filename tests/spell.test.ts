@@ -1,4 +1,4 @@
-import { SummonerSpell, Client } from "../dist";
+import { SummonerSpell, Client } from '../dist';
 
 describe('Test summoner spells fetching.', () => {
   const client = new Client(process.env.riot_api_key!);

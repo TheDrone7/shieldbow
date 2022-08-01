@@ -1,4 +1,4 @@
-import { Client, ChampionMasteryManager } from "../dist";
+import { Client, ChampionMasteryManager } from '../dist';
 
 describe('Test Champion Mastery v4 API', () => {
   const client = new Client(process.env.riot_api_key!);

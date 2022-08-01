@@ -1,4 +1,4 @@
-import { Match, Client } from "../dist";
+import { Match, Client } from '../dist';
 
 jest.setTimeout(300000);
 
@@ -44,5 +44,5 @@ describe('Test match v5 API', () => {
     const participant = match.teams.get('red')!.participants[0];
     expect(participant.summoner.name).toBeDefined();
     expect(participant.bounty.level).toBeDefined();
-  })
+  });
 });
