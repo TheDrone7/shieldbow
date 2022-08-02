@@ -1,4 +1,4 @@
-import { SummonerSpell, Client } from "../dist";
+import { SummonerSpell, Client } from '../dist';
 
 describe('Test summoner spells fetching.', () => {
   const client = new Client(process.env.riot_api_key!);
@@ -7,13 +7,8 @@ describe('Test summoner spells fetching.', () => {
 
   beforeAll(async () => {
     await client.initialize({
-      cache: { enable: false },
-      fetch: {
-        champions: false,
-        items: false,
-        runes: false,
-        summonerSpells: false
-      }
+      cache: false,
+      fetch: false
     });
     flash = await client.summonerSpells.fetch('SummonerFlash');
   });

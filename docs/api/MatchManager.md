@@ -56,6 +56,16 @@ The client that instantiated the manager.
 
 ---
 
+#### timelineCache
+
+The collection of cached match timelines.
+
+
+
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [MatchTimeline](/api/MatchTimeline.md) \>
+
+---
+
 ### Methods
 
 #### .fetch (id, options)
@@ -103,6 +113,30 @@ fetchMatchListByPlayer(player: Summoner | string, options?: MatchByPlayerOptions
 | options | [MatchByPlayerOptions](/api/MatchByPlayerOptions.md) | The options for filtering the matches. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)[] \>
+
+---
+
+#### .fetchMatchTimeline (matchId, options)
+
+Fetch a match timeline by the match ID.
+
+
+
+
+**Signature:**
+
+```ts
+fetchMatchTimeline(matchId: string, options?: FetchOptions): Promise<MatchTimeline>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| matchId | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the match |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetch options |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [MatchTimeline](/api/MatchTimeline.md) \>
 
 ---
 

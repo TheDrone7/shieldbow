@@ -70,12 +70,11 @@ client.initialize({
 ```
 
 Before you run this code, make sure you have replaced `MY_API_KEY` with your API key.
-If you run the above code exactly as it is, it may seem like it is stuck (it's actually running).
+You can obtain it from [Riot Developer Portal](https://developer.riotgames.com). Whenever you are
+developing something or just fiddling around with this library, you are free to use the Development API key. Once you have a complete project
+you need to apply for production API key.
 
-This is because, by default, the client will fetch all patch data such as champions, items, runes, etc. during initialization.
-This slows down the initialization but actually helps a lot when actually making requests.
-
-Anyway, once the initialization completes, you will see something similar to the following data:
+Anyway, you will see something similar to the following data:
 ```
 Summoner name: TheDrone7 (level: 259).
 SoloQ: BRONZE III (9 LP).

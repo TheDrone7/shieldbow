@@ -1,7 +1,10 @@
 import type { ParticipantChampionStatsData, ParticipantFrameData } from '../types';
 import { Position } from './Position';
 
-export class ParticipantChampionStats {
+/**
+ * A representation of the participant's champion stats in a {@link ParticipantFrame}.
+ */
+export class ParticipantFrameChampionStats {
   /**
    * The amount of ability haste the participant has.
    *
@@ -52,19 +55,67 @@ export class ParticipantChampionStats {
    * This scales exponentially.
    */
   readonly cooldownReduction: number;
+  /**
+   * The amount of HP the participant currently has (current health).
+   */
   readonly health: number;
+  /**
+   * The maximum amount of HP the participant can have (max HP).
+   */
   readonly healthMax: number;
+  /**
+   * The amount of HP the participant recovers each second.
+   */
   readonly healthRegen: number;
+  /**
+   * The amount of lifesteal the participant has.
+   */
   readonly lifesteal: number;
+  /**
+   * The amount of flat magic penetration the participant has.
+   */
   readonly magicPen: number;
+  /**
+   * The amount of percent magic penetration the participant has.
+   */
   readonly magicPenPercent: number;
+  /**
+   * The amount of magic resist the participant has.
+   */
   readonly magicResist: number;
+  /**
+   * The participant's movement speed.
+   */
   readonly movementSpeed: number;
+  /**
+   * The amount of omnivamp the participant has.
+   */
   readonly omnivamp: number;
+  /**
+   * The amount of physical vamp the participant has.
+   */
   readonly physicalVamp: number;
+  /**
+   * The amount of power the participant currently has.
+   *
+   * Power refers to mostly mana or energy.
+   */
   readonly power: number;
+  /**
+   * The max amount of power the participant can have.
+   *
+   * Power refers to mostly mana or energy.
+   */
   readonly powerMax: number;
+  /**
+   * The amount of power the participant regenerates each second.
+   *
+   * Power refers to mostly mana or energy.
+   */
   readonly powerRegen: number;
+  /**
+   * The amount of spell vamp the participant has.
+   */
   readonly spellVamp: number;
 
   constructor(data: ParticipantChampionStatsData) {
@@ -96,30 +147,77 @@ export class ParticipantChampionStats {
   }
 }
 
-export class ParticipantDamageStats {}
+/**
+ * A representation of the participant's damage stats in a {@link ParticipantFrame}.
+ */
+export class ParticipantFrameDamageStats {}
 
+/**
+ * A representation of a participant's stats at a point in the timeline.
+ */
 export class ParticipantFrame {
-  readonly championStats: ParticipantChampionStats;
+  /**
+   * The participant's champion stats.
+   */
+  readonly championStats: ParticipantFrameChampionStats;
+  /**
+   * The amount of gold the participant currently has.
+   */
   readonly currentGold: number;
-  readonly damageStats: ParticipantDamageStats;
+  /**
+   * The participant's damage stats.
+   */
+  readonly damageStats: ParticipantFrameDamageStats;
+  /**
+   * The amount of gold that this participant is getting each second.
+   */
   readonly goldPerSecond: number;
+  /**
+   * The creep score this participant has accumulated by killing jungle monsters.
+   */
   readonly jungleMinionsKilled: number;
+  /**
+   * The participant's champion's level.
+   */
   readonly level: number;
+  /**
+   * The number of lane minions killed by this participant.
+   */
   readonly minionsKilled: number;
+  /**
+   * The total creep score of this participant.
+   */
+  readonly cs: number;
+  /**
+   * The participant ID.
+   */
   readonly id: number;
+  /**
+   * The position of this participant on the map.
+   */
   readonly position: Position;
+  /**
+   * The participant's crowd control score.
+   */
   readonly timeEnemySpentControlled: number;
+  /**
+   * The total amount of gold the participant has earned so far.
+   */
   readonly totalGold: number;
+  /**
+   * The amount of XP the participant has accumulated so far.
+   */
   readonly xp: number;
 
   constructor(data: ParticipantFrameData) {
-    this.championStats = new ParticipantChampionStats(data.championStats);
+    this.championStats = new ParticipantFrameChampionStats(data.championStats);
     this.currentGold = data.currentGold;
-    this.damageStats = new ParticipantDamageStats();
+    this.damageStats = new ParticipantFrameDamageStats();
     this.goldPerSecond = data.goldPerSecond;
     this.jungleMinionsKilled = data.jungleMinionsKilled;
     this.level = data.level;
     this.minionsKilled = data.minionsKilled;
+    this.cs = data.minionsKilled + data.jungleMinionsKilled;
     this.id = data.participantId;
     this.position = new Position(data.position);
     this.timeEnemySpentControlled = data.timeEnemySpentControlled;

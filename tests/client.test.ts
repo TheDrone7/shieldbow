@@ -1,17 +1,12 @@
-import { Client } from "../dist";
+import { Client } from '../dist';
 
 describe('Test client configuration update', () => {
   const client = new Client(process.env.riot_api_key!);
 
   beforeAll(async () => {
     await client.initialize({
-      cache: { enable: false },
-      fetch: {
-        champions: false,
-        items: false,
-        runes: false,
-        summonerSpells: false
-      }
+      cache: false,
+      fetch: false
     });
   });
 
