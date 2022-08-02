@@ -1,4 +1,4 @@
-import { Client, CurrentGame } from "../dist";
+import { Client, CurrentGame } from '../dist';
 
 jest.setTimeout(300000);
 
@@ -10,13 +10,8 @@ describe('Test Spectator v4 API', () => {
   beforeAll(async () => {
     await client.initialize({
       region: 'euw',
-      cache: { enable: false },
-      fetch: {
-        champions: false,
-        items: false,
-        runes: false,
-        summonerSpells: false
-      }
+      cache: false,
+      fetch: false
     });
     games = await client.spectator.fetchFeatured();
   });

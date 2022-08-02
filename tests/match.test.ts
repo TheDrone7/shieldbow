@@ -1,4 +1,4 @@
-import { Match, Client } from "../dist";
+import { Match, Client } from '../dist';
 
 jest.setTimeout(300000);
 
@@ -11,13 +11,8 @@ describe('Test match v5 API', () => {
   beforeAll(async () => {
     await client.initialize({
       region: 'euw',
-      cache: { enable: false },
-      fetch: {
-        champions: false,
-        items: false,
-        runes: false,
-        summonerSpells: false
-      }
+      cache: false,
+      fetch: false
     });
     const summoner = await client.summoners.fetchBySummonerName('TheDrone7');
     matches = await client.matches.fetchMatchListByPlayer(summoner);
@@ -44,5 +39,5 @@ describe('Test match v5 API', () => {
     const participant = match.teams.get('red')!.participants[0];
     expect(participant.summoner.name).toBeDefined();
     expect(participant.bounty.level).toBeDefined();
-  })
+  });
 });

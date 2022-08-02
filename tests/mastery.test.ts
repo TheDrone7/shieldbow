@@ -1,4 +1,4 @@
-import { Client, ChampionMasteryManager } from "../dist";
+import { Client, ChampionMasteryManager } from '../dist';
 
 describe('Test Champion Mastery v4 API', () => {
   const client = new Client(process.env.riot_api_key!);
@@ -8,15 +8,8 @@ describe('Test Champion Mastery v4 API', () => {
   beforeAll(async () => {
     await client.initialize({
       region: 'euw',
-      cache: {
-        enable: false
-      },
-      fetch: {
-        champions: false,
-        items: false,
-        runes: false,
-        summonerSpells: false
-      }
+      cache: false,
+      fetch: false
     });
     const summoner = await client.summoners.fetchBySummonerName('TheDrone7');
     masteries = summoner.championMastery;

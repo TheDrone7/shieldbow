@@ -43,7 +43,7 @@ $ npm run build
 to make sure there are no typescript issues.
 
 Next run
-```ts
+```shell
 $ npm run extract && npm run document
 ```
 to generate the docs. This also ensures that you have exported everything properly and that you have used proper TSDoc syntax for generating the API reference.

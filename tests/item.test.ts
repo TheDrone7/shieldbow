@@ -1,4 +1,4 @@
-import { Item, Client } from "../dist";
+import { Item, Client } from '../dist';
 
 describe('Test item fetching.', () => {
   const client = new Client(process.env.riot_api_key!);
@@ -7,13 +7,8 @@ describe('Test item fetching.', () => {
 
   beforeAll(async () => {
     await client.initialize({
-      cache: { enable: false },
-      fetch: {
-        champions: false,
-        items: false,
-        runes: false,
-        summonerSpells: false
-      }
+      cache: false,
+      fetch: false
     });
     boots = await client.items.fetch('1001');
   });

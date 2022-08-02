@@ -35,3 +35,7 @@ export { Tournament } from './Tournament';
 export { TournamentSchedule } from './TournamentSchedule';
 export { TournamentTeam } from './TournamentTeam';
 export { TournamentPlayer } from './TournamentPlayer';
+export { MatchTimeline } from './MatchTimeline';
+export { TimelineFrame } from './TimelineFrame';
+export { ParticipantFrame, ParticipantFrameDamageStats, ParticipantFrameChampionStats } from './ParticipantFrame';
+export { Position } from './Position';

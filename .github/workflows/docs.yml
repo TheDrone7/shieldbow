@@ -25,11 +25,11 @@ jobs:
 
       # install dependencies if the cache did not hit
       - name: Install dependencies
-        run: yarn --frozen-lockfile
+        run: npm ci
 
       # run build script
       - name: Build Documentation site
-        run: yarn docs:gen && yarn docs:build
+        run: npm run docs:gen && npm run docs:build
 
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v2

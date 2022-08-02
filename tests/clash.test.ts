@@ -1,4 +1,4 @@
-import { Client, Tournament } from "../dist";
+import { Client, Tournament } from '../dist';
 
 describe('Test Clash v1 API', () => {
   const client = new Client(process.env.riot_api_key!);
@@ -8,15 +8,8 @@ describe('Test Clash v1 API', () => {
   beforeAll(async () => {
     await client.initialize({
       region: 'euw',
-      cache: {
-        enable: false
-      },
-      fetch: {
-        champions: false,
-        items: false,
-        runes: false,
-        summonerSpells: false
-      }
+      cache: false,
+      fetch: false
     });
     tournaments = await client.clash.fetchAll();
   });

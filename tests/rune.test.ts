@@ -1,4 +1,4 @@
-import { RuneTree, Rune, Client } from "../dist";
+import { RuneTree, Rune, Client } from '../dist';
 
 describe('Test runes fetching.', () => {
   const client = new Client(process.env.riot_api_key!);
@@ -8,13 +8,8 @@ describe('Test runes fetching.', () => {
 
   beforeAll(async () => {
     await client.initialize({
-      cache: { enable: false },
-      fetch: {
-        champions: false,
-        items: false,
-        runes: false,
-        summonerSpells: false
-      }
+      cache: false,
+      fetch: false
     });
     domination = await client.runes.fetch('Domination');
     electrocute = await client.runes.fetchRune('Electrocute');
@@ -26,7 +21,9 @@ describe('Test runes fetching.', () => {
   });
 
   test('Rune details and description', () => {
-    expect(electrocute.description).toBe('Hitting a champion with 3 separate attacks or abilities in 3s deals bonus adaptive damage.');
+    expect(electrocute.description).toBe(
+      'Hitting a champion with 3 separate attacks or abilities in 3s deals bonus adaptive damage.'
+    );
     expect(electrocute.details).toContain('Hitting a champion with 3 separate attacks or abilities');
   });
 });
