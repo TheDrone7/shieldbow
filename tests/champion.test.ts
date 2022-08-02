@@ -48,11 +48,7 @@ describe('Test champion fetching.', () => {
   });
 
   test('Check champion assets', () => {
-    expect(kayn.defaultSplashArt).toBe(
-      'http://raw.communitydragon.org/pbe/plugins/rcp-be-lol-game-data/global/default/v1/champion-splashes/uncentered/141/141000.jpg'
-    );
-    expect(kayn.defaultLoadingScreen).toBe(
-      'https://raw.communitydragon.org/pbe/plugins/rcp-be-lol-game-data/global/default/assets/characters/kayn/skins/base/kaynloadscreen.jpg'
-    );
+    expect(kayn.defaultSplashArt).toBe('http://raw.communitydragon.org/pbe/plugins/rcp-be-lol-game-data/global/default/v1/champion-splashes/uncentered/141/141000.jpg')
+    expect(kayn.defaultLoadingScreen).toBe('https://raw.communitydragon.org/pbe/plugins/rcp-be-lol-game-data/global/default/assets/characters/kayn/skins/base/kaynloadscreen.jpg');
   });
 });
