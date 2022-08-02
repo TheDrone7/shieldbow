@@ -37,12 +37,18 @@ export class StorageManager implements BaseManager<any> {
    *
    * @param id - The name of the JSON file.
    */
-  fetch(id: string) {
+  fetch(id: string): any | void {
     if (this.cache.has(id)) return this.cache.get(id);
     const contentPath = path.join(this._pathName, id + '.json');
     const exists = fs.existsSync(contentPath);
     if (!exists) return;
-    return JSON.parse(fs.readFileSync(contentPath).toString());
+    const content = fs.readFileSync(contentPath).toString();
+    if (content.length === 0) {
+      // Detect file corruption #6
+      fs.removeSync(contentPath);
+      return;
+    }
+    return JSON.parse(content);
   }
 
   /**
@@ -51,7 +57,7 @@ export class StorageManager implements BaseManager<any> {
    * @param id - The name of the JSON file.
    * @param data - The JSON data that needs to be stored.
    */
-  store(id: string, data: any) {
+  store(id: string, data: any): void {
     const contentPath = path.join(this._pathName, id + '.json');
     const exists = fs.existsSync(contentPath);
     if (exists) throw new Error('The data already exists. A redundant request is being made.');
@@ -65,7 +71,7 @@ export class StorageManager implements BaseManager<any> {
   /**
    * The path of the base directory to fetch/store files from/in
    */
-  get pathName() {
+  get pathName(): string {
     return this._pathName;
   }
 
