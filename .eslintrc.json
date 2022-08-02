@@ -2,7 +2,8 @@
   "parser": "@typescript-eslint/parser",
   "env": {
     "node": true,
-    "es2021": true
+    "es2021": true,
+    "jest": true
   },
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -23,7 +24,7 @@
     "no-trailing-spaces": ["error", { "skipBlankLines": true }],
     "prettier/prettier": 2,
     "no-unused-vars": "off",
-    "max-len": ["error", 120, {"ignoreTemplateLiterals": true}],
+    "max-len": ["error", 120, {"ignoreTemplateLiterals": true, "ignoreUrls": true}],
     "no-case-declarations": "off"
   },
   "extends": ["eslint:recommended", "prettier"],

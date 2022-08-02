@@ -1,4 +1,4 @@
-import { Champion, Client } from "../dist";
+import { Champion, Client } from '../dist';
 
 describe('Test champion fetching.', () => {
   const client = new Client(process.env.riot_api_key!);
@@ -34,7 +34,7 @@ describe('Test champion fetching.', () => {
     expect(kayn.spells.get('Q')!.name).toBe('Reaping Slash');
 
     expect(kayn.spells.has('W')).toBeTruthy();
-    expect(kayn.spells.get('W')!.name).toBe('Blade\'s Reach');
+    expect(kayn.spells.get('W')!.name).toBe("Blade's Reach");
 
     expect(kayn.spells.has('E')).toBeTruthy();
     expect(kayn.spells.get('E')!.name).toBe('Shadow Step');
@@ -53,7 +53,11 @@ describe('Test champion fetching.', () => {
   });
 
   test('Check champion assets', () => {
-    expect(kayn.defaultSplashArt).toBe('http://raw.communitydragon.org/pbe/plugins/rcp-be-lol-game-data/global/default/v1/champion-splashes/uncentered/141/141000.jpg')
-    expect(kayn.defaultLoadingScreen).toBe('https://raw.communitydragon.org/pbe/plugins/rcp-be-lol-game-data/global/default/assets/characters/kayn/skins/base/kaynloadscreen.jpg');
+    expect(kayn.defaultSplashArt).toBe(
+      'http://raw.communitydragon.org/pbe/plugins/rcp-be-lol-game-data/global/default/v1/champion-splashes/uncentered/141/141000.jpg'
+    );
+    expect(kayn.defaultLoadingScreen).toBe(
+      'https://raw.communitydragon.org/pbe/plugins/rcp-be-lol-game-data/global/default/assets/characters/kayn/skins/base/kaynloadscreen.jpg'
+    );
   });
 });

@@ -1,4 +1,4 @@
-import { Summoner, Client } from "../dist";
+import { Summoner, Client } from '../dist';
 
 describe('Test Summoner v4 and Account v1 API', () => {
   const client = new Client(process.env.riot_api_key!);
@@ -25,7 +25,7 @@ describe('Test Summoner v4 and Account v1 API', () => {
 
   test('Check other ways of fetching summoners', async () => {
     const summoner2 = await client.summoners.fetch(summoner.id, { force: true });
-    const summoner3 = await client.summoners.fetchByPlayerId(summoner.playerId, { force: true});
+    const summoner3 = await client.summoners.fetchByPlayerId(summoner.playerId, { force: true });
     expect(summoner2.name).toBe(summoner.name);
     expect(summoner3.name).toBe(summoner.name);
   });
@@ -57,5 +57,5 @@ describe('Test Summoner v4 and Account v1 API', () => {
     const faker = await client.summoners.fetchBySummonerName('hide on bush', { region: 'kr' });
     expect(faker.name.toLowerCase()).toBe('hide on bush');
     expect(faker.region).toBe('kr');
-  })
+  });
 });

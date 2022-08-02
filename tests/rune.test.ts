@@ -1,4 +1,4 @@
-import { RuneTree, Rune, Client } from "../dist";
+import { RuneTree, Rune, Client } from '../dist';
 
 describe('Test runes fetching.', () => {
   const client = new Client(process.env.riot_api_key!);
@@ -26,7 +26,9 @@ describe('Test runes fetching.', () => {
   });
 
   test('Rune details and description', () => {
-    expect(electrocute.description).toBe('Hitting a champion with 3 separate attacks or abilities in 3s deals bonus adaptive damage.');
+    expect(electrocute.description).toBe(
+      'Hitting a champion with 3 separate attacks or abilities in 3s deals bonus adaptive damage.'
+    );
     expect(electrocute.details).toContain('Hitting a champion with 3 separate attacks or abilities');
   });
 });

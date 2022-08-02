@@ -1,4 +1,4 @@
-import { Client, Tournament } from "../dist";
+import { Client, Tournament } from '../dist';
 
 describe('Test Clash v1 API', () => {
   const client = new Client(process.env.riot_api_key!);

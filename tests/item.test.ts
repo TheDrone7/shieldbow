@@ -1,4 +1,4 @@
-import { Item, Client } from "../dist";
+import { Item, Client } from '../dist';
 
 describe('Test item fetching.', () => {
   const client = new Client(process.env.riot_api_key!);
