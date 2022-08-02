@@ -43,12 +43,16 @@ export class StorageManager implements BaseManager<any> {
     const exists = fs.existsSync(contentPath);
     if (!exists) return;
     const content = fs.readFileSync(contentPath).toString();
-    if (content.length === 0) {
+    if (content.trim().length === 0) {
       // Detect file corruption #6
       fs.unlinkSync(contentPath);
       return;
     }
-    return JSON.parse(content);
+    try {
+      return JSON.parse(content);
+    } catch (e: any) {
+      throw new SyntaxError(`Invalid JSON file in cache encountered: ${contentPath}`);
+    }
   }
 
   /**
