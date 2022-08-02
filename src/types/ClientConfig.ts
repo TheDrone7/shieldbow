@@ -42,13 +42,15 @@ export interface PreFetchConfig {
 export interface ClientConfig {
   /**
    * The local caching settings.
+   * Alternatively, you can pass `true` or `false` to enable or disable caching without configuration.
    */
-  cache?: CacheConfig;
+  cache?: CacheConfig | boolean;
   /**
    * The data to fetch beforehand when initializing the client.
    * This can delay the initialization but makes the rest of the processes much faster.
+   * Alternatively, you can pass `true` or `false` to enable or disable all of the data fetching.
    */
-  fetch?: PreFetchConfig;
+  fetch?: PreFetchConfig | boolean;
   /**
    * The data dragon CDN version (defaults to latest as per the specified region)
    */

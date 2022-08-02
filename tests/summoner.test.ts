@@ -8,13 +8,8 @@ describe('Test Summoner v4 and Account v1 API', () => {
   beforeAll(async () => {
     await client.initialize({
       region: 'euw',
-      cache: { enable: false },
-      fetch: {
-        champions: false,
-        items: false,
-        runes: false,
-        summonerSpells: false
-      }
+      cache: false,
+      fetch: false
     });
     summoner = await client.summoners.fetchBySummonerName('TheDrone7');
   });

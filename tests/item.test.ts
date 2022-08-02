@@ -7,13 +7,8 @@ describe('Test item fetching.', () => {
 
   beforeAll(async () => {
     await client.initialize({
-      cache: { enable: false },
-      fetch: {
-        champions: false,
-        items: false,
-        runes: false,
-        summonerSpells: false
-      }
+      cache: false,
+      fetch: false
     });
     boots = await client.items.fetch('1001');
   });
