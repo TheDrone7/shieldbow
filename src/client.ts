@@ -160,10 +160,10 @@ export class Client {
     }
 
     // Fetch the data and cache it for faster data retrieval.
-    if (options?.fetch?.champions ?? false) await this.champions.fetchAll();
-    if (options?.fetch?.items ?? false) await this.items.fetch('1001');
-    if (options?.fetch?.runes ?? false) await this.runes.fetch('Domination');
-    if (options?.fetch?.summonerSpells ?? false) await this.summonerSpells.fetch('SummonerFlash');
+    if (options?.fetch?.champions ?? true) await this.champions.fetchAll();
+    if (options?.fetch?.items ?? true) await this.items.fetch('1001');
+    if (options?.fetch?.runes ?? true) await this.runes.fetch('Domination');
+    if (options?.fetch?.summonerSpells ?? true) await this.summonerSpells.fetch('SummonerFlash');
   }
 
   /**
