@@ -8,13 +8,8 @@ describe('Test runes fetching.', () => {
 
   beforeAll(async () => {
     await client.initialize({
-      cache: { enable: false },
-      fetch: {
-        champions: false,
-        items: false,
-        runes: false,
-        summonerSpells: false
-      }
+      cache: false,
+      fetch: false
     });
     domination = await client.runes.fetch('Domination');
     electrocute = await client.runes.fetchRune('Electrocute');

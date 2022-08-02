@@ -7,13 +7,8 @@ describe('Test summoner spells fetching.', () => {
 
   beforeAll(async () => {
     await client.initialize({
-      cache: { enable: false },
-      fetch: {
-        champions: false,
-        items: false,
-        runes: false,
-        summonerSpells: false
-      }
+      cache: false,
+      fetch: false
     });
     flash = await client.summonerSpells.fetch('SummonerFlash');
   });
