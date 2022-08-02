@@ -93,6 +93,14 @@ export class Client {
     this._patch = version !== 'null' ? version.match(patchRegex)!.shift()! : 'null';
     const language = options?.locale || 'null';
     if (language !== 'null') this._locale = language;
+    if (typeof options?.cache === 'boolean') options.cache = { enable: options.cache };
+    if (typeof options?.fetch === 'boolean')
+      options.fetch = {
+        champions: options?.fetch,
+        items: options?.fetch,
+        runes: options?.fetch,
+        summonerSpells: options?.fetch
+      };
 
     const enableCache = options?.cache?.enable ?? true;
     const cacheRoot = options?.cache?.localRoot || 'data';
