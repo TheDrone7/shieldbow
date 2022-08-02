@@ -30,9 +30,14 @@
 | [LeagueManager](/api/LeagueManager.md) | A league manager - to fetch and manage all summoner competitive info. |
 | [Match](/api/Match.md) | A representation of a league of legends match. |
 | [MatchManager](/api/MatchManager.md) | A match manager - to fetch and manage matches. |
+| [MatchTimeline](/api/MatchTimeline.md) | A representation of the timeline data for a match. |
 | [Participant](/api/Participant.md) | A representation of a participant in a match. |
+| [ParticipantFrame](/api/ParticipantFrame.md) | A representation of a participant's stats at a point in the timeline. |
+| [ParticipantFrameChampionStats](/api/ParticipantFrameChampionStats.md) | A representation of the participant's champion stats in a [ParticipantFrame](/api/ParticipantFrame.md#undefined). |
+| [ParticipantFrameDamageStats](/api/ParticipantFrameDamageStats.md) | A representation of the participant's damage stats in a [ParticipantFrame](/api/ParticipantFrame.md#undefined). |
 | [Perks](/api/Perks.md) | A representation of the perks (runes) selected by a summoner for a match. |
 | [PerkStyle](/api/PerkStyle.md) | A representation of a perk style - a tree and 4 (if primary) or 2 (if secondary) runes that were selected. |
+| [Position](/api/Position.md) |  |
 | [Ratelimiter](/api/Ratelimiter.md) | A utility class that handles ratelimits. |
 | [Rune](/api/Rune.md) | A representation of an in-game rune. |
 | [RuneTree](/api/RuneTree.md) | A representation of an in-game rune tree |
@@ -43,6 +48,7 @@
 | [SummonerSpell](/api/SummonerSpell.md) | A representation of an in-game summoner spell. |
 | [SummonerSpellManager](/api/SummonerSpellManager.md) | A spell manager - to fetch and manage all summoner spell data. |
 | [Team](/api/Team.md) | A representation of a team in a match. |
+| [TimelineFrame](/api/TimelineFrame.md) |  |
 | [Tournament](/api/Tournament.md) | A representation of a clash tournament. |
 | [TournamentPlayer](/api/TournamentPlayer.md) | A representation of a player in a clash tournament. |
 | [TournamentSchedule](/api/TournamentSchedule.md) | A representation of a clash tournament schedule. |
@@ -67,36 +73,55 @@
 | [AccountData](/api/AccountData.md) | The account data structure as returned by the API. |
 | [ApiRequestOptions](/api/ApiRequestOptions.md) | The API request options. |
 | [BaseManager](/api/BaseManager.md) | A base for any manager classes. |
+| [BuildingKillEventData](/api/BuildingKillEventData.md) | The event data for building kill event. |
 | [CacheConfig](/api/CacheConfig.md) | Client's data dragon cache configuration. |
 | [ChampionBan](/api/ChampionBan.md) | A banned champion in a match. |
 | [ChampionData](/api/ChampionData.md) | A representation of the champion data returned by Data Dragon. |
+| [ChampionKillEventData](/api/ChampionKillEventData.md) | The event data for the champion kill event. |
 | [ChampionMasteryData](/api/ChampionMasteryData.md) | The champion mastery data as returned by the API. |
 | [ChampionPassive](/api/ChampionPassive.md) | The data about a champion's passive. |
 | [ChampionPricing](/api/ChampionPricing.md) | The pricing data of a champion. |
 | [ChampionRating](/api/ChampionRating.md) | A representation of the champion rating data returned by Data Dragon. |
 | [ChampionSkinData](/api/ChampionSkinData.md) | A representation of the champion skin data returned by Data Dragon. |
+| [ChampionSpecialKillEventData](/api/ChampionSpecialKillEventData.md) | The event data for the champion special kill event. |
 | [ClientConfig](/api/ClientConfig.md) | The basic configuration for the shieldbow Client. |
 | [CurrentGameBanData](/api/CurrentGameBanData.md) | The champion ban data as returned by the API. |
 | [CurrentGameChampionBan](/api/CurrentGameChampionBan.md) | Current game's team's champion ban information. |
 | [CurrentGameData](/api/CurrentGameData.md) | The Current game data as returned by the API. |
 | [CurrentGameParticipantData](/api/CurrentGameParticipantData.md) | The Current game participant data as returned by the API. |
 | [CurrentGamePerksData](/api/CurrentGamePerksData.md) | The current game participant perks data as returned by the API. |
+| [DamageDealtData](/api/DamageDealtData.md) | The data of the damage dealt on a champion during their death on the map. |
+| [EliteMonsterKillEventData](/api/EliteMonsterKillEventData.md) | The event data for the elite monster kill event. |
 | [FetchOptions](/api/FetchOptions.md) | The basic fetching options for various fetch methods in the managers. |
+| [GameEndEventData](/api/GameEndEventData.md) | The event data for the game end event. |
 | [GameMap](/api/GameMap.md) | Basic data for types of Maps available in the game. |
 | [GameMode](/api/GameMode.md) | Basic data for types of game modes. |
 | [GameType](/api/GameType.md) | Basic data for types of games. |
 | [ImageData](/api/ImageData.md) | A representation of any image data returned by Data Dragon. |
 | [ItemData](/api/ItemData.md) | A representation of the item data returned by Data Dragon. |
+| [ItemDestroyedEventData](/api/ItemDestroyedEventData.md) | The event data for the item destroyed event. |
 | [ItemGoldValue](/api/ItemGoldValue.md) | The item's gold value information. |
+| [ItemPurchasedEventData](/api/ItemPurchasedEventData.md) | The event data for the item purchased event. |
+| [ItemSoldEventData](/api/ItemSoldEventData.md) | The event data for the item sold event. |
+| [ItemUndoEventData](/api/ItemUndoEventData.md) | The event data for the item undo event. |
 | [LeagueEntryData](/api/LeagueEntryData.md) | The league entry data as returned by the API. |
 | [LeagueListData](/api/LeagueListData.md) | The league list data as returned by the API. |
+| [LevelUpEventData](/api/LevelUpEventData.md) | The event data for the champion level up event. |
 | [MatchByPlayerOptions](/api/MatchByPlayerOptions.md) | Additional options for filtering a specific summoner's matches. |
 | [MatchData](/api/MatchData.md) | The match data as returned by the API. |
+| [MatchTimelineData](/api/MatchTimelineData.md) | The match timeline data as returned by the API. |
+| [MatchTimelineFrameData](/api/MatchTimelineFrameData.md) | The match timeline frame as returned by the API. |
+| [MatchTimelineInfo](/api/MatchTimelineInfo.md) | The match timeline details as returned by the API. |
+| [MatchTimelineMetadata](/api/MatchTimelineMetadata.md) | The match timeline metadata as returned by the API. |
 | [MerakiChampion](/api/MerakiChampion.md) | A representation of the champion data returned by meraki analytics. These are used in the LoL wiki. |
 | [MerakiSkin](/api/MerakiSkin.md) | A representation of a champion's skin data returned by meraki analytics. These are used in the LoL wiki. |
+| [ObjectiveBountyPrestartEventData](/api/ObjectiveBountyPrestartEventData.md) | The event data for the objective bounty prestart event. |
 | [ParticipantChampion](/api/ParticipantChampion.md) | The participant's champion details. |
+| [ParticipantChampionStatsData](/api/ParticipantChampionStatsData.md) | The participant champion stats as returned by the API. |
 | [ParticipantDamageStats](/api/ParticipantDamageStats.md) | The participant's damage stats. |
+| [ParticipantDamageStatsData](/api/ParticipantDamageStatsData.md) | The participant damage stats as returned by the API. |
 | [ParticipantData](/api/ParticipantData.md) | Match participant data as returned by the API |
+| [ParticipantFrameData](/api/ParticipantFrameData.md) | The Participant Frame as returned by the API. |
 | [ParticipantHealingStats](/api/ParticipantHealingStats.md) | The participant's healing stats. |
 | [ParticipantInhibitorStats](/api/ParticipantInhibitorStats.md) | The participant's inhibitor interaction information. |
 | [ParticipantMultkills](/api/ParticipantMultkills.md) | The participant's multikill details. |
@@ -104,13 +129,16 @@
 | [ParticipantTotalDamage](/api/ParticipantTotalDamage.md) | The participant's total damage stats. |
 | [ParticipantTurretStats](/api/ParticipantTurretStats.md) | The participant's turret interaction information. |
 | [ParticipantVision](/api/ParticipantVision.md) | The participant's vision details. |
+| [PauseEndEventData](/api/PauseEndEventData.md) | The event data for the pause end event. |
 | [PerksData](/api/PerksData.md) | The perks data for a match participant as returned by the API. |
+| [PositionData](/api/PositionData.md) | A representation of an object's position on the map. |
 | [PreFetchConfig](/api/PreFetchConfig.md) | Client's pre-fetching data from data dragon configuration |
 | [Promos](/api/Promos.md) | The league entry promotion series information. |
 | [Queue](/api/Queue.md) | Basic data for types of queues (matches) in the game. |
 | [RuneData](/api/RuneData.md) | The runes data as stored in data dragon. |
 | [RuneTreeData](/api/RuneTreeData.md) | The rune trees data as stored in data dragon. |
 | [Season](/api/Season.md) | Basic data of seasons of the game. |
+| [SkillLevelUpEventData](/api/SkillLevelUpEventData.md) | The event data for the skill level up event. |
 | [SkinChroma](/api/SkinChroma.md) | A representation of a champion's skin's chroma from meraki analytics. |
 | [SkinPricing](/api/SkinPricing.md) | A representation of a champion's skin's pricing from meraki analytics. |
 | [SpellDamageData](/api/SpellDamageData.md) | A representation of the champion spell data returned by Community Dragon. |
@@ -123,11 +151,15 @@
 | [TeamData](/api/TeamData.md) | The match team data as returned by the API. |
 | [TeamObjectiveData](/api/TeamObjectiveData.md) | The individual objective data as returned by the API. |
 | [TeamObjectivesData](/api/TeamObjectivesData.md) | The match team objective data as returned by the API. |
+| [TimelineEventData](/api/TimelineEventData.md) | The base of a match timeline event. |
 | [TournamentData](/api/TournamentData.md) | The clash tournament data as returned by the API. |
 | [TournamentPlayerData](/api/TournamentPlayerData.md) | The partial clash tournament player data as returned by the API. |
 | [TournamentPlayerFullData](/api/TournamentPlayerFullData.md) | The complete clash tournament player data as returned by the API. |
 | [TournamentScheduleData](/api/TournamentScheduleData.md) | The clash tournament schedule data as returned by the API. |
 | [TournamentTeamData](/api/TournamentTeamData.md) | The clash tournament team data as returned by the API. |
+| [TurretPlateDestroyedEventData](/api/TurretPlateDestroyedEventData.md) | The event data for the turret plate destroyed event. |
+| [WardKillEventData](/api/WardKillEventData.md) | The event data for the ward kill event. |
+| [WardPlacedEventData](/api/WardPlacedEventData.md) | The event data for the ward placed event. |
 ---
 
 ## Variables
