@@ -45,7 +45,7 @@ export class StorageManager implements BaseManager<any> {
     const content = fs.readFileSync(contentPath).toString();
     if (content.length === 0) {
       // Detect file corruption #6
-      fs.removeSync(contentPath);
+      fs.unlinkSync(contentPath);
       return;
     }
     return JSON.parse(content);
