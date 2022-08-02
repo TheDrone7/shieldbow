@@ -9,7 +9,7 @@ describe('Test Cache', () => {
 
   test('Check champion caching', async () => {
     const client = await prepareClient({
-      cache: { enable: true },
+      cache: { enable: false },
       fetch: {
         champions: false,
         items: false,
