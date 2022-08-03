@@ -124,11 +124,10 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
         .catch(reject);
       if (response) {
         const dataList = <ChampionMasteryData[]>response.data;
-        if (
-          this.client.champions.cache.filter((c) => dataList.map((m) => m.championId).includes(c.key)).size <
-          dataList.length
-        )
-          await this.client.champions.fetchAll();
+        // Fetch all champions that this summoners has any mastery points
+        const cacheIds = this.client.champions.cache.map((x) => x.key);
+        const championsToFetch = dataList.filter((c) => !cacheIds.includes(c.championId));
+        await this.client.champions.fetchByKeys(championsToFetch.map((c) => c.championId));
         for (const data of dataList) {
           const mastery = new ChampionMastery(this.client, data);
           this.cache.set(mastery.champion.id, mastery);
