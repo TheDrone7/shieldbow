@@ -7,4 +7,12 @@ agent:
 blocks:
   - name: 'Block #1'
     task:
-      jobs: []
+      jobs:
+        - name: Static tests
+          commands:
+            - echo "running static tests"
+            - npx prettier --check "src/**/*.ts" "tests/**/*.ts"
+            - npx eslint "src/**/*.ts" "tests/**/*.ts"
+      prologue:
+        commands:
+          - checkout
