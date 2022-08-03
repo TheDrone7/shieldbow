@@ -169,14 +169,26 @@ export class ChampionManager implements BaseManager<Champion> {
   }
 
   /**
+   * Fetch and cache champion by their unique 3-digit keys.
+   *
+   * This is mostly for internal use while fetching match (or live match) data to improve performance.
+   *
+   * @param key - The key of the champions to fetch.
+   */
+  async fetchByKey(key: number) {
+    return this.fetchByKeys([key]).then((c) => c.first());
+  }
+
+  /**
    * Fetch and cache champions by their unique 3-digit keys.
    *
    * This is mostly for internal use while fetching match (or live match) data to improve performance.
    *
    * @param keys - The keys of the champions to fetch.
    */
-  async fetchByKeys(keys: number[]) {
+  async fetchByKeys(keys: number[]): Promise<Collection<string, Champion>> {
     return new Promise(async (resolve, reject) => {
+      const result = new Collection<string, Champion>();
       if (this.client.version === 'null') reject('Please initialize the client first.');
       else {
         const response = await this.client.http.get(
@@ -190,10 +202,12 @@ export class ChampionManager implements BaseManager<Champion> {
             if (keys.some((k) => champ.key === String(k))) {
               const damage = <SpellDamageData>await this._fetchLocalDamage(champ.id).catch(reject);
               const meraki = <MerakiChampion>await this._fetchLocalPricing(champ.id).catch(reject);
-              this.cache.set(key, new Champion(this.client, champs.data[key], damage, meraki));
+              const champion = new Champion(this.client, champs.data[key], damage, meraki);
+              result.set(key, champion);
+              this.cache.set(key, champion);
             }
           }
-          resolve(this.cache);
+          resolve(result);
         }
       }
     });

@@ -49,11 +49,8 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
    * While sorting, the mastery level is prioritized over the number of points.
    */
   get sortedCache() {
-    const sorter = (a: ChampionMastery, b: ChampionMastery) => b.points - a.points;
-    const m7 = [...this.cache.filter((cm) => cm.level === 7).values()].sort(sorter);
-    const m6 = [...this.cache.filter((cm) => cm.level === 6).values()].sort(sorter);
-    const m5 = [...this.cache.filter((cm) => cm.level < 6).values()].sort(sorter);
-    return [...m7, ...m6, ...m5];
+    const sorted = this._sortMastery(this.cache) as Collection<string, ChampionMastery>;
+    return Array.from(sorted.values());
   }
 
   /**
@@ -97,43 +94,46 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
    * Get the nth highest champion mastery for the summoner.
    * @param n - The ranking of the champion in the summoner's champions mastery, defaults to 0 (highest).
    */
-  highest(n: number = 0) {
+  highest(n: number = 0, options?: FetchOptions) {
+    const force = options?.force ?? false;
     return new Promise<ChampionMastery>(async (resolve, reject) => {
       if (n < 0) reject('The value of `n` must be >= 0.');
       else {
-        if (!this.cache.size) await this.refreshAll().catch(reject);
-        const ordered = this.sortedCache;
-        if (ordered[n]) resolve(ordered[n]);
-        else reject('This summoner does not have mastery points for ' + n + ' champions');
+        const dataList = (await this._fetchRawMasteryData().catch(reject)) as ChampionMasteryData[];
+        const ordered = this._sortMastery(dataList) as ChampionMasteryData[];
+        if (ordered.at(n)) {
+          const mastery = ordered.at(n)!;
+          const champ = await this.client.champions.fetchByKey(mastery.championId).catch(() => undefined);
+          if (!champ) reject('Invalid champion ID');
+          else if (this.cache.has(champ.id) && !force) resolve(this.cache.get(champ.id)!);
+          else resolve(this.fetch(champ, options));
+        } else reject('This summoner does not have mastery points for ' + n + ' champions');
       }
     });
   }
 
   /**
-   * Update the cache with the latest data for all champions' mastery data for this summoner.
+   * @deprecated use fetchAll instead
    */
   refreshAll() {
+    return this.fetchAll();
+  }
+
+  /**
+   * Fetches all the champions's masteries data for this summoner and store them in the cache.
+   */
+  fetchAll() {
     return new Promise<Collection<string, ChampionMastery>>(async (resolve, reject) => {
-      const response = await this.client.api
-        .makeApiRequest(`/lol/champion-mastery/v4/champion-masteries/by-summoner/${this.summoner.id}`, {
-          region: this.summoner.region,
-          regional: false,
-          name: 'Champion mastery by summoner',
-          params: `Summoner ID: ${this.summoner.id}`
-        })
-        .catch(reject);
-      if (response) {
-        const dataList = <ChampionMasteryData[]>response.data;
-        // Fetch all champions that this summoners has any mastery points
-        const cacheIds = this.client.champions.cache.map((x) => x.key);
-        const championsToFetch = dataList.filter((c) => !cacheIds.includes(c.championId));
-        await this.client.champions.fetchByKeys(championsToFetch.map((c) => c.championId));
-        for (const data of dataList) {
-          const mastery = new ChampionMastery(this.client, data);
-          this.cache.set(mastery.champion.id, mastery);
-        }
-        resolve(this.cache);
+      const dataList = (await this._fetchRawMasteryData().catch(reject)) as ChampionMasteryData[];
+      // Fetch all champions that this summoners has any mastery points
+      const cacheIds = this.client.champions.cache.map((x) => x.key);
+      const championsToFetch = dataList.filter((c) => !cacheIds.includes(c.championId));
+      await this.client.champions.fetchByKeys(championsToFetch.map((c) => c.championId));
+      for (const data of dataList) {
+        const mastery = new ChampionMastery(this.client, data);
+        this.cache.set(mastery.champion.id, mastery);
       }
+      resolve(this.cache);
     });
   }
 
@@ -156,5 +156,37 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
         resolve(score);
       }
     });
+  }
+
+  /**
+   * Fetch raw ChampionMasteryData[] response from API
+   */
+  private _fetchRawMasteryData() {
+    return new Promise<ChampionMasteryData[]>(async (resolve, reject) => {
+      const response = await this.client.api
+        .makeApiRequest(`/lol/champion-mastery/v4/champion-masteries/by-summoner/${this.summoner.id}`, {
+          region: this.summoner.region,
+          regional: false,
+          name: 'Champion mastery by summoner',
+          params: `Summoner ID: ${this.summoner.id}`
+        })
+        .catch(reject);
+      if (response) {
+        const data = <ChampionMasteryData[]>response.data;
+        resolve(data);
+      }
+    });
+  }
+
+  /**
+   * Sort mastery by level and points in order M7 -> M6 -> M5.
+   * Works for raw and parsed masteries
+   */
+  private _sortMastery(data: Collection<string, ChampionMastery> | ChampionMasteryData[]) {
+    const sorter = (a: ChampionMastery | ChampionMasteryData, b: ChampionMastery | ChampionMasteryData) =>
+      ('level' in b ? b.level : b.championLevel) - ('level' in a ? a.level : a.championLevel) ||
+      ('points' in b ? b.points : b.championPoints) - ('points' in a ? a.points : a.championPoints);
+
+    return data.sort(sorter);
   }
 }
