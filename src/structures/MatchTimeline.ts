@@ -1,4 +1,5 @@
 import type { MatchTimelineData } from '../types';
+import { TimelineFrame } from './TimelineFrame';
 
 /**
  * A representation of the timeline data for a match.
@@ -20,6 +21,10 @@ export class MatchTimeline {
    * The IDs of the participants in the match.
    */
   readonly participantIds: string[];
+  /**
+   * The returned frames in the match timeline.
+   */
+  readonly frames: TimelineFrame[];
 
   /**
    * Creates a new match timeline instance.
@@ -31,5 +36,6 @@ export class MatchTimeline {
     this.matchId = data.metadata.matchId;
     this.participantIds = data.metadata.participants;
     this.frameInterval = data.info.frameInterval;
+    this.frames = data.info.frames.map((frame) => new TimelineFrame(frame));
   }
 }
