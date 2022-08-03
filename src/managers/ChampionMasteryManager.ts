@@ -101,7 +101,7 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
     return new Promise<ChampionMastery>(async (resolve, reject) => {
       if (n < 0) reject('The value of `n` must be >= 0.');
       else {
-        if (!this.cache.size) await this.refreshAll().catch(reject);
+        if (!this.cache.size) await this.fetchAll().catch(reject);
         const ordered = this.sortedCache;
         if (ordered[n]) resolve(ordered[n]);
         else reject('This summoner does not have mastery points for ' + n + ' champions');
@@ -110,9 +110,16 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
   }
 
   /**
-   * Update the cache with the latest data for all champions' mastery data for this summoner.
+   * @deprecated use fetchAll instead
    */
   refreshAll() {
+    return this.fetchAll();
+  }
+
+  /**
+   * Fetches all the champions's masteries data for this summoner and store them in the cache.
+   */
+  fetchAll() {
     return new Promise<Collection<string, ChampionMastery>>(async (resolve, reject) => {
       const response = await this.client.api
         .makeApiRequest(`/lol/champion-mastery/v4/champion-masteries/by-summoner/${this.summoner.id}`, {
