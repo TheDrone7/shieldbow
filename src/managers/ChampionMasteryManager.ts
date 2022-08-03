@@ -113,9 +113,9 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
   }
 
   /**
-   * Fetches all the champions's masteries data for this summoner and store them in the cache.
+   * Update the cache with the latest data for all champions' mastery data for this summoner.
    */
-  fetchAll() {
+  refreshAll() {
     return new Promise<Collection<string, ChampionMastery>>(async (resolve, reject) => {
       const dataList = (await this._fetchRawMasteryData().catch(reject)) as ChampionMasteryData[];
       // Fetch all champions that this summoners has any mastery points
