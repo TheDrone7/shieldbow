@@ -16,6 +16,8 @@ blocks:
         - name: Unit tests
           commands:
             - echo "running unit tests"
+            - npm run build
+            - npx jest --ci --runInBand --reporters=default --reporters=jest-junit
       prologue:
         commands:
           - checkout
@@ -27,6 +29,7 @@ blocks:
         always:
           commands:
             - '[[ -f eslint.xml ]] && test-results publish eslint.xml'
+            - '[[ -f junit.xml ]] && test-results publish junit.xml'
 after_pipeline:
   task:
     jobs:
