@@ -113,13 +113,6 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
   }
 
   /**
-   * @deprecated use fetchAll instead
-   */
-  refreshAll() {
-    return this.fetchAll();
-  }
-
-  /**
    * Fetches all the champions's masteries data for this summoner and store them in the cache.
    */
   fetchAll() {
