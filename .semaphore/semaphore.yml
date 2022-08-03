@@ -5,7 +5,7 @@ agent:
     type: e1-standard-2
     os_image: ubuntu2004
 blocks:
-  - name: 'Block #1'
+  - name: Tests
     task:
       jobs:
         - name: Static tests
@@ -16,3 +16,4 @@ blocks:
       prologue:
         commands:
           - checkout
+          - npm ci
