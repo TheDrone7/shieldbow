@@ -22,3 +22,5 @@ blocks:
           - checkout
           - npm ci
       env_vars: []
+      secrets:
+        - name: RIOT_API_KEY
