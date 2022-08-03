@@ -172,7 +172,7 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
   }
 
   /**
-   * Sort mastery by level and points in order M7 -> M6 -> M5.
+   * Sort mastery by level and points
    * Works for raw and parsed masteries
    */
   private _sortMastery(data: Collection<string, ChampionMastery> | ChampionMasteryData[]) {
