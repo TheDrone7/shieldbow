@@ -32,4 +32,4 @@ jobs:
     - run: npm run build --if-present
     - run: npm test
     env:
-      RIOT_API_KEY: ${{secrets.api_key}}
+      riot_api_key: ${{secrets.api_key}}
