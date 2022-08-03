@@ -17,21 +17,21 @@ export interface ClientConfig
 
 #### cache
 
-The local caching settings.
+The local caching settings. Alternatively, you can pass `true` or `false` to enable or disable caching without configuration.
 
 
 
-**Type**: [CacheConfig](/api/CacheConfig.md)
+**Type**: [CacheConfig](/api/CacheConfig.md) \| [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
 ---
 
 #### fetch
 
-The data to fetch beforehand when initializing the client. This can delay the initialization but makes the rest of the processes much faster.
+The data to fetch beforehand when initializing the client. This can delay the initialization but makes the rest of the processes much faster. Alternatively, you can pass `true` or `false` to enable or disable all of the data fetching.
 
 
 
-**Type**: [PreFetchConfig](/api/PreFetchConfig.md)
+**Type**: [PreFetchConfig](/api/PreFetchConfig.md) \| [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
 ---
 
