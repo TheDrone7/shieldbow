@@ -21,6 +21,4 @@ blocks:
         commands:
           - checkout
           - npm ci
-      env_vars:
-        - name: riot_api_key
-          value: RGAPI-0b4ed232-f6f2-4984-a10c-0a1863102ef8
+      env_vars: []
