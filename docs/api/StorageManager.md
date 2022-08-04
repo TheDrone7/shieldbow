@@ -80,7 +80,7 @@ Fetch the locally stored JSON file by its name.
 **Signature:**
 
 ```ts
-fetch(id: string): any;
+fetch(id: string): any | void;
 ```
 
 **Parameters:**
@@ -89,7 +89,7 @@ fetch(id: string): any;
 | --------- | ---- | ----------- |
 | id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of the JSON file. |
 
-**Return type**: any
+**Return type**: any \| void
 
 ---
 
