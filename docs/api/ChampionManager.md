@@ -106,6 +106,32 @@ fetchAll(): Promise<Collection<string, Champion>>;
 
 ---
 
+#### .fetchByKey (key)
+
+Fetch and cache champion by their unique 3-digit keys.
+
+
+This is mostly for internal use while fetching match (or live match) data to improve performance.
+
+
+
+
+**Signature:**
+
+```ts
+fetchByKey(key: number): Promise<Champion | undefined>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| key | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The key of the champions to fetch. |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Champion](/api/Champion.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
+
+---
+
 #### .fetchByKeys (keys)
 
 Fetch and cache champions by their unique 3-digit keys.
@@ -119,7 +145,7 @@ This is mostly for internal use while fetching match (or live match) data to imp
 **Signature:**
 
 ```ts
-fetchByKeys(keys: number[]): Promise<unknown>;
+fetchByKeys(keys: number[]): Promise<Collection<string, Champion>>;
 ```
 
 **Parameters:**
@@ -128,7 +154,7 @@ fetchByKeys(keys: number[]): Promise<unknown>;
 | --------- | ---- | ----------- |
 | keys | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)[] | The keys of the champions to fetch. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< unknown \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/api/Champion.md) \> \>
 
 ---
 

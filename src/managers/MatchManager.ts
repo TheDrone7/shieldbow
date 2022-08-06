@@ -88,7 +88,7 @@ export class MatchManager implements BaseManager<Match> {
           .catch(reject);
         if (response) {
           const data = <MatchTimelineData>response.data;
-          const timeline = new MatchTimeline(data);
+          const timeline = new MatchTimeline(this.client, data);
           if (cache) this.timelineCache.set(matchId, timeline);
           resolve(timeline);
         }

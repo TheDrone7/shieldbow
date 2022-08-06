@@ -7,8 +7,7 @@ describe('Test champion fetching.', () => {
 
   beforeAll(async () => {
     await client.initialize({
-      cache: false,
-      fetch: false
+      cache: false
     });
     kayn = await client.champions.fetch('Kayn');
   });

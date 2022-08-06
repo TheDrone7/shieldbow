@@ -6,7 +6,7 @@ name: Node.js CI
 on:
   push:
     branches: [ "main" ]
-  pull_request:
+  pull_request_target:
     branches: [ "main" ]
 
 jobs:
@@ -30,3 +30,6 @@ jobs:
     - run: npx prettier --check "src/**/*.ts" "tests/**/*.ts"
     - run: npx eslint "src/**/*.ts" "tests/**/*.ts"
     - run: npm run build --if-present
+    - run: npm run test
+    env:
+      riot_api_key: ${{ secrets.api_key }}

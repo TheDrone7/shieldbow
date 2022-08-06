@@ -18,7 +18,7 @@ export declare class MatchTimeline
 ### Constructor
 
 ```ts
-new MatchTimeline (data: MatchTimelineData)
+new MatchTimeline (client: Client, data: MatchTimelineData)
 ```
 
 Constructs a new instance of the `MatchTimeline` class.
@@ -27,7 +27,8 @@ Constructs a new instance of the `MatchTimeline` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [MatchTimelineData](/api/MatchTimelineData.md) | the raw timeline data from the API. |
+| client | [Client](/api/Client.md) | The client that initialized the timeline. |
+| data | [MatchTimelineData](/api/MatchTimelineData.md) | The raw timeline data from the API. |
 ---
 
 ### Properties
@@ -49,6 +50,16 @@ The interval between frames.
 
 
 **Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
+#### frames
+
+The returned frames in the match timeline.
+
+
+
+**Type**: [TimelineFrame](/api/TimelineFrame.md)[]
 
 ---
 

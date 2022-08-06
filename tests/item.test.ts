@@ -7,8 +7,7 @@ describe('Test item fetching.', () => {
 
   beforeAll(async () => {
     await client.initialize({
-      cache: false,
-      fetch: false
+      cache: false
     });
     boots = await client.items.fetch('1001');
   });

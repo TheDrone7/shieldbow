@@ -1,4 +1,4 @@
-import { Match, Client } from '../dist';
+import { Match, Client, MatchTimeline } from '../dist';
 
 jest.setTimeout(300000);
 
@@ -7,16 +7,17 @@ describe('Test match v5 API', () => {
 
   let matches: string[];
   let match: Match;
+  let matchTimeline: MatchTimeline;
 
   beforeAll(async () => {
     await client.initialize({
       region: 'euw',
-      cache: false,
-      fetch: false
+      cache: false
     });
     const summoner = await client.summoners.fetchBySummonerName('TheDrone7');
     matches = await client.matches.fetchMatchListByPlayer(summoner);
     match = await client.matches.fetch(matches[0]);
+    matchTimeline = await client.matches.fetchMatchTimeline(matches[0]);
   });
 
   test('Check match list fetching', () => {
@@ -26,6 +27,15 @@ describe('Test match v5 API', () => {
 
   test('Check match exists', () => {
     expect(match).toBeDefined();
+  });
+
+  test('Check match timeline exists', () => {
+    expect(matchTimeline).toBeDefined();
+  });
+
+  test('Check match timeline properties', () => {
+    expect(matchTimeline.matchId).toBe(matches[0]);
+    expect(matchTimeline.participantIds.length).toBe(10);
   });
 
   test('Check match participants', () => {
