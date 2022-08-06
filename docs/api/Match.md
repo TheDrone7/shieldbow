@@ -133,19 +133,6 @@ The map on which the match was played.
 
 ---
 
-#### platformId
-
-The ID of the platform on which the match was played.
-
-
-Eg: `NA1` or `EUW1`.
-
-
-
-**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
-
----
-
 #### queue
 
 The queue type of the match.
@@ -153,6 +140,19 @@ The queue type of the match.
 
 
 **Type**: [Queue](/api/Queue.md)
+
+---
+
+#### region
+
+The region in which the match was played.
+
+
+Eg: `NA` or `EUW`.
+
+
+
+**Type**: [Region](/api/Region.md)
 
 ---
 
@@ -196,6 +196,25 @@ The data version of the match.
 
 
 **Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
+
+---
+
+### Methods
+
+#### .fetchTimeline ()
+
+Fetch the timeline of the match.
+
+
+
+**Signature:**
+
+```ts
+fetchTimeline(): Promise<MatchTimeline>;
+```
+
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [MatchTimeline](/api/MatchTimeline.md) \>
 
 ---
 
