@@ -31,7 +31,7 @@ Constructs a new instance of the `EliteMonsterKillEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [EliteMonsterKillEventData](/api/EliteMonsterKillEventData.md) |  |
+| data | [EliteMonsterKillEventData](/api/EliteMonsterKillEventData.md) | The raw data of the event. |
 ---
 
 ### Properties

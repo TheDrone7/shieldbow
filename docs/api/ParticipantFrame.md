@@ -27,7 +27,7 @@ Constructs a new instance of the `ParticipantFrame` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [ParticipantFrameData](/api/ParticipantFrameData.md) |  |
+| data | [ParticipantFrameData](/api/ParticipantFrameData.md) | The raw data from the API. |
 ---
 
 ### Properties

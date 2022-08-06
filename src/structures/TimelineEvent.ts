@@ -45,6 +45,10 @@ export class TimelineEvent {
    */
   readonly rawData: any;
 
+  /**
+   * Create a new timeline event.
+   * @param data - The raw data of the event.
+   */
   constructor(data: TimelineEventData) {
     this.timestamp = data.timestamp;
     this.type = data.type;
@@ -66,6 +70,11 @@ export class PauseEndEvent extends TimelineEvent {
    * The real timestamp - the actual time when this pause ended.
    */
   readonly realTimestamp: number;
+
+  /**
+   * Create a new pause end event.
+   * @param data - The raw data of the event.
+   */
   constructor(data: PauseEndEventData) {
     super(data);
     this.type = 'PAUSE_END';
@@ -101,6 +110,10 @@ export class SkillLevelUpEvent extends TimelineEvent {
    */
   readonly skillSlot: number;
 
+  /**
+   * Create a new skill level up event.
+   * @param data - The raw data of the event.
+   */
   constructor(data: SkillLevelUpEventData) {
     super(data);
     this.type = 'SKILL_LEVEL_UP';
@@ -142,6 +155,11 @@ export class ItemPurchasedEvent extends TimelineEvent {
    */
   readonly participantId: number;
 
+  /**
+   * Create a new item purchased event.
+   * @param client - The client that fetched the match.
+   * @param data - The raw data of the event.
+   */
   constructor(client: Client, data: ItemPurchasedEventData) {
     super(data);
     this.type = 'ITEM_PURCHASED';
@@ -175,6 +193,11 @@ export class ItemUndoEvent extends TimelineEvent {
    */
   readonly participantId: number;
 
+  /**
+   * Create a new item undo event.
+   * @param client - The client that fetched the match.
+   * @param data - The raw data of the event.
+   */
   constructor(client: Client, data: ItemUndoEventData) {
     super(data);
     this.type = 'ITEM_UNDO';
@@ -202,6 +225,10 @@ export class WardPlacedEvent extends TimelineEvent {
    */
   readonly wardType: string;
 
+  /**
+   * Create a new ward placed event.
+   * @param data - The raw data of the event.
+   */
   constructor(data: WardPlacedEventData) {
     super(data);
     this.type = 'WARD_PLACED';
@@ -226,6 +253,12 @@ export class ItemDestroyedEvent extends TimelineEvent {
    * The ID of the participant that destroyed the item.
    */
   readonly participantId: number;
+
+  /**
+   * Create a new item destroyed event.
+   * @param client - The client that fetched the match.
+   * @param data - The raw data of the event.
+   */
   constructor(client: Client, data: ItemDestroyedEventData) {
     super(data);
     this.type = 'ITEM_DESTROYED';
@@ -250,6 +283,11 @@ export class LevelUpEvent extends TimelineEvent {
    * The level the participant reached.
    */
   readonly level: number;
+
+  /**
+   * Create a new level up event.
+   * @param data - The raw data of the event.
+   */
   constructor(data: LevelUpEventData) {
     super(data);
     this.type = 'LEVEL_UP';
@@ -303,6 +341,10 @@ export class ChampionKillEvent extends TimelineEvent {
    */
   readonly type: 'CHAMPION_KILL';
 
+  /**
+   * Create a new champion kill event.
+   * @param data - The raw data of the event.
+   */
   constructor(data: ChampionKillEventData) {
     super(data);
     this.type = 'CHAMPION_KILL';
@@ -339,6 +381,10 @@ export class ChampionSpecialKillEvent extends TimelineEvent {
    */
   readonly type: 'CHAMPION_SPECIAL_KILL';
 
+  /**
+   * Create a new champion special kill event.
+   * @param data - The raw data of the event.
+   */
   constructor(data: ChampionSpecialKillEventData) {
     super(data);
     this.type = 'CHAMPION_SPECIAL_KILL';
@@ -373,6 +419,10 @@ export class TurretPlateDestroyedEvent extends TimelineEvent {
    */
   readonly teamId: 100 | 200;
 
+  /**
+   * Create a new turret plating destroyed event.
+   * @param data - The raw data of the event.
+   */
   constructor(data: TurretPlateDestroyedEventData) {
     super(data);
     this.type = 'TURRET_PLATE_DESTROYED';
@@ -431,6 +481,10 @@ export class EliteMonsterKillEvent extends TimelineEvent {
    */
   readonly monsterSubType: string;
 
+  /**
+   * Create a new elite monster kill event.
+   * @param data - The raw data of the event.
+   */
   constructor(data: EliteMonsterKillEventData) {
     super(data);
     this.type = 'ELITE_MONSTER_KILL';
@@ -461,6 +515,11 @@ export class ItemSoldEvent extends TimelineEvent {
    */
   readonly participantId: number;
 
+  /**
+   * Create a new item sold event.
+   * @param client - The client that fetched the match.
+   * @param data - The raw data of the event.
+   */
   constructor(client: Client, data: ItemSoldEventData) {
     super(data);
     this.type = 'ITEM_SOLD';
@@ -486,6 +545,10 @@ export class ObjectiveBountyPrestartEvent extends TimelineEvent {
    */
   readonly teamId: number;
 
+  /**
+   * Create a new objective bounty prestart event.
+   * @param data - The raw data of the event.
+   */
   constructor(data: ObjectiveBountyPrestartEventData) {
     super(data);
     this.type = 'OBJECTIVE_BOUNTY_PRESTART';
@@ -535,6 +598,10 @@ export class BuildingKillEvent extends TimelineEvent {
    */
   readonly towerType?: string;
 
+  /**
+   * Create a new building kill event.
+   * @param data - The raw data of the event.
+   */
   constructor(data: BuildingKillEventData) {
     super(data);
     this.type = 'BUILDING_KILL';
@@ -566,6 +633,10 @@ export class WardKillEvent extends TimelineEvent {
    */
   readonly killerId: number;
 
+  /**
+   * Create a new ward kill event.
+   * @param data - The raw data of the event.
+   */
   constructor(data: WardKillEventData) {
     super(data);
     this.type = 'WARD_KILL';
@@ -591,6 +662,10 @@ export class DragonSoulGivenEvent {
    */
   readonly teamId: 100 | 200;
 
+  /**
+   * Create a new dragon soul given event.
+   * @param data - The raw data of the event.
+   */
   constructor(data: DragonSoulGivenEventData) {
     this.type = 'DRAGON_SOUL_GIVEN';
     this.name = data.name;
@@ -624,6 +699,10 @@ export class ChampionTransformEvent extends TimelineEvent {
    */
   readonly transformType: 'ASSASSIN' | 'SLAYER';
 
+  /**
+   * Create a new champion transform event.
+   * @param data - The raw data of the event.
+   */
   constructor(data: ChampionTransformEventData) {
     super(data);
     this.type = 'CHAMPION_TRANSFORM';
@@ -653,6 +732,10 @@ export class GameEndEvent extends TimelineEvent {
    */
   readonly winningTeamId: 100 | 200;
 
+  /**
+   * Create a new game end event.
+   * @param data - The raw data of the event.
+   */
   constructor(data: GameEndEventData) {
     super(data);
     this.type = 'GAME_END';

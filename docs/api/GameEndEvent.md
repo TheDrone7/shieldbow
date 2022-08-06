@@ -31,7 +31,7 @@ Constructs a new instance of the `GameEndEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [GameEndEventData](/api/GameEndEventData.md) |  |
+| data | [GameEndEventData](/api/GameEndEventData.md) | The raw data of the event. |
 ---
 
 ### Properties
@@ -82,7 +82,7 @@ The winning team.
 
 
 
-**Type**: "red" \| "blue"
+**Type**: "blue" \| "red"
 
 ---
 

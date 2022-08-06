@@ -31,7 +31,7 @@ Constructs a new instance of the `WardKillEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [WardKillEventData](/api/WardKillEventData.md) |  |
+| data | [WardKillEventData](/api/WardKillEventData.md) | The raw data of the event. |
 ---
 
 ### Properties

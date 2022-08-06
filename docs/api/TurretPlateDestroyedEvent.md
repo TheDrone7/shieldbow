@@ -31,7 +31,7 @@ Constructs a new instance of the `TurretPlateDestroyedEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [TurretPlateDestroyedEventData](/api/TurretPlateDestroyedEventData.md) |  |
+| data | [TurretPlateDestroyedEventData](/api/TurretPlateDestroyedEventData.md) | The raw data of the event. |
 ---
 
 ### Properties
@@ -72,7 +72,7 @@ The team that destroyed the turret plating.
 
 
 
-**Type**: "red" \| "blue"
+**Type**: "blue" \| "red"
 
 ---
 

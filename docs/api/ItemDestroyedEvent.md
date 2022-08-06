@@ -31,8 +31,8 @@ Constructs a new instance of the `ItemDestroyedEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/Client.md) |  |
-| data | [ItemDestroyedEventData](/api/ItemDestroyedEventData.md) |  |
+| client | [Client](/api/Client.md) | The client that fetched the match. |
+| data | [ItemDestroyedEventData](/api/ItemDestroyedEventData.md) | The raw data of the event. |
 ---
 
 ### Properties

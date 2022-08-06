@@ -31,7 +31,7 @@ Constructs a new instance of the `ChampionSpecialKillEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [ChampionSpecialKillEventData](/api/ChampionSpecialKillEventData.md) |  |
+| data | [ChampionSpecialKillEventData](/api/ChampionSpecialKillEventData.md) | The raw data of the event. |
 ---
 
 ### Properties

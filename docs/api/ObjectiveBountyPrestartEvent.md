@@ -31,7 +31,7 @@ Constructs a new instance of the `ObjectiveBountyPrestartEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)iveBountyPrestartEventData |  |
+| data | [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)iveBountyPrestartEventData | The raw data of the event. |
 ---
 
 ### Properties

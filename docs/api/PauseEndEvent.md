@@ -31,7 +31,7 @@ Constructs a new instance of the `PauseEndEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [PauseEndEventData](/api/PauseEndEventData.md) |  |
+| data | [PauseEndEventData](/api/PauseEndEventData.md) | The raw data of the event. |
 ---
 
 ### Properties

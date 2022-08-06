@@ -31,8 +31,8 @@ Constructs a new instance of the `ItemSoldEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/Client.md) |  |
-| data | [ItemSoldEventData](/api/ItemSoldEventData.md) |  |
+| client | [Client](/api/Client.md) | The client that fetched the match. |
+| data | [ItemSoldEventData](/api/ItemSoldEventData.md) | The raw data of the event. |
 ---
 
 ### Properties

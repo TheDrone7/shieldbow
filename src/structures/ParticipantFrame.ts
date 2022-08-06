@@ -118,6 +118,10 @@ export class ParticipantFrameChampionStats {
    */
   readonly spellVamp: number;
 
+  /**
+   * Create a new participant frame champion stats instance.
+   * @param data - The raw data from the API.
+   */
   constructor(data: ParticipantChampionStatsData) {
     this.abilityHaste = data.abilityHaste;
     this.abilityPower = data.abilityPower;
@@ -200,6 +204,10 @@ export class ParticipantFrameDamageStats {
    */
   readonly totalDamageTaken: number;
 
+  /**
+   * Create a new participant frame damage stats instance.
+   * @param data - The raw data from the API.
+   */
   constructor(data: ParticipantDamageStatsData) {
     this.magicDamageDealt = data.magicDamageDone;
     this.magicDamageDealtToChampions = data.magicDamageDoneToChampions;
@@ -273,6 +281,10 @@ export class ParticipantFrame {
    */
   readonly xp: number;
 
+  /**
+   * Create a new participant frame instance.
+   * @param data - The raw data from the API.
+   */
   constructor(data: ParticipantFrameData) {
     this.championStats = new ParticipantFrameChampionStats(data.championStats);
     this.currentGold = data.currentGold;

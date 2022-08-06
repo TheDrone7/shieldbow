@@ -31,8 +31,8 @@ Constructs a new instance of the `ItemPurchasedEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/Client.md) |  |
-| data | [ItemPurchasedEventData](/api/ItemPurchasedEventData.md) |  |
+| client | [Client](/api/Client.md) | The client that fetched the match. |
+| data | [ItemPurchasedEventData](/api/ItemPurchasedEventData.md) | The raw data of the event. |
 ---
 
 ### Properties

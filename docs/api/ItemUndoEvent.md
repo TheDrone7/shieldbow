@@ -31,8 +31,8 @@ Constructs a new instance of the `ItemUndoEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/Client.md) |  |
-| data | [ItemUndoEventData](/api/ItemUndoEventData.md) |  |
+| client | [Client](/api/Client.md) | The client that fetched the match. |
+| data | [ItemUndoEventData](/api/ItemUndoEventData.md) | The raw data of the event. |
 ---
 
 ### Properties

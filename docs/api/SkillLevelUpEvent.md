@@ -31,7 +31,7 @@ Constructs a new instance of the `SkillLevelUpEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [SkillLevelUpEventData](/api/SkillLevelUpEventData.md) |  |
+| data | [SkillLevelUpEventData](/api/SkillLevelUpEventData.md) | The raw data of the event. |
 ---
 
 ### Properties

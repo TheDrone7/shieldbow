@@ -31,7 +31,7 @@ Constructs a new instance of the `LevelUpEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [LevelUpEventData](/api/LevelUpEventData.md) |  |
+| data | [LevelUpEventData](/api/LevelUpEventData.md) | The raw data of the event. |
 ---
 
 ### Properties

@@ -27,7 +27,7 @@ Constructs a new instance of the `ParticipantFrameDamageStats` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [ParticipantDamageStatsData](/api/ParticipantDamageStatsData.md) |  |
+| data | [ParticipantDamageStatsData](/api/ParticipantDamageStatsData.md) | The raw data from the API. |
 ---
 
 ### Properties

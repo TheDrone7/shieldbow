@@ -27,7 +27,7 @@ Constructs a new instance of the `DragonSoulGivenEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [DragonSoulGivenEventData](/api/DragonSoulGivenEventData.md) |  |
+| data | [DragonSoulGivenEventData](/api/DragonSoulGivenEventData.md) | The raw data of the event. |
 ---
 
 ### Properties
@@ -48,7 +48,7 @@ The team that received the dragon soul.
 
 
 
-**Type**: "red" \| "blue"
+**Type**: "blue" \| "red"
 
 ---
 

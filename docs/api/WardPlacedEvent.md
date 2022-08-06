@@ -31,7 +31,7 @@ Constructs a new instance of the `WardPlacedEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [WardPlacedEventData](/api/WardPlacedEventData.md) |  |
+| data | [WardPlacedEventData](/api/WardPlacedEventData.md) | The raw data of the event. |
 ---
 
 ### Properties

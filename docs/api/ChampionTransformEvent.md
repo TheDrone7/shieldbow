@@ -31,7 +31,7 @@ Constructs a new instance of the `ChampionTransformEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [ChampionTransformEventData](/api/ChampionTransformEventData.md) |  |
+| data | [ChampionTransformEventData](/api/ChampionTransformEventData.md) | The raw data of the event. |
 ---
 
 ### Properties

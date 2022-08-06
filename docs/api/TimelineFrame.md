@@ -1,11 +1,11 @@
 ---
 title: TimelineFrame
-description: 
+description: A representation of a frame in a match timeline.
 ---
 
 ## TimelineFrame class
 
-
+A representation of a frame in a match timeline.
 
 **Signature:**
 
@@ -27,13 +27,15 @@ Constructs a new instance of the `TimelineFrame` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/Client.md) |  |
-| data | [MatchTimelineFrameData](/api/MatchTimelineFrameData.md) |  |
+| client | [Client](/api/Client.md) | The client that created this frame. |
+| data | [MatchTimelineFrameData](/api/MatchTimelineFrameData.md) | The raw data from the API. |
 ---
 
 ### Properties
 
 #### events
+
+The events that took place in this frame.
 
 
 
@@ -42,6 +44,8 @@ Constructs a new instance of the `TimelineFrame` class.
 ---
 
 #### participantFrames
+
+The participant frames for this timeline frame.
 
 
 

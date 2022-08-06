@@ -31,7 +31,7 @@ Constructs a new instance of the `BuildingKillEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [BuildingKillEventData](/api/BuildingKillEventData.md) |  |
+| data | [BuildingKillEventData](/api/BuildingKillEventData.md) | The raw data of the event. |
 ---
 
 ### Properties

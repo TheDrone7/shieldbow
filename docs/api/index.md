@@ -65,7 +65,7 @@
 | [Team](/api/Team.md) | A representation of a team in a match. |
 | [TimelineEvent](/api/TimelineEvent.md) | A representation of an event in a match timeline. |
 | [TimelineEventFactory](/api/TimelineEventFactory.md) | The timeline event factory - to create a timeline event from a raw data object. |
-| [TimelineFrame](/api/TimelineFrame.md) |  |
+| [TimelineFrame](/api/TimelineFrame.md) | A representation of a frame in a match timeline. |
 | [Tournament](/api/Tournament.md) | A representation of a clash tournament. |
 | [TournamentPlayer](/api/TournamentPlayer.md) | A representation of a player in a clash tournament. |
 | [TournamentSchedule](/api/TournamentSchedule.md) | A representation of a clash tournament schedule. |

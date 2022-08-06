@@ -27,7 +27,7 @@ Constructs a new instance of the `TimelineEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [TimelineEventData](/api/TimelineEventData.md) |  |
+| data | [TimelineEventData](/api/TimelineEventData.md) | The raw data of the event. |
 ---
 
 ### Properties
