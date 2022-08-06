@@ -9,7 +9,7 @@ import type {
 } from '../types';
 import type { Client } from '../client';
 import { LeagueEntry, LeagueList } from '../structures';
-import Collection from '@discordjs/collection';
+import { Collection } from '@discordjs/collection';
 
 /**
  * A league manager - to fetch and manage all summoner competitive info.

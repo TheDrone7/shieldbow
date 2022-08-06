@@ -1,6 +1,6 @@
 import type { BaseManager, FetchOptions, MatchByPlayerOptions, MatchData, MatchTimelineData } from '../types';
 import { Match, type Summoner, MatchTimeline } from '../structures';
-import Collection from '@discordjs/collection';
+import { Collection } from '@discordjs/collection';
 import type { Client } from '../client';
 
 /**

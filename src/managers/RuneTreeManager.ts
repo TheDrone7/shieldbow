@@ -1,7 +1,7 @@
 import type { Client } from '../client';
 import type { BaseManager, FetchOptions, RuneTreeData } from '../types';
 import { Rune, RuneTree } from '../structures';
-import Collection from '@discordjs/collection';
+import { Collection } from '@discordjs/collection';
 import { StorageManager } from './index';
 import path from 'path';
 
