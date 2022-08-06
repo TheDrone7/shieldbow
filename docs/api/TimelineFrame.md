@@ -18,7 +18,7 @@ export declare class TimelineFrame
 ### Constructor
 
 ```ts
-new TimelineFrame (data: any)
+new TimelineFrame (client: Client, data: MatchTimelineFrameData)
 ```
 
 Constructs a new instance of the `TimelineFrame` class.
@@ -27,7 +27,8 @@ Constructs a new instance of the `TimelineFrame` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | any |  |
+| client | [Client](/api/Client.md) |  |
+| data | [MatchTimelineFrameData](/api/MatchTimelineFrameData.md) |  |
 ---
 
 ### Properties
@@ -36,7 +37,7 @@ Constructs a new instance of the `TimelineFrame` class.
 
 
 
-**Type**: any[]
+**Type**: [TimelineEvent](/api/TimelineEvent.md)[]
 
 ---
 
@@ -44,7 +45,7 @@ Constructs a new instance of the `TimelineFrame` class.
 
 
 
-**Type**: any[]
+**Type**: [ParticipantFrame](/api/ParticipantFrame.md)[]
 
 ---
 

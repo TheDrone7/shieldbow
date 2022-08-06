@@ -17,6 +17,14 @@ export interface BuildingKillEventData extends TimelineEventData
 
 ### Properties
 
+#### assistingParticipantIds
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)[]
+
+---
+
 #### bounty
 
 
@@ -61,7 +69,7 @@ export interface BuildingKillEventData extends TimelineEventData
 
 
 
-**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+**Type**: 100 \| 200
 
 ---
 

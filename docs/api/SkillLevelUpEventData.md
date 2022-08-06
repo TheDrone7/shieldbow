@@ -21,7 +21,7 @@ export interface SkillLevelUpEventData extends TimelineEventData
 
 
 
-**Type**: 'NORMAL'
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 

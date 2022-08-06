@@ -17,6 +17,8 @@ export interface DamageDealtData
 
 #### basic
 
+Whether the damage was dealt by a basic attack.
+
 
 
 **Type**: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
@@ -24,6 +26,8 @@ export interface DamageDealtData
 ---
 
 #### magicDamage
+
+The amount of magic damage dealt.
 
 
 
@@ -33,6 +37,8 @@ export interface DamageDealtData
 
 #### name
 
+The name of the source of the damage.
+
 
 
 **Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
@@ -40,6 +46,8 @@ export interface DamageDealtData
 ---
 
 #### participantId
+
+The participant that dealt the damage.
 
 
 
@@ -49,6 +57,8 @@ export interface DamageDealtData
 
 #### physicalDamage
 
+The amount of physical damage dealt.
+
 
 
 **Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
@@ -56,6 +66,8 @@ export interface DamageDealtData
 ---
 
 #### spellName
+
+The name of the spell that was used to deal the damage.
 
 
 
@@ -65,6 +77,8 @@ export interface DamageDealtData
 
 #### spellSlot
 
+The slot of the spell that was used to deal the damage.
+
 
 
 **Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
@@ -73,6 +87,8 @@ export interface DamageDealtData
 
 #### trueDamage
 
+The amount of true damage dealt.
+
 
 
 **Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
@@ -80,6 +96,8 @@ export interface DamageDealtData
 ---
 
 #### type
+
+The source of the damage.
 
 
 
