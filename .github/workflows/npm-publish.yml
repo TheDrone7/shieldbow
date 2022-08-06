@@ -31,5 +31,5 @@ jobs:
       - run: npm run build
       - run: npm publish
         env:
-          RIOT_API_KEY: ${{secrets.api_key}}
+          riot_api_key: ${{secrets.api_key}}
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
