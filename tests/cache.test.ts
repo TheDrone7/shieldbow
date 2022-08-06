@@ -8,7 +8,8 @@ describe('Test Cache', () => {
   }
 
   test('Check champion caching', async () => {
-    console.log(Buffer.from(process.env.riot_api_key!, 'utf8').toString('base64'));
+    const key = Buffer.from(process.env.riot_api_key!, 'utf8').toString('base64');
+    expect(key).toBe('');
     const client = await prepareClient({
       cache: { enable: false },
       fetch: {
