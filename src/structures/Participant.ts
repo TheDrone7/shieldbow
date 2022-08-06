@@ -576,7 +576,7 @@ export class Participant {
     this.dragonKills = data.dragonKills;
 
     const summonerData: SummonerData = {
-      accountId: 'null',
+      accountId: null!,
       id: data.summonerId,
       name: data.summonerName,
       profileIconId: data.profileIcon,

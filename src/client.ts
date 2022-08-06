@@ -23,6 +23,7 @@ const patchRegex = /\d+\.\d+/;
 export class Client {
   private readonly _cdnBase: string;
   private readonly _versions: string;
+  private _initialized: boolean;
   private _version: string;
   private _patch: string;
   private _locale: Locales;
@@ -50,9 +51,10 @@ export class Client {
   constructor(apiKey: string) {
     this._cdnBase = 'https://ddragon.leagueoflegends.com/cdn/';
     this._versions = 'https://ddragon.leagueoflegends.com/api/versions.json';
-    this._version = 'null';
+    this._initialized = false;
+    this._version = null!;
     this._region = 'na';
-    this._patch = 'null';
+    this._patch = null!;
     this._locale = 'en_US';
     this._cacheEnabled = true;
     this._cacheRoot = 'data';
@@ -88,11 +90,11 @@ export class Client {
     // Parse the configuration
     const region = options?.region || 'na';
     this._region = region;
-    const version = options?.version || 'null';
-    this._version = version;
-    this._patch = version !== 'null' ? version.match(patchRegex)!.shift()! : 'null';
-    const language = options?.locale || 'null';
-    if (language !== 'null') this._locale = language;
+    const version = options?.version || null;
+    this._version = version!;
+    this._patch = version !== null ? version.match(patchRegex)!.shift()! : null!;
+    const language = options?.locale || null;
+    if (language !== null) this._locale = language;
     if (typeof options?.cache === 'boolean') options.cache = { enable: options.cache };
     if (typeof options?.fetch === 'boolean')
       options.fetch = {
@@ -106,7 +108,7 @@ export class Client {
     const cacheRoot = options?.cache?.localRoot || 'data';
 
     // Update the client configuration.
-    if (version === 'null' || language === 'null') {
+    if (version === null || language === null) {
       const response = await axios
         .get(region ? `https://ddragon.leagueoflegends.com/realms/${region}.json` : this._versions)
         .catch(() => {});
@@ -115,16 +117,18 @@ export class Client {
       else {
         const result = <string[] | { v: string; l: Locales }>response.data;
         if (Array.isArray(result)) {
-          this._version = version !== 'null' ? version : result[0];
+          this._version = version !== null ? version : result[0];
           this._patch = this._version.match(patchRegex)!.shift()!;
           this._locale = 'en_US';
         } else {
-          this._version = version !== 'null' ? version : result.v;
-          this._locale = language !== 'null' ? language : result.l;
+          this._version = version !== null ? version : result.v;
+          this._locale = language !== null ? language : result.l;
           this._patch = this._version.match(patchRegex)!.shift()!;
         }
       }
     }
+
+    this._initialized = true;
 
     // Get the game constants from data dragon (this is static data)
     const seasonsResponse = await axios
@@ -175,9 +179,17 @@ export class Client {
   }
 
   /**
+   * Ensure that client was initialized
+   */
+  private _ensureInitialized(): void {
+    if (!this._initialized) throw new Error('Please initialize the client first.');
+  }
+
+  /**
    * The axios instance that handles all the CDN requests being made.
    */
   get http() {
+    this._ensureInitialized();
     return this._http;
   }
 
@@ -185,6 +197,7 @@ export class Client {
    * The default API interactions handler used by the client.
    */
   get api() {
+    this._ensureInitialized();
     return this._api;
   }
 
@@ -192,10 +205,12 @@ export class Client {
    * The league of legends region from which the data is to be fetched.
    */
   get region() {
+    this._ensureInitialized();
     return this._region;
   }
 
   set region(region: Region) {
+    this._ensureInitialized();
     this._region = region;
   }
 
@@ -203,6 +218,7 @@ export class Client {
    * The Data Dragon CDN Base URL
    */
   get cdnBase() {
+    this._ensureInitialized();
     return this._cdnBase;
   }
 
@@ -210,6 +226,7 @@ export class Client {
    * The default champions manager used by the client.
    */
   get champions() {
+    this._ensureInitialized();
     return this._champions;
   }
 
@@ -217,6 +234,7 @@ export class Client {
    * The default items manager used by the client.
    */
   get items() {
+    this._ensureInitialized();
     return this._items;
   }
 
@@ -224,6 +242,7 @@ export class Client {
    * The default runes manager used by the client.
    */
   get runes() {
+    this._ensureInitialized();
     return this._runes;
   }
 
@@ -231,6 +250,7 @@ export class Client {
    * The default summoner spells manager used by the client.
    */
   get summonerSpells() {
+    this._ensureInitialized();
     return this._summonerSpells;
   }
 
@@ -238,6 +258,7 @@ export class Client {
    * The default summoners manager used by the client.
    */
   get summoners() {
+    this._ensureInitialized();
     return this._summoners;
   }
 
@@ -246,6 +267,7 @@ export class Client {
    * This is mostly for internal usage. You may want to use {@link Client.summoners} instead.
    */
   get accounts() {
+    this._ensureInitialized();
     return this._accounts;
   }
 
@@ -257,6 +279,7 @@ export class Client {
    * Use this only if you want to query a list of users by rank-division.
    */
   get leagues() {
+    this._ensureInitialized();
     return this._leagues;
   }
 
@@ -264,6 +287,7 @@ export class Client {
    * The default match manager used by the client.
    */
   get matches() {
+    this._ensureInitialized();
     return this._matches;
   }
 
@@ -271,6 +295,7 @@ export class Client {
    * The default live match manager used by the client.
    */
   get spectator() {
+    this._ensureInitialized();
     return this._spectator;
   }
 
@@ -278,6 +303,7 @@ export class Client {
    * The default clash tournaments manager used by the client.
    */
   get clash() {
+    this._ensureInitialized();
     return this._clash;
   }
 
@@ -287,6 +313,7 @@ export class Client {
    * No type support for this (yet).
    */
   get status() {
+    this._ensureInitialized();
     return new Promise(async (resolve, reject) => {
       const response = await this.api
         .makeApiRequest('/lol/status/v4/platform-data', {
@@ -307,6 +334,7 @@ export class Client {
    * @param refetch - Whether to fetch all data dragon data in the new locale right away.
    */
   async updateLocale(newLocale: Locales, refetch: boolean = true) {
+    this._ensureInitialized();
     this._locale = newLocale;
     if (refetch) {
       await this.champions.fetchAll();
@@ -328,6 +356,7 @@ export class Client {
    * @param refetch - Whether to fetch all data dragon data from the new patch right away.
    */
   async updatePatch(patch: string, refetch: boolean = true) {
+    this._ensureInitialized();
     this._patch = patch;
     this._version = patch + '.1';
     if (refetch) {
@@ -342,6 +371,7 @@ export class Client {
    * The current Data Dragon CDN version.
    */
   get version() {
+    this._ensureInitialized();
     return this._version;
   }
 
@@ -351,17 +381,27 @@ export class Client {
    * Must be above 5.1 for proper functionality.
    */
   get patch() {
+    this._ensureInitialized();
     return this._patch;
+  }
+
+  /**
+   * Is this client initialized.
+   */
+  get initialized() {
+    return this._initialized;
   }
 
   /**
    * The locale in which all the data is going to be fetched in.
    */
   get locale() {
+    this._ensureInitialized();
     return this._locale;
   }
 
   set patch(patch: string) {
+    this._ensureInitialized();
     this._patch = patch;
     this._version = patch + '.1';
   }
@@ -370,6 +410,7 @@ export class Client {
    * An array of all seasons and their respective IDs.
    */
   get seasons() {
+    this._ensureInitialized();
     return this._seasons;
   }
 
@@ -377,6 +418,7 @@ export class Client {
    * An array of all queue types and their respective data.
    */
   get queues() {
+    this._ensureInitialized();
     return this._queues;
   }
 
@@ -384,6 +426,7 @@ export class Client {
    * An array of all maps and their respective data.
    */
   get maps() {
+    this._ensureInitialized();
     return this._maps;
   }
 
@@ -391,6 +434,7 @@ export class Client {
    * An array of all game modes and their respective data.
    */
   get gameModes() {
+    this._ensureInitialized();
     return this._gameModes;
   }
 
@@ -398,6 +442,7 @@ export class Client {
    * An array of all game types and their respective data.
    */
   get gameTypes() {
+    this._ensureInitialized();
     return this._gameTypes;
   }
 }

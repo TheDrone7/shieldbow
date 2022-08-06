@@ -102,22 +102,19 @@ export class ChampionManager implements BaseManager<Champion> {
    */
   async fetchAll(): Promise<Collection<string, Champion>> {
     return new Promise(async (resolve, reject) => {
-      if (this.client.version === 'null') reject('Please initialize the client first.');
+      const response = await this.client.http.get(
+        this.client.version + '/data/' + this.client.locale + '/championFull.json'
+      );
+      if (response.status !== 200) reject('Unable to fetch the champions data.');
       else {
-        const response = await this.client.http.get(
-          this.client.version + '/data/' + this.client.locale + '/championFull.json'
-        );
-        if (response.status !== 200) reject('Unable to fetch the champions data.');
-        else {
-          const champs = <{ data: { [champ: string]: ChampionData } }>response.data;
-          for (const key of Object.keys(champs.data)) {
-            const champ = champs.data[key];
-            const damage = <SpellDamageData>await this._fetchLocalDamage(champ.id).catch(reject);
-            const meraki = <MerakiChampion>await this._fetchLocalPricing(champ.id).catch(reject);
-            this.cache.set(key, new Champion(this.client, champs.data[key], damage, meraki));
-          }
-          resolve(this.cache);
+        const champs = <{ data: { [champ: string]: ChampionData } }>response.data;
+        for (const key of Object.keys(champs.data)) {
+          const champ = champs.data[key];
+          const damage = <SpellDamageData>await this._fetchLocalDamage(champ.id).catch(reject);
+          const meraki = <MerakiChampion>await this._fetchLocalPricing(champ.id).catch(reject);
+          this.cache.set(key, new Champion(this.client, champs.data[key], damage, meraki));
         }
+        resolve(this.cache);
       }
     });
   }
@@ -133,7 +130,6 @@ export class ChampionManager implements BaseManager<Champion> {
     if (id === 'FiddleSticks') id = 'Fiddlesticks'; // There is some internal inconsistency in Riot's JSON files.
     return new Promise<Champion>(async (resolve, reject) => {
       if (this.cache.has(id) && !force) resolve(this.cache.get(id)!);
-      else if (this.client.version === 'null') reject('Please initialize the client first.');
       else {
         const champs = <{ data: { [key: string]: ChampionData } }>await this._fetchLocalChamp(id).catch(reject);
         const key = Object.keys(champs.data)[0];
@@ -189,26 +185,23 @@ export class ChampionManager implements BaseManager<Champion> {
   async fetchByKeys(keys: number[]): Promise<Collection<string, Champion>> {
     return new Promise(async (resolve, reject) => {
       const result = new Collection<string, Champion>();
-      if (this.client.version === 'null') reject('Please initialize the client first.');
+      const response = await this.client.http.get(
+        this.client.version + '/data/' + this.client.locale + '/championFull.json'
+      );
+      if (response.status !== 200) reject('Unable to fetch the champions data.');
       else {
-        const response = await this.client.http.get(
-          this.client.version + '/data/' + this.client.locale + '/championFull.json'
-        );
-        if (response.status !== 200) reject('Unable to fetch the champions data.');
-        else {
-          const champs = <{ data: { [champ: string]: ChampionData } }>response.data;
-          for (const key of Object.keys(champs.data)) {
-            const champ = champs.data[key];
-            if (keys.some((k) => champ.key === String(k))) {
-              const damage = <SpellDamageData>await this._fetchLocalDamage(champ.id).catch(reject);
-              const meraki = <MerakiChampion>await this._fetchLocalPricing(champ.id).catch(reject);
-              const champion = new Champion(this.client, champs.data[key], damage, meraki);
-              result.set(key, champion);
-              this.cache.set(key, champion);
-            }
+        const champs = <{ data: { [champ: string]: ChampionData } }>response.data;
+        for (const key of Object.keys(champs.data)) {
+          const champ = champs.data[key];
+          if (keys.some((k) => champ.key === String(k))) {
+            const damage = <SpellDamageData>await this._fetchLocalDamage(champ.id).catch(reject);
+            const meraki = <MerakiChampion>await this._fetchLocalPricing(champ.id).catch(reject);
+            const champion = new Champion(this.client, champs.data[key], damage, meraki);
+            result.set(key, champion);
+            this.cache.set(key, champion);
           }
-          resolve(result);
         }
+        resolve(result);
       }
     });
   }

@@ -79,7 +79,6 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
     const force = options?.force ?? false;
     return new Promise<RuneTree>(async (resolve, reject) => {
       if (this.cache.has(key) && !force) resolve(this.cache.get(key)!);
-      else if (this.client.version === 'null') reject('Please initialize the client first.');
       else {
         await this._fetchAll().catch(reject);
         if (this.cache.has(key)) resolve(this.cache.get(key)!);
@@ -98,7 +97,6 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
     return new Promise<Rune>(async (resolve, reject) => {
       const rune = this.cachedRunes.find((r) => r.key === key);
       if (rune && !options.force) resolve(rune!);
-      else if (this.client.version === 'null') reject('Please initialize the client first.');
       else {
         if (!this.cache.size) await this._fetchAll().catch(reject);
         const rune = this.cachedRunes.find((r) => r.key === key);

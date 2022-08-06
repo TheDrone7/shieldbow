@@ -69,7 +69,6 @@ export class ItemManager implements BaseManager<Item> {
     const force = options?.force ?? false;
     return new Promise<Item>(async (resolve, reject) => {
       if (this.cache.has(key) && !force) resolve(this.cache.get(key)!);
-      else if (this.client.version === 'null') reject('Please initialize the client first.');
       else {
         await this._fetchAll();
         if (this.cache.has(key)) resolve(this.cache.get(key)!);
