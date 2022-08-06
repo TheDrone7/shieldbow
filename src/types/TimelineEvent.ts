@@ -18,14 +18,41 @@ export interface PositionData {
  * The data of the damage dealt on a champion during their death on the map.
  */
 export interface DamageDealtData {
+  /**
+   * Whether the damage was dealt by a basic attack.
+   */
   basic: boolean;
+  /**
+   * The amount of magic damage dealt.
+   */
   magicDamage: number;
+  /**
+   * The name of the source of the damage.
+   */
   name: string;
+  /**
+   * The participant that dealt the damage.
+   */
   participantId: number;
+  /**
+   * The amount of physical damage dealt.
+   */
   physicalDamage: number;
+  /**
+   * The name of the spell that was used to deal the damage.
+   */
   spellName: string;
+  /**
+   * The slot of the spell that was used to deal the damage.
+   */
   spellSlot: number;
+  /**
+   * The amount of true damage dealt.
+   */
   trueDamage: number;
+  /**
+   * The source of the damage.
+   */
   type: 'OTHER' | 'TOWER' | 'MINION';
 }
 
@@ -41,7 +68,7 @@ export interface PauseEndEventData extends TimelineEventData {
  * The event data for the skill level up event.
  */
 export interface SkillLevelUpEventData extends TimelineEventData {
-  levelUpType: 'NORMAL';
+  levelUpType: string;
   participantId: number;
   skillSlot: number;
   type: 'SKILL_LEVEL_UP';
@@ -167,6 +194,7 @@ export interface ObjectiveBountyPrestartEventData extends TimelineEventData {
  * The event data for building kill event.
  */
 export interface BuildingKillEventData extends TimelineEventData {
+  assistingParticipantIds?: number[];
   bounty: number;
   buildingType: string;
   killerId: number;
