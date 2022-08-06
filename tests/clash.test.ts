@@ -8,8 +8,7 @@ describe('Test Clash v1 API', () => {
   beforeAll(async () => {
     await client.initialize({
       region: 'euw',
-      cache: false,
-      fetch: false
+      cache: false
     });
     tournaments = await client.clash.fetchAll();
   });

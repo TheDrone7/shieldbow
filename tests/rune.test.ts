@@ -8,8 +8,7 @@ describe('Test runes fetching.', () => {
 
   beforeAll(async () => {
     await client.initialize({
-      cache: false,
-      fetch: false
+      cache: false
     });
     domination = await client.runes.fetch('Domination');
     electrocute = await client.runes.fetchRune('Electrocute');
