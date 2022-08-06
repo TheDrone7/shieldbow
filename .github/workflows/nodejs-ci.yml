@@ -31,5 +31,8 @@ jobs:
     - run: npx eslint "src/**/*.ts" "tests/**/*.ts"
     - run: npm run build --if-present
     - run: npm run test
+    - run: curl -Os https://uploader.codecov.io/latest/linux/codecov
+    - run: chmod +x codecov
+    - run: ./codecov
     env:
       riot_api_key: ${{ secrets.api_key }}
