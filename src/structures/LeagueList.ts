@@ -1,6 +1,6 @@
 import type { Client } from '../client';
 import type { LeagueListData, QueueType, TierType } from '../types';
-import Collection from '@discordjs/collection';
+import { Collection } from '@discordjs/collection';
 import { LeagueEntry } from './LeagueEntry';
 
 /**

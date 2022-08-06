@@ -1,6 +1,6 @@
 import type { BaseManager, FetchOptions, SummonerData } from '../types';
 import type { Client } from '../client';
-import Collection from '@discordjs/collection';
+import { Collection } from '@discordjs/collection';
 import { Account, Summoner } from '../structures';
 
 /**
