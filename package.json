@@ -28,7 +28,7 @@
     "watch": "tsc -w",
     "format": "prettier --write \"src/**/**.ts\" \"tests/**/**.ts\"",
     "lint": "eslint --fix --color \"src/**/**.ts\" \"tests/**/**.ts\"",
-    "format:test": "prettier \"src/**/**.ts\" \"tests/**/**.ts\"",
+    "format:test": "prettier --check \"src/**/**.ts\" \"tests/**/**.ts\"",
     "lint:test": "eslint --color \"src/**/**.ts\" \"tests/**/**.ts\"",
     "pretest": "run-s format:test lint:test build",
     "test": "jest --runInBand",
