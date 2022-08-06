@@ -1,7 +1,7 @@
 import type { Client } from '../client';
 import type { BaseManager, FetchOptions, TournamentData, TournamentPlayerFullData } from '../types';
 import { Tournament, TournamentPlayer, TournamentTeam } from '../structures';
-import Collection from '@discordjs/collection';
+import { Collection } from '@discordjs/collection';
 
 /**
  * A clash manager - to fetch and store clash tournaments and related data.

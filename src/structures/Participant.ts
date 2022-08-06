@@ -2,7 +2,7 @@ import type { Client } from '../client';
 import type { ParticipantData, SummonerData } from '../types';
 import type { Champion } from './Champion';
 import { Bounty } from './Bounty';
-import Collection from '@discordjs/collection';
+import { Collection } from '@discordjs/collection';
 import type { Item } from './Item';
 import { Summoner } from './Summoner';
 import type { SummonerSpell } from './SummonerSpell';
@@ -576,7 +576,7 @@ export class Participant {
     this.dragonKills = data.dragonKills;
 
     const summonerData: SummonerData = {
-      accountId: 'null',
+      accountId: undefined!,
       id: data.summonerId,
       name: data.summonerName,
       profileIconId: data.profileIcon,

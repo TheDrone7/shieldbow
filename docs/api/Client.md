@@ -112,6 +112,16 @@ The axios instance that handles all the CDN requests being made.
 
 ---
 
+#### initialized
+
+Is this client initialized.
+
+
+
+**Type**: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
+
+---
+
 #### items
 
 The default items manager used by the client.

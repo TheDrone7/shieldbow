@@ -1,6 +1,6 @@
 import type { Client } from '../client';
 import type { GameMap, GameMode, GameType, MatchData, Queue, Region } from '../types';
-import Collection from '@discordjs/collection';
+import { Collection } from '@discordjs/collection';
 import { Team } from './Team';
 import type { MatchTimeline } from './MatchTimeline';
 

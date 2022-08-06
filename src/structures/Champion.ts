@@ -10,7 +10,7 @@ import type {
   ChampionPricing
 } from '../types';
 import type { Client } from '../client';
-import Collection from '@discordjs/collection';
+import { Collection } from '@discordjs/collection';
 import { ChampionStat, ChampionSkin, ChampionSpell } from './index';
 
 /**

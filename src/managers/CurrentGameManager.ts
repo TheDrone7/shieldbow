@@ -1,7 +1,7 @@
 import type { BaseManager, CurrentGameData, FetchOptions } from '../types';
 import type { Client } from '../client';
 import { CurrentGame } from '../structures';
-import Collection from '@discordjs/collection';
+import { Collection } from '@discordjs/collection';
 
 /**
  * A current game manager - to fetch and manage the live games.

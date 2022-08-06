@@ -1,7 +1,7 @@
 import type { Client } from '../client';
 import type { ItemData, GameMap } from '../types';
 import type { Champion } from './index';
-import type Collection from '@discordjs/collection';
+import type { Collection } from '@discordjs/collection';
 
 /**
  * The item's gold value information.

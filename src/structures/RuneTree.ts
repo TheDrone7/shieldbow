@@ -1,4 +1,4 @@
-import Collection from '@discordjs/collection';
+import { Collection } from '@discordjs/collection';
 import { Rune } from './Rune';
 import type { Client } from '../client';
 import type { RuneTreeData } from '../types';

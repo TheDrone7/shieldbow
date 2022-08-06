@@ -1,6 +1,6 @@
 import type { BaseManager, ChampionMasteryData, FetchOptions } from '../types';
 import type { Client } from '../client';
-import Collection from '@discordjs/collection';
+import { Collection } from '@discordjs/collection';
 import { Champion, ChampionMastery, Summoner } from '../structures';
 
 /**
