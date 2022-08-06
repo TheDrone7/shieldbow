@@ -52,9 +52,9 @@ export class Client {
     this._cdnBase = 'https://ddragon.leagueoflegends.com/cdn/';
     this._versions = 'https://ddragon.leagueoflegends.com/api/versions.json';
     this._initialized = false;
-    this._version = null!;
+    this._version = undefined!;
     this._region = 'na';
-    this._patch = null!;
+    this._patch = undefined!;
     this._locale = 'en_US';
     this._cacheEnabled = true;
     this._cacheRoot = 'data';
@@ -90,11 +90,11 @@ export class Client {
     // Parse the configuration
     const region = options?.region || 'na';
     this._region = region;
-    const version = options?.version || null;
+    const version = options?.version || undefined;
     this._version = version!;
-    this._patch = version !== null ? version.match(patchRegex)!.shift()! : null!;
-    const language = options?.locale || null;
-    if (language !== null) this._locale = language;
+    this._patch = version !== undefined ? version.match(patchRegex)!.shift()! : undefined!;
+    const language = options?.locale || undefined;
+    if (language !== undefined) this._locale = language;
     if (typeof options?.cache === 'boolean') options.cache = { enable: options.cache };
     if (typeof options?.fetch === 'boolean')
       options.fetch = {
@@ -108,7 +108,7 @@ export class Client {
     const cacheRoot = options?.cache?.localRoot || 'data';
 
     // Update the client configuration.
-    if (version === null || language === null) {
+    if (version === undefined || language === undefined) {
       const response = await axios
         .get(region ? `https://ddragon.leagueoflegends.com/realms/${region}.json` : this._versions)
         .catch(() => {});
@@ -117,12 +117,12 @@ export class Client {
       else {
         const result = <string[] | { v: string; l: Locales }>response.data;
         if (Array.isArray(result)) {
-          this._version = version !== null ? version : result[0];
+          this._version = version !== undefined ? version : result[0];
           this._patch = this._version.match(patchRegex)!.shift()!;
           this._locale = 'en_US';
         } else {
-          this._version = version !== null ? version : result.v;
-          this._locale = language !== null ? language : result.l;
+          this._version = version !== undefined ? version : result.v;
+          this._locale = language !== undefined ? language : result.l;
           this._patch = this._version.match(patchRegex)!.shift()!;
         }
       }
