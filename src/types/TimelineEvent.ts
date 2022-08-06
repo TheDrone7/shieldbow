@@ -215,6 +215,24 @@ export interface WardKillEventData extends TimelineEventData {
 }
 
 /**
+ * The event data for the dragon soul given event.
+ */
+export interface DragonSoulGivenEventData extends TimelineEventData {
+  name: 'Mountain' | 'Ocean' | 'Infernal' | 'Hextech' | 'Cloud';
+  teamId: 100 | 200;
+  type: 'DRAGON_SOUL_GIVEN';
+}
+
+/**
+ * The event data for the champion transform event.
+ */
+export interface ChampionTransformEventData extends TimelineEventData {
+  participantId: number;
+  transformType: 'ASSASSIN' | 'SLAYER';
+  type: 'CHAMPION_TRANSFORM';
+}
+
+/**
  * The event data for the game end event.
  */
 export interface GameEndEventData extends TimelineEventData {

@@ -106,7 +106,9 @@ export type {
   ItemUndoEventData,
   ItemSoldEventData,
   TurretPlateDestroyedEventData,
-  ObjectiveBountyPrestartEventData
+  ObjectiveBountyPrestartEventData,
+  ChampionTransformEventData,
+  DragonSoulGivenEventData
 } from './TimelineEvent';
 
 export type { ChampionData, MerakiChampion, ChampionRating, ChampionPassive, ChampionPricing } from './Champion';

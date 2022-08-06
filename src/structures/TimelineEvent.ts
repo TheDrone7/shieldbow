@@ -16,7 +16,9 @@ import type {
   TimelineEventData,
   TurretPlateDestroyedEventData,
   WardKillEventData,
-  WardPlacedEventData
+  WardPlacedEventData,
+  DragonSoulGivenEventData,
+  ChampionTransformEventData
 } from '../types';
 import { Position } from './Position';
 import { Bounty } from './Bounty';
@@ -286,6 +288,35 @@ export class WardKillEvent extends TimelineEvent {
     this.type = 'WARD_KILL';
     this.wardType = data.wardType;
     this.killerId = data.killerId;
+  }
+}
+
+export class DragonSoulGivenEvent {
+  readonly type: 'DRAGON_SOUL_GIVEN';
+  name: 'Mountain' | 'Ocean' | 'Infernal' | 'Hextech' | 'Cloud';
+  teamId: 100 | 200;
+
+  constructor(data: DragonSoulGivenEventData) {
+    this.type = 'DRAGON_SOUL_GIVEN';
+    this.name = data.name;
+    this.teamId = data.teamId;
+  }
+
+  get team() {
+    return this.teamId === 100 ? 'blue' : 'red';
+  }
+}
+
+export class ChampionTransformEvent extends TimelineEvent {
+  readonly type: 'CHAMPION_TRANSFORM';
+  readonly participantId: number;
+  readonly transformType: 'ASSASSIN' | 'SLAYER';
+
+  constructor(data: ChampionTransformEventData) {
+    super(data);
+    this.type = 'CHAMPION_TRANSFORM';
+    this.participantId = data.participantId;
+    this.transformType = data.transformType;
   }
 }
 
