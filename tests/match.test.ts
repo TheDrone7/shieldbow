@@ -34,6 +34,11 @@ describe('Test match v5 API', () => {
     expect(matchTimeline).toBeDefined();
   });
 
+  test('Check match timeline properties', () => {
+    expect(matchTimeline.matchId).toBe(matches[0]);
+    expect(matchTimeline.participantIds.length).toBe(10);
+  });
+
   test('Check match participants', () => {
     const blueTeam = match.teams.get('blue')!.participants;
     const redTeam = match.teams.get('red')!.participants;
