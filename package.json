@@ -28,13 +28,18 @@
     "watch": "tsc -w",
     "format": "prettier --write \"src/**/**.ts\" \"tests/**/**.ts\"",
     "lint": "eslint --fix --color \"src/**/**.ts\" \"tests/**/**.ts\"",
-    "pretest": "run-s format lint build",
+    "format:test": "prettier \"src/**/**.ts\" \"tests/**/**.ts\"",
+    "lint:test": "eslint --color \"src/**/**.ts\" \"tests/**/**.ts\"",
+    "pretest": "run-s format:test lint:test build",
     "test": "jest --runInBand",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
     "extract": "api-extractor run",
     "document": "tsc docs/generator.ts --outDir docs/ && node docs/generator.js",
     "docs:gen": "run-s build extract document"
+  },
+  "pre-commit": {
+    "run": "run-s format lint build"
   },
   "repository": {
     "type": "git",
