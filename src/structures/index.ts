@@ -39,3 +39,25 @@ export { MatchTimeline } from './MatchTimeline';
 export { TimelineFrame } from './TimelineFrame';
 export { ParticipantFrame, ParticipantFrameDamageStats, ParticipantFrameChampionStats } from './ParticipantFrame';
 export { Position } from './Position';
+export {
+  TimelineEvent,
+  EliteMonsterKillEvent,
+  BuildingKillEvent,
+  ChampionTransformEvent,
+  ChampionKillEvent,
+  WardKillEvent,
+  DragonSoulGivenEvent,
+  GameEndEvent,
+  ChampionSpecialKillEvent,
+  ItemDestroyedEvent,
+  ItemPurchasedEvent,
+  ItemSoldEvent,
+  ItemUndoEvent,
+  PauseEndEvent,
+  LevelUpEvent,
+  SkillLevelUpEvent,
+  ObjectiveBountyPrestartEvent,
+  TimelineEventFactory,
+  WardPlacedEvent,
+  TurretPlateDestroyedEvent
+} from './TimelineEvent';

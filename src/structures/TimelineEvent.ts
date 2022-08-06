@@ -29,9 +29,22 @@ import type { Item } from './Item';
  * A representation of an event in a match timeline.
  */
 export class TimelineEvent {
+  /**
+   * The timestamp (in milliseconds) of the event since the start of the game.
+   */
   readonly timestamp: number;
+  /**
+   * The type of event.
+   */
   readonly type: string;
+  /**
+   * The raw data of this event - in case the event is not defined in the library.
+   *
+   * If you ever encounter an event where you need to access this, please create a GitHub issue as well
+   * with the event type and the raw data at https://github.com/TheDrone7/shieldbow/issues.
+   */
   readonly rawData: any;
+
   constructor(data: TimelineEventData) {
     this.timestamp = data.timestamp;
     this.type = data.type;
@@ -39,8 +52,19 @@ export class TimelineEvent {
   }
 }
 
+/**
+ * A representation of the Pause end event.
+ *
+ * Takes place when a game pause ends or when the game first begins after the loading screen.
+ */
 export class PauseEndEvent extends TimelineEvent {
+  /**
+   * The type of the event;
+   */
   readonly type: 'PAUSE_END';
+  /**
+   * The real timestamp - the actual time when this pause ended.
+   */
   readonly realTimestamp: number;
   constructor(data: PauseEndEventData) {
     super(data);
@@ -48,15 +72,33 @@ export class PauseEndEvent extends TimelineEvent {
     this.realTimestamp = data.realTimestamp;
   }
 
+  /**
+   * The real time when the pause ended.
+   */
   get realTime(): Date {
     return new Date(this.realTimestamp);
   }
 }
 
+/**
+ * A representation of the Skill Level Up event.
+ */
 export class SkillLevelUpEvent extends TimelineEvent {
+  /**
+   * The type of the event.
+   */
   readonly type: 'SKILL_LEVEL_UP';
+  /**
+   * The type of the level up - usually 'NORMAL'.
+   */
   readonly levelUpType: string;
+  /**
+   * The participant ID of the participant who leveled up.
+   */
   readonly participantId: number;
+  /**
+   * The skill slot that was leveled up - 1/2/3/4.
+   */
   readonly skillSlot: number;
 
   constructor(data: SkillLevelUpEventData) {
@@ -67,19 +109,37 @@ export class SkillLevelUpEvent extends TimelineEvent {
     this.skillSlot = data.skillSlot;
   }
 
+  /**
+   * The skill slot that was leveled up - Q/W/E/R.
+   */
   get skillSlotLetter(): 'Q' | 'W' | 'E' | 'R' {
     const slots = ['Q', 'W', 'E', 'R'] as const;
     return slots[this.skillSlot - 1];
   }
 
+  /**
+   * Whether the leveled up skill was the ultimate skill of the champion.
+   */
   get isUltimate(): boolean {
     return this.skillSlot === 4;
   }
 }
 
+/**
+ * A representation of the Item Purchased event.
+ */
 export class ItemPurchasedEvent extends TimelineEvent {
+  /**
+   * The type of the event.
+   */
   readonly type: 'ITEM_PURCHASED';
+  /**
+   * The item that was purchased.
+   */
   readonly item: Item;
+  /**
+   * The participant who purchased the item.
+   */
   readonly participantId: number;
 
   constructor(client: Client, data: ItemPurchasedEventData) {
@@ -90,11 +150,29 @@ export class ItemPurchasedEvent extends TimelineEvent {
   }
 }
 
+/**
+ * A representation of the Item Undo event.
+ */
 export class ItemUndoEvent extends TimelineEvent {
+  /**
+   * The type of the event.
+   */
   readonly type: 'ITEM_UNDO';
+  /**
+   * The item in the item slot after the undo.
+   */
   readonly after: Item;
+  /**
+   * The item in the item slot before the undo.
+   */
   readonly before: Item;
+  /**
+   * The amount of gold that was gained by the undo.
+   */
   readonly goldGain: number;
+  /**
+   * The participant who undid the item.
+   */
   readonly participantId: number;
 
   constructor(client: Client, data: ItemUndoEventData) {
@@ -107,9 +185,21 @@ export class ItemUndoEvent extends TimelineEvent {
   }
 }
 
+/**
+ * A representation of the Ward Placed event.
+ */
 export class WardPlacedEvent extends TimelineEvent {
+  /**
+   * The type of the event.
+   */
   readonly type: 'WARD_PLACED';
+  /**
+   * The ID of the participant who placed the ward.
+   */
   readonly creatorId: number;
+  /**
+   * The type of the ward that was placed.
+   */
   readonly wardType: string;
 
   constructor(data: WardPlacedEventData) {
@@ -120,9 +210,21 @@ export class WardPlacedEvent extends TimelineEvent {
   }
 }
 
+/**
+ * A representation of the Item destroyed event.
+ */
 export class ItemDestroyedEvent extends TimelineEvent {
+  /**
+   * The type of the event.
+   */
   readonly type: 'ITEM_DESTROYED';
+  /**
+   * The destroyed item.
+   */
   readonly item: Item;
+  /**
+   * The ID of the participant that destroyed the item.
+   */
   readonly participantId: number;
   constructor(client: Client, data: ItemDestroyedEventData) {
     super(data);
@@ -132,9 +234,21 @@ export class ItemDestroyedEvent extends TimelineEvent {
   }
 }
 
+/**
+ * A representation of the Level up event.
+ */
 export class LevelUpEvent extends TimelineEvent {
+  /**
+   * The type of the event.
+   */
   readonly type: 'LEVEL_UP';
+  /**
+   * The ID of the participant who leveled up.
+   */
   readonly participantId: number;
+  /**
+   * The level the participant reached.
+   */
   readonly level: number;
   constructor(data: LevelUpEventData) {
     super(data);
@@ -144,16 +258,49 @@ export class LevelUpEvent extends TimelineEvent {
   }
 }
 
+/**
+ * The representation of the Champion Kill event.
+ */
 export class ChampionKillEvent extends TimelineEvent {
+  /**
+   * The participants who assisted in the kill.
+   */
   readonly assistingParticipantIds: number[];
+  /**
+   * The bounty achieved by the killer.
+   */
   readonly bounty: Bounty;
+  /**
+   * The kill streak length of the killer.
+   */
   readonly killStreakLength: number;
+  /**
+   * The ID of the participant who landed the killing blow.
+   */
   readonly killerId: number;
+  /**
+   * The position at which the kill took place.
+   */
   readonly position: Position;
+  /**
+   * The damage dealt by the victim.
+   */
   readonly victimDamageDealt: DamageDealtData[];
+  /**
+   * The damage dealt to the victim.
+   */
   readonly victimDamageReceived: DamageDealtData[];
+  /**
+   * The ID of the participant that died.
+   */
   readonly victimId: number;
+  /**
+   * The bounty earned by the killer.
+   */
   readonly shutdownBounty: number;
+  /**
+   * The type of the event.
+   */
   readonly type: 'CHAMPION_KILL';
 
   constructor(data: ChampionKillEventData) {
@@ -171,11 +318,27 @@ export class ChampionKillEvent extends TimelineEvent {
   }
 }
 
+/**
+ * A representation of the Champion special kill event.
+ */
 export class ChampionSpecialKillEvent extends TimelineEvent {
+  /**
+   * The ID of the participant that performed the special kill.
+   */
   readonly killerId: number;
+  /**
+   * The position at which the special kill took place.
+   */
   readonly position: Position;
+  /**
+   * The type of the special kill.
+   */
   readonly killType: string;
+  /**
+   * The type of the event.
+   */
   readonly type: 'CHAMPION_SPECIAL_KILL';
+
   constructor(data: ChampionSpecialKillEventData) {
     super(data);
     this.type = 'CHAMPION_SPECIAL_KILL';
@@ -185,12 +348,31 @@ export class ChampionSpecialKillEvent extends TimelineEvent {
   }
 }
 
+/**
+ * A representation of the Turret place destroyed event.
+ */
 export class TurretPlateDestroyedEvent extends TimelineEvent {
+  /**
+   * The type of the event.
+   */
   readonly type: 'TURRET_PLATE_DESTROYED';
+  /**
+   * The ID of the participant that destroyed the turret plating.
+   */
   readonly killerId: number;
+  /**
+   * The position at which the turret plating was destroyed.
+   */
   readonly position: Position;
+  /**
+   * The lane of the turret plating that was destroyed.
+   */
   readonly laneType: string;
-  readonly teamId: number;
+  /**
+   * The ID of the team that destroyed the turret plating.
+   */
+  readonly teamId: 100 | 200;
+
   constructor(data: TurretPlateDestroyedEventData) {
     super(data);
     this.type = 'TURRET_PLATE_DESTROYED';
@@ -200,20 +382,55 @@ export class TurretPlateDestroyedEvent extends TimelineEvent {
     this.teamId = data.teamId;
   }
 
+  /**
+   * The team that destroyed the turret plating.
+   */
   get team() {
     return this.teamId === 100 ? 'blue' : 'red';
   }
 }
 
+/**
+ * A representation of the Elite monster kill event.
+ */
 export class EliteMonsterKillEvent extends TimelineEvent {
+  /**
+   * The type of the event.
+   */
   readonly type: 'ELITE_MONSTER_KILL';
+  /**
+   * The IDs of the participants that assisted in the kill.
+   */
   readonly assistingParticipants: number[];
+  /**
+   * The amount of bounty earned by the killing team (objective bounty).
+   */
   readonly bounty: number;
+  /**
+   * The ID of the participant that landed the killing blow.
+   */
   readonly killerId: number;
+  /**
+   * The ID of the team that killed the monster.
+   */
   readonly killerTeamId: number;
+  /**
+   * The position at which the monster was killed.
+   */
   readonly position: Position;
+  /**
+   * The type of the monster that was killed.
+   *
+   * Eg: 'DRAGON', 'BARON NASHOR', etc.
+   */
   readonly monsterType: string;
+  /**
+   * The subtype of the monster that was killed.
+   *
+   * Eg: 'OCEAN', 'CLOUD', etc.
+   */
   readonly monsterSubType: string;
+
   constructor(data: EliteMonsterKillEventData) {
     super(data);
     this.type = 'ELITE_MONSTER_KILL';
@@ -227,10 +444,23 @@ export class EliteMonsterKillEvent extends TimelineEvent {
   }
 }
 
+/**
+ * A representation of the item sold event.
+ */
 export class ItemSoldEvent extends TimelineEvent {
+  /**
+   * The type of the event.
+   */
   readonly type: 'ITEM_SOLD';
+  /**
+   * The item that was sold.
+   */
   readonly item: Item;
+  /**
+   * The ID of the participant that sold the item.
+   */
   readonly participantId: number;
+
   constructor(client: Client, data: ItemSoldEventData) {
     super(data);
     this.type = 'ITEM_SOLD';
@@ -239,32 +469,72 @@ export class ItemSoldEvent extends TimelineEvent {
   }
 }
 
+/**
+ * A representation of the objective bounty prestart event.
+ */
 export class ObjectiveBountyPrestartEvent extends TimelineEvent {
+  /**
+   * The type of the event.
+   */
   readonly type: 'OBJECTIVE_BOUNTY_PRESTART';
+  /**
+   * The timestamp at which the objective bounty will actually start.
+   */
   readonly actualStartTime: number;
+  /**
+   * The ID of the team that is going to get the objective bounty.
+   */
   readonly teamId: number;
+
   constructor(data: ObjectiveBountyPrestartEventData) {
     super(data);
     this.type = 'OBJECTIVE_BOUNTY_PRESTART';
     this.actualStartTime = data.actualStartTime;
     this.teamId = data.teamId;
   }
-
-  get actualStartAt() {
-    return new Date(this.actualStartTime);
-  }
 }
 
+/**
+ * A representation of the building kill event.
+ */
 export class BuildingKillEvent extends TimelineEvent {
+  /**
+   * The type of the event.
+   */
   readonly type: 'BUILDING_KILL';
+  /**
+   * The IDs of the participants that assisted in destroying the building.
+   */
   readonly assistingParticipantIds: number[];
+  /**
+   * The bounty earned by destroying the building.
+   */
   readonly bounty: number;
+  /**
+   * The type of the building.
+   */
   readonly buildingType: string;
+  /**
+   * The ID of the participant that destroyed the building.
+   */
   readonly killerId: number;
+  /**
+   * The lane where the building was destroyed.
+   */
   readonly laneType: string;
+  /**
+   * The position at which the building was destroyed.
+   */
   readonly position: Position;
+  /**
+   * The ID of the team that destroyed the building.
+   */
   readonly teamId: number;
+  /**
+   * The type of the tower that was destroyed (if it was a tower).
+   */
   readonly towerType?: string;
+
   constructor(data: BuildingKillEventData) {
     super(data);
     this.type = 'BUILDING_KILL';
@@ -279,10 +549,23 @@ export class BuildingKillEvent extends TimelineEvent {
   }
 }
 
+/**
+ * A representation of the ward kill event.
+ */
 export class WardKillEvent extends TimelineEvent {
+  /**
+   * The type of the event.
+   */
   readonly type: 'WARD_KILL';
+  /**
+   * The type of the ward that was killed.
+   */
   readonly wardType: string;
+  /**
+   * The ID of the participant that killed the ward.
+   */
   readonly killerId: number;
+
   constructor(data: WardKillEventData) {
     super(data);
     this.type = 'WARD_KILL';
@@ -291,10 +574,22 @@ export class WardKillEvent extends TimelineEvent {
   }
 }
 
+/**
+ * A representation of the dragon soul given event.
+ */
 export class DragonSoulGivenEvent {
+  /**
+   * The type of the event.
+   */
   readonly type: 'DRAGON_SOUL_GIVEN';
-  name: 'Mountain' | 'Ocean' | 'Infernal' | 'Hextech' | 'Cloud';
-  teamId: 100 | 200;
+  /**
+   * The name of the dragon soul that was earned.
+   */
+  readonly name: 'Mountain' | 'Ocean' | 'Infernal' | 'Hextech' | 'Cloud';
+  /**
+   * The ID of the team that received the dragon soul.
+   */
+  readonly teamId: 100 | 200;
 
   constructor(data: DragonSoulGivenEventData) {
     this.type = 'DRAGON_SOUL_GIVEN';
@@ -302,14 +597,31 @@ export class DragonSoulGivenEvent {
     this.teamId = data.teamId;
   }
 
+  /**
+   * The team that received the dragon soul.
+   */
   get team() {
     return this.teamId === 100 ? 'blue' : 'red';
   }
 }
 
+/**
+ * A representation of the champion transform event.
+ *
+ * As of right now, this only applies to Kayn's transformations.
+ */
 export class ChampionTransformEvent extends TimelineEvent {
+  /**
+   * The type of the event.
+   */
   readonly type: 'CHAMPION_TRANSFORM';
+  /**
+   * The ID of the participant that transformed.
+   */
   readonly participantId: number;
+  /**
+   * The new form that the participant took.
+   */
   readonly transformType: 'ASSASSIN' | 'SLAYER';
 
   constructor(data: ChampionTransformEventData) {
@@ -320,11 +632,27 @@ export class ChampionTransformEvent extends TimelineEvent {
   }
 }
 
+/**
+ * A representation of the game end event.
+ */
 export class GameEndEvent extends TimelineEvent {
+  /**
+   * The type of the event.
+   */
   readonly type: 'GAME_END';
+  /**
+   * The ID of the game.
+   */
   readonly gameId: number;
+  /**
+   * The real world timestamp at which the game ended.
+   */
   readonly realTimestamp: number;
+  /**
+   * The ID of the winning team.
+   */
   readonly winningTeamId: 100 | 200;
+
   constructor(data: GameEndEventData) {
     super(data);
     this.type = 'GAME_END';
@@ -333,16 +661,30 @@ export class GameEndEvent extends TimelineEvent {
     this.winningTeamId = data.winningTeam;
   }
 
+  /**
+   * The winning team.
+   */
   get winningTeam() {
     return this.winningTeamId === 100 ? 'blue' : 'red';
   }
 
+  /**
+   * The real time at which the game ended.
+   */
   get realTime() {
     return new Date(this.realTimestamp);
   }
 }
 
+/**
+ * The timeline event factory - to create a timeline event from a raw data object.
+ */
 export class TimelineEventFactory {
+  /**
+   * Creates a timeline event from the given data.
+   * @param client - The client that fetched the event.
+   * @param data - The raw data.
+   */
   static create(client: Client, data: TimelineEventData): TimelineEvent {
     switch (data.type) {
       case 'PAUSE_END':

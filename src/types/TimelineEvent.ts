@@ -154,7 +154,7 @@ export interface TurretPlateDestroyedEventData extends TimelineEventData {
   killerId: number;
   laneType: string;
   position: PositionData;
-  teamId: number;
+  teamId: 100 | 200;
   type: 'TURRET_PLATE_DESTROYED';
 }
 
@@ -186,7 +186,7 @@ export interface ItemSoldEventData extends TimelineEventData {
  */
 export interface ObjectiveBountyPrestartEventData extends TimelineEventData {
   actualStartTime: number;
-  teamId: number;
+  teamId: 100 | 200;
   type: 'OBJECTIVE_BOUNTY_PRESTART';
 }
 
@@ -200,7 +200,7 @@ export interface BuildingKillEventData extends TimelineEventData {
   killerId: number;
   laneType: string;
   position: PositionData;
-  teamId: number;
+  teamId: 100 | 200;
   towerType?: string;
   type: 'BUILDING_KILL';
 }
