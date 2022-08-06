@@ -54,4 +54,9 @@ describe('Test champion fetching.', () => {
       'https://raw.communitydragon.org/pbe/plugins/rcp-be-lol-game-data/global/default/assets/characters/kayn/skins/base/kaynloadscreen.jpg'
     );
   });
+
+  test('Check champion caching', async () => {
+    expect(client.champions.cache.firstKey()).toBe(kayn.name);
+    expect(client.champions.cache.first()!.name).toBe(kayn.name);
+  });
 });

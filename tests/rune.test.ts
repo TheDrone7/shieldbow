@@ -25,4 +25,21 @@ describe('Test runes fetching.', () => {
     );
     expect(electrocute.details).toContain('Hitting a champion with 3 separate attacks or abilities');
   });
+
+  test('Check runes caching', async () => {
+    expect(client.runes.cache.firstKey()).toBe(domination.name);
+    expect(client.runes.cache.first()!.name).toBe(domination.name);
+  });
+
+  test('Check runes pre-fetching', async () => {
+    const client2 = new Client(process.env.riot_api_key!);
+    await client2.initialize({
+      cache: false,
+      fetch: {
+        runes: true
+      }
+    });
+    expect(client2.runes.cache.size).toBeGreaterThan(1);
+    expect(client2.runes.cachedRunes.length).toBeGreaterThan(50);
+  });
 });

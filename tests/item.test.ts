@@ -30,4 +30,20 @@ describe('Test item fetching.', () => {
   test('Check item details', () => {
     expect(boots.details).toContain('25 Move Speed');
   });
+
+  test('Check items caching', async () => {
+    expect(client.items.cache.firstKey()).toBe(boots.id);
+    expect(client.items.cache.first()?.name).toBe(boots.name);
+  });
+
+  test('Check items pre-fetching', async () => {
+    const client2 = new Client(process.env.riot_api_key!);
+    await client2.initialize({
+      cache: false,
+      fetch: {
+        items: true
+      }
+    });
+    expect(client2.items.cache.size).toBeGreaterThan(100);
+  });
 });
