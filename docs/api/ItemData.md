@@ -75,7 +75,7 @@ export interface ItemData
 
 
 
-**Type**: [ImageData](/api/ImageData.md)
+**Type**: ImageData
 
 ---
 

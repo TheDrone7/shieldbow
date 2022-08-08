@@ -145,7 +145,7 @@ export class ChampionManager implements BaseManager<Champion> {
   /**
    * Find a champion by their 3-digit key.
    *
-   * @deprecated Use {@link .fetchByKey} instead.
+   * @deprecated Use {@link ChampionManager.fetchByKey | fetchByKey} instead.
    * @param key - The 3-digit key of the champion to look for.
    */
   async findByKey(key: number) {
@@ -155,7 +155,7 @@ export class ChampionManager implements BaseManager<Champion> {
   /**
    * Find a champion by their name.
    *
-   * @deprecated Use {@link .fetchByName} instead.
+   * @deprecated Use {@link ChampionManager.fetchByName | fetchByName} instead.
    * @param name - The name of the champion to look for.
    */
   async findByName(name: string) {
@@ -229,7 +229,7 @@ export class ChampionManager implements BaseManager<Champion> {
    * Fetch and cache champions by their unique 3-digit keys.
    *
    * This is mostly for internal use while fetching match (or live match) data to improve performance.
-   * Ideally, any user would be using {@link .fetch}.
+   * Ideally, any user would be using {@link ChampionManager.fetch | fetch}.
    *
    * @param keys - The keys of the champions to fetch.
    */
