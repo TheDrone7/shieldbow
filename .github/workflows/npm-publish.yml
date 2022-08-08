@@ -18,7 +18,7 @@ jobs:
       - run: npm ci
       - run: npm test
     env:
-      riot_api_key: ${{ secrets.api_key }}
+      RIOT_API_KEY: ${{ secrets.api_key }}
 
   publish-npm:
     needs: build
