@@ -143,28 +143,6 @@ export class ChampionManager implements BaseManager<Champion> {
   }
 
   /**
-   * Find a champion by their 3-digit key.
-   *
-   * @param key - The 3-digit key of the champion to look for.
-   */
-  async findByKey(key: number) {
-    if (!this.cache.size) await this.fetchAll();
-    return this.cache.find((champ) => champ.key === key);
-  }
-
-  /**
-   * Find a champion by their name (instead of ID, which is very similar but not the same as the name).
-   * The search is case-insensitive.
-   * The special characters are NOT ignored.
-   *
-   * @param name - The name of the champion to look for.
-   */
-  async findByName(name: string) {
-    if (!this.cache.size) await this.fetchAll();
-    return this.cache.find((champ) => champ.name.toLowerCase().includes(name.toLowerCase()));
-  }
-
-  /**
    * Fetch and cache champion by their unique 3-digit keys.
    *
    * This is mostly for internal use while fetching match (or live match) data to improve performance.
