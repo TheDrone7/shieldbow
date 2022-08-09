@@ -1,4 +1,4 @@
-import { unlinkSync, readdirSync, writeFileSync } from "fs";
+import { unlinkSync, readdirSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import {
   ApiModel,
@@ -9,26 +9,47 @@ import {
   ApiMethod,
   ApiProperty
 } from '@microsoft/api-extractor-model';
-import { DocNode, DocPlainText, DocSoftBreak, DocParagraph, DocEscapedText, DocCodeSpan, DocLinkTag } from '@microsoft/tsdoc';
+import {
+  DocNode,
+  DocPlainText,
+  DocSoftBreak,
+  DocParagraph,
+  DocEscapedText,
+  DocCodeSpan,
+  DocLinkTag
+} from '@microsoft/tsdoc';
 
 const builtins = {
   '[]': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array',
-  'BigInt': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt',
-  'Boolean': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean',
-  'Date': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date',
-  'Error': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error',
-  'Map': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map',
-  'Number': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number',
-  'String': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String',
-  'Object': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object',
-  'Undefined': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined',
-  'Promise': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise',
-  'Collection': 'https://discord.js.org/#/docs/collection/stable/class/Collection'
+  BigInt: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt',
+  Boolean: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean',
+  Date: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date',
+  Error: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error',
+  Map: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map',
+  Number: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number',
+  String: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String',
+  Object: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object',
+  Undefined: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined',
+  Promise: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise',
+  Collection: 'https://discord.js.org/#/docs/collection/stable/class/Collection'
 };
+
+const pathToApi = join(__dirname, '.vuepress', '.temp', 'api-reference', 'shieldbow.api.json');
+const pathToDocs = join(__dirname, 'api');
+
+const apiModel = new ApiModel();
+apiModel.loadPackage(pathToApi);
+const api = apiModel.packages[0].members[0] as ApiEntryPoint;
+const entries = api.members.map((member) => member.displayName);
+const classes = <ApiClass[]>api.members.filter((member) => member.kind === 'Class');
+const functions = <ApiFunction[]>api.members.filter((member) => member.kind === 'Function');
+const interfaces = <ApiFunction[]>api.members.filter((member) => member.kind === 'Interface');
+const variables = <ApiFunction[]>api.members.filter((member) => member.kind === 'Variable');
+const types = <ApiFunction[]>api.members.filter((member) => member.kind === 'TypeAlias');
 
 const parseSummary = (summary: DocNode) => {
   let text = '';
-  for (const node of summary.getChildNodes()) {
+  for (const node of summary.getChildNodes())
     if (node instanceof DocPlainText) text += node.text;
     else if (node instanceof DocSoftBreak) text += '\n';
     else if (node instanceof DocParagraph) text += parseSummary(node) + '\n';
@@ -37,14 +58,11 @@ const parseSummary = (summary: DocNode) => {
     else if (node instanceof DocLinkTag) {
       const d = node.codeDestination?.memberReferences.map((r) => r.memberIdentifier?.identifier);
       const d2 = node.urlDestination;
-      const link = d
-        ? `/api/${d[0]}.md#${d[1]}`
-        : d2;
+      const link = d ? `/api/${d[0]}.md#${d[1]}` : d2;
       const linkText = node.linkText || d?.join('.') || d2;
       text += `[${linkText}](${link})`;
-    }
-    else console.log(node.kind);
-  }
+    } else console.log(node.kind);
+
   return text;
 };
 
@@ -57,31 +75,18 @@ const parseTypeString = (type: string) => {
   type = type.replace(/\n/g, ' ');
   for (const [key, value] of Object.entries(builtins)) {
     const link = `[${key}](${value})`;
-    type = type.replace(new RegExp(`(?<=(< )|^|(, )|(\\\| ))${key}`, 'ig'), link);
+    type = type.replace(new RegExp(`(?<=(< )|^|(, )|(\\| ))${key}`, 'ig'), link);
   }
   for (const entry of entries.sort((a, b) => b.length - a.length))
-    type = type.replace(new RegExp(`(?<=(< )|^|(, )|(\\\| ))${entry}`, 'g'), linkTo(entry));
+    type = type.replace(new RegExp(`(?<=(< )|^|(, )|(\\| ))${entry}`, 'g'), linkTo(entry));
   return type;
-}
-
-
-const pathToApi = join(__dirname, '.vuepress', '.temp', 'api-reference', 'shieldbow.api.json');
-const pathToDocs = join(__dirname, 'api');
+};
 
 // Delete the already existing docs.
 console.info('Deleting the existing docs...');
 const files = readdirSync(pathToDocs);
 files.forEach((file) => unlinkSync(join(pathToDocs, file)));
 
-const apiModel = new ApiModel();
-apiModel.loadPackage(pathToApi);
-const api = apiModel.packages[0].members[0] as ApiEntryPoint;
-const entries = api.members.map((member) => member.displayName);
-const classes = <ApiClass[]>api.members.filter((member) => member.kind === 'Class');
-const functions = <ApiFunction[]>api.members.filter((member) => member.kind === 'Function');
-const interfaces = <ApiFunction[]>api.members.filter((member) => member.kind === 'Interface');
-const variables = <ApiFunction[]>api.members.filter((member) => member.kind === 'Variable');
-const types = <ApiFunction[]>api.members.filter((member) => member.kind === 'TypeAlias');
 let index = `# API Reference\n\n`;
 
 console.info('Processing the classes...');
@@ -91,9 +96,7 @@ index += '| Class | Description |\n';
 index += '| ----- | ----------- |\n';
 
 for (const cls of classes) {
-  const summary = cls.tsdocComment
-    ? parseSummary(cls.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd()
-    : '';
+  const summary = cls.tsdocComment ? parseSummary(cls.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
   index += `| [${cls.displayName}](/api/${cls.displayName}.md) | ${summary} |\n`;
 
   // Create the class document.
@@ -129,9 +132,7 @@ for (const cls of classes) {
     doc += `| Parameter | Type | Description |\n`;
     doc += `| --------- | ---- | ----------- |\n`;
     ctr.parameters.forEach((p) => {
-      const summary = p.tsdocParamBlock
-        ? parseSummary(p.tsdocParamBlock.content).trim()
-        : '';
+      const summary = p.tsdocParamBlock ? parseSummary(p.tsdocParamBlock.content).trim() : '';
       doc += `| ${p.name} | ${parseTypeString(p.parameterTypeExcerpt.text)} | ${summary} |\n`;
     });
     doc += '---\n\n';
@@ -141,10 +142,8 @@ for (const cls of classes) {
   if (properties.length) {
     doc += `### Properties\n\n`;
     for (const prop of properties) {
-      const summary = prop.tsdocComment
-        ? parseSummary(prop.tsdocComment.summarySection)
-        : '';
-      let typeValue = parseTypeString(prop.propertyTypeExcerpt.text);
+      const summary = prop.tsdocComment ? parseSummary(prop.tsdocComment.summarySection) : '';
+      const typeValue = parseTypeString(prop.propertyTypeExcerpt.text);
       doc += '#### ' + prop.name + '\n\n';
       doc += `${summary}\n\n`;
       doc += `**Type**: ${typeValue}\n\n`;
@@ -154,9 +153,7 @@ for (const cls of classes) {
   if (methods.length) {
     doc += `### Methods\n\n`;
     for (const method of methods) {
-      const summary = method.tsdocComment
-        ? parseSummary(method.tsdocComment.summarySection)
-        : '';
+      const summary = method.tsdocComment ? parseSummary(method.tsdocComment.summarySection) : '';
       const typeValue = parseTypeString(method.returnTypeExcerpt.text);
       doc += `#### .${method.displayName} (${method.parameters.map((p) => p.name).join(', ')})\n\n`;
       doc += `${summary}\n\n`;
@@ -167,9 +164,7 @@ for (const cls of classes) {
         doc += `| Parameter | Type | Description |\n`;
         doc += `| --------- | ---- | ----------- |\n`;
         method.parameters.forEach((p) => {
-          const summary = p.tsdocParamBlock
-            ? parseSummary(p.tsdocParamBlock.content).trim()
-            : '';
+          const summary = p.tsdocParamBlock ? parseSummary(p.tsdocParamBlock.content).trim() : '';
           doc += `| ${p.name} | ${parseTypeString(p.parameterTypeExcerpt.text)} | ${summary} |\n`;
         });
       }
@@ -187,9 +182,7 @@ index += '| Function | Description |\n';
 index += '| -------- | ----------- |\n';
 
 for (const func of functions) {
-  const summary = func.tsdocComment
-    ? parseSummary(func.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd()
-    : '';
+  const summary = func.tsdocComment ? parseSummary(func.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
   const name = `${func.name}(${func.parameters.map((p) => p.name).join(', ')})`;
   index += `| [${name}](/api/${func.displayName}.md) | ${summary} |\n`;
 
@@ -204,9 +197,7 @@ for (const func of functions) {
     doc += `| Parameter | Type | Description |\n`;
     doc += `| --------- | ---- | ----------- |\n`;
     func.parameters.forEach((p) => {
-      const summary = p.tsdocParamBlock
-        ? parseSummary(p.tsdocParamBlock.content).trim()
-        : '';
+      const summary = p.tsdocParamBlock ? parseSummary(p.tsdocParamBlock.content).trim() : '';
       doc += `| ${p.name} | ${parseTypeString(p.parameterTypeExcerpt.text)} | ${summary} |\n`;
     });
     doc += '\n\n';
@@ -224,10 +215,10 @@ index += '| Interface | Description |\n';
 index += '| --------- | ----------- |\n';
 
 for (const ifc of interfaces) {
-  const summary = ifc.tsdocComment
-    ? parseSummary(ifc.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd()
-    : '';
+  const summary = ifc.tsdocComment ? parseSummary(ifc.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
   index += `| [${ifc.displayName}](/api/${ifc.displayName}.md) | ${summary} |\n`;
+
+  if (ifc.displayName.includes('Image')) console.log(ifc.displayName);
 
   // Create the interface document.
   let doc = `---\ntitle: ${ifc.displayName}\ndescription: ${summary}\n---\n\n`;
@@ -245,10 +236,8 @@ for (const ifc of interfaces) {
   if (properties.length) {
     doc += `### Properties\n\n`;
     for (const prop of properties) {
-      const summary = prop.tsdocComment
-        ? parseSummary(prop.tsdocComment.summarySection)
-        : '';
-      let typeValue = parseTypeString(prop.propertyTypeExcerpt.text);
+      const summary = prop.tsdocComment ? parseSummary(prop.tsdocComment.summarySection) : '';
+      const typeValue = parseTypeString(prop.propertyTypeExcerpt.text);
       doc += '#### ' + prop.name + '\n\n';
       doc += `${summary}\n\n`;
       doc += `**Type**: ${typeValue}\n\n`;
@@ -258,9 +247,7 @@ for (const ifc of interfaces) {
   if (methods.length) {
     doc += `### Methods\n\n`;
     for (const method of methods) {
-      const summary = method.tsdocComment
-        ? parseSummary(method.tsdocComment.summarySection)
-        : '';
+      const summary = method.tsdocComment ? parseSummary(method.tsdocComment.summarySection) : '';
       const typeValue = parseTypeString(method.returnTypeExcerpt.text);
       doc += `#### .${method.displayName} (${method.parameters.map((p) => p.name).join(', ')})\n\n`;
       doc += `${summary}\n\n`;
@@ -271,9 +258,7 @@ for (const ifc of interfaces) {
         doc += `| Parameter | Type | Description |\n`;
         doc += `| --------- | ---- | ----------- |\n`;
         method.parameters.forEach((p) => {
-          const summary = p.tsdocParamBlock
-            ? parseSummary(p.tsdocParamBlock.content).trim()
-            : '';
+          const summary = p.tsdocParamBlock ? parseSummary(p.tsdocParamBlock.content).trim() : '';
           doc += `| ${p.name} | ${parseTypeString(p.parameterTypeExcerpt.text)} | ${summary} |\n`;
         });
       }
@@ -291,9 +276,7 @@ index += '| Variable | Description |\n';
 index += '| -------- | ----------- |\n';
 
 for (const v of variables) {
-  const summary = v.tsdocComment
-    ? parseSummary(v.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd()
-    : '';
+  const summary = v.tsdocComment ? parseSummary(v.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
   index += `| [${v.displayName}](/api/${v.displayName}.md) | ${summary} |\n`;
 
   // Create the variable document.
@@ -317,9 +300,7 @@ index += '| Type Alias | Description |\n';
 index += '| ---------- | ----------- |\n';
 
 for (const t of types) {
-  const summary = t.tsdocComment
-    ? parseSummary(t.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd()
-    : '';
+  const summary = t.tsdocComment ? parseSummary(t.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
   index += `| [${t.displayName}](/api/${t.displayName}.md) | ${summary} |\n`;
 
   // Create the type alias document.
