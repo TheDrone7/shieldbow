@@ -218,8 +218,6 @@ for (const ifc of interfaces) {
   const summary = ifc.tsdocComment ? parseSummary(ifc.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
   index += `| [${ifc.displayName}](/api/${ifc.displayName}.md) | ${summary} |\n`;
 
-  if (ifc.displayName.includes('Image')) console.log(ifc.displayName);
-
   // Create the interface document.
   let doc = `---\ntitle: ${ifc.displayName}\ndescription: ${summary}\n---\n\n`;
   doc += `## ${ifc.displayName} interface\n\n`;

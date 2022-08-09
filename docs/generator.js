@@ -206,8 +206,6 @@ index += '| --------- | ----------- |\n';
 var _loop_3 = function (ifc) {
     var summary = ifc.tsdocComment ? parseSummary(ifc.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
     index += "| [".concat(ifc.displayName, "](/api/").concat(ifc.displayName, ".md) | ").concat(summary, " |\n");
-    if (ifc.displayName.includes('Image'))
-        console.log(ifc.displayName);
     // Create the interface document.
     var doc = "---\ntitle: ".concat(ifc.displayName, "\ndescription: ").concat(summary, "\n---\n\n");
     doc += "## ".concat(ifc.displayName, " interface\n\n");
