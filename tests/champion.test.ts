@@ -56,7 +56,6 @@ describe('Test champion fetching.', () => {
   });
 
   test('Check champion caching', async () => {
-    expect(client.champions.cache.firstKey()).toBe(kayn.name);
-    expect(client.champions.cache.first()!.name).toBe(kayn.name);
+    expect(client.champions.cache.get('Kayn')).toBe(kayn);
   });
 });

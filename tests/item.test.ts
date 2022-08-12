@@ -32,8 +32,7 @@ describe('Test item fetching.', () => {
   });
 
   test('Check items caching', async () => {
-    expect(client.items.cache.firstKey()).toBe(boots.id);
-    expect(client.items.cache.first()?.name).toBe(boots.name);
+    expect(client.items.cache.get('1001')).toBe(boots);
   });
 
   test('Check items pre-fetching', async () => {

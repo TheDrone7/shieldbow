@@ -22,8 +22,7 @@ describe('Test summoner spells fetching.', () => {
   });
 
   test('Check spell caching', async () => {
-    const cachedFlash = client.summonerSpells.cache.find((s) => s.id === 'SummonerFlash')!;
-    expect(cachedFlash.name).toBe(flash.name);
+    expect(client.summonerSpells.cache.get('SummonerFlash')).toBe(flash);
   });
 
   test('Check spells pre-fetching', async () => {
@@ -34,6 +33,6 @@ describe('Test summoner spells fetching.', () => {
         summonerSpells: true
       }
     });
-    expect(client2.summonerSpells.cache.size).toBeGreaterThan(10);
+    expect(client2.summonerSpells.cache.size).toBe(16);
   });
 });

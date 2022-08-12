@@ -27,8 +27,7 @@ describe('Test runes fetching.', () => {
   });
 
   test('Check runes caching', async () => {
-    expect(client.runes.cache.firstKey()).toBe(domination.name);
-    expect(client.runes.cache.first()!.name).toBe(domination.name);
+    expect(client.runes.cache.get('Domination')).toBe(domination);
   });
 
   test('Check runes pre-fetching', async () => {
@@ -39,7 +38,7 @@ describe('Test runes fetching.', () => {
         runes: true
       }
     });
-    expect(client2.runes.cache.size).toBeGreaterThan(1);
+    expect(client2.runes.cache.size).toBe(5);
     expect(client2.runes.cachedRunes.length).toBeGreaterThan(50);
   });
 });
