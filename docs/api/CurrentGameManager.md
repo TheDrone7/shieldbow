@@ -13,7 +13,7 @@ A current game manager - to fetch and manage the live games.
 export declare class CurrentGameManager implements BaseManager<CurrentGame> 
 ```
 
-Implements: BaseManager<CurrentGame\>
+Implements: BaseManager<CurrentGame>\>
 
 **References:** [BaseManager](/api/BaseManager.md), [CurrentGame](/api/CurrentGame.md)
 

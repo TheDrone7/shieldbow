@@ -13,7 +13,7 @@ A champion manager - to fetch and manage all the champion data.
 export declare class ChampionManager implements BaseManager<Champion> 
 ```
 
-Implements: BaseManager<Champion\>
+Implements: BaseManager<Champion>\>
 
 **References:** [BaseManager](/api/BaseManager.md), [Champion](/api/Champion.md)
 

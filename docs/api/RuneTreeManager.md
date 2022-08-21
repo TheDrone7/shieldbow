@@ -13,7 +13,7 @@ A rune trees manager - to fetch and manage rune trees data.
 export declare class RuneTreeManager implements BaseManager<RuneTree> 
 ```
 
-Implements: BaseManager<RuneTree\>
+Implements: BaseManager<RuneTree>\>
 
 **References:** [BaseManager](/api/BaseManager.md), [RuneTree](/api/RuneTree.md)
 
