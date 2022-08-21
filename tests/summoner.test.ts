@@ -1,7 +1,7 @@
 import { Summoner, Client } from '../dist';
 
 describe('Test Summoner v4 and Account v1 API', () => {
-  const client = new Client(process.env.riot_api_key!);
+  const client = new Client(process.env.RIOT_API_KEY!);
 
   let summoner: Summoner;
 

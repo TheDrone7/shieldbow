@@ -13,7 +13,7 @@ A league manager - to fetch and manage all summoner competitive info.
 export declare class LeagueManager implements BaseManager<Collection<QueueType, LeagueEntry>> 
 ```
 
-Implements: BaseManager<Collection<QueueType, LeagueEntry\>
+Implements: BaseManager&lt;Collection&lt;QueueType, LeagueEntry&gt;&gt;
 
 **References:** [BaseManager](/api/BaseManager.md), [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection), [QueueType](/api/QueueType.md), [LeagueEntry](/api/LeagueEntry.md)
 

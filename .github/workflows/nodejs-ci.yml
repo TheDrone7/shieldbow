@@ -32,4 +32,4 @@ jobs:
     - run: chmod +x codecov
     - run: ./codecov
     env:
-      riot_api_key: ${{ secrets.api_key }}
+      RIOT_API_KEY: ${{ secrets.api_key }}

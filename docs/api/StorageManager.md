@@ -13,7 +13,7 @@ A basic manager for storing and fetching the local cached JSON files.
 export declare class StorageManager implements BaseManager<any> 
 ```
 
-Implements: BaseManager\>
+Implements: BaseManager&lt;any&gt;
 
 **References:** [BaseManager](/api/BaseManager.md)
 
@@ -22,7 +22,7 @@ Implements: BaseManager\>
 ### Constructor
 
 ```ts
-new StorageManager (client: Client, pathName: string, root: string)
+new StorageManager_2 (client: Client, pathName: string, root: string)
 ```
 
 Constructs a new instance of the `StorageManager` class.

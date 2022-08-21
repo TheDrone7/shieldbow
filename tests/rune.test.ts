@@ -1,7 +1,7 @@
 import { RuneTree, Rune, Client } from '../dist';
 
 describe('Test runes fetching.', () => {
-  const client = new Client(process.env.riot_api_key!);
+  const client = new Client(process.env.RIOT_API_KEY!);
 
   let domination: RuneTree;
   let electrocute: Rune;
@@ -24,5 +24,21 @@ describe('Test runes fetching.', () => {
       'Hitting a champion with 3 separate attacks or abilities in 3s deals bonus adaptive damage.'
     );
     expect(electrocute.details).toContain('Hitting a champion with 3 separate attacks or abilities');
+  });
+
+  test('Check runes caching', async () => {
+    expect(client.runes.cache.get('Domination')).toBe(domination);
+  });
+
+  test('Check runes pre-fetching', async () => {
+    const client2 = new Client(process.env.riot_api_key!);
+    await client2.initialize({
+      cache: false,
+      fetch: {
+        runes: true
+      }
+    });
+    expect(client2.runes.cache.size).toBe(5);
+    expect(client2.runes.cachedRunes.length).toBeGreaterThan(50);
   });
 });
