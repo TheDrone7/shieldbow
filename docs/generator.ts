@@ -1,4 +1,5 @@
 import { unlinkSync, readdirSync, writeFileSync, existsSync, mkdirSync } from 'fs';
+import { escape } from 'html-escaper';
 import { join } from 'path';
 import {
   ApiModel,
@@ -115,11 +116,7 @@ for (const cls of classes) {
   if (cls.extendsType && cls.extendsType.excerpt && !cls.extendsType.excerpt.isEmpty)
     doc += `**Extends: ${cls.extendsType.excerpt.text}**\n\n`;
   if (cls.implementsTypes.length) {
-    const implementTypes = cls.implementsTypes
-      .map((t) => t.excerpt.text)
-      .map((t) => {
-        return t + '\\>';
-      });
+    const implementTypes = cls.implementsTypes.map((t) => t.excerpt.text).map((t) => escape(t));
     doc += `Implements: ${implementTypes}\n\n`;
   }
   const references = cls.excerptTokens.filter((token) => token.kind === 'Reference');

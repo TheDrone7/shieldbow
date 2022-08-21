@@ -13,7 +13,7 @@ A basic manager for storing and fetching the local cached JSON files.
 export declare class StorageManager implements BaseManager<any> 
 ```
 
-Implements: BaseManager<any>\>
+Implements: BaseManager&lt;any&gt;
 
 **References:** [BaseManager](/api/BaseManager.md)
 

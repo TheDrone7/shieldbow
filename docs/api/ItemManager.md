@@ -13,7 +13,7 @@ An item manager - to fetch and manage all item data.
 export declare class ItemManager implements BaseManager<Item> 
 ```
 
-Implements: BaseManager<Item>\>
+Implements: BaseManager&lt;Item&gt;
 
 **References:** [BaseManager](/api/BaseManager.md), [Item](/api/Item.md)
 

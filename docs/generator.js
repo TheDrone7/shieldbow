@@ -1,6 +1,7 @@
 "use strict";
 exports.__esModule = true;
 var fs_1 = require("fs");
+var html_escaper_1 = require("html-escaper");
 var path_1 = require("path");
 var api_extractor_model_1 = require("@microsoft/api-extractor-model");
 var tsdoc_1 = require("@microsoft/tsdoc");
@@ -105,11 +106,7 @@ var _loop_1 = function (cls) {
     if (cls.extendsType && cls.extendsType.excerpt && !cls.extendsType.excerpt.isEmpty)
         doc += "**Extends: ".concat(cls.extendsType.excerpt.text, "**\n\n");
     if (cls.implementsTypes.length) {
-        var implementTypes = cls.implementsTypes
-            .map(function (t) { return t.excerpt.text; })
-            .map(function (t) {
-            return t + '\\>';
-        });
+        var implementTypes = cls.implementsTypes.map(function (t) { return t.excerpt.text; }).map(function (t) { return (0, html_escaper_1.escape)(t); });
         doc += "Implements: ".concat(implementTypes, "\n\n");
     }
     var references = cls.excerptTokens.filter(function (token) { return token.kind === 'Reference'; });

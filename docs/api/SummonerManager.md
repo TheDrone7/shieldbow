@@ -13,7 +13,7 @@ A summoner manager - to fetch and manage all the summoner data.
 export declare class SummonerManager implements BaseManager<Summoner> 
 ```
 
-Implements: BaseManager<Summoner>\>
+Implements: BaseManager&lt;Summoner&gt;
 
 **References:** [BaseManager](/api/BaseManager.md), [Summoner](/api/Summoner.md)
 
