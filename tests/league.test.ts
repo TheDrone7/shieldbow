@@ -2,7 +2,7 @@ import { Client, LeagueEntry } from '../dist';
 import type { Collection } from '@discordjs/collection';
 
 describe('Test league-v4 and league-exp-v4 API', () => {
-  const client = new Client(process.env.riot_api_key!);
+  const client = new Client(process.env.RIOT_API_KEY!);
 
   let leagues: Collection<string, LeagueEntry>;
 

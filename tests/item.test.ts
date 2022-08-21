@@ -1,7 +1,7 @@
 import { Item, Client } from '../dist';
 
 describe('Test item fetching.', () => {
-  const client = new Client(process.env.riot_api_key!);
+  const client = new Client(process.env.RIOT_API_KEY!);
 
   let boots: Item;
 
@@ -29,5 +29,20 @@ describe('Test item fetching.', () => {
 
   test('Check item details', () => {
     expect(boots.details).toContain('25 Move Speed');
+  });
+
+  test('Check items caching', async () => {
+    expect(client.items.cache.get('1001')).toBe(boots);
+  });
+
+  test('Check items pre-fetching', async () => {
+    const client2 = new Client(process.env.riot_api_key!);
+    await client2.initialize({
+      cache: false,
+      fetch: {
+        items: true
+      }
+    });
+    expect(client2.items.cache.size).toBeGreaterThan(100);
   });
 });

@@ -3,7 +3,7 @@ import { Match, Client, MatchTimeline } from '../dist';
 jest.setTimeout(300000);
 
 describe('Test match v5 API', () => {
-  const client = new Client(process.env.riot_api_key!);
+  const client = new Client(process.env.RIOT_API_KEY!);
 
   let matches: string[];
   let match: Match;

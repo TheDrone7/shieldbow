@@ -13,7 +13,7 @@ A champion manager - to fetch and manage all the champion data.
 export declare class ChampionManager implements BaseManager<Champion> 
 ```
 
-Implements: BaseManager<Champion\>
+Implements: BaseManager&lt;Champion&gt;
 
 **References:** [BaseManager](/api/BaseManager.md), [Champion](/api/Champion.md)
 
@@ -137,7 +137,7 @@ fetchByKey(key: number): Promise<Champion | undefined>;
 Fetch and cache champions by their unique 3-digit keys.
 
 
-This is mostly for internal use while fetching match (or live match) data to improve performance.
+This is mostly for internal use while fetching match (or live match) data to improve performance. Ideally, any user would be using [fetch](/api/ChampionManager.md#fetch).
 
 
 
@@ -153,6 +153,52 @@ fetchByKeys(keys: number[]): Promise<Collection<string, Champion>>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | keys | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)[] | The keys of the champions to fetch. |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/api/Champion.md) \> \>
+
+---
+
+#### .fetchByName (name)
+
+Fetch and cache champion by their name (instead of ID, which is very similar but not the same as the name). The search is case-insensitive. The special characters are NOT ignored.
+
+
+
+
+**Signature:**
+
+```ts
+fetchByName(name: string): Promise<Champion | undefined>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of the champions to fetch. |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Champion](/api/Champion.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
+
+---
+
+#### .fetchByNames (names)
+
+Fetch and cache champions by their names.
+
+
+
+
+**Signature:**
+
+```ts
+fetchByNames(names: string[]): Promise<Collection<string, Champion>>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| names | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)[] | The names of the champions to fetch. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/api/Champion.md) \> \>
 
@@ -183,7 +229,7 @@ findByKey(key: number): Promise<Champion | undefined>;
 
 #### .findByName (name)
 
-Find a champion by their name (instead of ID, which is very similar but not the same as the name). The search is case-insensitive. The special characters are NOT ignored.
+Find a champion by their name.
 
 
 

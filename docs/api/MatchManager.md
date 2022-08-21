@@ -13,7 +13,7 @@ A match manager - to fetch and manage matches.
 export declare class MatchManager implements BaseManager<Match> 
 ```
 
-Implements: BaseManager<Match\>
+Implements: BaseManager&lt;Match&gt;
 
 **References:** [BaseManager](/api/BaseManager.md), [Match](/api/Match.md)
 

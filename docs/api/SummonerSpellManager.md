@@ -13,7 +13,7 @@ A spell manager - to fetch and manage all summoner spell data.
 export declare class SummonerSpellManager implements BaseManager<SummonerSpell> 
 ```
 
-Implements: BaseManager<SummonerSpell\>
+Implements: BaseManager&lt;SummonerSpell&gt;
 
 **References:** [BaseManager](/api/BaseManager.md), [SummonerSpell](/api/SummonerSpell.md)
 
