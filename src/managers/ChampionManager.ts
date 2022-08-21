@@ -159,9 +159,7 @@ export class ChampionManager implements BaseManager<Champion> {
    * @param name - The name of the champion to look for.
    */
   async findByName(name: string) {
-    const champ = this.cache.find((champ) => champ.name.toLowerCase().includes(name.toLowerCase()));
-    if (!champ) await this.fetchAll();
-    return this.cache.find((champ) => champ.name.toLowerCase().includes(name.toLowerCase()));
+    return this.fetchByName(name);
   }
 
   /**
@@ -202,6 +200,9 @@ export class ChampionManager implements BaseManager<Champion> {
         }
       }
 
+      console.log(names);
+      console.log(result.size);
+
       if (names.length) {
         const response = await this.client.http.get(
           this.client.version + '/data/' + this.client.locale + '/championFull.json'
@@ -221,7 +222,7 @@ export class ChampionManager implements BaseManager<Champion> {
           }
           resolve(result);
         }
-      }
+      } else resolve(result);
     });
   }
 

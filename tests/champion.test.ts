@@ -17,8 +17,8 @@ describe('Test champion fetching.', () => {
   });
 
   test('Check champion fetching by name and key', async () => {
-    const byName = await client.champions.findByName('Kayn');
-    const champion = await client.champions.findByKey(kayn.key);
+    const byName = await client.champions.fetchByName('Kayn');
+    const champion = await client.champions.fetchByKey(kayn.key);
     expect(byName).toBe(kayn);
     expect(champion).toBe(kayn);
   });
