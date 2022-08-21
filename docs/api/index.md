@@ -57,7 +57,7 @@
 | [RuneTree](/api/RuneTree.md) | A representation of an in-game rune tree |
 | [RuneTreeManager](/api/RuneTreeManager.md) | A rune trees manager - to fetch and manage rune trees data. |
 | [SkillLevelUpEvent](/api/SkillLevelUpEvent.md) | A representation of the Skill Level Up event. |
-| [StorageManager_2](/api/StorageManager_2.md) | A basic manager for storing and fetching the local cached JSON files. |
+| [StorageManager](/api/StorageManager.md) | A basic manager for storing and fetching the local cached JSON files. |
 | [Summoner](/api/Summoner.md) | A representation of a summoner (player). |
 | [SummonerManager](/api/SummonerManager.md) | A summoner manager - to fetch and manage all the summoner data. |
 | [SummonerSpell](/api/SummonerSpell.md) | A representation of an in-game summoner spell. |
@@ -119,7 +119,7 @@
 | [GameMap](/api/GameMap.md) | Basic data for types of Maps available in the game. |
 | [GameMode](/api/GameMode.md) | Basic data for types of game modes. |
 | [GameType](/api/GameType.md) | Basic data for types of games. |
-| [ImageData_2](/api/ImageData_2.md) | A representation of any image data returned by Data Dragon. |
+| [ImageData](/api/ImageData.md) | A representation of any image data returned by Data Dragon. |
 | [ItemData](/api/ItemData.md) | A representation of the item data returned by Data Dragon. |
 | [ItemDestroyedEventData](/api/ItemDestroyedEventData.md) | The event data for the item destroyed event. |
 | [ItemGoldValue](/api/ItemGoldValue.md) | The item's gold value information. |

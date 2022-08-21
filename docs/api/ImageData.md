@@ -1,9 +1,9 @@
 ---
-title: ImageData_2
+title: ImageData
 description: A representation of any image data returned by Data Dragon.
 ---
 
-## ImageData_2 interface
+## ImageData interface
 
 A representation of any image data returned by Data Dragon.
 

@@ -1,9 +1,9 @@
 ---
-title: StorageManager_2
+title: StorageManager
 description: A basic manager for storing and fetching the local cached JSON files.
 ---
 
-## StorageManager_2 class
+## StorageManager class
 
 A basic manager for storing and fetching the local cached JSON files.
 
@@ -25,7 +25,7 @@ Implements: BaseManager<any>\>
 new StorageManager_2 (client: Client, pathName: string, root: string)
 ```
 
-Constructs a new instance of the `StorageManager_2` class.
+Constructs a new instance of the `StorageManager` class.
 
 **Parameters:**
 

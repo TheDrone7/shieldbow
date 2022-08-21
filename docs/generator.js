@@ -29,6 +29,12 @@ var functions = api.members.filter(function (member) { return member.kind === 'F
 var interfaces = api.members.filter(function (member) { return member.kind === 'Interface'; });
 var variables = api.members.filter(function (member) { return member.kind === 'Variable'; });
 var types = api.members.filter(function (member) { return member.kind === 'TypeAlias'; });
+var parseName = function (n) {
+    if (n.includes('_'))
+        return n.substring(0, n.indexOf('_'));
+    else
+        return n;
+};
 var parseSummary = function (summary) {
     var _a;
     var text = '';
@@ -75,8 +81,12 @@ var parseTypeString = function (type) {
 };
 // Delete the already existing docs.
 console.info('Deleting the existing docs...');
-var files = (0, fs_1.readdirSync)(pathToDocs);
-files.forEach(function (file) { return (0, fs_1.unlinkSync)((0, path_1.join)(pathToDocs, file)); });
+if ((0, fs_1.existsSync)(pathToDocs)) {
+    var files = (0, fs_1.readdirSync)(pathToDocs);
+    files.forEach(function (file) { return (0, fs_1.unlinkSync)((0, path_1.join)(pathToDocs, file)); });
+}
+else
+    (0, fs_1.mkdirSync)(pathToDocs);
 var index = "# API Reference\n\n";
 console.info('Processing the classes...');
 // The classes.
@@ -84,11 +94,12 @@ index += "## Classes\n\n";
 index += '| Class | Description |\n';
 index += '| ----- | ----------- |\n';
 var _loop_1 = function (cls) {
+    var cName = parseName(cls.displayName);
     var summary = cls.tsdocComment ? parseSummary(cls.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
-    index += "| [".concat(cls.displayName, "](/api/").concat(cls.displayName, ".md) | ").concat(summary, " |\n");
+    index += "| [".concat(cName, "](/api/").concat(cName, ".md) | ").concat(summary, " |\n");
     // Create the class document.
-    var doc = "---\ntitle: ".concat(cls.displayName, "\ndescription: ").concat(summary, "\n---\n\n");
-    doc += "## ".concat(cls.displayName, " class\n\n");
+    var doc = "---\ntitle: ".concat(cName, "\ndescription: ").concat(summary, "\n---\n\n");
+    doc += "## ".concat(cName, " class\n\n");
     doc += "".concat(summary, "\n\n**Signature:**\n\n");
     doc += "```ts\n".concat(cls.excerpt.text, "\n```\n\n");
     if (cls.extendsType && cls.extendsType.excerpt && !cls.extendsType.excerpt.isEmpty)
@@ -114,7 +125,7 @@ var _loop_1 = function (cls) {
         doc += "```ts\nnew ".concat(ctr.parent.displayName, " (");
         doc += ctr.parameters.map(function (p) { return "".concat(p.name).concat(p.isOptional ? '?' : '', ": ").concat(p.parameterTypeExcerpt.text); }).join(', ');
         doc += ")\n```\n\n";
-        doc += 'Constructs a new instance of the `' + cls.displayName + '` class.\n\n';
+        doc += 'Constructs a new instance of the `' + cName + '` class.\n\n';
         doc += "**Parameters:**\n\n";
         doc += "| Parameter | Type | Description |\n";
         doc += "| --------- | ---- | ----------- |\n";
@@ -161,7 +172,7 @@ var _loop_1 = function (cls) {
             doc += '---\n\n';
         }
     }
-    (0, fs_1.writeFileSync)((0, path_1.join)(pathToDocs, "".concat(cls.displayName, ".md")), doc);
+    (0, fs_1.writeFileSync)((0, path_1.join)(pathToDocs, "".concat(cName, ".md")), doc);
 };
 for (var _i = 0, classes_1 = classes; _i < classes_1.length; _i++) {
     var cls = classes_1[_i];
@@ -172,12 +183,13 @@ index += '---\n\n## Functions\n\n';
 index += '| Function | Description |\n';
 index += '| -------- | ----------- |\n';
 var _loop_2 = function (func) {
+    var fName = parseName(func.displayName);
     var summary = func.tsdocComment ? parseSummary(func.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
-    var name_1 = "".concat(func.name, "(").concat(func.parameters.map(function (p) { return p.name; }).join(', '), ")");
-    index += "| [".concat(name_1, "](/api/").concat(func.displayName, ".md) | ").concat(summary, " |\n");
+    var name_1 = "".concat(fName, "(").concat(func.parameters.map(function (p) { return p.name; }).join(', '), ")");
+    index += "| [".concat(name_1, "](/api/").concat(fName, ".md) | ").concat(summary, " |\n");
     // Create the function document.
-    var doc = "---\ntitle: ".concat(func.displayName, "() function\ndescription: ").concat(summary, "\n---\n\n");
-    doc += "## ".concat(func.displayName, "(").concat(func.parameters.map(function (p) { return p.name; }).join(', '), ") function\n\n");
+    var doc = "---\ntitle: ".concat(fName, "() function\ndescription: ").concat(summary, "\n---\n\n");
+    doc += "## ".concat(fName, "(").concat(func.parameters.map(function (p) { return p.name; }).join(', '), ") function\n\n");
     doc += "".concat(summary, "\n\n**Signature:**\n\n");
     doc += "```ts\n".concat(func.excerpt.text, "\n```\n\n");
     if (func.parameters.length) {
@@ -193,7 +205,7 @@ var _loop_2 = function (func) {
         doc += "**Return type :** ".concat(returnType, "\n\n");
         doc += '---\n\n';
     }
-    (0, fs_1.writeFileSync)((0, path_1.join)(pathToDocs, "".concat(func.displayName, ".md")), doc);
+    (0, fs_1.writeFileSync)((0, path_1.join)(pathToDocs, "".concat(fName, ".md")), doc);
 };
 for (var _a = 0, functions_1 = functions; _a < functions_1.length; _a++) {
     var func = functions_1[_a];
@@ -204,11 +216,12 @@ index += '---\n\n## Interfaces\n\n';
 index += '| Interface | Description |\n';
 index += '| --------- | ----------- |\n';
 var _loop_3 = function (ifc) {
+    var iName = parseName(ifc.displayName);
     var summary = ifc.tsdocComment ? parseSummary(ifc.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
-    index += "| [".concat(ifc.displayName, "](/api/").concat(ifc.displayName, ".md) | ").concat(summary, " |\n");
+    index += "| [".concat(iName, "](/api/").concat(iName, ".md) | ").concat(summary, " |\n");
     // Create the interface document.
-    var doc = "---\ntitle: ".concat(ifc.displayName, "\ndescription: ").concat(summary, "\n---\n\n");
-    doc += "## ".concat(ifc.displayName, " interface\n\n");
+    var doc = "---\ntitle: ".concat(iName, "\ndescription: ").concat(summary, "\n---\n\n");
+    doc += "## ".concat(iName, " interface\n\n");
     doc += "".concat(summary, "\n\n**Signature:**\n\n");
     doc += "```ts\n".concat(ifc.excerpt.text, "\n```\n\n");
     var references = ifc.excerptTokens.filter(function (token) { return token.kind === 'Reference'; });
@@ -254,7 +267,7 @@ var _loop_3 = function (ifc) {
             doc += '---\n\n';
         }
     }
-    (0, fs_1.writeFileSync)((0, path_1.join)(pathToDocs, "".concat(ifc.displayName, ".md")), doc);
+    (0, fs_1.writeFileSync)((0, path_1.join)(pathToDocs, "".concat(iName, ".md")), doc);
 };
 for (var _b = 0, interfaces_1 = interfaces; _b < interfaces_1.length; _b++) {
     var ifc = interfaces_1[_b];
@@ -266,11 +279,12 @@ index += '| Variable | Description |\n';
 index += '| -------- | ----------- |\n';
 for (var _c = 0, variables_1 = variables; _c < variables_1.length; _c++) {
     var v = variables_1[_c];
+    var vName = parseName(v.displayName);
     var summary = v.tsdocComment ? parseSummary(v.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
-    index += "| [".concat(v.displayName, "](/api/").concat(v.displayName, ".md) | ").concat(summary, " |\n");
+    index += "| [".concat(vName, "](/api/").concat(vName, ".md) | ").concat(summary, " |\n");
     // Create the variable document.
-    var doc = "---\ntitle: ".concat(v.displayName, "\ndescription: ").concat(summary, "\n---\n\n");
-    doc += "## ".concat(v.displayName, " variable\n\n");
+    var doc = "---\ntitle: ".concat(vName, "\ndescription: ").concat(summary, "\n---\n\n");
+    doc += "## ".concat(vName, " variable\n\n");
     doc += "".concat(summary, "\n\n**Signature:**\n\n");
     doc += "```ts\n".concat(v.excerpt.text, "\n```\n\n");
     var references = v.excerptTokens.filter(function (token) { return token.kind === 'Reference'; });
@@ -279,7 +293,7 @@ for (var _c = 0, variables_1 = variables; _c < variables_1.length; _c++) {
         doc += references.map(function (r) { return parseTypeString(r.text); }).join(', ');
         doc += '\n\n';
     }
-    (0, fs_1.writeFileSync)((0, path_1.join)(pathToDocs, "".concat(v.displayName, ".md")), doc);
+    (0, fs_1.writeFileSync)((0, path_1.join)(pathToDocs, "".concat(vName, ".md")), doc);
 }
 console.info('Processing the types...');
 index += '---\n\n## Type Aliases\n\n';
@@ -287,11 +301,12 @@ index += '| Type Alias | Description |\n';
 index += '| ---------- | ----------- |\n';
 for (var _d = 0, types_1 = types; _d < types_1.length; _d++) {
     var t = types_1[_d];
+    var tName = parseName(t.displayName);
     var summary = t.tsdocComment ? parseSummary(t.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
-    index += "| [".concat(t.displayName, "](/api/").concat(t.displayName, ".md) | ").concat(summary, " |\n");
+    index += "| [".concat(tName, "](/api/").concat(tName, ".md) | ").concat(summary, " |\n");
     // Create the type alias document.
-    var doc = "---\ntitle: ".concat(t.displayName, "\ndescription: ").concat(summary, "\n---\n\n");
-    doc += "## ".concat(t.displayName, " type\n\n");
+    var doc = "---\ntitle: ".concat(tName, "\ndescription: ").concat(summary, "\n---\n\n");
+    doc += "## ".concat(tName, " type\n\n");
     doc += "".concat(summary, "\n\n**Signature:**\n\n");
     doc += "```ts\n".concat(t.excerpt.text, "\n```\n\n");
     var references = t.excerptTokens.filter(function (token) { return token.kind === 'Reference'; });
@@ -300,7 +315,7 @@ for (var _d = 0, types_1 = types; _d < types_1.length; _d++) {
         doc += references.map(function (r) { return parseTypeString(r.text); }).join(', ');
         doc += '\n\n';
     }
-    (0, fs_1.writeFileSync)((0, path_1.join)(pathToDocs, "".concat(t.displayName, ".md")), doc);
+    (0, fs_1.writeFileSync)((0, path_1.join)(pathToDocs, "".concat(tName, ".md")), doc);
 }
 console.info('Writing the index...');
 (0, fs_1.writeFileSync)((0, path_1.join)(pathToDocs, 'index.md'), index);

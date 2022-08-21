@@ -1,4 +1,4 @@
-import { unlinkSync, readdirSync, writeFileSync } from 'fs';
+import { unlinkSync, readdirSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import {
   ApiModel,
@@ -47,6 +47,11 @@ const interfaces = <ApiFunction[]>api.members.filter((member) => member.kind ===
 const variables = <ApiFunction[]>api.members.filter((member) => member.kind === 'Variable');
 const types = <ApiFunction[]>api.members.filter((member) => member.kind === 'TypeAlias');
 
+const parseName = (n: string) => {
+  if (n.includes('_')) return n.substring(0, n.indexOf('_'));
+  else return n;
+};
+
 const parseSummary = (summary: DocNode) => {
   let text = '';
   for (const node of summary.getChildNodes())
@@ -84,8 +89,10 @@ const parseTypeString = (type: string) => {
 
 // Delete the already existing docs.
 console.info('Deleting the existing docs...');
-const files = readdirSync(pathToDocs);
-files.forEach((file) => unlinkSync(join(pathToDocs, file)));
+if (existsSync(pathToDocs)) {
+  const files = readdirSync(pathToDocs);
+  files.forEach((file) => unlinkSync(join(pathToDocs, file)));
+} else mkdirSync(pathToDocs);
 
 let index = `# API Reference\n\n`;
 
@@ -96,12 +103,13 @@ index += '| Class | Description |\n';
 index += '| ----- | ----------- |\n';
 
 for (const cls of classes) {
+  const cName = parseName(cls.displayName);
   const summary = cls.tsdocComment ? parseSummary(cls.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
-  index += `| [${cls.displayName}](/api/${cls.displayName}.md) | ${summary} |\n`;
+  index += `| [${cName}](/api/${cName}.md) | ${summary} |\n`;
 
   // Create the class document.
-  let doc = `---\ntitle: ${cls.displayName}\ndescription: ${summary}\n---\n\n`;
-  doc += `## ${cls.displayName} class\n\n`;
+  let doc = `---\ntitle: ${cName}\ndescription: ${summary}\n---\n\n`;
+  doc += `## ${cName} class\n\n`;
   doc += `${summary}\n\n**Signature:**\n\n`;
   doc += `\`\`\`ts\n${cls.excerpt.text}\n\`\`\`\n\n`;
   if (cls.extendsType && cls.extendsType.excerpt && !cls.extendsType.excerpt.isEmpty)
@@ -127,7 +135,7 @@ for (const cls of classes) {
     doc += `\`\`\`ts\nnew ${ctr.parent!.displayName} (`;
     doc += ctr.parameters.map((p) => `${p.name}${p.isOptional ? '?' : ''}: ${p.parameterTypeExcerpt.text}`).join(', ');
     doc += `)\n\`\`\`\n\n`;
-    doc += 'Constructs a new instance of the `' + cls.displayName + '` class.\n\n';
+    doc += 'Constructs a new instance of the `' + cName + '` class.\n\n';
     doc += `**Parameters:**\n\n`;
     doc += `| Parameter | Type | Description |\n`;
     doc += `| --------- | ---- | ----------- |\n`;
@@ -172,7 +180,7 @@ for (const cls of classes) {
       doc += '---\n\n';
     }
   }
-  writeFileSync(join(pathToDocs, `${cls.displayName}.md`), doc);
+  writeFileSync(join(pathToDocs, `${cName}.md`), doc);
 }
 
 console.info('Processing the functions...');
@@ -182,13 +190,14 @@ index += '| Function | Description |\n';
 index += '| -------- | ----------- |\n';
 
 for (const func of functions) {
+  const fName = parseName(func.displayName);
   const summary = func.tsdocComment ? parseSummary(func.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
-  const name = `${func.name}(${func.parameters.map((p) => p.name).join(', ')})`;
-  index += `| [${name}](/api/${func.displayName}.md) | ${summary} |\n`;
+  const name = `${fName}(${func.parameters.map((p) => p.name).join(', ')})`;
+  index += `| [${name}](/api/${fName}.md) | ${summary} |\n`;
 
   // Create the function document.
-  let doc = `---\ntitle: ${func.displayName}() function\ndescription: ${summary}\n---\n\n`;
-  doc += `## ${func.displayName}(${func.parameters.map((p) => p.name).join(', ')}) function\n\n`;
+  let doc = `---\ntitle: ${fName}() function\ndescription: ${summary}\n---\n\n`;
+  doc += `## ${fName}(${func.parameters.map((p) => p.name).join(', ')}) function\n\n`;
   doc += `${summary}\n\n**Signature:**\n\n`;
   doc += `\`\`\`ts\n${func.excerpt.text}\n\`\`\`\n\n`;
 
@@ -205,7 +214,7 @@ for (const func of functions) {
     doc += `**Return type :** ${returnType}\n\n`;
     doc += '---\n\n';
   }
-  writeFileSync(join(pathToDocs, `${func.displayName}.md`), doc);
+  writeFileSync(join(pathToDocs, `${fName}.md`), doc);
 }
 
 console.info('Processing the interfaces...');
@@ -215,12 +224,13 @@ index += '| Interface | Description |\n';
 index += '| --------- | ----------- |\n';
 
 for (const ifc of interfaces) {
+  const iName = parseName(ifc.displayName);
   const summary = ifc.tsdocComment ? parseSummary(ifc.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
-  index += `| [${ifc.displayName}](/api/${ifc.displayName}.md) | ${summary} |\n`;
+  index += `| [${iName}](/api/${iName}.md) | ${summary} |\n`;
 
   // Create the interface document.
-  let doc = `---\ntitle: ${ifc.displayName}\ndescription: ${summary}\n---\n\n`;
-  doc += `## ${ifc.displayName} interface\n\n`;
+  let doc = `---\ntitle: ${iName}\ndescription: ${summary}\n---\n\n`;
+  doc += `## ${iName} interface\n\n`;
   doc += `${summary}\n\n**Signature:**\n\n`;
   doc += `\`\`\`ts\n${ifc.excerpt.text}\n\`\`\`\n\n`;
   const references = ifc.excerptTokens.filter((token) => token.kind === 'Reference');
@@ -264,7 +274,7 @@ for (const ifc of interfaces) {
       doc += '---\n\n';
     }
   }
-  writeFileSync(join(pathToDocs, `${ifc.displayName}.md`), doc);
+  writeFileSync(join(pathToDocs, `${iName}.md`), doc);
 }
 
 console.info('Processing the variables...');
@@ -274,12 +284,13 @@ index += '| Variable | Description |\n';
 index += '| -------- | ----------- |\n';
 
 for (const v of variables) {
+  const vName = parseName(v.displayName);
   const summary = v.tsdocComment ? parseSummary(v.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
-  index += `| [${v.displayName}](/api/${v.displayName}.md) | ${summary} |\n`;
+  index += `| [${vName}](/api/${vName}.md) | ${summary} |\n`;
 
   // Create the variable document.
-  let doc = `---\ntitle: ${v.displayName}\ndescription: ${summary}\n---\n\n`;
-  doc += `## ${v.displayName} variable\n\n`;
+  let doc = `---\ntitle: ${vName}\ndescription: ${summary}\n---\n\n`;
+  doc += `## ${vName} variable\n\n`;
   doc += `${summary}\n\n**Signature:**\n\n`;
   doc += `\`\`\`ts\n${v.excerpt.text}\n\`\`\`\n\n`;
   const references = v.excerptTokens.filter((token) => token.kind === 'Reference');
@@ -288,7 +299,7 @@ for (const v of variables) {
     doc += references.map((r) => parseTypeString(r.text)).join(', ');
     doc += '\n\n';
   }
-  writeFileSync(join(pathToDocs, `${v.displayName}.md`), doc);
+  writeFileSync(join(pathToDocs, `${vName}.md`), doc);
 }
 
 console.info('Processing the types...');
@@ -298,12 +309,13 @@ index += '| Type Alias | Description |\n';
 index += '| ---------- | ----------- |\n';
 
 for (const t of types) {
+  const tName = parseName(t.displayName);
   const summary = t.tsdocComment ? parseSummary(t.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
-  index += `| [${t.displayName}](/api/${t.displayName}.md) | ${summary} |\n`;
+  index += `| [${tName}](/api/${tName}.md) | ${summary} |\n`;
 
   // Create the type alias document.
-  let doc = `---\ntitle: ${t.displayName}\ndescription: ${summary}\n---\n\n`;
-  doc += `## ${t.displayName} type\n\n`;
+  let doc = `---\ntitle: ${tName}\ndescription: ${summary}\n---\n\n`;
+  doc += `## ${tName} type\n\n`;
   doc += `${summary}\n\n**Signature:**\n\n`;
   doc += `\`\`\`ts\n${t.excerpt.text}\n\`\`\`\n\n`;
   const references = t.excerptTokens.filter((token) => token.kind === 'Reference');
@@ -312,7 +324,7 @@ for (const t of types) {
     doc += references.map((r) => parseTypeString(r.text)).join(', ');
     doc += '\n\n';
   }
-  writeFileSync(join(pathToDocs, `${t.displayName}.md`), doc);
+  writeFileSync(join(pathToDocs, `${tName}.md`), doc);
 }
 
 console.info('Writing the index...');
