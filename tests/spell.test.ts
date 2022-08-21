@@ -20,4 +20,19 @@ describe('Test summoner spells fetching.', () => {
     const byName = await client.summonerSpells.findByName('Flash');
     expect(byName).toBe(flash);
   });
+
+  test('Check spell caching', async () => {
+    expect(client.summonerSpells.cache.get('SummonerFlash')).toBe(flash);
+  });
+
+  test('Check spells pre-fetching', async () => {
+    const client2 = new Client(process.env.riot_api_key!);
+    await client2.initialize({
+      cache: false,
+      fetch: {
+        summonerSpells: true
+      }
+    });
+    expect(client2.summonerSpells.cache.size).toBe(16);
+  });
 });
