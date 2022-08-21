@@ -200,9 +200,6 @@ export class ChampionManager implements BaseManager<Champion> {
         }
       }
 
-      console.log(names);
-      console.log(result.size);
-
       if (names.length) {
         const response = await this.client.http.get(
           this.client.version + '/data/' + this.client.locale + '/championFull.json'
