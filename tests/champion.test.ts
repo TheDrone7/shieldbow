@@ -16,11 +16,20 @@ describe('Test champion fetching.', () => {
     expect(kayn.name).toBe('Kayn');
   });
 
-  test('Check champion fetching by name and key', async () => {
+  test('Check champion fetching by name and key (cached)', async () => {
     const byName = await client.champions.fetchByName('Kayn');
-    const champion = await client.champions.fetchByKey(kayn.key);
+    const byKey = await client.champions.fetchByKey(kayn.key);
+
     expect(byName).toBe(kayn);
-    expect(champion).toBe(kayn);
+    expect(byKey).toBe(kayn);
+  });
+
+  test('Check champion fetching by name and key', async () => {
+    const byName = await client.champions.fetchByName("kai'sa");
+    const byKey = await client.champions.fetchByKey(523);
+
+    expect(byName?.name).toBe("Kai'Sa");
+    expect(byKey?.name).toBe('Aphelios');
   });
 
   test('Check champion spells', () => {
