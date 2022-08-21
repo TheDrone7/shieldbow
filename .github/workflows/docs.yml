@@ -1,11 +1,8 @@
 name: docs
 
 on:
-  # trigger deployment on every push to main branch
-  push:
+  release:
     branches: [main]
-  # trigger deployment manually
-  workflow_dispatch:
 
 jobs:
   docs:

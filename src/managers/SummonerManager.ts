@@ -1,6 +1,6 @@
 import type { BaseManager, FetchOptions, SummonerData } from '../types';
 import type { Client } from '../client';
-import Collection from '@discordjs/collection';
+import { Collection } from '@discordjs/collection';
 import { Account, Summoner } from '../structures';
 
 /**
@@ -102,7 +102,7 @@ export class SummonerManager implements BaseManager<Summoner> {
       if (this.cache.find((s) => s.name === name) && !force) resolve(this.cache.find((s) => s.name === name)!);
       else {
         const response = await this.client.api
-          .makeApiRequest('/lol/summoner/v4/summoners/by-name/' + name, {
+          .makeApiRequest('/lol/summoner/v4/summoners/by-name/' + encodeURIComponent(name), {
             region,
             regional: false,
             name: 'Summoner by summoner name',

@@ -1,4 +1,4 @@
-import type { ParticipantChampionStatsData, ParticipantFrameData } from '../types';
+import type { ParticipantChampionStatsData, ParticipantFrameData, ParticipantDamageStatsData } from '../types';
 import { Position } from './Position';
 
 /**
@@ -118,6 +118,10 @@ export class ParticipantFrameChampionStats {
    */
   readonly spellVamp: number;
 
+  /**
+   * Create a new participant frame champion stats instance.
+   * @param data - The raw data from the API.
+   */
   constructor(data: ParticipantChampionStatsData) {
     this.abilityHaste = data.abilityHaste;
     this.abilityPower = data.abilityPower;
@@ -150,7 +154,75 @@ export class ParticipantFrameChampionStats {
 /**
  * A representation of the participant's damage stats in a {@link ParticipantFrame}.
  */
-export class ParticipantFrameDamageStats {}
+export class ParticipantFrameDamageStats {
+  /**
+   * The total amount of magic damage the participant dealt.
+   */
+  readonly magicDamageDealt: number;
+  /**
+   * The total amount of magic damage the participant dealt to enemy champions.
+   */
+  readonly magicDamageDealtToChampions: number;
+  /**
+   * The total amount of magic damage the participant took from the enemy.
+   */
+  readonly magicDamageTaken: number;
+  /**
+   * The total amount of physical damage the participant dealt.
+   */
+  readonly physicalDamageDealt: number;
+  /**
+   * The total amount of physical damage the participant dealt to enemy champions.
+   */
+  readonly physicalDamageDealtToChampions: number;
+  /**
+   * The total amount of physical damage the participant took from the enemy.
+   */
+  readonly physicalDamageTaken: number;
+  /**
+   * The total amount of true damage the participant dealt.
+   */
+  readonly trueDamageDealt: number;
+  /**
+   * The total amount of true damage the participant dealt to enemy champions.
+   */
+  readonly trueDamageDealtToChampions: number;
+  /**
+   * The total amount of true damage the participant took from the enemy.
+   */
+  readonly trueDamageTaken: number;
+  /**
+   * The total amount of damage the participant dealt.
+   */
+  readonly totalDamageDealt: number;
+  /**
+   * The total amount of damage the participant dealt to enemy champions.
+   */
+  readonly totalDamageDealtToChampions: number;
+  /**
+   * The total amount of damage the participant took from the enemy.
+   */
+  readonly totalDamageTaken: number;
+
+  /**
+   * Create a new participant frame damage stats instance.
+   * @param data - The raw data from the API.
+   */
+  constructor(data: ParticipantDamageStatsData) {
+    this.magicDamageDealt = data.magicDamageDone;
+    this.magicDamageDealtToChampions = data.magicDamageDoneToChampions;
+    this.magicDamageTaken = data.magicDamageTaken;
+    this.physicalDamageDealt = data.physicalDamageDone;
+    this.physicalDamageDealtToChampions = data.physicalDamageDoneToChampions;
+    this.physicalDamageTaken = data.physicalDamageTaken;
+    this.trueDamageDealt = data.trueDamageDone;
+    this.trueDamageDealtToChampions = data.trueDamageDoneToChampions;
+    this.trueDamageTaken = data.trueDamageTaken;
+    this.totalDamageDealt = data.totalDamageDone;
+    this.totalDamageDealtToChampions = data.totalDamageDoneToChampions;
+    this.totalDamageTaken = data.totalDamageTaken;
+  }
+}
 
 /**
  * A representation of a participant's stats at a point in the timeline.
@@ -209,10 +281,14 @@ export class ParticipantFrame {
    */
   readonly xp: number;
 
+  /**
+   * Create a new participant frame instance.
+   * @param data - The raw data from the API.
+   */
   constructor(data: ParticipantFrameData) {
     this.championStats = new ParticipantFrameChampionStats(data.championStats);
     this.currentGold = data.currentGold;
-    this.damageStats = new ParticipantFrameDamageStats();
+    this.damageStats = new ParticipantFrameDamageStats(data.damageStats);
     this.goldPerSecond = data.goldPerSecond;
     this.jungleMinionsKilled = data.jungleMinionsKilled;
     this.level = data.level;

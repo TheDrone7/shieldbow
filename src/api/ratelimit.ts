@@ -1,4 +1,4 @@
-import Collection from '@discordjs/collection';
+import { Collection } from '@discordjs/collection';
 import type { Region } from '../types';
 import type { AxiosResponse } from 'axios';
 

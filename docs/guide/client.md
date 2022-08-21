@@ -29,23 +29,30 @@ When you set the region, the locale will be set to the default locale for that r
 4. `cache`: (Very basic) The caching settings.
    1. `enabled`: Whether caching is enabled. This defaults to `true`.
    2. `localRoot`: The root directory for the local cache. This defaults to `./data`.
-Currently, only the data dragon (and community dragon/meraki) files can be cached locally.
+   
+   You can also optionally set the cache to simply `true` or `false` to enable or disable the caching.
 
-Additionally, (and this is not configurable), the client will automatically cache (in memory) 
-any data you fetch from the APIs.
+   Currently, only the data dragon (and community dragon/meraki) files can be cached locally.
 
-5. `fetch`: The fetcher settings - the data you want to prefetch during initialization to avoid having to fetch it later.
-   1. `champions`: Whether to prefetch champions data. This defaults to `true`.
-   2. `items`: Whether to prefetch items data. This defaults to `true`.
-   3. `runes`: Whether to prefetch runes data. This defaults to `true`.
-   4. `summonerSpells`: Whether to prefetch summoner spells data. This defaults to `true`.
+   Additionally, (and this is not configurable), the client will automatically cache (in memory)
+   any data you fetch from the APIs.
 
-This is the part that slows down your initialization. 
-Most of which, is due to champions being fetched from 3 different sources and then being combined.
-This is done to have all sorts of data available about the champions.
+5. `fetch`: The prefetch settings - choose what you want to prefetch during initialization to avoid having to fetch it later.
+   1. `champions`: Whether to prefetch champions data. This defaults to `false`.
+   2. `items`: Whether to prefetch items data. This defaults to `false`.
+   3. `runes`: Whether to prefetch runes data. This defaults to `false`.
+   4. `summonerSpells`: Whether to prefetch summoner spells data. This defaults to `false`.
 
-This can be sped up by either disabling the prefetching or enabling the cache.
-If the cache is enabled, the first initialization will still be slow but the requests will be handled significantly faster.
+   Prefetching is disabled by default.
+   
+   Also, just like caching, you can simply set `fetch` to `true` or `false` to enable or disable prefetching for everything.
+
+   This is the part that can slow down your initialization (if enabled). 
+   Most of which, is due to champions being fetched from 3 different sources and then being combined.
+   This is done to have all sorts of data available about the champions.
+
+   This can be sped up by either disabling the prefetching or enabling the cache.
+   If the cache is enabled, the first initialization will still be slow but the requests will be handled significantly faster.
 
 ::: warning
 
@@ -56,6 +63,13 @@ The data dragon files are fetched automatically when making a request to one of 
 - Champion Mastery v4
 
 Therefore, it is recommended to prefetch them to avoid having to delay these requests.
+
+---
+
+**UPDATE in v1.4.0**
+
+Now only the data dragon files that are REQUIRED are fetched while making these requests,
+making the requests significantly faster.
 
 :::
 

@@ -9,14 +9,14 @@ export default {
   testEnvironment: 'node',
   globals: {
     'ts-jest': {
-      useESM: true,
-    },
+      useESM: true
+    }
   },
   setupFiles: ['./tests/jest.setup.ts'],
   clearMocks: true,
   collectCoverage: true,
   coverageDirectory: 'coverage',
-  coverageReporters: ['html', 'text-summary'],
+  coverageReporters: ['html', 'text-summary', 'cobertura'],
   coverageProvider: 'v8',
   testTimeout: 30000,
   slowTestThreshold: 15,

@@ -1,12 +1,14 @@
 import type { Client } from '../client';
-import type { GameMap, GameMode, GameType, MatchData, Queue } from '../types';
-import Collection from '@discordjs/collection';
+import type { GameMap, GameMode, GameType, MatchData, Queue, Region } from '../types';
+import { Collection } from '@discordjs/collection';
 import { Team } from './Team';
+import type { MatchTimeline } from './MatchTimeline';
 
 /**
  * A representation of a league of legends match.
  */
 export class Match {
+  private readonly client: Client;
   /**
    * The match ID.
    */
@@ -56,11 +58,11 @@ export class Match {
    */
   readonly map: GameMap;
   /**
-   * The ID of the platform on which the match was played.
+   * The region in which the match was played.
    *
-   * Eg: `NA1` or `EUW1`.
+   * Eg: `NA` or `EUW`.
    */
-  readonly platformId: string;
+  readonly region: Region;
   /**
    * The queue type of the match.
    */
@@ -82,6 +84,7 @@ export class Match {
    * @param data - The raw match data from the API.
    */
   constructor(client: Client, data: MatchData) {
+    this.client = client;
     this.id = data.metadata.matchId;
     this.version = data.metadata.dataVersion;
     this.createdTimestamp = data.info.gameCreation;
@@ -94,7 +97,7 @@ export class Match {
     this.gameType = client.gameTypes.find((t) => t.gametype === data.info.gameType)!;
     this.gameVersion = data.info.gameVersion;
     this.map = client.maps.find((m) => m.mapId === data.info.mapId)!;
-    this.platformId = data.info.platformId;
+    this.region = this._regionFromPlatformId(data.info.platformId);
     this.queue = client.queues.find((q) => q.queueId === data.info.queueId)!;
     this.tournamentCode = data.info.tournamentCode;
     const blueTeamData = data.info.teams.find((t) => t.teamId === 100)!;
@@ -104,5 +107,39 @@ export class Match {
     this.teams = new Collection<'blue' | 'red', Team>();
     this.teams.set('blue', new Team(client, blueTeamData, blueTeamParticipants));
     this.teams.set('red', new Team(client, redTeamData, redTeamParticipants));
+  }
+
+  /**
+   * Fetch the timeline of the match.
+   */
+  fetchTimeline(): Promise<MatchTimeline> {
+    return this.client.matches.fetchMatchTimeline(this.id, { region: this.region });
+  }
+
+  private _regionFromPlatformId(platformId: string): Region {
+    switch (platformId) {
+      case 'BR1':
+        return 'br';
+      case 'EUN1':
+        return 'eune';
+      case 'EUW1':
+        return 'euw';
+      case 'JP1':
+        return 'jp';
+      case 'KR':
+        return 'kr';
+      case 'LA1':
+        return 'lan';
+      case 'LA2':
+        return 'las';
+      case 'OC1':
+        return 'oce';
+      case 'TR1':
+        return 'tr';
+      case 'RU':
+        return 'ru';
+      default:
+        return 'na';
+    }
   }
 }

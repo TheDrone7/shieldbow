@@ -8,8 +8,7 @@ describe('Test Champion Mastery v4 API', () => {
   beforeAll(async () => {
     await client.initialize({
       region: 'euw',
-      cache: false,
-      fetch: false
+      cache: false
     });
     const summoner = await client.summoners.fetchBySummonerName('TheDrone7');
     masteries = summoner.championMastery;

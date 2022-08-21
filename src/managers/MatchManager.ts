@@ -1,6 +1,6 @@
 import type { BaseManager, FetchOptions, MatchByPlayerOptions, MatchData, MatchTimelineData } from '../types';
 import { Match, type Summoner, MatchTimeline } from '../structures';
-import Collection from '@discordjs/collection';
+import { Collection } from '@discordjs/collection';
 import type { Client } from '../client';
 
 /**
@@ -88,7 +88,7 @@ export class MatchManager implements BaseManager<Match> {
           .catch(reject);
         if (response) {
           const data = <MatchTimelineData>response.data;
-          const timeline = new MatchTimeline(data);
+          const timeline = new MatchTimeline(this.client, data);
           if (cache) this.timelineCache.set(matchId, timeline);
           resolve(timeline);
         }

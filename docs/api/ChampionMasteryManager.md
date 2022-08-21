@@ -133,7 +133,7 @@ fetchAll(): Promise<Collection<string, ChampionMastery>>;
 
 ---
 
-#### .highest (n)
+#### .highest (n, options)
 
 Get the nth highest champion mastery for the summoner.
 
@@ -143,7 +143,7 @@ Get the nth highest champion mastery for the summoner.
 **Signature:**
 
 ```ts
-highest(n?: number): Promise<ChampionMastery>;
+highest(n?: number, options?: FetchOptions): Promise<ChampionMastery>;
 ```
 
 **Parameters:**
@@ -151,6 +151,7 @@ highest(n?: number): Promise<ChampionMastery>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | n | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The ranking of the champion in the summoner's champions mastery, defaults to 0 (highest). |
+| options | [FetchOptions](/api/FetchOptions.md) |  |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [ChampionMastery](/api/ChampionMastery.md) \>
 

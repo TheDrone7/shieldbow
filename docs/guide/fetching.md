@@ -15,6 +15,8 @@ Fetching data from the data dragon does not require a working API key.
 This is all simple JSON data publicly available.
 
 If your application needs only this, you can get away without providing a valid API Key during client construction.
+
+You still need to provide a key, but it can just be a placeholder instead of a valid key
 :::
 
 ```ts
@@ -147,46 +149,48 @@ import { Client } from 'shieldbow';
 
 const client = new Client('MY_API_KEY');
 
-client.initialize({
-  region: 'euw' // defaults to 'na'
-}).then(async () => {
-  // After initialization, you can use the client to make requests
-  const summoner1 = await client.summoners.fetchBySummonerName('TheDrone7');
-  const summoner2 = await client.summoners.fetchBySummonerName('hide on bush', { region: 'kr' });
+client
+  .initialize({
+    region: 'euw' // defaults to 'na'
+  })
+  .then(async () => {
+    // After initialization, you can use the client to make requests
+    const summoner1 = await client.summoners.fetchBySummonerName('TheDrone7');
+    const summoner2 = await client.summoners.fetchBySummonerName('hide on bush', { region: 'kr' });
 
-  const leagueEntry1 = await summoner1.fetchLeagueEntries();
-  const leagueEntry2 = await summoner2.fetchLeagueEntries();
+    const leagueEntry1 = await summoner1.fetchLeagueEntries();
+    const leagueEntry2 = await summoner2.fetchLeagueEntries();
 
-  const championMastery1 = summoner1.championMastery;
-  const championMastery2 = summoner2.championMastery;
+    const championMastery1 = summoner1.championMastery;
+    const championMastery2 = summoner2.championMastery;
 
-  const soloQ1 = leagueEntry1.get('RANKED_SOLO_5x5');
-  const soloQ2 = leagueEntry2.get('RANKED_SOLO_5x5');
+    const soloQ1 = leagueEntry1.get('RANKED_SOLO_5x5');
+    const soloQ2 = leagueEntry2.get('RANKED_SOLO_5x5');
 
-  const highest1 = await championMastery1.highest();
-  const highest2 = await championMastery2.highest();
+    const highest1 = await championMastery1.highest();
+    const highest2 = await championMastery2.highest();
 
-  console.log(`Summoner name: ${summoner1.name} (level: ${summoner1.level}).`);
-  console.log(`SoloQ: ${soloQ1.tier} ${soloQ1.division} (${soloQ1.lp} LP).`);
-  console.log(`Highest champion mastery: ${highest1.champion.name} (M${highest1.level} ${highest1.points} points).`);
-  console.log('\n\n');
-  console.log(`Summoner name: ${summoner2.name} (level: ${summoner2.level}).`);
-  console.log(`SoloQ: ${soloQ2.tier} ${soloQ2.division} (${soloQ2.lp} LP).`);
-  console.log(`Highest champion mastery: ${highest2.champion.name} (M${highest2.level} ${highest2.points} points).`);
-});
+    console.log(`Summoner name: ${summoner1.name} (level: ${summoner1.level}).`);
+    console.log(`SoloQ: ${soloQ1.tier} ${soloQ1.division} (${soloQ1.lp} LP).`);
+    console.log(`Highest champion mastery: ${highest1.champion.name} (M${highest1.level} ${highest1.points} points).`);
+    console.log('\n\n');
+    console.log(`Summoner name: ${summoner2.name} (level: ${summoner2.level}).`);
+    console.log(`SoloQ: ${soloQ2.tier} ${soloQ2.division} (${soloQ2.lp} LP).`);
+    console.log(`Highest champion mastery: ${highest2.champion.name} (M${highest2.level} ${highest2.points} points).`);
+  });
 ```
 
 ::: details Sample output
 ```
-Summoner name: TheDrone7 (level: 261).
+Summoner name: TheDrone7 (level: 294).
 SoloQ: BRONZE III (9 LP).
-Highest champion mastery: Kayn (M7 255687 points).
+Highest champion mastery: Kayn (M7 268028 points).
 
 
 
-Summoner name: Hide on bush (level: 565).
-SoloQ: CHALLENGER I (900 LP).
-Highest champion mastery: LeBlanc (M7 492301 points).
+Summoner name: Hide on bush (level: 593).
+SoloQ: CHALLENGER I (1119 LP).
+Highest champion mastery: LeBlanc (M7 497491 points).
 ```
 :::
 
@@ -233,9 +237,8 @@ The client has other managers to fetch other kinds of data from the API.
 
 ### Unsupported APIs
 
-Currently, unsupported (under development) API features are:
+Currently, unsupported (and unplanned) API features are:
 
-- [Match timeline](https://developer.riotgames.com/apis#match-v5/GET_getTimeline)
 - [Tournament v4](https://developer.riotgames.com/apis#tournament-v4)
 - [Tournament stub v4](https://developer.riotgames.com/apis#tournament-stub-v4)
 

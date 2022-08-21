@@ -7,8 +7,7 @@ describe('Test summoner spells fetching.', () => {
 
   beforeAll(async () => {
     await client.initialize({
-      cache: false,
-      fetch: false
+      cache: false
     });
     flash = await client.summonerSpells.fetch('SummonerFlash');
   });

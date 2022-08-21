@@ -1,11 +1,11 @@
 ---
 title: TimelineFrame
-description: 
+description: A representation of a frame in a match timeline.
 ---
 
 ## TimelineFrame class
 
-
+A representation of a frame in a match timeline.
 
 **Signature:**
 
@@ -18,7 +18,7 @@ export declare class TimelineFrame
 ### Constructor
 
 ```ts
-new TimelineFrame (data: any)
+new TimelineFrame (client: Client, data: MatchTimelineFrameData)
 ```
 
 Constructs a new instance of the `TimelineFrame` class.
@@ -27,24 +27,29 @@ Constructs a new instance of the `TimelineFrame` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | any |  |
+| client | [Client](/api/Client.md) | The client that created this frame. |
+| data | [MatchTimelineFrameData](/api/MatchTimelineFrameData.md) | The raw data from the API. |
 ---
 
 ### Properties
 
 #### events
 
+The events that took place in this frame.
 
 
-**Type**: any[]
+
+**Type**: [TimelineEvent](/api/TimelineEvent.md)[]
 
 ---
 
 #### participantFrames
 
+The participant frames for this timeline frame.
 
 
-**Type**: any[]
+
+**Type**: [ParticipantFrame](/api/ParticipantFrame.md)[]
 
 ---
 

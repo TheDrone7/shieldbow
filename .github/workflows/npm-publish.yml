@@ -17,6 +17,8 @@ jobs:
           node-version: 16
       - run: npm ci
       - run: npm test
+    env:
+      riot_api_key: ${{ secrets.api_key }}
 
   publish-npm:
     needs: build
@@ -30,6 +32,5 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm publish
-        env:
-          RIOT_API_KEY: ${{secrets.api_key}}
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+    env:
+      NODE_AUTH_TOKEN: ${{secrets.npm_token}}

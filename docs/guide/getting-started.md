@@ -47,26 +47,28 @@ import { Client } from 'shieldbow';
 
 const client = new Client('MY_API_KEY');
 
-client.initialize({
-  region: 'euw' // defaults to 'na'
-}).then(async () => {
-  // After initialization, you can use the client to make requests
-  // For example, lets fetch the following details of a summoner
-  // - Summoner name, summoner level
-  // - SoloQ ranking and LP
-  // - Highest champion mastery
-  
-  const summoner = await client.summoners.fetchBySummonerName('TheDrone7');
-  const leagueEntry = await summoner.fetchLeagueEntries();
-  const championMastery = summoner.championMastery;
-  
-  const soloQ = leagueEntry.get('RANKED_SOLO_5x5');
-  const highest = await championMastery.highest();
-  
-  console.log(`Summoner name: ${summoner.name} (level: ${summoner.level}).`);
-  console.log(`SoloQ: ${soloQ.tier} ${soloQ.division} (${soloQ.lp} LP).`);
-  console.log(`Highest champion mastery: ${highest.champion.name} (M${highest.level} ${highest.points} points).`);
-});
+client
+  .initialize({
+    region: 'euw', // defaults to 'na'
+  })
+  .then(async () => {
+    // After initialization, you can use the client to make requests
+    // For example, lets fetch the following details of a summoner
+    // - Summoner name, summoner level
+    // - SoloQ ranking and LP
+    // - The highest champion mastery
+
+    const summoner = await client.summoners.fetchBySummonerName('TheDrone7');
+    const leagueEntry = await summoner.fetchLeagueEntries();
+    const championMastery = summoner.championMastery;
+
+    const soloQ = leagueEntry.get('RANKED_SOLO_5x5');
+    const highest = await championMastery.highest();
+
+    console.log(`Summoner name: ${summoner.name} (level: ${summoner.level}).`);
+    console.log(`SoloQ: ${soloQ.tier} ${soloQ.division} (${soloQ.lp} LP).`);
+    console.log(`Highest champion mastery: ${highest.champion.name} (M${highest.level} ${highest.points} points).`);
+  });
 ```
 
 Before you run this code, make sure you have replaced `MY_API_KEY` with your API key.
@@ -76,9 +78,9 @@ you need to apply for production API key.
 
 Anyway, you will see something similar to the following data:
 ```
-Summoner name: TheDrone7 (level: 259).
+Summoner name: TheDrone7 (level: 294).
 SoloQ: BRONZE III (9 LP).
-Highest champion mastery: Kayn (M7 253061 points).
+Highest champion mastery: Kayn (M7 268028 points).
 ```
 
 This can obviously change a lot.

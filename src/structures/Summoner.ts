@@ -1,7 +1,7 @@
 import type { FetchOptions, MatchByPlayerOptions, Region, SummonerData } from '../types';
 import type { Client } from '../client';
 import { ChampionMasteryManager } from '../managers';
-import type Collection from '@discordjs/collection';
+import type { Collection } from '@discordjs/collection';
 import type { LeagueEntry } from './LeagueEntry';
 import type { Account } from './Account';
 import type { CurrentGame } from './CurrentGame';

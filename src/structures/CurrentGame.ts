@@ -1,6 +1,6 @@
 import type { Client } from '../client';
 import type { CurrentGameData, GameMap, GameMode, GameType, Queue } from '../types';
-import Collection from '@discordjs/collection';
+import { Collection } from '@discordjs/collection';
 import { CurrentGameTeam } from './CurrentGameTeam';
 
 /**

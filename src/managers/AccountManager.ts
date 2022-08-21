@@ -1,6 +1,6 @@
 import type { BaseManager, AccountData, FetchOptions } from '../types';
 import type { Client } from '../client';
-import Collection from '@discordjs/collection';
+import { Collection } from '@discordjs/collection';
 import { Account } from '../structures';
 
 /**
@@ -71,7 +71,7 @@ export class AccountManager implements BaseManager<Account> {
       const cached = this.cache.find((a) => a.username === name && a.userTag === tag);
       if (cached && !force) resolve(cached);
       const accountResponse = await this.client.api
-        .makeApiRequest('/riot/account/v1/accounts/by-riot-id/' + name + '/' + tag, {
+        .makeApiRequest('/riot/account/v1/accounts/by-riot-id/' + encodeURIComponent(name) + '/' + tag, {
           region,
           regional: true,
           name: 'Account by name and tag',

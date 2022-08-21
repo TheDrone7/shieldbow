@@ -5,8 +5,7 @@ describe('Test client configuration update', () => {
 
   beforeAll(async () => {
     await client.initialize({
-      cache: false,
-      fetch: false
+      cache: false
     });
   });
 
