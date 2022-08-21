@@ -199,7 +199,6 @@ export class ChampionManager implements BaseManager<Champion> {
           names = names.filter((n) => n !== name);
         }
       }
-
       if (names.length) {
         const response = await this.client.http.get(
           this.client.version + '/data/' + this.client.locale + '/championFull.json'
@@ -241,24 +240,26 @@ export class ChampionManager implements BaseManager<Champion> {
           keys = keys.filter((k) => k !== key);
         }
       }
-      const response = await this.client.http.get(
-        this.client.version + '/data/' + this.client.locale + '/championFull.json'
-      );
-      if (response.status !== 200) reject('Unable to fetch the champions data.');
-      else {
-        const champs = <{ data: { [champ: string]: ChampionData } }>response.data;
-        for (const key of Object.keys(champs.data)) {
-          const champ = champs.data[key];
-          if (keys.some((k) => champ.key === String(k))) {
-            const damage = <SpellDamageData>await this._fetchLocalDamage(champ.id).catch(reject);
-            const meraki = <MerakiChampion>await this._fetchLocalPricing(champ.id).catch(reject);
-            const champion = new Champion(this.client, champs.data[key], damage, meraki);
-            result.set(key, champion);
-            this.cache.set(key, champion);
+      if (keys.length) {
+        const response = await this.client.http.get(
+          this.client.version + '/data/' + this.client.locale + '/championFull.json'
+        );
+        if (response.status !== 200) reject('Unable to fetch the champions data.');
+        else {
+          const champs = <{ data: { [champ: string]: ChampionData } }>response.data;
+          for (const key of Object.keys(champs.data)) {
+            const champ = champs.data[key];
+            if (keys.some((k) => champ.key === String(k))) {
+              const damage = <SpellDamageData>await this._fetchLocalDamage(champ.id).catch(reject);
+              const meraki = <MerakiChampion>await this._fetchLocalPricing(champ.id).catch(reject);
+              const champion = new Champion(this.client, champs.data[key], damage, meraki);
+              result.set(key, champion);
+              this.cache.set(key, champion);
+            }
           }
+          resolve(result);
         }
-        resolve(result);
-      }
+      } else resolve(result);
     });
   }
 }
