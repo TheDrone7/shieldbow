@@ -154,7 +154,7 @@ export class Client {
     this._seasons = <Season[]>seasonsResponse.data;
     this._queues = <Queue[]>queuesResponse.data.map((q: Queue) => ({
       ...q,
-      notes: q.notes ?? undefined // Replace null with undefined for consistency
+      notes: q.notes ?? undefined
     }));
     this._maps = <GameMap[]>mapsResponse.data.map((m: { mapId: number; mapName: string; notes: string }) => ({
       ...m,
