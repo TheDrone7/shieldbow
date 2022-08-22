@@ -27,7 +27,7 @@ export interface MerakiSkin {
   sale: number;
   rarity: string;
   availability: string;
-  chromas: (MerakiSkinChroma | undefined | null)[];
+  chromas: (MerakiSkinChroma | null)[];
   lore: string;
   splashPath: string;
   uncenteredSplashPath: string;
