@@ -5,6 +5,7 @@ import type { PerksData } from './Perks';
  */
 export interface ParticipantData {
   assists: number;
+  basicPings: number;
   baronKills: number;
   bountyLevel: number;
   champExperience: number;
