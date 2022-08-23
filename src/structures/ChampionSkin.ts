@@ -82,6 +82,8 @@ export class ChampionSkin {
     this.loadingScreen = meraki.loadScreenPath;
     this.vintageLoadingScreen = meraki.loadScreenVintagePath || undefined;
     this.internalId = data.id;
-    this.chromas = meraki.chromas.filter((c) => !!c).map((c) => ({ id: c!.id, name: c!.name, image: c!.chromaPath }));
+    this.chromas = meraki.chromas
+      .filter((c) => c !== null)
+      .map((c) => ({ id: c!.id, name: c!.name, image: c!.chromaPath }));
   }
 }
