@@ -152,7 +152,10 @@ export class Client {
     if (gameTypesResponse?.status !== 200) throw new Error('Unable to fetch game types static data from data dragon.');
 
     this._seasons = <Season[]>seasonsResponse.data;
-    this._queues = <Queue[]>queuesResponse.data;
+    this._queues = <Queue[]>queuesResponse.data.map((q: Queue) => ({
+      ...q,
+      notes: q.notes ?? undefined
+    }));
     this._maps = <GameMap[]>mapsResponse.data.map((m: { mapId: number; mapName: string; notes: string }) => ({
       ...m,
       image: this.cdnBase + this.version + `/img/map/map${m.mapId}.png`

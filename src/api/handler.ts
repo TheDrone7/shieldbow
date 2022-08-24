@@ -58,7 +58,7 @@ export class ApiHandler {
       const requestLimit = this.limits.verify(options.region, options.name);
       if (!requestLimit.pass) {
         const mockResponse = {
-          data: null,
+          data: undefined,
           status: 429,
           statusText: 'Too Many Requests',
           headers: {},

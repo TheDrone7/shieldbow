@@ -31,7 +31,7 @@ export interface Queue {
   /**
    * Additional notes about the queue.
    */
-  notes: string | null;
+  notes?: string;
 }
 
 /**
