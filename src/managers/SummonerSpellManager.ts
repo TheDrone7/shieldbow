@@ -65,7 +65,7 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
    * Fetch a spell by its ID. The ID is usually something like Summoner\{Spell\}
    * For example, for the spell `Flash`, the ID is `SummonerFlash`.
    * But there are a lot of exceptions to this,
-   * so it is recommended to use {@link SummonerSpellManager.findByName | findByName} instead.
+   * so it is recommended to use {@link SummonerSpellManager.fetchByName | fetchByName} instead.
    *
    * @param key - The ID of the spell to fetch.
    * @param options - The basic fetching options.
