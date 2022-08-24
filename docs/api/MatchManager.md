@@ -41,6 +41,9 @@ Constructs a new instance of the `MatchManager` class.
 The collection of cached matches.
 
 
+Only use this if you absolutely must. Prioritize using [fetch](/api/MatchManager.md#fetch) and [fetchMatchListByPlayer](/api/MatchManager.md#fetchMatchListByPlayer) instead.
+
+
 
 **Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Match](/api/Match.md) \>
 
@@ -59,6 +62,9 @@ The client that instantiated the manager.
 #### timelineCache
 
 The collection of cached match timelines.
+
+
+Only use this if you absolutely must. Prioritize using [fetchMatchTimeline](/api/MatchManager.md#fetchMatchTimeline) instead.
 
 
 

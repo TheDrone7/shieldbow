@@ -13,14 +13,27 @@ export class ClashManager implements BaseManager<Tournament> {
   readonly client: Client;
   /**
    * The in-memory cache of tournaments.
+   *
+   * Only use this if you absolutely must.
+   * Prioritize using
+   * {@link ClashManager.fetch | fetch},
+   * {@link ClashManager.fetchByTeamId | fetchByTeamId} or
+   * {@link ClashManager.fetchAll | fetchAll}
+   * instead.
    */
   readonly cache: Collection<number, Tournament>;
   /**
    * The in-memory cache of the tournament teams.
+   *
+   * Only use this if you absolutely must.
+   * Prioritize using {@link ClashManager.fetchTeam | fetchTeam} instead.
    */
   readonly cachedTeams: Collection<string, TournamentTeam>;
   /**
    * The in-memory cache of the tournament players.
+   *
+   * Only use this if you absolutely must.
+   * Prioritize using {@link ClashManager.fetchPlayer | fetchPlayer} instead.
    */
   readonly cachedPlayers: Collection<string, TournamentPlayer[]>;
 

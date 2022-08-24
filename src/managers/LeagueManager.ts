@@ -21,10 +21,19 @@ export class LeagueManager implements BaseManager<Collection<QueueType, LeagueEn
   readonly client: Client;
   /**
    * The competitive info (mapped by summoner ID) stored in the memory.
+   *
+   * Only use this if you absolutely must.
+   * Prioritize using
+   * {@link LeagueManager.fetch | fetch} or
+   * {@link LeagueManager.fetchByQueueAndTier | fetchByQueueAndTier}
+   * instead.
    */
   readonly cache: Collection<string, Collection<QueueType, LeagueEntry>>;
   /**
    * The in-memory cache for league lists.
+   *
+   * Only use this if you absolutely must.
+   * Prioritize using {@link LeagueManager.fetchByLeagueId | fetchByLeagueId} instead.
    */
   readonly listCache: Collection<string, LeagueList>;
 

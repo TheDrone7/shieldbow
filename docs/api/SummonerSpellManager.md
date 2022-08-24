@@ -45,6 +45,9 @@ Constructs a new instance of the `SummonerSpellManager` class.
 A collection of the summoner spells cached in the memory.
 
 
+Only use this if you absolutely must. Prioritize using [fetch](/api/SummonerSpellManager.md#fetch) instead.
+
+
 
 **Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [SummonerSpell](/api/SummonerSpell.md) \>
 

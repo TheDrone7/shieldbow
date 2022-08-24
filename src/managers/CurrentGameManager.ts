@@ -9,6 +9,12 @@ import { Collection } from '@discordjs/collection';
 export class CurrentGameManager implements BaseManager<CurrentGame> {
   /**
    * The cached live games (mapped by summoner IDs).
+   *
+   * Only use this if you absolutely must.
+   * Prioritize using
+   * {@link CurrentGameManager.fetch | fetch} or
+   * {@link CurrentGameManager.fetchFeatured | fetchFeatured}
+   * instead.
    */
   readonly cache: Collection<string, CurrentGame>;
   /**

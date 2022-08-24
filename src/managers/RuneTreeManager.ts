@@ -11,6 +11,9 @@ import path from 'path';
 export class RuneTreeManager implements BaseManager<RuneTree> {
   /**
    * A collection of the rune trees cached in the memory.
+   *
+   * Only use this if you absolutely must.
+   * Prioritize using {@link RuneTreeManager.fetch | fetch} instead.
    */
   readonly cache: Collection<string, RuneTree>;
   /**
@@ -34,6 +37,9 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
    * An array of runes that have been saved in the cache.
    *
    * This is similar to the cache but the cache is a collection of Rune Trees and this is an array of runes.
+   *
+   * Only use this if you absolutely must.
+   * Prioritize using {@link RuneTreeManager.fetchRune | fetchRune} instead.
    */
   get cachedRunes(): Rune[] {
     return this.cache.map((t) => t.slots.map((r) => [...r.values()])).flat(2);

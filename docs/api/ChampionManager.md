@@ -45,6 +45,9 @@ Constructs a new instance of the `ChampionManager` class.
 The champions cached in the memory.
 
 
+Only use this if you absolutely must. Prioritize using [fetch](/api/ChampionManager.md#fetch), [fetchByKey](/api/ChampionManager.md#fetchByKey), [fetchByName](/api/ChampionManager.md#fetchByName) or [fetchAll](/api/ChampionManager.md#fetchAll) instead.
+
+
 
 **Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/api/Champion.md) \>
 

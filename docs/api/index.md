@@ -136,7 +136,8 @@
 | [MatchTimelineInfo](/api/MatchTimelineInfo.md) | The match timeline details as returned by the API. |
 | [MatchTimelineMetadata](/api/MatchTimelineMetadata.md) | The match timeline metadata as returned by the API. |
 | [MerakiChampion](/api/MerakiChampion.md) | A representation of the champion data returned by meraki analytics. These are used in the LoL wiki. |
-| [MerakiSkin](/api/MerakiSkin.md) | A representation of a champion's skin data returned by meraki analytics. These are used in the LoL wiki. |
+| [MerakiSkin](/api/MerakiSkin.md) |  |
+| [MerakiSkinChroma](/api/MerakiSkinChroma.md) | A representation of a champion's skin data returned by meraki analytics. These are used in the LoL wiki. |
 | [ObjectiveBountyPrestartEventData](/api/ObjectiveBountyPrestartEventData.md) | The event data for the objective bounty prestart event. |
 | [ParticipantChampion](/api/ParticipantChampion.md) | The participant's champion details. |
 | [ParticipantChampionStatsData](/api/ParticipantChampionStatsData.md) | The participant champion stats as returned by the API. |

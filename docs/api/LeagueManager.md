@@ -41,6 +41,9 @@ Constructs a new instance of the `LeagueManager` class.
 The competitive info (mapped by summoner ID) stored in the memory.
 
 
+Only use this if you absolutely must. Prioritize using [fetch](/api/LeagueManager.md#fetch) or [fetchByQueueAndTier](/api/LeagueManager.md#fetchByQueueAndTier) instead.
+
+
 
 **Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [QueueType](/api/QueueType.md), [LeagueEntry](/api/LeagueEntry.md) \> \>
 
@@ -59,6 +62,9 @@ The client this manager belongs to.
 #### listCache
 
 The in-memory cache for league lists.
+
+
+Only use this if you absolutely must. Prioritize using [fetchByLeagueId](/api/LeagueManager.md#fetchByLeagueId) instead.
 
 
 

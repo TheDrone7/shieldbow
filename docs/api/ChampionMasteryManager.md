@@ -42,6 +42,9 @@ Constructs a new instance of the `ChampionMasteryManager` class.
 The cached mastery data for the summoner.
 
 
+Only use this if you absolutely must. Prioritize using [fetch](/api/ChampionMasteryManager.md#fetch) instead.
+
+
 
 **Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [ChampionMastery](/api/ChampionMastery.md) \>
 

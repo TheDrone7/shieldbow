@@ -41,6 +41,9 @@ Constructs a new instance of the `SummonerManager` class.
 The summoners cached in the memory.
 
 
+Only use this if you absolutely must. Prioritize using [fetch](/api/SummonerManager.md#fetch), [fetchBySummonerName](/api/SummonerManager.md#fetchBySummonerName) or [fetchByPlayerId](/api/SummonerManager.md#fetchByPlayerId) instead.
+
+
 
 **Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Summoner](/api/Summoner.md) \>
 

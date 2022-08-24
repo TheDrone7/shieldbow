@@ -53,6 +53,16 @@ The number of times this participant killed the baron nashor.
 
 ---
 
+#### basicPings
+
+The number of times this participant used the basic pings.
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
 #### bounty
 
 The bounty on this participant's head.

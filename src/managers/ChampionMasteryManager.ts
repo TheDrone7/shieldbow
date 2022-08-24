@@ -9,6 +9,9 @@ import { Champion, ChampionMastery, Summoner } from '../structures';
 export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
   /**
    * The cached mastery data for the summoner.
+   *
+   * Only use this if you absolutely must.
+   * Prioritize using {@link ChampionMasteryManager.fetch | fetch} instead.
    */
   readonly cache: Collection<string, ChampionMastery>;
   /**

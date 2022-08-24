@@ -45,6 +45,9 @@ Constructs a new instance of the `ItemManager` class.
 A collection of the items cached in the memory.
 
 
+Only use this if you absolutely must. Prioritize using [fetch](/api/ItemManager.md#fetch) instead.
+
+
 
 **Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/Item.md) \>
 

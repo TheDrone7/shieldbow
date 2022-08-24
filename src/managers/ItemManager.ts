@@ -11,6 +11,9 @@ import path from 'path';
 export class ItemManager implements BaseManager<Item> {
   /**
    * A collection of the items cached in the memory.
+   *
+   * Only use this if you absolutely must.
+   * Prioritize using {@link ItemManager.fetch | fetch} instead.
    */
   readonly cache: Collection<string, Item>;
   /**

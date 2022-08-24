@@ -9,10 +9,19 @@ import type { Client } from '../client';
 export class MatchManager implements BaseManager<Match> {
   /**
    * The collection of cached matches.
+   *
+   * Only use this if you absolutely must.
+   * Prioritize using
+   * {@link MatchManager.fetch | fetch} and
+   * {@link MatchManager.fetchMatchListByPlayer | fetchMatchListByPlayer}
+   * instead.
    */
   readonly cache: Collection<string, Match>;
   /**
    * The collection of cached match timelines.
+   *
+   * Only use this if you absolutely must.
+   * Prioritize using {@link MatchManager.fetchMatchTimeline | fetchMatchTimeline} instead.
    */
   readonly timelineCache: Collection<string, MatchTimeline>;
   /**

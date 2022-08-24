@@ -45,6 +45,9 @@ Constructs a new instance of the `RuneTreeManager` class.
 A collection of the rune trees cached in the memory.
 
 
+Only use this if you absolutely must. Prioritize using [fetch](/api/RuneTreeManager.md#fetch) instead.
+
+
 
 **Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/api/RuneTree.md) \>
 
@@ -56,6 +59,9 @@ An array of runes that have been saved in the cache.
 
 
 This is similar to the cache but the cache is a collection of Rune Trees and this is an array of runes.
+
+
+Only use this if you absolutely must. Prioritize using [fetchRune](/api/RuneTreeManager.md#fetchRune) instead.
 
 
 

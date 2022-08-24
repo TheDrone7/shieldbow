@@ -11,6 +11,9 @@ import path from 'path';
 export class SummonerSpellManager implements BaseManager<SummonerSpell> {
   /**
    * A collection of the summoner spells cached in the memory.
+   *
+   * Only use this if you absolutely must.
+   * Prioritize using {@link SummonerSpellManager.fetch | fetch} instead.
    */
   readonly cache: Collection<string, SummonerSpell>;
   /**

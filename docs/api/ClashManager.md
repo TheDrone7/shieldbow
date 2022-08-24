@@ -41,6 +41,9 @@ Constructs a new instance of the `ClashManager` class.
 The in-memory cache of tournaments.
 
 
+Only use this if you absolutely must. Prioritize using [fetch](/api/ClashManager.md#fetch), [fetchByTeamId](/api/ClashManager.md#fetchByTeamId) or [fetchAll](/api/ClashManager.md#fetchAll) instead.
+
+
 
 **Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [Tournament](/api/Tournament.md) \>
 
@@ -51,6 +54,9 @@ The in-memory cache of tournaments.
 The in-memory cache of the tournament players.
 
 
+Only use this if you absolutely must. Prioritize using [fetchPlayer](/api/ClashManager.md#fetchPlayer) instead.
+
+
 
 **Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [TournamentPlayer](/api/TournamentPlayer.md)[] \>
 
@@ -59,6 +65,9 @@ The in-memory cache of the tournament players.
 #### cachedTeams
 
 The in-memory cache of the tournament teams.
+
+
+Only use this if you absolutely must. Prioritize using [fetchTeam](/api/ClashManager.md#fetchTeam) instead.
 
 
 

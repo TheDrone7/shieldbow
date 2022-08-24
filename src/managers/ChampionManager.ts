@@ -11,6 +11,14 @@ import path from 'path';
 export class ChampionManager implements BaseManager<Champion> {
   /**
    * The champions cached in the memory.
+   *
+   * Only use this if you absolutely must.
+   * Prioritize using
+   * {@link ChampionManager.fetch | fetch},
+   * {@link ChampionManager.fetchByKey | fetchByKey },
+   * {@link ChampionManager.fetchByName | fetchByName} or
+   * {@link ChampionManager.fetchAll | fetchAll}
+   * instead.
    */
   readonly cache: Collection<string, Champion>;
   /**

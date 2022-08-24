@@ -1,11 +1,11 @@
 ---
 title: MerakiSkin
-description: A representation of a champion's skin data returned by meraki analytics. These are used in the LoL wiki.
+description: 
 ---
 
 ## MerakiSkin interface
 
-A representation of a champion's skin data returned by meraki analytics. These are used in the LoL wiki.
+
 
 **Signature:**
 
@@ -27,7 +27,7 @@ export interface MerakiSkin
 
 
 
-**Type**: {         name: string;         id: number;         chromaPath: string;     }[]
+**Type**: (MerakiSkinChroma \| null)[]
 
 ---
 
