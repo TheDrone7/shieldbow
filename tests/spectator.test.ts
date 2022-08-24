@@ -3,7 +3,7 @@ import { Client, CurrentGame } from '../dist';
 jest.setTimeout(300000);
 
 describe('Test Spectator v4 API', () => {
-  const client = new Client(process.env.riot_api_key!);
+  const client = new Client(process.env.RIOT_API_KEY!);
 
   let games: CurrentGame[];
 

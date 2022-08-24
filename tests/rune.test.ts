@@ -1,7 +1,7 @@
 import { RuneTree, Rune, Client } from '../dist';
 
 describe('Test runes fetching.', () => {
-  const client = new Client(process.env.riot_api_key!);
+  const client = new Client(process.env.RIOT_API_KEY!);
 
   let domination: RuneTree;
   let electrocute: Rune;

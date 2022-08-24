@@ -145,23 +145,32 @@ export class ChampionManager implements BaseManager<Champion> {
   /**
    * Find a champion by their 3-digit key.
    *
+   * @deprecated Use {@link ChampionManager.fetchByKey | fetchByKey} instead.
    * @param key - The 3-digit key of the champion to look for.
    */
   async findByKey(key: number) {
-    if (!this.cache.size) await this.fetchAll();
-    return this.cache.find((champ) => champ.key === key);
+    return this.fetchByKey(key);
   }
 
   /**
-   * Find a champion by their name (instead of ID, which is very similar but not the same as the name).
-   * The search is case-insensitive.
-   * The special characters are NOT ignored.
+   * Find a champion by their name.
    *
+   * @deprecated Use {@link ChampionManager.fetchByName | fetchByName} instead.
    * @param name - The name of the champion to look for.
    */
   async findByName(name: string) {
-    if (!this.cache.size) await this.fetchAll();
-    return this.cache.find((champ) => champ.name.toLowerCase().includes(name.toLowerCase()));
+    return this.fetchByName(name);
+  }
+
+  /**
+   * Fetch and cache champion by their name (instead of ID, which is very similar but not the same as the name).
+   * The search is case-insensitive.
+   * The special characters are NOT ignored.
+   *
+   * @param name - The name of the champions to fetch.
+   */
+  async fetchByName(name: string) {
+    return this.fetchByNames([name]).then((c) => c.first());
   }
 
   /**
@@ -176,33 +185,81 @@ export class ChampionManager implements BaseManager<Champion> {
   }
 
   /**
+   * Fetch and cache champions by their names.
+   *
+   * @param names - The names of the champions to fetch.
+   */
+  async fetchByNames(names: string[]): Promise<Collection<string, Champion>> {
+    return new Promise(async (resolve, reject) => {
+      const result = new Collection<string, Champion>();
+      for (const name of names) {
+        const champ = this.cache.find((c) => c.name.toLowerCase().includes(name.toLowerCase()));
+        if (champ) {
+          result.set(champ.id, champ);
+          names = names.filter((n) => n !== name);
+        }
+      }
+      if (names.length) {
+        const response = await this.client.http.get(
+          this.client.version + '/data/' + this.client.locale + '/championFull.json'
+        );
+        if (response.status !== 200) reject('Unable to fetch the champions data.');
+        else {
+          const champs = <{ data: { [champ: string]: ChampionData } }>response.data;
+          for (const key of Object.keys(champs.data)) {
+            const champ = champs.data[key];
+            if (names.some((n) => champ.name.toLowerCase().includes(n.toLowerCase()))) {
+              const damage = <SpellDamageData>await this._fetchLocalDamage(champ.id).catch(reject);
+              const meraki = <MerakiChampion>await this._fetchLocalPricing(champ.id).catch(reject);
+              const champion = new Champion(this.client, champs.data[key], damage, meraki);
+              result.set(key, champion);
+              this.cache.set(key, champion);
+            }
+          }
+          resolve(result);
+        }
+      } else resolve(result);
+    });
+  }
+
+  /**
    * Fetch and cache champions by their unique 3-digit keys.
    *
    * This is mostly for internal use while fetching match (or live match) data to improve performance.
+   * Ideally, any user would be using {@link ChampionManager.fetch | fetch}.
    *
    * @param keys - The keys of the champions to fetch.
    */
   async fetchByKeys(keys: number[]): Promise<Collection<string, Champion>> {
     return new Promise(async (resolve, reject) => {
       const result = new Collection<string, Champion>();
-      const response = await this.client.http.get(
-        this.client.version + '/data/' + this.client.locale + '/championFull.json'
-      );
-      if (response.status !== 200) reject('Unable to fetch the champions data.');
-      else {
-        const champs = <{ data: { [champ: string]: ChampionData } }>response.data;
-        for (const key of Object.keys(champs.data)) {
-          const champ = champs.data[key];
-          if (keys.some((k) => champ.key === String(k))) {
-            const damage = <SpellDamageData>await this._fetchLocalDamage(champ.id).catch(reject);
-            const meraki = <MerakiChampion>await this._fetchLocalPricing(champ.id).catch(reject);
-            const champion = new Champion(this.client, champs.data[key], damage, meraki);
-            result.set(key, champion);
-            this.cache.set(key, champion);
-          }
+      for (const key of keys) {
+        const champ = this.cache.find((c) => c.key === key);
+        if (champ) {
+          result.set(champ.id, champ);
+          keys = keys.filter((k) => k !== key);
         }
-        resolve(result);
       }
+      if (keys.length) {
+        const response = await this.client.http.get(
+          this.client.version + '/data/' + this.client.locale + '/championFull.json'
+        );
+        if (response.status !== 200) reject('Unable to fetch the champions data.');
+        else {
+          const champs = <{ data: { [champ: string]: ChampionData } }>response.data;
+          for (const key of Object.keys(champs.data)) {
+            const champ = champs.data[key];
+            if (keys.some((k) => champ.key === String(k))) {
+              const damage = <SpellDamageData>await this._fetchLocalDamage(champ.id).catch(reject);
+              const meraki = <MerakiChampion>await this._fetchLocalPricing(champ.id).catch(reject);
+              const champion = new Champion(this.client, champs.data[key], damage, meraki);
+              result.set(key, champion);
+              this.cache.set(key, champion);
+            }
+          }
+          resolve(result);
+        }
+      } else resolve(result);
     });
   }
 }

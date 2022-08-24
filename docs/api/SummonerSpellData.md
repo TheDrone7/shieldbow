@@ -43,7 +43,7 @@ export interface SummonerSpellData
 
 
 
-**Type**: [ImageData](/api/ImageData.md)
+**Type**: ImageData
 
 ---
 

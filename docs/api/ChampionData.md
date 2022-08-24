@@ -51,7 +51,7 @@ export interface ChampionData
 
 
 
-**Type**: [ImageData](/api/ImageData.md)
+**Type**: ImageData
 
 ---
 

@@ -1,7 +1,7 @@
 import { Item, Client } from '../dist';
 
 describe('Test item fetching.', () => {
-  const client = new Client(process.env.riot_api_key!);
+  const client = new Client(process.env.RIOT_API_KEY!);
 
   let boots: Item;
 

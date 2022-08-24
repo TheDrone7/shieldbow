@@ -12,6 +12,13 @@ export interface ChampionSkinData {
  * A representation of a champion's skin data returned by meraki analytics.
  * These are used in the LoL wiki.
  */
+
+export interface MerakiSkinChroma {
+  name: string;
+  id: number;
+  chromaPath: string;
+}
+
 export interface MerakiSkin {
   name: string;
   id: number;
@@ -20,11 +27,7 @@ export interface MerakiSkin {
   sale: number;
   rarity: string;
   availability: string;
-  chromas: {
-    name: string;
-    id: number;
-    chromaPath: string;
-  }[];
+  chromas: (MerakiSkinChroma | null)[];
   lore: string;
   splashPath: string;
   uncenteredSplashPath: string;

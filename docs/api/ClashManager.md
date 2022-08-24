@@ -13,7 +13,7 @@ A clash manager - to fetch and store clash tournaments and related data.
 export declare class ClashManager implements BaseManager<Tournament> 
 ```
 
-Implements: BaseManager<Tournament\>
+Implements: BaseManager&lt;Tournament&gt;
 
 **References:** [BaseManager](/api/BaseManager.md), [Tournament](/api/Tournament.md)
 

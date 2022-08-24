@@ -13,7 +13,7 @@ A champion mastery manager - to fetch and manage all summoner's champion mastery
 export declare class ChampionMasteryManager implements BaseManager<ChampionMastery> 
 ```
 
-Implements: BaseManager<ChampionMastery\>
+Implements: BaseManager&lt;ChampionMastery&gt;
 
 **References:** [BaseManager](/api/BaseManager.md), [ChampionMastery](/api/ChampionMastery.md)
 
