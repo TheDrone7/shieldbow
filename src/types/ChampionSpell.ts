@@ -18,8 +18,8 @@ export interface SpellData {
   cost: number[];
   costBurn: string;
   datavalues: {};
-  effect: (number[] | undefined)[];
-  effectBurn: (string | undefined)[];
+  effect: (null | number[])[];
+  effectBurn: (null | string)[];
   vars: {
     key: string;
     link: string;
