@@ -64,7 +64,7 @@ export class StorageManager implements BaseManager<any> {
   store(id: string, data: any): void {
     const contentPath = path.join(this._pathName, id + '.json');
     const exists = fs.existsSync(contentPath);
-    if (exists) throw new Error('The data already exists. A redundant request is being made.');
+    if (exists) throw new Error('The data already exists. A redundant request is being made: ' + contentPath);
     else {
       fs.ensureFileSync(contentPath);
       fs.writeFileSync(contentPath, JSON.stringify(data, null, 2));
