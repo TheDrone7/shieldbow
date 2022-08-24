@@ -84,12 +84,22 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
 
   /**
    * Find a spell by its name.
+   *
+   * @deprecated Please use {@link SummonerSpellManager.fetchByName | fetchByName} instead.
+   * @param name - The name of the spell to look for.
+   */
+  async findByName(name: string) {
+    return this.fetchByName(name);
+  }
+
+  /**
+   * Fetch a spell by its name.
    * The search is case-insensitive.
    * The special characters are NOT ignored.
    *
    * @param name - The name of the spell to look for.
    */
-  async findByName(name: string) {
+  async fetchByName(name: string) {
     if (!this.cache.size) await this._fetchAll();
     return this.cache.find((i) => i.name.toLowerCase().includes(name.toLowerCase()));
   }

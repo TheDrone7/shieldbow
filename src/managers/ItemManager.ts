@@ -82,12 +82,22 @@ export class ItemManager implements BaseManager<Item> {
 
   /**
    * Find an item by its name.
+   *
+   * @deprecated Please use {@link ItemManager.fetchByKey | fetchByKey} instead.
+   * @param name - The name of the item to look for.
+   */
+  async findByName(name: string) {
+    return this.fetchByName(name);
+  }
+
+  /**
+   * Fetch an item by its name.
    * The search is case-insensitive.
    * The special characters are NOT ignored.
    *
    * @param name - The name of the item to look for.
    */
-  async findByName(name: string) {
+  async fetchByName(name: string) {
     if (!this.cache.size) await this._fetchAll();
     return this.cache.find((i) => i.name.toLowerCase().includes(name.toLowerCase()));
   }

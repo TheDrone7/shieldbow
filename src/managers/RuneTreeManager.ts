@@ -114,33 +114,64 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
 
   /**
    * Find a rune tree by its name.
+   *
+   * @deprecated Please use {@link RuneTreeManager.fetchByName | fetchByName} instead.
+   * @param name - The name of the rune tree to look for.
+   */
+  async findByName(name: string) {
+    return this.fetchByName(name);
+  }
+
+  /**
+   * Fetch a rune tree by its name.
    * The search is case-insensitive.
    * The special characters are NOT ignored.
    *
    * @param name - The name of the rune tree to look for.
    */
-  async findByName(name: string) {
+  async fetchByName(name: string) {
     if (!this.cache.size) await this._fetchAll().catch(() => {});
     return this.cache.find((i) => i.name.toLowerCase().includes(name.toLowerCase()));
   }
 
   /**
    * Find a rune by its name.
+   *
+   * @deprecated Please use {@link RuneTreeManager.fetchRuneByName | fetchRuneByName} instead.
+   * @param name - The name of the rune to look for.
+   */
+  async findRuneByName(name: string) {
+    return this.fetchRuneByName(name);
+  }
+
+  /**
+   * Fetch a rune by its name.
    * The search is case-insensitive.
    * The special characters are not ignored.
    *
    * @param name - The name of the rune to look for.
    */
-  async findRuneByName(name: string) {
+  async fetchRuneByName(name: string) {
     if (!this.cache.size) await this._fetchAll().catch(() => {});
     return this.cachedRunes.find((i) => i.name.toLowerCase().includes(name.toLowerCase()));
   }
+
+  /**
+   * Find a rune tree by its numerical ID.
+   *
+   * @deprecated Please use {@link RuneTreeManager.fetchById | fetchById} instead.
+   * @param id - The numerical ID of the rune tree to look for.
+   */
+  async findById(id: number) {
+    return this.fetchById(id);
+  }
+
   /**
    * Find a rune tree by its numerical ID.
    *
    * @param id - The numerical ID of the rune tree to look for.
    */
-  async findById(id: number) {
+  async fetchById(id: number) {
     if (!this.cache.size) await this._fetchAll().catch(() => {});
     return this.cache.find((i) => i.id === id);
   }
@@ -148,9 +179,19 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
   /**
    * Find a rune by its numerical ID.
    *
+   * @deprecated Please use {@link RuneTreeManager.fetchRuneById | fetchRuneById} instead.
    * @param id - The numerical ID of the rune to look for.
    */
   async findRuneById(id: number) {
+    return this.fetchRuneById(id);
+  }
+
+  /**
+   * Fetch a rune by its numerical ID.
+   *
+   * @param id - The numerical ID of the rune to look for.
+   */
+  async fetchRuneById(id: number) {
     if (!this.cache.size) await this._fetchAll().catch(() => {});
     return this.cachedRunes.find((i) => i.id === id);
   }
