@@ -25,7 +25,7 @@ export const regionalURLs = {
   br: 'https://americas.api.riotgames.com',
   lan: 'https://americas.api.riotgames.com',
   las: 'https://americas.api.riotgames.com',
-  oce: 'https://americas.api.riotgames.com',
+  oce: 'https://sea.api.riotgames.com',
   kr: 'https://asia.api.riotgames.com',
   jp: 'https://asia.api.riotgames.com',
   eune: 'https://europe.api.riotgames.com',
