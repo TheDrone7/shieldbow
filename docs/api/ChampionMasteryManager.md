@@ -119,6 +119,23 @@ fetch(champion: Champion | string, options?: FetchOptions): Promise<ChampionMast
 
 ---
 
+#### .fetchAll ()
+
+Fetches all the champions's masteries data for this summoner and store them in the cache.
+
+
+
+**Signature:**
+
+```ts
+fetchAll(): Promise<Collection<string, ChampionMastery>>;
+```
+
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [ChampionMastery](/api/ChampionMastery.md) \> \>
+
+---
+
 #### .highest ()
 
 Get the nth highest champion mastery for the summoner.
@@ -144,8 +161,6 @@ highest(n?: number, options?: FetchOptions): Promise<ChampionMastery>;
 ---
 
 #### .refreshAll ()
-
-Update the cache with the latest data for all champions' mastery data for this summoner.
 
 
 
