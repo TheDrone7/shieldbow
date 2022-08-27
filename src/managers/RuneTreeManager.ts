@@ -64,12 +64,13 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
     });
   }
 
-  private async _fetchAll() {
+  private async _fetchAll(options?: FetchOptions) {
     return new Promise(async (resolve, reject) => {
+      const cache = options?.cache ?? true;
       const runeTrees = <RuneTreeData[]>await this._fetchLocalRunes().catch(reject);
       for (const tree of runeTrees) {
         const runeTree = new RuneTree(this.client, tree);
-        this.cache.set(runeTree.key, runeTree);
+        if (cache) this.cache.set(runeTree.key, runeTree);
       }
       resolve(this.cache);
     });
@@ -86,7 +87,7 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
     return new Promise<RuneTree>(async (resolve, reject) => {
       if (this.cache.has(key) && !force) resolve(this.cache.get(key)!);
       else {
-        await this._fetchAll().catch(reject);
+        await this._fetchAll(options).catch(reject);
         if (this.cache.has(key)) resolve(this.cache.get(key)!);
         else reject('There is no rune tree with that key');
       }
@@ -99,12 +100,13 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
    * @param key - The key of the rune.
    * @param options - Additional fetch options.
    */
-  async fetchRune(key: string, options: { force: boolean } = { force: false }) {
+  async fetchRune(key: string, options?: FetchOptions) {
+    const force = options?.force ?? false;
     return new Promise<Rune>(async (resolve, reject) => {
       const rune = this.cachedRunes.find((r) => r.key === key);
-      if (rune && !options.force) resolve(rune!);
+      if (rune && force) resolve(rune!);
       else {
-        if (!this.cache.size) await this._fetchAll().catch(reject);
+        if (!this.cache.size) await this._fetchAll(options).catch(reject);
         const rune = this.cachedRunes.find((r) => r.key === key);
         if (rune) resolve(rune!);
         else reject('There is no rune with that key');
@@ -128,9 +130,11 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
    * The special characters are NOT ignored.
    *
    * @param name - The name of the rune tree to look for.
+   * @param options - The basic fetching options.
    */
-  async fetchByName(name: string) {
-    if (!this.cache.size) await this._fetchAll().catch(() => {});
+  async fetchByName(name: string, options?: FetchOptions) {
+    const force = options?.force ?? false;
+    if (!this.cache.size || force) await this._fetchAll(options);
     return this.cache.find((i) => i.name.toLowerCase().includes(name.toLowerCase()));
   }
 
@@ -150,9 +154,11 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
    * The special characters are not ignored.
    *
    * @param name - The name of the rune to look for.
+   * @param options - The basic fetching options.
    */
-  async fetchRuneByName(name: string) {
-    if (!this.cache.size) await this._fetchAll().catch(() => {});
+  async fetchRuneByName(name: string, options?: FetchOptions) {
+    const force = options?.force ?? false;
+    if (!this.cache.size || force) await this._fetchAll(options);
     return this.cachedRunes.find((i) => i.name.toLowerCase().includes(name.toLowerCase()));
   }
 
@@ -170,9 +176,11 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
    * Find a rune tree by its numerical ID.
    *
    * @param id - The numerical ID of the rune tree to look for.
+   * @param options - The basic fetching options.
    */
-  async fetchById(id: number) {
-    if (!this.cache.size) await this._fetchAll().catch(() => {});
+  async fetchById(id: number, options?: FetchOptions) {
+    const force = options?.force ?? false;
+    if (!this.cache.size || force) await this._fetchAll(options);
     return this.cache.find((i) => i.id === id);
   }
 
@@ -190,9 +198,11 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
    * Fetch a rune by its numerical ID.
    *
    * @param id - The numerical ID of the rune to look for.
+   * @param options - The basic fetching options.
    */
-  async fetchRuneById(id: number) {
-    if (!this.cache.size) await this._fetchAll().catch(() => {});
+  async fetchRuneById(id: number, options?: FetchOptions) {
+    const force = options?.force ?? false;
+    if (!this.cache.size || force) await this._fetchAll(options);
     return this.cachedRunes.find((i) => i.id === id);
   }
 }

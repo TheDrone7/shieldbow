@@ -50,12 +50,13 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
     });
   }
 
-  private async _fetchAll() {
+  private async _fetchAll(options?: FetchOptions) {
     return new Promise(async (resolve, reject) => {
+      const cache = options?.cache ?? true;
       const spells = <{ [id: string]: SummonerSpellData }>await this._fetchLocalSpells().catch(reject);
       for (const key of Object.keys(spells)) {
         const summonerSpell = new SummonerSpell(this.client, spells[key]);
-        this.cache.set(key, summonerSpell);
+        if (cache) this.cache.set(key, summonerSpell);
       }
       resolve(this.cache);
     });
@@ -75,7 +76,7 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
     return new Promise<SummonerSpell>(async (resolve, reject) => {
       if (this.cache.has(key) && !force) resolve(this.cache.get(key)!);
       else {
-        await this._fetchAll();
+        await this._fetchAll(options);
         if (this.cache.has(key)) resolve(this.cache.get(key)!);
         else reject('There is no spell with that ID');
       }
@@ -98,9 +99,11 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
    * The special characters are NOT ignored.
    *
    * @param name - The name of the spell to look for.
+   * @param options - The basic fetching options.
    */
-  async fetchByName(name: string) {
-    if (!this.cache.size) await this._fetchAll();
+  async fetchByName(name: string, options?: FetchOptions) {
+    const force = options?.force ?? false;
+    if (!this.cache.size || force) await this._fetchAll(options);
     return this.cache.find((i) => i.name.toLowerCase().includes(name.toLowerCase()));
   }
 }

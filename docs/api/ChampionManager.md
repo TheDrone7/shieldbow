@@ -89,7 +89,7 @@ fetch(id: string, options?: FetchOptions): Promise<Champion>;
 
 ---
 
-#### .fetchAll ()
+#### .fetchAll (options)
 
 Fetch all the champions and store it in the cache.
 
@@ -98,18 +98,24 @@ This always fetches freshly from data dragon and community dragon.
 
 
 
+
 **Signature:**
 
 ```ts
-fetchAll(): Promise<Collection<string, Champion>>;
+fetchAll(options?: FetchOptions): Promise<Collection<string, Champion>>;
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options (only `cache` affects this method). |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/api/Champion.md) \> \>
 
 ---
 
-#### .fetchByKey (key)
+#### .fetchByKey (key, options)
 
 Fetch and cache champion by their unique 3-digit keys.
 
@@ -122,7 +128,7 @@ This is mostly for internal use while fetching match (or live match) data to imp
 **Signature:**
 
 ```ts
-fetchByKey(key: number): Promise<Champion | undefined>;
+fetchByKey(key: number, options?: FetchOptions): Promise<Champion | undefined>;
 ```
 
 **Parameters:**
@@ -130,12 +136,13 @@ fetchByKey(key: number): Promise<Champion | undefined>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | key | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The key of the champions to fetch. |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Champion](/api/Champion.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
 
 ---
 
-#### .fetchByKeys (keys)
+#### .fetchByKeys (keys, options)
 
 Fetch and cache champions by their unique 3-digit keys.
 
@@ -148,7 +155,7 @@ This is mostly for internal use while fetching match (or live match) data to imp
 **Signature:**
 
 ```ts
-fetchByKeys(keys: number[]): Promise<Collection<string, Champion>>;
+fetchByKeys(keys: number[], options?: FetchOptions): Promise<Collection<string, Champion>>;
 ```
 
 **Parameters:**
@@ -156,12 +163,13 @@ fetchByKeys(keys: number[]): Promise<Collection<string, Champion>>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | keys | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)[] | The keys of the champions to fetch. |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/api/Champion.md) \> \>
 
 ---
 
-#### .fetchByName (name)
+#### .fetchByName (name, options)
 
 Fetch and cache champion by their name (instead of ID, which is very similar but not the same as the name). The search is case-insensitive. The special characters are NOT ignored.
 
@@ -171,7 +179,7 @@ Fetch and cache champion by their name (instead of ID, which is very similar but
 **Signature:**
 
 ```ts
-fetchByName(name: string): Promise<Champion | undefined>;
+fetchByName(name: string, options?: FetchOptions): Promise<Champion | undefined>;
 ```
 
 **Parameters:**
@@ -179,12 +187,13 @@ fetchByName(name: string): Promise<Champion | undefined>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of the champions to fetch. |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Champion](/api/Champion.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
 
 ---
 
-#### .fetchByNames (names)
+#### .fetchByNames (names, options)
 
 Fetch and cache champions by their names.
 
@@ -194,7 +203,7 @@ Fetch and cache champions by their names.
 **Signature:**
 
 ```ts
-fetchByNames(names: string[]): Promise<Collection<string, Champion>>;
+fetchByNames(names: string[], options?: FetchOptions): Promise<Collection<string, Champion>>;
 ```
 
 **Parameters:**
@@ -202,6 +211,7 @@ fetchByNames(names: string[]): Promise<Collection<string, Champion>>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | names | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)[] | The names of the champions to fetch. |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/api/Champion.md) \> \>
 

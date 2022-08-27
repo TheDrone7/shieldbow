@@ -95,7 +95,9 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
 
   /**
    * Get the nth highest champion mastery for the summoner.
+   *
    * @param n - The ranking of the champion in the summoner's champions mastery, defaults to 0 (highest).
+   * @param options - The basic fetching options.
    */
   highest(n: number = 0, options?: FetchOptions) {
     const force = options?.force ?? false;
@@ -121,8 +123,8 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
   refreshAll() {
     return new Promise<Collection<string, ChampionMastery>>(async (resolve, reject) => {
       const dataList = (await this._fetchRawMasteryData().catch(reject)) as ChampionMasteryData[];
-      // Fetch all champions that this summoners has any mastery points
-      const cacheIds = this.client.champions.cache.map((x) => x.key);
+      // Fetch all champions that this summoner has any mastery points
+      const cacheIds = this.client.champions.cache.map((c) => c.key);
       const championsToFetch = dataList.filter((c) => !cacheIds.includes(c.championId));
       await this.client.champions.fetchByKeys(championsToFetch.map((c) => c.championId));
       for (const data of dataList) {

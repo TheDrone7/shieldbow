@@ -89,9 +89,33 @@ fetch(key: string, options?: FetchOptions): Promise<Item>;
 
 ---
 
+#### .fetchByName (name, options)
+
+Fetch an item by its name. The search is case-insensitive. The special characters are NOT ignored.
+
+
+
+
+**Signature:**
+
+```ts
+fetchByName(name: string, options?: FetchOptions): Promise<Item | undefined>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of the item to look for. |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Item](/api/Item.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
+
+---
+
 #### .findByName (name)
 
-Find an item by its name. The search is case-insensitive. The special characters are NOT ignored.
+Find an item by its name.
 
 
 

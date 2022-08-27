@@ -51,12 +51,13 @@ export class ItemManager implements BaseManager<Item> {
     });
   }
 
-  private async _fetchAll() {
+  private async _fetchAll(options?: FetchOptions) {
+    const cache = options?.cache ?? true;
     return new Promise(async (resolve, reject) => {
       const items = <{ [id: string]: ItemData }>await this._fetchLocalItems().catch(reject);
       for (const key of Object.keys(items)) {
         const item = new Item(this.client, key, items[key]);
-        this.cache.set(key, item);
+        if (cache) this.cache.set(key, item);
       }
       resolve(this.cache);
     });
@@ -73,7 +74,7 @@ export class ItemManager implements BaseManager<Item> {
     return new Promise<Item>(async (resolve, reject) => {
       if (this.cache.has(key) && !force) resolve(this.cache.get(key)!);
       else {
-        await this._fetchAll();
+        await this._fetchAll(options);
         if (this.cache.has(key)) resolve(this.cache.get(key)!);
         else reject('There is no item with that ID');
       }
@@ -83,7 +84,7 @@ export class ItemManager implements BaseManager<Item> {
   /**
    * Find an item by its name.
    *
-   * @deprecated Please use {@link ItemManager.fetchByKey | fetchByKey} instead.
+   * @deprecated Please use {@link ItemManager.fetchByName | fetchByName} instead.
    * @param name - The name of the item to look for.
    */
   async findByName(name: string) {
@@ -96,9 +97,11 @@ export class ItemManager implements BaseManager<Item> {
    * The special characters are NOT ignored.
    *
    * @param name - The name of the item to look for.
+   * @param options - The basic fetching options.
    */
-  async fetchByName(name: string) {
-    if (!this.cache.size) await this._fetchAll();
+  async fetchByName(name: string, options?: FetchOptions) {
+    const force = options?.force ?? false;
+    if (!this.cache.size || force) await this._fetchAll(options);
     return this.cache.find((i) => i.name.toLowerCase().includes(name.toLowerCase()));
   }
 }

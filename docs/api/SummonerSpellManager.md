@@ -67,7 +67,7 @@ The client this manager belongs to.
 
 #### .fetch (key, options)
 
-Fetch a spell by its ID. The ID is usually something like Summoner\{Spell\} For example, for the spell `Flash`, the ID is `SummonerFlash`. But there are a lot of exceptions to this, so it is recommended to use [findByName](/api/SummonerSpellManager.md#findByName) instead.
+Fetch a spell by its ID. The ID is usually something like Summoner\{Spell\} For example, for the spell `Flash`, the ID is `SummonerFlash`. But there are a lot of exceptions to this, so it is recommended to use [fetchByName](/api/SummonerSpellManager.md#fetchByName) instead.
 
 
 
@@ -89,9 +89,33 @@ fetch(key: string, options?: FetchOptions): Promise<SummonerSpell>;
 
 ---
 
+#### .fetchByName (name, options)
+
+Fetch a spell by its name. The search is case-insensitive. The special characters are NOT ignored.
+
+
+
+
+**Signature:**
+
+```ts
+fetchByName(name: string, options?: FetchOptions): Promise<SummonerSpell | undefined>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of the spell to look for. |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [SummonerSpell](/api/SummonerSpell.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
+
+---
+
 #### .findByName (name)
 
-Find a spell by its name. The search is case-insensitive. The special characters are NOT ignored.
+Find a spell by its name.
 
 
 
