@@ -74,7 +74,7 @@ Only use this if you absolutely must. Prioritize using [fetchByLeagueId](/api/Le
 
 ### Methods
 
-#### .fetch (id, options)
+#### .fetch ()
 
 Fetch a summoner's competitive info by the summoner's ID.
 
@@ -98,7 +98,7 @@ fetch(id: string, options?: FetchOptions): Promise<Collection<QueueType, LeagueE
 
 ---
 
-#### .fetchByLeagueId (leagueId, options)
+#### .fetchByLeagueId ()
 
 Fetch the league entries by a league ID.
 
@@ -122,7 +122,7 @@ fetchByLeagueId(leagueId: string, options?: FetchOptions): Promise<LeagueList>;
 
 ---
 
-#### .fetchByQueueAndTier (queue, tier, division, options)
+#### .fetchByQueueAndTier ()
 
 Fetch a collection of league entries by the queue type, tier and division.
 

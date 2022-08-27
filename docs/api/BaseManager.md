@@ -37,7 +37,7 @@ The client this manager is being used by.
 
 ### Methods
 
-#### .fetch (id, options)
+#### .fetch ()
 
 The method to actually fetch the data.
 

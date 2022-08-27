@@ -81,7 +81,7 @@ The client this manager belongs to.
 
 ### Methods
 
-#### .fetch (key, options)
+#### .fetch ()
 
 Fetch a rune tree by its key. The key is the same as the rune tree's name, for example - `Domination`.
 
@@ -105,7 +105,7 @@ fetch(key: string, options?: FetchOptions): Promise<RuneTree>;
 
 ---
 
-#### .fetchById (id, options)
+#### .fetchById ()
 
 Find a rune tree by its numerical ID.
 
@@ -129,7 +129,7 @@ fetchById(id: number, options?: FetchOptions): Promise<RuneTree | undefined>;
 
 ---
 
-#### .fetchByName (name, options)
+#### .fetchByName ()
 
 Fetch a rune tree by its name. The search is case-insensitive. The special characters are NOT ignored.
 
@@ -153,7 +153,7 @@ fetchByName(name: string, options?: FetchOptions): Promise<RuneTree | undefined>
 
 ---
 
-#### .fetchRune (key, options)
+#### .fetchRune ()
 
 Fetch a rune by its key. The key is mostly the same as the rune name, for example - `Electrocute`.
 
@@ -177,7 +177,7 @@ fetchRune(key: string, options?: FetchOptions): Promise<Rune>;
 
 ---
 
-#### .fetchRuneById (id, options)
+#### .fetchRuneById ()
 
 Fetch a rune by its numerical ID.
 
@@ -201,7 +201,7 @@ fetchRuneById(id: number, options?: FetchOptions): Promise<Rune | undefined>;
 
 ---
 
-#### .fetchRuneByName (name, options)
+#### .fetchRuneByName ()
 
 Fetch a rune by its name. The search is case-insensitive. The special characters are not ignored.
 
@@ -225,7 +225,7 @@ fetchRuneByName(name: string, options?: FetchOptions): Promise<Rune | undefined>
 
 ---
 
-#### .findById (id)
+#### .findById ()
 
 Find a rune tree by its numerical ID.
 
@@ -248,7 +248,7 @@ findById(id: number): Promise<RuneTree | undefined>;
 
 ---
 
-#### .findByName (name)
+#### .findByName ()
 
 Find a rune tree by its name.
 
@@ -271,7 +271,7 @@ findByName(name: string): Promise<RuneTree | undefined>;
 
 ---
 
-#### .findRuneById (id)
+#### .findRuneById ()
 
 Find a rune by its numerical ID.
 
@@ -294,7 +294,7 @@ findRuneById(id: number): Promise<Rune | undefined>;
 
 ---
 
-#### .findRuneByName (name)
+#### .findRuneByName ()
 
 Find a rune by its name.
 

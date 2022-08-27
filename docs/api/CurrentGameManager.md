@@ -61,7 +61,7 @@ The client that instantiated the manager.
 
 ### Methods
 
-#### .fetch (id, options)
+#### .fetch ()
 
 Fetches the live game for the given summoner ID.
 
@@ -88,7 +88,7 @@ fetch(id: string, options?: FetchOptions): Promise<CurrentGame>;
 
 ---
 
-#### .fetchFeatured (options)
+#### .fetchFeatured ()
 
 Fetch a list of featured games. These games are not cached.
 

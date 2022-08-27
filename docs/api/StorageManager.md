@@ -70,7 +70,7 @@ The path of the base directory to fetch/store files from/in
 
 ### Methods
 
-#### .fetch (id)
+#### .fetch ()
 
 Fetch the locally stored JSON file by its name.
 
@@ -93,7 +93,7 @@ fetch(id: string): any | void;
 
 ---
 
-#### .store (id, data)
+#### .store ()
 
 Store a JSON file locally.
 

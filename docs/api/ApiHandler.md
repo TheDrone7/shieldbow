@@ -32,7 +32,7 @@ Constructs a new instance of the `ApiHandler` class.
 
 ### Methods
 
-#### .makeApiRequest (url, options)
+#### .makeApiRequest ()
 
 Make an API request
 

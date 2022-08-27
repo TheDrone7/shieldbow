@@ -65,7 +65,7 @@ The client that this manager belongs to.
 
 ### Methods
 
-#### .fetch (id, options)
+#### .fetch ()
 
 Fetches a champion (from the cache, if already available), or from data dragon and community dragon.
 
@@ -89,7 +89,7 @@ fetch(id: string, options?: FetchOptions): Promise<Champion>;
 
 ---
 
-#### .fetchAll (options)
+#### .fetchAll ()
 
 Fetch all the champions and store it in the cache.
 
@@ -115,7 +115,7 @@ fetchAll(options?: FetchOptions): Promise<Collection<string, Champion>>;
 
 ---
 
-#### .fetchByKey (key, options)
+#### .fetchByKey ()
 
 Fetch and cache champion by their unique 3-digit keys.
 
@@ -142,7 +142,7 @@ fetchByKey(key: number, options?: FetchOptions): Promise<Champion | undefined>;
 
 ---
 
-#### .fetchByKeys (keys, options)
+#### .fetchByKeys ()
 
 Fetch and cache champions by their unique 3-digit keys.
 
@@ -169,7 +169,7 @@ fetchByKeys(keys: number[], options?: FetchOptions): Promise<Collection<string, 
 
 ---
 
-#### .fetchByName (name, options)
+#### .fetchByName ()
 
 Fetch and cache champion by their name (instead of ID, which is very similar but not the same as the name). The search is case-insensitive. The special characters are NOT ignored.
 
@@ -193,7 +193,7 @@ fetchByName(name: string, options?: FetchOptions): Promise<Champion | undefined>
 
 ---
 
-#### .fetchByNames (names, options)
+#### .fetchByNames ()
 
 Fetch and cache champions by their names.
 
@@ -217,7 +217,7 @@ fetchByNames(names: string[], options?: FetchOptions): Promise<Collection<string
 
 ---
 
-#### .findByKey (key)
+#### .findByKey ()
 
 Find a champion by their 3-digit key.
 
@@ -240,7 +240,7 @@ findByKey(key: number): Promise<Champion | undefined>;
 
 ---
 
-#### .findByName (name)
+#### .findByName ()
 
 Find a champion by their name.
 

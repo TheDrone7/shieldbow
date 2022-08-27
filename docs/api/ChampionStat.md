@@ -55,7 +55,7 @@ The value at which this stat increases every level (the scaling).
 
 ### Methods
 
-#### .at (level)
+#### .at ()
 
 A utility to calculate the base value of this stat at a certain level.
 

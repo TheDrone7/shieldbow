@@ -87,7 +87,7 @@ The client that instantiated the manager.
 
 ### Methods
 
-#### .fetch (id, options)
+#### .fetch ()
 
 Fetches a tournament by its ID.
 
@@ -111,7 +111,7 @@ fetch(id: number, options?: FetchOptions): Promise<Tournament>;
 
 ---
 
-#### .fetchAll (options)
+#### .fetchAll ()
 
 Fetch all upcoming and active tournaments.
 
@@ -134,7 +134,7 @@ fetchAll(options?: FetchOptions): Promise<Tournament[]>;
 
 ---
 
-#### .fetchByTeamId (teamId, options)
+#### .fetchByTeamId ()
 
 Fetch tournament by participating team's ID.
 
@@ -158,7 +158,7 @@ fetchByTeamId(teamId: string, options?: FetchOptions): Promise<Tournament>;
 
 ---
 
-#### .fetchPlayer (summonerId, options)
+#### .fetchPlayer ()
 
 Fetch participation info of a summoner in tournaments by the summoner ID.
 
@@ -182,7 +182,7 @@ fetchPlayer(summonerId: string, options?: FetchOptions): Promise<TournamentPlaye
 
 ---
 
-#### .fetchTeam (teamId, options)
+#### .fetchTeam ()
 
 Fetch a team participating in a tournament by the team ID.
 

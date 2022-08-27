@@ -61,7 +61,7 @@ The client this accounts manager belongs to.
 
 ### Methods
 
-#### .fetch (id, options)
+#### .fetch ()
 
 Fetch a RIOT account by its unique PUUID.
 
@@ -85,7 +85,7 @@ fetch(id: string, options?: FetchOptions): Promise<Account>;
 
 ---
 
-#### .fetchByNameAndTag (name, tag, options)
+#### .fetchByNameAndTag ()
 
 Fetch a RIOT account by its name and tag.
 

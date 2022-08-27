@@ -160,7 +160,7 @@ for (const cls of classes) {
     for (const method of methods) {
       const summary = method.tsdocComment ? parseSummary(method.tsdocComment.summarySection) : '';
       const typeValue = parseTypeString(method.returnTypeExcerpt.text);
-      doc += `#### .${method.displayName} (${method.parameters.map((p) => p.name).join(', ')})\n\n`;
+      doc += `#### .${method.displayName} ()\n\n`;
       doc += `${summary}\n\n`;
       doc += `**Signature:**\n\n`;
       doc += `\`\`\`ts\n${method.excerpt.text}\n\`\`\`\n\n`;
@@ -254,7 +254,7 @@ for (const ifc of interfaces) {
     for (const method of methods) {
       const summary = method.tsdocComment ? parseSummary(method.tsdocComment.summarySection) : '';
       const typeValue = parseTypeString(method.returnTypeExcerpt.text);
-      doc += `#### .${method.displayName} (${method.parameters.map((p) => p.name).join(', ')})\n\n`;
+      doc += `#### .${method.displayName} ()\n\n`;
       doc += `${summary}\n\n`;
       doc += `**Signature:**\n\n`;
       doc += `\`\`\`ts\n${method.excerpt.text}\n\`\`\`\n\n`;

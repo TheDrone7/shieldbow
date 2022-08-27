@@ -95,7 +95,7 @@ The total mastery score of this summoner.
 
 ### Methods
 
-#### .fetch (champion, options)
+#### .fetch ()
 
 Fetch a champion's mastery data for the summoner.
 
@@ -119,7 +119,7 @@ fetch(champion: Champion | string, options?: FetchOptions): Promise<ChampionMast
 
 ---
 
-#### .highest (n, options)
+#### .highest ()
 
 Get the nth highest champion mastery for the summoner.
 

@@ -74,7 +74,7 @@ Only use this if you absolutely must. Prioritize using [fetchMatchTimeline](/api
 
 ### Methods
 
-#### .fetch (id, options)
+#### .fetch ()
 
 Fetch a match by its ID.
 
@@ -98,7 +98,7 @@ fetch(id: string, options?: FetchOptions): Promise<Match>;
 
 ---
 
-#### .fetchMatchListByPlayer (player, options)
+#### .fetchMatchListByPlayer ()
 
 Fetch a list of match IDs by a player ID.
 
@@ -122,7 +122,7 @@ fetchMatchListByPlayer(player: Summoner | string, options?: MatchByPlayerOptions
 
 ---
 
-#### .fetchMatchTimeline (matchId, options)
+#### .fetchMatchTimeline ()
 
 Fetch a match timeline by the match ID.
 

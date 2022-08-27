@@ -61,7 +61,7 @@ The client this manager belongs to.
 
 ### Methods
 
-#### .fetch (id, options)
+#### .fetch ()
 
 Fetch a summoner by its summoner ID.
 
@@ -85,7 +85,7 @@ fetch(id: string, options?: FetchOptions): Promise<Summoner>;
 
 ---
 
-#### .fetchByPlayerId (playerId, options)
+#### .fetchByPlayerId ()
 
 Fetch a summoner by its unique PUUID.
 
@@ -109,7 +109,7 @@ fetchByPlayerId(playerId: string | Account, options?: FetchOptions): Promise<Sum
 
 ---
 
-#### .fetchBySummonerName (name, options)
+#### .fetchBySummonerName ()
 
 Fetch a summoner by its summoner name.
 

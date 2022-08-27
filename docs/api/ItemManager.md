@@ -65,7 +65,7 @@ The client this manager belongs to.
 
 ### Methods
 
-#### .fetch (key, options)
+#### .fetch ()
 
 Fetch an item by its 4-digit ID. The ID must be a string of 4 digits (not a number)
 
@@ -89,7 +89,7 @@ fetch(key: string, options?: FetchOptions): Promise<Item>;
 
 ---
 
-#### .fetchByName (name, options)
+#### .fetchByName ()
 
 Fetch an item by its name. The search is case-insensitive. The special characters are NOT ignored.
 
@@ -113,7 +113,7 @@ fetchByName(name: string, options?: FetchOptions): Promise<Item | undefined>;
 
 ---
 
-#### .findByName (name)
+#### .findByName ()
 
 Find an item by its name.
 
