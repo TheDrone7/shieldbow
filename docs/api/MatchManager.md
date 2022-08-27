@@ -41,6 +41,9 @@ Constructs a new instance of the `MatchManager` class.
 The collection of cached matches.
 
 
+Only use this if you absolutely must. Prioritize using [fetch](/api/MatchManager.md#fetch) and [fetchMatchListByPlayer](/api/MatchManager.md#fetchmatchlistbyplayer) instead.
+
+
 
 **Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Match](/api/Match.md) \>
 
@@ -61,6 +64,9 @@ The client that instantiated the manager.
 The collection of cached match timelines.
 
 
+Only use this if you absolutely must. Prioritize using [fetchMatchTimeline](/api/MatchManager.md#fetchmatchtimeline) instead.
+
+
 
 **Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [MatchTimeline](/api/MatchTimeline.md) \>
 
@@ -68,7 +74,7 @@ The collection of cached match timelines.
 
 ### Methods
 
-#### .fetch (id, options)
+#### .fetch ()
 
 Fetch a match by its ID.
 
@@ -92,7 +98,7 @@ fetch(id: string, options?: FetchOptions): Promise<Match>;
 
 ---
 
-#### .fetchMatchListByPlayer (player, options)
+#### .fetchMatchListByPlayer ()
 
 Fetch a list of match IDs by a player ID.
 
@@ -116,7 +122,7 @@ fetchMatchListByPlayer(player: Summoner | string, options?: MatchByPlayerOptions
 
 ---
 
-#### .fetchMatchTimeline (matchId, options)
+#### .fetchMatchTimeline ()
 
 Fetch a match timeline by the match ID.
 

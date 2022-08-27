@@ -41,6 +41,9 @@ Constructs a new instance of the `AccountManager` class.
 The accounts cached in the memory.
 
 
+Only use this if you absolutely must. Prioritize using [fetch](/api/AccountManager.md#fetch) or [fetchByNameAndTag](/api/AccountManager.md#fetchbynameandtag) instead.
+
+
 
 **Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Account](/api/Account.md) \>
 
@@ -58,7 +61,7 @@ The client this accounts manager belongs to.
 
 ### Methods
 
-#### .fetch (id, options)
+#### .fetch ()
 
 Fetch a RIOT account by its unique PUUID.
 
@@ -82,7 +85,7 @@ fetch(id: string, options?: FetchOptions): Promise<Account>;
 
 ---
 
-#### .fetchByNameAndTag (name, tag, options)
+#### .fetchByNameAndTag ()
 
 Fetch a RIOT account by its name and tag.
 

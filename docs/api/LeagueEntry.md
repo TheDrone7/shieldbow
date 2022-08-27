@@ -175,7 +175,7 @@ The number of wins the summoner has in this queue.
 
 ### Methods
 
-#### .fetchSummoner (options)
+#### .fetchSummoner ()
 
 Fetch the summoner this data belongs to.
 

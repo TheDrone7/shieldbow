@@ -9,6 +9,13 @@ import { Account, Summoner } from '../structures';
 export class SummonerManager implements BaseManager<Summoner> {
   /**
    * The summoners cached in the memory.
+   *
+   * Only use this if you absolutely must.
+   * Prioritize using
+   * {@link SummonerManager.fetch | fetch},
+   * {@link SummonerManager.fetchBySummonerName | fetchBySummonerName} or
+   * {@link SummonerManager.fetchByPlayerId | fetchByPlayerId}
+   * instead.
    */
   readonly cache: Collection<string, Summoner>;
   /**

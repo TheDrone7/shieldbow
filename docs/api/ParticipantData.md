@@ -31,6 +31,14 @@ export interface ParticipantData
 
 ---
 
+#### basicPings
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
 #### bountyLevel
 
 

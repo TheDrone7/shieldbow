@@ -41,6 +41,9 @@ Constructs a new instance of the `LeagueManager` class.
 The competitive info (mapped by summoner ID) stored in the memory.
 
 
+Only use this if you absolutely must. Prioritize using [fetch](/api/LeagueManager.md#fetch) or [fetchByQueueAndTier](/api/LeagueManager.md#fetchbyqueueandtier) instead.
+
+
 
 **Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [QueueType](/api/QueueType.md), [LeagueEntry](/api/LeagueEntry.md) \> \>
 
@@ -61,6 +64,9 @@ The client this manager belongs to.
 The in-memory cache for league lists.
 
 
+Only use this if you absolutely must. Prioritize using [fetchByLeagueId](/api/LeagueManager.md#fetchbyleagueid) instead.
+
+
 
 **Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [LeagueList](/api/LeagueList.md) \>
 
@@ -68,7 +74,7 @@ The in-memory cache for league lists.
 
 ### Methods
 
-#### .fetch (id, options)
+#### .fetch ()
 
 Fetch a summoner's competitive info by the summoner's ID.
 
@@ -92,7 +98,7 @@ fetch(id: string, options?: FetchOptions): Promise<Collection<QueueType, LeagueE
 
 ---
 
-#### .fetchByLeagueId (leagueId, options)
+#### .fetchByLeagueId ()
 
 Fetch the league entries by a league ID.
 
@@ -116,7 +122,7 @@ fetchByLeagueId(leagueId: string, options?: FetchOptions): Promise<LeagueList>;
 
 ---
 
-#### .fetchByQueueAndTier (queue, tier, division, options)
+#### .fetchByQueueAndTier ()
 
 Fetch a collection of league entries by the queue type, tier and division.
 

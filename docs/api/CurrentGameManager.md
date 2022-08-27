@@ -41,6 +41,9 @@ Constructs a new instance of the `CurrentGameManager` class.
 The cached live games (mapped by summoner IDs).
 
 
+Only use this if you absolutely must. Prioritize using [fetch](/api/CurrentGameManager.md#fetch) or [fetchFeatured](/api/CurrentGameManager.md#fetchfeatured) instead.
+
+
 
 **Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [CurrentGame](/api/CurrentGame.md) \>
 
@@ -58,7 +61,7 @@ The client that instantiated the manager.
 
 ### Methods
 
-#### .fetch (id, options)
+#### .fetch ()
 
 Fetches the live game for the given summoner ID.
 
@@ -85,7 +88,7 @@ fetch(id: string, options?: FetchOptions): Promise<CurrentGame>;
 
 ---
 
-#### .fetchFeatured (options)
+#### .fetchFeatured ()
 
 Fetch a list of featured games. These games are not cached.
 

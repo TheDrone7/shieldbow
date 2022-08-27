@@ -82,7 +82,7 @@ A short-description of this object. `plaintext` attribute in the data dragon fil
 More detailed description of the item. This is the processed details. With all the HTML-like tags removed.
 
 
-See [rawDetails](/api/Item.md#rawDetails) if you want the raw data.
+See [rawDetails](/api/Item.md#rawdetails) if you want the raw data.
 
 
 

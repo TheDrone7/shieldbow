@@ -286,7 +286,7 @@ The current Data Dragon CDN version.
 
 ### Methods
 
-#### .initialize (options)
+#### .initialize ()
 
 Initialize the client to prepare it for interacting with the API. This can also be rerun if you want to configure anything and quickly fetch any required data.
 
@@ -309,7 +309,7 @@ initialize(options?: ClientConfig): Promise<void>;
 
 ---
 
-#### .updateLocale (newLocale, refetch)
+#### .updateLocale ()
 
 Update the locale in which the data is fetched.
 
@@ -333,7 +333,7 @@ updateLocale(newLocale: Locales, refetch?: boolean): Promise<void>;
 
 ---
 
-#### .updatePatch (patch, refetch)
+#### .updatePatch ()
 
 Update the patch from which the data is fetched.
 

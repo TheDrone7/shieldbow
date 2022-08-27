@@ -1,11 +1,11 @@
 ---
 title: ParticipantFrameChampionStats
-description: A representation of the participant's champion stats in a [ParticipantFrame](/api/ParticipantFrame.md#undefined).
+description: A representation of the participant's champion stats in a [ParticipantFrame](/api/ParticipantFrame.md#).
 ---
 
 ## ParticipantFrameChampionStats class
 
-A representation of the participant's champion stats in a [ParticipantFrame](/api/ParticipantFrame.md#undefined).
+A representation of the participant's champion stats in a [ParticipantFrame](/api/ParticipantFrame.md#).
 
 **Signature:**
 

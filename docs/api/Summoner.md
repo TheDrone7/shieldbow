@@ -126,7 +126,7 @@ The last time this summoner was modified.
 
 ### Methods
 
-#### .fetchAccount (options)
+#### .fetchAccount ()
 
 Fetch the summoner's RIOT account info.
 
@@ -149,7 +149,7 @@ fetchAccount(options?: FetchOptions): Promise<Account>;
 
 ---
 
-#### .fetchClashEntries (options)
+#### .fetchClashEntries ()
 
 
 
@@ -169,7 +169,7 @@ fetchClashEntries(options?: FetchOptions): Promise<import("./TournamentPlayer").
 
 ---
 
-#### .fetchLeagueEntries (options)
+#### .fetchLeagueEntries ()
 
 Fetch the summoner's competitive placement info.
 
@@ -192,7 +192,7 @@ fetchLeagueEntries(options?: FetchOptions): Promise<Collection<string, LeagueEnt
 
 ---
 
-#### .fetchLiveMatch (options)
+#### .fetchLiveMatch ()
 
 Fetch the summoner's live game data.
 
@@ -215,7 +215,7 @@ fetchLiveMatch(options?: FetchOptions): Promise<CurrentGame>;
 
 ---
 
-#### .fetchMatchList (options)
+#### .fetchMatchList ()
 
 Fetch the summoner's recent matches (always fetches from API).
 
@@ -238,7 +238,7 @@ fetchMatchList(options?: MatchByPlayerOptions): Promise<string[]>;
 
 ---
 
-#### .verifyCode (code)
+#### .verifyCode ()
 
 Check a summoner's third party verification code.
 

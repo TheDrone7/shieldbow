@@ -11,6 +11,14 @@ import path from 'path';
 export class ChampionManager implements BaseManager<Champion> {
   /**
    * The champions cached in the memory.
+   *
+   * Only use this if you absolutely must.
+   * Prioritize using
+   * {@link ChampionManager.fetch | fetch},
+   * {@link ChampionManager.fetchByKey | fetchByKey },
+   * {@link ChampionManager.fetchByName | fetchByName} or
+   * {@link ChampionManager.fetchAll | fetchAll}
+   * instead.
    */
   readonly cache: Collection<string, Champion>;
   /**
@@ -99,22 +107,28 @@ export class ChampionManager implements BaseManager<Champion> {
    * Fetch all the champions and store it in the cache.
    *
    * This always fetches freshly from data dragon and community dragon.
+   *
+   * @param options - The basic fetching options (only `cache` affects this method).
    */
-  async fetchAll(): Promise<Collection<string, Champion>> {
+  async fetchAll(options?: FetchOptions): Promise<Collection<string, Champion>> {
+    const cache = options?.cache ?? true;
     return new Promise(async (resolve, reject) => {
       const response = await this.client.http.get(
         this.client.version + '/data/' + this.client.locale + '/championFull.json'
       );
       if (response.status !== 200) reject('Unable to fetch the champions data.');
       else {
+        const result = new Collection<string, Champion>();
         const champs = <{ data: { [champ: string]: ChampionData } }>response.data;
         for (const key of Object.keys(champs.data)) {
           const champ = champs.data[key];
           const damage = <SpellDamageData>await this._fetchLocalDamage(champ.id).catch(reject);
           const meraki = <MerakiChampion>await this._fetchLocalPricing(champ.id).catch(reject);
-          this.cache.set(key, new Champion(this.client, champs.data[key], damage, meraki));
+          const champion = new Champion(this.client, champs.data[key], damage, meraki);
+          result.set(key, champion);
+          if (cache) this.cache.set(key, champion);
         }
-        resolve(this.cache);
+        resolve(result);
       }
     });
   }
@@ -168,9 +182,10 @@ export class ChampionManager implements BaseManager<Champion> {
    * The special characters are NOT ignored.
    *
    * @param name - The name of the champions to fetch.
+   * @param options - The basic fetching options.
    */
-  async fetchByName(name: string) {
-    return this.fetchByNames([name]).then((c) => c.first());
+  async fetchByName(name: string, options?: FetchOptions) {
+    return this.fetchByNames([name], options).then((c) => c.first());
   }
 
   /**
@@ -179,26 +194,31 @@ export class ChampionManager implements BaseManager<Champion> {
    * This is mostly for internal use while fetching match (or live match) data to improve performance.
    *
    * @param key - The key of the champions to fetch.
+   * @param options - The basic fetching options.
    */
-  async fetchByKey(key: number) {
-    return this.fetchByKeys([key]).then((c) => c.first());
+  async fetchByKey(key: number, options?: FetchOptions) {
+    return this.fetchByKeys([key], options).then((c) => c.first());
   }
 
   /**
    * Fetch and cache champions by their names.
    *
    * @param names - The names of the champions to fetch.
+   * @param options - The basic fetching options.
    */
-  async fetchByNames(names: string[]): Promise<Collection<string, Champion>> {
+  async fetchByNames(names: string[], options?: FetchOptions): Promise<Collection<string, Champion>> {
     return new Promise(async (resolve, reject) => {
+      const force = options?.force ?? false;
+      const cache = options?.cache ?? true;
       const result = new Collection<string, Champion>();
-      for (const name of names) {
-        const champ = this.cache.find((c) => c.name.toLowerCase().includes(name.toLowerCase()));
-        if (champ) {
-          result.set(champ.id, champ);
-          names = names.filter((n) => n !== name);
+      if (!force)
+        for (const name of names) {
+          const champ = this.cache.find((c) => c.name.toLowerCase().includes(name.toLowerCase()));
+          if (champ) {
+            result.set(champ.id, champ);
+            names = names.filter((n) => n !== name);
+          }
         }
-      }
       if (names.length) {
         const response = await this.client.http.get(
           this.client.version + '/data/' + this.client.locale + '/championFull.json'
@@ -213,7 +233,7 @@ export class ChampionManager implements BaseManager<Champion> {
               const meraki = <MerakiChampion>await this._fetchLocalPricing(champ.id).catch(reject);
               const champion = new Champion(this.client, champs.data[key], damage, meraki);
               result.set(key, champion);
-              this.cache.set(key, champion);
+              if (cache) this.cache.set(key, champion);
             }
           }
           resolve(result);
@@ -229,17 +249,21 @@ export class ChampionManager implements BaseManager<Champion> {
    * Ideally, any user would be using {@link ChampionManager.fetch | fetch}.
    *
    * @param keys - The keys of the champions to fetch.
+   * @param options - The basic fetching options.
    */
-  async fetchByKeys(keys: number[]): Promise<Collection<string, Champion>> {
+  async fetchByKeys(keys: number[], options?: FetchOptions): Promise<Collection<string, Champion>> {
+    const force = options?.force ?? false;
+    const cache = options?.cache ?? true;
     return new Promise(async (resolve, reject) => {
       const result = new Collection<string, Champion>();
-      for (const key of keys) {
-        const champ = this.cache.find((c) => c.key === key);
-        if (champ) {
-          result.set(champ.id, champ);
-          keys = keys.filter((k) => k !== key);
+      if (!force)
+        for (const key of keys) {
+          const champ = this.cache.find((c) => c.key === key);
+          if (champ) {
+            result.set(champ.id, champ);
+            keys = keys.filter((k) => k !== key);
+          }
         }
-      }
       if (keys.length) {
         const response = await this.client.http.get(
           this.client.version + '/data/' + this.client.locale + '/championFull.json'
@@ -254,7 +278,7 @@ export class ChampionManager implements BaseManager<Champion> {
               const meraki = <MerakiChampion>await this._fetchLocalPricing(champ.id).catch(reject);
               const champion = new Champion(this.client, champs.data[key], damage, meraki);
               result.set(key, champion);
-              this.cache.set(key, champion);
+              if (cache) this.cache.set(key, champion);
             }
           }
           resolve(result);

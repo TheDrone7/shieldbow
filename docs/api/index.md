@@ -46,8 +46,8 @@
 | [ObjectiveBountyPrestartEvent](/api/ObjectiveBountyPrestartEvent.md) | A representation of the objective bounty prestart event. |
 | [Participant](/api/Participant.md) | A representation of a participant in a match. |
 | [ParticipantFrame](/api/ParticipantFrame.md) | A representation of a participant's stats at a point in the timeline. |
-| [ParticipantFrameChampionStats](/api/ParticipantFrameChampionStats.md) | A representation of the participant's champion stats in a [ParticipantFrame](/api/ParticipantFrame.md#undefined). |
-| [ParticipantFrameDamageStats](/api/ParticipantFrameDamageStats.md) | A representation of the participant's damage stats in a [ParticipantFrame](/api/ParticipantFrame.md#undefined). |
+| [ParticipantFrameChampionStats](/api/ParticipantFrameChampionStats.md) | A representation of the participant's champion stats in a [ParticipantFrame](/api/ParticipantFrame.md#). |
+| [ParticipantFrameDamageStats](/api/ParticipantFrameDamageStats.md) | A representation of the participant's damage stats in a [ParticipantFrame](/api/ParticipantFrame.md#). |
 | [PauseEndEvent](/api/PauseEndEvent.md) | A representation of the Pause end event.   Takes place when a game pause ends or when the game first begins after the loading screen. |
 | [Perks](/api/Perks.md) | A representation of the perks (runes) selected by a summoner for a match. |
 | [PerkStyle](/api/PerkStyle.md) | A representation of a perk style - a tree and 4 (if primary) or 2 (if secondary) runes that were selected. |
@@ -136,7 +136,8 @@
 | [MatchTimelineInfo](/api/MatchTimelineInfo.md) | The match timeline details as returned by the API. |
 | [MatchTimelineMetadata](/api/MatchTimelineMetadata.md) | The match timeline metadata as returned by the API. |
 | [MerakiChampion](/api/MerakiChampion.md) | A representation of the champion data returned by meraki analytics. These are used in the LoL wiki. |
-| [MerakiSkin](/api/MerakiSkin.md) | A representation of a champion's skin data returned by meraki analytics. These are used in the LoL wiki. |
+| [MerakiSkin](/api/MerakiSkin.md) |  |
+| [MerakiSkinChroma](/api/MerakiSkinChroma.md) | A representation of a champion's skin data returned by meraki analytics. These are used in the LoL wiki. |
 | [ObjectiveBountyPrestartEventData](/api/ObjectiveBountyPrestartEventData.md) | The event data for the objective bounty prestart event. |
 | [ParticipantChampion](/api/ParticipantChampion.md) | The participant's champion details. |
 | [ParticipantChampionStatsData](/api/ParticipantChampionStatsData.md) | The participant champion stats as returned by the API. |

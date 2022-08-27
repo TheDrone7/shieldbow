@@ -11,6 +11,9 @@ import path from 'path';
 export class SummonerSpellManager implements BaseManager<SummonerSpell> {
   /**
    * A collection of the summoner spells cached in the memory.
+   *
+   * Only use this if you absolutely must.
+   * Prioritize using {@link SummonerSpellManager.fetch | fetch} instead.
    */
   readonly cache: Collection<string, SummonerSpell>;
   /**
@@ -47,12 +50,13 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
     });
   }
 
-  private async _fetchAll() {
+  private async _fetchAll(options?: FetchOptions) {
     return new Promise(async (resolve, reject) => {
+      const cache = options?.cache ?? true;
       const spells = <{ [id: string]: SummonerSpellData }>await this._fetchLocalSpells().catch(reject);
       for (const key of Object.keys(spells)) {
         const summonerSpell = new SummonerSpell(this.client, spells[key]);
-        this.cache.set(key, summonerSpell);
+        if (cache) this.cache.set(key, summonerSpell);
       }
       resolve(this.cache);
     });
@@ -62,7 +66,7 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
    * Fetch a spell by its ID. The ID is usually something like Summoner\{Spell\}
    * For example, for the spell `Flash`, the ID is `SummonerFlash`.
    * But there are a lot of exceptions to this,
-   * so it is recommended to use {@link SummonerSpellManager.findByName | findByName} instead.
+   * so it is recommended to use {@link SummonerSpellManager.fetchByName | fetchByName} instead.
    *
    * @param key - The ID of the spell to fetch.
    * @param options - The basic fetching options.
@@ -72,7 +76,7 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
     return new Promise<SummonerSpell>(async (resolve, reject) => {
       if (this.cache.has(key) && !force) resolve(this.cache.get(key)!);
       else {
-        await this._fetchAll();
+        await this._fetchAll(options);
         if (this.cache.has(key)) resolve(this.cache.get(key)!);
         else reject('There is no spell with that ID');
       }
@@ -81,13 +85,25 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
 
   /**
    * Find a spell by its name.
+   *
+   * @deprecated Please use {@link SummonerSpellManager.fetchByName | fetchByName} instead.
+   * @param name - The name of the spell to look for.
+   */
+  async findByName(name: string) {
+    return this.fetchByName(name);
+  }
+
+  /**
+   * Fetch a spell by its name.
    * The search is case-insensitive.
    * The special characters are NOT ignored.
    *
    * @param name - The name of the spell to look for.
+   * @param options - The basic fetching options.
    */
-  async findByName(name: string) {
-    if (!this.cache.size) await this._fetchAll();
+  async fetchByName(name: string, options?: FetchOptions) {
+    const force = options?.force ?? false;
+    if (!this.cache.size || force) await this._fetchAll(options);
     return this.cache.find((i) => i.name.toLowerCase().includes(name.toLowerCase()));
   }
 }

@@ -17,7 +17,7 @@ export declare class TimelineEventFactory
 
 ### Methods
 
-#### .create (client, data)
+#### .create ()
 
 Creates a timeline event from the given data.
 

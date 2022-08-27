@@ -31,7 +31,7 @@ Constructs a new instance of the `Ratelimiter` class.
 
 ### Methods
 
-#### .update (region, response, method)
+#### .update ()
 
 Parse and update ratelimits from a response.
 
@@ -56,7 +56,7 @@ update(region: Region, response: AxiosResponse, method: string): void;
 
 ---
 
-#### .verify (region, method)
+#### .verify ()
 
 Verify if the request is going beyond the ratelimit.
 

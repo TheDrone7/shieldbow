@@ -9,6 +9,12 @@ import { Collection } from '@discordjs/collection';
 export class CurrentGameManager implements BaseManager<CurrentGame> {
   /**
    * The cached live games (mapped by summoner IDs).
+   *
+   * Only use this if you absolutely must.
+   * Prioritize using
+   * {@link CurrentGameManager.fetch | fetch} or
+   * {@link CurrentGameManager.fetchFeatured | fetchFeatured}
+   * instead.
    */
   readonly cache: Collection<string, CurrentGame>;
   /**
@@ -52,7 +58,7 @@ export class CurrentGameManager implements BaseManager<CurrentGame> {
           const data = <CurrentGameData>response.data;
           await this.client.champions.fetchByKeys(data.participants.map((p) => p.championId));
           if (this.client.items.cache.size === 0) await this.client.items.fetch('1001');
-          if (this.client.summonerSpells.cache.size === 0) await this.client.summonerSpells.findByName('Flash');
+          if (this.client.summonerSpells.cache.size === 0) await this.client.summonerSpells.fetchByName('Flash');
           if (this.client.runes.cache.size === 0) await this.client.runes.fetch('Domination');
           const game = new CurrentGame(this.client, data);
           if (cache) this.cache.set(id, game);
@@ -84,7 +90,7 @@ export class CurrentGameManager implements BaseManager<CurrentGame> {
         for (const game of data.gameList)
           await this.client.champions.fetchByKeys(game.participants.map((p) => p.championId));
         if (this.client.items.cache.size === 0) await this.client.items.fetch('1001');
-        if (this.client.summonerSpells.cache.size === 0) await this.client.summonerSpells.findByName('Flash');
+        if (this.client.summonerSpells.cache.size === 0) await this.client.summonerSpells.fetchByName('Flash');
         if (this.client.runes.cache.size === 0) await this.client.runes.fetch('Domination');
         const games = response.data.gameList.map((g: CurrentGameData) => new CurrentGame(this.client, g));
         resolve(games);

@@ -238,6 +238,10 @@ export class Participant {
    */
   readonly perks: Perks;
   /**
+   * The number of times this participant used the basic pings.
+   */
+  readonly basicPings: number;
+  /**
    * The number of kills scored by this participant.
    */
   readonly kills: number;
@@ -449,6 +453,8 @@ export class Participant {
   constructor(client: Client, data: ParticipantData) {
     this.id = data.participantId;
     this.perks = new Perks(client, data.perks);
+
+    this.basicPings = data.basicPings;
 
     this.kills = data.kills;
     this.deaths = data.deaths;

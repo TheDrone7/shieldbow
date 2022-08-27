@@ -41,6 +41,9 @@ Constructs a new instance of the `ClashManager` class.
 The in-memory cache of tournaments.
 
 
+Only use this if you absolutely must. Prioritize using [fetch](/api/ClashManager.md#fetch), [fetchByTeamId](/api/ClashManager.md#fetchbyteamid) or [fetchAll](/api/ClashManager.md#fetchall) instead.
+
+
 
 **Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [Tournament](/api/Tournament.md) \>
 
@@ -51,6 +54,9 @@ The in-memory cache of tournaments.
 The in-memory cache of the tournament players.
 
 
+Only use this if you absolutely must. Prioritize using [fetchPlayer](/api/ClashManager.md#fetchplayer) instead.
+
+
 
 **Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [TournamentPlayer](/api/TournamentPlayer.md)[] \>
 
@@ -59,6 +65,9 @@ The in-memory cache of the tournament players.
 #### cachedTeams
 
 The in-memory cache of the tournament teams.
+
+
+Only use this if you absolutely must. Prioritize using [fetchTeam](/api/ClashManager.md#fetchteam) instead.
 
 
 
@@ -78,7 +87,7 @@ The client that instantiated the manager.
 
 ### Methods
 
-#### .fetch (id, options)
+#### .fetch ()
 
 Fetches a tournament by its ID.
 
@@ -102,7 +111,7 @@ fetch(id: number, options?: FetchOptions): Promise<Tournament>;
 
 ---
 
-#### .fetchAll (options)
+#### .fetchAll ()
 
 Fetch all upcoming and active tournaments.
 
@@ -125,7 +134,7 @@ fetchAll(options?: FetchOptions): Promise<Tournament[]>;
 
 ---
 
-#### .fetchByTeamId (teamId, options)
+#### .fetchByTeamId ()
 
 Fetch tournament by participating team's ID.
 
@@ -149,7 +158,7 @@ fetchByTeamId(teamId: string, options?: FetchOptions): Promise<Tournament>;
 
 ---
 
-#### .fetchPlayer (summonerId, options)
+#### .fetchPlayer ()
 
 Fetch participation info of a summoner in tournaments by the summoner ID.
 
@@ -173,7 +182,7 @@ fetchPlayer(summonerId: string, options?: FetchOptions): Promise<TournamentPlaye
 
 ---
 
-#### .fetchTeam (teamId, options)
+#### .fetchTeam ()
 
 Fetch a team participating in a tournament by the team ID.
 

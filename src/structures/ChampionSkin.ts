@@ -1,5 +1,5 @@
 import type { Champion } from './index';
-import type { MerakiSkin, ChampionSkinData, SkinPricing, SkinChroma } from '../types/';
+import type { MerakiSkin, ChampionSkinData, SkinPricing, SkinChroma, MerakiSkinChroma } from '../types';
 
 /**
  * A representation of a champion's skin (visual modification).
@@ -83,7 +83,7 @@ export class ChampionSkin {
     this.vintageLoadingScreen = meraki.loadScreenVintagePath || undefined;
     this.internalId = data.id;
     this.chromas = meraki.chromas
-      .filter((c) => c !== null)
-      .map((c) => ({ id: c!.id, name: c!.name, image: c!.chromaPath }));
+      .filter((c): c is MerakiSkinChroma => c !== null)
+      .map((c) => ({ id: c.id, name: c.name, image: c.chromaPath }));
   }
 }

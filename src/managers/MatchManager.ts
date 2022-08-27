@@ -9,10 +9,19 @@ import type { Client } from '../client';
 export class MatchManager implements BaseManager<Match> {
   /**
    * The collection of cached matches.
+   *
+   * Only use this if you absolutely must.
+   * Prioritize using
+   * {@link MatchManager.fetch | fetch} and
+   * {@link MatchManager.fetchMatchListByPlayer | fetchMatchListByPlayer}
+   * instead.
    */
   readonly cache: Collection<string, Match>;
   /**
    * The collection of cached match timelines.
+   *
+   * Only use this if you absolutely must.
+   * Prioritize using {@link MatchManager.fetchMatchTimeline | fetchMatchTimeline} instead.
    */
   readonly timelineCache: Collection<string, MatchTimeline>;
   /**
@@ -55,7 +64,7 @@ export class MatchManager implements BaseManager<Match> {
           await this.client.champions.fetchByKeys(data.info.participants.map((p) => p.championId));
 
           if (this.client.items.cache.size === 0) await this.client.items.fetch('1001');
-          if (this.client.summonerSpells.cache.size === 0) await this.client.summonerSpells.findByName('Flash');
+          if (this.client.summonerSpells.cache.size === 0) await this.client.summonerSpells.fetchByName('Flash');
           if (this.client.runes.cache.size === 0) await this.client.runes.fetch('Domination');
           const match = new Match(this.client, data);
           if (cache) this.cache.set(id, match);

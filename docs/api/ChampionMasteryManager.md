@@ -42,6 +42,9 @@ Constructs a new instance of the `ChampionMasteryManager` class.
 The cached mastery data for the summoner.
 
 
+Only use this if you absolutely must. Prioritize using [fetch](/api/ChampionMasteryManager.md#fetch) instead.
+
+
 
 **Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [ChampionMastery](/api/ChampionMastery.md) \>
 
@@ -92,7 +95,7 @@ The total mastery score of this summoner.
 
 ### Methods
 
-#### .fetch (champion, options)
+#### .fetch ()
 
 Fetch a champion's mastery data for the summoner.
 
@@ -133,7 +136,7 @@ fetchAll(): Promise<Collection<string, ChampionMastery>>;
 
 ---
 
-#### .highest (n, options)
+#### .highest ()
 
 Get the nth highest champion mastery for the summoner.
 
@@ -151,7 +154,7 @@ highest(n?: number, options?: FetchOptions): Promise<ChampionMastery>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | n | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The ranking of the champion in the summoner's champions mastery, defaults to 0 (highest). |
-| options | [FetchOptions](/api/FetchOptions.md) |  |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [ChampionMastery](/api/ChampionMastery.md) \>
 

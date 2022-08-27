@@ -45,6 +45,9 @@ Constructs a new instance of the `ItemManager` class.
 A collection of the items cached in the memory.
 
 
+Only use this if you absolutely must. Prioritize using [fetch](/api/ItemManager.md#fetch) instead.
+
+
 
 **Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/Item.md) \>
 
@@ -62,7 +65,7 @@ The client this manager belongs to.
 
 ### Methods
 
-#### .fetch (key, options)
+#### .fetch ()
 
 Fetch an item by its 4-digit ID. The ID must be a string of 4 digits (not a number)
 
@@ -86,12 +89,47 @@ fetch(key: string, options?: FetchOptions): Promise<Item>;
 
 ---
 
-#### .findByName (name)
+#### .fetchByName ()
 
-Find an item by its name. The search is case-insensitive. The special characters are NOT ignored.
+Fetch an item by its name. The search is case-insensitive. The special characters are NOT ignored.
 
 
 
+
+**Signature:**
+
+```ts
+fetchByName(name: string, options?: FetchOptions): Promise<Item | undefined>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of the item to look for. |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Item](/api/Item.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
+
+---
+
+#### .findByName ()
+
+Find an item by its name.
+
+
+
+
+::: warning 
+
+This is now **deprecated**. 
+
+Please use [fetchByName](/api/ItemManager.md#fetchbyname) instead.
+
+
+
+
+:::
 
 **Signature:**
 

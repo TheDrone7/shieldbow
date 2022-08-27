@@ -45,6 +45,9 @@ Constructs a new instance of the `RuneTreeManager` class.
 A collection of the rune trees cached in the memory.
 
 
+Only use this if you absolutely must. Prioritize using [fetch](/api/RuneTreeManager.md#fetch) instead.
+
+
 
 **Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/api/RuneTree.md) \>
 
@@ -56,6 +59,9 @@ An array of runes that have been saved in the cache.
 
 
 This is similar to the cache but the cache is a collection of Rune Trees and this is an array of runes.
+
+
+Only use this if you absolutely must. Prioritize using [fetchRune](/api/RuneTreeManager.md#fetchrune) instead.
 
 
 
@@ -75,7 +81,7 @@ The client this manager belongs to.
 
 ### Methods
 
-#### .fetch (key, options)
+#### .fetch ()
 
 Fetch a rune tree by its key. The key is the same as the rune tree's name, for example - `Domination`.
 
@@ -99,7 +105,55 @@ fetch(key: string, options?: FetchOptions): Promise<RuneTree>;
 
 ---
 
-#### .fetchRune (key, options)
+#### .fetchById ()
+
+Find a rune tree by its numerical ID.
+
+
+
+
+**Signature:**
+
+```ts
+fetchById(id: number, options?: FetchOptions): Promise<RuneTree | undefined>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| id | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The numerical ID of the rune tree to look for. |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [RuneTree](/api/RuneTree.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
+
+---
+
+#### .fetchByName ()
+
+Fetch a rune tree by its name. The search is case-insensitive. The special characters are NOT ignored.
+
+
+
+
+**Signature:**
+
+```ts
+fetchByName(name: string, options?: FetchOptions): Promise<RuneTree | undefined>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of the rune tree to look for. |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [RuneTree](/api/RuneTree.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
+
+---
+
+#### .fetchRune ()
 
 Fetch a rune by its key. The key is mostly the same as the rune name, for example - `Electrocute`.
 
@@ -109,9 +163,7 @@ Fetch a rune by its key. The key is mostly the same as the rune name, for exampl
 **Signature:**
 
 ```ts
-fetchRune(key: string, options?: {
-        force: boolean;
-    }): Promise<Rune>;
+fetchRune(key: string, options?: FetchOptions): Promise<Rune>;
 ```
 
 **Parameters:**
@@ -119,18 +171,77 @@ fetchRune(key: string, options?: {
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | key | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The key of the rune. |
-| options | {         force: boolean;     } | Additional fetch options. |
+| options | [FetchOptions](/api/FetchOptions.md) | Additional fetch options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Rune](/api/Rune.md) \>
 
 ---
 
-#### .findById (id)
+#### .fetchRuneById ()
+
+Fetch a rune by its numerical ID.
+
+
+
+
+**Signature:**
+
+```ts
+fetchRuneById(id: number, options?: FetchOptions): Promise<Rune | undefined>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| id | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The numerical ID of the rune to look for. |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Rune](/api/Rune.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
+
+---
+
+#### .fetchRuneByName ()
+
+Fetch a rune by its name. The search is case-insensitive. The special characters are not ignored.
+
+
+
+
+**Signature:**
+
+```ts
+fetchRuneByName(name: string, options?: FetchOptions): Promise<Rune | undefined>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of the rune to look for. |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Rune](/api/Rune.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
+
+---
+
+#### .findById ()
 
 Find a rune tree by its numerical ID.
 
 
 
+
+::: warning 
+
+This is now **deprecated**. 
+
+Please use [fetchById](/api/RuneTreeManager.md#fetchbyid) instead.
+
+
+
+
+:::
 
 **Signature:**
 
@@ -148,12 +259,23 @@ findById(id: number): Promise<RuneTree | undefined>;
 
 ---
 
-#### .findByName (name)
+#### .findByName ()
 
-Find a rune tree by its name. The search is case-insensitive. The special characters are NOT ignored.
+Find a rune tree by its name.
 
 
 
+
+::: warning 
+
+This is now **deprecated**. 
+
+Please use [fetchByName](/api/RuneTreeManager.md#fetchbyname) instead.
+
+
+
+
+:::
 
 **Signature:**
 
@@ -171,12 +293,23 @@ findByName(name: string): Promise<RuneTree | undefined>;
 
 ---
 
-#### .findRuneById (id)
+#### .findRuneById ()
 
 Find a rune by its numerical ID.
 
 
 
+
+::: warning 
+
+This is now **deprecated**. 
+
+Please use [fetchRuneById](/api/RuneTreeManager.md#fetchrunebyid) instead.
+
+
+
+
+:::
 
 **Signature:**
 
@@ -194,12 +327,23 @@ findRuneById(id: number): Promise<Rune | undefined>;
 
 ---
 
-#### .findRuneByName (name)
+#### .findRuneByName ()
 
-Find a rune by its name. The search is case-insensitive. The special characters are not ignored.
+Find a rune by its name.
 
 
 
+
+::: warning 
+
+This is now **deprecated**. 
+
+Please use [fetchRuneByName](/api/RuneTreeManager.md#fetchrunebyname) instead.
+
+
+
+
+:::
 
 **Signature:**
 

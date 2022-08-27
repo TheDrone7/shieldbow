@@ -45,6 +45,9 @@ Constructs a new instance of the `SummonerSpellManager` class.
 A collection of the summoner spells cached in the memory.
 
 
+Only use this if you absolutely must. Prioritize using [fetch](/api/SummonerSpellManager.md#fetch) instead.
+
+
 
 **Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [SummonerSpell](/api/SummonerSpell.md) \>
 
@@ -62,9 +65,9 @@ The client this manager belongs to.
 
 ### Methods
 
-#### .fetch (key, options)
+#### .fetch ()
 
-Fetch a spell by its ID. The ID is usually something like Summoner\{Spell\} For example, for the spell `Flash`, the ID is `SummonerFlash`. But there are a lot of exceptions to this, so it is recommended to use [findByName](/api/SummonerSpellManager.md#findByName) instead.
+Fetch a spell by its ID. The ID is usually something like Summoner\{Spell\} For example, for the spell `Flash`, the ID is `SummonerFlash`. But there are a lot of exceptions to this, so it is recommended to use [fetchByName](/api/SummonerSpellManager.md#fetchbyname) instead.
 
 
 
@@ -86,12 +89,47 @@ fetch(key: string, options?: FetchOptions): Promise<SummonerSpell>;
 
 ---
 
-#### .findByName (name)
+#### .fetchByName ()
 
-Find a spell by its name. The search is case-insensitive. The special characters are NOT ignored.
+Fetch a spell by its name. The search is case-insensitive. The special characters are NOT ignored.
 
 
 
+
+**Signature:**
+
+```ts
+fetchByName(name: string, options?: FetchOptions): Promise<SummonerSpell | undefined>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of the spell to look for. |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [SummonerSpell](/api/SummonerSpell.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
+
+---
+
+#### .findByName ()
+
+Find a spell by its name.
+
+
+
+
+::: warning 
+
+This is now **deprecated**. 
+
+Please use [fetchByName](/api/SummonerSpellManager.md#fetchbyname) instead.
+
+
+
+
+:::
 
 **Signature:**
 

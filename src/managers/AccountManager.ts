@@ -13,6 +13,12 @@ export class AccountManager implements BaseManager<Account> {
   readonly client: Client;
   /**
    * The accounts cached in the memory.
+   *
+   * Only use this if you absolutely must.
+   * Prioritize using
+   * {@link AccountManager.fetch | fetch} or
+   * {@link AccountManager.fetchByNameAndTag | fetchByNameAndTag}
+   * instead.
    */
   readonly cache: Collection<string, Account>;
 

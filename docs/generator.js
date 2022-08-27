@@ -1,4 +1,5 @@
 "use strict";
+var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 exports.__esModule = true;
 var fs_1 = require("fs");
 var html_escaper_1 = require("html-escaper");
@@ -54,7 +55,7 @@ var parseSummary = function (summary) {
         else if (node instanceof tsdoc_1.DocLinkTag) {
             var d = (_a = node.codeDestination) === null || _a === void 0 ? void 0 : _a.memberReferences.map(function (r) { var _a; return (_a = r.memberIdentifier) === null || _a === void 0 ? void 0 : _a.identifier; });
             var d2 = node.urlDestination;
-            var link = d ? "/api/".concat(d[0], ".md#").concat(d[1]) : d2;
+            var link = d ? "/api/".concat(d[0], ".md#").concat(d[1] ? d[1].toLowerCase() : '') : d2;
             var linkText = node.linkText || (d === null || d === void 0 ? void 0 : d.join('.')) || d2;
             text += "[".concat(linkText, "](").concat(link, ")");
         }
@@ -97,11 +98,15 @@ index += '| ----- | ----------- |\n';
 var _loop_1 = function (cls) {
     var cName = parseName(cls.displayName);
     var summary = cls.tsdocComment ? parseSummary(cls.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
+    var deprecated = ((_a = cls.tsdocComment) === null || _a === void 0 ? void 0 : _a.deprecatedBlock) ? parseSummary(cls.tsdocComment.deprecatedBlock.content) : '';
     index += "| [".concat(cName, "](/api/").concat(cName, ".md) | ").concat(summary, " |\n");
     // Create the class document.
     var doc = "---\ntitle: ".concat(cName, "\ndescription: ").concat(summary, "\n---\n\n");
     doc += "## ".concat(cName, " class\n\n");
-    doc += "".concat(summary, "\n\n**Signature:**\n\n");
+    doc += "".concat(summary, "\n\n");
+    if (deprecated.length)
+        doc += "::: warning \n\nThis is now **deprecated**. ".concat(deprecated, "\n\n:::\n\n");
+    doc += "**Signature:**\n\n";
     doc += "```ts\n".concat(cls.excerpt.text, "\n```\n\n");
     if (cls.extendsType && cls.extendsType.excerpt && !cls.extendsType.excerpt.isEmpty)
         doc += "**Extends: ".concat(cls.extendsType.excerpt.text, "**\n\n");
@@ -136,24 +141,34 @@ var _loop_1 = function (cls) {
     var methods = cls.members.filter(function (member) { return member.kind === 'Method'; });
     if (properties.length) {
         doc += "### Properties\n\n";
-        for (var _e = 0, properties_1 = properties; _e < properties_1.length; _e++) {
-            var prop = properties_1[_e];
+        for (var _p = 0, properties_1 = properties; _p < properties_1.length; _p++) {
+            var prop = properties_1[_p];
             var summary_1 = prop.tsdocComment ? parseSummary(prop.tsdocComment.summarySection) : '';
+            var deprecated_1 = ((_b = prop.tsdocComment) === null || _b === void 0 ? void 0 : _b.deprecatedBlock)
+                ? parseSummary(prop.tsdocComment.deprecatedBlock.content)
+                : '';
             var typeValue = parseTypeString(prop.propertyTypeExcerpt.text);
             doc += '#### ' + prop.name + '\n\n';
             doc += "".concat(summary_1, "\n\n");
+            if (deprecated_1.length)
+                doc += "::: warning \n\nThis is now **deprecated**. ".concat(deprecated_1, "\n\n:::\n\n");
             doc += "**Type**: ".concat(typeValue, "\n\n");
             doc += '---\n\n';
         }
     }
     if (methods.length) {
         doc += "### Methods\n\n";
-        for (var _f = 0, methods_1 = methods; _f < methods_1.length; _f++) {
-            var method = methods_1[_f];
+        for (var _q = 0, methods_1 = methods; _q < methods_1.length; _q++) {
+            var method = methods_1[_q];
             var summary_2 = method.tsdocComment ? parseSummary(method.tsdocComment.summarySection) : '';
+            var deprecated_2 = ((_c = method.tsdocComment) === null || _c === void 0 ? void 0 : _c.deprecatedBlock)
+                ? parseSummary(method.tsdocComment.deprecatedBlock.content)
+                : '';
             var typeValue = parseTypeString(method.returnTypeExcerpt.text);
-            doc += "#### .".concat(method.displayName, " (").concat(method.parameters.map(function (p) { return p.name; }).join(', '), ")\n\n");
+            doc += "#### .".concat(method.displayName, " ()\n\n");
             doc += "".concat(summary_2, "\n\n");
+            if (deprecated_2.length)
+                doc += "::: warning \n\nThis is now **deprecated**. ".concat(deprecated_2, "\n\n:::\n\n");
             doc += "**Signature:**\n\n";
             doc += "```ts\n".concat(method.excerpt.text, "\n```\n\n");
             if (method.parameters.length) {
@@ -182,12 +197,16 @@ index += '| -------- | ----------- |\n';
 var _loop_2 = function (func) {
     var fName = parseName(func.displayName);
     var summary = func.tsdocComment ? parseSummary(func.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
+    var deprecated = ((_d = func.tsdocComment) === null || _d === void 0 ? void 0 : _d.deprecatedBlock) ? parseSummary(func.tsdocComment.deprecatedBlock.content) : '';
     var name_1 = "".concat(fName, "(").concat(func.parameters.map(function (p) { return p.name; }).join(', '), ")");
     index += "| [".concat(name_1, "](/api/").concat(fName, ".md) | ").concat(summary, " |\n");
     // Create the function document.
     var doc = "---\ntitle: ".concat(fName, "() function\ndescription: ").concat(summary, "\n---\n\n");
     doc += "## ".concat(fName, "(").concat(func.parameters.map(function (p) { return p.name; }).join(', '), ") function\n\n");
-    doc += "".concat(summary, "\n\n**Signature:**\n\n");
+    doc += "".concat(summary, "\n\n");
+    if (deprecated.length)
+        doc += "::: warning \n\nThis is now **deprecated**. ".concat(deprecated, "\n\n:::\n\n");
+    doc += "**Signature:**\n\n";
     doc += "```ts\n".concat(func.excerpt.text, "\n```\n\n");
     if (func.parameters.length) {
         doc += "### Parameters\n\n";
@@ -204,8 +223,8 @@ var _loop_2 = function (func) {
     }
     (0, fs_1.writeFileSync)((0, path_1.join)(pathToDocs, "".concat(fName, ".md")), doc);
 };
-for (var _a = 0, functions_1 = functions; _a < functions_1.length; _a++) {
-    var func = functions_1[_a];
+for (var _k = 0, functions_1 = functions; _k < functions_1.length; _k++) {
+    var func = functions_1[_k];
     _loop_2(func);
 }
 console.info('Processing the interfaces...');
@@ -215,11 +234,15 @@ index += '| --------- | ----------- |\n';
 var _loop_3 = function (ifc) {
     var iName = parseName(ifc.displayName);
     var summary = ifc.tsdocComment ? parseSummary(ifc.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
+    var deprecated = ((_e = ifc.tsdocComment) === null || _e === void 0 ? void 0 : _e.deprecatedBlock) ? parseSummary(ifc.tsdocComment.deprecatedBlock.content) : '';
     index += "| [".concat(iName, "](/api/").concat(iName, ".md) | ").concat(summary, " |\n");
     // Create the interface document.
     var doc = "---\ntitle: ".concat(iName, "\ndescription: ").concat(summary, "\n---\n\n");
     doc += "## ".concat(iName, " interface\n\n");
-    doc += "".concat(summary, "\n\n**Signature:**\n\n");
+    doc += "".concat(summary, "\n\n");
+    if (deprecated.length)
+        doc += "::: warning \n\nThis is now **deprecated**. ".concat(deprecated, "\n\n:::\n\n");
+    doc += '**Signature:**\n\n';
     doc += "```ts\n".concat(ifc.excerpt.text, "\n```\n\n");
     var references = ifc.excerptTokens.filter(function (token) { return token.kind === 'Reference'; });
     if (references.length) {
@@ -231,24 +254,34 @@ var _loop_3 = function (ifc) {
     var methods = ifc.members.filter(function (member) { return member.kind === 'MethodSignature'; });
     if (properties.length) {
         doc += "### Properties\n\n";
-        for (var _g = 0, properties_2 = properties; _g < properties_2.length; _g++) {
-            var prop = properties_2[_g];
+        for (var _r = 0, properties_2 = properties; _r < properties_2.length; _r++) {
+            var prop = properties_2[_r];
             var summary_3 = prop.tsdocComment ? parseSummary(prop.tsdocComment.summarySection) : '';
+            var deprecated_3 = ((_f = prop.tsdocComment) === null || _f === void 0 ? void 0 : _f.deprecatedBlock)
+                ? parseSummary(prop.tsdocComment.deprecatedBlock.content)
+                : '';
             var typeValue = parseTypeString(prop.propertyTypeExcerpt.text);
             doc += '#### ' + prop.name + '\n\n';
             doc += "".concat(summary_3, "\n\n");
+            if (deprecated_3.length)
+                doc += "::: warning \n\nThis is now **deprecated**. ".concat(deprecated_3, "\n\n:::\n\n");
             doc += "**Type**: ".concat(typeValue, "\n\n");
             doc += '---\n\n';
         }
     }
     if (methods.length) {
         doc += "### Methods\n\n";
-        for (var _h = 0, methods_2 = methods; _h < methods_2.length; _h++) {
-            var method = methods_2[_h];
+        for (var _s = 0, methods_2 = methods; _s < methods_2.length; _s++) {
+            var method = methods_2[_s];
             var summary_4 = method.tsdocComment ? parseSummary(method.tsdocComment.summarySection) : '';
+            var deprecated_4 = ((_g = method.tsdocComment) === null || _g === void 0 ? void 0 : _g.deprecatedBlock)
+                ? parseSummary(method.tsdocComment.deprecatedBlock.content)
+                : '';
             var typeValue = parseTypeString(method.returnTypeExcerpt.text);
-            doc += "#### .".concat(method.displayName, " (").concat(method.parameters.map(function (p) { return p.name; }).join(', '), ")\n\n");
+            doc += "#### .".concat(method.displayName, " ()\n\n");
             doc += "".concat(summary_4, "\n\n");
+            if (deprecated_4.length)
+                doc += "::: warning \n\nThis is now **deprecated**. ".concat(deprecated_4, "\n\n:::\n\n");
             doc += "**Signature:**\n\n";
             doc += "```ts\n".concat(method.excerpt.text, "\n```\n\n");
             if (method.parameters.length) {
@@ -266,23 +299,27 @@ var _loop_3 = function (ifc) {
     }
     (0, fs_1.writeFileSync)((0, path_1.join)(pathToDocs, "".concat(iName, ".md")), doc);
 };
-for (var _b = 0, interfaces_1 = interfaces; _b < interfaces_1.length; _b++) {
-    var ifc = interfaces_1[_b];
+for (var _l = 0, interfaces_1 = interfaces; _l < interfaces_1.length; _l++) {
+    var ifc = interfaces_1[_l];
     _loop_3(ifc);
 }
 console.info('Processing the variables...');
 index += '---\n\n## Variables\n\n';
 index += '| Variable | Description |\n';
 index += '| -------- | ----------- |\n';
-for (var _c = 0, variables_1 = variables; _c < variables_1.length; _c++) {
-    var v = variables_1[_c];
+for (var _m = 0, variables_1 = variables; _m < variables_1.length; _m++) {
+    var v = variables_1[_m];
     var vName = parseName(v.displayName);
     var summary = v.tsdocComment ? parseSummary(v.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
+    var deprecated = ((_h = v.tsdocComment) === null || _h === void 0 ? void 0 : _h.deprecatedBlock) ? parseSummary(v.tsdocComment.deprecatedBlock.content) : '';
     index += "| [".concat(vName, "](/api/").concat(vName, ".md) | ").concat(summary, " |\n");
     // Create the variable document.
     var doc = "---\ntitle: ".concat(vName, "\ndescription: ").concat(summary, "\n---\n\n");
     doc += "## ".concat(vName, " variable\n\n");
-    doc += "".concat(summary, "\n\n**Signature:**\n\n");
+    doc += "".concat(summary, "\n\n");
+    if (deprecated.length)
+        doc += "::: warning \n\nThis is now **deprecated**. ".concat(deprecated, "\n\n:::\n\n");
+    doc += '**Signature:**\n\n';
     doc += "```ts\n".concat(v.excerpt.text, "\n```\n\n");
     var references = v.excerptTokens.filter(function (token) { return token.kind === 'Reference'; });
     if (references.length) {
@@ -296,15 +333,19 @@ console.info('Processing the types...');
 index += '---\n\n## Type Aliases\n\n';
 index += '| Type Alias | Description |\n';
 index += '| ---------- | ----------- |\n';
-for (var _d = 0, types_1 = types; _d < types_1.length; _d++) {
-    var t = types_1[_d];
+for (var _o = 0, types_1 = types; _o < types_1.length; _o++) {
+    var t = types_1[_o];
     var tName = parseName(t.displayName);
     var summary = t.tsdocComment ? parseSummary(t.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
+    var deprecated = ((_j = t.tsdocComment) === null || _j === void 0 ? void 0 : _j.deprecatedBlock) ? parseSummary(t.tsdocComment.deprecatedBlock.content) : '';
     index += "| [".concat(tName, "](/api/").concat(tName, ".md) | ").concat(summary, " |\n");
     // Create the type alias document.
     var doc = "---\ntitle: ".concat(tName, "\ndescription: ").concat(summary, "\n---\n\n");
     doc += "## ".concat(tName, " type\n\n");
-    doc += "".concat(summary, "\n\n**Signature:**\n\n");
+    doc += "".concat(summary, "\n\n");
+    if (deprecated.length)
+        doc += "::: warning \n\nThis is now **deprecated**. ".concat(deprecated, "\n\n:::\n\n");
+    doc += '**Signature:**\n\n';
     doc += "```ts\n".concat(t.excerpt.text, "\n```\n\n");
     var references = t.excerptTokens.filter(function (token) { return token.kind === 'Reference'; });
     if (references.length) {

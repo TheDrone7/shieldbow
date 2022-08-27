@@ -105,7 +105,7 @@ The ID of the team this participant belongs to.
 
 ### Methods
 
-#### .fetchSummoner (options)
+#### .fetchSummoner ()
 
 Fetches the summoner info of this participant.
 
