@@ -41,7 +41,7 @@ Constructs a new instance of the `SummonerManager` class.
 The summoners cached in the memory.
 
 
-Only use this if you absolutely must. Prioritize using [fetch](/api/SummonerManager.md#fetch), [fetchBySummonerName](/api/SummonerManager.md#fetchBySummonerName) or [fetchByPlayerId](/api/SummonerManager.md#fetchByPlayerId) instead.
+Only use this if you absolutely must. Prioritize using [fetch](/api/SummonerManager.md#fetch), [fetchBySummonerName](/api/SummonerManager.md#fetchbysummonername) or [fetchByPlayerId](/api/SummonerManager.md#fetchbyplayerid) instead.
 
 
 

@@ -41,7 +41,7 @@ Constructs a new instance of the `LeagueManager` class.
 The competitive info (mapped by summoner ID) stored in the memory.
 
 
-Only use this if you absolutely must. Prioritize using [fetch](/api/LeagueManager.md#fetch) or [fetchByQueueAndTier](/api/LeagueManager.md#fetchByQueueAndTier) instead.
+Only use this if you absolutely must. Prioritize using [fetch](/api/LeagueManager.md#fetch) or [fetchByQueueAndTier](/api/LeagueManager.md#fetchbyqueueandtier) instead.
 
 
 
@@ -64,7 +64,7 @@ The client this manager belongs to.
 The in-memory cache for league lists.
 
 
-Only use this if you absolutely must. Prioritize using [fetchByLeagueId](/api/LeagueManager.md#fetchByLeagueId) instead.
+Only use this if you absolutely must. Prioritize using [fetchByLeagueId](/api/LeagueManager.md#fetchbyleagueid) instead.
 
 
 

@@ -61,7 +61,7 @@ An array of runes that have been saved in the cache.
 This is similar to the cache but the cache is a collection of Rune Trees and this is an array of runes.
 
 
-Only use this if you absolutely must. Prioritize using [fetchRune](/api/RuneTreeManager.md#fetchRune) instead.
+Only use this if you absolutely must. Prioritize using [fetchRune](/api/RuneTreeManager.md#fetchrune) instead.
 
 
 
@@ -232,6 +232,17 @@ Find a rune tree by its numerical ID.
 
 
 
+::: warning 
+
+This is now **deprecated**. 
+
+Please use [fetchById](/api/RuneTreeManager.md#fetchbyid) instead.
+
+
+
+
+:::
+
 **Signature:**
 
 ```ts
@@ -254,6 +265,17 @@ Find a rune tree by its name.
 
 
 
+
+::: warning 
+
+This is now **deprecated**. 
+
+Please use [fetchByName](/api/RuneTreeManager.md#fetchbyname) instead.
+
+
+
+
+:::
 
 **Signature:**
 
@@ -278,6 +300,17 @@ Find a rune by its numerical ID.
 
 
 
+::: warning 
+
+This is now **deprecated**. 
+
+Please use [fetchRuneById](/api/RuneTreeManager.md#fetchrunebyid) instead.
+
+
+
+
+:::
+
 **Signature:**
 
 ```ts
@@ -300,6 +333,17 @@ Find a rune by its name.
 
 
 
+
+::: warning 
+
+This is now **deprecated**. 
+
+Please use [fetchRuneByName](/api/RuneTreeManager.md#fetchrunebyname) instead.
+
+
+
+
+:::
 
 **Signature:**
 

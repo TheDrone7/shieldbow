@@ -45,7 +45,7 @@ Constructs a new instance of the `ChampionManager` class.
 The champions cached in the memory.
 
 
-Only use this if you absolutely must. Prioritize using [fetch](/api/ChampionManager.md#fetch), [fetchByKey](/api/ChampionManager.md#fetchByKey), [fetchByName](/api/ChampionManager.md#fetchByName) or [fetchAll](/api/ChampionManager.md#fetchAll) instead.
+Only use this if you absolutely must. Prioritize using [fetch](/api/ChampionManager.md#fetch), [fetchByKey](/api/ChampionManager.md#fetchbykey), [fetchByName](/api/ChampionManager.md#fetchbyname) or [fetchAll](/api/ChampionManager.md#fetchall) instead.
 
 
 
@@ -224,6 +224,17 @@ Find a champion by their 3-digit key.
 
 
 
+::: warning 
+
+This is now **deprecated**. 
+
+Use [fetchByKey](/api/ChampionManager.md#fetchbykey) instead.
+
+
+
+
+:::
+
 **Signature:**
 
 ```ts
@@ -246,6 +257,17 @@ Find a champion by their name.
 
 
 
+
+::: warning 
+
+This is now **deprecated**. 
+
+Use [fetchByName](/api/ChampionManager.md#fetchbyname) instead.
+
+
+
+
+:::
 
 **Signature:**
 

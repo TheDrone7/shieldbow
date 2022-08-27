@@ -41,7 +41,7 @@ Constructs a new instance of the `ClashManager` class.
 The in-memory cache of tournaments.
 
 
-Only use this if you absolutely must. Prioritize using [fetch](/api/ClashManager.md#fetch), [fetchByTeamId](/api/ClashManager.md#fetchByTeamId) or [fetchAll](/api/ClashManager.md#fetchAll) instead.
+Only use this if you absolutely must. Prioritize using [fetch](/api/ClashManager.md#fetch), [fetchByTeamId](/api/ClashManager.md#fetchbyteamid) or [fetchAll](/api/ClashManager.md#fetchall) instead.
 
 
 
@@ -54,7 +54,7 @@ Only use this if you absolutely must. Prioritize using [fetch](/api/ClashManager
 The in-memory cache of the tournament players.
 
 
-Only use this if you absolutely must. Prioritize using [fetchPlayer](/api/ClashManager.md#fetchPlayer) instead.
+Only use this if you absolutely must. Prioritize using [fetchPlayer](/api/ClashManager.md#fetchplayer) instead.
 
 
 
@@ -67,7 +67,7 @@ Only use this if you absolutely must. Prioritize using [fetchPlayer](/api/ClashM
 The in-memory cache of the tournament teams.
 
 
-Only use this if you absolutely must. Prioritize using [fetchTeam](/api/ClashManager.md#fetchTeam) instead.
+Only use this if you absolutely must. Prioritize using [fetchTeam](/api/ClashManager.md#fetchteam) instead.
 
 
 

@@ -154,7 +154,7 @@ The level of this summoner spell. This is the summoner level at which you unlock
 The tooltip of this summoner spell. This does not contain the HTML-like tags to help view this better on console and other output media.
 
 
-See [rawTooltip](/api/SummonerSpell.md#rawTooltip) to view this with the HTML-like tags included.
+See [rawTooltip](/api/SummonerSpell.md#rawtooltip) to view this with the HTML-like tags included.
 
 
 

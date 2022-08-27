@@ -41,7 +41,7 @@ Constructs a new instance of the `CurrentGameManager` class.
 The cached live games (mapped by summoner IDs).
 
 
-Only use this if you absolutely must. Prioritize using [fetch](/api/CurrentGameManager.md#fetch) or [fetchFeatured](/api/CurrentGameManager.md#fetchFeatured) instead.
+Only use this if you absolutely must. Prioritize using [fetch](/api/CurrentGameManager.md#fetch) or [fetchFeatured](/api/CurrentGameManager.md#fetchfeatured) instead.
 
 
 

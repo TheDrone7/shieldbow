@@ -41,7 +41,7 @@ Constructs a new instance of the `AccountManager` class.
 The accounts cached in the memory.
 
 
-Only use this if you absolutely must. Prioritize using [fetch](/api/AccountManager.md#fetch) or [fetchByNameAndTag](/api/AccountManager.md#fetchByNameAndTag) instead.
+Only use this if you absolutely must. Prioritize using [fetch](/api/AccountManager.md#fetch) or [fetchByNameAndTag](/api/AccountManager.md#fetchbynameandtag) instead.
 
 
 

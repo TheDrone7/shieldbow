@@ -120,6 +120,17 @@ Find an item by its name.
 
 
 
+::: warning 
+
+This is now **deprecated**. 
+
+Please use [fetchByName](/api/ItemManager.md#fetchbyname) instead.
+
+
+
+
+:::
+
 **Signature:**
 
 ```ts

@@ -67,7 +67,7 @@ The client this manager belongs to.
 
 #### .fetch ()
 
-Fetch a spell by its ID. The ID is usually something like Summoner\{Spell\} For example, for the spell `Flash`, the ID is `SummonerFlash`. But there are a lot of exceptions to this, so it is recommended to use [fetchByName](/api/SummonerSpellManager.md#fetchByName) instead.
+Fetch a spell by its ID. The ID is usually something like Summoner\{Spell\} For example, for the spell `Flash`, the ID is `SummonerFlash`. But there are a lot of exceptions to this, so it is recommended to use [fetchByName](/api/SummonerSpellManager.md#fetchbyname) instead.
 
 
 
@@ -119,6 +119,17 @@ Find a spell by its name.
 
 
 
+
+::: warning 
+
+This is now **deprecated**. 
+
+Please use [fetchByName](/api/SummonerSpellManager.md#fetchbyname) instead.
+
+
+
+
+:::
 
 **Signature:**
 

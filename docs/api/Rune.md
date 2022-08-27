@@ -38,7 +38,7 @@ Constructs a new instance of the `Rune` class.
 The description (short version) of this rune provided by Data Dragon. This does not contain the HTML-like tags to help view this better on console or other output media.
 
 
-See [rawDescription](/api/Rune.md#rawDescription) to view the description with the HTML-like tags included.
+See [rawDescription](/api/Rune.md#rawdescription) to view the description with the HTML-like tags included.
 
 
 
@@ -51,7 +51,7 @@ See [rawDescription](/api/Rune.md#rawDescription) to view the description with t
 The details (long version) about this rune provided by Data Dragon. This does not contain the HTML-like tags to help view this better on console or other output media.
 
 
-See [rawDetails](/api/Rune.md#rawDetails) to view the details with all the HTML-like tags included.
+See [rawDetails](/api/Rune.md#rawdetails) to view the details with all the HTML-like tags included.
 
 
 

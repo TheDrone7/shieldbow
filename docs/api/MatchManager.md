@@ -41,7 +41,7 @@ Constructs a new instance of the `MatchManager` class.
 The collection of cached matches.
 
 
-Only use this if you absolutely must. Prioritize using [fetch](/api/MatchManager.md#fetch) and [fetchMatchListByPlayer](/api/MatchManager.md#fetchMatchListByPlayer) instead.
+Only use this if you absolutely must. Prioritize using [fetch](/api/MatchManager.md#fetch) and [fetchMatchListByPlayer](/api/MatchManager.md#fetchmatchlistbyplayer) instead.
 
 
 
@@ -64,7 +64,7 @@ The client that instantiated the manager.
 The collection of cached match timelines.
 
 
-Only use this if you absolutely must. Prioritize using [fetchMatchTimeline](/api/MatchManager.md#fetchMatchTimeline) instead.
+Only use this if you absolutely must. Prioritize using [fetchMatchTimeline](/api/MatchManager.md#fetchmatchtimeline) instead.
 
 
 
