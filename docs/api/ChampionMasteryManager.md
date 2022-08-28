@@ -164,6 +164,16 @@ highest(n?: number, options?: FetchOptions): Promise<ChampionMastery>;
 
 
 
+::: warning 
+
+This is now **deprecated**. 
+
+use fetchAll instead
+
+
+
+:::
+
 **Signature:**
 
 ```ts
