@@ -39,7 +39,7 @@ export class CurrentGameManager implements BaseManager<CurrentGame> {
    * @param id - The summoner ID to fetch the live game for.
    * @param options - The basic fetching options.
    */
-  fetch(id: string, options?: FetchOptions) {
+  async fetch(id: string, options?: FetchOptions) {
     const force = options?.force ?? true;
     const cache = options?.cache ?? false;
     const region = options?.region ?? this.client.region;
@@ -74,7 +74,7 @@ export class CurrentGameManager implements BaseManager<CurrentGame> {
    *
    * @param options - The basic fetching options (force and cache are ignored).
    */
-  fetchFeatured(options?: FetchOptions) {
+  async fetchFeatured(options?: FetchOptions) {
     const region = options?.region ?? this.client.region;
     return new Promise<CurrentGame[]>(async (resolve, reject) => {
       const response = await this.client.api

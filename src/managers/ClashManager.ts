@@ -53,7 +53,7 @@ export class ClashManager implements BaseManager<Tournament> {
    * @param id - The ID of the tournament.
    * @param options - The basic fetch options.
    */
-  fetch(id: number, options?: FetchOptions) {
+  async fetch(id: number, options?: FetchOptions) {
     const force = options?.force ?? false;
     const cache = options?.cache ?? true;
     const region = options?.region ?? this.client.region;
@@ -82,7 +82,7 @@ export class ClashManager implements BaseManager<Tournament> {
    *
    * @param options - The basic fetch options (force is ignored, always true).
    */
-  fetchAll(options?: FetchOptions) {
+  async fetchAll(options?: FetchOptions) {
     const cache = options?.cache ?? true;
     const region = options?.region ?? this.client.region;
     return new Promise<Tournament[]>(async (resolve, reject) => {
@@ -107,7 +107,7 @@ export class ClashManager implements BaseManager<Tournament> {
    * @param teamId - The ID of the team.
    * @param options - The basic fetch options (force is ignored, always true).
    */
-  fetchByTeamId(teamId: string, options?: FetchOptions) {
+  async fetchByTeamId(teamId: string, options?: FetchOptions) {
     const cache = options?.cache ?? true;
     const region = options?.region ?? this.client.region;
     return new Promise<Tournament>(async (resolve, reject) => {
@@ -132,7 +132,7 @@ export class ClashManager implements BaseManager<Tournament> {
    * @param teamId - The ID of the team.
    * @param options - The basic fetch options.
    */
-  fetchTeam(teamId: string, options?: FetchOptions) {
+  async fetchTeam(teamId: string, options?: FetchOptions) {
     const force = options?.force ?? false;
     const cache = options?.cache ?? true;
     const region = options?.region ?? this.client.region;
@@ -161,7 +161,7 @@ export class ClashManager implements BaseManager<Tournament> {
    * @param summonerId - The ID of the summoner.
    * @param options - The basic fetch options.
    */
-  fetchPlayer(summonerId: string, options?: FetchOptions) {
+  async fetchPlayer(summonerId: string, options?: FetchOptions) {
     const force = options?.force ?? false;
     const cache = options?.cache ?? true;
     const region = options?.region ?? this.client.region;

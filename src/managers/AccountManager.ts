@@ -37,7 +37,7 @@ export class AccountManager implements BaseManager<Account> {
    * @param id - The PUUID of the RIOT account.
    * @param options - The basic fetching options.
    */
-  fetch(id: string, options?: FetchOptions) {
+  async fetch(id: string, options?: FetchOptions) {
     const force = options?.force ?? false;
     const cache = options?.cache ?? true;
     const region = options?.region ?? this.client.region;
@@ -69,7 +69,7 @@ export class AccountManager implements BaseManager<Account> {
    * @param tag - The tag of this RIOT account.
    * @param options - The basic fetching options.
    */
-  fetchByNameAndTag(name: string, tag: string, options?: FetchOptions) {
+  async fetchByNameAndTag(name: string, tag: string, options?: FetchOptions) {
     const force = options?.force ?? false;
     const cache = options?.cache ?? true;
     const region = options?.region ?? this.client.region;

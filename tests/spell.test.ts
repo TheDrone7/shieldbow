@@ -17,7 +17,7 @@ describe('Test summoner spells fetching.', () => {
   });
 
   test('Check spell fetching by name', async () => {
-    const byName = await client.summonerSpells.findByName('Flash');
+    const byName = await client.summonerSpells.fetchByName('Flash');
     expect(byName).toBe(flash);
   });
 

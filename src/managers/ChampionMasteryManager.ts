@@ -62,7 +62,7 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
    * @param champion - The champion (or its ID) whose mastery data needs to be fetched.
    * @param options - The basic fetching options.
    */
-  fetch(champion: Champion | string, options?: FetchOptions) {
+  async fetch(champion: Champion | string, options?: FetchOptions) {
     const force = options?.force ?? false;
     const cache = options?.cache ?? true;
     const region = options?.region ?? this.summoner.region;
@@ -99,7 +99,7 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
    * @param n - The ranking of the champion in the summoner's champions mastery, defaults to 0 (highest).
    * @param options - The basic fetching options.
    */
-  highest(n: number = 0, options?: FetchOptions) {
+  async highest(n: number = 0, options?: FetchOptions) {
     const force = options?.force ?? false;
     return new Promise<ChampionMastery>(async (resolve, reject) => {
       if (n < 0) reject('The value of `n` must be >= 0.');
@@ -127,7 +127,7 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
   /**
    * Fetches all the champions's masteries data for this summoner and store them in the cache.
    */
-  fetchAll() {
+  async fetchAll() {
     return new Promise<Collection<string, ChampionMastery>>(async (resolve, reject) => {
       const dataList = (await this._fetchRawMasteryData().catch(reject)) as ChampionMasteryData[];
       // Fetch all champions that this summoner has any mastery points
@@ -145,7 +145,7 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
   /**
    * Get an updated total mastery score for this summoner.
    */
-  updateTotalScore() {
+  async updateTotalScore() {
     return new Promise<number>(async (resolve, reject) => {
       const response = await this.client.api
         .makeApiRequest(`/lol/champion-mastery/v4/scores/by-summoner/${this.summoner.id}`, {

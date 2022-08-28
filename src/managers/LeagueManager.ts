@@ -53,7 +53,7 @@ export class LeagueManager implements BaseManager<Collection<QueueType, LeagueEn
    * @param id - The ID of the summoner whose competitive info you want to find.
    * @param options - The basic fetching options.
    */
-  fetch(id: string, options?: FetchOptions) {
+  async fetch(id: string, options?: FetchOptions) {
     const force = options?.force ?? false;
     const cache = options?.cache ?? this.cache;
     const region = options?.region ?? this.client.region;
@@ -89,7 +89,7 @@ export class LeagueManager implements BaseManager<Collection<QueueType, LeagueEn
    * @param division - The division of the entries - I, II, III, IV.
    * @param options - The basic fetching options (and page number - defaults to 1, force is ignored - always true).
    */
-  fetchByQueueAndTier(
+  async fetchByQueueAndTier(
     queue: QueueType,
     tier: TierType,
     division: DivisionType,
@@ -131,7 +131,7 @@ export class LeagueManager implements BaseManager<Collection<QueueType, LeagueEn
    * @param leagueId - The League ID.
    * @param options - The basic fetching options (exception: `force` defaults to true).
    */
-  fetchByLeagueId(leagueId: string, options?: FetchOptions) {
+  async fetchByLeagueId(leagueId: string, options?: FetchOptions) {
     const force = options?.force ?? true;
     const cache = options?.cache ?? this.cache;
     const region = options?.region ?? this.client.region;

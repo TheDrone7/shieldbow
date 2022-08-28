@@ -38,7 +38,7 @@ export class SummonerManager implements BaseManager<Summoner> {
    * @param id - The summoner ID of the summoner.
    * @param options - The basic fetching options.
    */
-  fetch(id: string, options?: FetchOptions) {
+  async fetch(id: string, options?: FetchOptions) {
     const force = options?.force ?? false;
     const cache = options?.cache ?? true;
     const region = options?.region ?? this.client.region;

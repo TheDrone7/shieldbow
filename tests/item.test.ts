@@ -17,7 +17,7 @@ describe('Test item fetching.', () => {
   });
 
   test('Check item fetching by name', async () => {
-    const byName = await client.items.findByName('Boots');
+    const byName = await client.items.fetchByName('Boots');
     expect(byName).toBe(boots);
   });
 
