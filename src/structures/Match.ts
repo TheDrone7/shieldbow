@@ -121,7 +121,7 @@ export class Match {
    * Checks received match data for traits of a bugged match.
    * @param data - The raw match data from the API.
    */
-  private _isDataMalformed(data: MatchData) {
+  private _isDataMalformed(data: MatchData): boolean {
     if (data.info.gameCreation === 0) return true;
     if (data.info.gameDuration === 0) return true;
     if (data.info.gameMode.length === 0) return true;
