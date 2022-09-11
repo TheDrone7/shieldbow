@@ -67,4 +67,14 @@ describe('Test champion fetching.', () => {
   test('Check champion caching', async () => {
     expect(client.champions.cache.get('Kayn')).toBe(kayn);
   });
+
+  test('Check champion sprite', () => {
+    expect(kayn.sprite.size.w).toBe(48);
+    expect(kayn.sprite.size.h).toBe(48);
+
+    expect(kayn.sprite.coordinate.x).toBe(384);
+    expect(kayn.sprite.coordinate.y).toBe(96);
+
+    expect(kayn.sprite.image.includes('/img/sprite/champion1.png')).toBeTruthy();
+  });
 });
