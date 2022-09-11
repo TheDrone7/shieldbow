@@ -1,6 +1,7 @@
 import type { ImageData } from './index';
 import type { ChampionSkinData, MerakiSkin } from './ChampionSkin';
 import type { SpellData } from './ChampionSpell';
+import type { SpriteCoordinate, SpriteSize } from './ChampionSprite';
 
 /**
  * A representation of the champion data returned by meraki analytics.
@@ -78,6 +79,24 @@ export interface ChampionPricing {
    * If more than 0, this champion is available for a less RP, the amount being the value of this field.
    */
   sale: number;
+}
+
+/**
+ * The sprite data of a champion.
+ */
+export interface ChampionSprite {
+  /**
+   * A URL to the sprite sheet that contains the champion icon.
+   */
+  image: string;
+  /**
+   * The sprite coordinate data of a champion.
+   */
+  coordinate: SpriteCoordinate;
+  /**
+   * The sprite size data of a champion.
+   */
+  size: SpriteSize;
 }
 
 /**
