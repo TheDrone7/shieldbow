@@ -1,47 +1,19 @@
 ---
-title: StatPerks
-description: A representation of the stat perks selected by the summoner.
+title: statPerks
+description: The available stat perks.
 ---
 
-## StatPerks interface
+## statPerks variable
 
-A representation of the stat perks selected by the summoner.
+The available stat perks.
 
 **Signature:**
 
 ```ts
-export interface StatPerks 
+statPerks: {
+    [key: number]: StatPerk;
+}
 ```
 
-### Properties
-
-#### defense
-
-The defense stat rune.
-
-
-
-**Type**: [StatPerk](/api/StatPerk.md)
-
----
-
-#### flex
-
-The flex stat rune.
-
-
-
-**Type**: [StatPerk](/api/StatPerk.md)
-
----
-
-#### offense
-
-The offense stat rune.
-
-
-
-**Type**: [StatPerk](/api/StatPerk.md)
-
----
+**References:** [StatPerk](/api/StatPerk.md)
 
