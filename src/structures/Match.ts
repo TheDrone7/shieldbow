@@ -84,6 +84,7 @@ export class Match {
    * @param data - The raw match data from the API.
    */
   constructor(client: Client, data: MatchData) {
+    if (this._isDataMalformed(data)) throw new Error('Match data received is malformed.');
     this.client = client;
     this.id = data.metadata.matchId;
     this.version = data.metadata.dataVersion;
@@ -114,6 +115,22 @@ export class Match {
    */
   fetchTimeline(): Promise<MatchTimeline> {
     return this.client.matches.fetchMatchTimeline(this.id, { region: this.region });
+  }
+
+  /**
+   * Checks received match data for traits of a bugged match.
+   * @param data - The raw match data from the API.
+   */
+  private _isDataMalformed(data: MatchData): boolean {
+    if (data.info.gameCreation === 0) return true;
+    if (data.info.gameDuration === 0) return true;
+    if (data.info.gameMode.length === 0) return true;
+    if (data.info.gameName.length === 0) return true;
+    if (data.info.gameType.length === 0) return true;
+    if (data.info.gameVersion.length === 0) return true;
+    if (data.info.participants.length === 0) return true;
+    if (data.info.teams.length === 0) return true;
+    return false;
   }
 
   private _regionFromPlatformId(platformId: string): Region {
