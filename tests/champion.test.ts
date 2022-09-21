@@ -9,7 +9,7 @@ describe('Test champion fetching.', () => {
     await client.initialize({
       cache: false
     });
-    kayn = await client.champions.fetch('Kayn');
+    kayn = await client.champions.fetch('Kayn', { force: true, cache: true });
   });
 
   test('Check champion fetching by ID', () => {
@@ -24,13 +24,18 @@ describe('Test champion fetching.', () => {
     expect(byKey).toBe(kayn);
   });
 
-  test('Check champion fetching by name and key', async () => {
-    const byName = await client.champions.fetchByName("kai'sa");
-    const byKey = await client.champions.fetchByKey(523);
+  test('Check champion fetching by name and key (forced)', async () => {
+    const byName = await client.champions.fetchByName("kai'sa", { force: true, cache: true });
+    const byKey = await client.champions.fetchByKey(523, { force: true, cache: true });
 
     expect(byName?.name).toBe("Kai'Sa");
     expect(byKey?.name).toBe('Aphelios');
   });
+
+  test('Check fetching all champions', async () => {
+    const champions = await client.champions.fetchAll({ force: true });
+    expect(champions.size).toBeGreaterThan(150);
+  }, 120000);
 
   test('Check champion spells', () => {
     expect(kayn.spells.has('Q')).toBeTruthy();
@@ -65,6 +70,6 @@ describe('Test champion fetching.', () => {
   });
 
   test('Check champion caching', async () => {
-    expect(client.champions.cache.get('Kayn')).toBe(kayn);
+    expect(client.champions.cache.get('Kayn')?.name).toBe('Kayn');
   });
 });

@@ -19,6 +19,11 @@ describe('Test Champion Mastery v4 API', () => {
     expect(mastery.level).toBe(7);
   });
 
+  test('Check all champion mastery', async () => {
+    const summonerMastery = await masteries.fetchAll();
+    expect(summonerMastery.size).toBeGreaterThan(50);
+  }, 120000);
+
   test('Check highest mastery', async () => {
     const mastery = await masteries.highest();
     expect(mastery.level).toBe(7);
