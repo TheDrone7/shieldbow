@@ -19,6 +19,13 @@ describe('Test runes fetching.', () => {
     expect(electrocute.name).toBe('Electrocute');
   });
 
+  test('Check rune and rune tree fetching by name', async () => {
+    const precision = await client.runes.fetchByName('precision', { force: true });
+    const conqueror = await client.runes.fetchRuneByName('conqueror', { force: true });
+    expect(precision?.name).toBe('Precision');
+    expect(conqueror?.name).toBe('Conqueror');
+  });
+
   test('Rune details and description', () => {
     expect(electrocute.description).toBe(
       'Hitting a champion with 3 separate attacks or abilities in 3s deals bonus adaptive damage.'
@@ -27,7 +34,7 @@ describe('Test runes fetching.', () => {
   });
 
   test('Check runes caching', async () => {
-    expect(client.runes.cache.get('Domination')).toBe(domination);
+    expect(client.runes.cache.get('Domination')?.name).toBe(domination.name);
   });
 
   test('Check runes pre-fetching', async () => {

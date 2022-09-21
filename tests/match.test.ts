@@ -20,6 +20,19 @@ describe('Test match v5 API', () => {
     matchTimeline = await client.matches.fetchMatchTimeline(matches[0]);
   });
 
+  test('Check malformed match', async () => {
+    const client = new Client(process.env.RIOT_API_KEY!);
+    await client.initialize({
+      region: 'br',
+      cache: false
+    });
+    try {
+      await client.matches.fetch('BR1_2583580397');
+    } catch (e: any) {
+      if (e instanceof Error) expect(e.message).toMatch('malformed');
+    }
+  });
+
   test('Check match list fetching', () => {
     expect(matches.length).toBeGreaterThan(0);
     expect(matches[0]).toBe(match.id);

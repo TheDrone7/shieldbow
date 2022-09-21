@@ -17,8 +17,8 @@ describe('Test item fetching.', () => {
   });
 
   test('Check item fetching by name', async () => {
-    const byName = await client.items.fetchByName('Boots');
-    expect(byName).toBe(boots);
+    const byName = await client.items.fetchByName('Boots', { force: true });
+    expect(byName?.name).toBe(boots.name);
   });
 
   test('Check item recipe', () => {
@@ -32,7 +32,7 @@ describe('Test item fetching.', () => {
   });
 
   test('Check items caching', async () => {
-    expect(client.items.cache.get('1001')).toBe(boots);
+    expect(client.items.cache.get('1001')?.name).toBe(boots.name);
   });
 
   test('Check items pre-fetching', async () => {
