@@ -5,9 +5,10 @@ import type { PerksData } from './Perks';
  */
 export interface ParticipantData {
   assists: number;
-  basicPings: number;
   baronKills: number;
+  basicPings: number;
   bountyLevel: number;
+  challenges: { [key: string]: number };
   champExperience: number;
   champLevel: number;
   championId: number;
@@ -22,6 +23,7 @@ export interface ParticipantData {
   detectorWardsPlaced: number;
   doubleKills: number;
   dragonKills: number;
+  eligibleForProgression: boolean;
   firstBloodAssist: boolean;
   firstBloodKill: boolean;
   firstTowerAssist: boolean;
