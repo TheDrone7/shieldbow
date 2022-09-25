@@ -68,7 +68,7 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
     const region = options?.region ?? this.summoner.region;
     const id = champion instanceof Champion ? champion.id : champion;
     return new Promise<ChampionMastery>(async (resolve, reject) => {
-      const champ = await this.client.champions.fetch(id).catch(() => undefined);
+      const champ = await this.client.champions.fetch(id, options).catch(() => undefined);
       if (!champ) reject('Invalid champion ID');
       else if (this.cache.has(champ.id) && !force) resolve(this.cache.get(id)!);
       else {
@@ -101,17 +101,25 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
    */
   async highest(n: number = 0, options?: FetchOptions) {
     const force = options?.force ?? false;
+    const cache = options?.cache ?? true;
     return new Promise<ChampionMastery>(async (resolve, reject) => {
       if (n < 0) reject('The value of `n` must be >= 0.');
       else {
-        const dataList = (await this._fetchRawMasteryData().catch(reject)) as ChampionMasteryData[];
-        const ordered = this._sortMastery(dataList) as ChampionMasteryData[];
+        const dataList = await (this.cache.size > 0 && !force
+          ? this.cache
+          : <Promise<ChampionMasteryData[]>>this._fetchRawMasteryData().catch(reject));
+        const ordered = this._sortMastery(dataList);
         if (ordered.at(n)) {
           const mastery = ordered.at(n)!;
-          const champ = await this.client.champions.fetchByKey(mastery.championId).catch(() => undefined);
-          if (!champ) reject('Invalid champion ID');
-          else if (this.cache.has(champ.id) && !force) resolve(this.cache.get(champ.id)!);
-          else resolve(this.fetch(champ, options));
+          if (mastery instanceof ChampionMastery) resolve(mastery);
+          else {
+            const champ = await this.client.champions.fetchByKey(mastery.championId).catch(() => undefined);
+            if (!champ) reject('Invalid champion ID');
+            else {
+              if (cache) this.cache.set(champ.id, new ChampionMastery(this.client, mastery));
+              resolve(this.cache.get(champ.id)!);
+            }
+          }
         } else reject('This summoner does not have mastery points for ' + n + ' champions');
       }
     });
@@ -125,7 +133,7 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
   }
 
   /**
-   * Fetches all the champions's masteries data for this summoner and store them in the cache.
+   * Fetches all the champions' masteries data for this summoner and store them in the cache.
    */
   async fetchAll() {
     return new Promise<Collection<string, ChampionMastery>>(async (resolve, reject) => {
