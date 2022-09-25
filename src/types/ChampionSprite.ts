@@ -25,3 +25,21 @@ export interface SpriteSize {
    */
   h: number;
 }
+
+/**
+ * The sprite data of a champion.
+ */
+export interface ChampionSprite {
+  /**
+   * A URL to the sprite sheet that contains the champion icon.
+   */
+  image: string;
+  /**
+   * The sprite coordinate data of a champion.
+   */
+  coordinate: SpriteCoordinate;
+  /**
+   * The sprite size data of a champion.
+   */
+  size: SpriteSize;
+}
