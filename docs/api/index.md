@@ -104,6 +104,7 @@
 | [ChampionRating](/api/ChampionRating.md) | A representation of the champion rating data returned by Data Dragon. |
 | [ChampionSkinData](/api/ChampionSkinData.md) | A representation of the champion skin data returned by Data Dragon. |
 | [ChampionSpecialKillEventData](/api/ChampionSpecialKillEventData.md) | The event data for the champion special kill event. |
+| [ChampionSprite](/api/ChampionSprite.md) | The sprite data of a champion. |
 | [ChampionTransformEventData](/api/ChampionTransformEventData.md) | The event data for the champion transform event. |
 | [ClientConfig](/api/ClientConfig.md) | The basic configuration for the shieldbow Client. |
 | [CurrentGameBanData](/api/CurrentGameBanData.md) | The champion ban data as returned by the API. |
@@ -166,6 +167,8 @@
 | [SkinPricing](/api/SkinPricing.md) | A representation of a champion's skin's pricing from meraki analytics. |
 | [SpellDamageData](/api/SpellDamageData.md) | A representation of the champion spell data returned by Community Dragon. |
 | [SpellData](/api/SpellData.md) | A representation of the champion spell data returned by Data Dragon. |
+| [SpriteCoordinate](/api/SpriteCoordinate.md) | The sprite coordinate data of a champion. |
+| [SpriteSize](/api/SpriteSize.md) | The sprite size data of a champion. |
 | [StatPerk](/api/StatPerk.md) | The stat perks data for a match participant as returned by the API. |
 | [StatPerks](/api/StatPerks.md) | A representation of the stat perks selected by the summoner. |
 | [SummonerData](/api/SummonerData.md) | The summoner data as returned by the API. |

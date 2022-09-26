@@ -121,7 +121,7 @@ fetch(champion: Champion | string, options?: FetchOptions): Promise<ChampionMast
 
 #### .fetchAll ()
 
-Fetches all the champions's masteries data for this summoner and store them in the cache.
+Fetches all the champions' masteries data for this summoner and store them in the cache.
 
 
 

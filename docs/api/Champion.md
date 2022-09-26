@@ -265,6 +265,16 @@ The champion's spells (abilities), mapped by the key they are assigned to, by de
 
 ---
 
+#### sprite
+
+The sprite information of the champion.
+
+
+
+**Type**: [ChampionSprite](/api/ChampionSprite.md)
+
+---
+
 #### stats
 
 A collection of the champion's base stats.

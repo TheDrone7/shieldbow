@@ -73,6 +73,16 @@ The bounty on this participant's head.
 
 ---
 
+#### challenges
+
+The challenges progression data for this participant.
+
+
+
+**Type**: {         [key: string]: number;     }
+
+---
+
 #### champion
 
 The stats of the champion being played by this participant.

@@ -47,6 +47,14 @@ export interface ParticipantData
 
 ---
 
+#### challenges
+
+
+
+**Type**: {         [key: string]: number;     }
+
+---
+
 #### champExperience
 
 
@@ -156,6 +164,14 @@ export interface ParticipantData
 
 
 **Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
+#### eligibleForProgression
+
+
+
+**Type**: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
 ---
 
