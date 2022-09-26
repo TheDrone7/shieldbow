@@ -7,7 +7,8 @@ import type {
   SpellData,
   ChampionRating,
   ChampionPassive,
-  ChampionPricing
+  ChampionPricing,
+  ChampionSprite
 } from '../types';
 import type { Client } from '../client';
 import { Collection } from '@discordjs/collection';
@@ -107,6 +108,10 @@ export class Champion {
    */
   readonly pricing: ChampionPricing;
   /**
+   * The sprite information of the champion.
+   */
+  readonly sprite: ChampionSprite;
+  /**
    * The type of this champion's basic attacks - RANGED or MELEE.
    */
   readonly attackType: string;
@@ -181,6 +186,12 @@ export class Champion {
       name: data.passive.name,
       description: data.passive.description.replace(/<\/?[^>]+(>|$)/g, '').replace(/\.(?=\w\D)/g, '.\n\n'),
       icon: `${client.cdnBase}${client.version}/img/passive/${data.passive.image.full}`
+    };
+
+    this.sprite = {
+      coordinate: { x: data.image.x, y: data.image.y },
+      image: `${client.cdnBase}${client.version}/img/sprite/${data.image.sprite}`,
+      size: { h: data.image.h, w: data.image.w }
     };
   }
 
