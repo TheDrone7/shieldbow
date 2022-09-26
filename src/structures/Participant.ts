@@ -444,6 +444,10 @@ export class Participant {
    * An overview of the true damage dealt/taken by the participant.
    */
   readonly trueDamage: ParticipantDamageStats;
+  /**
+   * The challenges progression data for this participant.
+   */
+  readonly challenges: { [key: string]: number };
 
   /**
    * Creates a new participant instance.
@@ -453,6 +457,8 @@ export class Participant {
   constructor(client: Client, data: ParticipantData) {
     this.id = data.participantId;
     this.perks = new Perks(client, data.perks);
+
+    this.challenges = data.challenges;
 
     this.basicPings = data.basicPings;
 
