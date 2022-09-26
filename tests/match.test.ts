@@ -62,5 +62,6 @@ describe('Test match v5 API', () => {
     const participant = match.teams.get('red')!.participants[0];
     expect(participant.summoner.name).toBeDefined();
     expect(participant.bounty.level).toBeDefined();
+    expect(typeof participant.challenges).toBe('object');
   });
 });
