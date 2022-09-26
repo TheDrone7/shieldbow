@@ -72,4 +72,11 @@ describe('Test champion fetching.', () => {
   test('Check champion caching', async () => {
     expect(client.champions.cache.get('Kayn')?.name).toBe('Kayn');
   });
+
+  test('Check champion sprite', () => {
+    expect(kayn.sprite.size.w).toBe(48);
+    expect(kayn.sprite.size.h).toBe(48);
+
+    expect(typeof kayn.sprite.image).toBe('string');
+  });
 });
