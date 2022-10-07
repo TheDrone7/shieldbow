@@ -63,6 +63,19 @@ The client that this manager belongs to.
 
 ---
 
+#### rotation
+
+The champion rotations cached in the memory.
+
+
+Only use this if you absolutely must. Prioritize using [fetchRotations](/api/ChampionManager.md#fetchrotations)
+
+
+
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< 'all' \| 'new', [Champion](/api/Champion.md)[] \>
+
+---
+
 ### Methods
 
 #### .fetch ()
@@ -214,6 +227,32 @@ fetchByNames(names: string[], options?: FetchOptions): Promise<Collection<string
 | options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/api/Champion.md) \> \>
+
+---
+
+#### .fetchRotations ()
+
+Fetch champion rotation data from Champion v3 API.
+
+
+This is the only method that needs a valid API key in this manager.
+
+
+
+
+**Signature:**
+
+```ts
+fetchRotations(options?: FetchOptions): Promise<Collection<"all" | "new", Champion[]>>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< "all" \| "new", [Champion](/api/Champion.md)[] \> \>
 
 ---
 
