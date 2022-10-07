@@ -79,4 +79,13 @@ describe('Test champion fetching.', () => {
 
     expect(typeof kayn.sprite.image).toBe('string');
   });
+
+  test('Check champion rotations', async () => {
+    const rotations = await client.champions.fetchRotations({
+      force: true,
+      cache: false
+    });
+    expect(rotations.get('all')?.length).toBeGreaterThan(0);
+    expect(rotations.get('new')?.length).toBeGreaterThan(0);
+  });
 });

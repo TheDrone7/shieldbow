@@ -9,7 +9,7 @@ describe('Test Spectator v4 API', () => {
 
   beforeAll(async () => {
     await client.initialize({
-      region: 'euw',
+      region: 'na',
       cache: false
     });
     games = await client.spectator.fetchFeatured();
