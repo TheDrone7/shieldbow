@@ -35,7 +35,7 @@ describe('Test champion fetching.', () => {
   test('Check fetching all champions', async () => {
     const champions = await client.champions.fetchAll({ force: true });
     expect(champions.size).toBeGreaterThan(150);
-  }, 120000);
+  }, 300000);
 
   test('Check champion spells', () => {
     expect(kayn.spells.has('Q')).toBeTruthy();
