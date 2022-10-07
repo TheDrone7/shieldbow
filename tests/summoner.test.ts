@@ -7,7 +7,7 @@ describe('Test Summoner v4 and Account v1 API', () => {
 
   beforeAll(async () => {
     await client.initialize({
-      region: 'euw',
+      region: 'na',
       cache: false
     });
     summoner = await client.summoners.fetchBySummonerName('TheDrone7');

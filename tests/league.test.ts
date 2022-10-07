@@ -8,7 +8,7 @@ describe('Test league-v4 and league-exp-v4 API', () => {
 
   beforeAll(async () => {
     await client.initialize({
-      region: 'euw',
+      region: 'na',
       cache: false
     });
     const summoner = await client.summoners.fetchBySummonerName('TheDrone7');

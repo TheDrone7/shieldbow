@@ -308,7 +308,12 @@ export class ChampionManager implements BaseManager<Champion> {
     const cache = options?.cache ?? true;
     return new Promise<Collection<'all' | 'new', Champion[]>>(async (resolve, reject) => {
       if (this.rotation.get('all') && this.rotation.get('new') && !force) resolve(this.rotation);
-      const response = await this.client.http.get(this.client.version + '/lol/platform/v3/champion-rotations');
+      const response = await this.client.api.makeApiRequest('/lol/platform/v3/champion-rotations', {
+        name: 'Champion rotation',
+        params: '',
+        region: this.client.region,
+        regional: false
+      });
       if (response.status !== 200) reject('Unable to fetch the champions data.');
       else {
         const result = new Collection<'all' | 'new', Champion[]>();

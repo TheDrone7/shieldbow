@@ -11,7 +11,7 @@ describe('Test match v5 API', () => {
 
   beforeAll(async () => {
     await client.initialize({
-      region: 'euw',
+      region: 'na',
       cache: false
     });
     const summoner = await client.summoners.fetchBySummonerName('TheDrone7');
