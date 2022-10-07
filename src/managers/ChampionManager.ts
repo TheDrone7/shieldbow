@@ -22,6 +22,14 @@ export class ChampionManager implements BaseManager<Champion> {
    */
   readonly cache: Collection<string, Champion>;
   /**
+   * The champion rotations cached in the memory.
+   *
+   * Only use this if you absolutely must.
+   * Prioritize using
+   * {@link ChampionManager.fetchRotations | fetchRotations}
+   */
+  readonly rotation: Collection<'all' | 'new', Champion[]>;
+  /**
    * The client that this manager belongs to.
    */
   readonly client: Client;
@@ -39,6 +47,7 @@ export class ChampionManager implements BaseManager<Champion> {
   constructor(client: Client, cacheSettings: { enable: boolean; root: string }) {
     this.client = client;
     this.cache = new Collection<string, Champion>();
+    this.rotation = new Collection<'all' | 'new', Champion[]>();
     if (cacheSettings.enable) {
       this._champData = new StorageManager(client, 'dDragon/champions', cacheSettings.root);
       this._damageData = new StorageManager(client, 'cDragon/champions', cacheSettings.root);
@@ -284,6 +293,34 @@ export class ChampionManager implements BaseManager<Champion> {
           resolve(result);
         }
       } else resolve(result);
+    });
+  }
+
+  /**
+   * Fetch champion rotation data from Champion v3 API.
+   *
+   * This is the only method that needs a valid API key in this manager.
+   *
+   * @param options - The basic fetching options.
+   */
+  async fetchRotations(options?: FetchOptions) {
+    const force = options?.force ?? false;
+    const cache = options?.cache ?? true;
+    return new Promise<Collection<'all' | 'new', Champion[]>>(async (resolve, reject) => {
+      if (this.rotation.get('all') && this.rotation.get('new') && !force) resolve(this.rotation);
+      const response = await this.client.http.get(this.client.version + '/lol/platform/v3/champion-rotations');
+      if (response.status !== 200) reject('Unable to fetch the champions data.');
+      else {
+        const result = new Collection<'all' | 'new', Champion[]>();
+        const champs = <{ freeChampionIds: string[]; freeChampionIdsForNewPlayers: string[] }>response.data;
+        const all = await this.fetchByKeys(champs.freeChampionIds.map((c) => Number(c)));
+        const forNew = await this.fetchByKeys(champs.freeChampionIdsForNewPlayers.map((c) => Number(c)));
+        result.set('all', all.toJSON());
+        result.set('new', forNew.toJSON());
+        if (cache) this.rotation.set('all', all.toJSON());
+        if (cache) this.rotation.set('new', forNew.toJSON());
+        resolve(result);
+      }
     });
   }
 }
