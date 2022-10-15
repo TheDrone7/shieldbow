@@ -61,3 +61,4 @@ export {
   WardPlacedEvent,
   TurretPlateDestroyedEvent
 } from './TimelineEvent';
+export { Challenge } from './Challenge';

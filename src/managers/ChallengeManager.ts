@@ -1,5 +1,5 @@
 import type { BaseManager, ChallengeConfigData, FetchOptions, TierType } from '../types';
-import { Challenge } from '../structures/Challenge';
+import { Challenge } from '../structures';
 import { Collection } from '@discordjs/collection';
 import type { Client } from '../client';
 
