@@ -10,7 +10,7 @@ export class Challenge {
   /**
    * The ID of the challenge.
    */
-  readonly id: string;
+  readonly id: number;
   /**
    * The names of the challenge mapped by locale.
    */

@@ -82,3 +82,26 @@ fetch(id: number, options?: FetchOptions): Promise<Challenge>;
 
 ---
 
+#### .fetchAll ()
+
+Fetch all challenges.
+
+
+
+
+**Signature:**
+
+```ts
+fetchAll(options?: FetchOptions): Promise<Collection<number, Challenge>>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options (force is ignored here). |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [Challenge](/api/Challenge.md) \> \>
+
+---
+
