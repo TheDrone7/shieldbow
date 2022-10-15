@@ -110,6 +110,7 @@ export type {
   ChampionTransformEventData,
   DragonSoulGivenEventData
 } from './TimelineEvent';
+export type { ChallengeConfigData, LocalizedChallengeData, LocalizedChallengeNameData } from './ChallengeConfig';
 
 export type { ChampionData, MerakiChampion, ChampionRating, ChampionPassive, ChampionPricing } from './Champion';
 export type { ChampionSkinData, MerakiSkin, SkinPricing, SkinChroma, MerakiSkinChroma } from './ChampionSkin';
