@@ -10,7 +10,8 @@ import {
   SummonerManager,
   SummonerSpellManager,
   CurrentGameManager,
-  ClashManager
+  ClashManager,
+  ChallengeManager
 } from './managers';
 import { ApiHandler } from './api';
 
@@ -39,6 +40,7 @@ export class Client {
   private readonly _leagues: LeagueManager;
   private readonly _matches: MatchManager;
   private readonly _spectator: CurrentGameManager;
+  private readonly _challenges: ChallengeManager;
   private readonly _clash: ClashManager;
   private readonly _http: AxiosInstance;
   private readonly _api: ApiHandler;
@@ -75,6 +77,7 @@ export class Client {
     this._matches = new MatchManager(this);
     this._spectator = new CurrentGameManager(this);
     this._clash = new ClashManager(this);
+    this._challenges = new ChallengeManager(this);
 
     this._http = axios.create({ baseURL: this._cdnBase });
     this._api = new ApiHandler(apiKey);
@@ -292,6 +295,14 @@ export class Client {
   get matches() {
     this._ensureInitialized();
     return this._matches;
+  }
+
+  /**
+   * The default LOL challenges manager used by the client.
+   */
+  get challenges() {
+    this._ensureInitialized();
+    return this._challenges;
   }
 
   /**

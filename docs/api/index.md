@@ -10,6 +10,8 @@
 | [ApiHandler](/api/ApiHandler.md) | A class that handles API requests and rate limits for the RIOT API. |
 | [Bounty](/api/Bounty.md) | A representation of the bounty on a match participant. |
 | [BuildingKillEvent](/api/BuildingKillEvent.md) | A representation of the building kill event. |
+| [Challenge](/api/Challenge.md) | A class representing the details of a challenge. |
+| [ChallengeManager](/api/ChallengeManager.md) |  |
 | [Champion](/api/Champion.md) | A representation of a League of Legends champion. |
 | [ChampionKillEvent](/api/ChampionKillEvent.md) | The representation of the Champion Kill event. |
 | [ChampionManager](/api/ChampionManager.md) | A champion manager - to fetch and manage all the champion data. |
@@ -95,6 +97,7 @@
 | [BaseManager](/api/BaseManager.md) | A base for any manager classes. |
 | [BuildingKillEventData](/api/BuildingKillEventData.md) | The event data for building kill event. |
 | [CacheConfig](/api/CacheConfig.md) | Client's data dragon cache configuration. |
+| [ChallengeConfigData](/api/ChallengeConfigData.md) | The raw challenge config data. |
 | [ChampionBan](/api/ChampionBan.md) | A banned champion in a match. |
 | [ChampionData](/api/ChampionData.md) | A representation of the champion data returned by Data Dragon. |
 | [ChampionKillEventData](/api/ChampionKillEventData.md) | The event data for the champion kill event. |
@@ -130,6 +133,7 @@
 | [LeagueEntryData](/api/LeagueEntryData.md) | The league entry data as returned by the API. |
 | [LeagueListData](/api/LeagueListData.md) | The league list data as returned by the API. |
 | [LevelUpEventData](/api/LevelUpEventData.md) | The event data for the champion level up event. |
+| [LocalizedChallengeData](/api/LocalizedChallengeData.md) | The raw challenge name/description data. |
 | [MatchByPlayerOptions](/api/MatchByPlayerOptions.md) | Additional options for filtering a specific summoner's matches. |
 | [MatchData](/api/MatchData.md) | The match data as returned by the API. |
 | [MatchTimelineData](/api/MatchTimelineData.md) | The match timeline data as returned by the API. |
@@ -204,6 +208,7 @@
 | ---------- | ----------- |
 | [DivisionType](/api/DivisionType.md) | Valid divisions for league entries. |
 | [Locales](/api/Locales.md) | A valid locale to fetch the data in. |
+| [LocalizedChallengeNameData](/api/LocalizedChallengeNameData.md) | The raw challenge name/description data mapped by locale. |
 | [QueueType](/api/QueueType.md) | The valid type of Queues by which league entries are mapped. |
 | [Region](/api/Region.md) | A valid League of Legends region. |
 | [Stats](/api/Stats.md) | A valid champion stat that affects their in-game interactions. |
