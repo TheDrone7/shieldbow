@@ -1,4 +1,4 @@
-import type { BaseManager, ChallengeConfigData, FetchOptions } from '../types';
+import type { BaseManager, ChallengeConfigData, FetchOptions, TierType } from '../types';
 import { Challenge } from '../structures/Challenge';
 import { Collection } from '@discordjs/collection';
 import type { Client } from '../client';
@@ -18,6 +18,12 @@ export class ChallengeManager implements BaseManager<Challenge> {
     this.cache = new Collection<number, Challenge>();
   }
 
+  /**
+   * Fetch a challenge by the challenge ID.
+   *
+   * @param id - The ID of the challenge you want to find.
+   * @param options - The basic fetching options.
+   */
   async fetch(id: number, options?: FetchOptions) {
     const force = options?.force ?? false;
     const cache = options?.cache ?? true;
@@ -41,7 +47,8 @@ export class ChallengeManager implements BaseManager<Challenge> {
         else if (pResponse.status !== 200) reject(pResponse);
         else {
           const data = <ChallengeConfigData>cResponse.data;
-          const challenge = new Challenge(this.client, data);
+          const percentiles = <{ [key in TierType]: number }>pResponse.data;
+          const challenge = new Challenge(this.client, data, percentiles);
           if (cache) this.cache.set(id, challenge);
           resolve(challenge);
         }

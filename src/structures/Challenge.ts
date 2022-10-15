@@ -35,8 +35,12 @@ export class Challenge {
    * The thresholds of the challenge mapped by tier.
    */
   readonly thresholds: Collection<TierType, number>;
+  /**
+   * The percentile of player base that have reached a specific tier (mapped by tier).
+   */
+  readonly percentiles = new Collection<TierType, number>();
 
-  constructor(client: Client, data: ChallengeConfigData) {
+  constructor(client: Client, data: ChallengeConfigData, percentiles: { [key in TierType]: number }) {
     this.client = client;
     this.id = data.id;
     this.state = data.state;
@@ -47,6 +51,7 @@ export class Challenge {
     this.shortDescriptions = new Collection<Locales, string>();
 
     this.thresholds = new Collection<TierType, number>();
+    this.percentiles = new Collection<TierType, number>();
 
     for (const locale in data.localizedNames) {
       const key = locale as Locales;
@@ -59,6 +64,7 @@ export class Challenge {
     for (const tier in data.thresholds) {
       const key = tier as TierType;
       this.thresholds.set(key, data.thresholds[key]);
+      this.percentiles.set(key, percentiles[key]);
     }
   }
 
