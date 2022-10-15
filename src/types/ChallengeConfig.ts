@@ -20,7 +20,7 @@ export type LocalizedChallengeNameData = {
  * The raw challenge config data.
  */
 export interface ChallengeConfigData {
-  id: string;
+  id: number;
   localizedNames: LocalizedChallengeNameData;
   state: 'ENABLED' | 'DISABLED';
   leaderboard: boolean;

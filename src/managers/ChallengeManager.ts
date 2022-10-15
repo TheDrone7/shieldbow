@@ -19,6 +19,42 @@ export class ChallengeManager implements BaseManager<Challenge> {
   }
 
   /**
+   * Fetch all challenges.
+   * @param options - The basic fetching options (force is ignored here).
+   */
+  fetchAll(options?: FetchOptions) {
+    const cache = options?.cache ?? true;
+    const region = options?.region ?? this.client.region;
+    return new Promise<Collection<number, Challenge>>(async (resolve, reject) => {
+      const result = new Collection<number, Challenge>();
+      const cResponse = await this.client.api.makeApiRequest(`/lol/challenges/v1/challenges/config`, {
+        region,
+        regional: false,
+        name: 'All challenges config',
+        params: ''
+      });
+      const pResponse = await this.client.api.makeApiRequest(`/lol/challenges/v1/challenges/percentiles`, {
+        region,
+        regional: false,
+        name: 'All challenges percentiles',
+        params: ''
+      });
+      if (cResponse.status !== 200) reject(cResponse);
+      else if (pResponse.status !== 200) reject(pResponse);
+      else {
+        const data = <ChallengeConfigData[]>cResponse.data;
+        const percentiles = <{ [i: string]: { [key in TierType | 'NONE']: number } }>pResponse.data;
+        for (const challenge of data) {
+          const c = new Challenge(this.client, challenge, percentiles[challenge.id.toString()]);
+          if (cache) this.cache.set(c.id, c);
+          result.set(c.id, c);
+        }
+        resolve(result);
+      }
+    });
+  }
+
+  /**
    * Fetch a challenge by the challenge ID.
    *
    * @param id - The ID of the challenge you want to find.
