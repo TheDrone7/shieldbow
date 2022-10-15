@@ -47,7 +47,7 @@ export class ChallengeManager implements BaseManager<Challenge> {
         else if (pResponse.status !== 200) reject(pResponse);
         else {
           const data = <ChallengeConfigData>cResponse.data;
-          const percentiles = <{ [key in TierType]: number }>pResponse.data;
+          const percentiles = <{ [key in TierType | 'NONE']: number }>pResponse.data;
           const challenge = new Challenge(this.client, data, percentiles);
           if (cache) this.cache.set(id, challenge);
           resolve(challenge);

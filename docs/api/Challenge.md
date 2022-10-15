@@ -102,7 +102,7 @@ The percentile of player base that have reached a specific tier (mapped by tier)
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [TierType](/api/TierType.md), [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [TierType](/api/TierType.md) \| "NONE", [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) \>
 
 ---
 
@@ -142,7 +142,7 @@ The thresholds of the challenge mapped by tier.
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [TierType](/api/TierType.md), [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [TierType](/api/TierType.md) \| 'NONE', [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) \>
 
 ---
 
