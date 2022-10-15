@@ -5,7 +5,7 @@ import type { Client } from '../client';
 /**
  * A class representing the details of a challenge.
  */
-export class ChallengeConfig {
+export class Challenge {
   private readonly client: Client;
   /**
    * The ID of the challenge.
