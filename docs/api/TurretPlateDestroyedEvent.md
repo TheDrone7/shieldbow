@@ -72,7 +72,7 @@ The team that destroyed the turret plating.
 
 
 
-**Type**: "red" \| "blue"
+**Type**: "blue" \| "red"
 
 ---
 

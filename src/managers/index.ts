@@ -10,3 +10,4 @@ export { LeagueManager } from './LeagueManager';
 export { MatchManager } from './MatchManager';
 export { CurrentGameManager } from './CurrentGameManager';
 export { ClashManager } from './ClashManager';
+export { ChallengeManager } from './ChallengeManager';

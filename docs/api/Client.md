@@ -62,6 +62,16 @@ The Data Dragon CDN Base URL
 
 ---
 
+#### challenges
+
+The default LOL challenges manager used by the client.
+
+
+
+**Type**: [ChallengeManager](/api/ChallengeManager.md)
+
+---
+
 #### champions
 
 The default champions manager used by the client.
