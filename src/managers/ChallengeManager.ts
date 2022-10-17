@@ -1,5 +1,5 @@
-import type { BaseManager, ChallengeConfigData, FetchOptions, TierType } from '../types';
-import { Challenge } from '../structures';
+import type { BaseManager, ChallengeConfigData, ChallengeRankData, FetchOptions, Region, TierType } from '../types';
+import { Challenge, ChallengeRank } from '../structures';
 import { Collection } from '@discordjs/collection';
 import type { Client } from '../client';
 
@@ -12,10 +12,12 @@ export class ChallengeManager implements BaseManager<Challenge> {
    * The challenge info (mapped by challenge ID) stored in the memory.
    */
   readonly cache: Collection<number, Challenge>;
+  readonly leaderBoardCache: Collection<Region, Collection<TierType, ChallengeRank[]>>;
 
   constructor(client: Client) {
     this.client = client;
     this.cache = new Collection<number, Challenge>();
+    this.leaderBoardCache = new Collection<Region, Collection<TierType, ChallengeRank[]>>();
   }
 
   /**
@@ -87,6 +89,48 @@ export class ChallengeManager implements BaseManager<Challenge> {
           const challenge = new Challenge(this.client, data, percentiles);
           if (cache) this.cache.set(id, challenge);
           resolve(challenge);
+        }
+      }
+    });
+  }
+
+  /**
+   * Fetch the leader board of a challenge.
+   * @param id - The ID of the challenge whose leaderboard you want to find.
+   * @param level - The tier of the leaderboard.
+   * @param options - The basic fetching options, with an additional limit option. Limit (or count) is 200 by default.
+   */
+  async fetchLeaderboard(
+    id: number,
+    level: 'MASTER' | 'GRANDMASTER' | 'CHALLENGER',
+    options?: FetchOptions & { limit: number }
+  ) {
+    const force = options?.force ?? false;
+    const cache = options?.cache ?? true;
+    const region = options?.region ?? this.client.region;
+    const limit = options?.limit ?? 200;
+    return new Promise<ChallengeRank[]>(async (resolve, reject) => {
+      if (!force && this.leaderBoardCache.has(region) && this.leaderBoardCache.get(region)?.has(level))
+        resolve(this.leaderBoardCache.get(region)?.get(level)!);
+      else {
+        const response = await this.client.api.makeApiRequest(
+          `/lol/challenges/v1/challenges/${id}/leaderboards/by-level/${level}?limit=${limit}`,
+          {
+            region,
+            regional: false,
+            name: 'Challenge leaderboard by level',
+            params: `Challenge ID: ${id}, Level: ${level}`
+          }
+        );
+        if (response.status !== 200) reject(response);
+        else {
+          const data = <ChallengeRankData[]>response.data;
+          const result = data.map((rank) => new ChallengeRank(this.client, rank, level));
+          if (cache) {
+            if (!this.leaderBoardCache.has(region)) this.leaderBoardCache.set(region, new Collection());
+            this.leaderBoardCache.get(region)?.set(level, result);
+          }
+          resolve(result);
         }
       }
     });

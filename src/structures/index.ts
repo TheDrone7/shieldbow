@@ -62,3 +62,4 @@ export {
   TurretPlateDestroyedEvent
 } from './TimelineEvent';
 export { Challenge } from './Challenge';
+export { ChallengeRank } from './ChallengeRank';
