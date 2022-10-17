@@ -25,4 +25,10 @@ describe('Test lol-challenges-v1', () => {
     expect(challenges.get(0)).toBeDefined();
     expect(challenges.get(0)?.name).toBe('CRYSTAL');
   });
+
+  test('Check fetching challenge leaderboard', async () => {
+    const leaders = await client.challenges.fetchLeaderboard(101106, 'MASTER', { limit: 10 });
+    expect(leaders).toBeDefined();
+    expect(leaders.length).toBe(10);
+  });
 });
