@@ -33,7 +33,13 @@ describe('Test lol-challenges-v1', () => {
   });
 
   test('Check summoner progression in challenges', async () => {
-    const summoner = await client.summoners.fetch('TheDrone7');
+    const summoner = await client.summoners.fetchBySummonerName('TheDrone7');
     expect(summoner).toBeDefined();
+    const progress = await client.challenges.fetchSummonerProgression(summoner.playerId);
+    expect(progress).toBeDefined();
+    expect(progress.totalPoints).toBeDefined();
+    expect(progress.challenges.size).toBeGreaterThan(0);
+    expect(progress.categoryPoints.size).toBe(5);
+    expect(progress.preferences).toBeDefined();
   });
 });
