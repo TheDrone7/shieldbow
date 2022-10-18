@@ -56,6 +56,14 @@ The client this manager belongs to.
 
 ---
 
+#### leaderBoardCache
+
+
+
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Region](/api/Region.md), [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [TierType](/api/TierType.md), [ChallengeRank](/api/ChallengeRank.md)[] \> \>
+
+---
+
 ### Methods
 
 #### .fetch ()
@@ -102,6 +110,33 @@ fetchAll(options?: FetchOptions): Promise<Collection<number, Challenge>>;
 | options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options (force is ignored here). |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [Challenge](/api/Challenge.md) \> \>
+
+---
+
+#### .fetchLeaderboard ()
+
+Fetch the leader board of a challenge.
+
+
+
+
+**Signature:**
+
+```ts
+fetchLeaderboard(id: number, level: 'MASTER' | 'GRANDMASTER' | 'CHALLENGER', options?: FetchOptions & {
+        limit: number;
+    }): Promise<ChallengeRank[]>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| id | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The ID of the challenge whose leaderboard you want to find. |
+| level | 'MASTER' \| 'GRANDMASTER' \| 'CHALLENGER' | The tier of the leaderboard. |
+| options | [FetchOptions](/api/FetchOptions.md) & {         limit: number;     } | The basic fetching options, with an additional limit option. Limit (or count) is 200 by default. |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [ChallengeRank](/api/ChallengeRank.md)[] \>
 
 ---
 

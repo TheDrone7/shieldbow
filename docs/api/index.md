@@ -12,6 +12,7 @@
 | [BuildingKillEvent](/api/BuildingKillEvent.md) | A representation of the building kill event. |
 | [Challenge](/api/Challenge.md) | A class representing the details of a challenge. |
 | [ChallengeManager](/api/ChallengeManager.md) |  |
+| [ChallengeRank](/api/ChallengeRank.md) |  |
 | [Champion](/api/Champion.md) | A representation of a League of Legends champion. |
 | [ChampionKillEvent](/api/ChampionKillEvent.md) | The representation of the Champion Kill event. |
 | [ChampionManager](/api/ChampionManager.md) | A champion manager - to fetch and manage all the champion data. |
@@ -97,7 +98,11 @@
 | [BaseManager](/api/BaseManager.md) | A base for any manager classes. |
 | [BuildingKillEventData](/api/BuildingKillEventData.md) | The event data for building kill event. |
 | [CacheConfig](/api/CacheConfig.md) | Client's data dragon cache configuration. |
+| [ChallengeCategoryData](/api/ChallengeCategoryData.md) | The raw challenge category data. |
 | [ChallengeConfigData](/api/ChallengeConfigData.md) | The raw challenge config data. |
+| [ChallengePreferencesData](/api/ChallengePreferencesData.md) | The raw challenge preferences data. |
+| [ChallengeProgressionData](/api/ChallengeProgressionData.md) | The raw challenge progression data. |
+| [ChallengeRankData](/api/ChallengeRankData.md) | The raw data regarding a player's placement in a challenge ladder. |
 | [ChampionBan](/api/ChampionBan.md) | A banned champion in a match. |
 | [ChampionData](/api/ChampionData.md) | A representation of the champion data returned by Data Dragon. |
 | [ChampionKillEventData](/api/ChampionKillEventData.md) | The event data for the champion kill event. |
@@ -175,6 +180,7 @@
 | [SpriteSize](/api/SpriteSize.md) | The sprite size data of a champion. |
 | [StatPerk](/api/StatPerk.md) | The stat perks data for a match participant as returned by the API. |
 | [StatPerks](/api/StatPerks.md) | A representation of the stat perks selected by the summoner. |
+| [SummonerChallengeData](/api/SummonerChallengeData.md) | The raw challenge data for a summoner. |
 | [SummonerData](/api/SummonerData.md) | The summoner data as returned by the API. |
 | [SummonerSpellData](/api/SummonerSpellData.md) | The summoner spell data as stored in data dragon. |
 | [TeamBanData](/api/TeamBanData.md) | The champion ban data as returned by the API. |
@@ -182,6 +188,7 @@
 | [TeamObjectiveData](/api/TeamObjectiveData.md) | The individual objective data as returned by the API. |
 | [TeamObjectivesData](/api/TeamObjectivesData.md) | The match team objective data as returned by the API. |
 | [TimelineEventData](/api/TimelineEventData.md) | The base of a match timeline event. |
+| [TotalChallengePointsData](/api/TotalChallengePointsData.md) | The raw overview of a summoner's challenge data. |
 | [TournamentData](/api/TournamentData.md) | The clash tournament data as returned by the API. |
 | [TournamentPlayerData](/api/TournamentPlayerData.md) | The partial clash tournament player data as returned by the API. |
 | [TournamentPlayerFullData](/api/TournamentPlayerFullData.md) | The complete clash tournament player data as returned by the API. |
@@ -206,6 +213,7 @@
 
 | Type Alias | Description |
 | ---------- | ----------- |
+| [CategoryName](/api/CategoryName.md) | The category names for challenge categories. |
 | [DivisionType](/api/DivisionType.md) | Valid divisions for league entries. |
 | [Locales](/api/Locales.md) | A valid locale to fetch the data in. |
 | [LocalizedChallengeNameData](/api/LocalizedChallengeNameData.md) | The raw challenge name/description data mapped by locale. |
