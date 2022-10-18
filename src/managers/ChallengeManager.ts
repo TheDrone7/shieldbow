@@ -1,5 +1,13 @@
-import type { BaseManager, ChallengeConfigData, ChallengeRankData, FetchOptions, Region, TierType } from '../types';
-import { Challenge, ChallengeRank } from '../structures';
+import type {
+  BaseManager,
+  ChallengeConfigData,
+  ChallengeRankData,
+  FetchOptions,
+  Region,
+  SummonerChallengeData,
+  TierType
+} from '../types';
+import { Challenge, ChallengeRank, SummonerChallenge } from '../structures';
 import { Collection } from '@discordjs/collection';
 import type { Client } from '../client';
 
@@ -12,12 +20,20 @@ export class ChallengeManager implements BaseManager<Challenge> {
    * The challenge info (mapped by challenge ID) stored in the memory.
    */
   readonly cache: Collection<number, Challenge>;
+  /**
+   * The challenge leaderboards (mapped by region and tier type) stored in the memory.
+   */
   readonly leaderBoardCache: Collection<Region, Collection<TierType, ChallengeRank[]>>;
+  /**
+   * The challenge progressions of a summoner (mapped by summoner ID).
+   */
+  readonly summonerProgressionCache: Collection<string, SummonerChallenge>;
 
   constructor(client: Client) {
     this.client = client;
     this.cache = new Collection<number, Challenge>();
     this.leaderBoardCache = new Collection<Region, Collection<TierType, ChallengeRank[]>>();
+    this.summonerProgressionCache = new Collection<string, SummonerChallenge>();
   }
 
   /**
@@ -130,6 +146,35 @@ export class ChallengeManager implements BaseManager<Challenge> {
             if (!this.leaderBoardCache.has(region)) this.leaderBoardCache.set(region, new Collection());
             this.leaderBoardCache.get(region)?.set(level, result);
           }
+          resolve(result);
+        }
+      }
+    });
+  }
+
+  /**
+   * Fetch the progress of a summoner in the challenges.
+   * @param playerId - The player ID (puuid) of the summoner whose progress you want to find.
+   * @param options - The basic fetching options.
+   */
+  async fetchSummonerProgression(playerId: string, options?: FetchOptions) {
+    const force = options?.force ?? false;
+    const cache = options?.cache ?? true;
+    const region = options?.region ?? this.client.region;
+    return new Promise<SummonerChallenge>(async (resolve, reject) => {
+      if (!force && this.summonerProgressionCache.has(playerId)) resolve(this.summonerProgressionCache.get(playerId)!);
+      else {
+        const response = await this.client.api.makeApiRequest(`/lol/challenges/v1/player-data/${playerId}`, {
+          region,
+          regional: false,
+          name: 'Challenge progression by summoner ID',
+          params: `Summoner ID: ${playerId}`
+        });
+        if (response.status !== 200) reject(response);
+        else {
+          const data = <SummonerChallengeData>response.data;
+          const result = new SummonerChallenge(this.client, data);
+          if (cache) this.summonerProgressionCache.set(playerId, result);
           resolve(result);
         }
       }
