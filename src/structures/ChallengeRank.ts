@@ -1,6 +1,9 @@
 import type { Client } from '../client';
 import type { ChallengeRankData, TierType } from '../types';
 
+/**
+ * A representation of the ranked challenges stats of a summoner.
+ */
 export class ChallengeRank {
   /**
    * The client this manager belongs to.

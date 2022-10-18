@@ -11,7 +11,10 @@
 | [Bounty](/api/Bounty.md) | A representation of the bounty on a match participant. |
 | [BuildingKillEvent](/api/BuildingKillEvent.md) | A representation of the building kill event. |
 | [Challenge](/api/Challenge.md) | A class representing the details of a challenge. |
+| [ChallengeCategory](/api/ChallengeCategory.md) | A representation of a summoner's challenge category data. |
 | [ChallengeManager](/api/ChallengeManager.md) |  |
+| [ChallengePreferences](/api/ChallengePreferences.md) |  |
+| [ChallengeProgression](/api/ChallengeProgression.md) | A representation of a summoner's challenge progression data. |
 | [ChallengeRank](/api/ChallengeRank.md) |  |
 | [Champion](/api/Champion.md) | A representation of a League of Legends champion. |
 | [ChampionKillEvent](/api/ChampionKillEvent.md) | The representation of the Champion Kill event. |
@@ -62,6 +65,7 @@
 | [SkillLevelUpEvent](/api/SkillLevelUpEvent.md) | A representation of the Skill Level Up event. |
 | [StorageManager](/api/StorageManager.md) | A basic manager for storing and fetching the local cached JSON files. |
 | [Summoner](/api/Summoner.md) | A representation of a summoner (player). |
+| [SummonerChallenge](/api/SummonerChallenge.md) | A representation of a summoner's challenge data. |
 | [SummonerManager](/api/SummonerManager.md) | A summoner manager - to fetch and manage all the summoner data. |
 | [SummonerSpell](/api/SummonerSpell.md) | A representation of an in-game summoner spell. |
 | [SummonerSpellManager](/api/SummonerSpellManager.md) | A spell manager - to fetch and manage all summoner spell data. |
@@ -69,6 +73,7 @@
 | [TimelineEvent](/api/TimelineEvent.md) | A representation of an event in a match timeline. |
 | [TimelineEventFactory](/api/TimelineEventFactory.md) | The timeline event factory - to create a timeline event from a raw data object. |
 | [TimelineFrame](/api/TimelineFrame.md) | A representation of a frame in a match timeline. |
+| [TotalChallengePoints](/api/TotalChallengePoints.md) | A representation of the overview of a summoner's challenge data. |
 | [Tournament](/api/Tournament.md) | A representation of a clash tournament. |
 | [TournamentPlayer](/api/TournamentPlayer.md) | A representation of a player in a clash tournament. |
 | [TournamentSchedule](/api/TournamentSchedule.md) | A representation of a clash tournament schedule. |

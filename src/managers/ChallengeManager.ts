@@ -11,6 +11,9 @@ import { Challenge, ChallengeRank, SummonerChallenge } from '../structures';
 import { Collection } from '@discordjs/collection';
 import type { Client } from '../client';
 
+/**
+ * A challenge manager - to fetch and manage all the challenges data.
+ */
 export class ChallengeManager implements BaseManager<Challenge> {
   /**
    * The client this manager belongs to.

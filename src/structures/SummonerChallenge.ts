@@ -114,10 +114,12 @@ export class ChallengeProgression {
   }
 }
 
+/**
+ * A representation of a summoner's challenge preferences data.
+ */
 export class ChallengePreferences {
   /**
    * The client that instantiated this challenge preferences.
-   * @private
    */
   private readonly client: Client;
   /**

@@ -31,4 +31,9 @@ describe('Test lol-challenges-v1', () => {
     expect(leaders).toBeDefined();
     expect(leaders.length).toBe(10);
   });
+
+  test('Check summoner progression in challenges', async () => {
+    const summoner = await client.summoners.fetch('TheDrone7');
+    expect(summoner).toBeDefined();
+  });
 });
