@@ -1,5 +1,5 @@
-import { defaultTheme, defineUserConfig } from "vuepress";
-const { docsearchPlugin } = require('@vuepress/plugin-docsearch')
+import { defaultTheme, defineUserConfig } from 'vuepress';
+import { docsearchPlugin } from '@vuepress/plugin-docsearch';
 
 export default defineUserConfig({
   base: '/shieldbow/',

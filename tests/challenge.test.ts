@@ -25,4 +25,21 @@ describe('Test lol-challenges-v1', () => {
     expect(challenges.get(0)).toBeDefined();
     expect(challenges.get(0)?.name).toBe('CRYSTAL');
   });
+
+  test('Check fetching challenge leaderboard', async () => {
+    const leaders = await client.challenges.fetchLeaderboard(101106, 'MASTER', { limit: 10 });
+    expect(leaders).toBeDefined();
+    expect(leaders.length).toBe(10);
+  });
+
+  test('Check summoner progression in challenges', async () => {
+    const summoner = await client.summoners.fetchBySummonerName('TheDrone7');
+    expect(summoner).toBeDefined();
+    const progress = await client.challenges.fetchSummonerProgression(summoner.playerId);
+    expect(progress).toBeDefined();
+    expect(progress.totalPoints).toBeDefined();
+    expect(progress.challenges.size).toBeGreaterThan(0);
+    expect(progress.categoryPoints.size).toBe(5);
+    expect(progress.preferences).toBeDefined();
+  });
 });
