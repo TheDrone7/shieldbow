@@ -86,7 +86,7 @@ Highest champion mastery: Kayn (M7 268028 points).
 This can obviously change a lot.
 
 ::: tip See if it correctly fetches your own data!
-Replace `euw` (line 6) with the region you play in and `TheDrone7` (line 14) with your own summoner name, then run the code again.
+Replace `euw` (line 7) with the region you play in and `TheDrone7` (line 16) with your own summoner name, then run the code again.
 :::
 
 ---

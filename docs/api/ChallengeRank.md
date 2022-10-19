@@ -1,11 +1,11 @@
 ---
 title: ChallengeRank
-description: 
+description: A representation of the ranked challenges stats of a summoner.
 ---
 
 ## ChallengeRank class
 
-
+A representation of the ranked challenges stats of a summoner.
 
 **Signature:**
 

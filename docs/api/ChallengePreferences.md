@@ -1,11 +1,11 @@
 ---
 title: ChallengePreferences
-description: 
+description: A representation of a summoner's challenge preferences data.
 ---
 
 ## ChallengePreferences class
 
-
+A representation of a summoner's challenge preferences data.
 
 **Signature:**
 

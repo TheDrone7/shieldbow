@@ -1,11 +1,11 @@
 ---
 title: Position
-description: 
+description: A representation of a position in the game.
 ---
 
 ## Position class
 
-
+A representation of a position in the game.
 
 **Signature:**
 
@@ -34,6 +34,8 @@ Constructs a new instance of the `Position` class.
 
 #### x
 
+The x coordinate of the position.
+
 
 
 **Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
@@ -41,6 +43,8 @@ Constructs a new instance of the `Position` class.
 ---
 
 #### y
+
+The y coordinate of the position.
 
 
 

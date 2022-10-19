@@ -231,7 +231,8 @@ The client has other managers to fetch other kinds of data from the API.
 3. [Leagues Manager](/api/LeagueManager.md) - `client.leagues`.
 4. [Match Manager](/api/MatchManager.md) - `client.matches`.
 5. [Summoner Manager](/api/SummonerManager.md) - `client.summoners`.
-6. [Current Game manager](/api/CurrentGameManager.md) - `client.spectator`.
+6. [Current Game Manager](/api/CurrentGameManager.md) - `client.spectator`.
+7. [Challenge Manager](/api/ChallengeManager.md) - `client.challenges`.
 
 ---
 
@@ -251,6 +252,9 @@ Using the client with other unsupported APIs is not recommended but is possible.
 :::
 
 For this example, we will simply fetch the match timelines.
+
+> The match API is fully supported by shieldbow.
+> So, you can just use [MatchManager](/api/MatchManager.md#fetchmatchtimeline) to fetch the match timelines.
 
 The shieldbow client uses an `ApiHandler` to fetch the data from the API.
 This take cares of stuff such as ratelimiting but needs additional parameters to provided proper errors when encountered.

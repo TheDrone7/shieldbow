@@ -12,10 +12,10 @@
 | [BuildingKillEvent](/api/BuildingKillEvent.md) | A representation of the building kill event. |
 | [Challenge](/api/Challenge.md) | A class representing the details of a challenge. |
 | [ChallengeCategory](/api/ChallengeCategory.md) | A representation of a summoner's challenge category data. |
-| [ChallengeManager](/api/ChallengeManager.md) |  |
-| [ChallengePreferences](/api/ChallengePreferences.md) |  |
+| [ChallengeManager](/api/ChallengeManager.md) | A challenge manager - to fetch and manage all the challenges data. |
+| [ChallengePreferences](/api/ChallengePreferences.md) | A representation of a summoner's challenge preferences data. |
 | [ChallengeProgression](/api/ChallengeProgression.md) | A representation of a summoner's challenge progression data. |
-| [ChallengeRank](/api/ChallengeRank.md) |  |
+| [ChallengeRank](/api/ChallengeRank.md) | A representation of the ranked challenges stats of a summoner. |
 | [Champion](/api/Champion.md) | A representation of a League of Legends champion. |
 | [ChampionKillEvent](/api/ChampionKillEvent.md) | The representation of the Champion Kill event. |
 | [ChampionManager](/api/ChampionManager.md) | A champion manager - to fetch and manage all the champion data. |
@@ -57,7 +57,7 @@
 | [PauseEndEvent](/api/PauseEndEvent.md) | A representation of the Pause end event.   Takes place when a game pause ends or when the game first begins after the loading screen. |
 | [Perks](/api/Perks.md) | A representation of the perks (runes) selected by a summoner for a match. |
 | [PerkStyle](/api/PerkStyle.md) | A representation of a perk style - a tree and 4 (if primary) or 2 (if secondary) runes that were selected. |
-| [Position](/api/Position.md) |  |
+| [Position](/api/Position.md) | A representation of a position in the game. |
 | [Ratelimiter](/api/Ratelimiter.md) | A utility class that handles ratelimits. |
 | [Rune](/api/Rune.md) | A representation of an in-game rune. |
 | [RuneTree](/api/RuneTree.md) | A representation of an in-game rune tree |

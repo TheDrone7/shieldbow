@@ -1,11 +1,11 @@
 ---
 title: ChallengeManager
-description: 
+description: A challenge manager - to fetch and manage all the challenges data.
 ---
 
 ## ChallengeManager class
 
-
+A challenge manager - to fetch and manage all the challenges data.
 
 **Signature:**
 
