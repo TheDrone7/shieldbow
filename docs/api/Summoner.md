@@ -149,7 +149,33 @@ fetchAccount(options?: FetchOptions): Promise<Account>;
 
 ---
 
+#### .fetchChallenges ()
+
+Fetch the summoner's challenges progression.
+
+
+
+
+**Signature:**
+
+```ts
+fetchChallenges(options?: FetchOptions): Promise<import("./SummonerChallenge").SummonerChallenge>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< import("./SummonerChallenge").SummonerChallenge \>
+
+---
+
 #### .fetchClashEntries ()
+
+Fetch the summoner's clash entries.
+
 
 
 
@@ -163,7 +189,7 @@ fetchClashEntries(options?: FetchOptions): Promise<import("./TournamentPlayer").
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| options | [FetchOptions](/api/FetchOptions.md) |  |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< import("./TournamentPlayer").TournamentPlayer[] \>
 

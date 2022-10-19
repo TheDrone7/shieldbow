@@ -48,7 +48,7 @@ The team that received the dragon soul.
 
 
 
-**Type**: "blue" \| "red"
+**Type**: "red" \| "blue"
 
 ---
 

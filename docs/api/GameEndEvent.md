@@ -82,7 +82,7 @@ The winning team.
 
 
 
-**Type**: "blue" \| "red"
+**Type**: "red" \| "blue"
 
 ---
 
