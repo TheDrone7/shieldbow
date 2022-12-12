@@ -1,6 +1,6 @@
 import { Client } from '../dist';
 
-describe('Test logging', () => {
+describe('UTIL: logger', () => {
   const client = new Client(process.env.RIOT_API_KEY!);
 
   beforeAll(async () => {

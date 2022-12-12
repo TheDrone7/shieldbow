@@ -1,6 +1,6 @@
 import { SummonerSpell, Client } from '../dist';
 
-describe('Test summoner spells fetching.', () => {
+describe('DRAGON: summoner spells', () => {
   const client = new Client(process.env.RIOT_API_KEY!);
 
   let flash: SummonerSpell;
@@ -12,20 +12,20 @@ describe('Test summoner spells fetching.', () => {
     flash = await client.summonerSpells.fetch('SummonerFlash');
   });
 
-  test('Check spell fetching by ID', () => {
+  it('can fetch summoner spells by ID', () => {
     expect(flash.name).toBe('Flash');
   });
 
-  test('Check spell fetching by name', async () => {
+  it('can fetch summoner spells by name', async () => {
     const byName = await client.summonerSpells.fetchByName('Flash');
     expect(byName).toBe(flash);
   });
 
-  test('Check spell caching', async () => {
+  it('can cache summoner spells', async () => {
     expect(client.summonerSpells.cache.get('SummonerFlash')).toBe(flash);
   });
 
-  test('Check spells pre-fetching', async () => {
+  it('can pre-fetch summoner spells', async () => {
     const client2 = new Client(process.env.riot_api_key!);
     await client2.initialize({
       cache: false,

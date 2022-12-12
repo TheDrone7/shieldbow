@@ -1,6 +1,6 @@
 import { Client } from '../dist';
 
-describe('Test client configuration update', () => {
+describe('UTIL: client', () => {
   const client = new Client(process.env.RIOT_API_KEY!);
 
   beforeAll(async () => {
@@ -13,7 +13,7 @@ describe('Test client configuration update', () => {
     expect(client.initialized).toBeTruthy();
   });
 
-  test('Check locale updating', async () => {
+  it('can fetch in different locales', async () => {
     const boots = await client.items.fetch('1001', { force: true });
     await client.updateLocale('ko_KR', false);
     const krBoots = await client.items.fetch('1001', { force: true });
@@ -21,17 +21,9 @@ describe('Test client configuration update', () => {
     expect(krBoots.name).toBe('장화');
   });
 
-  test('Check patch updating', async () => {
+  it('can fetch from different patches', async () => {
     const boots = await client.items.fetch('1001', { force: true });
     await client.updatePatch('12.9', false);
-    const oldBoots = await client.items.fetch('1001', { force: true });
-    expect(boots.name).toBeDefined();
-    expect(oldBoots.name).toBeDefined();
-  });
-
-  test('Check locale updating', async () => {
-    const boots = await client.items.fetch('1001', { force: true });
-    await client.updateLocale('ko_KR', false);
     const oldBoots = await client.items.fetch('1001', { force: true });
     expect(boots.name).toBeDefined();
     expect(oldBoots.name).toBeDefined();
