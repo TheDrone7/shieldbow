@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
-import type { ClientConfig, GameMap, GameMode, GameType, Locales, Queue, Region, Season } from './types';
+import type { ClientConfig, GameMap, GameMode, GameType, Locales, Queue, Region, Season, ILogger } from './types';
 import {
   AccountManager,
   ChampionManager,
@@ -14,6 +14,7 @@ import {
   ChallengeManager
 } from './managers';
 import { ApiHandler } from './api';
+import { ShieldbowLogger } from './util';
 
 const patchRegex = /\d+\.\d+/;
 
@@ -49,6 +50,7 @@ export class Client {
   private _maps: GameMap[];
   private _gameModes: GameMode[];
   private _gameTypes: GameType[];
+  private _logger: ILogger;
 
   constructor(apiKey: string) {
     this._cdnBase = 'https://ddragon.leagueoflegends.com/cdn/';
@@ -81,6 +83,7 @@ export class Client {
 
     this._http = axios.create({ baseURL: this._cdnBase });
     this._api = new ApiHandler(apiKey);
+    this._logger = new ShieldbowLogger('WARN');
   }
 
   /**
@@ -98,6 +101,7 @@ export class Client {
     this._patch = version !== undefined ? version.match(patchRegex)!.shift()! : undefined!;
     const language = options?.locale || undefined;
     if (language !== undefined) this._locale = language;
+    if (typeof options?.logger === 'boolean') options.logger = { enable: options.logger };
     if (typeof options?.cache === 'boolean') options.cache = { enable: options.cache };
     if (typeof options?.fetch === 'boolean')
       options.fetch = {
@@ -106,6 +110,13 @@ export class Client {
         runes: options?.fetch,
         summonerSpells: options?.fetch
       };
+
+    // Set up the logging utility if enabled.
+    const enableLogging = options?.logger?.enable ?? true;
+    if (enableLogging) {
+      const loggerLevel = options?.logger?.level || 'WARN';
+      this._logger = options?.logger?.custom || new ShieldbowLogger(loggerLevel);
+    }
 
     const enableCache = options?.cache?.enable ?? true;
     const cacheRoot = options?.cache?.localRoot || 'data';
@@ -319,6 +330,14 @@ export class Client {
   get clash() {
     this._ensureInitialized();
     return this._clash;
+  }
+
+  /**
+   * The client's logging utility.
+   */
+  get logger() {
+    this._ensureInitialized();
+    return this._logger;
   }
 
   /**
