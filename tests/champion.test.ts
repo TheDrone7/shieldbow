@@ -1,6 +1,6 @@
 import { Champion, Client } from '../dist';
 
-describe('Test champion fetching.', () => {
+describe('DRAGON: champions', () => {
   const client = new Client(process.env.RIOT_API_KEY!);
 
   let kayn: Champion;
@@ -12,11 +12,11 @@ describe('Test champion fetching.', () => {
     kayn = await client.champions.fetch('Kayn', { force: true, cache: true });
   });
 
-  test('Check champion fetching by ID', () => {
+  it('can fetch a champion by ID', () => {
     expect(kayn.name).toBe('Kayn');
   });
 
-  test('Check champion fetching by name and key (cached)', async () => {
+  it('can fetch champion by name and key (cached)', async () => {
     const byName = await client.champions.fetchByName('Kayn');
     const byKey = await client.champions.fetchByKey(kayn.key);
 
@@ -24,7 +24,7 @@ describe('Test champion fetching.', () => {
     expect(byKey).toBe(kayn);
   });
 
-  test('Check champion fetching by name and key (forced)', async () => {
+  it('can fetch champion by name and key (forced)', async () => {
     const byName = await client.champions.fetchByName("kai'sa", { force: true, cache: true });
     const byKey = await client.champions.fetchByKey(523, { force: true, cache: true });
 
@@ -32,12 +32,12 @@ describe('Test champion fetching.', () => {
     expect(byKey?.name).toBe('Aphelios');
   });
 
-  test('Check fetching all champions', async () => {
+  it('can fetch all champions', async () => {
     const champions = await client.champions.fetchAll({ force: true });
     expect(champions.size).toBeGreaterThan(150);
   }, 300000);
 
-  test('Check champion spells', () => {
+  it('assigns champion spells correctly', () => {
     expect(kayn.spells.has('Q')).toBeTruthy();
     expect(kayn.spells.get('Q')!.name).toBe('Reaping Slash');
 
@@ -51,16 +51,16 @@ describe('Test champion fetching.', () => {
     expect(kayn.spells.get('R')!.name).toBe('Umbral Trespass');
   });
 
-  test('Check champion passive', () => {
+  it('contains champion passive', () => {
     expect(kayn.passive.name).toBe('The Darkin Scythe');
   });
 
-  test('Check champion classes', () => {
+  it('contains champion classes', () => {
     expect(kayn.classes).toContain('Assassin');
     expect(kayn.classes).toContain('Fighter');
   });
 
-  test('Check champion assets', () => {
+  it('can fetch champion assets', () => {
     expect(kayn.defaultSplashArt).toBe(
       'http://raw.communitydragon.org/pbe/plugins/rcp-be-lol-game-data/global/default/v1/champion-splashes/uncentered/141/141000.jpg'
     );
@@ -69,18 +69,18 @@ describe('Test champion fetching.', () => {
     );
   });
 
-  test('Check champion caching', async () => {
+  it('can cache champions', async () => {
     expect(client.champions.cache.get('Kayn')?.name).toBe('Kayn');
   });
 
-  test('Check champion sprite', () => {
+  it('can fetch champion sprites', () => {
     expect(kayn.sprite.size.w).toBe(48);
     expect(kayn.sprite.size.h).toBe(48);
 
     expect(typeof kayn.sprite.image).toBe('string');
   });
 
-  test('Check champion rotations', async () => {
+  it('can fetch champion rotations', async () => {
     const rotations = await client.champions.fetchRotations({
       force: true,
       cache: false

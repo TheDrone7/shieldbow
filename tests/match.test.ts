@@ -2,7 +2,7 @@ import { Match, Client, MatchTimeline } from '../dist';
 
 jest.setTimeout(300000);
 
-describe('Test match v5 API', () => {
+describe('API: match-v5', () => {
   const client = new Client(process.env.RIOT_API_KEY!);
 
   let matches: string[];
@@ -20,7 +20,7 @@ describe('Test match v5 API', () => {
     matchTimeline = await client.matches.fetchMatchTimeline(matches[0]);
   });
 
-  test('Check malformed match', async () => {
+  it('checks for malformed match data', async () => {
     const client = new Client(process.env.RIOT_API_KEY!);
     await client.initialize({
       region: 'br',
@@ -33,33 +33,27 @@ describe('Test match v5 API', () => {
     }
   });
 
-  test('Check match list fetching', () => {
+  it('can fetch match list', () => {
     expect(matches.length).toBeGreaterThan(0);
     expect(matches[0]).toBe(match.id);
   });
 
-  test('Check match exists', () => {
+  it('can fetch match details', () => {
     expect(match).toBeDefined();
   });
 
-  test('Check match timeline exists', () => {
+  it('can fetch match timeline', () => {
     expect(matchTimeline).toBeDefined();
-  });
-
-  test('Check match timeline properties', () => {
     expect(matchTimeline.matchId).toBe(matches[0]);
     expect(matchTimeline.participantIds.length).toBe(10);
   });
 
-  test('Check match participants', () => {
+  it('can fetch match participants summoner details', () => {
     const blueTeam = match.teams.get('blue')!.participants;
     const redTeam = match.teams.get('red')!.participants;
     expect(blueTeam.length).toBe(5);
     expect(redTeam.length).toBe(5);
-  });
-
-  test('Check participant data', () => {
-    const participant = match.teams.get('red')!.participants[0];
+    const participant = redTeam[0];
     expect(participant.summoner.name).toBeDefined();
     expect(participant.bounty.level).toBeDefined();
     expect(typeof participant.challenges).toBe('object');

@@ -1,6 +1,6 @@
 import { Client } from '../dist';
 
-describe('Test lol-challenges-v1', () => {
+describe('API: lol-challenges-v1', () => {
   const client = new Client(process.env.RIOT_API_KEY!);
 
   beforeAll(async () => {
@@ -10,7 +10,7 @@ describe('Test lol-challenges-v1', () => {
     });
   });
 
-  test('Check fetching challenge data by ID', async () => {
+  it('can fetch challenge data by ID', async () => {
     const challenge = await client.challenges.fetch(0);
     expect(challenge).toBeDefined();
     expect(challenge.name).toBe('CRYSTAL');
@@ -18,7 +18,7 @@ describe('Test lol-challenges-v1', () => {
     expect(challenge.percentiles.get('NONE')).toBe(1);
   });
 
-  test('Check fetching all challenges data', async () => {
+  it('can fetch all challenges data', async () => {
     const challenges = await client.challenges.fetchAll();
     expect(challenges).toBeDefined();
     expect(challenges.size).toBeGreaterThan(0);
@@ -26,13 +26,13 @@ describe('Test lol-challenges-v1', () => {
     expect(challenges.get(0)?.name).toBe('CRYSTAL');
   });
 
-  test('Check fetching challenge leaderboard', async () => {
+  it('can fetch challenge leaderboard', async () => {
     const leaders = await client.challenges.fetchLeaderboard(101106, 'MASTER', { limit: 10 });
     expect(leaders).toBeDefined();
     expect(leaders.length).toBe(10);
   });
 
-  test('Check summoner progression in challenges', async () => {
+  it('can check summoner progression in challenges', async () => {
     const summoner = await client.summoners.fetchBySummonerName('TheDrone7');
     expect(summoner).toBeDefined();
     const progress = await summoner.fetchChallenges();

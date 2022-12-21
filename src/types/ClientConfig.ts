@@ -1,4 +1,4 @@
-import type { Locales, Region } from './index';
+import type { ILogger, Locales, LogLevel, Region } from './index';
 
 /**
  * Client's data dragon cache configuration.
@@ -37,9 +37,36 @@ export interface PreFetchConfig {
 }
 
 /**
+ * Client's logging utility configuration.
+ */
+export interface LoggerConfig {
+  /**
+   * Whether to enable logging (defaults to `true`).
+   * If set to `false`, all other options are ignored.
+   */
+  enable?: boolean;
+  /**
+   * The log level to use (defaults to `WARN`).
+   * Only logs with a level equal to or higher than this will be logged.
+   */
+  level?: LogLevel;
+  /**
+   * The custom logger to use, if you don't want to use the built-in one.
+   * This must implement the `ILogger` interface.
+   */
+  custom?: ILogger;
+}
+
+/**
  * The basic configuration for the shieldbow Client.
  */
 export interface ClientConfig {
+  /**
+   * The client's logger utility configuration.
+   * Alternatively, you can pass `true` to use the default logger configuration.
+   * Or you can pass `false` to disable logging.
+   */
+  logger?: LoggerConfig | boolean;
   /**
    * The local caching settings.
    * Alternatively, you can pass `true` or `false` to enable or disable caching without configuration.
@@ -48,7 +75,7 @@ export interface ClientConfig {
   /**
    * The data to fetch beforehand when initializing the client.
    * This can delay the initialization but makes the rest of the processes much faster.
-   * Alternatively, you can pass `true` or `false` to enable or disable all of the data fetching.
+   * Alternatively, you can pass `true` or `false` to enable or disable all the data fetching.
    */
   fetch?: PreFetchConfig | boolean;
   /**
