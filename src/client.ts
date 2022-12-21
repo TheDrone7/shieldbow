@@ -82,7 +82,7 @@ export class Client {
     this._challenges = new ChallengeManager(this);
 
     this._http = axios.create({ baseURL: this._cdnBase });
-    this._api = new ApiHandler(apiKey);
+    this._api = new ApiHandler(this, apiKey);
     this._logger = new ShieldbowLogger('WARN');
   }
 
