@@ -48,6 +48,7 @@ export class MatchManager implements BaseManager<Match> {
     const force = options?.force ?? false;
     const cache = options?.cache ?? true;
     const region = options?.region ?? this.client.region;
+    this.client.logger.trace(`Fetching match for ID: ${id} with options: `, { force, cache, region });
     return new Promise<Match>(async (resolve, reject) => {
       if (this.cache.has(id) && !force) resolve(this.cache.get(id)!);
       else {
@@ -87,6 +88,7 @@ export class MatchManager implements BaseManager<Match> {
     const force = options?.force ?? false;
     const cache = options?.cache ?? true;
     const region = options?.region ?? this.client.region;
+    this.client.logger.trace(`Fetching match timeline for ID: ${matchId} with options: `, { force, cache, region });
     return new Promise<MatchTimeline>(async (resolve, reject) => {
       if (this.timelineCache.has(matchId) && !force) resolve(this.timelineCache.get(matchId)!);
       else {
@@ -115,10 +117,10 @@ export class MatchManager implements BaseManager<Match> {
    * @param options - The options for filtering the matches.
    */
   async fetchMatchListByPlayer(player: Summoner | string, options?: MatchByPlayerOptions) {
+    const playerId = typeof player === 'string' ? player : player.playerId;
+    const region = typeof player === 'string' ? this.client.region : player.region;
+    this.client.logger.trace(`Fetching match list for player ID: ${playerId} with options: `, options);
     return new Promise<string[]>(async (resolve, reject) => {
-      const playerId = typeof player === 'string' ? player : player.playerId;
-      const region = typeof player === 'string' ? this.client.region : player.region;
-
       // The base is not used here, it is only there to prevent INVALID URL errors.
       const url = new URL('/lol/match/v5/matches/by-puuid/' + playerId + '/ids', 'https://na1.api.riotgames.com');
       if (options?.startTime) url.searchParams.set('startTime', options.startTime.toString());

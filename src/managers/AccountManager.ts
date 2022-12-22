@@ -41,6 +41,7 @@ export class AccountManager implements BaseManager<Account> {
     const force = options?.force ?? false;
     const cache = options?.cache ?? true;
     const region = options?.region ?? this.client.region;
+    this.client.logger.trace(`Fetching account data for ID: ${id} with options: `, { force, cache, region });
     return new Promise<Account>(async (resolve, reject) => {
       if (this.cache.has(id) && !force) resolve(this.cache.get(id)!);
       else {
@@ -73,6 +74,7 @@ export class AccountManager implements BaseManager<Account> {
     const force = options?.force ?? false;
     const cache = options?.cache ?? true;
     const region = options?.region ?? this.client.region;
+    this.client.logger.trace(`Fetching account for name#tag: ${name}#${tag} with options: `, { force, cache, region });
     return new Promise<Account>(async (resolve, reject) => {
       const cached = this.cache.find((a) => a.username === name && a.userTag === tag);
       if (cached && !force) resolve(cached);

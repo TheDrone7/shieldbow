@@ -235,7 +235,7 @@ fetchByNames(names: string[], options?: FetchOptions): Promise<Collection<string
 Fetch champion rotation data from Champion v3 API.
 
 
-This is the only method that needs a valid API key in this manager.
+This is the only method that needs a valid API key in this manager. Needs access to the Champion v3 API.
 
 
 

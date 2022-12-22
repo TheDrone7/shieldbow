@@ -59,9 +59,11 @@ export class ChampionManager implements BaseManager<Champion> {
     if (this._champData)
       this._champData.pathName = path.join('dDragon', this.client.version, this.client.locale, 'champions');
     return new Promise(async (resolve, reject) => {
+      this.client.logger.trace(`Fetching DDragon (local) champion: ${name}.`);
       const data = this._champData?.fetch(name);
       if (data) resolve(data);
       else {
+        this.client.logger.trace(`Fetching DDragon champion: ${name}.`);
         const response = await this.client.http.get(
           `${this.client.version}/data/${this.client.locale}/champion/${name}.json`
         );
@@ -77,9 +79,11 @@ export class ChampionManager implements BaseManager<Champion> {
   private async _fetchLocalPricing(name: string) {
     if (this._pricingData) this._pricingData.pathName = path.join('meraki', 'champions');
     return new Promise(async (resolve, reject) => {
+      this.client.logger.trace(`Fetching Meraki (local) champion: ${name}.`);
       const data = this._pricingData?.fetch(name);
       if (data) resolve(data);
       else {
+        this.client.logger.trace(`Fetching Meraki champion: ${name}.`);
         const response = await this.client.http.get(
           `https://cdn.merakianalytics.com/riot/lol/resources/latest/en-US/champions/${name}.json`
         );
@@ -95,9 +99,11 @@ export class ChampionManager implements BaseManager<Champion> {
   private async _fetchLocalDamage(name: string) {
     if (this._damageData) this._damageData.pathName = path.join('cDragon', this.client.patch, 'champions');
     return new Promise(async (resolve, reject) => {
+      this.client.logger.trace(`Fetching CDragon (local) champion: ${name}.`);
       const data = this._damageData?.fetch(name);
       if (data) resolve(data);
       else {
+        this.client.logger.trace(`Fetching CDragon champion: ${name}.`);
         const response = await this.client.http.get(
           `https://raw.communitydragon.org/${
             this.client.patch
@@ -121,6 +127,7 @@ export class ChampionManager implements BaseManager<Champion> {
    */
   async fetchAll(options?: FetchOptions): Promise<Collection<string, Champion>> {
     const cache = options?.cache ?? true;
+    this.client.logger.trace(`Fetching all champions with options: `, { cache });
     return new Promise(async (resolve, reject) => {
       const response = await this.client.http.get(
         this.client.version + '/data/' + this.client.locale + '/championFull.json'
@@ -150,6 +157,7 @@ export class ChampionManager implements BaseManager<Champion> {
   async fetch(id: string, options?: FetchOptions) {
     const force = options?.force ?? false;
     const cache = options?.cache ?? true;
+    this.client.logger.trace(`Fetching champion '${id}' with options: `, { force, cache });
     if (id === 'FiddleSticks') id = 'Fiddlesticks'; // There is some internal inconsistency in Riot's JSON files.
     return new Promise<Champion>(async (resolve, reject) => {
       if (this.cache.has(id) && !force) resolve(this.cache.get(id)!);
@@ -216,9 +224,10 @@ export class ChampionManager implements BaseManager<Champion> {
    * @param options - The basic fetching options.
    */
   async fetchByNames(names: string[], options?: FetchOptions): Promise<Collection<string, Champion>> {
+    const force = options?.force ?? false;
+    const cache = options?.cache ?? true;
+    this.client.logger.trace(`Fetching champions '${names}' with options: `, { force, cache });
     return new Promise(async (resolve, reject) => {
-      const force = options?.force ?? false;
-      const cache = options?.cache ?? true;
       const result = new Collection<string, Champion>();
       if (!force)
         for (const name of names) {
@@ -263,6 +272,7 @@ export class ChampionManager implements BaseManager<Champion> {
   async fetchByKeys(keys: number[], options?: FetchOptions): Promise<Collection<string, Champion>> {
     const force = options?.force ?? false;
     const cache = options?.cache ?? true;
+    this.client.logger.trace(`Fetching champions '${keys}' with options: `, { force, cache });
     return new Promise(async (resolve, reject) => {
       const result = new Collection<string, Champion>();
       if (!force)
@@ -300,18 +310,21 @@ export class ChampionManager implements BaseManager<Champion> {
    * Fetch champion rotation data from Champion v3 API.
    *
    * This is the only method that needs a valid API key in this manager.
+   * Needs access to the Champion v3 API.
    *
    * @param options - The basic fetching options.
    */
   async fetchRotations(options?: FetchOptions) {
     const force = options?.force ?? false;
     const cache = options?.cache ?? true;
+    const region = options?.region || this.client.region;
+    this.client.logger.trace(`Fetching champion rotations with options: `, { force, cache, region });
     return new Promise<Collection<'all' | 'new', Champion[]>>(async (resolve, reject) => {
       if (this.rotation.get('all') && this.rotation.get('new') && !force) resolve(this.rotation);
       const response = await this.client.api.makeApiRequest('/lol/platform/v3/champion-rotations', {
         name: 'Champion rotation',
         params: '',
-        region: this.client.region,
+        region,
         regional: false
       });
       if (response.status !== 200) reject('Unable to fetch the champions data.');

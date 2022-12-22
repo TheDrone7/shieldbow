@@ -43,6 +43,7 @@ export class CurrentGameManager implements BaseManager<CurrentGame> {
     const force = options?.force ?? true;
     const cache = options?.cache ?? false;
     const region = options?.region ?? this.client.region;
+    this.client.logger.trace(`Fetching live game ${id} with options: `, { force, cache, region });
     return new Promise<CurrentGame>(async (resolve, reject) => {
       if (this.cache.has(id) && !force) resolve(this.cache.get(id)!);
       else {
@@ -76,6 +77,7 @@ export class CurrentGameManager implements BaseManager<CurrentGame> {
    */
   async fetchFeatured(options?: FetchOptions) {
     const region = options?.region ?? this.client.region;
+    this.client.logger.trace(`Fetching featured games with options: `, { region });
     return new Promise<CurrentGame[]>(async (resolve, reject) => {
       const response = await this.client.api
         .makeApiRequest('/lol/spectator/v4/featured-games', {

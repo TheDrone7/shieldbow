@@ -62,6 +62,7 @@
 | [Rune](/api/Rune.md) | A representation of an in-game rune. |
 | [RuneTree](/api/RuneTree.md) | A representation of an in-game rune tree |
 | [RuneTreeManager](/api/RuneTreeManager.md) | A rune trees manager - to fetch and manage rune trees data. |
+| [ShieldbowLogger](/api/ShieldbowLogger.md) | Basic built-in debugging logger. |
 | [SkillLevelUpEvent](/api/SkillLevelUpEvent.md) | A representation of the Skill Level Up event. |
 | [StorageManager](/api/StorageManager.md) | A basic manager for storing and fetching the local cached JSON files. |
 | [Summoner](/api/Summoner.md) | A representation of a summoner (player). |
@@ -133,6 +134,7 @@
 | [GameMap](/api/GameMap.md) | Basic data for types of Maps available in the game. |
 | [GameMode](/api/GameMode.md) | Basic data for types of game modes. |
 | [GameType](/api/GameType.md) | Basic data for types of games. |
+| [ILogger](/api/ILogger.md) | The basic logger interface. |
 | [ImageData](/api/ImageData.md) | A representation of any image data returned by Data Dragon. |
 | [ItemData](/api/ItemData.md) | A representation of the item data returned by Data Dragon. |
 | [ItemDestroyedEventData](/api/ItemDestroyedEventData.md) | The event data for the item destroyed event. |
@@ -144,6 +146,7 @@
 | [LeagueListData](/api/LeagueListData.md) | The league list data as returned by the API. |
 | [LevelUpEventData](/api/LevelUpEventData.md) | The event data for the champion level up event. |
 | [LocalizedChallengeData](/api/LocalizedChallengeData.md) | The raw challenge name/description data. |
+| [LoggerConfig](/api/LoggerConfig.md) | Client's logging utility configuration. |
 | [MatchByPlayerOptions](/api/MatchByPlayerOptions.md) | Additional options for filtering a specific summoner's matches. |
 | [MatchData](/api/MatchData.md) | The match data as returned by the API. |
 | [MatchTimelineData](/api/MatchTimelineData.md) | The match timeline data as returned by the API. |
@@ -222,6 +225,7 @@
 | [DivisionType](/api/DivisionType.md) | Valid divisions for league entries. |
 | [Locales](/api/Locales.md) | A valid locale to fetch the data in. |
 | [LocalizedChallengeNameData](/api/LocalizedChallengeNameData.md) | The raw challenge name/description data mapped by locale. |
+| [LogLevel](/api/LogLevel.md) | The Logger levels as a string, for easier usage. |
 | [QueueType](/api/QueueType.md) | The valid type of Queues by which league entries are mapped. |
 | [Region](/api/Region.md) | A valid League of Legends region. |
 | [Stats](/api/Stats.md) | A valid champion stat that affects their in-game interactions. |

@@ -168,6 +168,16 @@ The locale in which all the data is going to be fetched in.
 
 ---
 
+#### logger
+
+The client's logging utility.
+
+
+
+**Type**: [ILogger](/api/ILogger.md)
+
+---
+
 #### maps
 
 An array of all maps and their respective data.

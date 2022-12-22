@@ -37,9 +37,11 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
     if (this._spellsData)
       this._spellsData.pathName = path.join('dDragon', this.client.version, this.client.locale, 'spells');
     return new Promise(async (resolve, reject) => {
+      this.client.logger.trace(`Fetching runes from local storage`);
       const data = this._spellsData?.fetch('spells');
       if (data) resolve(data);
       else {
+        this.client.logger.trace(`Fetching runes from DDragon`);
         const response = await this.client.http.get(`${this.client.version}/data/${this.client.locale}/summoner.json`);
         if (response.status !== 200) reject('Unable to fetch summoner spells from Data dragon');
         else {
