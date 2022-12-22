@@ -30,9 +30,8 @@ See the [documentation](https://thedrone7.github.io/shieldbow/) to learn more!
 
 ### Roadmap
 
-1. Add debug logging options.
-2. Use a plugin structure for caching.
-3. Add in-memory and redis cache plugins.
-4. Increase test coverage.
-5. Increase consistency.
-6. Release `v2`
+1. Use a plugin structure for caching.
+2. Add in-memory and redis cache plugins.
+3. Increase test coverage.
+4. Increase consistency.
+5. Release `v2`
