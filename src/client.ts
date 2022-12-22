@@ -345,7 +345,6 @@ export class Client {
    * The client's logging utility.
    */
   get logger() {
-    this._ensureInitialized();
     return this._logger;
   }
 

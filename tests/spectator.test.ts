@@ -1,17 +1,16 @@
-import { Client, CurrentGame } from '../dist';
+import { Client, ClientConfig, CurrentGame } from '../dist';
 
 jest.setTimeout(300000);
 
 describe('API: spectator-v4', () => {
   const client = new Client(process.env.RIOT_API_KEY!);
+  const globals = global as any;
+  const config: ClientConfig = globals.clientConfig;
 
   let games: CurrentGame[];
 
   beforeAll(async () => {
-    await client.initialize({
-      region: 'na',
-      cache: false
-    });
+    await client.initialize(config);
     games = await client.spectator.fetchFeatured();
   });
 

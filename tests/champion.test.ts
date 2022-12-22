@@ -1,14 +1,14 @@
-import { Champion, Client } from '../dist';
+import { Champion, Client, ClientConfig } from '../dist';
 
 describe('DRAGON: champions', () => {
   const client = new Client(process.env.RIOT_API_KEY!);
+  const globals = global as any;
+  const config: ClientConfig = globals.clientConfig;
 
   let kayn: Champion;
 
   beforeAll(async () => {
-    await client.initialize({
-      cache: false
-    });
+    await client.initialize(config);
     kayn = await client.champions.fetch('Kayn', { force: true, cache: true });
   });
 

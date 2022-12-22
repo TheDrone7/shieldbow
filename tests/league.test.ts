@@ -1,16 +1,15 @@
-import { Client, LeagueEntry } from '../dist';
+import { Client, ClientConfig, LeagueEntry } from '../dist';
 import type { Collection } from '@discordjs/collection';
 
 describe('API: league-v4 + league-exp-v4', () => {
   const client = new Client(process.env.RIOT_API_KEY!);
+  const globals = global as any;
+  const config: ClientConfig = globals.clientConfig;
 
   let leagues: Collection<string, LeagueEntry>;
 
   beforeAll(async () => {
-    await client.initialize({
-      region: 'euw',
-      cache: false
-    });
+    await client.initialize(config);
     const summoner = await client.summoners.fetchBySummonerName('TheDrone7');
     leagues = await summoner.fetchLeagueEntries();
   });

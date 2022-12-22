@@ -9,7 +9,15 @@ export default {
   testEnvironment: 'node',
   globals: {
     'ts-jest': {
-      useESM: true
+      useESM: true,
+      clientConfig: {
+        cache: false,
+        region: 'na',
+        logger: {
+          enable: true,
+          level: 'ERROR'
+        }
+      }
     }
   },
   setupFiles: ['./tests/jest.setup.ts'],

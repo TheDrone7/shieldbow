@@ -1,15 +1,14 @@
-import { Client, ChampionMasteryManager } from '../dist';
+import { Client, ChampionMasteryManager, ClientConfig } from '../dist';
 
 describe('API: champion-mastery-v4', () => {
   const client = new Client(process.env.RIOT_API_KEY!);
+  const globals = global as any;
+  const config: ClientConfig = globals.clientConfig;
 
   let masteries: ChampionMasteryManager;
 
   beforeAll(async () => {
-    await client.initialize({
-      region: 'na',
-      cache: false
-    });
+    await client.initialize(config);
     const summoner = await client.summoners.fetchBySummonerName('TheDrone7');
     masteries = summoner.championMastery;
   });

@@ -1,14 +1,14 @@
-import { Item, Client } from '../dist';
+import { Item, Client, ClientConfig } from '../dist';
 
 describe('DRAGON: items', () => {
   const client = new Client(process.env.RIOT_API_KEY!);
+  const globals = global as any;
+  const config: ClientConfig = globals.clientConfig;
 
   let boots: Item;
 
   beforeAll(async () => {
-    await client.initialize({
-      cache: false
-    });
+    await client.initialize(config);
     boots = await client.items.fetch('1001');
   });
 

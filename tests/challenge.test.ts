@@ -1,13 +1,12 @@
-import { Client } from '../dist';
+import { Client, ClientConfig } from '../dist';
 
 describe('API: lol-challenges-v1', () => {
   const client = new Client(process.env.RIOT_API_KEY!);
+  const globals = global as any;
+  const config: ClientConfig = globals.clientConfig;
 
   beforeAll(async () => {
-    await client.initialize({
-      region: 'na',
-      cache: false
-    });
+    await client.initialize(config);
   });
 
   it('can fetch challenge data by ID', async () => {
