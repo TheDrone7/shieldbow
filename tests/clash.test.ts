@@ -1,14 +1,12 @@
-import { Client, ClientConfig, Tournament } from '../dist';
+import { Client, Tournament } from '../dist';
 
 describe('API: clash-v1', () => {
   const client = new Client(process.env.RIOT_API_KEY!);
-  const globals = global as any;
-  const config: ClientConfig = globals.clientConfig;
 
   let tournaments: Tournament[];
 
   beforeAll(async () => {
-    await client.initialize(config);
+    await client.initialize(global.clientConfig);
     tournaments = await client.clash.fetchAll();
   });
 

@@ -1,15 +1,13 @@
-import { RuneTree, Rune, Client, ClientConfig } from '../dist';
+import { RuneTree, Rune, Client } from '../dist';
 
 describe('DRAGON: runes', () => {
   const client = new Client(process.env.RIOT_API_KEY!);
-  const globals = global as any;
-  const config: ClientConfig = globals.clientConfig;
 
   let domination: RuneTree;
   let electrocute: Rune;
 
   beforeAll(async () => {
-    await client.initialize(config);
+    await client.initialize(global.clientConfig);
     domination = await client.runes.fetch('Domination');
     electrocute = await client.runes.fetchRune('Electrocute');
   });

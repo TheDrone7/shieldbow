@@ -1,12 +1,10 @@
-import { Client, ClientConfig } from '../dist';
+import { Client } from '../dist';
 
 describe('UTIL: client', () => {
   const client = new Client(process.env.RIOT_API_KEY!);
-  const globals = global as any;
-  const config: ClientConfig = globals.clientConfig;
 
   beforeAll(async () => {
-    await client.initialize(config);
+    await client.initialize(global.clientConfig);
   });
 
   it('can initialize', () => {

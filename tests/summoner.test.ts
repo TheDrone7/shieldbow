@@ -1,14 +1,12 @@
-import { Summoner, Client, ClientConfig } from '../dist';
+import { Summoner, Client } from '../dist';
 
 describe('API: summoner-v4 + account-v1', () => {
   const client = new Client(process.env.RIOT_API_KEY!);
-  const globals = global as any;
-  const config: ClientConfig = globals.clientConfig;
 
   let summoner: Summoner;
 
   beforeAll(async () => {
-    await client.initialize(config);
+    await client.initialize(global.clientConfig);
     summoner = await client.summoners.fetchBySummonerName('TheDrone7');
   });
 

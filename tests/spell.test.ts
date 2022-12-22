@@ -1,14 +1,12 @@
-import { SummonerSpell, Client, ClientConfig } from '../dist';
+import { SummonerSpell, Client } from '../dist';
 
 describe('DRAGON: summoner spells', () => {
   const client = new Client(process.env.RIOT_API_KEY!);
-  const globals = global as any;
-  const config: ClientConfig = globals.clientConfig;
 
   let flash: SummonerSpell;
 
   beforeAll(async () => {
-    await client.initialize(config);
+    await client.initialize(global.clientConfig);
     flash = await client.summonerSpells.fetch('SummonerFlash');
   });
 

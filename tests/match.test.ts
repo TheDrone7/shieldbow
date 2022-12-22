@@ -1,18 +1,16 @@
-import { Match, Client, MatchTimeline, ClientConfig } from '../dist';
+import { Match, Client, MatchTimeline } from '../dist';
 
 jest.setTimeout(300000);
 
 describe('API: match-v5', () => {
   const client = new Client(process.env.RIOT_API_KEY!);
-  const globals = global as any;
-  const config: ClientConfig = globals.clientConfig;
 
   let matches: string[];
   let match: Match;
   let matchTimeline: MatchTimeline;
 
   beforeAll(async () => {
-    await client.initialize(config);
+    await client.initialize(global.clientConfig);
     const summoner = await client.summoners.fetchBySummonerName('TheDrone7');
     matches = await client.matches.fetchMatchListByPlayer(summoner);
     match = await client.matches.fetch(matches[0]);
