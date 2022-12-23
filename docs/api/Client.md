@@ -52,6 +52,29 @@ The default API interactions handler used by the client.
 
 ---
 
+#### cache
+
+The client's caching utility.
+
+
+
+**Type**: [ICache](/api/ICache.md)
+
+---
+
+#### cacheEnabled
+
+The client's configuration for caching. This is for internal usage only.
+
+
+PLEASE DO NOT TRY TO USE THIS. Refer to [Client.initialize](/api/Client.md#initialize) to configure this.
+
+
+
+**Type**: [ManagersConfig](/api/ManagersConfig.md)
+
+---
+
 #### cdnBase
 
 The Data Dragon CDN Base URL
@@ -271,6 +294,29 @@ No type support for this (yet).
 
 
 **Type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< unknown \>
+
+---
+
+#### storage
+
+The client's storage utility.
+
+
+
+**Type**: [IStorage](/api/IStorage.md)
+
+---
+
+#### storageEnabled
+
+The client's configuration for storage. This is for internal usage only.
+
+
+PLEASE DO NOT TRY TO USE THIS. Refer to [Client.initialize](/api/Client.md#initialize) to configure this.
+
+
+
+**Type**: [ManagersConfig](/api/ManagersConfig.md)
 
 ---
 

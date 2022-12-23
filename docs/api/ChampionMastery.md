@@ -18,7 +18,7 @@ export declare class ChampionMastery
 ### Constructor
 
 ```ts
-new ChampionMastery (client: Client, data: ChampionMasteryData)
+new ChampionMastery (data: ChampionMasteryData, champion: Champion)
 ```
 
 Constructs a new instance of the `ChampionMastery` class.
@@ -27,8 +27,8 @@ Constructs a new instance of the `ChampionMastery` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/Client.md) | The client creating this instance. |
 | data | [ChampionMasteryData](/api/ChampionMasteryData.md) | The raw champion mastery data from the API. |
+| champion | [Champion](/api/Champion.md) | The champion these details are for. |
 ---
 
 ### Properties

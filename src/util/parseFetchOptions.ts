@@ -1,8 +1,14 @@
 import type { FetchOptions } from '../types';
 import type { Client } from '../client';
 
-type DragonManagerKey = 'champions' | 'items' | 'runes' | 'summonerSpells';
-type ApiManagerKey =
+/**
+ * List of managers that interact with DDragon/CDragon.
+ */
+export type DragonManagerKey = 'champions' | 'items' | 'runes' | 'summonerSpells';
+/**
+ * List of managers that interact with the API.
+ */
+export type ApiManagerKey =
   | 'account'
   | 'challenge'
   | 'championMastery'
@@ -12,6 +18,9 @@ type ApiManagerKey =
   | 'match'
   | 'summoner';
 
+/**
+ * A utility for parsing the fetch options using request specific, client config and default settings.
+ */
 export const parseFetchOptions = (
   client: Client,
   manager: DragonManagerKey | ApiManagerKey,

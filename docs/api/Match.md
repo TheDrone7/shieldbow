@@ -18,7 +18,7 @@ export declare class Match
 ### Constructor
 
 ```ts
-new Match (client: Client, data: MatchData)
+new Match (client: Client, data: MatchData, bannedChampions: Champion[], participantChampions: Champion[])
 ```
 
 Constructs a new instance of the `Match` class.
@@ -29,6 +29,8 @@ Constructs a new instance of the `Match` class.
 | --------- | ---- | ----------- |
 | client | [Client](/api/Client.md) | The client requesting the data. |
 | data | [MatchData](/api/MatchData.md) | The raw match data from the API. |
+| bannedChampions | [Champion](/api/Champion.md)[] | The banned champions for the match. |
+| participantChampions | [Champion](/api/Champion.md)[] | The champions for the participants of the match. |
 ---
 
 ### Properties

@@ -18,7 +18,7 @@ export declare class CurrentGame
 ### Constructor
 
 ```ts
-new CurrentGame (client: Client, data: CurrentGameData)
+new CurrentGame (client: Client, data: CurrentGameData, bannedChampions: Champion[], participantChampions: Champion[])
 ```
 
 Constructs a new instance of the `CurrentGame` class.
@@ -29,6 +29,8 @@ Constructs a new instance of the `CurrentGame` class.
 | --------- | ---- | ----------- |
 | client | [Client](/api/Client.md) | The client that requested this data. |
 | data | [CurrentGameData](/api/CurrentGameData.md) | The raw current game data from the API. |
+| bannedChampions | [Champion](/api/Champion.md)[] | A collection of all the banned champions. |
+| participantChampions | [Champion](/api/Champion.md)[] | A collection of all the participating champions. |
 ---
 
 ### Properties

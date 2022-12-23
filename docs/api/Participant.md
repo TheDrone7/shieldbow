@@ -18,7 +18,7 @@ export declare class Participant
 ### Constructor
 
 ```ts
-new Participant (client: Client, data: ParticipantData)
+new Participant (client: Client, data: ParticipantData, champ: Champion)
 ```
 
 Constructs a new instance of the `Participant` class.
@@ -29,6 +29,7 @@ Constructs a new instance of the `Participant` class.
 | --------- | ---- | ----------- |
 | client | [Client](/api/Client.md) | The client that requested this data. |
 | data | [ParticipantData](/api/ParticipantData.md) | The raw participant data from the API. |
+| champ | [Champion](/api/Champion.md) | The champion played by the participant. |
 ---
 
 ### Properties

@@ -17,7 +17,7 @@ export interface FetchOptions
 
 #### cache
 
-Whether to cache the returned data. Defaults to true.
+Whether to cache the returned data. Defaults to client configuration.
 
 
 
@@ -42,6 +42,16 @@ The region to fetch from. Defaults to the client's region.
 
 
 **Type**: [Region](/api/Region.md)
+
+---
+
+#### store
+
+Whether to store the returned data in the database. Defaults to client configuration.
+
+
+
+**Type**: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
 ---
 

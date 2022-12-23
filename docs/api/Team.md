@@ -18,7 +18,7 @@ export declare class Team
 ### Constructor
 
 ```ts
-new Team (client: Client, data: TeamData, participants: ParticipantData[])
+new Team (client: Client, data: TeamData, participants: ParticipantData[], bannedChampions: Champion[], participantsChampions: Champion[])
 ```
 
 Constructs a new instance of the `Team` class.
@@ -30,6 +30,8 @@ Constructs a new instance of the `Team` class.
 | client | [Client](/api/Client.md) |  |
 | data | [TeamData](/api/TeamData.md) |  |
 | participants | [ParticipantData](/api/ParticipantData.md)[] |  |
+| bannedChampions | [Champion](/api/Champion.md)[] |  |
+| participantsChampions | [Champion](/api/Champion.md)[] |  |
 ---
 
 ### Properties

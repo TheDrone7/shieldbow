@@ -46,9 +46,11 @@
 | [LeagueList](/api/LeagueList.md) | A representation of a list of league entries. |
 | [LeagueManager](/api/LeagueManager.md) | A league manager - to fetch and manage all summoner competitive info. |
 | [LevelUpEvent](/api/LevelUpEvent.md) | A representation of the Level up event. |
+| [LocalStorage](/api/LocalStorage.md) | A basic storage plugin that stores data to the local file system. |
 | [Match](/api/Match.md) | A representation of a league of legends match. |
 | [MatchManager](/api/MatchManager.md) | A match manager - to fetch and manage matches. |
 | [MatchTimeline](/api/MatchTimeline.md) | A representation of the timeline data for a match. |
+| [MemoryCache](/api/MemoryCache.md) | A basic caching manager that caches to the system memory using a Map. |
 | [ObjectiveBountyPrestartEvent](/api/ObjectiveBountyPrestartEvent.md) | A representation of the objective bounty prestart event. |
 | [Participant](/api/Participant.md) | A representation of a participant in a match. |
 | [ParticipantFrame](/api/ParticipantFrame.md) | A representation of a participant's stats at a point in the timeline. |
@@ -103,7 +105,7 @@
 | [ApiRequestOptions](/api/ApiRequestOptions.md) | The API request options. |
 | [BaseManager](/api/BaseManager.md) | A base for any manager classes. |
 | [BuildingKillEventData](/api/BuildingKillEventData.md) | The event data for building kill event. |
-| [CacheConfig](/api/CacheConfig.md) | Client's data dragon cache configuration. |
+| [CacheConfig](/api/CacheConfig.md) | Client's caching plugin configuration. |
 | [ChallengeCategoryData](/api/ChallengeCategoryData.md) | The raw challenge category data. |
 | [ChallengeConfigData](/api/ChallengeConfigData.md) | The raw challenge config data. |
 | [ChallengePreferencesData](/api/ChallengePreferencesData.md) | The raw challenge preferences data. |
@@ -137,6 +139,7 @@
 | [ICache](/api/ICache.md) | The base cache interface for the cache plugin to be used. |
 | [ILogger](/api/ILogger.md) | The basic logger interface for the logging plugins to be used. |
 | [ImageData](/api/ImageData.md) | A representation of any image data returned by Data Dragon. |
+| [IStorage](/api/IStorage.md) | The base storage interface for the storage plugin to be used. |
 | [ItemData](/api/ItemData.md) | A representation of the item data returned by Data Dragon. |
 | [ItemDestroyedEventData](/api/ItemDestroyedEventData.md) | The event data for the item destroyed event. |
 | [ItemGoldValue](/api/ItemGoldValue.md) | The item's gold value information. |
@@ -148,6 +151,7 @@
 | [LevelUpEventData](/api/LevelUpEventData.md) | The event data for the champion level up event. |
 | [LocalizedChallengeData](/api/LocalizedChallengeData.md) | The raw challenge name/description data. |
 | [LoggerConfig](/api/LoggerConfig.md) | Client's logging utility configuration. |
+| [ManagersConfig](/api/ManagersConfig.md) | Managers configuration is a means to enable/disable storage/caching of the library across the different managers. |
 | [MatchByPlayerOptions](/api/MatchByPlayerOptions.md) | Additional options for filtering a specific summoner's matches. |
 | [MatchData](/api/MatchData.md) | The match data as returned by the API. |
 | [MatchTimelineData](/api/MatchTimelineData.md) | The match timeline data as returned by the API. |
@@ -174,7 +178,7 @@
 | [PauseEndEventData](/api/PauseEndEventData.md) | The event data for the pause end event. |
 | [PerksData](/api/PerksData.md) | The perks data for a match participant as returned by the API. |
 | [PositionData](/api/PositionData.md) | A representation of an object's position on the map. |
-| [PreFetchConfig](/api/PreFetchConfig.md) | Client's pre-fetching data from data dragon configuration |
+| [PreFetchConfig](/api/PreFetchConfig.md) | Client's pre-fetching data from data dragon configuration. |
 | [Promos](/api/Promos.md) | The league entry promotion series information. |
 | [Queue](/api/Queue.md) | Basic data for types of queues (matches) in the game. |
 | [RuneData](/api/RuneData.md) | The runes data as stored in data dragon. |
@@ -189,6 +193,7 @@
 | [SpriteSize](/api/SpriteSize.md) | The sprite size data of a champion. |
 | [StatPerk](/api/StatPerk.md) | The stat perks data for a match participant as returned by the API. |
 | [StatPerks](/api/StatPerks.md) | A representation of the stat perks selected by the summoner. |
+| [StorageConfig](/api/StorageConfig.md) | Client's storage plugin configuration. |
 | [SummonerChallengeData](/api/SummonerChallengeData.md) | The raw challenge data for a summoner. |
 | [SummonerData](/api/SummonerData.md) | The summoner data as returned by the API. |
 | [SummonerSpellData](/api/SummonerSpellData.md) | The summoner spell data as stored in data dragon. |
@@ -213,6 +218,7 @@
 | Variable | Description |
 | -------- | ----------- |
 | [locale](/api/locale.md) | A list of all valid locales. |
+| [parseFetchOptions](/api/parseFetchOptions.md) | A utility for parsing the fetch options using request specific, client config and default settings. |
 | [Stat](/api/Stat.md) | An array of all possible statistics needed for spell math. |
 | [StatFormula](/api/StatFormula.md) | The part of the stat that needs to be considered during spell math. |
 | [statPerks](/api/statPerks.md) | The available stat perks. |
@@ -222,8 +228,10 @@
 
 | Type Alias | Description |
 | ---------- | ----------- |
+| [ApiManagerKey](/api/ApiManagerKey.md) | List of managers that interact with the API. |
 | [CategoryName](/api/CategoryName.md) | The category names for challenge categories. |
 | [DivisionType](/api/DivisionType.md) | Valid divisions for league entries. |
+| [DragonManagerKey](/api/DragonManagerKey.md) | List of managers that interact with DDragon/CDragon. |
 | [Locales](/api/Locales.md) | A valid locale to fetch the data in. |
 | [LocalizedChallengeNameData](/api/LocalizedChallengeNameData.md) | The raw challenge name/description data mapped by locale. |
 | [LogLevel](/api/LogLevel.md) | The Logger levels as a string, for easier usage. |

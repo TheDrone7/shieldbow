@@ -17,7 +17,7 @@ export interface ClientConfig
 
 #### cache
 
-The local caching settings. Alternatively, you can pass `true` or `false` to enable or disable caching without configuration.
+The caching settings. Alternatively, you can pass `true` or `false` to enable or disable caching without further configuration.
 
 
 
@@ -62,6 +62,16 @@ The initial region to fetch all the data from (defaults to `na`)
 
 
 **Type**: [Region](/api/Region.md)
+
+---
+
+#### storage
+
+The storage settings. Alternatively, you can pass `true` or `false` to enable or disable storage without further configuration.
+
+
+
+**Type**: [StorageConfig](/api/StorageConfig.md) \| [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
 ---
 
