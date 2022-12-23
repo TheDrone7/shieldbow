@@ -16,7 +16,7 @@ export enum LoggerLevel {
 export type LogLevel = keyof typeof LoggerLevel;
 
 /**
- * The basic logger interface.
+ * The basic logger interface for the logging plugins to be used.
  */
 export interface ILogger {
   /**

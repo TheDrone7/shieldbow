@@ -50,7 +50,7 @@ export class Client {
   private _maps: GameMap[];
   private _gameModes: GameMode[];
   private _gameTypes: GameType[];
-  private _logger: ILogger;
+  private _logger?: ILogger;
 
   constructor(apiKey: string) {
     this._cdnBase = 'https://ddragon.leagueoflegends.com/cdn/';
@@ -83,7 +83,6 @@ export class Client {
 
     this._http = axios.create({ baseURL: this._cdnBase });
     this._api = new ApiHandler(this, apiKey);
-    this._logger = new ShieldbowLogger('WARN');
   }
 
   /**
@@ -123,7 +122,7 @@ export class Client {
 
     // Update the client configuration.
     if (version === undefined || language === undefined) {
-      this.logger.trace('Fetching latest version and locale from the API.');
+      this.logger?.trace('Fetching latest version and locale from the API.');
       const response = await axios
         .get(region ? `https://ddragon.leagueoflegends.com/realms/${region}.json` : this._versions)
         .catch(() => {});
@@ -146,21 +145,21 @@ export class Client {
     this._initialized = true;
 
     // Get the game constants from data dragon (this is static data)
-    this.logger.trace('Fetching seasons static data from DDragon.');
+    this.logger?.trace('Fetching seasons static data from DDragon.');
     const seasonsResponse = await axios
       .get('https://static.developer.riotgames.com/docs/lol/seasons.json')
       .catch(() => {});
-    this.logger.trace('Fetching queues static data from DDragon.');
+    this.logger?.trace('Fetching queues static data from DDragon.');
     const queuesResponse = await axios
       .get('https://static.developer.riotgames.com/docs/lol/queues.json')
       .catch(() => {});
-    this.logger.trace('Fetching maps static data from DDragon.');
+    this.logger?.trace('Fetching maps static data from DDragon.');
     const mapsResponse = await axios.get('https://static.developer.riotgames.com/docs/lol/maps.json').catch(() => {});
-    this.logger.trace('Fetching game modes static data from DDragon.');
+    this.logger?.trace('Fetching game modes static data from DDragon.');
     const gameModesResponse = await axios
       .get('https://static.developer.riotgames.com/docs/lol/gameModes.json')
       .catch(() => {});
-    this.logger.trace('Fetching game types static data from DDragon.');
+    this.logger?.trace('Fetching game types static data from DDragon.');
     const gameTypesResponse = await axios
       .get('https://static.developer.riotgames.com/docs/lol/gameTypes.json')
       .catch(() => {});
@@ -171,7 +170,7 @@ export class Client {
     if (gameModesResponse?.status !== 200) throw new Error('Unable to fetch game modes static data from data dragon.');
     if (gameTypesResponse?.status !== 200) throw new Error('Unable to fetch game types static data from data dragon.');
 
-    this.logger.trace('Parsing fetched static data into defined interfaces.');
+    this.logger?.trace('Parsing fetched static data into defined interfaces.');
     this._seasons = <Season[]>seasonsResponse.data;
     this._queues = <Queue[]>queuesResponse.data.map((q: Queue) => ({
       ...q,
@@ -186,7 +185,7 @@ export class Client {
 
     // Update the cache config
     if (this._cacheEnabled !== enableCache || this._cacheRoot !== cacheRoot) {
-      this.logger.trace('Set-up caching.');
+      this.logger?.trace('Set-up caching.');
       this._cacheEnabled = enableCache;
       this._cacheRoot = cacheRoot;
 
@@ -197,7 +196,7 @@ export class Client {
     }
 
     // Fetch the data and cache it for faster data retrieval.
-    this.logger.trace('Prefetch specified data from DDragon.');
+    this.logger?.trace('Prefetch specified data from DDragon.');
     if (options?.fetch?.champions ?? false) await this.champions.fetchAll();
     if (options?.fetch?.items ?? false) await this.items.fetch('1001');
     if (options?.fetch?.runes ?? false) await this.runes.fetch('Domination');
@@ -356,7 +355,7 @@ export class Client {
   get status() {
     this._ensureInitialized();
     return new Promise(async (resolve, reject) => {
-      this.logger.trace('Fetching status from Riot API.');
+      this.logger?.trace('Fetching status from Riot API.');
       const response = await this.api
         .makeApiRequest('/lol/status/v4/platform-data', {
           region: this.region,
@@ -377,10 +376,10 @@ export class Client {
    */
   async updateLocale(newLocale: Locales, refetch: boolean = true) {
     this._ensureInitialized();
-    this.logger.trace('Assigning new locale.');
+    this.logger?.trace('Assigning new locale.');
     this._locale = newLocale;
     if (refetch) {
-      this.logger.trace('Re-fetching data from DDragon.');
+      this.logger?.trace('Re-fetching data from DDragon.');
       await this.champions.fetchAll();
       await this.items.fetch('1001');
       await this.runes.fetch('Domination');
@@ -401,11 +400,11 @@ export class Client {
    */
   async updatePatch(patch: string, refetch: boolean = true) {
     this._ensureInitialized();
-    this.logger.trace('Update patch and DDragon version.');
+    this.logger?.trace('Update patch and DDragon version.');
     this._patch = patch;
     this._version = patch + '.1';
     if (refetch) {
-      this.logger.trace('Re-fetching data from DDragon.');
+      this.logger?.trace('Re-fetching data from DDragon.');
       await this.champions.fetchAll();
       await this.items.fetch('1001');
       await this.runes.fetch('Domination');

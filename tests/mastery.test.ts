@@ -19,7 +19,7 @@ describe('API: champion-mastery-v4', () => {
   it('can fetch all champion mastery', async () => {
     const summonerMastery = await masteries.fetchAll();
     expect(summonerMastery.size).toBeGreaterThan(50);
-  }, 120000);
+  }, 300000);
 
   it('can fetch highest mastery', async () => {
     const mastery = await masteries.highest();

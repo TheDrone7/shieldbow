@@ -62,7 +62,7 @@
 | [Rune](/api/Rune.md) | A representation of an in-game rune. |
 | [RuneTree](/api/RuneTree.md) | A representation of an in-game rune tree |
 | [RuneTreeManager](/api/RuneTreeManager.md) | A rune trees manager - to fetch and manage rune trees data. |
-| [ShieldbowLogger](/api/ShieldbowLogger.md) | Basic built-in debugging logger. |
+| [ShieldbowLogger](/api/ShieldbowLogger.md) | Basic built-in debugging logger?. |
 | [SkillLevelUpEvent](/api/SkillLevelUpEvent.md) | A representation of the Skill Level Up event. |
 | [StorageManager](/api/StorageManager.md) | A basic manager for storing and fetching the local cached JSON files. |
 | [Summoner](/api/Summoner.md) | A representation of a summoner (player). |
@@ -134,7 +134,8 @@
 | [GameMap](/api/GameMap.md) | Basic data for types of Maps available in the game. |
 | [GameMode](/api/GameMode.md) | Basic data for types of game modes. |
 | [GameType](/api/GameType.md) | Basic data for types of games. |
-| [ILogger](/api/ILogger.md) | The basic logger interface. |
+| [ICache](/api/ICache.md) | The base cache interface for the cache plugin to be used. |
+| [ILogger](/api/ILogger.md) | The basic logger interface for the logging plugins to be used. |
 | [ImageData](/api/ImageData.md) | A representation of any image data returned by Data Dragon. |
 | [ItemData](/api/ItemData.md) | A representation of the item data returned by Data Dragon. |
 | [ItemDestroyedEventData](/api/ItemDestroyedEventData.md) | The event data for the item destroyed event. |

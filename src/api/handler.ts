@@ -58,9 +58,9 @@ export class ApiHandler {
    */
   async makeApiRequest(url: string, options: ApiRequestOptions) {
     const request = `${options.name} (${options.params})`;
-    this.client.logger.debug(`Request URL: '${url}' - intention: ${request}`);
+    this.client.logger?.debug(`Request URL: '${url}' - intention: ${request}`);
     return new Promise<AxiosResponse>(async (resolve, reject) => {
-      this.client.logger.trace(`Checking rate limits`);
+      this.client.logger?.trace(`Checking rate limits`);
       const requestLimit = this.limits.verify(options.region, options.name);
       if (!requestLimit.pass) {
         const mockResponse = {
@@ -70,20 +70,20 @@ export class ApiHandler {
           headers: {},
           config: {}
         };
-        this.client.logger.warn(`Request '${request}' was blocked by the built-in rate limiter. Rejecting promise.`);
+        this.client.logger?.warn(`Request '${request}' was blocked by the built-in rate limiter. Rejecting promise.`);
         reject(new ApiError(mockResponse, request, `Retry in ${requestLimit.wait}ms.`));
       } else
         try {
-          this.client.logger.trace(`Making the request - ${request}`);
+          this.client.logger?.trace(`Making the request - ${request}`);
           const base = options.regional ? regionalURLs[options.region] : apiBaseURLs[options.region];
           const response = await this._http.get(base + url);
           this.limits.update(options.region, response, options.name);
           if (response.status === 200) resolve(response);
         } catch (error: any) {
-          this.client.logger.trace(`Request returned a non-200 status code - ${request}`);
+          this.client.logger?.trace(`Request returned a non-200 status code - ${request}`);
           const { response } = error as AxiosError;
           if (response) this.limits.update(options.region, response, options.name);
-          this.client.logger.warn(`Request '${request}' returned an error. Catch promise rejection for details.`);
+          this.client.logger?.warn(`Request '${request}' returned an error. Catch promise rejection for details.`);
           if (response) reject(new ApiError(response, request));
           else reject(error as AxiosError);
         }

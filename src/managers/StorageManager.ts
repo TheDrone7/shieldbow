@@ -41,7 +41,7 @@ export class StorageManager implements BaseManager<any> {
     if (this.cache.has(id)) return this.cache.get(id);
     const contentPath = path.join(this._pathName, id + '.json');
     const exists = fs.existsSync(contentPath);
-    this.client.logger.trace(`(Local fetch) File path: ${contentPath}, exists: ${exists}.`);
+    this.client.logger?.trace(`(Local fetch) File path: ${contentPath}, exists: ${exists}.`);
     if (!exists) return;
     const content = fs.readFileSync(contentPath).toString();
     if (content.trim().length === 0) {
@@ -65,7 +65,7 @@ export class StorageManager implements BaseManager<any> {
   store(id: string, data: any): void {
     const contentPath = path.join(this._pathName, id + '.json');
     const exists = fs.existsSync(contentPath);
-    this.client.logger.trace(`(Local store) File path: ${contentPath}, exists: ${exists}.`);
+    this.client.logger?.trace(`(Local store) File path: ${contentPath}, exists: ${exists}.`);
     if (exists) throw new Error('The data already exists. A redundant request is being made: ' + contentPath);
     else {
       fs.ensureFileSync(contentPath);

@@ -46,7 +46,7 @@ export class ChallengeManager implements BaseManager<Challenge> {
   fetchAll(options?: FetchOptions) {
     const cache = options?.cache ?? true;
     const region = options?.region ?? this.client.region;
-    this.client.logger.trace(`Fetching all challenges data with options: `, { cache, region });
+    this.client.logger?.trace(`Fetching all challenges data with options: `, { cache, region });
     return new Promise<Collection<number, Challenge>>(async (resolve, reject) => {
       const result = new Collection<number, Challenge>();
       const cResponse = await this.client.api.makeApiRequest(`/lol/challenges/v1/challenges/config`, {
@@ -86,7 +86,7 @@ export class ChallengeManager implements BaseManager<Challenge> {
     const force = options?.force ?? false;
     const cache = options?.cache ?? true;
     const region = options?.region ?? this.client.region;
-    this.client.logger.trace(`Fetching challenge data for ID: ${id} with options: `, { force, cache, region });
+    this.client.logger?.trace(`Fetching challenge data for ID: ${id} with options: `, { force, cache, region });
     return new Promise<Challenge>(async (resolve, reject) => {
       if (!force && this.cache.has(id)) resolve(this.cache.get(id)!);
       else {
@@ -130,7 +130,7 @@ export class ChallengeManager implements BaseManager<Challenge> {
     const cache = options?.cache ?? true;
     const region = options?.region ?? this.client.region;
     const limit = options?.limit ?? 200;
-    this.client.logger.trace(`Fetching leaderboard for challenge ID: ${id}, level: ${level} with options: `, {
+    this.client.logger?.trace(`Fetching leaderboard for challenge ID: ${id}, level: ${level} with options: `, {
       force,
       cache,
       region
@@ -171,7 +171,7 @@ export class ChallengeManager implements BaseManager<Challenge> {
     const force = options?.force ?? false;
     const cache = options?.cache ?? true;
     const region = options?.region ?? this.client.region;
-    this.client.logger.trace(`Fetching challenges progression for summoner ID: ${playerId} with options: `, {
+    this.client.logger?.trace(`Fetching challenges progression for summoner ID: ${playerId} with options: `, {
       force,
       cache,
       region

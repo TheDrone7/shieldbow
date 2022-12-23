@@ -174,7 +174,7 @@ The client's logging utility.
 
 
 
-**Type**: [ILogger](/api/ILogger.md)
+**Type**: [ILogger](/api/ILogger.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
 
 ---
 

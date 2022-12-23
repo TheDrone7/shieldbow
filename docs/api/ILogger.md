@@ -1,11 +1,11 @@
 ---
 title: ILogger
-description: The basic logger interface.
+description: The basic logger interface for the logging plugins to be used.
 ---
 
 ## ILogger interface
 
-The basic logger interface.
+The basic logger interface for the logging plugins to be used.
 
 **Signature:**
 

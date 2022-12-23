@@ -67,7 +67,7 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
     const cache = options?.cache ?? true;
     const region = options?.region ?? this.summoner.region;
     const id = champion instanceof Champion ? champion.id : champion;
-    this.client.logger.trace(
+    this.client.logger?.trace(
       `Fetching champion mastery for summoner ID: ${this.summoner.id}, champ: ${id} with options: `,
       {
         force,
@@ -110,7 +110,7 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
   async highest(n: number = 0, options?: FetchOptions) {
     const force = options?.force ?? false;
     const cache = options?.cache ?? true;
-    this.client.logger.trace(`Fetching ${n}th highest mastery for summoner ID: ${this.summoner.id} with options: `, {
+    this.client.logger?.trace(`Fetching ${n}th highest mastery for summoner ID: ${this.summoner.id} with options: `, {
       force,
       cache,
       region: this.summoner.region
@@ -149,7 +149,7 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
    * Fetches all the champions' masteries data for this summoner and store them in the cache.
    */
   async fetchAll() {
-    this.client.logger.trace(`Fetching all champion mastery for summoner ID: ${this.summoner.id} with options: `, {
+    this.client.logger?.trace(`Fetching all champion mastery for summoner ID: ${this.summoner.id} with options: `, {
       region: this.summoner.region
     });
     return new Promise<Collection<string, ChampionMastery>>(async (resolve, reject) => {
@@ -171,7 +171,7 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
    */
   async updateTotalScore() {
     return new Promise<number>(async (resolve, reject) => {
-      this.client.logger.trace(`Fetching total mastery score for summoner ID: ${this.summoner.id} with options: `, {
+      this.client.logger?.trace(`Fetching total mastery score for summoner ID: ${this.summoner.id} with options: `, {
         region: this.summoner.region
       });
       const response = await this.client.api

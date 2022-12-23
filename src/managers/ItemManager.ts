@@ -38,11 +38,11 @@ export class ItemManager implements BaseManager<Item> {
     if (this._itemData)
       this._itemData.pathName = path.join('dDragon', this.client.version, this.client.locale, 'items');
     return new Promise(async (resolve, reject) => {
-      this.client.logger.trace('Fetching items from local storage');
+      this.client.logger?.trace('Fetching items from local storage');
       const data = this._itemData?.fetch('items');
       if (data) resolve(data);
       else {
-        this.client.logger.trace('Fetching items from DDragon');
+        this.client.logger?.trace('Fetching items from DDragon');
         const response = await this.client.http.get(`${this.client.version}/data/${this.client.locale}/item.json`);
         if (response.status !== 200) reject('Unable to fetch items from Data dragon');
         else {
@@ -55,7 +55,7 @@ export class ItemManager implements BaseManager<Item> {
 
   private async _fetchAll(options?: FetchOptions) {
     const cache = options?.cache ?? true;
-    this.client.logger.trace('Fetching all items');
+    this.client.logger?.trace('Fetching all items');
     return new Promise(async (resolve, reject) => {
       const items = <{ [id: string]: ItemData }>await this._fetchLocalItems().catch(reject);
       for (const key of Object.keys(items)) {
@@ -74,7 +74,7 @@ export class ItemManager implements BaseManager<Item> {
    */
   async fetch(key: string, options?: FetchOptions) {
     const force = options?.force ?? false;
-    this.client.logger.trace(`Fetching item ${key}`);
+    this.client.logger?.trace(`Fetching item ${key}`);
     return new Promise<Item>(async (resolve, reject) => {
       if (this.cache.has(key) && !force) resolve(this.cache.get(key)!);
       else {

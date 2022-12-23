@@ -49,11 +49,11 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
     if (this._runesData)
       this._runesData.pathName = path.join('dDragon', this.client.version, this.client.locale, 'runes');
     return new Promise(async (resolve, reject) => {
-      this.client.logger.trace(`Fetching runes from local storage`);
+      this.client.logger?.trace(`Fetching runes from local storage`);
       const data = this._runesData?.fetch('runes');
       if (data) resolve(data);
       else {
-        this.client.logger.trace(`Fetching runes from DDragon`);
+        this.client.logger?.trace(`Fetching runes from DDragon`);
         const response = await this.client.http.get(
           `${this.client.version}/data/${this.client.locale}/runesReforged.json`
         );

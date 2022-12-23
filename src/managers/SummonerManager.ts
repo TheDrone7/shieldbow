@@ -42,7 +42,7 @@ export class SummonerManager implements BaseManager<Summoner> {
     const force = options?.force ?? false;
     const cache = options?.cache ?? true;
     const region = options?.region ?? this.client.region;
-    this.client.logger.trace(`Fetching summoner by ID ${id} with options: `, { force, cache, region });
+    this.client.logger?.trace(`Fetching summoner by ID ${id} with options: `, { force, cache, region });
     return new Promise<Summoner>(async (resolve, reject) => {
       if (this.cache.has(id) && !force) resolve(this.cache.get(id)!);
       else {
@@ -75,7 +75,7 @@ export class SummonerManager implements BaseManager<Summoner> {
     const force = options?.force ?? false;
     const cache = options?.cache ?? true;
     const region = options?.region ?? this.client.region;
-    this.client.logger.trace(`Fetching summoner by PUUID ${playerId} with options: `, { force, cache, region });
+    this.client.logger?.trace(`Fetching summoner by PUUID ${playerId} with options: `, { force, cache, region });
     return new Promise<Summoner>(async (resolve, reject) => {
       if (this.cache.find((s) => s.playerId === id) && !force) resolve(this.cache.find((s) => s.playerId === id)!);
       else {
@@ -107,7 +107,7 @@ export class SummonerManager implements BaseManager<Summoner> {
     const force = options?.force ?? false;
     const cache = options?.cache ?? true;
     const region = options?.region ?? this.client.region;
-    this.client.logger.trace(`Fetching summoner by name '${name}' with options: `, { force, cache, region });
+    this.client.logger?.trace(`Fetching summoner by name '${name}' with options: `, { force, cache, region });
     return new Promise<Summoner>(async (resolve, reject) => {
       if (this.cache.find((s) => s.name === name) && !force) resolve(this.cache.find((s) => s.name === name)!);
       else {

@@ -24,12 +24,12 @@ describe('UTIL: logger', () => {
   });
 
   it('can log info', () => {
-    client.logger.info('Test info');
+    client.logger?.info('Test info');
     expect(spy).toHaveBeenCalled();
   });
 
   it('cannot log trace', () => {
-    client.logger.trace('Test trace');
+    client.logger?.trace('Test trace');
     expect(spy).not.toHaveBeenCalled();
   });
 });

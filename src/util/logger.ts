@@ -2,7 +2,7 @@ import { LoggerLevel, type ILogger, type LogLevel } from '../types';
 import colors from 'colors/safe';
 
 /**
- * Basic built-in debugging logger.
+ * Basic built-in debugging logger?.
  */
 export class ShieldbowLogger implements ILogger {
   /**
@@ -11,7 +11,7 @@ export class ShieldbowLogger implements ILogger {
   level: LoggerLevel;
 
   /**
-   * Create a new logger.
+   * Create a new logger?.
    * @param level - The logger's level.
    */
   constructor(level?: LogLevel) {

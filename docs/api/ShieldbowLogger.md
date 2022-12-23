@@ -1,11 +1,11 @@
 ---
 title: ShieldbowLogger
-description: Basic built-in debugging logger.
+description: Basic built-in debugging logger?.
 ---
 
 ## ShieldbowLogger class
 
-Basic built-in debugging logger.
+Basic built-in debugging logger?.
 
 **Signature:**
 
