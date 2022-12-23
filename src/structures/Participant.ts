@@ -453,8 +453,9 @@ export class Participant {
    * Creates a new participant instance.
    * @param client - The client that requested this data.
    * @param data - The raw participant data from the API.
+   * @param champ - The champion played by the participant.
    */
-  constructor(client: Client, data: ParticipantData) {
+  constructor(client: Client, data: ParticipantData, champ: Champion) {
     this.id = data.participantId;
     this.perks = new Perks(client, data.perks);
 
@@ -470,7 +471,7 @@ export class Participant {
     this.champion = {
       key: data.championId,
       id: data.championName,
-      champ: client.champions.cache.find((c) => c.key === data.championId)!,
+      champ,
       level: data.champLevel,
       xp: data.champExperience,
       form: data.championTransform,

@@ -63,12 +63,17 @@ export class MatchManager implements BaseManager<Match> {
         if (response)
           try {
             const data = <MatchData>response.data;
-            await this.client.champions.fetchByKeys(data.info.participants.map((p) => p.championId));
+            const participantChamps = await this.client.champions.fetchByKeys(
+              data.info.participants.map((p) => p.championId)
+            );
+            const bannedChamps = await this.client.champions.fetchByKeys(
+              data.info.teams.map((t) => t.bans).flatMap((b) => b.map((b) => b.championId))
+            );
 
             if (this.client.items.cache.size === 0) await this.client.items.fetch('1001');
             if (this.client.summonerSpells.cache.size === 0) await this.client.summonerSpells.fetchByName('Flash');
             if (this.client.runes.cache.size === 0) await this.client.runes.fetch('Domination');
-            const match = new Match(this.client, data);
+            const match = new Match(this.client, data, bannedChamps.toJSON(), participantChamps.toJSON());
             if (cache) this.cache.set(id, match);
             resolve(match);
           } catch (e: any) {

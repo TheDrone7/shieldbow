@@ -4,3 +4,4 @@ export * from './constants';
 export * from './logger';
 export * from './MemoryCache';
 export * from './LocalStorage';
+export * from './parseFetchOptions';

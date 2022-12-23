@@ -2,66 +2,35 @@ import type { ChampionData, SpellDamageData, BaseManager, MerakiChampion, FetchO
 import type { Client } from '../client';
 import { Collection } from '@discordjs/collection';
 import { Champion } from '../structures';
-import { StorageManager } from './index';
-import path from 'path';
+import { parseFetchOptions } from '../util';
 
 /**
  * A champion manager - to fetch and manage all the champion data.
  */
 export class ChampionManager implements BaseManager<Champion> {
-  /**
-   * The champions cached in the memory.
-   *
-   * Only use this if you absolutely must.
-   * Prioritize using
-   * {@link ChampionManager.fetch | fetch},
-   * {@link ChampionManager.fetchByKey | fetchByKey },
-   * {@link ChampionManager.fetchByName | fetchByName} or
-   * {@link ChampionManager.fetchAll | fetchAll}
-   * instead.
-   */
-  readonly cache: Collection<string, Champion>;
-  /**
-   * The champion rotations cached in the memory.
-   *
-   * Only use this if you absolutely must.
-   * Prioritize using
-   * {@link ChampionManager.fetchRotations | fetchRotations}
-   */
-  readonly rotation: Collection<'all' | 'new', Champion[]>;
+  private readonly cacheFilter: (o: any) => o is Champion;
   /**
    * The client that this manager belongs to.
    */
   readonly client: Client;
 
-  private readonly _champData?: StorageManager;
-  private readonly _damageData?: StorageManager;
-  private readonly _pricingData?: StorageManager;
-
   /**
    * Create a new Champions Manager
    *
    * @param client - The client this manager belongs to.
-   * @param cacheSettings - The basic caching settings.
    */
-  constructor(client: Client, cacheSettings: { enable: boolean; root: string }) {
+  constructor(client: Client) {
     this.client = client;
-    this.cache = new Collection<string, Champion>();
-    this.rotation = new Collection<'all' | 'new', Champion[]>();
-    if (cacheSettings.enable) {
-      this._champData = new StorageManager(client, 'dDragon/champions', cacheSettings.root);
-      this._damageData = new StorageManager(client, 'cDragon/champions', cacheSettings.root);
-      this._pricingData = new StorageManager(client, 'meraki/champions', cacheSettings.root);
-    }
+    this.cacheFilter = (c: any): c is Champion => 'name' in c && 'title' in c && 'lore' in c;
   }
 
-  private async _fetchLocalChamp(name: string) {
-    if (this._champData)
-      this._champData.pathName = path.join('dDragon', this.client.version, this.client.locale, 'champions');
+  private async _fetchLocalChamp(name: string, options: FetchOptions) {
+    const storagePath = ['champions', this.client.patch, 'dDragon', this.client.locale].join(':');
     return new Promise(async (resolve, reject) => {
       this.client.logger?.trace(`Fetching DDragon (local) champion: ${name}.`);
-      const data = this._champData?.fetch(name);
-      if (data) resolve(data);
+      const data = this.client.storage.fetch<{ data: { [key: string]: ChampionData } }>(storagePath, name);
+      const result = 'then' in data ? await data.catch(() => undefined) : data;
+      if (result) resolve(result);
       else {
         this.client.logger?.trace(`Fetching DDragon champion: ${name}.`);
         const response = await this.client.http.get(
@@ -69,19 +38,20 @@ export class ChampionManager implements BaseManager<Champion> {
         );
         if (response.status !== 200) reject("Unable to fetch the champion's data");
         else {
-          this._champData?.store(name, response.data);
+          if (options.store) await this.client.storage.save(response.data, storagePath, name);
           resolve(response.data);
         }
       }
     });
   }
 
-  private async _fetchLocalPricing(name: string) {
-    if (this._pricingData) this._pricingData.pathName = path.join('meraki', 'champions');
+  private async _fetchLocalPricing(name: string, options: FetchOptions) {
+    const storagePath = ['champions', this.client.patch, 'meraki'].join(':');
     return new Promise(async (resolve, reject) => {
       this.client.logger?.trace(`Fetching Meraki (local) champion: ${name}.`);
-      const data = this._pricingData?.fetch(name);
-      if (data) resolve(data);
+      const data = this.client.storage.fetch<MerakiChampion>(storagePath, name);
+      const result = 'then' in data ? await data.catch(() => undefined) : data;
+      if (result) resolve(result);
       else {
         this.client.logger?.trace(`Fetching Meraki champion: ${name}.`);
         const response = await this.client.http.get(
@@ -89,19 +59,20 @@ export class ChampionManager implements BaseManager<Champion> {
         );
         if (response.status !== 200) reject("Unable to fetch the champion's pricing.");
         else {
-          this._pricingData?.store(name, response.data);
+          if (options.store) await this.client.storage.save(response.data, storagePath, name);
           resolve(response.data);
         }
       }
     });
   }
 
-  private async _fetchLocalDamage(name: string) {
-    if (this._damageData) this._damageData.pathName = path.join('cDragon', this.client.patch, 'champions');
+  private async _fetchLocalDamage(name: string, options: FetchOptions) {
+    const storagePath = ['champions', this.client.patch, 'cDragon'].join(':');
     return new Promise(async (resolve, reject) => {
       this.client.logger?.trace(`Fetching CDragon (local) champion: ${name}.`);
-      const data = this._damageData?.fetch(name);
-      if (data) resolve(data);
+      const data = this.client.storage.fetch<SpellDamageData>(storagePath, name);
+      const result = 'then' in data ? await data.catch(() => undefined) : data;
+      if (result) resolve(result);
       else {
         this.client.logger?.trace(`Fetching CDragon champion: ${name}.`);
         const response = await this.client.http.get(
@@ -111,7 +82,7 @@ export class ChampionManager implements BaseManager<Champion> {
         );
         if (response.status !== 200) reject("Unable to fetch the champion's damage data");
         else {
-          this._damageData?.store(name, response.data);
+          if (options.store) await this.client.storage.save(response.data, storagePath, name);
           resolve(response.data);
         }
       }
@@ -123,11 +94,11 @@ export class ChampionManager implements BaseManager<Champion> {
    *
    * This always fetches freshly from data dragon and community dragon.
    *
-   * @param options - The basic fetching options (only `cache` affects this method).
+   * @param options - The basic fetching options (only `cache` and `store` affect this method).
    */
   async fetchAll(options?: FetchOptions): Promise<Collection<string, Champion>> {
-    const cache = options?.cache ?? true;
-    this.client.logger?.trace(`Fetching all champions with options: `, { cache });
+    const opts = parseFetchOptions(this.client, 'champions', options);
+    this.client.logger?.trace(`Fetching all champions with options: `, opts);
     return new Promise(async (resolve, reject) => {
       const response = await this.client.http.get(
         this.client.version + '/data/' + this.client.locale + '/championFull.json'
@@ -138,11 +109,11 @@ export class ChampionManager implements BaseManager<Champion> {
         const champs = <{ data: { [champ: string]: ChampionData } }>response.data;
         for (const key of Object.keys(champs.data)) {
           const champ = champs.data[key];
-          const damage = <SpellDamageData>await this._fetchLocalDamage(champ.id).catch(reject);
-          const meraki = <MerakiChampion>await this._fetchLocalPricing(champ.id).catch(reject);
+          const damage = <SpellDamageData>await this._fetchLocalDamage(champ.id, opts).catch(reject);
+          const meraki = <MerakiChampion>await this._fetchLocalPricing(champ.id, opts).catch(reject);
           const champion = new Champion(this.client, champs.data[key], damage, meraki);
           result.set(key, champion);
-          if (cache) this.cache.set(key, champion);
+          if (opts.cache) await this.client.cache.set(`champion:${key}`, champion);
         }
         resolve(result);
       }
@@ -155,19 +126,21 @@ export class ChampionManager implements BaseManager<Champion> {
    * @param options - The basic fetching options.
    */
   async fetch(id: string, options?: FetchOptions) {
-    const force = options?.force ?? false;
-    const cache = options?.cache ?? true;
-    this.client.logger?.trace(`Fetching champion '${id}' with options: `, { force, cache });
+    const opts = parseFetchOptions(this.client, 'champions', options);
+    const { cache, force } = opts;
+    const cacheId = `champion:${id}`;
+    this.client.logger?.trace(`Fetching champion '${id}' with options: `, opts);
     if (id === 'FiddleSticks') id = 'Fiddlesticks'; // There is some internal inconsistency in Riot's JSON files.
     return new Promise<Champion>(async (resolve, reject) => {
-      if (this.cache.has(id) && !force) resolve(this.cache.get(id)!);
+      const exists = await this.client.cache.has(cacheId);
+      if (exists && !force) resolve(await this.client.cache.get(cacheId));
       else {
-        const champs = <{ data: { [key: string]: ChampionData } }>await this._fetchLocalChamp(id).catch(reject);
+        const champs = <{ data: { [key: string]: ChampionData } }>await this._fetchLocalChamp(id, opts).catch(reject);
         const key = Object.keys(champs.data)[0];
-        const damage = <SpellDamageData>await this._fetchLocalDamage(id).catch(reject);
-        const meraki = <MerakiChampion>await this._fetchLocalPricing(id).catch(reject);
+        const damage = <SpellDamageData>await this._fetchLocalDamage(id, opts).catch(reject);
+        const meraki = <MerakiChampion>await this._fetchLocalPricing(id, opts).catch(reject);
         const champ = new Champion(this.client, champs.data[key], damage, meraki);
-        if (cache) this.cache.set(key, champ);
+        if (cache) await this.client.cache.set(cacheId, champ);
         resolve(champ);
       }
     });
@@ -224,14 +197,17 @@ export class ChampionManager implements BaseManager<Champion> {
    * @param options - The basic fetching options.
    */
   async fetchByNames(names: string[], options?: FetchOptions): Promise<Collection<string, Champion>> {
-    const force = options?.force ?? false;
-    const cache = options?.cache ?? true;
-    this.client.logger?.trace(`Fetching champions '${names}' with options: `, { force, cache });
+    const opts = parseFetchOptions(this.client, 'champions', options);
+    const { cache, force } = opts;
+    this.client.logger?.trace(`Fetching champions '${names}' with options: `, opts);
     return new Promise(async (resolve, reject) => {
       const result = new Collection<string, Champion>();
       if (!force)
         for (const name of names) {
-          const champ = this.cache.find((c) => c.name.toLowerCase().includes(name.toLowerCase()));
+          const champ = await this.client.cache.find<Champion>(
+            (c: Champion) => c.name.toLowerCase().includes(name.toLowerCase()),
+            this.cacheFilter
+          );
           if (champ) {
             result.set(champ.id, champ);
             names = names.filter((n) => n !== name);
@@ -247,11 +223,11 @@ export class ChampionManager implements BaseManager<Champion> {
           for (const key of Object.keys(champs.data)) {
             const champ = champs.data[key];
             if (names.some((n) => champ.name.toLowerCase().includes(n.toLowerCase()))) {
-              const damage = <SpellDamageData>await this._fetchLocalDamage(champ.id).catch(reject);
-              const meraki = <MerakiChampion>await this._fetchLocalPricing(champ.id).catch(reject);
+              const damage = <SpellDamageData>await this._fetchLocalDamage(champ.id, opts).catch(reject);
+              const meraki = <MerakiChampion>await this._fetchLocalPricing(champ.id, opts).catch(reject);
               const champion = new Champion(this.client, champs.data[key], damage, meraki);
               result.set(key, champion);
-              if (cache) this.cache.set(key, champion);
+              if (cache) await this.client.cache.set(`champion:${key}`, champion);
             }
           }
           resolve(result);
@@ -270,14 +246,14 @@ export class ChampionManager implements BaseManager<Champion> {
    * @param options - The basic fetching options.
    */
   async fetchByKeys(keys: number[], options?: FetchOptions): Promise<Collection<string, Champion>> {
-    const force = options?.force ?? false;
-    const cache = options?.cache ?? true;
+    const opts = parseFetchOptions(this.client, 'champions', options);
+    const { cache, force } = opts;
     this.client.logger?.trace(`Fetching champions '${keys}' with options: `, { force, cache });
     return new Promise(async (resolve, reject) => {
       const result = new Collection<string, Champion>();
       if (!force)
         for (const key of keys) {
-          const champ = this.cache.find((c) => c.key === key);
+          const champ = await this.client.cache.find((c: Champion) => c.key === key, this.cacheFilter);
           if (champ) {
             result.set(champ.id, champ);
             keys = keys.filter((k) => k !== key);
@@ -293,11 +269,11 @@ export class ChampionManager implements BaseManager<Champion> {
           for (const key of Object.keys(champs.data)) {
             const champ = champs.data[key];
             if (keys.some((k) => champ.key === String(k))) {
-              const damage = <SpellDamageData>await this._fetchLocalDamage(champ.id).catch(reject);
-              const meraki = <MerakiChampion>await this._fetchLocalPricing(champ.id).catch(reject);
+              const damage = <SpellDamageData>await this._fetchLocalDamage(champ.id, opts).catch(reject);
+              const meraki = <MerakiChampion>await this._fetchLocalPricing(champ.id, opts).catch(reject);
               const champion = new Champion(this.client, champs.data[key], damage, meraki);
               result.set(key, champion);
-              if (cache) this.cache.set(key, champion);
+              if (cache) await this.client.cache.set(`champion:${key}`, champion);
             }
           }
           resolve(result);
@@ -315,16 +291,26 @@ export class ChampionManager implements BaseManager<Champion> {
    * @param options - The basic fetching options.
    */
   async fetchRotations(options?: FetchOptions) {
-    const force = options?.force ?? false;
-    const cache = options?.cache ?? true;
-    const region = options?.region || this.client.region;
-    this.client.logger?.trace(`Fetching champion rotations with options: `, { force, cache, region });
+    const opts = parseFetchOptions(this.client, 'champions', options);
+    const { cache, force, region } = opts;
+    this.client.logger?.trace(`Fetching champion rotations with options: `, opts);
     return new Promise<Collection<'all' | 'new', Champion[]>>(async (resolve, reject) => {
-      if (this.rotation.get('all') && this.rotation.get('new') && !force) resolve(this.rotation);
+      const existsAll = await this.client.cache.has(`champion-rotation:all`);
+      const existsNew = await this.client.cache.has(`champion-rotation:new`);
+      if (existsAll && existsNew && !force) {
+        const all = await this.client.cache.get<Champion[]>(`champion-rotation:all`);
+        const new_ = await this.client.cache.get<Champion[]>(`champion-rotation:new`);
+        resolve(
+          new Collection([
+            ['all', all],
+            ['new', new_]
+          ])
+        );
+      }
       const response = await this.client.api.makeApiRequest('/lol/platform/v3/champion-rotations', {
         name: 'Champion rotation',
         params: '',
-        region,
+        region: region!,
         regional: false
       });
       if (response.status !== 200) reject('Unable to fetch the champions data.');
@@ -335,8 +321,8 @@ export class ChampionManager implements BaseManager<Champion> {
         const forNew = await this.fetchByKeys(champs.freeChampionIdsForNewPlayers.map((c) => Number(c)));
         result.set('all', all.toJSON());
         result.set('new', forNew.toJSON());
-        if (cache) this.rotation.set('all', all.toJSON());
-        if (cache) this.rotation.set('new', forNew.toJSON());
+        if (cache) await this.client.cache.set('champion-rotation:all', all.toJSON());
+        if (cache) await this.client.cache.set('champion-rotation:new', forNew.toJSON());
         resolve(result);
       }
     });

@@ -2,6 +2,7 @@ import type { Client } from '../client';
 import type { CurrentGameData, GameMap, GameMode, GameType, Queue } from '../types';
 import { Collection } from '@discordjs/collection';
 import { CurrentGameTeam } from './CurrentGameTeam';
+import type { Champion } from './Champion';
 
 /**
  * A representation of an ongoing game.
@@ -55,8 +56,10 @@ export class CurrentGame {
    * Create a new Current Game instance.
    * @param client - The client that requested this data.
    * @param data - The raw current game data from the API.
+   * @param bannedChampions - A collection of all the banned champions.
+   * @param participantChampions - A collection of all the participating champions.
    */
-  constructor(client: Client, data: CurrentGameData) {
+  constructor(client: Client, data: CurrentGameData, bannedChampions: Champion[], participantChampions: Champion[]) {
     this.id = data.gameId;
     this.type = client.gameTypes.find((t) => t.gametype === data.gameType)!;
     this.startTimestamp = data.gameStartTime;
@@ -72,7 +75,9 @@ export class CurrentGame {
       new CurrentGameTeam(
         client,
         data.bannedChampions.filter((c) => c.teamId === 100),
-        data.participants.filter((p) => p.teamId === 100)
+        data.participants.filter((p) => p.teamId === 100),
+        bannedChampions,
+        participantChampions
       )
     );
     this.teams.set(
@@ -80,7 +85,9 @@ export class CurrentGame {
       new CurrentGameTeam(
         client,
         data.bannedChampions.filter((c) => c.teamId === 200),
-        data.participants.filter((p) => p.teamId === 200)
+        data.participants.filter((p) => p.teamId === 200),
+        bannedChampions,
+        participantChampions
       )
     );
   }

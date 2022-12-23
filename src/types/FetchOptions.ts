@@ -13,7 +13,11 @@ export interface FetchOptions {
    */
   force?: boolean;
   /**
-   * Whether to cache the returned data. Defaults to true.
+   * Whether to cache the returned data. Defaults to client configuration.
    */
   cache?: boolean;
+  /**
+   * Whether to store the returned data in the database. Defaults to client configuration.
+   */
+  store?: boolean;
 }

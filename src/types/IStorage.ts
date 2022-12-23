@@ -4,20 +4,23 @@
 export interface IStorage {
   /**
    * Fetch a value from storage.
-   * @param params - The appropriate parameters for retrieval from storage.
+   * @param key - A key to help distinguish the collection where the element is stored.
+   * @param id - The id of the element to fetch.
    */
-  fetch<T>(...params: any): Promise<T> | T;
+  fetch<T>(key: string, id: string): Promise<T> | T;
 
   /**
    * Save a value in storage.
    * @param value - The value to set.
-   * @param params - The appropriate parameters for saving in storage.
+   * @param key - A key to help distinguish the collection where the element is stored.
+   * @param id - The id of the element to save.
    */
-  save<T>(value: T, ...params: any): void | Promise<any>;
+  save<T>(value: T, key: string, id: string): void | Promise<any>;
 
   /**
    * Delete a value from storage.
-   * @param params - Appropriate parameters for deletion from storage.
+   * @param key - A key to help distinguish the collection where the element is stored.
+   * @param id - The id of the element to delete.
    */
-  remove(...params: any): void | Promise<any>;
+  remove(key: string, id: string): void | Promise<any>;
 }

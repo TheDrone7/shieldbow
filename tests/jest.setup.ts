@@ -1,7 +1,8 @@
 import { config } from 'dotenv';
 
 global.clientConfig = {
-  cache: false,
+  cache: true,
+  storage: false,
   region: 'na',
   logger: {
     enable: true,

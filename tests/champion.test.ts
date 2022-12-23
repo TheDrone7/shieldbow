@@ -7,7 +7,11 @@ describe('DRAGON: champions', () => {
 
   beforeAll(async () => {
     await client.initialize(global.clientConfig);
-    kayn = await client.champions.fetch('Kayn', { force: true, cache: true });
+    try {
+      kayn = await client.champions.fetch('Kayn', { force: true, cache: true });
+    } catch (e) {
+      client.logger?.error(e);
+    }
   });
 
   it('can fetch a champion by ID', () => {
@@ -68,7 +72,7 @@ describe('DRAGON: champions', () => {
   });
 
   it('can cache champions', async () => {
-    expect(client.champions.cache.get('Kayn')?.name).toBe('Kayn');
+    expect((await client.cache.get<Champion>('champion:Kayn'))?.name).toBe('Kayn');
   });
 
   it('can fetch champion sprites', () => {

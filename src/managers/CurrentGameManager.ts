@@ -57,11 +57,12 @@ export class CurrentGameManager implements BaseManager<CurrentGame> {
           .catch(reject);
         if (response) {
           const data = <CurrentGameData>response.data;
-          await this.client.champions.fetchByKeys(data.participants.map((p) => p.championId));
+          const participantChamps = await this.client.champions.fetchByKeys(data.participants.map((p) => p.championId));
+          const bannedChamps = await this.client.champions.fetchByKeys(data.bannedChampions.map((b) => b.championId));
           if (this.client.items.cache.size === 0) await this.client.items.fetch('1001');
           if (this.client.summonerSpells.cache.size === 0) await this.client.summonerSpells.fetchByName('Flash');
           if (this.client.runes.cache.size === 0) await this.client.runes.fetch('Domination');
-          const game = new CurrentGame(this.client, data);
+          const game = new CurrentGame(this.client, data, bannedChamps.toJSON(), participantChamps.toJSON());
           if (cache) this.cache.set(id, game);
           resolve(game);
         }
@@ -89,12 +90,15 @@ export class CurrentGameManager implements BaseManager<CurrentGame> {
         .catch(reject);
       if (response) {
         const data = <{ gameList: CurrentGameData[] }>response.data;
-        for (const game of data.gameList)
-          await this.client.champions.fetchByKeys(game.participants.map((p) => p.championId));
         if (this.client.items.cache.size === 0) await this.client.items.fetch('1001');
         if (this.client.summonerSpells.cache.size === 0) await this.client.summonerSpells.fetchByName('Flash');
         if (this.client.runes.cache.size === 0) await this.client.runes.fetch('Domination');
-        const games = response.data.gameList.map((g: CurrentGameData) => new CurrentGame(this.client, g));
+        const games = [];
+        for (const game of data.gameList) {
+          const participantChamps = await this.client.champions.fetchByKeys(game.participants.map((p) => p.championId));
+          const bannedChamps = await this.client.champions.fetchByKeys(game.bannedChampions.map((b) => b.championId));
+          games.push(new CurrentGame(this.client, game, bannedChamps.toJSON(), participantChamps.toJSON()));
+        }
         resolve(games);
       }
     });

@@ -62,8 +62,8 @@ export class Client {
   private _gameModes: GameMode[];
   private _gameTypes: GameType[];
   private _logger?: ILogger;
-  private _cache?: ICache;
-  private _storage?: IStorage;
+  private _cache: ICache;
+  private _storage: IStorage;
 
   private _storageEnabled: ManagersConfig;
   private _cacheEnabled: ManagersConfig;
@@ -76,42 +76,12 @@ export class Client {
     this._region = 'na';
     this._patch = undefined!;
     this._locale = 'en_US';
-    this._cacheEnabled = {
-      api: {
-        account: true,
-        challenge: true,
-        championMastery: true,
-        clash: true,
-        currentGame: true,
-        league: true,
-        match: true,
-        summoner: true
-      },
-      dragon: {
-        champions: true,
-        items: true,
-        runes: true,
-        summonerSpells: true
-      }
-    };
-    this._storageEnabled = {
-      api: {
-        account: false,
-        challenge: false,
-        championMastery: false,
-        clash: false,
-        currentGame: false,
-        league: false,
-        match: false,
-        summoner: false
-      },
-      dragon: {
-        champions: true,
-        items: true,
-        runes: true,
-        summonerSpells: true
-      }
-    };
+
+    this._cacheEnabled = { api: true, dragon: true };
+    this._storageEnabled = { api: false, dragon: true };
+
+    this._cache = new MemoryCache();
+    this._storage = new LocalStorage(this, 'data');
 
     this._seasons = [];
     this._queues = [];
@@ -119,7 +89,7 @@ export class Client {
     this._gameModes = [];
     this._gameTypes = [];
 
-    this._champions = new ChampionManager(this, { enable: true, root: 'data' });
+    this._champions = new ChampionManager(this);
     this._items = new ItemManager(this, { enable: true, root: 'data' });
     this._runes = new RuneTreeManager(this, { enable: true, root: 'data' });
     this._summonerSpells = new SummonerSpellManager(this, { enable: true, root: 'data' });
@@ -201,24 +171,6 @@ export class Client {
     if (typeof options.cache === 'boolean') options.cache = { enable: options.cache };
     if (typeof options.cache.enable === 'boolean')
       options.cache.enable = { api: options.cache.enable, dragon: options.cache.enable };
-    if (typeof options.cache.enable?.api === 'boolean')
-      options.cache.enable.api = {
-        account: options.cache.enable.api,
-        challenge: options.cache.enable.api,
-        championMastery: options.cache.enable.api,
-        clash: options.cache.enable.api,
-        currentGame: options.cache.enable.api,
-        league: options.cache.enable.api,
-        match: options.cache.enable.api,
-        summoner: options.cache.enable.api
-      };
-    if (typeof options.cache.enable?.dragon === 'boolean')
-      options.cache.enable.dragon = {
-        champions: options.cache.enable.dragon,
-        items: options.cache.enable.dragon,
-        runes: options.cache.enable.dragon,
-        summonerSpells: options.cache.enable.dragon
-      };
 
     this._cacheEnabled = options.cache.enable!;
     this._cache = options.cache.custom ? options.cache.custom : new MemoryCache();
@@ -229,17 +181,8 @@ export class Client {
     if (typeof options.storage === 'boolean') options.storage = { enable: options.storage };
     if (typeof options.storage.enable === 'boolean')
       options.storage.enable = { api: options.storage.enable, dragon: options.storage.enable };
-    if (typeof options.storage.enable?.api === 'boolean')
-      options.storage.enable.api = {
-        account: options.storage.enable.api,
-        challenge: options.storage.enable.api,
-        championMastery: options.storage.enable.api,
-        clash: options.storage.enable.api,
-        currentGame: options.storage.enable.api,
-        league: options.storage.enable.api,
-        match: options.storage.enable.api,
-        summoner: options.storage.enable.api
-      };
+
+    this._storageEnabled = options.storage.enable!;
     const storageRoot = options?.storage?.root || 'data';
     this._storage = options.storage.custom ? options.storage.custom : new LocalStorage(this, storageRoot);
 

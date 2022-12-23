@@ -30,6 +30,33 @@ export class MemoryCache implements ICache {
   }
 
   /**
+   * Fetches all keys in the cache.
+   */
+  keys() {
+    return [...this.base.keys()];
+  }
+
+  /**
+   * Fetches all values stored in the cache.
+   */
+  values() {
+    return [...this.base.values()];
+  }
+
+  /**
+   * Finds a value in the cache using a predicate and a filter.
+   * @param predicate - The predicate to use to find the value.
+   * @param filter - The filter to use to filter the cache for appropriate type.
+   */
+  find<T>(predicate: (t: T) => boolean, filter?: (o: any) => o is T): T | undefined {
+    return filter ? this.base.filter(filter).find(predicate) : this.base.find(predicate);
+  }
+
+  has(key: string): boolean {
+    return this.base.has(key);
+  }
+
+  /**
    * Removes a value from the cache.
    * @param key - The key of the value to remove.
    */

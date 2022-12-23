@@ -27,36 +27,40 @@ export class LocalStorage implements IStorage {
   /**
    * Fetches a value from storage.
    * @param id - The file name of the value to fetch.
-   * @param pathName - The path to the value to fetch.
+   * @param key - The path to the value to fetch.
    */
-  async fetch<T>(id: string, pathName: string) {
+  async fetch<T>(key: string, id: string) {
     return new Promise<T>((resolve, reject) => {
-      if (this.cache.has(id)) resolve(this.cache.get(id));
-      const contentPath = path.join(this._pathName, pathName, id + '.json');
+      if (this.cache.has(key + id)) resolve(this.cache.get(key + id));
+      key = path.join(...key.split(':'));
+      const contentPath = path.join(this._pathName, key, id + '.json');
       const exists = fs.existsSync(contentPath);
       this.client.logger?.trace(`(Local fetch) File path: ${contentPath}, exists: ${exists}.`);
       if (!exists) reject('File does not exist.');
-      const content = fs.readFileSync(contentPath).toString();
-      if (content.trim().length === 0) {
-        // Detect file corruption #6
-        fs.unlinkSync(contentPath);
-        reject('File is empty.');
-      } else
-        try {
-          resolve(JSON.parse(content));
-        } catch (e: any) {
-          reject(`Invalid JSON file in cache encountered: ${contentPath}`);
-        }
+      else {
+        const content = fs.readFileSync(contentPath).toString();
+        if (content.trim().length === 0) {
+          // Detect file corruption #6
+          fs.unlinkSync(contentPath);
+          reject('File is empty.');
+        } else
+          try {
+            resolve(JSON.parse(content));
+          } catch (e: any) {
+            reject(`Invalid JSON file in cache encountered: ${contentPath}`);
+          }
+      }
     });
   }
 
   /**
    * Deletes a value from storage.
-   * @param pathName - The path to the value to delete.
+   * @param key - The path to the value to delete.
    * @param id - The file name of the value to delete.
    */
-  remove(pathName: string, id: string): void {
-    const contentPath = path.join(this._pathName, pathName, id + '.json');
+  remove(key: string, id: string): void {
+    key = path.join(...key.split(':'));
+    const contentPath = path.join(this._pathName, key, id + '.json');
     const exists = fs.existsSync(contentPath);
     this.client.logger?.trace(`(Local remove) File path: ${contentPath}, exists: ${exists}.`);
     if (exists) fs.unlinkSync(contentPath);
@@ -65,12 +69,13 @@ export class LocalStorage implements IStorage {
   /**
    * Saves a value to storage.
    * @param value - The value to save.
-   * @param pathName - The path to the value to save.
+   * @param key - The path to the value to save.
    * @param id - The file name of the value to save.
    */
-  save<T>(value: T, pathName: string, id: string) {
+  save<T>(value: T, key: string, id: string) {
     return new Promise<T>((resolve) => {
-      const contentPath = path.join(this._pathName, pathName, id + '.json');
+      key = path.join(...key.split(':'));
+      const contentPath = path.join(this._pathName, key, id + '.json');
       const exists = fs.existsSync(contentPath);
       this.client.logger?.trace(`(Local save) File path: ${contentPath}, exists: ${exists}.`);
       if (exists) {
@@ -83,7 +88,7 @@ export class LocalStorage implements IStorage {
       }
       fs.ensureFileSync(contentPath);
       fs.writeFileSync(contentPath, JSON.stringify(value, null, 2));
-      this.cache.set(id, value);
+      this.cache.set(key + id, value);
       resolve(value);
     });
   }

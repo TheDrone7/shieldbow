@@ -41,14 +41,22 @@ export class Team {
    * The participants in the team.
    */
   readonly participants: Participant[];
-  constructor(client: Client, data: TeamData, participants: ParticipantData[]) {
+  constructor(
+    client: Client,
+    data: TeamData,
+    participants: ParticipantData[],
+    bannedChampions: Champion[],
+    participantsChampions: Champion[]
+  ) {
     this.id = data.teamId;
     this.bans = data.bans.map((b) => ({
       order: b.pickTurn,
-      champion: client.champions.cache.find((c) => c.key === b.championId)!
+      champion: bannedChampions.find((c) => c.key === b.championId)!
     }));
     this.objectives = data.objectives;
-    this.participants = participants.map((p) => new Participant(client, p));
+    this.participants = participants.map(
+      (p) => new Participant(client, p, participantsChampions.find((c) => c.key === p.championId)!)
+    );
     this.win = data.win;
   }
 }

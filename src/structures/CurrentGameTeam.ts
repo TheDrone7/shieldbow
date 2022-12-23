@@ -43,14 +43,24 @@ export class CurrentGameTeam {
    * @param client - The client requesting the data.
    * @param bans - The raw bans data for this team from the API.
    * @param participants - The raw participants data for this team from the API.
+   * @param bannedChampions - The champions banned by this team.
+   * @param participantsChampions - The champions being played by this team's participants.
    */
-  constructor(client: Client, bans: CurrentGameBanData[], participants: CurrentGameParticipantData[]) {
+  constructor(
+    client: Client,
+    bans: CurrentGameBanData[],
+    participants: CurrentGameParticipantData[],
+    bannedChampions: Champion[],
+    participantsChampions: Champion[]
+  ) {
     this.id = participants[0].teamId;
     this.side = this.id === 100 ? 'blue' : 'red';
     this.bans = bans.map((b) => ({
-      champion: client.champions.cache.find((c) => c.key === b.championId)!,
+      champion: bannedChampions.find((c) => c.key === b.championId)!,
       turn: b.pickTurn
     }));
-    this.participants = participants.map((p) => new CurrentGameParticipant(client, p));
+    this.participants = participants.map(
+      (p) => new CurrentGameParticipant(client, p, participantsChampions.find((c) => c.key === p.championId)!)
+    );
   }
 }

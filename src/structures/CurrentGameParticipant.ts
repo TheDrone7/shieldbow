@@ -47,14 +47,15 @@ export class CurrentGameParticipant {
    * Creates a new Current Game Participant instance.
    * @param client - The client that requested this data.
    * @param data - The raw current game participant data from the API.
+   * @param champ - The champion being played by this participant.
    */
-  constructor(client: Client, data: CurrentGameParticipantData) {
+  constructor(client: Client, data: CurrentGameParticipantData, champ: Champion) {
     this._client = client;
     this.teamId = data.teamId;
     this.summonerSpells = new Collection<'D' | 'F', SummonerSpell>();
     this.summonerSpells.set('D', client.summonerSpells.cache.find((s) => s.key === data.spell1Id)!);
     this.summonerSpells.set('F', client.summonerSpells.cache.find((s) => s.key === data.spell2Id)!);
-    this.champion = client.champions.cache.find((c) => c.key === data.championId)!;
+    this.champion = champ;
     this.bot = data.bot;
     this.summonerName = data.summonerName;
     this.profileIcon = `${client.cdnBase}${client.version}/img/profileicon/${data.profileIconId}.png`;
