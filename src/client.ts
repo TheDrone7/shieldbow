@@ -1,5 +1,17 @@
 import axios, { AxiosInstance } from 'axios';
-import type { ClientConfig, GameMap, GameMode, GameType, Locales, Queue, Region, Season, ILogger } from './types';
+import type {
+  ClientConfig,
+  GameMap,
+  GameMode,
+  GameType,
+  Locales,
+  Queue,
+  Region,
+  Season,
+  ILogger,
+  ICache,
+  IStorage
+} from './types';
 import {
   AccountManager,
   ChampionManager,
@@ -14,7 +26,8 @@ import {
   ChallengeManager
 } from './managers';
 import { ApiHandler } from './api';
-import { ShieldbowLogger } from './util';
+import { LocalStorage, MemoryCache, ShieldbowLogger } from './util';
+import type { ManagersConfig } from './types/ClientConfig';
 
 const patchRegex = /\d+\.\d+/;
 
@@ -30,8 +43,6 @@ export class Client {
   private _patch: string;
   private _locale: Locales;
   private _region: Region;
-  private _cacheEnabled: boolean;
-  private _cacheRoot: string;
   private _champions: ChampionManager;
   private _items: ItemManager;
   private _runes: RuneTreeManager;
@@ -51,6 +62,11 @@ export class Client {
   private _gameModes: GameMode[];
   private _gameTypes: GameType[];
   private _logger?: ILogger;
+  private _cache?: ICache;
+  private _storage?: IStorage;
+
+  private _storageEnabled: ManagersConfig;
+  private _cacheEnabled: ManagersConfig;
 
   constructor(apiKey: string) {
     this._cdnBase = 'https://ddragon.leagueoflegends.com/cdn/';
@@ -60,8 +76,42 @@ export class Client {
     this._region = 'na';
     this._patch = undefined!;
     this._locale = 'en_US';
-    this._cacheEnabled = true;
-    this._cacheRoot = 'data';
+    this._cacheEnabled = {
+      api: {
+        account: true,
+        challenge: true,
+        championMastery: true,
+        clash: true,
+        currentGame: true,
+        league: true,
+        match: true,
+        summoner: true
+      },
+      dragon: {
+        champions: true,
+        items: true,
+        runes: true,
+        summonerSpells: true
+      }
+    };
+    this._storageEnabled = {
+      api: {
+        account: false,
+        challenge: false,
+        championMastery: false,
+        clash: false,
+        currentGame: false,
+        league: false,
+        match: false,
+        summoner: false
+      },
+      dragon: {
+        champions: true,
+        items: true,
+        runes: true,
+        summonerSpells: true
+      }
+    };
 
     this._seasons = [];
     this._queues = [];
@@ -92,7 +142,7 @@ export class Client {
    * @param options - The client configuration.
    */
   async initialize(options?: ClientConfig) {
-    // Parse the configuration
+    // Parse the basic configuration
     const region = options?.region || 'na';
     this._region = region;
     const version = options?.version || undefined;
@@ -101,7 +151,6 @@ export class Client {
     const language = options?.locale || undefined;
     if (language !== undefined) this._locale = language;
     if (typeof options?.logger === 'boolean') options.logger = { enable: options.logger };
-    if (typeof options?.cache === 'boolean') options.cache = { enable: options.cache };
     if (typeof options?.fetch === 'boolean')
       options.fetch = {
         champions: options?.fetch,
@@ -117,10 +166,7 @@ export class Client {
       this._logger = options?.logger?.custom || new ShieldbowLogger(loggerLevel);
     }
 
-    const enableCache = options?.cache?.enable ?? true;
-    const cacheRoot = options?.cache?.localRoot || 'data';
-
-    // Update the client configuration.
+    // Update the client's basic configuration.
     if (version === undefined || language === undefined) {
       this.logger?.trace('Fetching latest version and locale from the API.');
       const response = await axios
@@ -142,9 +188,62 @@ export class Client {
       }
     }
 
+    // Set the initialized flag to true.
     this._initialized = true;
 
-    // Get the game constants from data dragon (this is static data)
+    // If no options are provided, set the defaults for cache, storage and prefetching.
+    if (typeof options === 'undefined')
+      options = { fetch: false, cache: true, storage: { enable: { api: false, dragon: true } } };
+
+    // Parse the caching configuration and set up the cache.
+    this.logger?.trace('Parsing caching configuration.');
+    if (typeof options.cache === 'undefined') options.cache = true;
+    if (typeof options.cache === 'boolean') options.cache = { enable: options.cache };
+    if (typeof options.cache.enable === 'boolean')
+      options.cache.enable = { api: options.cache.enable, dragon: options.cache.enable };
+    if (typeof options.cache.enable?.api === 'boolean')
+      options.cache.enable.api = {
+        account: options.cache.enable.api,
+        challenge: options.cache.enable.api,
+        championMastery: options.cache.enable.api,
+        clash: options.cache.enable.api,
+        currentGame: options.cache.enable.api,
+        league: options.cache.enable.api,
+        match: options.cache.enable.api,
+        summoner: options.cache.enable.api
+      };
+    if (typeof options.cache.enable?.dragon === 'boolean')
+      options.cache.enable.dragon = {
+        champions: options.cache.enable.dragon,
+        items: options.cache.enable.dragon,
+        runes: options.cache.enable.dragon,
+        summonerSpells: options.cache.enable.dragon
+      };
+
+    this._cacheEnabled = options.cache.enable!;
+    this._cache = options.cache.custom ? options.cache.custom : new MemoryCache();
+
+    // Parse the storage configuration and set up the storage.
+    this.logger?.trace('Parsing storage configuration.');
+    if (typeof options.storage === 'undefined') options.storage = { enable: { api: false, dragon: true } };
+    if (typeof options.storage === 'boolean') options.storage = { enable: options.storage };
+    if (typeof options.storage.enable === 'boolean')
+      options.storage.enable = { api: options.storage.enable, dragon: options.storage.enable };
+    if (typeof options.storage.enable?.api === 'boolean')
+      options.storage.enable.api = {
+        account: options.storage.enable.api,
+        challenge: options.storage.enable.api,
+        championMastery: options.storage.enable.api,
+        clash: options.storage.enable.api,
+        currentGame: options.storage.enable.api,
+        league: options.storage.enable.api,
+        match: options.storage.enable.api,
+        summoner: options.storage.enable.api
+      };
+    const storageRoot = options?.storage?.root || 'data';
+    this._storage = options.storage.custom ? options.storage.custom : new LocalStorage(this, storageRoot);
+
+    // Get the game constants from data dragon (this is static data, so it's always fetched).
     this.logger?.trace('Fetching seasons static data from DDragon.');
     const seasonsResponse = await axios
       .get('https://static.developer.riotgames.com/docs/lol/seasons.json')
@@ -183,20 +282,15 @@ export class Client {
     this._gameModes = <GameMode[]>gameModesResponse.data;
     this._gameTypes = <GameType[]>gameTypesResponse.data;
 
-    // Update the cache config
-    if (this._cacheEnabled !== enableCache || this._cacheRoot !== cacheRoot) {
-      this.logger?.trace('Set-up caching.');
-      this._cacheEnabled = enableCache;
-      this._cacheRoot = cacheRoot;
-
-      this._champions = new ChampionManager(this, { enable: this._cacheEnabled, root: this._cacheRoot });
-      this._items = new ItemManager(this, { enable: this._cacheEnabled, root: this._cacheRoot });
-      this._runes = new RuneTreeManager(this, { enable: this._cacheEnabled, root: this._cacheRoot });
-      this._summonerSpells = new SummonerSpellManager(this, { enable: this._cacheEnabled, root: this._cacheRoot });
-    }
-
-    // Fetch the data and cache it for faster data retrieval.
+    // Prefetch the data and cache it for faster data retrieval.
     this.logger?.trace('Prefetch specified data from DDragon.');
+    if (typeof options?.fetch === 'boolean')
+      options.fetch = {
+        champions: options.fetch,
+        items: options.fetch,
+        runes: options.fetch,
+        summonerSpells: options.fetch
+      };
     if (options?.fetch?.champions ?? false) await this.champions.fetchAll();
     if (options?.fetch?.items ?? false) await this.items.fetch('1001');
     if (options?.fetch?.runes ?? false) await this.runes.fetch('Domination');
@@ -345,6 +439,40 @@ export class Client {
    */
   get logger() {
     return this._logger;
+  }
+
+  /**
+   * The client's caching utility.
+   */
+  get cache() {
+    return this._cache;
+  }
+
+  /**
+   * The client's storage utility.
+   */
+  get storage() {
+    return this._storage;
+  }
+
+  /**
+   * The client's configuration for caching. This is for internal usage only.
+   *
+   * PLEASE DO NOT TRY TO USE THIS.
+   * Refer to {@link Client.initialize} to configure this.
+   */
+  get cacheEnabled() {
+    return this._cacheEnabled;
+  }
+
+  /**
+   * The client's configuration for storage. This is for internal usage only.
+   *
+   * PLEASE DO NOT TRY TO USE THIS.
+   * Refer to {@link Client.initialize} to configure this.
+   */
+  get storageEnabled() {
+    return this._storageEnabled;
   }
 
   /**

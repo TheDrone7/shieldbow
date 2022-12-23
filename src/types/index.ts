@@ -60,6 +60,7 @@ export type { ILogger, LogLevel } from './ILogger';
 export { LoggerLevel } from './ILogger';
 
 export type { ICache } from './ICache';
+export type { IStorage } from './IStorage';
 
 export type { ClientConfig, CacheConfig, PreFetchConfig, LoggerConfig } from './ClientConfig';
 export type { MatchByPlayerOptions } from './MatchByPlayerOptions';

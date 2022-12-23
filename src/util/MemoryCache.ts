@@ -4,7 +4,7 @@ import { Collection } from '@discordjs/collection';
 /**
  * A basic caching manager that caches to the system memory using a Map.
  */
-export default class LocalCache implements ICache {
+export class MemoryCache implements ICache {
   private base: Collection<string, any>;
 
   /**
