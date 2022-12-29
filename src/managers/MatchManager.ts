@@ -70,10 +70,10 @@ export class MatchManager implements BaseManager<Match> {
               data.info.teams.map((t) => t.bans).flatMap((b) => b.map((b) => b.championId))
             );
 
-            if (this.client.items.cache.size === 0) await this.client.items.fetch('1001');
+            const items = await this.client.items.fetchAll();
             if (this.client.summonerSpells.cache.size === 0) await this.client.summonerSpells.fetchByName('Flash');
             if (this.client.runes.cache.size === 0) await this.client.runes.fetch('Domination');
-            const match = new Match(this.client, data, bannedChamps.toJSON(), participantChamps.toJSON());
+            const match = new Match(this.client, data, bannedChamps.concat(participantChamps), items);
             if (cache) this.cache.set(id, match);
             resolve(match);
           } catch (e: any) {
@@ -106,8 +106,9 @@ export class MatchManager implements BaseManager<Match> {
           })
           .catch(reject);
         if (response) {
+          const items = await this.client.items.fetchAll(options);
           const data = <MatchTimelineData>response.data;
-          const timeline = new MatchTimeline(this.client, data);
+          const timeline = new MatchTimeline(data, items);
           if (cache) this.timelineCache.set(matchId, timeline);
           resolve(timeline);
         }

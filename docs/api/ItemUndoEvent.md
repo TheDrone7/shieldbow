@@ -22,7 +22,7 @@ export declare class ItemUndoEvent extends TimelineEvent
 ### Constructor
 
 ```ts
-new ItemUndoEvent (client: Client, data: ItemUndoEventData)
+new ItemUndoEvent (data: ItemUndoEventData, after?: Item, before?: Item)
 ```
 
 Constructs a new instance of the `ItemUndoEvent` class.
@@ -31,15 +31,16 @@ Constructs a new instance of the `ItemUndoEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/Client.md) | The client that fetched the match. |
 | data | [ItemUndoEventData](/api/ItemUndoEventData.md) | The raw data of the event. |
+| after | [Item](/api/Item.md) | The item in the item slot after the undo (might be nothing). |
+| before | [Item](/api/Item.md) | The item in the item slot before the undo. |
 ---
 
 ### Properties
 
 #### after
 
-The item in the item slot after the undo.
+The item in the item slot after the undo (might be nothing).
 
 
 

@@ -21,7 +21,7 @@ export class ChampionManager implements BaseManager<Champion> {
    */
   constructor(client: Client) {
     this.client = client;
-    this.cacheFilter = (c: any): c is Champion => 'name' in c && 'title' in c && 'lore' in c;
+    this.cacheFilter = (c: any): c is Champion => c instanceof Champion;
   }
 
   private async _fetchLocalChamp(name: string, options: FetchOptions) {

@@ -18,7 +18,7 @@ export declare class TimelineFrame
 ### Constructor
 
 ```ts
-new TimelineFrame (client: Client, data: MatchTimelineFrameData)
+new TimelineFrame (data: MatchTimelineFrameData, items: Collection<string, Item>)
 ```
 
 Constructs a new instance of the `TimelineFrame` class.
@@ -27,8 +27,8 @@ Constructs a new instance of the `TimelineFrame` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/Client.md) | The client that created this frame. |
 | data | [MatchTimelineFrameData](/api/MatchTimelineFrameData.md) | The raw data from the API. |
+| items | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/Item.md) \> | A collection of all items in the game. |
 ---
 
 ### Properties

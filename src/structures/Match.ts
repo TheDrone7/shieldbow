@@ -4,6 +4,7 @@ import { Collection } from '@discordjs/collection';
 import { Team } from './Team';
 import type { MatchTimeline } from './MatchTimeline';
 import type { Champion } from './Champion';
+import type { Item } from './Item';
 
 /**
  * A representation of a league of legends match.
@@ -83,10 +84,15 @@ export class Match {
    * Creates a new match instance.
    * @param client - The client requesting the data.
    * @param data - The raw match data from the API.
-   * @param bannedChampions - The banned champions for the match.
-   * @param participantChampions - The champions for the participants of the match.
+   * @param champions - The champions involved in the match.
+   * @param items - The items used in the match.
    */
-  constructor(client: Client, data: MatchData, bannedChampions: Champion[], participantChampions: Champion[]) {
+  constructor(
+    client: Client,
+    data: MatchData,
+    champions: Collection<string, Champion>,
+    items: Collection<string, Item>
+  ) {
     if (this._isDataMalformed(data)) throw new Error('Match data received is malformed.');
     this.client = client;
     this.id = data.metadata.matchId;
@@ -109,8 +115,8 @@ export class Match {
     const blueTeamParticipants = data.info.participants.filter((p) => p.teamId === 100);
     const redTeamParticipants = data.info.participants.filter((p) => p.teamId === 200);
     this.teams = new Collection<'blue' | 'red', Team>();
-    this.teams.set('blue', new Team(client, blueTeamData, blueTeamParticipants, bannedChampions, participantChampions));
-    this.teams.set('red', new Team(client, redTeamData, redTeamParticipants, bannedChampions, participantChampions));
+    this.teams.set('blue', new Team(client, blueTeamData, blueTeamParticipants, champions, items));
+    this.teams.set('red', new Team(client, redTeamData, redTeamParticipants, champions, items));
   }
 
   /**

@@ -1,68 +1,64 @@
 import type { Client } from '../client';
 import type { BaseManager, FetchOptions, ItemData } from '../types';
 import { Item } from '../structures';
+import { parseFetchOptions } from '../util';
 import { Collection } from '@discordjs/collection';
-import { StorageManager } from './index';
-import path from 'path';
 
 /**
  * An item manager - to fetch and manage all item data.
  */
 export class ItemManager implements BaseManager<Item> {
   /**
-   * A collection of the items cached in the memory.
-   *
-   * Only use this if you absolutely must.
-   * Prioritize using {@link ItemManager.fetch | fetch} instead.
-   */
-  readonly cache: Collection<string, Item>;
-  /**
    * The client this manager belongs to.
    */
   readonly client: Client;
-  private readonly _itemData?: StorageManager;
 
   /**
    * Create a new item manager.
    *
    * @param client - The client this manager belongs to.
-   * @param cacheSettings - The basic caching settings.
    */
-  constructor(client: Client, cacheSettings: { enable: boolean; root: string }) {
+  constructor(client: Client) {
     this.client = client;
-    this.cache = new Collection<string, Item>();
-    if (cacheSettings.enable) this._itemData = new StorageManager(client, 'dDragon/items', cacheSettings.root);
   }
 
-  private async _fetchLocalItems() {
-    if (this._itemData)
-      this._itemData.pathName = path.join('dDragon', this.client.version, this.client.locale, 'items');
+  private async _fetchLocalItems(options: FetchOptions) {
+    const storagePath = ['items', this.client.patch, this.client.locale].join(':');
     return new Promise(async (resolve, reject) => {
-      this.client.logger?.trace('Fetching items from local storage');
-      const data = this._itemData?.fetch('items');
-      if (data) resolve(data);
+      this.client.logger?.trace('Fetching items from storage');
+      // This needs to be slightly modified to work with the new storage system.
+      const data = this.client.storage.fetch<{ data: { [id: string]: ItemData } }>(storagePath, 'items');
+      const result = 'then' in data ? await data.catch(() => undefined) : data;
+      if (result) resolve(result.data);
       else {
         this.client.logger?.trace('Fetching items from DDragon');
         const response = await this.client.http.get(`${this.client.version}/data/${this.client.locale}/item.json`);
         if (response.status !== 200) reject('Unable to fetch items from Data dragon');
         else {
-          this._itemData?.store('items', response.data.data);
+          if (options.store) this.client.storage.save({ data: response.data.data }, storagePath, 'items');
           resolve(response.data.data);
         }
       }
     });
   }
 
-  private async _fetchAll(options?: FetchOptions) {
-    const cache = options?.cache ?? true;
+  /**
+   * Fetch all items.
+   * @param options - The basic fetching options.
+   */
+  async fetchAll(options?: FetchOptions) {
+    const opts = parseFetchOptions(this.client, 'items', options);
+    const { cache } = opts;
     this.client.logger?.trace('Fetching all items');
-    return new Promise(async (resolve, reject) => {
-      const items = <{ [id: string]: ItemData }>await this._fetchLocalItems().catch(reject);
+    return new Promise<Collection<string, Item>>(async (resolve, reject) => {
+      const items = <{ [id: string]: ItemData }>await this._fetchLocalItems(opts).catch(reject);
+      const result = new Collection<string, Item>();
       for (const key of Object.keys(items)) {
         const item = new Item(this.client, key, items[key]);
-        if (cache) this.cache.set(key, item);
+        result.set(key, item);
+        if (cache) await this.client.cache.set(`item:${key}`, item);
       }
-      resolve(this.cache);
+      resolve(result);
     });
   }
 
@@ -76,10 +72,11 @@ export class ItemManager implements BaseManager<Item> {
     const force = options?.force ?? false;
     this.client.logger?.trace(`Fetching item ${key}`);
     return new Promise<Item>(async (resolve, reject) => {
-      if (this.cache.has(key) && !force) resolve(this.cache.get(key)!);
+      const exists = await this.client.cache.has(`item:${key}`);
+      if (exists && !force) resolve(await this.client.cache.get(`item:${key}`)!);
       else {
-        await this._fetchAll(options);
-        if (this.cache.has(key)) resolve(this.cache.get(key)!);
+        const items = await this.fetchAll(options);
+        if (items.has(key)) resolve(items.get(key)!);
         else reject('There is no item with that ID');
       }
     });
@@ -104,8 +101,27 @@ export class ItemManager implements BaseManager<Item> {
    * @param options - The basic fetching options.
    */
   async fetchByName(name: string, options?: FetchOptions) {
-    const force = options?.force ?? false;
-    if (!this.cache.size || force) await this._fetchAll(options);
-    return this.cache.find((i) => i.name.toLowerCase().includes(name.toLowerCase()));
+    const opts = parseFetchOptions(this.client, 'items', options);
+    await this.fetchAll(opts);
+    return this.client.cache.find<Item>(
+      (i) => i.name.toLowerCase().includes(name.toLowerCase()),
+      (o: any): o is Item => o instanceof Item
+    );
+  }
+
+  async fetchMany(keys: string[], options?: FetchOptions) {
+    const opts = parseFetchOptions(this.client, 'items', options);
+    const { cache } = opts;
+    this.client.logger?.trace(`Fetching items ${keys.join(', ')}`);
+    return new Promise<Collection<string, Item>>(async (resolve, reject) => {
+      const items = <{ [id: string]: ItemData }>await this._fetchLocalItems(opts).catch(reject);
+      const result = new Collection<string, Item>();
+      for (const key of keys) {
+        const item = new Item(this.client, key, items[key]);
+        result.set(key, item);
+        if (cache) await this.client.cache.set(`item:${key}`, item);
+      }
+      resolve(result);
+    });
   }
 }

@@ -454,8 +454,9 @@ export class Participant {
    * @param client - The client that requested this data.
    * @param data - The raw participant data from the API.
    * @param champ - The champion played by the participant.
+   * @param items - The items purchased by the participant.
    */
-  constructor(client: Client, data: ParticipantData, champ: Champion) {
+  constructor(client: Client, data: ParticipantData, champ: Champion, items: Collection<string, Item>) {
     this.id = data.participantId;
     this.perks = new Perks(client, data.perks);
 
@@ -565,13 +566,13 @@ export class Participant {
     this.nexusTakedown = data.nexusTakedowns > 0;
 
     this.items = new Collection<number, Item | undefined>();
-    this.items.set(1, client.items.cache.get(data.item0.toString()));
-    this.items.set(2, client.items.cache.get(data.item1.toString()));
-    this.items.set(3, client.items.cache.get(data.item2.toString()));
-    this.items.set(4, client.items.cache.get(data.item3.toString()));
-    this.items.set(5, client.items.cache.get(data.item4.toString()));
-    this.items.set(6, client.items.cache.get(data.item5.toString()));
-    this.items.set(7, client.items.cache.get(data.item6.toString()));
+    this.items.set(1, items.get(data.item0.toString()));
+    this.items.set(2, items.get(data.item1.toString()));
+    this.items.set(3, items.get(data.item2.toString()));
+    this.items.set(4, items.get(data.item3.toString()));
+    this.items.set(5, items.get(data.item4.toString()));
+    this.items.set(6, items.get(data.item5.toString()));
+    this.items.set(7, items.get(data.item6.toString()));
     this.itemsPurchased = data.itemsPurchased;
 
     this.killingSprees = data.killingSprees;

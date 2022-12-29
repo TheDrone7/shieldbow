@@ -2,6 +2,8 @@ import type { Client } from '../client';
 import type { ParticipantData, TeamData, TeamObjectivesData } from '../types';
 import type { Champion } from './Champion';
 import { Participant } from './Participant';
+import type { Collection } from '@discordjs/collection';
+import type { Item } from './Item';
 
 /**
  * A banned champion in a match.
@@ -45,17 +47,17 @@ export class Team {
     client: Client,
     data: TeamData,
     participants: ParticipantData[],
-    bannedChampions: Champion[],
-    participantsChampions: Champion[]
+    champions: Collection<string, Champion>,
+    items: Collection<string, Item>
   ) {
     this.id = data.teamId;
     this.bans = data.bans.map((b) => ({
       order: b.pickTurn,
-      champion: bannedChampions.find((c) => c.key === b.championId)!
+      champion: champions.find((c) => c.key === b.championId)!
     }));
     this.objectives = data.objectives;
     this.participants = participants.map(
-      (p) => new Participant(client, p, participantsChampions.find((c) => c.key === p.championId)!)
+      (p) => new Participant(client, p, champions.find((c) => c.key === p.championId)!, items)
     );
     this.win = data.win;
   }

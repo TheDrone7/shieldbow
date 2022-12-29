@@ -22,8 +22,8 @@ import type {
 } from '../types';
 import { Position } from './Position';
 import { Bounty } from './Bounty';
-import type { Client } from '../client';
 import type { Item } from './Item';
+import type { Collection } from '@discordjs/collection';
 
 /**
  * A representation of an event in a match timeline.
@@ -157,13 +157,13 @@ export class ItemPurchasedEvent extends TimelineEvent {
 
   /**
    * Create a new item purchased event.
-   * @param client - The client that fetched the match.
    * @param data - The raw data of the event.
+   * @param item - The item that was purchased.
    */
-  constructor(client: Client, data: ItemPurchasedEventData) {
+  constructor(data: ItemPurchasedEventData, item: Item) {
     super(data);
     this.type = 'ITEM_PURCHASED';
-    this.item = client.items.cache.get(data.itemId.toString())!;
+    this.item = item;
     this.participantId = data.participantId;
   }
 }
@@ -177,13 +177,13 @@ export class ItemUndoEvent extends TimelineEvent {
    */
   readonly type: 'ITEM_UNDO';
   /**
-   * The item in the item slot after the undo.
+   * The item in the item slot after the undo (might be nothing).
    */
-  readonly after: Item;
+  readonly after?: Item;
   /**
    * The item in the item slot before the undo.
    */
-  readonly before: Item;
+  readonly before?: Item;
   /**
    * The amount of gold that was gained by the undo.
    */
@@ -195,14 +195,15 @@ export class ItemUndoEvent extends TimelineEvent {
 
   /**
    * Create a new item undo event.
-   * @param client - The client that fetched the match.
    * @param data - The raw data of the event.
+   * @param after - The item in the item slot after the undo (might be nothing).
+   * @param before - The item in the item slot before the undo.
    */
-  constructor(client: Client, data: ItemUndoEventData) {
+  constructor(data: ItemUndoEventData, after?: Item, before?: Item) {
     super(data);
     this.type = 'ITEM_UNDO';
-    this.after = client.items.cache.get(data.afterId.toString())!;
-    this.before = client.items.cache.get(data.beforeId.toString())!;
+    this.after = after;
+    this.before = before;
     this.goldGain = data.goldGain;
     this.participantId = data.participantId;
   }
@@ -256,13 +257,13 @@ export class ItemDestroyedEvent extends TimelineEvent {
 
   /**
    * Create a new item destroyed event.
-   * @param client - The client that fetched the match.
    * @param data - The raw data of the event.
+   * @param item - The destroyed item.
    */
-  constructor(client: Client, data: ItemDestroyedEventData) {
+  constructor(data: ItemDestroyedEventData, item: Item) {
     super(data);
     this.type = 'ITEM_DESTROYED';
-    this.item = client.items.cache.get(data.itemId.toString())!;
+    this.item = item;
     this.participantId = data.participantId;
   }
 }
@@ -517,13 +518,13 @@ export class ItemSoldEvent extends TimelineEvent {
 
   /**
    * Create a new item sold event.
-   * @param client - The client that fetched the match.
    * @param data - The raw data of the event.
+   * @param item - The item that was sold.
    */
-  constructor(client: Client, data: ItemSoldEventData) {
+  constructor(data: ItemSoldEventData, item: Item) {
     super(data);
     this.type = 'ITEM_SOLD';
-    this.item = client.items.cache.get(data.itemId.toString())!;
+    this.item = item;
     this.participantId = data.participantId;
   }
 }
@@ -765,23 +766,31 @@ export class GameEndEvent extends TimelineEvent {
 export class TimelineEventFactory {
   /**
    * Creates a timeline event from the given data.
-   * @param client - The client that fetched the event.
    * @param data - The raw data.
+   * @param items - A collection of all items.
    */
-  static create(client: Client, data: TimelineEventData): TimelineEvent {
+  static create(data: TimelineEventData, items: Collection<string, Item>): TimelineEvent {
+    let details;
     switch (data.type) {
       case 'PAUSE_END':
         return new PauseEndEvent(data as PauseEndEventData);
       case 'SKILL_LEVEL_UP':
         return new SkillLevelUpEvent(data as SkillLevelUpEventData);
       case 'ITEM_PURCHASED':
-        return new ItemPurchasedEvent(client, data as ItemPurchasedEventData);
+        details = data as ItemPurchasedEventData;
+        return new ItemPurchasedEvent(details, items.get(details.itemId.toString())!);
       case 'ITEM_UNDO':
-        return new ItemUndoEvent(client, data as ItemUndoEventData);
+        details = data as ItemUndoEventData;
+        return new ItemUndoEvent(
+          details,
+          items.get(details.afterId.toString())!,
+          items.get(details.beforeId.toString())!
+        );
       case 'WARD_PLACED':
         return new WardPlacedEvent(data as WardPlacedEventData);
       case 'ITEM_DESTROYED':
-        return new ItemDestroyedEvent(client, data as ItemDestroyedEventData);
+        details = data as ItemDestroyedEventData;
+        return new ItemDestroyedEvent(details, items.get(details.itemId.toString())!);
       case 'LEVEL_UP':
         return new LevelUpEvent(data as LevelUpEventData);
       case 'CHAMPION_KILL':
@@ -793,7 +802,8 @@ export class TimelineEventFactory {
       case 'ELITE_MONSTER_KILL':
         return new EliteMonsterKillEvent(data as EliteMonsterKillEventData);
       case 'ITEM_SOLD':
-        return new ItemSoldEvent(client, data as ItemSoldEventData);
+        details = data as ItemSoldEventData;
+        return new ItemSoldEvent(details, items.get(details.itemId.toString())!);
       case 'OBJECTIVE_BOUNTY_PRESTART':
         return new ObjectiveBountyPrestartEvent(data as ObjectiveBountyPrestartEventData);
       case 'BUILDING_KILL':

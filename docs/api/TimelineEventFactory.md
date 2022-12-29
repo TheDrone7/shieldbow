@@ -27,15 +27,15 @@ Creates a timeline event from the given data.
 **Signature:**
 
 ```ts
-static create(client: Client, data: TimelineEventData): TimelineEvent;
+static create(data: TimelineEventData, items: Collection<string, Item>): TimelineEvent;
 ```
 
 **Parameters:**
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/Client.md) | The client that fetched the event. |
 | data | [TimelineEventData](/api/TimelineEventData.md) | The raw data. |
+| items | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/Item.md) \> | A collection of all items. |
 
 **Return type**: [TimelineEvent](/api/TimelineEvent.md)
 

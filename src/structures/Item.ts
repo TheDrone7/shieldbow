@@ -1,7 +1,6 @@
 import type { Client } from '../client';
 import type { ItemData, GameMap } from '../types';
 import type { Champion } from './index';
-import type { Collection } from '@discordjs/collection';
 
 /**
  * The item's gold value information.
@@ -164,23 +163,23 @@ export class Item {
    * The components of this item.
    * You need to buy these item and spend additional gold to get this item.
    */
-  get from(): Collection<string, Item> {
-    return this.client.items.cache.filter((i) => this.fromIds.includes(i.id));
+  async from() {
+    return this.client.items.fetchMany(this.fromIds);
   }
 
   /**
    * A collection of items the current item is a component of.
    */
-  get into(): Collection<string, Item> {
-    return this.client.items.cache.filter((i) => this.intoIds.includes(i.id));
+  async into() {
+    return this.client.items.fetchMany(this.intoIds);
   }
 
   /**
-   * If this is not undefined, you cannot buy this item from the store.
+   * If this is defined, you cannot buy this item from the store.
    * Instead, you need to buy the `specialRecipe` item and complete a quest to get it.
    */
-  get specialRecipe(): Item | undefined {
-    return this.specialRecipeId ? this.client.items.cache.get(this.specialRecipeId) : undefined;
+  async specialRecipe(): Promise<Item | undefined> {
+    return this.specialRecipeId ? this.client.cache.get<Item>(this.specialRecipeId) : undefined;
   }
 
   private parseDepth(depth: number) {

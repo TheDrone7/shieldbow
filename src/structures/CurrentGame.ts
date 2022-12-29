@@ -56,10 +56,9 @@ export class CurrentGame {
    * Create a new Current Game instance.
    * @param client - The client that requested this data.
    * @param data - The raw current game data from the API.
-   * @param bannedChampions - A collection of all the banned champions.
-   * @param participantChampions - A collection of all the participating champions.
+   * @param champions - The champions that are involved in the game.
    */
-  constructor(client: Client, data: CurrentGameData, bannedChampions: Champion[], participantChampions: Champion[]) {
+  constructor(client: Client, data: CurrentGameData, champions: Collection<string, Champion>) {
     this.id = data.gameId;
     this.type = client.gameTypes.find((t) => t.gametype === data.gameType)!;
     this.startTimestamp = data.gameStartTime;
@@ -76,8 +75,7 @@ export class CurrentGame {
         client,
         data.bannedChampions.filter((c) => c.teamId === 100),
         data.participants.filter((p) => p.teamId === 100),
-        bannedChampions,
-        participantChampions
+        champions
       )
     );
     this.teams.set(
@@ -86,8 +84,7 @@ export class CurrentGame {
         client,
         data.bannedChampions.filter((c) => c.teamId === 200),
         data.participants.filter((p) => p.teamId === 200),
-        bannedChampions,
-        participantChampions
+        champions
       )
     );
   }
