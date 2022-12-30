@@ -67,6 +67,14 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
     const cache = options?.cache ?? true;
     const region = options?.region ?? this.summoner.region;
     const id = champion instanceof Champion ? champion.id : champion;
+    this.client.logger?.trace(
+      `Fetching champion mastery for summoner ID: ${this.summoner.id}, champ: ${id} with options: `,
+      {
+        force,
+        cache,
+        region
+      }
+    );
     return new Promise<ChampionMastery>(async (resolve, reject) => {
       const champ = await this.client.champions.fetch(id, options).catch(() => undefined);
       if (!champ) reject('Invalid champion ID');
@@ -85,7 +93,7 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
           .catch(reject);
         if (response) {
           const data = <ChampionMasteryData>response.data;
-          const mastery = new ChampionMastery(this.client, data);
+          const mastery = new ChampionMastery(data, champ);
           if (cache) this.cache.set(champ.id, mastery);
           resolve(mastery);
         }
@@ -102,6 +110,11 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
   async highest(n: number = 0, options?: FetchOptions) {
     const force = options?.force ?? false;
     const cache = options?.cache ?? true;
+    this.client.logger?.trace(`Fetching ${n}th highest mastery for summoner ID: ${this.summoner.id} with options: `, {
+      force,
+      cache,
+      region: this.summoner.region
+    });
     return new Promise<ChampionMastery>(async (resolve, reject) => {
       if (n < 0) reject('The value of `n` must be >= 0.');
       else {
@@ -116,7 +129,7 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
             const champ = await this.client.champions.fetchByKey(mastery.championId).catch(() => undefined);
             if (!champ) reject('Invalid champion ID');
             else {
-              if (cache) this.cache.set(champ.id, new ChampionMastery(this.client, mastery));
+              if (cache) this.cache.set(champ.id, new ChampionMastery(mastery, champ));
               resolve(this.cache.get(champ.id)!);
             }
           }
@@ -136,14 +149,15 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
    * Fetches all the champions' masteries data for this summoner and store them in the cache.
    */
   async fetchAll() {
+    this.client.logger?.trace(`Fetching all champion mastery for summoner ID: ${this.summoner.id} with options: `, {
+      region: this.summoner.region
+    });
     return new Promise<Collection<string, ChampionMastery>>(async (resolve, reject) => {
       const dataList = (await this._fetchRawMasteryData().catch(reject)) as ChampionMasteryData[];
-      // Fetch all champions that this summoner has any mastery points
-      const cacheIds = this.client.champions.cache.map((c) => c.key);
-      const championsToFetch = dataList.filter((c) => !cacheIds.includes(c.championId));
-      await this.client.champions.fetchByKeys(championsToFetch.map((c) => c.championId));
+      const champs = await this.client.champions.fetchByKeys(dataList.map((c) => c.championId));
       for (const data of dataList) {
-        const mastery = new ChampionMastery(this.client, data);
+        const champ = champs.find((c) => c.key === data.championId)!;
+        const mastery = new ChampionMastery(data, champ);
         this.cache.set(mastery.champion.id, mastery);
       }
       resolve(this.cache);
@@ -155,6 +169,9 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
    */
   async updateTotalScore() {
     return new Promise<number>(async (resolve, reject) => {
+      this.client.logger?.trace(`Fetching total mastery score for summoner ID: ${this.summoner.id} with options: `, {
+        region: this.summoner.region
+      });
       const response = await this.client.api
         .makeApiRequest(`/lol/champion-mastery/v4/scores/by-summoner/${this.summoner.id}`, {
           region: this.summoner.region,

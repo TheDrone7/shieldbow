@@ -1,6 +1,7 @@
 import type { MatchTimelineData } from '../types';
 import { TimelineFrame } from './TimelineFrame';
-import type { Client } from '../client';
+import type { Collection } from '@discordjs/collection';
+import type { Item } from './Item';
 
 /**
  * A representation of the timeline data for a match.
@@ -30,14 +31,14 @@ export class MatchTimeline {
   /**
    * Creates a new match timeline instance.
    *
-   * @param client - The client that initialized the timeline.
    * @param data - The raw timeline data from the API.
+   * @param items - A collection of all items in the game.
    */
-  constructor(client: Client, data: MatchTimelineData) {
+  constructor(data: MatchTimelineData, items: Collection<string, Item>) {
     this.dataVersion = data.metadata.dataVersion;
     this.matchId = data.metadata.matchId;
     this.participantIds = data.metadata.participants;
     this.frameInterval = data.info.frameInterval;
-    this.frames = data.info.frames.map((frame) => new TimelineFrame(client, frame));
+    this.frames = data.info.frames.map((frame) => new TimelineFrame(frame, items));
   }
 }

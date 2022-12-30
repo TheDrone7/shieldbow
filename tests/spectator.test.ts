@@ -2,25 +2,22 @@ import { Client, CurrentGame } from '../dist';
 
 jest.setTimeout(300000);
 
-describe('Test Spectator v4 API', () => {
+describe('API: spectator-v4', () => {
   const client = new Client(process.env.RIOT_API_KEY!);
 
   let games: CurrentGame[];
 
   beforeAll(async () => {
-    await client.initialize({
-      region: 'na',
-      cache: false
-    });
+    await client.initialize(global.clientConfig);
     games = await client.spectator.fetchFeatured();
   });
 
-  test('Check fetching featured games', () => {
+  it('can fetch featured games', () => {
     expect(games).toBeDefined();
     expect(games.length).toBeGreaterThan(0);
   });
 
-  test('Check individual match fetching', async () => {
+  it('can fetch individual matches', async () => {
     const participant = games[0].teams.get('red')!.participants[0];
     const summoner = await client.summoners.fetchBySummonerName(participant.summonerName);
     const match = await client.spectator.fetch(summoner.id);

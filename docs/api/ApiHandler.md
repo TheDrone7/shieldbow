@@ -18,7 +18,7 @@ export declare class ApiHandler
 ### Constructor
 
 ```ts
-new ApiHandler (apiKey: string)
+new ApiHandler (client: Client, apiKey: string)
 ```
 
 Constructs a new instance of the `ApiHandler` class.
@@ -27,6 +27,7 @@ Constructs a new instance of the `ApiHandler` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
+| client | [Client](/api/Client.md) | The client to use. |
 | apiKey | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | your RIOT API key. |
 ---
 

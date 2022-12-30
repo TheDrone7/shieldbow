@@ -22,10 +22,7 @@ Implements: BaseManager&lt;Item&gt;
 ### Constructor
 
 ```ts
-new ItemManager (client: Client, cacheSettings: {
-        enable: boolean;
-        root: string;
-    })
+new ItemManager (client: Client)
 ```
 
 Constructs a new instance of the `ItemManager` class.
@@ -35,23 +32,9 @@ Constructs a new instance of the `ItemManager` class.
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | client | [Client](/api/Client.md) | The client this manager belongs to. |
-| cacheSettings | {         enable: boolean;         root: string;     } | The basic caching settings. |
 ---
 
 ### Properties
-
-#### cache
-
-A collection of the items cached in the memory.
-
-
-Only use this if you absolutely must. Prioritize using [fetch](/api/ItemManager.md#fetch) instead.
-
-
-
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/Item.md) \>
-
----
 
 #### client
 
@@ -89,6 +72,29 @@ fetch(key: string, options?: FetchOptions): Promise<Item>;
 
 ---
 
+#### .fetchAll ()
+
+Fetch all items.
+
+
+
+
+**Signature:**
+
+```ts
+fetchAll(options?: FetchOptions): Promise<Collection<string, Item>>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/Item.md) \> \>
+
+---
+
 #### .fetchByName ()
 
 Fetch an item by its name. The search is case-insensitive. The special characters are NOT ignored.
@@ -110,6 +116,27 @@ fetchByName(name: string, options?: FetchOptions): Promise<Item | undefined>;
 | options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Item](/api/Item.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
+
+---
+
+#### .fetchMany ()
+
+
+
+**Signature:**
+
+```ts
+fetchMany(keys: string[], options?: FetchOptions): Promise<Collection<string, Item>>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| keys | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)[] |  |
+| options | [FetchOptions](/api/FetchOptions.md) |  |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/Item.md) \> \>
 
 ---
 

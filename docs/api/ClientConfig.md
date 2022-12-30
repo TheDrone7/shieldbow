@@ -17,7 +17,7 @@ export interface ClientConfig
 
 #### cache
 
-The local caching settings. Alternatively, you can pass `true` or `false` to enable or disable caching without configuration.
+The caching settings. Alternatively, you can pass `true` or `false` to enable or disable caching without further configuration.
 
 
 
@@ -27,7 +27,7 @@ The local caching settings. Alternatively, you can pass `true` or `false` to ena
 
 #### fetch
 
-The data to fetch beforehand when initializing the client. This can delay the initialization but makes the rest of the processes much faster. Alternatively, you can pass `true` or `false` to enable or disable all of the data fetching.
+The data to fetch beforehand when initializing the client. This can delay the initialization but makes the rest of the processes much faster. Alternatively, you can pass `true` or `false` to enable or disable all the data fetching.
 
 
 
@@ -45,6 +45,16 @@ The locale in which to fetch all the data (defaults to region's default)
 
 ---
 
+#### logger
+
+The client's logger utility configuration. Alternatively, you can pass `true` to use the default logger configuration. Or you can pass `false` to disable logging.
+
+
+
+**Type**: [LoggerConfig](/api/LoggerConfig.md) \| [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
+
+---
+
 #### region
 
 The initial region to fetch all the data from (defaults to `na`)
@@ -52,6 +62,16 @@ The initial region to fetch all the data from (defaults to `na`)
 
 
 **Type**: [Region](/api/Region.md)
+
+---
+
+#### storage
+
+The storage settings. Alternatively, you can pass `true` or `false` to enable or disable storage without further configuration.
+
+
+
+**Type**: [StorageConfig](/api/StorageConfig.md) \| [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
 ---
 

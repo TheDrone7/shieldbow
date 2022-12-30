@@ -18,7 +18,7 @@ export declare class Team
 ### Constructor
 
 ```ts
-new Team (client: Client, data: TeamData, participants: ParticipantData[])
+new Team (client: Client, data: TeamData, participants: ParticipantData[], champions: Collection<string, Champion>, items: Collection<string, Item>)
 ```
 
 Constructs a new instance of the `Team` class.
@@ -30,6 +30,8 @@ Constructs a new instance of the `Team` class.
 | client | [Client](/api/Client.md) |  |
 | data | [TeamData](/api/TeamData.md) |  |
 | participants | [ParticipantData](/api/ParticipantData.md)[] |  |
+| champions | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/api/Champion.md) \> |  |
+| items | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/Item.md) \> |  |
 ---
 
 ### Properties

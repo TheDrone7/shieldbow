@@ -22,10 +22,7 @@ Implements: BaseManager&lt;Champion&gt;
 ### Constructor
 
 ```ts
-new ChampionManager (client: Client, cacheSettings: {
-        enable: boolean;
-        root: string;
-    })
+new ChampionManager (client: Client)
 ```
 
 Constructs a new instance of the `ChampionManager` class.
@@ -35,23 +32,9 @@ Constructs a new instance of the `ChampionManager` class.
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | client | [Client](/api/Client.md) | The client this manager belongs to. |
-| cacheSettings | {         enable: boolean;         root: string;     } | The basic caching settings. |
 ---
 
 ### Properties
-
-#### cache
-
-The champions cached in the memory.
-
-
-Only use this if you absolutely must. Prioritize using [fetch](/api/ChampionManager.md#fetch), [fetchByKey](/api/ChampionManager.md#fetchbykey), [fetchByName](/api/ChampionManager.md#fetchbyname) or [fetchAll](/api/ChampionManager.md#fetchall) instead.
-
-
-
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/api/Champion.md) \>
-
----
 
 #### client
 
@@ -60,19 +43,6 @@ The client that this manager belongs to.
 
 
 **Type**: [Client](/api/Client.md)
-
----
-
-#### rotation
-
-The champion rotations cached in the memory.
-
-
-Only use this if you absolutely must. Prioritize using [fetchRotations](/api/ChampionManager.md#fetchrotations)
-
-
-
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< 'all' \| 'new', [Champion](/api/Champion.md)[] \>
 
 ---
 
@@ -122,7 +92,7 @@ fetchAll(options?: FetchOptions): Promise<Collection<string, Champion>>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options (only `cache` affects this method). |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options (only `cache` and `store` affect this method). |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/api/Champion.md) \> \>
 
@@ -235,7 +205,7 @@ fetchByNames(names: string[], options?: FetchOptions): Promise<Collection<string
 Fetch champion rotation data from Champion v3 API.
 
 
-This is the only method that needs a valid API key in this manager.
+This is the only method that needs a valid API key in this manager. Needs access to the Champion v3 API.
 
 
 

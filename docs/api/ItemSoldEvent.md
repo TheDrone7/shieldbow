@@ -22,7 +22,7 @@ export declare class ItemSoldEvent extends TimelineEvent
 ### Constructor
 
 ```ts
-new ItemSoldEvent (client: Client, data: ItemSoldEventData)
+new ItemSoldEvent (data: ItemSoldEventData, item: Item)
 ```
 
 Constructs a new instance of the `ItemSoldEvent` class.
@@ -31,8 +31,8 @@ Constructs a new instance of the `ItemSoldEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/Client.md) | The client that fetched the match. |
 | data | [ItemSoldEventData](/api/ItemSoldEventData.md) | The raw data of the event. |
+| item | [Item](/api/Item.md) | The item that was sold. |
 ---
 
 ### Properties

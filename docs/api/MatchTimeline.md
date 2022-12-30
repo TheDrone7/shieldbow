@@ -18,7 +18,7 @@ export declare class MatchTimeline
 ### Constructor
 
 ```ts
-new MatchTimeline (client: Client, data: MatchTimelineData)
+new MatchTimeline (data: MatchTimelineData, items: Collection<string, Item>)
 ```
 
 Constructs a new instance of the `MatchTimeline` class.
@@ -27,8 +27,8 @@ Constructs a new instance of the `MatchTimeline` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/Client.md) | The client that initialized the timeline. |
 | data | [MatchTimelineData](/api/MatchTimelineData.md) | The raw timeline data from the API. |
+| items | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/Item.md) \> | A collection of all items in the game. |
 ---
 
 ### Properties

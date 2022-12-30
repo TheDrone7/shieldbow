@@ -15,16 +15,6 @@ export interface BaseManager<T>
 
 ### Properties
 
-#### cache
-
-The cache to store any data that can be avoided fetching repeatedly.
-
-
-
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< any, T \>
-
----
-
 #### client
 
 The client this manager is being used by.

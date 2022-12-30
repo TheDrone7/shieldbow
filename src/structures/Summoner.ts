@@ -112,10 +112,26 @@ export class Summoner {
     return this.client.matches.fetchMatchListByPlayer(this, options);
   }
 
+  /**
+   * Fetch the summoner's clash entries.
+   *
+   * @param options - The basic fetching options.
+   */
   fetchClashEntries(options?: FetchOptions) {
     if (options) options.region = this.region;
     else options = { region: this.region };
     return this.client.clash.fetchPlayer(this.id, options);
+  }
+
+  /**
+   * Fetch the summoner's challenges progression.
+   *
+   * @param options - The basic fetching options.
+   */
+  fetchChallenges(options?: FetchOptions) {
+    if (options) options.region = this.region;
+    else options = { region: this.region };
+    return this.client.challenges.fetchSummonerProgression(this.playerId, options);
   }
 
   /**

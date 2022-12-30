@@ -18,7 +18,7 @@ export declare class CurrentGameTeam
 ### Constructor
 
 ```ts
-new CurrentGameTeam (client: Client, bans: CurrentGameBanData[], participants: CurrentGameParticipantData[])
+new CurrentGameTeam (client: Client, bans: CurrentGameBanData[], participants: CurrentGameParticipantData[], champions: Collection<string, Champion>)
 ```
 
 Constructs a new instance of the `CurrentGameTeam` class.
@@ -30,6 +30,7 @@ Constructs a new instance of the `CurrentGameTeam` class.
 | client | [Client](/api/Client.md) | The client requesting the data. |
 | bans | [CurrentGameBanData](/api/CurrentGameBanData.md)[] | The raw bans data for this team from the API. |
 | participants | [CurrentGameParticipantData](/api/CurrentGameParticipantData.md)[] | The raw participants data for this team from the API. |
+| champions | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/api/Champion.md) \> | The champions involved in the game. |
 ---
 
 ### Properties

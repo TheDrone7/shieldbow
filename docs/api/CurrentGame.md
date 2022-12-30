@@ -18,7 +18,7 @@ export declare class CurrentGame
 ### Constructor
 
 ```ts
-new CurrentGame (client: Client, data: CurrentGameData)
+new CurrentGame (client: Client, data: CurrentGameData, champions: Collection<string, Champion>)
 ```
 
 Constructs a new instance of the `CurrentGame` class.
@@ -29,6 +29,7 @@ Constructs a new instance of the `CurrentGame` class.
 | --------- | ---- | ----------- |
 | client | [Client](/api/Client.md) | The client that requested this data. |
 | data | [CurrentGameData](/api/CurrentGameData.md) | The raw current game data from the API. |
+| champions | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/api/Champion.md) \> | The champions that are involved in the game. |
 ---
 
 ### Properties

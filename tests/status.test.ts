@@ -1,15 +1,13 @@
 import { Client } from '../dist';
 
-describe('Test client configuration update', () => {
+describe('API: lol-status-v4', () => {
   const client = new Client(process.env.RIOT_API_KEY!);
 
   beforeAll(async () => {
-    await client.initialize({
-      cache: false
-    });
+    await client.initialize(global.clientConfig);
   });
 
-  test('Check API status fetching', async () => {
+  it('can fetch API statuses', async () => {
     // TODO: Add type support.
     const status = <{ id: string; name: string }>await client.status;
     expect(status.id).toBe('NA1');

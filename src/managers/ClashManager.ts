@@ -57,6 +57,11 @@ export class ClashManager implements BaseManager<Tournament> {
     const force = options?.force ?? false;
     const cache = options?.cache ?? true;
     const region = options?.region ?? this.client.region;
+    this.client.logger?.trace(`Fetching clash tournament data for tournament ID: ${id} with options: `, {
+      force,
+      cache,
+      region
+    });
     return new Promise<Tournament>(async (resolve, reject) => {
       if (this.cache.has(id) && !force) resolve(this.cache.get(id)!);
       else {
@@ -85,6 +90,7 @@ export class ClashManager implements BaseManager<Tournament> {
   async fetchAll(options?: FetchOptions) {
     const cache = options?.cache ?? true;
     const region = options?.region ?? this.client.region;
+    this.client.logger?.trace(`Fetching all clash tournaments data with options: `, { cache, region });
     return new Promise<Tournament[]>(async (resolve, reject) => {
       const response = await this.client.api
         .makeApiRequest(`/lol/clash/v1/tournaments`, {
@@ -110,6 +116,7 @@ export class ClashManager implements BaseManager<Tournament> {
   async fetchByTeamId(teamId: string, options?: FetchOptions) {
     const cache = options?.cache ?? true;
     const region = options?.region ?? this.client.region;
+    this.client.logger?.trace(`Fetching clash tournament with team ${teamId} with options: `, { cache, region });
     return new Promise<Tournament>(async (resolve, reject) => {
       const response = await this.client.api
         .makeApiRequest(`/lol/clash/v1/tournaments/by-team/${teamId}`, {
@@ -136,6 +143,7 @@ export class ClashManager implements BaseManager<Tournament> {
     const force = options?.force ?? false;
     const cache = options?.cache ?? true;
     const region = options?.region ?? this.client.region;
+    this.client.logger?.trace(`Fetching clash team ${teamId} with options: `, { force, cache, region });
     return new Promise<TournamentTeam>(async (resolve, reject) => {
       if (this.cachedTeams.has(teamId) && !force) resolve(this.cachedTeams.get(teamId)!);
       else {
@@ -165,6 +173,7 @@ export class ClashManager implements BaseManager<Tournament> {
     const force = options?.force ?? false;
     const cache = options?.cache ?? true;
     const region = options?.region ?? this.client.region;
+    this.client.logger?.trace(`Fetching clash player ${summonerId} with options: `, { force, cache, region });
     return new Promise<TournamentPlayer[]>(async (resolve, reject) => {
       if (this.cachedPlayers.has(summonerId) && !force) resolve(this.cachedPlayers.get(summonerId)!);
       const response = await this.client.api

@@ -1,5 +1,4 @@
 import type { Champion } from './index';
-import type { Client } from '../client';
 import type { ChampionMasteryData } from '../types';
 
 /**
@@ -42,11 +41,11 @@ export class ChampionMastery {
 
   /**
    * Creates a new ChampionMastery instance.
-   * @param client - The client creating this instance.
    * @param data - The raw champion mastery data from the API.
+   * @param champion - The champion these details are for.
    */
-  constructor(client: Client, data: ChampionMasteryData) {
-    this.champion = client.champions.cache.find((c) => c.key === data.championId)!;
+  constructor(data: ChampionMasteryData, champion: Champion) {
+    this.champion = champion;
     this.level = data.championLevel;
     this.points = data.championPoints;
     this.pointsSinceLastLevel = data.championPointsSinceLastLevel;

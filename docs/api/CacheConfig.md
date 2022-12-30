@@ -1,11 +1,11 @@
 ---
 title: CacheConfig
-description: Client's data dragon cache configuration.
+description: Client's caching plugin configuration.
 ---
 
 ## CacheConfig interface
 
-Client's data dragon cache configuration.
+Client's caching plugin configuration.
 
 **Signature:**
 
@@ -15,23 +15,23 @@ export interface CacheConfig
 
 ### Properties
 
-#### enable
+#### custom
 
-Whether to store the data fetched from data dragon and other CDNs locally (defaults to `true`)
+The custom cache plugin to use. This will override the default memory cache plugin.
 
 
 
-**Type**: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
+**Type**: [ICache](/api/ICache.md)
 
 ---
 
-#### localRoot
+#### enable
 
-The directory where all the data is stored with respect to your project root. (defaults to `data`)
+Whether to enable caching of fetched data (defaults to true for all). Can be set to true to enable for all, or false to disable for all.
 
 
 
-**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
+**Type**: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) \| [ManagersConfig](/api/ManagersConfig.md)
 
 ---
 

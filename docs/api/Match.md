@@ -18,7 +18,7 @@ export declare class Match
 ### Constructor
 
 ```ts
-new Match (client: Client, data: MatchData)
+new Match (client: Client, data: MatchData, champions: Collection<string, Champion>, items: Collection<string, Item>)
 ```
 
 Constructs a new instance of the `Match` class.
@@ -29,6 +29,8 @@ Constructs a new instance of the `Match` class.
 | --------- | ---- | ----------- |
 | client | [Client](/api/Client.md) | The client requesting the data. |
 | data | [MatchData](/api/MatchData.md) | The raw match data from the API. |
+| champions | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/api/Champion.md) \> | The champions involved in the match. |
+| items | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/Item.md) \> | The items used in the match. |
 ---
 
 ### Properties

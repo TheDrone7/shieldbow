@@ -22,7 +22,7 @@ export declare class ItemDestroyedEvent extends TimelineEvent
 ### Constructor
 
 ```ts
-new ItemDestroyedEvent (client: Client, data: ItemDestroyedEventData)
+new ItemDestroyedEvent (data: ItemDestroyedEventData, item: Item)
 ```
 
 Constructs a new instance of the `ItemDestroyedEvent` class.
@@ -31,8 +31,8 @@ Constructs a new instance of the `ItemDestroyedEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/Client.md) | The client that fetched the match. |
 | data | [ItemDestroyedEventData](/api/ItemDestroyedEventData.md) | The raw data of the event. |
+| item | [Item](/api/Item.md) | The destroyed item. |
 ---
 
 ### Properties

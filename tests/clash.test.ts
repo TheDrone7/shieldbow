@@ -1,23 +1,20 @@
 import { Client, Tournament } from '../dist';
 
-describe('Test Clash v1 API', () => {
+describe('API: clash-v1', () => {
   const client = new Client(process.env.RIOT_API_KEY!);
 
   let tournaments: Tournament[];
 
   beforeAll(async () => {
-    await client.initialize({
-      region: 'na',
-      cache: false
-    });
+    await client.initialize(global.clientConfig);
     tournaments = await client.clash.fetchAll();
   });
 
-  test('Check fetching all tournaments', () => {
+  it('can fetch all clash tournaments', () => {
     expect(tournaments).toBeDefined();
   });
 
-  test('Check fetching tournament by ID', async () => {
+  it('can fetch clash tournament by ID', async () => {
     if (tournaments.length) {
       const t = await client.clash.fetch(tournaments[0].id);
       const t2 = await client.clash.fetch(tournaments[0].id, { force: true });

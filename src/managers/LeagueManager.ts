@@ -57,6 +57,11 @@ export class LeagueManager implements BaseManager<Collection<QueueType, LeagueEn
     const force = options?.force ?? false;
     const cache = options?.cache ?? this.cache;
     const region = options?.region ?? this.client.region;
+    this.client.logger?.trace(`Fetching league entries for summoner ID: ${id} with options: `, {
+      force,
+      cache,
+      region
+    });
     return new Promise<Collection<QueueType, LeagueEntry>>(async (resolve, reject) => {
       if (this.cache.has(id) && !force) resolve(this.cache.get(id)!);
       else {
@@ -98,6 +103,10 @@ export class LeagueManager implements BaseManager<Collection<QueueType, LeagueEn
     const cache = options?.cache ?? this.cache;
     const region = options?.region ?? this.client.region;
     const page = options?.page ?? 1;
+    this.client.logger?.trace(
+      `Fetching league entries for queue: ${queue}, tier: ${tier}, division: ${division}, page: ${page} with options: `,
+      { cache, region }
+    );
     return new Promise<Collection<string, LeagueEntry>>(async (resolve, reject) => {
       const response = await this.client.api
         .makeApiRequest(`/lol/league-exp/v4/entries/${queue}/${tier}/${division}?page=${page}`, {
@@ -135,6 +144,11 @@ export class LeagueManager implements BaseManager<Collection<QueueType, LeagueEn
     const force = options?.force ?? true;
     const cache = options?.cache ?? this.cache;
     const region = options?.region ?? this.client.region;
+    this.client.logger?.trace(`Fetching league entries for league ID: ${leagueId} with options: `, {
+      force,
+      cache,
+      region
+    });
     return new Promise<LeagueList>(async (resolve, reject) => {
       if (this.listCache.has(leagueId) && !force) resolve(this.listCache.get(leagueId)!);
       else {

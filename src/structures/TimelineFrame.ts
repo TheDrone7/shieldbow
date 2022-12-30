@@ -1,7 +1,8 @@
 import { ParticipantFrame } from './ParticipantFrame';
 import type { MatchTimelineFrameData } from '../types';
 import { type TimelineEvent, TimelineEventFactory } from './TimelineEvent';
-import type { Client } from '../client';
+import type { Collection } from '@discordjs/collection';
+import type { Item } from './Item';
 
 /**
  * A representation of a frame in a match timeline.
@@ -18,11 +19,11 @@ export class TimelineFrame {
 
   /**
    * Create a new timeline frame.
-   * @param client - The client that created this frame.
    * @param data - The raw data from the API.
+   * @param items - A collection of all items in the game.
    */
-  constructor(client: Client, data: MatchTimelineFrameData) {
-    this.events = data.events.map((event) => TimelineEventFactory.create(client, event));
+  constructor(data: MatchTimelineFrameData, items: Collection<string, Item>) {
+    this.events = data.events.map((event) => TimelineEventFactory.create(event, items));
     this.participantFrames = Object.values(data.participantFrames).map((frame) => new ParticipantFrame(frame));
   }
 }

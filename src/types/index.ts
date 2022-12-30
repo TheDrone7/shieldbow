@@ -56,7 +56,20 @@ export type Locales = typeof locale[number];
 
 export * from './LeagueConstants';
 
-export type { ClientConfig, CacheConfig, PreFetchConfig } from './ClientConfig';
+export type { ILogger, LogLevel } from './ILogger';
+export { LoggerLevel } from './ILogger';
+
+export type { ICache } from './ICache';
+export type { IStorage } from './IStorage';
+
+export type {
+  ClientConfig,
+  CacheConfig,
+  PreFetchConfig,
+  LoggerConfig,
+  ManagersConfig,
+  StorageConfig
+} from './ClientConfig';
 export type { MatchByPlayerOptions } from './MatchByPlayerOptions';
 export type { FetchOptions } from './FetchOptions';
 
@@ -110,6 +123,16 @@ export type {
   ChampionTransformEventData,
   DragonSoulGivenEventData
 } from './TimelineEvent';
+export type { ChallengeConfigData, LocalizedChallengeData, LocalizedChallengeNameData } from './ChallengeConfig';
+export type { ChallengeRankData } from './ChallengeRank';
+export type {
+  SummonerChallengeData,
+  ChallengePreferencesData,
+  ChallengeCategoryData,
+  ChallengeProgressionData,
+  TotalChallengePointsData,
+  CategoryName
+} from './SummonerChallenge';
 
 export type { ChampionData, MerakiChampion, ChampionRating, ChampionPassive, ChampionPricing } from './Champion';
 export type { ChampionSkinData, MerakiSkin, SkinPricing, SkinChroma, MerakiSkinChroma } from './ChampionSkin';

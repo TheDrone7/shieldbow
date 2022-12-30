@@ -9,6 +9,7 @@ export default {
   testEnvironment: 'node',
   globals: {
     'ts-jest': {
+      tsconfig: 'tsconfig.test.json',
       useESM: true
     }
   },

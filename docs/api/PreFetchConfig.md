@@ -1,11 +1,11 @@
 ---
 title: PreFetchConfig
-description: Client's pre-fetching data from data dragon configuration
+description: Client's pre-fetching data from data dragon configuration.
 ---
 
 ## PreFetchConfig interface
 
-Client's pre-fetching data from data dragon configuration
+Client's pre-fetching data from data dragon configuration.
 
 **Signature:**
 

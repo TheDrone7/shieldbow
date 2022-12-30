@@ -90,16 +90,6 @@ See [rawDetails](/api/Item.md#rawdetails) if you want the raw data.
 
 ---
 
-#### from
-
-The components of this item. You need to buy these item and spend additional gold to get this item.
-
-
-
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/Item.md) \>
-
----
-
 #### goldValue
 
 The value of this item in terms of in-game gold.
@@ -150,16 +140,6 @@ Whether this item is listed in the in-game store.
 
 ---
 
-#### into
-
-A collection of items the current item is a component of.
-
-
-
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/Item.md) \>
-
----
-
 #### kind
 
 The kind of item this is in-game. By default, all items are set to be `Basic`. There might be some issues with items that do not have their `depth` set in the data dragon JSON.
@@ -203,16 +183,6 @@ If this is not undefined, then this item can only be bought/owned by this champi
 
 ---
 
-#### specialRecipe
-
-If this is not undefined, you cannot buy this item from the store. Instead, you need to buy the `specialRecipe` item and complete a quest to get it.
-
-
-
-**Type**: [Item](/api/Item.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
-
----
-
 #### stacks
 
 If this has a value, it means this item can be stacked in the same item slot. The value indicates the quantity of this item you can store in one slot.
@@ -240,6 +210,59 @@ Some tags assigned to this item.
 
 
 **Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)[]
+
+---
+
+### Methods
+
+#### .from ()
+
+The components of this item. You need to buy these item and spend additional gold to get this item.
+
+
+
+**Signature:**
+
+```ts
+from(): Promise<import("@discordjs/collection").Collection<string, Item>>;
+```
+
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< import("@discordjs/collection").Collection \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/Item.md) \> \>
+
+---
+
+#### .into ()
+
+A collection of items the current item is a component of.
+
+
+
+**Signature:**
+
+```ts
+into(): Promise<import("@discordjs/collection").Collection<string, Item>>;
+```
+
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< import("@discordjs/collection").Collection \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/Item.md) \> \>
+
+---
+
+#### .specialRecipe ()
+
+If this is defined, you cannot buy this item from the store. Instead, you need to buy the `specialRecipe` item and complete a quest to get it.
+
+
+
+**Signature:**
+
+```ts
+specialRecipe(): Promise<Item | undefined>;
+```
+
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Item](/api/Item.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
 
 ---
 
