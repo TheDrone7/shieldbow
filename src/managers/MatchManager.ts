@@ -72,8 +72,8 @@ export class MatchManager implements BaseManager<Match> {
 
             const items = await this.client.items.fetchAll();
             if (this.client.summonerSpells.cache.size === 0) await this.client.summonerSpells.fetchByName('Flash');
-            if (this.client.runes.cache.size === 0) await this.client.runes.fetch('Domination');
-            const match = new Match(this.client, data, bannedChamps.concat(participantChamps), items);
+            const runeTrees = await this.client.runes.fetchAll();
+            const match = new Match(this.client, data, bannedChamps.concat(participantChamps), items, runeTrees);
             if (cache) this.cache.set(id, match);
             resolve(match);
           } catch (e: any) {

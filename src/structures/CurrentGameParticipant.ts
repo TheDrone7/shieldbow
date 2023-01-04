@@ -5,6 +5,7 @@ import type { Champion } from './Champion';
 import { Collection } from '@discordjs/collection';
 import { CurrentGamePerks } from './CurrentGamePerks';
 import type { Summoner } from './Summoner';
+import type { RuneTree } from './RuneTree';
 
 /**
  * A representation of a participant in a live game.
@@ -48,8 +49,14 @@ export class CurrentGameParticipant {
    * @param client - The client that requested this data.
    * @param data - The raw current game participant data from the API.
    * @param champ - The champion being played by this participant.
+   * @param runeTrees - The collection of the runes in the game.
    */
-  constructor(client: Client, data: CurrentGameParticipantData, champ: Champion) {
+  constructor(
+    client: Client,
+    data: CurrentGameParticipantData,
+    champ: Champion,
+    runeTrees: Collection<string, RuneTree>
+  ) {
     this._client = client;
     this.teamId = data.teamId;
     this.summonerSpells = new Collection<'D' | 'F', SummonerSpell>();
@@ -59,7 +66,7 @@ export class CurrentGameParticipant {
     this.bot = data.bot;
     this.summonerName = data.summonerName;
     this.profileIcon = `${client.cdnBase}${client.version}/img/profileicon/${data.profileIconId}.png`;
-    if (data.perks) this.perks = new CurrentGamePerks(client, data.perks);
+    if (data.perks) this.perks = new CurrentGamePerks(runeTrees, data.perks);
   }
 
   /**

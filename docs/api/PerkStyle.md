@@ -18,7 +18,7 @@ export declare class PerkStyle
 ### Constructor
 
 ```ts
-new PerkStyle (client: Client, data: {
+new PerkStyle (runeTrees: Collection<string, RuneTree>, data: {
         description: string;
         selections: {
             perk: number;
@@ -36,7 +36,7 @@ Constructs a new instance of the `PerkStyle` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/Client.md) | The client requesting this data. |
+| runeTrees | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/api/RuneTree.md) \> | The collection of rune trees in the game. |
 | data | {         description: string;         selections: {             perk: number;             var1: number;             var2: number;             var3: number;         }[];         style: number;     } | The raw perk style data from the API. |
 ---
 

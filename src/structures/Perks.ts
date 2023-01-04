@@ -1,8 +1,8 @@
 import type { PerksData, StatPerk } from '../types';
 import { statPerks } from '../util';
-import type { Client } from '../client';
 import type { RuneTree } from './RuneTree';
 import type { Rune } from './Rune';
+import type { Collection } from '@discordjs/collection';
 
 /**
  * A representation of the stat perks selected by the summoner.
@@ -37,19 +37,20 @@ export class PerkStyle {
 
   /**
    * Creates a new perk style instance.
-   * @param client - The client requesting this data.
+   * @param runeTrees - The collection of rune trees in the game.
    * @param data - The raw perk style data from the API.
    */
   constructor(
-    client: Client,
+    runeTrees: Collection<string, RuneTree>,
     data: {
       description: string;
       selections: { perk: number; var1: number; var2: number; var3: number }[];
       style: number;
     }
   ) {
-    this.tree = client.runes.cache.find((t) => t.id === data.style)!;
-    this.selected = data.selections.map((s) => client.runes.cachedRunes.find((r) => r.id === s.perk)!);
+    this.tree = runeTrees.find((t) => t.id === data.style)!;
+    const runes = this.tree.slots.map((r) => [...r.values()]).flat();
+    this.selected = data.selections.map((s) => runes.find((r) => r.id === s.perk)!);
   }
 }
 
@@ -72,16 +73,16 @@ export class Perks {
 
   /**
    * Creates a new perks instance.
-   * @param client - The client requesting this data.
+   * @param runeTrees - The collection of rune trees in the game.
    * @param data - The raw perks data from the API.
    */
-  constructor(client: Client, data: PerksData) {
+  constructor(runeTrees: Collection<string, RuneTree>, data: PerksData) {
     this.stats = {
       flex: statPerks[data.statPerks.flex],
       offense: statPerks[data.statPerks.flex],
       defense: statPerks[data.statPerks.defense]
     };
-    this.primaryStyle = new PerkStyle(client, data.styles.find((p) => p.description === 'primaryStyle')!);
-    this.secondaryStyle = new PerkStyle(client, data.styles.find((p) => p.description === 'subStyle')!);
+    this.primaryStyle = new PerkStyle(runeTrees, data.styles.find((p) => p.description === 'primaryStyle')!);
+    this.secondaryStyle = new PerkStyle(runeTrees, data.styles.find((p) => p.description === 'subStyle')!);
   }
 }

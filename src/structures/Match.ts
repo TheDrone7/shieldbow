@@ -5,6 +5,7 @@ import { Team } from './Team';
 import type { MatchTimeline } from './MatchTimeline';
 import type { Champion } from './Champion';
 import type { Item } from './Item';
+import type { RuneTree } from './RuneTree';
 
 /**
  * A representation of a league of legends match.
@@ -86,12 +87,14 @@ export class Match {
    * @param data - The raw match data from the API.
    * @param champions - The champions involved in the match.
    * @param items - The items used in the match.
+   * @param runeTrees - The rune trees in the game.
    */
   constructor(
     client: Client,
     data: MatchData,
     champions: Collection<string, Champion>,
-    items: Collection<string, Item>
+    items: Collection<string, Item>,
+    runeTrees: Collection<string, RuneTree>
   ) {
     if (this._isDataMalformed(data)) throw new Error('Match data received is malformed.');
     this.client = client;
@@ -115,8 +118,8 @@ export class Match {
     const blueTeamParticipants = data.info.participants.filter((p) => p.teamId === 100);
     const redTeamParticipants = data.info.participants.filter((p) => p.teamId === 200);
     this.teams = new Collection<'blue' | 'red', Team>();
-    this.teams.set('blue', new Team(client, blueTeamData, blueTeamParticipants, champions, items));
-    this.teams.set('red', new Team(client, redTeamData, redTeamParticipants, champions, items));
+    this.teams.set('blue', new Team(client, blueTeamData, blueTeamParticipants, champions, items, runeTrees));
+    this.teams.set('red', new Team(client, redTeamData, redTeamParticipants, champions, items, runeTrees));
   }
 
   /**

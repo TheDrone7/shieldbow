@@ -35,7 +35,7 @@ export class ItemManager implements BaseManager<Item> {
         const response = await this.client.http.get(`${this.client.version}/data/${this.client.locale}/item.json`);
         if (response.status !== 200) reject('Unable to fetch items from Data dragon');
         else {
-          if (options.store) this.client.storage.save({ data: response.data.data }, storagePath, 'items');
+          if (options.store) await this.client.storage.save({ data: response.data.data }, storagePath, 'items');
           resolve(response.data.data);
         }
       }
@@ -69,14 +69,15 @@ export class ItemManager implements BaseManager<Item> {
    * @param options - The basic fetching options.
    */
   async fetch(key: string, options?: FetchOptions) {
-    const force = options?.force ?? false;
+    const opts = parseFetchOptions(this.client, 'items', options);
+    const { force } = opts;
     this.client.logger?.trace(`Fetching item ${key}`);
     return new Promise<Item>(async (resolve, reject) => {
       const exists = await this.client.cache.has(`item:${key}`);
       if (exists && !force) resolve(await this.client.cache.get(`item:${key}`)!);
       else {
-        const items = await this.fetchAll(options);
-        if (items.has(key)) resolve(items.get(key)!);
+        const items = await this.fetchAll(opts).catch(reject);
+        if (items && items.has(key)) resolve(items.get(key)!);
         else reject('There is no item with that ID');
       }
     });

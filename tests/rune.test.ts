@@ -32,7 +32,7 @@ describe('DRAGON: runes', () => {
   });
 
   it('can cache runes', async () => {
-    expect(client.runes.cache.get('Domination')?.name).toBe(domination.name);
+    expect((await client.cache.get<RuneTree>('rune:Domination'))?.name).toBe(domination.name);
   });
 
   it('can pre-fetch runes', async () => {
@@ -43,7 +43,6 @@ describe('DRAGON: runes', () => {
         runes: true
       }
     });
-    expect(client2.runes.cache.size).toBe(5);
-    expect(client2.runes.cachedRunes.length).toBeGreaterThan(50);
+    expect((await client.cache.keys()).filter((k) => k.startsWith('rune:')).length).toBe(5);
   });
 });

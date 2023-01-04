@@ -2,56 +2,32 @@ import type { Client } from '../client';
 import type { BaseManager, FetchOptions, RuneTreeData } from '../types';
 import { Rune, RuneTree } from '../structures';
 import { Collection } from '@discordjs/collection';
-import { StorageManager } from './index';
-import path from 'path';
+import { parseFetchOptions } from '../util';
 
 /**
  * A rune trees manager - to fetch and manage rune trees data.
  */
 export class RuneTreeManager implements BaseManager<RuneTree> {
   /**
-   * A collection of the rune trees cached in the memory.
-   *
-   * Only use this if you absolutely must.
-   * Prioritize using {@link RuneTreeManager.fetch | fetch} instead.
-   */
-  readonly cache: Collection<string, RuneTree>;
-  /**
    * The client this manager belongs to.
    */
   readonly client: Client;
-  private readonly _runesData?: StorageManager;
 
   /**
    * Create a new rune trees manager.
    * @param client - The client this manager belongs to.
-   * @param cacheSettings - The basic caching settings.
    */
-  constructor(client: Client, cacheSettings: { enable: boolean; root: string }) {
+  constructor(client: Client) {
     this.client = client;
-    this.cache = new Collection<string, RuneTree>();
-    if (cacheSettings.enable) this._runesData = new StorageManager(client, 'dDragon/runes', cacheSettings.root);
   }
 
-  /**
-   * An array of runes that have been saved in the cache.
-   *
-   * This is similar to the cache but the cache is a collection of Rune Trees and this is an array of runes.
-   *
-   * Only use this if you absolutely must.
-   * Prioritize using {@link RuneTreeManager.fetchRune | fetchRune} instead.
-   */
-  get cachedRunes(): Rune[] {
-    return this.cache.map((t) => t.slots.map((r) => [...r.values()])).flat(2);
-  }
-
-  private async _fetchLocalRunes() {
-    if (this._runesData)
-      this._runesData.pathName = path.join('dDragon', this.client.version, this.client.locale, 'runes');
+  private async _fetchLocalRunes(options: FetchOptions) {
+    const storagePath = ['runes', this.client.patch, this.client.locale].join(':');
     return new Promise(async (resolve, reject) => {
       this.client.logger?.trace(`Fetching runes from local storage`);
-      const data = this._runesData?.fetch('runes');
-      if (data) resolve(data);
+      const data = this.client.storage.fetch<RuneTreeData[]>(storagePath, 'runes');
+      const result = 'then' in data ? await data.catch(() => undefined) : data;
+      if (result) resolve(result);
       else {
         this.client.logger?.trace(`Fetching runes from DDragon`);
         const response = await this.client.http.get(
@@ -59,23 +35,39 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
         );
         if (response.status !== 200) reject('Unable to fetch runes from Data dragon');
         else {
-          this._runesData?.store('runes', response.data);
+          if (options.store) await this.client.storage.save(response.data, storagePath, 'runes');
           resolve(response.data);
         }
       }
     });
   }
 
-  private async _fetchAll(options?: FetchOptions) {
-    return new Promise(async (resolve, reject) => {
-      const cache = options?.cache ?? true;
-      const runeTrees = <RuneTreeData[]>await this._fetchLocalRunes().catch(reject);
+  /**
+   * Fetch all rune trees.
+   * @param options - The basic fetching options.
+   */
+  async fetchAll(options?: FetchOptions) {
+    const opts = parseFetchOptions(this.client, 'runes', options);
+    const { cache } = opts;
+    return new Promise<Collection<string, RuneTree>>(async (resolve, reject) => {
+      const runeTrees = <RuneTreeData[]>await this._fetchLocalRunes(opts).catch(reject);
+      const result = new Collection<string, RuneTree>();
       for (const tree of runeTrees) {
         const runeTree = new RuneTree(this.client, tree);
-        if (cache) this.cache.set(runeTree.key, runeTree);
+        result.set(runeTree.key, runeTree);
+        if (cache) await this.client.cache.set(`rune:${runeTree.key}`, runeTree);
       }
-      resolve(this.cache);
+      resolve(result);
     });
+  }
+
+  /**
+   * Fetch all runes.
+   * @param options - The basic fetching options.
+   */
+  async fetchAllRunes(options?: FetchOptions): Promise<Rune[]> {
+    const runeTrees = await this.fetchAll(options);
+    return runeTrees.map((t) => t.slots.map((r) => [...r.values()])).flat(2);
   }
 
   /**
@@ -85,12 +77,15 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
    * @param options - Additional fetch options.
    */
   async fetch(key: string, options?: FetchOptions) {
-    const force = options?.force ?? false;
+    const opts = parseFetchOptions(this.client, 'runes', options);
+    const { force } = opts;
+    this.client.logger?.trace(`Fetching rune tree ${key}`);
     return new Promise<RuneTree>(async (resolve, reject) => {
-      if (this.cache.has(key) && !force) resolve(this.cache.get(key)!);
+      const exists = await this.client.cache.has(`rune:${key}`);
+      if (exists && !force) resolve(await this.client.cache.get(`rune:${key}`));
       else {
-        await this._fetchAll(options).catch(reject);
-        if (this.cache.has(key)) resolve(this.cache.get(key)!);
+        const runeTrees = await this.fetchAll(opts).catch(reject);
+        if (runeTrees && runeTrees.has(key)) resolve(runeTrees.get(key)!);
         else reject('There is no rune tree with that key');
       }
     });
@@ -103,14 +98,12 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
    * @param options - Additional fetch options.
    */
   async fetchRune(key: string, options?: FetchOptions) {
-    const force = options?.force ?? false;
+    const opts = parseFetchOptions(this.client, 'runes', options);
     return new Promise<Rune>(async (resolve, reject) => {
-      const rune = this.cachedRunes.find((r) => r.key === key);
-      if (rune && force) resolve(rune!);
-      else {
-        if (!this.cache.size) await this._fetchAll(options).catch(reject);
-        const rune = this.cachedRunes.find((r) => r.key === key);
-        if (rune) resolve(rune!);
+      const runes = await this.fetchAllRunes(opts).catch(reject);
+      if (runes) {
+        const rune = runes.find((r) => r.key === key);
+        if (rune) resolve(rune);
         else reject('There is no rune with that key');
       }
     });
@@ -135,9 +128,8 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
    * @param options - The basic fetching options.
    */
   async fetchByName(name: string, options?: FetchOptions) {
-    const force = options?.force ?? false;
-    if (!this.cache.size || force) await this._fetchAll(options);
-    return this.cache.find((i) => i.name.toLowerCase().includes(name.toLowerCase()));
+    const runeTrees = await this.fetchAll(options).catch(() => undefined);
+    return runeTrees?.find((i) => i.name.toLowerCase().includes(name.toLowerCase()));
   }
 
   /**
@@ -159,9 +151,8 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
    * @param options - The basic fetching options.
    */
   async fetchRuneByName(name: string, options?: FetchOptions) {
-    const force = options?.force ?? false;
-    if (!this.cache.size || force) await this._fetchAll(options);
-    return this.cachedRunes.find((i) => i.name.toLowerCase().includes(name.toLowerCase()));
+    const runes = await this.fetchAllRunes(options).catch(() => undefined);
+    return runes?.find((i) => i.name.toLowerCase().includes(name.toLowerCase()));
   }
 
   /**
@@ -181,9 +172,8 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
    * @param options - The basic fetching options.
    */
   async fetchById(id: number, options?: FetchOptions) {
-    const force = options?.force ?? false;
-    if (!this.cache.size || force) await this._fetchAll(options);
-    return this.cache.find((i) => i.id === id);
+    const runeTrees = await this.fetchAll(options).catch(() => undefined);
+    return runeTrees?.find((i) => i.id === id);
   }
 
   /**
@@ -203,8 +193,7 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
    * @param options - The basic fetching options.
    */
   async fetchRuneById(id: number, options?: FetchOptions) {
-    const force = options?.force ?? false;
-    if (!this.cache.size || force) await this._fetchAll(options);
-    return this.cachedRunes.find((i) => i.id === id);
+    const runes = await this.fetchAllRunes(options).catch(() => undefined);
+    return runes?.find((i) => i.id === id);
   }
 }

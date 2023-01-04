@@ -91,7 +91,7 @@ export class Client {
 
     this._champions = new ChampionManager(this);
     this._items = new ItemManager(this);
-    this._runes = new RuneTreeManager(this, { enable: true, root: 'data' });
+    this._runes = new RuneTreeManager(this);
     this._summonerSpells = new SummonerSpellManager(this, { enable: true, root: 'data' });
     this._summoners = new SummonerManager(this);
     this._accounts = new AccountManager(this);

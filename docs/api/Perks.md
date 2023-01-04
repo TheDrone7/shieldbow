@@ -18,7 +18,7 @@ export declare class Perks
 ### Constructor
 
 ```ts
-new Perks (client: Client, data: PerksData)
+new Perks (runeTrees: Collection<string, RuneTree>, data: PerksData)
 ```
 
 Constructs a new instance of the `Perks` class.
@@ -27,7 +27,7 @@ Constructs a new instance of the `Perks` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/Client.md) | The client requesting this data. |
+| runeTrees | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/api/RuneTree.md) \> | The collection of rune trees in the game. |
 | data | [PerksData](/api/PerksData.md) | The raw perks data from the API. |
 ---
 

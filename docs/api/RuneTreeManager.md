@@ -22,10 +22,7 @@ Implements: BaseManager&lt;RuneTree&gt;
 ### Constructor
 
 ```ts
-new RuneTreeManager (client: Client, cacheSettings: {
-        enable: boolean;
-        root: string;
-    })
+new RuneTreeManager (client: Client)
 ```
 
 Constructs a new instance of the `RuneTreeManager` class.
@@ -35,39 +32,9 @@ Constructs a new instance of the `RuneTreeManager` class.
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | client | [Client](/api/Client.md) | The client this manager belongs to. |
-| cacheSettings | {         enable: boolean;         root: string;     } | The basic caching settings. |
 ---
 
 ### Properties
-
-#### cache
-
-A collection of the rune trees cached in the memory.
-
-
-Only use this if you absolutely must. Prioritize using [fetch](/api/RuneTreeManager.md#fetch) instead.
-
-
-
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/api/RuneTree.md) \>
-
----
-
-#### cachedRunes
-
-An array of runes that have been saved in the cache.
-
-
-This is similar to the cache but the cache is a collection of Rune Trees and this is an array of runes.
-
-
-Only use this if you absolutely must. Prioritize using [fetchRune](/api/RuneTreeManager.md#fetchrune) instead.
-
-
-
-**Type**: [Rune](/api/Rune.md)[]
-
----
 
 #### client
 
@@ -102,6 +69,52 @@ fetch(key: string, options?: FetchOptions): Promise<RuneTree>;
 | options | [FetchOptions](/api/FetchOptions.md) | Additional fetch options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [RuneTree](/api/RuneTree.md) \>
+
+---
+
+#### .fetchAll ()
+
+Fetch all rune trees.
+
+
+
+
+**Signature:**
+
+```ts
+fetchAll(options?: FetchOptions): Promise<Collection<string, RuneTree>>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/api/RuneTree.md) \> \>
+
+---
+
+#### .fetchAllRunes ()
+
+Fetch all runes.
+
+
+
+
+**Signature:**
+
+```ts
+fetchAllRunes(options?: FetchOptions): Promise<Rune[]>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Rune](/api/Rune.md)[] \>
 
 ---
 

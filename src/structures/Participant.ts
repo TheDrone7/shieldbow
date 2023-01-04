@@ -7,6 +7,7 @@ import type { Item } from './Item';
 import { Summoner } from './Summoner';
 import type { SummonerSpell } from './SummonerSpell';
 import { Perks } from './Perks';
+import type { RuneTree } from './RuneTree';
 
 /**
  * The participant's turret interaction information.
@@ -455,10 +456,17 @@ export class Participant {
    * @param data - The raw participant data from the API.
    * @param champ - The champion played by the participant.
    * @param items - The items purchased by the participant.
+   * @param runeTrees - The rune trees in the game.
    */
-  constructor(client: Client, data: ParticipantData, champ: Champion, items: Collection<string, Item>) {
+  constructor(
+    client: Client,
+    data: ParticipantData,
+    champ: Champion,
+    items: Collection<string, Item>,
+    runeTrees: Collection<string, RuneTree>
+  ) {
     this.id = data.participantId;
-    this.perks = new Perks(client, data.perks);
+    this.perks = new Perks(runeTrees, data.perks);
 
     this.challenges = data.challenges;
 
