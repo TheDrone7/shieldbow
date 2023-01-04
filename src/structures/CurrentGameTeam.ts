@@ -4,6 +4,7 @@ import type { Champion } from './Champion';
 import { CurrentGameParticipant } from './CurrentGameParticipant';
 import type { Collection } from '@discordjs/collection';
 import type { RuneTree } from './RuneTree';
+import type { SummonerSpell } from './SummonerSpell';
 
 /**
  * Current game's team's champion ban information.
@@ -47,13 +48,15 @@ export class CurrentGameTeam {
    * @param participants - The raw participants data for this team from the API.
    * @param champions - The champions involved in the game.
    * @param runeTrees - The collection of the runes in the game.
+   * @param summonerSpells - The collection of the summoner spells in the game.
    */
   constructor(
     client: Client,
     bans: CurrentGameBanData[],
     participants: CurrentGameParticipantData[],
     champions: Collection<string, Champion>,
-    runeTrees: Collection<string, RuneTree>
+    runeTrees: Collection<string, RuneTree>,
+    summonerSpells: Collection<string, SummonerSpell>
   ) {
     this.id = participants[0].teamId;
     this.side = this.id === 100 ? 'blue' : 'red';
@@ -62,7 +65,8 @@ export class CurrentGameTeam {
       turn: b.pickTurn
     }));
     this.participants = participants.map(
-      (p) => new CurrentGameParticipant(client, p, champions.find((c) => c.key === p.championId)!, runeTrees)
+      (p) =>
+        new CurrentGameParticipant(client, p, champions.find((c) => c.key === p.championId)!, runeTrees, summonerSpells)
     );
   }
 }

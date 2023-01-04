@@ -50,18 +50,20 @@ export class CurrentGameParticipant {
    * @param data - The raw current game participant data from the API.
    * @param champ - The champion being played by this participant.
    * @param runeTrees - The collection of the runes in the game.
+   * @param summonerSpells - The collection of the summoner spells in the game.
    */
   constructor(
     client: Client,
     data: CurrentGameParticipantData,
     champ: Champion,
-    runeTrees: Collection<string, RuneTree>
+    runeTrees: Collection<string, RuneTree>,
+    summonerSpells: Collection<string, SummonerSpell>
   ) {
     this._client = client;
     this.teamId = data.teamId;
     this.summonerSpells = new Collection<'D' | 'F', SummonerSpell>();
-    this.summonerSpells.set('D', client.summonerSpells.cache.find((s) => s.key === data.spell1Id)!);
-    this.summonerSpells.set('F', client.summonerSpells.cache.find((s) => s.key === data.spell2Id)!);
+    this.summonerSpells.set('D', summonerSpells.find((s) => s.key === data.spell1Id)!);
+    this.summonerSpells.set('F', summonerSpells.find((s) => s.key === data.spell2Id)!);
     this.champion = champ;
     this.bot = data.bot;
     this.summonerName = data.summonerName;

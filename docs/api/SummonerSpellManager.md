@@ -22,10 +22,7 @@ Implements: BaseManager&lt;SummonerSpell&gt;
 ### Constructor
 
 ```ts
-new SummonerSpellManager (client: Client, cacheSettings: {
-        enable: boolean;
-        root: string;
-    })
+new SummonerSpellManager (client: Client)
 ```
 
 Constructs a new instance of the `SummonerSpellManager` class.
@@ -35,23 +32,9 @@ Constructs a new instance of the `SummonerSpellManager` class.
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | client | [Client](/api/Client.md) | The client this manager belongs to. |
-| cacheSettings | {         enable: boolean;         root: string;     } | The cache settings to use. |
 ---
 
 ### Properties
-
-#### cache
-
-A collection of the summoner spells cached in the memory.
-
-
-Only use this if you absolutely must. Prioritize using [fetch](/api/SummonerSpellManager.md#fetch) instead.
-
-
-
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [SummonerSpell](/api/SummonerSpell.md) \>
-
----
 
 #### client
 
@@ -86,6 +69,26 @@ fetch(key: string, options?: FetchOptions): Promise<SummonerSpell>;
 | options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [SummonerSpell](/api/SummonerSpell.md) \>
+
+---
+
+#### .fetchAll ()
+
+
+
+**Signature:**
+
+```ts
+fetchAll(options?: FetchOptions): Promise<Collection<string, SummonerSpell>>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| options | [FetchOptions](/api/FetchOptions.md) |  |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [SummonerSpell](/api/SummonerSpell.md) \> \>
 
 ---
 

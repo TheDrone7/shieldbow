@@ -4,6 +4,7 @@ import { Collection } from '@discordjs/collection';
 import { CurrentGameTeam } from './CurrentGameTeam';
 import type { Champion } from './Champion';
 import type { RuneTree } from './RuneTree';
+import type { SummonerSpell } from './SummonerSpell';
 
 /**
  * A representation of an ongoing game.
@@ -59,12 +60,14 @@ export class CurrentGame {
    * @param data - The raw current game data from the API.
    * @param champions - The champions that are involved in the game.
    * @param runeTrees - The collection of the runes in the game.
+   * @param summonerSpells - The collection of the summoner spells in the game.
    */
   constructor(
     client: Client,
     data: CurrentGameData,
     champions: Collection<string, Champion>,
-    runeTrees: Collection<string, RuneTree>
+    runeTrees: Collection<string, RuneTree>,
+    summonerSpells: Collection<string, SummonerSpell>
   ) {
     this.id = data.gameId;
     this.type = client.gameTypes.find((t) => t.gametype === data.gameType)!;
@@ -83,7 +86,8 @@ export class CurrentGame {
         data.bannedChampions.filter((c) => c.teamId === 100),
         data.participants.filter((p) => p.teamId === 100),
         champions,
-        runeTrees
+        runeTrees,
+        summonerSpells
       )
     );
     this.teams.set(
@@ -93,7 +97,8 @@ export class CurrentGame {
         data.bannedChampions.filter((c) => c.teamId === 200),
         data.participants.filter((p) => p.teamId === 200),
         champions,
-        runeTrees
+        runeTrees,
+        summonerSpells
       )
     );
   }

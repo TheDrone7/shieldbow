@@ -18,7 +18,7 @@ export declare class CurrentGameParticipant
 ### Constructor
 
 ```ts
-new CurrentGameParticipant (client: Client, data: CurrentGameParticipantData, champ: Champion, runeTrees: Collection<string, RuneTree>)
+new CurrentGameParticipant (client: Client, data: CurrentGameParticipantData, champ: Champion, runeTrees: Collection<string, RuneTree>, summonerSpells: Collection<string, SummonerSpell>)
 ```
 
 Constructs a new instance of the `CurrentGameParticipant` class.
@@ -31,6 +31,7 @@ Constructs a new instance of the `CurrentGameParticipant` class.
 | data | [CurrentGameParticipantData](/api/CurrentGameParticipantData.md) | The raw current game participant data from the API. |
 | champ | [Champion](/api/Champion.md) | The champion being played by this participant. |
 | runeTrees | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/api/RuneTree.md) \> | The collection of the runes in the game. |
+| summonerSpells | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [SummonerSpell](/api/SummonerSpell.md) \> | The collection of the summoner spells in the game. |
 ---
 
 ### Properties

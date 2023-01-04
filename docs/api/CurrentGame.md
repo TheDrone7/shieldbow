@@ -18,7 +18,7 @@ export declare class CurrentGame
 ### Constructor
 
 ```ts
-new CurrentGame (client: Client, data: CurrentGameData, champions: Collection<string, Champion>, runeTrees: Collection<string, RuneTree>)
+new CurrentGame (client: Client, data: CurrentGameData, champions: Collection<string, Champion>, runeTrees: Collection<string, RuneTree>, summonerSpells: Collection<string, SummonerSpell>)
 ```
 
 Constructs a new instance of the `CurrentGame` class.
@@ -31,6 +31,7 @@ Constructs a new instance of the `CurrentGame` class.
 | data | [CurrentGameData](/api/CurrentGameData.md) | The raw current game data from the API. |
 | champions | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/api/Champion.md) \> | The champions that are involved in the game. |
 | runeTrees | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/api/RuneTree.md) \> | The collection of the runes in the game. |
+| summonerSpells | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [SummonerSpell](/api/SummonerSpell.md) \> | The collection of the summoner spells in the game. |
 ---
 
 ### Properties

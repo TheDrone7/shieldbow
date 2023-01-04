@@ -18,7 +18,7 @@ export declare class Match
 ### Constructor
 
 ```ts
-new Match (client: Client, data: MatchData, champions: Collection<string, Champion>, items: Collection<string, Item>, runeTrees: Collection<string, RuneTree>)
+new Match (client: Client, data: MatchData, champions: Collection<string, Champion>, items: Collection<string, Item>, runeTrees: Collection<string, RuneTree>, summonerSpells: Collection<string, SummonerSpell>)
 ```
 
 Constructs a new instance of the `Match` class.
@@ -32,6 +32,7 @@ Constructs a new instance of the `Match` class.
 | champions | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/api/Champion.md) \> | The champions involved in the match. |
 | items | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/Item.md) \> | The items used in the match. |
 | runeTrees | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/api/RuneTree.md) \> | The rune trees in the game. |
+| summonerSpells | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [SummonerSpell](/api/SummonerSpell.md) \> | The summoner spells in the game. |
 ---
 
 ### Properties

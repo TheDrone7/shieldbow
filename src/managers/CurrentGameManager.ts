@@ -59,9 +59,9 @@ export class CurrentGameManager implements BaseManager<CurrentGame> {
           const data = <CurrentGameData>response.data;
           const participantChamps = await this.client.champions.fetchByKeys(data.participants.map((p) => p.championId));
           const bannedChamps = await this.client.champions.fetchByKeys(data.bannedChampions.map((b) => b.championId));
-          if (this.client.summonerSpells.cache.size === 0) await this.client.summonerSpells.fetchByName('Flash');
           const runeTrees = await this.client.runes.fetchAll();
-          const game = new CurrentGame(this.client, data, bannedChamps.concat(participantChamps), runeTrees);
+          const spells = await this.client.summonerSpells.fetchAll();
+          const game = new CurrentGame(this.client, data, bannedChamps.concat(participantChamps), runeTrees, spells);
           if (cache) this.cache.set(id, game);
           resolve(game);
         }
@@ -89,13 +89,13 @@ export class CurrentGameManager implements BaseManager<CurrentGame> {
         .catch(reject);
       if (response) {
         const data = <{ gameList: CurrentGameData[] }>response.data;
-        if (this.client.summonerSpells.cache.size === 0) await this.client.summonerSpells.fetchByName('Flash');
         const runeTrees = await this.client.runes.fetchAll();
+        const spells = await this.client.summonerSpells.fetchAll();
         const games = [];
         for (const game of data.gameList) {
           const participantChamps = await this.client.champions.fetchByKeys(game.participants.map((p) => p.championId));
           const bannedChamps = await this.client.champions.fetchByKeys(game.bannedChampions.map((b) => b.championId));
-          games.push(new CurrentGame(this.client, game, bannedChamps.concat(participantChamps), runeTrees));
+          games.push(new CurrentGame(this.client, game, bannedChamps.concat(participantChamps), runeTrees, spells));
         }
         resolve(games);
       }

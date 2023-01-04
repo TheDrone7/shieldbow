@@ -457,13 +457,15 @@ export class Participant {
    * @param champ - The champion played by the participant.
    * @param items - The items purchased by the participant.
    * @param runeTrees - The rune trees in the game.
+   * @param summonerSpells - The summoner spells in the game.
    */
   constructor(
     client: Client,
     data: ParticipantData,
     champ: Champion,
     items: Collection<string, Item>,
-    runeTrees: Collection<string, RuneTree>
+    runeTrees: Collection<string, RuneTree>,
+    summonerSpells: Collection<string, SummonerSpell>
   ) {
     this.id = data.participantId;
     this.perks = new Perks(runeTrees, data.perks);
@@ -617,8 +619,8 @@ export class Participant {
     this.summonerSpells = new Collection<'D' | 'F', SummonerSpell>();
     this.summonerSpellsCasts = new Collection<'D' | 'F', number>();
 
-    this.summonerSpells.set('D', client.summonerSpells.cache.get(data.summoner1Id.toString())!);
-    this.summonerSpells.set('F', client.summonerSpells.cache.get(data.summoner2Id.toString())!);
+    this.summonerSpells.set('D', summonerSpells.get(data.summoner1Id.toString())!);
+    this.summonerSpells.set('F', summonerSpells.get(data.summoner2Id.toString())!);
 
     this.summonerSpellsCasts.set('D', data.summoner1Casts);
     this.summonerSpellsCasts.set('F', data.summoner2Casts);
