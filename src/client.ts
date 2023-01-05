@@ -10,7 +10,8 @@ import type {
   Season,
   ILogger,
   ICache,
-  IStorage
+  IStorage,
+  ManagersConfig
 } from './types';
 import {
   AccountManager,
@@ -27,7 +28,6 @@ import {
 } from './managers';
 import { ApiHandler } from './api';
 import { LocalStorage, MemoryCache, ShieldbowLogger } from './util';
-import type { ManagersConfig } from './types/ClientConfig';
 
 const patchRegex = /\d+\.\d+/;
 

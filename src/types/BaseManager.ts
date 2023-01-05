@@ -1,5 +1,5 @@
 import type { Client } from '../client';
-import type { FetchOptions } from './FetchOptions';
+import type { FetchOptions } from './config';
 
 /**
  * A base for any manager classes.
