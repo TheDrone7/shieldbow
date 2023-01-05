@@ -127,13 +127,13 @@ export class ChampionManager implements BaseManager<Champion> {
    */
   async fetch(id: string, options?: FetchOptions) {
     const opts = parseFetchOptions(this.client, 'champions', options);
-    const { cache, force } = opts;
+    const { cache, ignoreCache } = opts;
     const cacheId = `champion:${id}`;
     this.client.logger?.trace(`Fetching champion '${id}' with options: `, opts);
     if (id === 'FiddleSticks') id = 'Fiddlesticks'; // There is some internal inconsistency in Riot's JSON files.
     return new Promise<Champion>(async (resolve, reject) => {
       const exists = await this.client.cache.has(cacheId);
-      if (exists && !force) resolve(await this.client.cache.get(cacheId));
+      if (exists && !ignoreCache) resolve(await this.client.cache.get(cacheId));
       else {
         const champs = <{ data: { [key: string]: ChampionData } }>await this._fetchLocalChamp(id, opts).catch(reject);
         const key = Object.keys(champs.data)[0];
@@ -198,11 +198,11 @@ export class ChampionManager implements BaseManager<Champion> {
    */
   async fetchByNames(names: string[], options?: FetchOptions): Promise<Collection<string, Champion>> {
     const opts = parseFetchOptions(this.client, 'champions', options);
-    const { cache, force } = opts;
+    const { cache, ignoreCache } = opts;
     this.client.logger?.trace(`Fetching champions '${names}' with options: `, opts);
     return new Promise(async (resolve, reject) => {
       const result = new Collection<string, Champion>();
-      if (!force)
+      if (!ignoreCache)
         for (const name of names) {
           const champ = await this.client.cache.find<Champion>(
             (c: Champion) => c.name.toLowerCase().includes(name.toLowerCase()),
@@ -247,11 +247,11 @@ export class ChampionManager implements BaseManager<Champion> {
    */
   async fetchByKeys(keys: number[], options?: FetchOptions): Promise<Collection<string, Champion>> {
     const opts = parseFetchOptions(this.client, 'champions', options);
-    const { cache, force } = opts;
-    this.client.logger?.trace(`Fetching champions '${keys}' with options: `, { force, cache });
+    const { cache, ignoreCache } = opts;
+    this.client.logger?.trace(`Fetching champions '${keys}' with options: `, opts);
     return new Promise(async (resolve, reject) => {
       const result = new Collection<string, Champion>();
-      if (!force)
+      if (!ignoreCache)
         for (const key of keys) {
           const champ = await this.client.cache.find((c: Champion) => c.key === key, this.cacheFilter);
           if (champ) {
@@ -292,12 +292,12 @@ export class ChampionManager implements BaseManager<Champion> {
    */
   async fetchRotations(options?: FetchOptions) {
     const opts = parseFetchOptions(this.client, 'champions', options);
-    const { cache, force, region } = opts;
+    const { cache, ignoreCache, region } = opts;
     this.client.logger?.trace(`Fetching champion rotations with options: `, opts);
     return new Promise<Collection<'all' | 'new', Champion[]>>(async (resolve, reject) => {
       const existsAll = await this.client.cache.has(`champion-rotation:all`);
       const existsNew = await this.client.cache.has(`champion-rotation:new`);
-      if (existsAll && existsNew && !force) {
+      if (existsAll && existsNew && !ignoreCache) {
         const all = await this.client.cache.get<Champion[]>(`champion-rotation:all`);
         const new_ = await this.client.cache.get<Champion[]>(`champion-rotation:new`);
         resolve(

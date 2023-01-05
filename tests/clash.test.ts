@@ -17,7 +17,7 @@ describe('API: clash-v1', () => {
   it('can fetch clash tournament by ID', async () => {
     if (tournaments.length) {
       const t = await client.clash.fetch(tournaments[0].id);
-      const t2 = await client.clash.fetch(tournaments[0].id, { force: true });
+      const t2 = await client.clash.fetch(tournaments[0].id, { ignoreCache: true });
       expect(t.title).toBe(tournaments[0].title);
       expect(t2.title).toBe(tournaments[0].title);
     }

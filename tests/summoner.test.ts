@@ -15,8 +15,8 @@ describe('API: summoner-v4 + account-v1', () => {
   });
 
   it('can fetch summoner by summoner IDs and PUUIDs', async () => {
-    const summoner2 = await client.summoners.fetch(summoner.id, { force: true });
-    const summoner3 = await client.summoners.fetchByPlayerId(summoner.playerId, { force: true });
+    const summoner2 = await client.summoners.fetch(summoner.id, { ignoreCache: true });
+    const summoner3 = await client.summoners.fetchByPlayerId(summoner.playerId, { ignoreCache: true });
     expect(summoner2.name).toBe(summoner.name);
     expect(summoner3.name).toBe(summoner.name);
   });

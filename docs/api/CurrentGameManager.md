@@ -105,7 +105,7 @@ fetchFeatured(options?: FetchOptions): Promise<CurrentGame[]>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options (force and cache are ignored). |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options (only region affects this). |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [CurrentGame](/api/CurrentGame.md)[] \>
 

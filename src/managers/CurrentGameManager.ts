@@ -2,6 +2,7 @@ import type { BaseManager, CurrentGameData, FetchOptions } from '../types';
 import type { Client } from '../client';
 import { CurrentGame } from '../structures';
 import { Collection } from '@discordjs/collection';
+import { parseFetchOptions } from '../util';
 
 /**
  * A current game manager - to fetch and manage the live games.
@@ -40,16 +41,15 @@ export class CurrentGameManager implements BaseManager<CurrentGame> {
    * @param options - The basic fetching options.
    */
   async fetch(id: string, options?: FetchOptions) {
-    const force = options?.force ?? true;
-    const cache = options?.cache ?? false;
-    const region = options?.region ?? this.client.region;
-    this.client.logger?.trace(`Fetching live game ${id} with options: `, { force, cache, region });
+    const opts = parseFetchOptions(this.client, 'currentGame', options);
+    const { ignoreCache, cache, region } = opts;
+    this.client.logger?.trace(`Fetching live game ${id} with options: `, opts);
     return new Promise<CurrentGame>(async (resolve, reject) => {
-      if (this.cache.has(id) && !force) resolve(this.cache.get(id)!);
+      if (this.cache.has(id) && !ignoreCache) resolve(this.cache.get(id)!);
       else {
         const response = await this.client.api
           .makeApiRequest('/lol/spectator/v4/active-games/by-summoner/' + id, {
-            region,
+            region: region!,
             regional: false,
             name: 'Current match by summoner ID',
             params: 'Summoner ID: ' + id
@@ -73,15 +73,16 @@ export class CurrentGameManager implements BaseManager<CurrentGame> {
    * Fetch a list of featured games.
    * These games are not cached.
    *
-   * @param options - The basic fetching options (force and cache are ignored).
+   * @param options - The basic fetching options (only region affects this).
    */
   async fetchFeatured(options?: FetchOptions) {
-    const region = options?.region ?? this.client.region;
-    this.client.logger?.trace(`Fetching featured games with options: `, { region });
+    const opts = parseFetchOptions(this.client, 'currentGame', options);
+    const { region } = opts;
+    this.client.logger?.trace(`Fetching featured games with options: `, opts);
     return new Promise<CurrentGame[]>(async (resolve, reject) => {
       const response = await this.client.api
         .makeApiRequest('/lol/spectator/v4/featured-games', {
-          region,
+          region: region!,
           regional: false,
           name: 'Featured matches',
           params: 'no params'

@@ -66,11 +66,11 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
    */
   async fetch(key: string, options?: FetchOptions) {
     const opts = parseFetchOptions(this.client, 'summonerSpells', options);
-    const { force } = opts;
+    const { ignoreCache } = opts;
     this.client.logger?.trace(`Fetching summoner spell ${key}`);
     return new Promise<SummonerSpell>(async (resolve, reject) => {
       const exists = await this.client.cache.has(`spell:${key}`);
-      if (exists && !force) resolve(await this.client.cache.get(`spell:${key}`)!);
+      if (exists && !ignoreCache) resolve(await this.client.cache.get(`spell:${key}`)!);
       else {
         const spells = await this.fetchAll(opts);
         if (spells.has(key)) resolve(spells.get(key)!);

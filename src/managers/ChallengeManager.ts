@@ -10,9 +10,10 @@ import type {
 import { Challenge, ChallengeRank, SummonerChallenge } from '../structures';
 import { Collection } from '@discordjs/collection';
 import type { Client } from '../client';
+import { parseFetchOptions } from '../util';
 
 /**
- * A challenge manager - to fetch and manage all the challenges data.
+ * A challenge manager - to fetch and manage all the challenges' data.
  */
 export class ChallengeManager implements BaseManager<Challenge> {
   /**
@@ -83,21 +84,20 @@ export class ChallengeManager implements BaseManager<Challenge> {
    * @param options - The basic fetching options.
    */
   async fetch(id: number, options?: FetchOptions) {
-    const force = options?.force ?? false;
-    const cache = options?.cache ?? true;
-    const region = options?.region ?? this.client.region;
-    this.client.logger?.trace(`Fetching challenge data for ID: ${id} with options: `, { force, cache, region });
+    const opts = parseFetchOptions(this.client, 'challenge', options);
+    const { ignoreCache, cache, region } = opts;
+    this.client.logger?.trace(`Fetching challenge data for ID: ${id} with options: `, opts);
     return new Promise<Challenge>(async (resolve, reject) => {
-      if (!force && this.cache.has(id)) resolve(this.cache.get(id)!);
+      if (!ignoreCache && this.cache.has(id)) resolve(this.cache.get(id)!);
       else {
         const cResponse = await this.client.api.makeApiRequest(`/lol/challenges/v1/challenges/${id}/config`, {
-          region,
+          region: region!,
           regional: false,
           name: 'Challenge config by ID',
           params: `Challenge ID: ${id}`
         });
         const pResponse = await this.client.api.makeApiRequest(`/lol/challenges/v1/challenges/${id}/percentiles`, {
-          region,
+          region: region!,
           regional: false,
           name: 'Challenge percentiles by ID',
           params: `Challenge ID: ${id}`
@@ -126,23 +126,18 @@ export class ChallengeManager implements BaseManager<Challenge> {
     level: 'MASTER' | 'GRANDMASTER' | 'CHALLENGER',
     options?: FetchOptions & { limit: number }
   ) {
-    const force = options?.force ?? false;
-    const cache = options?.cache ?? true;
-    const region = options?.region ?? this.client.region;
+    const opts = parseFetchOptions(this.client, 'challenge', options);
+    const { ignoreCache, cache, region } = opts;
     const limit = options?.limit ?? 200;
-    this.client.logger?.trace(`Fetching leaderboard for challenge ID: ${id}, level: ${level} with options: `, {
-      force,
-      cache,
-      region
-    });
+    this.client.logger?.trace(`Fetching leaderboard for challenge ID: ${id}, level: ${level} with options: `, opts);
     return new Promise<ChallengeRank[]>(async (resolve, reject) => {
-      if (!force && this.leaderBoardCache.has(region) && this.leaderBoardCache.get(region)?.has(level))
-        resolve(this.leaderBoardCache.get(region)?.get(level)!);
+      if (!ignoreCache && this.leaderBoardCache.has(region!) && this.leaderBoardCache.get(region!)?.has(level))
+        resolve(this.leaderBoardCache.get(region!)?.get(level)!);
       else {
         const response = await this.client.api.makeApiRequest(
           `/lol/challenges/v1/challenges/${id}/leaderboards/by-level/${level}?limit=${limit}`,
           {
-            region,
+            region: region!,
             regional: false,
             name: 'Challenge leaderboard by level',
             params: `Challenge ID: ${id}, Level: ${level}`
@@ -153,8 +148,8 @@ export class ChallengeManager implements BaseManager<Challenge> {
           const data = <ChallengeRankData[]>response.data;
           const result = data.map((rank) => new ChallengeRank(this.client, rank, level));
           if (cache) {
-            if (!this.leaderBoardCache.has(region)) this.leaderBoardCache.set(region, new Collection());
-            this.leaderBoardCache.get(region)?.set(level, result);
+            if (!this.leaderBoardCache.has(region!)) this.leaderBoardCache.set(region!, new Collection());
+            this.leaderBoardCache.get(region!)?.set(level, result);
           }
           resolve(result);
         }
@@ -168,19 +163,15 @@ export class ChallengeManager implements BaseManager<Challenge> {
    * @param options - The basic fetching options.
    */
   async fetchSummonerProgression(playerId: string, options?: FetchOptions) {
-    const force = options?.force ?? false;
-    const cache = options?.cache ?? true;
-    const region = options?.region ?? this.client.region;
-    this.client.logger?.trace(`Fetching challenges progression for summoner ID: ${playerId} with options: `, {
-      force,
-      cache,
-      region
-    });
+    const opts = parseFetchOptions(this.client, 'challenge', options);
+    const { ignoreCache, cache, region } = opts;
+    this.client.logger?.trace(`Fetching challenges progression for summoner ID: ${playerId} with options: `, opts);
     return new Promise<SummonerChallenge>(async (resolve, reject) => {
-      if (!force && this.summonerProgressionCache.has(playerId)) resolve(this.summonerProgressionCache.get(playerId)!);
+      if (!ignoreCache && this.summonerProgressionCache.has(playerId))
+        resolve(this.summonerProgressionCache.get(playerId)!);
       else {
         const response = await this.client.api.makeApiRequest(`/lol/challenges/v1/player-data/${playerId}`, {
-          region,
+          region: region!,
           regional: false,
           name: 'Challenge progression by summoner ID',
           params: `Summoner ID: ${playerId}`

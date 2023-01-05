@@ -70,11 +70,11 @@ export class ItemManager implements BaseManager<Item> {
    */
   async fetch(key: string, options?: FetchOptions) {
     const opts = parseFetchOptions(this.client, 'items', options);
-    const { force } = opts;
+    const { ignoreCache } = opts;
     this.client.logger?.trace(`Fetching item ${key}`);
     return new Promise<Item>(async (resolve, reject) => {
       const exists = await this.client.cache.has(`item:${key}`);
-      if (exists && !force) resolve(await this.client.cache.get(`item:${key}`)!);
+      if (exists && !ignoreCache) resolve(await this.client.cache.get(`item:${key}`)!);
       else {
         const items = await this.fetchAll(opts).catch(reject);
         if (items && items.has(key)) resolve(items.get(key)!);

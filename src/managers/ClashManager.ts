@@ -2,6 +2,7 @@ import type { Client } from '../client';
 import type { BaseManager, FetchOptions, TournamentData, TournamentPlayerFullData } from '../types';
 import { Tournament, TournamentPlayer, TournamentTeam } from '../structures';
 import { Collection } from '@discordjs/collection';
+import { parseFetchOptions } from '../util';
 
 /**
  * A clash manager - to fetch and store clash tournaments and related data.
@@ -54,20 +55,15 @@ export class ClashManager implements BaseManager<Tournament> {
    * @param options - The basic fetch options.
    */
   async fetch(id: number, options?: FetchOptions) {
-    const force = options?.force ?? false;
-    const cache = options?.cache ?? true;
-    const region = options?.region ?? this.client.region;
-    this.client.logger?.trace(`Fetching clash tournament data for tournament ID: ${id} with options: `, {
-      force,
-      cache,
-      region
-    });
+    const opts = parseFetchOptions(this.client, 'clash', options);
+    const { ignoreCache, cache, region } = opts;
+    this.client.logger?.trace(`Fetching clash tournament data for tournament ID: ${id} with options: `, opts);
     return new Promise<Tournament>(async (resolve, reject) => {
-      if (this.cache.has(id) && !force) resolve(this.cache.get(id)!);
+      if (this.cache.has(id) && !ignoreCache) resolve(this.cache.get(id)!);
       else {
         const response = await this.client.api
           .makeApiRequest(`/lol/clash/v1/tournaments/${id}`, {
-            region,
+            region: region!,
             name: 'Get tournament by tournament ID',
             regional: false,
             params: `Tournament ID: ${id}`
@@ -140,16 +136,15 @@ export class ClashManager implements BaseManager<Tournament> {
    * @param options - The basic fetch options.
    */
   async fetchTeam(teamId: string, options?: FetchOptions) {
-    const force = options?.force ?? false;
-    const cache = options?.cache ?? true;
-    const region = options?.region ?? this.client.region;
-    this.client.logger?.trace(`Fetching clash team ${teamId} with options: `, { force, cache, region });
+    const opts = parseFetchOptions(this.client, 'clash', options);
+    const { ignoreCache, cache, region } = opts;
+    this.client.logger?.trace(`Fetching clash team ${teamId} with options: `, opts);
     return new Promise<TournamentTeam>(async (resolve, reject) => {
-      if (this.cachedTeams.has(teamId) && !force) resolve(this.cachedTeams.get(teamId)!);
+      if (this.cachedTeams.has(teamId) && !ignoreCache) resolve(this.cachedTeams.get(teamId)!);
       else {
         const response = await this.client.api
           .makeApiRequest(`/lol/clash/v1/teams/${teamId}`, {
-            region,
+            region: region!,
             name: 'Get team by team ID',
             regional: false,
             params: `Team ID: ${teamId}`
@@ -170,15 +165,14 @@ export class ClashManager implements BaseManager<Tournament> {
    * @param options - The basic fetch options.
    */
   async fetchPlayer(summonerId: string, options?: FetchOptions) {
-    const force = options?.force ?? false;
-    const cache = options?.cache ?? true;
-    const region = options?.region ?? this.client.region;
-    this.client.logger?.trace(`Fetching clash player ${summonerId} with options: `, { force, cache, region });
+    const opts = parseFetchOptions(this.client, 'clash', options);
+    const { ignoreCache, cache, region } = opts;
+    this.client.logger?.trace(`Fetching clash player ${summonerId} with options: `, opts);
     return new Promise<TournamentPlayer[]>(async (resolve, reject) => {
-      if (this.cachedPlayers.has(summonerId) && !force) resolve(this.cachedPlayers.get(summonerId)!);
+      if (this.cachedPlayers.has(summonerId) && !ignoreCache) resolve(this.cachedPlayers.get(summonerId)!);
       const response = await this.client.api
         .makeApiRequest(`/lol/clash/v1/players/by-summoner/${summonerId}`, {
-          region,
+          region: region!,
           name: 'Get tournament player by summoner ID',
           regional: false,
           params: `Summoner ID: ${summonerId}`

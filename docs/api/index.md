@@ -12,7 +12,7 @@
 | [BuildingKillEvent](/api/BuildingKillEvent.md) | A representation of the building kill event. |
 | [Challenge](/api/Challenge.md) | A class representing the details of a challenge. |
 | [ChallengeCategory](/api/ChallengeCategory.md) | A representation of a summoner's challenge category data. |
-| [ChallengeManager](/api/ChallengeManager.md) | A challenge manager - to fetch and manage all the challenges data. |
+| [ChallengeManager](/api/ChallengeManager.md) | A challenge manager - to fetch and manage all the challenges' data. |
 | [ChallengePreferences](/api/ChallengePreferences.md) | A representation of a summoner's challenge preferences data. |
 | [ChallengeProgression](/api/ChallengeProgression.md) | A representation of a summoner's challenge progression data. |
 | [ChallengeRank](/api/ChallengeRank.md) | A representation of the ranked challenges stats of a summoner. |

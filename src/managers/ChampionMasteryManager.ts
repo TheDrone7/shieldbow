@@ -2,6 +2,7 @@ import type { BaseManager, ChampionMasteryData, FetchOptions } from '../types';
 import type { Client } from '../client';
 import { Collection } from '@discordjs/collection';
 import { Champion, ChampionMastery, Summoner } from '../structures';
+import { parseFetchOptions } from '../util';
 
 /**
  * A champion mastery manager - to fetch and manage all summoner's champion mastery data.
@@ -63,28 +64,23 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
    * @param options - The basic fetching options.
    */
   async fetch(champion: Champion | string, options?: FetchOptions) {
-    const force = options?.force ?? false;
-    const cache = options?.cache ?? true;
-    const region = options?.region ?? this.summoner.region;
+    const opts = parseFetchOptions(this.client, 'championMastery', options);
+    const { cache, ignoreCache, region } = opts;
     const id = champion instanceof Champion ? champion.id : champion;
     this.client.logger?.trace(
       `Fetching champion mastery for summoner ID: ${this.summoner.id}, champ: ${id} with options: `,
-      {
-        force,
-        cache,
-        region
-      }
+      opts
     );
     return new Promise<ChampionMastery>(async (resolve, reject) => {
       const champ = await this.client.champions.fetch(id, options).catch(() => undefined);
       if (!champ) reject('Invalid champion ID');
-      else if (this.cache.has(champ.id) && !force) resolve(this.cache.get(id)!);
+      else if (this.cache.has(champ.id) && !ignoreCache) resolve(this.cache.get(id)!);
       else {
         const response = await this.client.api
           .makeApiRequest(
             `/lol/champion-mastery/v4/champion-masteries/by-summoner/${this.summoner.id}/by-champion/${champ.key}`,
             {
-              region,
+              region: region!,
               regional: false,
               name: 'Champion mastery by champion',
               params: `Summoner ID: ${this.summoner.id}, Champion ID: ${champ.key}`
@@ -108,17 +104,16 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
    * @param options - The basic fetching options.
    */
   async highest(n: number = 0, options?: FetchOptions) {
-    const force = options?.force ?? false;
-    const cache = options?.cache ?? true;
-    this.client.logger?.trace(`Fetching ${n}th highest mastery for summoner ID: ${this.summoner.id} with options: `, {
-      force,
-      cache,
-      region: this.summoner.region
-    });
+    const opts = parseFetchOptions(this.client, 'championMastery', options);
+    const { cache, ignoreCache } = opts;
+    this.client.logger?.trace(
+      `Fetching ${n}th highest mastery for summoner ID: ${this.summoner.id} with options: `,
+      opts
+    );
     return new Promise<ChampionMastery>(async (resolve, reject) => {
       if (n < 0) reject('The value of `n` must be >= 0.');
       else {
-        const dataList = await (this.cache.size > 0 && !force
+        const dataList = await (this.cache.size > 0 && !ignoreCache
           ? this.cache
           : <Promise<ChampionMasteryData[]>>this._fetchRawMasteryData().catch(reject));
         const ordered = this._sortMastery(dataList);

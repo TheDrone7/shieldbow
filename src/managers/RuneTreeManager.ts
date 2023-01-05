@@ -78,11 +78,11 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
    */
   async fetch(key: string, options?: FetchOptions) {
     const opts = parseFetchOptions(this.client, 'runes', options);
-    const { force } = opts;
+    const { ignoreCache } = opts;
     this.client.logger?.trace(`Fetching rune tree ${key}`);
     return new Promise<RuneTree>(async (resolve, reject) => {
       const exists = await this.client.cache.has(`rune:${key}`);
-      if (exists && !force) resolve(await this.client.cache.get(`rune:${key}`));
+      if (exists && !ignoreCache) resolve(await this.client.cache.get(`rune:${key}`));
       else {
         const runeTrees = await this.fetchAll(opts).catch(reject);
         if (runeTrees && runeTrees.has(key)) resolve(runeTrees.get(key)!);

@@ -37,9 +37,7 @@ The method to actually fetch the data.
 **Signature:**
 
 ```ts
-fetch(id: any, options: {
-        force: boolean;
-    }): Promise<T>;
+fetch(id: any, options?: FetchOptions): Promise<T>;
 ```
 
 **Parameters:**
@@ -47,7 +45,7 @@ fetch(id: any, options: {
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | id | any | The ID of the data entity being fetched. |
-| options | {         force: boolean;     } | Basic fetch options, setting the force option to `true` must ignore the cache. |
+| options | [FetchOptions](/api/FetchOptions.md) | Basic fetch options, setting the force option to `true` must ignore the cache. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< T \>
 

@@ -2,6 +2,7 @@ import type { BaseManager, AccountData, FetchOptions } from '../types';
 import type { Client } from '../client';
 import { Collection } from '@discordjs/collection';
 import { Account } from '../structures';
+import { parseFetchOptions } from '../util';
 
 /**
  * An account manager - to fetch and manage all the RIOT accounts.
@@ -38,12 +39,12 @@ export class AccountManager implements BaseManager<Account> {
    * @param options - The basic fetching options.
    */
   async fetch(id: string, options?: FetchOptions) {
-    const force = options?.force ?? false;
-    const cache = options?.cache ?? true;
+    const opts = parseFetchOptions(this.client, 'account', options);
+    const { ignoreCache, cache } = opts;
     const region = options?.region ?? this.client.region;
-    this.client.logger?.trace(`Fetching account data for ID: ${id} with options: `, { force, cache, region });
+    this.client.logger?.trace(`Fetching account data for ID: ${id} with options: `, opts);
     return new Promise<Account>(async (resolve, reject) => {
-      if (this.cache.has(id) && !force) resolve(this.cache.get(id)!);
+      if (this.cache.has(id) && !ignoreCache) resolve(this.cache.get(id)!);
       else {
         const accountResponse = await this.client.api
           .makeApiRequest('/riot/account/v1/accounts/by-puuid/' + id, {
@@ -71,16 +72,15 @@ export class AccountManager implements BaseManager<Account> {
    * @param options - The basic fetching options.
    */
   async fetchByNameAndTag(name: string, tag: string, options?: FetchOptions) {
-    const force = options?.force ?? false;
-    const cache = options?.cache ?? true;
-    const region = options?.region ?? this.client.region;
-    this.client.logger?.trace(`Fetching account for name#tag: ${name}#${tag} with options: `, { force, cache, region });
+    const opts = parseFetchOptions(this.client, 'account', options);
+    const { ignoreCache, cache, region } = opts;
+    this.client.logger?.trace(`Fetching account for name#tag: ${name}#${tag} with options: `, opts);
     return new Promise<Account>(async (resolve, reject) => {
       const cached = this.cache.find((a) => a.username === name && a.userTag === tag);
-      if (cached && !force) resolve(cached);
+      if (cached && !ignoreCache) resolve(cached);
       const accountResponse = await this.client.api
         .makeApiRequest('/riot/account/v1/accounts/by-riot-id/' + encodeURIComponent(name) + '/' + tag, {
-          region,
+          region: region!,
           regional: true,
           name: 'Account by name and tag',
           params: 'NAME: ' + name + ', TAG: ' + tag

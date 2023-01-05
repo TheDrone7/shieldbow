@@ -25,9 +25,19 @@ Whether to cache the returned data. Defaults to client configuration.
 
 ---
 
-#### force
+#### ignoreCache
 
-Whether to ignore the cache and request data from the API. Defaults to false.
+Whether to ignore the cache and request data from the storage / API. Defaults to false.
+
+
+
+**Type**: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
+
+---
+
+#### ignoreStorage
+
+Whether to ignore the storage and request data from the API. Defaults to false.
 
 
 

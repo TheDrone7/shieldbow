@@ -18,13 +18,8 @@ describe('API: match-v5', () => {
   });
 
   it('checks for malformed match data', async () => {
-    const client = new Client(process.env.RIOT_API_KEY!);
-    await client.initialize({
-      region: 'br',
-      cache: false
-    });
     try {
-      await client.matches.fetch('BR1_2583580397');
+      await client.matches.fetch('BR1_2583580397', { region: 'br' });
     } catch (e: any) {
       if (e instanceof Error) expect(e.message).toMatch('malformed');
     }

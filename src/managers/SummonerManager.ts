@@ -2,6 +2,7 @@ import type { BaseManager, FetchOptions, SummonerData } from '../types';
 import type { Client } from '../client';
 import { Collection } from '@discordjs/collection';
 import { Account, Summoner } from '../structures';
+import { parseFetchOptions } from '../util';
 
 /**
  * A summoner manager - to fetch and manage all the summoner data.
@@ -39,16 +40,15 @@ export class SummonerManager implements BaseManager<Summoner> {
    * @param options - The basic fetching options.
    */
   async fetch(id: string, options?: FetchOptions) {
-    const force = options?.force ?? false;
-    const cache = options?.cache ?? true;
-    const region = options?.region ?? this.client.region;
-    this.client.logger?.trace(`Fetching summoner by ID ${id} with options: `, { force, cache, region });
+    const opts = parseFetchOptions(this.client, 'summoner', options);
+    const { ignoreCache, cache, region } = opts;
+    this.client.logger?.trace(`Fetching summoner by ID ${id} with options: `, opts);
     return new Promise<Summoner>(async (resolve, reject) => {
-      if (this.cache.has(id) && !force) resolve(this.cache.get(id)!);
+      if (this.cache.has(id) && !ignoreCache) resolve(this.cache.get(id)!);
       else {
         const response = await this.client.api
           .makeApiRequest('/lol/summoner/v4/summoners/' + id, {
-            region,
+            region: region!,
             regional: false,
             name: 'Summoner by ID',
             params: `ID: ${id}`
@@ -56,7 +56,7 @@ export class SummonerManager implements BaseManager<Summoner> {
           .catch(reject);
         if (response) {
           const data = <SummonerData>response.data;
-          const summoner = new Summoner(this.client, data, region);
+          const summoner = new Summoner(this.client, data, region!);
           if (cache) this.cache.set(summoner.id, summoner);
           resolve(summoner);
         }
@@ -72,16 +72,16 @@ export class SummonerManager implements BaseManager<Summoner> {
    */
   async fetchByPlayerId(playerId: string | Account, options?: FetchOptions) {
     const id = typeof playerId === 'string' ? playerId : playerId.playerId;
-    const force = options?.force ?? false;
-    const cache = options?.cache ?? true;
-    const region = options?.region ?? this.client.region;
-    this.client.logger?.trace(`Fetching summoner by PUUID ${playerId} with options: `, { force, cache, region });
+    const opts = parseFetchOptions(this.client, 'summoner', options);
+    const { ignoreCache, cache, region } = opts;
+    this.client.logger?.trace(`Fetching summoner by PUUID ${playerId} with options: `, opts);
     return new Promise<Summoner>(async (resolve, reject) => {
-      if (this.cache.find((s) => s.playerId === id) && !force) resolve(this.cache.find((s) => s.playerId === id)!);
+      if (this.cache.find((s) => s.playerId === id) && !ignoreCache)
+        resolve(this.cache.find((s) => s.playerId === id)!);
       else {
         const response = await this.client.api
           .makeApiRequest('/lol/summoner/v4/summoners/by-puuid/' + id, {
-            region,
+            region: region!,
             regional: false,
             name: 'Summoner by player ID',
             params: `ID: ${id}`
@@ -89,7 +89,7 @@ export class SummonerManager implements BaseManager<Summoner> {
           .catch(reject);
         if (response) {
           const data = <SummonerData>response.data;
-          const summoner = new Summoner(this.client, data, region);
+          const summoner = new Summoner(this.client, data, region!);
           if (cache) this.cache.set(summoner.id, summoner);
           resolve(summoner);
         }
@@ -104,16 +104,15 @@ export class SummonerManager implements BaseManager<Summoner> {
    * @param options - The basic fetching options.
    */
   async fetchBySummonerName(name: string, options?: FetchOptions) {
-    const force = options?.force ?? false;
-    const cache = options?.cache ?? true;
-    const region = options?.region ?? this.client.region;
-    this.client.logger?.trace(`Fetching summoner by name '${name}' with options: `, { force, cache, region });
+    const opts = parseFetchOptions(this.client, 'summoner', options);
+    const { ignoreCache, cache, region } = opts;
+    this.client.logger?.trace(`Fetching summoner by name '${name}' with options: `, opts);
     return new Promise<Summoner>(async (resolve, reject) => {
-      if (this.cache.find((s) => s.name === name) && !force) resolve(this.cache.find((s) => s.name === name)!);
+      if (this.cache.find((s) => s.name === name) && !ignoreCache) resolve(this.cache.find((s) => s.name === name)!);
       else {
         const response = await this.client.api
           .makeApiRequest('/lol/summoner/v4/summoners/by-name/' + encodeURIComponent(name), {
-            region,
+            region: region!,
             regional: false,
             name: 'Summoner by summoner name',
             params: `ID: ${name}`
@@ -121,7 +120,7 @@ export class SummonerManager implements BaseManager<Summoner> {
           .catch(reject);
         if (response) {
           const data = <SummonerData>response.data;
-          const summoner = new Summoner(this.client, data, region);
+          const summoner = new Summoner(this.client, data, region!);
           if (cache) this.cache.set(summoner.id, summoner);
           resolve(summoner);
         }

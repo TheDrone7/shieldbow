@@ -2,6 +2,7 @@ import type { BaseManager, FetchOptions, MatchByPlayerOptions, MatchData, MatchT
 import { Match, type Summoner, MatchTimeline } from '../structures';
 import { Collection } from '@discordjs/collection';
 import type { Client } from '../client';
+import { parseFetchOptions } from '../util';
 
 /**
  * A match manager - to fetch and manage matches.
@@ -45,16 +46,15 @@ export class MatchManager implements BaseManager<Match> {
    * @param options - The basic fetch options
    */
   async fetch(id: string, options?: FetchOptions) {
-    const force = options?.force ?? false;
-    const cache = options?.cache ?? true;
-    const region = options?.region ?? this.client.region;
-    this.client.logger?.trace(`Fetching match for ID: ${id} with options: `, { force, cache, region });
+    const opts = parseFetchOptions(this.client, 'match', options);
+    const { ignoreCache, cache, region } = opts;
+    this.client.logger?.trace(`Fetching match for ID: ${id} with options: `, opts);
     return new Promise<Match>(async (resolve, reject) => {
-      if (this.cache.has(id) && !force) resolve(this.cache.get(id)!);
+      if (this.cache.has(id) && !ignoreCache) resolve(this.cache.get(id)!);
       else {
         const response = await this.client.api
           .makeApiRequest(`/lol/match/v5/matches/${id}`, {
-            region,
+            region: region!,
             regional: true,
             name: 'Get Match By Match ID',
             params: 'Match ID: ' + id
@@ -97,16 +97,15 @@ export class MatchManager implements BaseManager<Match> {
    * @param options - The basic fetch options
    */
   async fetchMatchTimeline(matchId: string, options?: FetchOptions) {
-    const force = options?.force ?? false;
-    const cache = options?.cache ?? true;
-    const region = options?.region ?? this.client.region;
-    this.client.logger?.trace(`Fetching match timeline for ID: ${matchId} with options: `, { force, cache, region });
+    const opts = parseFetchOptions(this.client, 'match', options);
+    const { ignoreCache, cache, region } = opts;
+    this.client.logger?.trace(`Fetching match timeline for ID: ${matchId} with options: `, opts);
     return new Promise<MatchTimeline>(async (resolve, reject) => {
-      if (this.timelineCache.has(matchId) && !force) resolve(this.timelineCache.get(matchId)!);
+      if (this.timelineCache.has(matchId) && !ignoreCache) resolve(this.timelineCache.get(matchId)!);
       else {
         const response = await this.client.api
           .makeApiRequest(`/lol/match/v5/matches/${matchId}/timeline`, {
-            region,
+            region: region!,
             regional: true,
             name: 'Get Match Timeline By Match ID',
             params: 'Match ID: ' + matchId

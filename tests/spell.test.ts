@@ -27,6 +27,7 @@ describe('DRAGON: summoner spells', () => {
     const client2 = new Client(process.env.riot_api_key!);
     await client2.initialize({
       cache: false,
+      storage: false,
       fetch: {
         summonerSpells: true
       }

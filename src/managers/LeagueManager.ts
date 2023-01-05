@@ -10,6 +10,7 @@ import type {
 import type { Client } from '../client';
 import { LeagueEntry, LeagueList } from '../structures';
 import { Collection } from '@discordjs/collection';
+import { parseFetchOptions } from '../util';
 
 /**
  * A league manager - to fetch and manage all summoner competitive info.
@@ -54,20 +55,15 @@ export class LeagueManager implements BaseManager<Collection<QueueType, LeagueEn
    * @param options - The basic fetching options.
    */
   async fetch(id: string, options?: FetchOptions) {
-    const force = options?.force ?? false;
-    const cache = options?.cache ?? this.cache;
-    const region = options?.region ?? this.client.region;
-    this.client.logger?.trace(`Fetching league entries for summoner ID: ${id} with options: `, {
-      force,
-      cache,
-      region
-    });
+    const opts = parseFetchOptions(this.client, 'league', options);
+    const { cache, region, ignoreCache } = opts;
+    this.client.logger?.trace(`Fetching league entries for summoner ID: ${id} with options: `, opts);
     return new Promise<Collection<QueueType, LeagueEntry>>(async (resolve, reject) => {
-      if (this.cache.has(id) && !force) resolve(this.cache.get(id)!);
+      if (this.cache.has(id) && !ignoreCache) resolve(this.cache.get(id)!);
       else {
         const response = await this.client.api
           .makeApiRequest('/lol/league/v4/entries/by-summoner/' + id, {
-            region,
+            region: region!,
             regional: false,
             name: 'League Entry by summoner ID',
             params: `Summoner ID: ${id}`
@@ -141,20 +137,15 @@ export class LeagueManager implements BaseManager<Collection<QueueType, LeagueEn
    * @param options - The basic fetching options (exception: `force` defaults to true).
    */
   async fetchByLeagueId(leagueId: string, options?: FetchOptions) {
-    const force = options?.force ?? true;
-    const cache = options?.cache ?? this.cache;
-    const region = options?.region ?? this.client.region;
-    this.client.logger?.trace(`Fetching league entries for league ID: ${leagueId} with options: `, {
-      force,
-      cache,
-      region
-    });
+    const opts = parseFetchOptions(this.client, 'league', options);
+    const { cache, region, ignoreCache } = opts;
+    this.client.logger?.trace(`Fetching league entries for league ID: ${leagueId} with options: `, opts);
     return new Promise<LeagueList>(async (resolve, reject) => {
-      if (this.listCache.has(leagueId) && !force) resolve(this.listCache.get(leagueId)!);
+      if (this.listCache.has(leagueId) && !ignoreCache) resolve(this.listCache.get(leagueId)!);
       else {
         const response = await this.client.api
           .makeApiRequest(`/lol/league/v4/leagues/${leagueId}`, {
-            region,
+            region: region!,
             regional: false,
             name: 'League Entry by league ID',
             params: `League ID: ${leagueId}`

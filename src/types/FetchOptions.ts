@@ -9,9 +9,13 @@ export interface FetchOptions {
    */
   region?: Region;
   /**
-   * Whether to ignore the cache and request data from the API. Defaults to false.
+   * Whether to ignore the cache and request data from the storage / API. Defaults to false.
    */
-  force?: boolean;
+  ignoreCache?: boolean;
+  /**
+   * Whether to ignore the storage and request data from the API. Defaults to false.
+   */
+  ignoreStorage?: boolean;
   /**
    * Whether to cache the returned data. Defaults to client configuration.
    */

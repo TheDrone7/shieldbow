@@ -27,11 +27,12 @@ export const parseFetchOptions = (
   options?: FetchOptions
 ): FetchOptions => {
   // Destructure the options.
-  const { region, force, cache, store } = options ?? {};
+  const { region, ignoreCache, ignoreStorage, cache, store } = options ?? {};
   const parsed: FetchOptions = {};
   // Region and force are easy.
   parsed.region = region || client.region;
-  parsed.force = force ?? false;
+  parsed.ignoreCache = ignoreCache ?? false;
+  parsed.ignoreStorage = ignoreStorage ?? false;
 
   // Cache first prioritizes the specified option, then the client configuration, then the manager default.
   if (typeof cache !== 'undefined') parsed.cache = cache;
