@@ -72,7 +72,7 @@ export class LocalStorage implements IStorage {
    * @param key - The path to the value to save.
    * @param id - The file name of the value to save.
    */
-  save<T>(value: T, key: string, id: string) {
+  async save<T>(value: T, key: string, id: string) {
     return new Promise<T>((resolve) => {
       key = path.join(...key.split(':'));
       const contentPath = path.join(this._pathName, key, id + '.json');
@@ -90,6 +90,37 @@ export class LocalStorage implements IStorage {
       fs.writeFileSync(contentPath, JSON.stringify(value, null, 2));
       this.cache.set(key + id, value);
       resolve(value);
+    });
+  }
+
+  async search<T>(key: string, query: { [key: string]: any }) {
+    return new Promise<T[]>((resolve, reject) => {
+      key = path.join(...key.split(':'));
+      const contentPath = path.join(this._pathName, key);
+      const exists = fs.existsSync(contentPath);
+      this.client.logger?.trace(`(Local search) File path: ${contentPath}, exists: ${exists}.`);
+      const result: T[] = [];
+      if (!exists) resolve(result);
+      else {
+        for (const file of fs.readdirSync(contentPath)) {
+          const content = JSON.parse(fs.readFileSync(path.join(contentPath, file)).toString());
+          if (content) {
+            let found = true;
+            for (const [k, v] of Object.entries(query))
+              if (!content[k] || content[k] !== v) {
+                found = false;
+                break;
+              }
+
+            if (found) {
+              result.push(content as T);
+              break;
+            }
+          }
+        }
+        if (result) resolve(result);
+        else reject('No results found.');
+      }
     });
   }
 }

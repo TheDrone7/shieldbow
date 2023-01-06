@@ -28,7 +28,7 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
       if (!options.ignoreStorage) {
         this.client.logger?.trace(`Fetching runes from local storage`);
         const data = this.client.storage.fetch<RuneTreeData[]>(storagePath, 'runes');
-        result = 'then' in data ? await data.catch(() => undefined) : data;
+        result = data instanceof Promise ? await data.catch(() => undefined) : data;
       }
       if (result) resolve(result);
       else {

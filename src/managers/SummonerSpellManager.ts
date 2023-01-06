@@ -28,7 +28,7 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
       if (!options.ignoreStorage) {
         this.client.logger?.trace(`Fetching summoner spells from local storage`);
         const data = this.client.storage.fetch<{ data: { [id: string]: SummonerSpellData } }>(storagePath, 'spells');
-        result = 'then' in data ? await data.catch(() => undefined) : data;
+        result = data instanceof Promise ? await data.catch(() => undefined) : data;
       }
       if (result) resolve(result.data);
       else {
@@ -106,7 +106,7 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
       spell.name.toLowerCase().includes(name.toLowerCase())
     );
     if (spell) return spell;
-    await this.fetchAll(opts);
-    return this.client.cache.find<SummonerSpell>((i) => i.name.toLowerCase().includes(name.toLowerCase()));
+    const spells = await this.fetchAll(opts);
+    return spells.find((i) => i.name.toLowerCase().includes(name.toLowerCase()));
   }
 }

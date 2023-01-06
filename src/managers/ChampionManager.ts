@@ -29,7 +29,7 @@ export class ChampionManager implements BaseManager<Champion> {
       if (!options.ignoreStorage) {
         this.client.logger?.trace(`Fetching DDragon (local) champion: ${name}.`);
         const data = this.client.storage.fetch<{ data: { [key: string]: ChampionData } }>(storagePath, name);
-        result = 'then' in data ? await data.catch(() => undefined) : data;
+        result = data instanceof Promise ? await data.catch(() => undefined) : data;
       }
       if (result) resolve(result);
       else {
@@ -53,7 +53,7 @@ export class ChampionManager implements BaseManager<Champion> {
       if (!options.ignoreStorage) {
         this.client.logger?.trace(`Fetching Meraki (local) champion: ${name}.`);
         const data = this.client.storage.fetch<MerakiChampion>(storagePath, name);
-        result = 'then' in data ? await data.catch(() => undefined) : data;
+        result = data instanceof Promise ? await data.catch(() => undefined) : data;
       }
       if (result) resolve(result);
       else {
@@ -77,7 +77,7 @@ export class ChampionManager implements BaseManager<Champion> {
       if (!options.ignoreStorage) {
         this.client.logger?.trace(`Fetching CDragon (local) champion: ${name}.`);
         const data = this.client.storage.fetch<SpellDamageData>(storagePath, name);
-        result = 'then' in data ? await data.catch(() => undefined) : data;
+        result = data instanceof Promise ? await data.catch(() => undefined) : data;
       }
       if (result) resolve(result);
       else {

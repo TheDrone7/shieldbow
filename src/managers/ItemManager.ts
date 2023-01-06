@@ -30,7 +30,7 @@ export class ItemManager implements BaseManager<Item> {
         this.client.logger?.trace('Fetching items from storage');
         // This needs to be slightly modified to work with the new storage system.
         const data = this.client.storage.fetch<{ data: { [id: string]: ItemData } }>(storagePath, 'items');
-        result = 'then' in data ? await data.catch(() => undefined) : data;
+        result = data instanceof Promise ? await data.catch(() => undefined) : data;
       }
       if (result) resolve(result.data);
       else {
@@ -106,10 +106,10 @@ export class ItemManager implements BaseManager<Item> {
    */
   async fetchByName(name: string, options?: FetchOptions) {
     const opts = parseFetchOptions(this.client, 'items', options);
-    const item = await this.client.cache.find((item: Item) => item.name.toLowerCase().includes(name.toLowerCase()));
+    const item = await this.client.cache.find<Item>((item) => item.name.toLowerCase().includes(name.toLowerCase()));
     if (item) return item;
-    await this.fetchAll(opts);
-    return this.client.cache.find<Item>((i) => i.name.toLowerCase().includes(name.toLowerCase()));
+    const items = await this.fetchAll(opts);
+    return items.find((i) => i.name.toLowerCase().includes(name.toLowerCase()));
   }
 
   async fetchMany(keys: string[], options?: FetchOptions) {
