@@ -100,9 +100,6 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
   async fetchByName(name: string, options?: FetchOptions) {
     const opts = parseFetchOptions(this.client, 'summonerSpells', options);
     await this.fetchAll(opts);
-    return this.client.cache.find<SummonerSpell>(
-      (i) => i.name.toLowerCase().includes(name.toLowerCase()),
-      (o: any): o is SummonerSpell => o instanceof SummonerSpell
-    );
+    return this.client.cache.find<SummonerSpell>((i) => i.name.toLowerCase().includes(name.toLowerCase()));
   }
 }

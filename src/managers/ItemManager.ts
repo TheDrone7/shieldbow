@@ -104,10 +104,7 @@ export class ItemManager implements BaseManager<Item> {
   async fetchByName(name: string, options?: FetchOptions) {
     const opts = parseFetchOptions(this.client, 'items', options);
     await this.fetchAll(opts);
-    return this.client.cache.find<Item>(
-      (i) => i.name.toLowerCase().includes(name.toLowerCase()),
-      (o: any): o is Item => o instanceof Item
-    );
+    return this.client.cache.find<Item>((i) => i.name.toLowerCase().includes(name.toLowerCase()));
   }
 
   async fetchMany(keys: string[], options?: FetchOptions) {

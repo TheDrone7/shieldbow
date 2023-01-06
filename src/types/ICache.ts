@@ -22,9 +22,8 @@ export interface ICache {
   /**
    * Find a value in the cache using a predicate and a filter.
    * @param predicate - The predicate to use to find the value.
-   * @param filter - The filter to use to filter the cache for appropriate type.
    */
-  find<T>(predicate: (t: T) => boolean, filter?: (o: any) => o is T): Promise<T> | T | undefined;
+  find<T>(predicate: (t: T) => boolean): Promise<T> | T | undefined;
 
   /**
    * Set a value in the cache.

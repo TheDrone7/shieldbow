@@ -8,7 +8,6 @@ import { parseFetchOptions } from '../util';
  * A champion manager - to fetch and manage all the champion data.
  */
 export class ChampionManager implements BaseManager<Champion> {
-  private readonly cacheFilter: (o: any) => o is Champion;
   /**
    * The client that this manager belongs to.
    */
@@ -21,7 +20,6 @@ export class ChampionManager implements BaseManager<Champion> {
    */
   constructor(client: Client) {
     this.client = client;
-    this.cacheFilter = (c: any): c is Champion => c instanceof Champion;
   }
 
   private async _fetchLocalChamp(name: string, options: FetchOptions) {
@@ -204,9 +202,8 @@ export class ChampionManager implements BaseManager<Champion> {
       const result = new Collection<string, Champion>();
       if (!ignoreCache)
         for (const name of names) {
-          const champ = await this.client.cache.find<Champion>(
-            (c: Champion) => c.name.toLowerCase().includes(name.toLowerCase()),
-            this.cacheFilter
+          const champ = await this.client.cache.find<Champion>((c: Champion) =>
+            c.name.toLowerCase().includes(name.toLowerCase())
           );
           if (champ) {
             result.set(champ.id, champ);
@@ -253,7 +250,7 @@ export class ChampionManager implements BaseManager<Champion> {
       const result = new Collection<string, Champion>();
       if (!ignoreCache)
         for (const key of keys) {
-          const champ = await this.client.cache.find((c: Champion) => c.key === key, this.cacheFilter);
+          const champ = await this.client.cache.find((c: Champion) => c.key === key);
           if (champ) {
             result.set(champ.id, champ);
             keys = keys.filter((k) => k !== key);

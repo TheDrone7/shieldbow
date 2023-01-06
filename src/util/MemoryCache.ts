@@ -46,10 +46,9 @@ export class MemoryCache implements ICache {
   /**
    * Finds a value in the cache using a predicate and a filter.
    * @param predicate - The predicate to use to find the value.
-   * @param filter - The filter to use to filter the cache for appropriate type.
    */
-  find<T>(predicate: (t: T) => boolean, filter?: (o: any) => o is T): T | undefined {
-    return filter ? this.base.filter(filter).find(predicate) : this.base.find(predicate);
+  find<T>(predicate: (t: T) => boolean): T | undefined {
+    return this.base.find(predicate) as T;
   }
 
   has(key: string): boolean {
