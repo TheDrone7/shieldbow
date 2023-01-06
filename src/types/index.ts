@@ -2,38 +2,56 @@
  * A list of all valid locales.
  */
 export const locale = [
-  'en_US',
   'cs_CZ',
-  'de_DE',
   'el_GR',
-  'en_AU',
-  'en_GB',
-  'en_PH',
-  'en_SG',
-  'es_AR',
-  'es_ES',
-  'es_MX',
-  'fr_FR',
+  'pl_PL',
+  'ro_RO',
   'hu_HU',
-  'id_ID',
+  'en_GB',
+  'de_DE',
+  'es_ES',
   'it_IT',
+  'fr_FR',
   'ja_JP',
   'ko_KR',
-  'pl_PL',
+  'es_MX',
+  'es_AR',
   'pt_BR',
-  'ro_RO',
+  'en_US',
+  'en_AU',
   'ru_RU',
-  'th_TH',
   'tr_TR',
+  'ms_MY',
+  'en_PH',
+  'en_SG',
+  'th_TH',
   'vn_VN',
-  'zh_CN',
+  'id_ID',
   'zh_MY',
+  'zh_CN',
   'zh_TW'
 ] as const;
 /**
  * A valid League of Legends region.
  */
-export type Region = 'br' | 'eune' | 'euw' | 'lan' | 'las' | 'na' | 'oce' | 'ru' | 'tr' | 'jp' | 'kr' | 'pbe';
+export type Region =
+  | 'br'
+  | 'eune'
+  | 'euw'
+  | 'lan'
+  | 'las'
+  | 'na'
+  | 'oce'
+  | 'ru'
+  | 'tr'
+  | 'jp'
+  | 'kr'
+  | 'pbe'
+  | 'sg'
+  | 'th'
+  | 'tw'
+  | 'vn'
+  | 'ph';
 /**
  * A valid champion stat that affects their in-game interactions.
  */
