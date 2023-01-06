@@ -52,9 +52,10 @@ export class ChallengeManager implements BaseManager<Challenge> {
         const data = <ChallengeConfigData[]>cResponse.data;
         const percentiles = <{ [i: string]: { [key in TierType | 'NONE']: number } }>pResponse.data;
         for (const challenge of data) {
-          const c = new Challenge(this.client, challenge, percentiles[challenge.id.toString()]);
+          const percentile = percentiles[challenge.id.toString()];
+          const c = new Challenge(this.client, challenge, percentile);
           if (cache) await this.client.cache.set(`challenge:${c.id}`, c);
-          if (store) await this.client.storage.save(c, `challenge`, c.id.toString());
+          if (store) await this.client.storage.save({ challenge, percentile }, `challenge`, c.id.toString());
           result.set(c.id, c);
         }
         resolve(result);
@@ -76,10 +77,16 @@ export class ChallengeManager implements BaseManager<Challenge> {
       const exists = await this.client.cache.has(`challenge:${id}`);
       if (!ignoreCache && exists) resolve(await this.client.cache.get(`challenge:${id}`)!);
       else {
-        const storage = this.client.storage.fetch<Challenge>('challenge', id.toString());
+        const storage = this.client.storage.fetch<{
+          challenge: ChallengeConfigData;
+          percentile: { [key in TierType | 'NONE']: number };
+        }>('challenge', id.toString());
         const stored = storage instanceof Promise ? await storage.catch(() => undefined) : storage;
-        if (stored && !ignoreStorage) resolve(stored);
-        else {
+        if (stored && !ignoreStorage) {
+          const result = new Challenge(this.client, stored.challenge, stored.percentile);
+          if (cache) await this.client.cache.set(`challenge:${id}`, result);
+          resolve(result);
+        } else {
           const cResponse = await this.client.api.makeApiRequest(`/lol/challenges/v1/challenges/${id}/config`, {
             region: region!,
             regional: false,
@@ -96,10 +103,10 @@ export class ChallengeManager implements BaseManager<Challenge> {
           else if (pResponse.status !== 200) reject(pResponse);
           else {
             const data = <ChallengeConfigData>cResponse.data;
-            const percentiles = <{ [key in TierType | 'NONE']: number }>pResponse.data;
-            const challenge = new Challenge(this.client, data, percentiles);
+            const percentile = <{ [key in TierType | 'NONE']: number }>pResponse.data;
+            const challenge = new Challenge(this.client, data, percentile);
             if (cache) await this.client.cache.set(`challenge:${id}`, challenge);
-            if (store) await this.client.storage.save(challenge, 'challenge', id.toString());
+            if (store) await this.client.storage.save({ challenge: data, percentile }, 'challenge', id.toString());
             resolve(challenge);
           }
         }
@@ -127,10 +134,13 @@ export class ChallengeManager implements BaseManager<Challenge> {
       const exists = await this.client.cache.has(`${key}:${region}`);
       if (!ignoreCache && exists) resolve(await this.client.cache.get(`${key}:${region}`)!);
       else {
-        const storage = this.client.storage.fetch<ChallengeRank[]>(key, region!);
+        const storage = this.client.storage.fetch<ChallengeRankData[]>(key, region!);
         const stored = storage instanceof Promise ? await storage.catch(() => undefined) : storage;
-        if (stored && !ignoreStorage) resolve(stored);
-        else {
+        if (stored && !ignoreStorage) {
+          const result = stored.map((data) => new ChallengeRank(this.client, data, level));
+          if (cache) await this.client.cache.set(`${key}:${region}`, result);
+          resolve(result);
+        } else {
           const response = await this.client.api.makeApiRequest(
             `/lol/challenges/v1/challenges/${id}/leaderboards/by-level/${level}?limit=${limit}`,
             {
@@ -145,7 +155,7 @@ export class ChallengeManager implements BaseManager<Challenge> {
             const data = <ChallengeRankData[]>response.data;
             const result = data.map((rank) => new ChallengeRank(this.client, rank, level));
             if (cache) await this.client.cache.set(`${key}:${region}`, result);
-            if (store) await this.client.storage.save(result, key, region!);
+            if (store) await this.client.storage.save(data, key, region!);
             resolve(result);
           }
         }
@@ -166,10 +176,13 @@ export class ChallengeManager implements BaseManager<Challenge> {
       const exists = await this.client.cache.has(`challenge-progression:${playerId}`);
       if (!ignoreCache && exists) resolve(await this.client.cache.get(`challenge-progression:${playerId}`)!);
       else {
-        const storage = this.client.storage.fetch<SummonerChallenge>('challenge-progression', playerId);
+        const storage = this.client.storage.fetch<SummonerChallengeData>('challenge-progression', playerId);
         const stored = storage instanceof Promise ? await storage.catch(() => undefined) : storage;
-        if (stored && !ignoreStorage) resolve(stored);
-        else {
+        if (stored && !ignoreStorage) {
+          const result = new SummonerChallenge(this.client, stored);
+          if (cache) await this.client.cache.set(`challenge-progression:${playerId}`, result);
+          resolve(result);
+        } else {
           const response = await this.client.api.makeApiRequest(`/lol/challenges/v1/player-data/${playerId}`, {
             region: region!,
             regional: false,
@@ -181,7 +194,7 @@ export class ChallengeManager implements BaseManager<Challenge> {
             const data = <SummonerChallengeData>response.data;
             const result = new SummonerChallenge(this.client, data);
             if (cache) await this.client.cache.set(`challenge-progression:${playerId}`, result);
-            if (store) await this.client.storage.save(result, `challenge-progression`, playerId);
+            if (store) await this.client.storage.save(data, `challenge-progression`, playerId);
             resolve(result);
           }
         }
