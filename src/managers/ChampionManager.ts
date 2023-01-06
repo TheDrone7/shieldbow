@@ -25,9 +25,12 @@ export class ChampionManager implements BaseManager<Champion> {
   private async _fetchLocalChamp(name: string, options: FetchOptions) {
     const storagePath = ['champions', this.client.patch, 'dDragon', this.client.locale].join(':');
     return new Promise(async (resolve, reject) => {
-      this.client.logger?.trace(`Fetching DDragon (local) champion: ${name}.`);
-      const data = this.client.storage.fetch<{ data: { [key: string]: ChampionData } }>(storagePath, name);
-      const result = 'then' in data ? await data.catch(() => undefined) : data;
+      let result;
+      if (!options.ignoreStorage) {
+        this.client.logger?.trace(`Fetching DDragon (local) champion: ${name}.`);
+        const data = this.client.storage.fetch<{ data: { [key: string]: ChampionData } }>(storagePath, name);
+        result = 'then' in data ? await data.catch(() => undefined) : data;
+      }
       if (result) resolve(result);
       else {
         this.client.logger?.trace(`Fetching DDragon champion: ${name}.`);
@@ -46,9 +49,12 @@ export class ChampionManager implements BaseManager<Champion> {
   private async _fetchLocalPricing(name: string, options: FetchOptions) {
     const storagePath = ['champions', this.client.patch, 'meraki'].join(':');
     return new Promise(async (resolve, reject) => {
-      this.client.logger?.trace(`Fetching Meraki (local) champion: ${name}.`);
-      const data = this.client.storage.fetch<MerakiChampion>(storagePath, name);
-      const result = 'then' in data ? await data.catch(() => undefined) : data;
+      let result;
+      if (!options.ignoreStorage) {
+        this.client.logger?.trace(`Fetching Meraki (local) champion: ${name}.`);
+        const data = this.client.storage.fetch<MerakiChampion>(storagePath, name);
+        result = 'then' in data ? await data.catch(() => undefined) : data;
+      }
       if (result) resolve(result);
       else {
         this.client.logger?.trace(`Fetching Meraki champion: ${name}.`);
@@ -67,9 +73,12 @@ export class ChampionManager implements BaseManager<Champion> {
   private async _fetchLocalDamage(name: string, options: FetchOptions) {
     const storagePath = ['champions', this.client.patch, 'cDragon'].join(':');
     return new Promise(async (resolve, reject) => {
-      this.client.logger?.trace(`Fetching CDragon (local) champion: ${name}.`);
-      const data = this.client.storage.fetch<SpellDamageData>(storagePath, name);
-      const result = 'then' in data ? await data.catch(() => undefined) : data;
+      let result;
+      if (!options.ignoreStorage) {
+        this.client.logger?.trace(`Fetching CDragon (local) champion: ${name}.`);
+        const data = this.client.storage.fetch<SpellDamageData>(storagePath, name);
+        result = 'then' in data ? await data.catch(() => undefined) : data;
+      }
       if (result) resolve(result);
       else {
         this.client.logger?.trace(`Fetching CDragon champion: ${name}.`);

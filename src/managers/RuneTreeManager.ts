@@ -24,9 +24,12 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
   private async _fetchLocalRunes(options: FetchOptions) {
     const storagePath = ['runes', this.client.patch, this.client.locale].join(':');
     return new Promise(async (resolve, reject) => {
-      this.client.logger?.trace(`Fetching runes from local storage`);
-      const data = this.client.storage.fetch<RuneTreeData[]>(storagePath, 'runes');
-      const result = 'then' in data ? await data.catch(() => undefined) : data;
+      let result;
+      if (!options.ignoreStorage) {
+        this.client.logger?.trace(`Fetching runes from local storage`);
+        const data = this.client.storage.fetch<RuneTreeData[]>(storagePath, 'runes');
+        result = 'then' in data ? await data.catch(() => undefined) : data;
+      }
       if (result) resolve(result);
       else {
         this.client.logger?.trace(`Fetching runes from DDragon`);
@@ -66,7 +69,15 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
    * @param options - The basic fetching options.
    */
   async fetchAllRunes(options?: FetchOptions): Promise<Rune[]> {
-    const runeTrees = await this.fetchAll(options);
+    let runeTrees = new Collection<string, RuneTree>();
+    const keys = (await this.client.cache.keys()).filter((k) => k.startsWith('rune:'));
+    if (keys.length < 5) runeTrees = await this.fetchAll(options);
+    else
+      for (const key of keys) {
+        const runeTree = await this.client.cache.get<RuneTree>(key);
+        runeTrees.set(runeTree.key, runeTree);
+      }
+
     return runeTrees.map((t) => t.slots.map((r) => [...r.values()])).flat(2);
   }
 

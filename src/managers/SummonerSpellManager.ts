@@ -24,9 +24,12 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
   private async _fetchLocalSpells(options: FetchOptions) {
     const storagePath = ['spells', this.client.patch, this.client.locale].join(':');
     return new Promise(async (resolve, reject) => {
-      this.client.logger?.trace(`Fetching summoner spells from local storage`);
-      const data = this.client.storage.fetch<{ data: { [id: string]: SummonerSpellData } }>(storagePath, 'spells');
-      const result = 'then' in data ? await data.catch(() => undefined) : data;
+      let result;
+      if (!options.ignoreStorage) {
+        this.client.logger?.trace(`Fetching summoner spells from local storage`);
+        const data = this.client.storage.fetch<{ data: { [id: string]: SummonerSpellData } }>(storagePath, 'spells');
+        result = 'then' in data ? await data.catch(() => undefined) : data;
+      }
       if (result) resolve(result.data);
       else {
         this.client.logger?.trace(`Fetching summoner spells from DDragon`);
@@ -99,6 +102,10 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
    */
   async fetchByName(name: string, options?: FetchOptions) {
     const opts = parseFetchOptions(this.client, 'summonerSpells', options);
+    const spell = await this.client.cache.find((spell: SummonerSpell) =>
+      spell.name.toLowerCase().includes(name.toLowerCase())
+    );
+    if (spell) return spell;
     await this.fetchAll(opts);
     return this.client.cache.find<SummonerSpell>((i) => i.name.toLowerCase().includes(name.toLowerCase()));
   }
