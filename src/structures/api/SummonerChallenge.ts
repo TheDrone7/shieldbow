@@ -9,6 +9,7 @@ import type {
 } from '../../types';
 import { Collection } from '@discordjs/collection';
 import type { Client } from '../../client';
+import type { Challenge } from './Challenge';
 
 /**
  * A representation of the overview of a summoner's challenge data.
@@ -146,8 +147,9 @@ export class ChallengePreferences {
    * The challenges that this summoner has put on display.
    */
   async fetchDisplayedChallenges() {
-    if (!this.client.challenges.cache.hasAll(...this.displayedChallengeIds)) await this.client.challenges.fetchAll();
-    return this.client.challenges.cache.filter((challenge) => this.displayedChallengeIds.includes(challenge.id));
+    const exists = await Promise.all(this.displayedChallengeIds.map((id) => this.client.cache.has(`challenge:${id}`)));
+    if (!exists) await this.client.challenges.fetchAll();
+    return Promise.all(this.displayedChallengeIds.map((id) => this.client.cache.get<Challenge>(`challenge:${id}`)));
   }
 }
 

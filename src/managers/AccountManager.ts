@@ -74,7 +74,7 @@ export class AccountManager implements BaseManager<Account> {
       const cached = await this.client.cache.find<Account>((a) => a.username === name && a.userTag === tag);
       if (cached && !ignoreCache) resolve(cached);
       else {
-        const stored = await this.client.storage.search<Account>('account', {});
+        const stored = await this.client.storage.search<Account>('account', { gameName: name, tagLine: tag });
         if (stored.length > 0 && !ignoreStorage) resolve(stored[0]);
         else {
           const accountResponse = await this.client.api
