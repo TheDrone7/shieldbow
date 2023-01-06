@@ -30,8 +30,16 @@ See the [documentation](https://thedrone7.github.io/shieldbow/) to learn more!
 
 ### Roadmap
 
-1. Use a plugin structure for caching.
-2. Add in-memory and redis cache plugins.
-3. Increase test coverage.
-4. Increase consistency.
-5. Release `v2`
+1. Update all managers to use new cache and storage systems.
+2. Create new rate limiter with custom limits options.
+3. Update all managers to use new rate limiter.
+4. Increase test coverage.
+5. Increase consistency.
+6. Write a what's new page for documentation.
+7. Write a migration guide for documentation.
+8. Add pages with more detailed usage for the new plugin systems for
+    - Cache
+    - Storage
+    - Rate Limiter
+    - Logging
+9. Release `v2`
