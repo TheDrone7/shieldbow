@@ -20,23 +20,6 @@ export class LeagueManager implements BaseManager<Collection<QueueType, LeagueEn
    * The client this manager belongs to.
    */
   readonly client: Client;
-  /**
-   * The competitive info (mapped by summoner ID) stored in the memory.
-   *
-   * Only use this if you absolutely must.
-   * Prioritize using
-   * {@link LeagueManager.fetch | fetch} or
-   * {@link LeagueManager.fetchByQueueAndTier | fetchByQueueAndTier}
-   * instead.
-   */
-  readonly cache: Collection<string, Collection<QueueType, LeagueEntry>>;
-  /**
-   * The in-memory cache for league lists.
-   *
-   * Only use this if you absolutely must.
-   * Prioritize using {@link LeagueManager.fetchByLeagueId | fetchByLeagueId} instead.
-   */
-  readonly listCache: Collection<string, LeagueList>;
 
   /**
    * Creates a new League manager.
@@ -44,8 +27,6 @@ export class LeagueManager implements BaseManager<Collection<QueueType, LeagueEn
    */
   constructor(client: Client) {
     this.client = client;
-    this.cache = new Collection<string, Collection<QueueType, LeagueEntry>>();
-    this.listCache = new Collection<string, LeagueList>();
   }
 
   /**
@@ -56,27 +37,43 @@ export class LeagueManager implements BaseManager<Collection<QueueType, LeagueEn
    */
   async fetch(id: string, options?: FetchOptions) {
     const opts = parseFetchOptions(this.client, 'league', options);
-    const { cache, region, ignoreCache } = opts;
+    const { cache, region, ignoreCache, ignoreStorage, store } = opts;
     this.client.logger?.trace(`Fetching league entries for summoner ID: ${id} with options: `, opts);
     return new Promise<Collection<QueueType, LeagueEntry>>(async (resolve, reject) => {
-      if (this.cache.has(id) && !ignoreCache) resolve(this.cache.get(id)!);
+      const exists = await this.client.cache.has(`league:${id}`);
+      if (exists && !ignoreCache) resolve(await this.client.cache.get(`league:${id}`)!);
       else {
-        const response = await this.client.api
-          .makeApiRequest('/lol/league/v4/entries/by-summoner/' + id, {
-            region: region!,
-            regional: false,
-            name: 'League Entry by summoner ID',
-            params: `Summoner ID: ${id}`
-          })
-          .catch(reject);
-        if (response) {
-          const data = <LeagueEntryData[]>response.data;
-          if (data && data.length) {
-            const entries = new Collection<QueueType, LeagueEntry>();
-            for (const entry of data) entries.set(entry.queueType, new LeagueEntry(this.client, entry));
-            if (cache) this.cache.set(id, entries);
-            resolve(entries);
-          } else reject('No league entries found.');
+        const storage = this.client.storage.fetch<LeagueEntryData[]>('league', id);
+        const stored = storage instanceof Promise ? await storage.catch(() => undefined) : storage;
+        if (stored && stored.length && !ignoreStorage) {
+          const result = new Collection<QueueType, LeagueEntry>();
+          for (const entry of stored) {
+            const { queueType } = entry;
+            const newEntry = new LeagueEntry(this.client, entry);
+            result.set(queueType, newEntry);
+          }
+          if (cache) await this.client.cache.set(`league:${id}`, result);
+          resolve(result);
+        } else if (stored && stored.length < 1) reject('No league entries found for the provided summoner ID.');
+        else {
+          const response = await this.client.api
+            .makeApiRequest('/lol/league/v4/entries/by-summoner/' + id, {
+              region: region!,
+              regional: false,
+              name: 'League Entry by summoner ID',
+              params: `Summoner ID: ${id}`
+            })
+            .catch(reject);
+          if (response) {
+            const data = <LeagueEntryData[]>response.data;
+            if (data && data.length) {
+              const entries = new Collection<QueueType, LeagueEntry>();
+              for (const entry of data) entries.set(entry.queueType, new LeagueEntry(this.client, entry));
+              if (cache) await this.client.cache.set(`league:${id}`, entries);
+              if (store) await this.client.storage.save(data, 'league', id);
+              resolve(entries);
+            } else reject('No league entries found.');
+          }
         }
       }
     });
@@ -96,17 +93,17 @@ export class LeagueManager implements BaseManager<Collection<QueueType, LeagueEn
     division: DivisionType,
     options?: FetchOptions & { page: number }
   ) {
-    const cache = options?.cache ?? this.cache;
-    const region = options?.region ?? this.client.region;
+    const opts = parseFetchOptions(this.client, 'league', options);
+    const { cache, region, store } = opts;
     const page = options?.page ?? 1;
     this.client.logger?.trace(
       `Fetching league entries for queue: ${queue}, tier: ${tier}, division: ${division}, page: ${page} with options: `,
-      { cache, region }
+      opts
     );
     return new Promise<Collection<string, LeagueEntry>>(async (resolve, reject) => {
       const response = await this.client.api
         .makeApiRequest(`/lol/league-exp/v4/entries/${queue}/${tier}/${division}?page=${page}`, {
-          region,
+          region: region!,
           regional: false,
           name: 'League Entry by queue and tier',
           params: `Queue: ${queue}, Tier: ${tier}, Division: ${division}`
@@ -118,10 +115,21 @@ export class LeagueManager implements BaseManager<Collection<QueueType, LeagueEn
           const result = new Collection<string, LeagueEntry>();
           for (const entry of data) {
             const { summonerId, queueType } = entry;
-            const entries = this.cache.get(summonerId) || new Collection<QueueType, LeagueEntry>();
+            const exists = await this.client.cache.has(`league:${summonerId}`);
+            const entries: Collection<QueueType, LeagueEntry> = exists
+              ? (await this.client.cache.get(`league:${summonerId}`))!
+              : new Collection();
             const newEntry = new LeagueEntry(this.client, entry);
             entries.set(queueType, newEntry);
-            if (cache) this.cache.set(summonerId, entries);
+            if (cache) await this.client.cache.set(`league:${summonerId}`, entries);
+            if (store) {
+              const storage = this.client.storage.fetch<LeagueEntryData[]>('league', summonerId);
+              let stored = storage instanceof Promise ? await storage.catch(() => undefined) : storage;
+              if (stored && stored.length) stored = stored.filter((e) => e.queueType !== queueType);
+              else stored = [];
+              stored.push(entry);
+              await this.client.storage.save(stored, 'league', summonerId);
+            }
             result.set(summonerId, newEntry);
           }
           resolve(result);
@@ -138,33 +146,55 @@ export class LeagueManager implements BaseManager<Collection<QueueType, LeagueEn
    */
   async fetchByLeagueId(leagueId: string, options?: FetchOptions) {
     const opts = parseFetchOptions(this.client, 'league', options);
-    const { cache, region, ignoreCache } = opts;
+    const { cache, store, region, ignoreCache, ignoreStorage } = opts;
     this.client.logger?.trace(`Fetching league entries for league ID: ${leagueId} with options: `, opts);
     return new Promise<LeagueList>(async (resolve, reject) => {
-      if (this.listCache.has(leagueId) && !ignoreCache) resolve(this.listCache.get(leagueId)!);
+      const exists = await this.client.cache.has(`league-list:${leagueId}`);
+      if (exists && !ignoreCache) resolve(await this.client.cache.get(`league-list:${leagueId}`)!);
       else {
-        const response = await this.client.api
-          .makeApiRequest(`/lol/league/v4/leagues/${leagueId}`, {
-            region: region!,
-            regional: false,
-            name: 'League Entry by league ID',
-            params: `League ID: ${leagueId}`
-          })
-          .catch(reject);
-        if (response && response.data) {
-          const data = <LeagueListData>response.data;
-          const list = new LeagueList(this.client, data);
-          if (cache) {
-            for (const entry of list.entries.values()) {
-              const { summonerId, queueType } = entry;
-              const entries = this.cache.get(summonerId) || new Collection<QueueType, LeagueEntry>();
-              entries.set(queueType, entry);
-              this.cache.set(summonerId, entries);
+        const stored = await this.client.storage.fetch<LeagueListData>('league-list', leagueId);
+        if (stored && !ignoreStorage) {
+          const result = new LeagueList(this.client, stored);
+          if (cache) await this.client.cache.set(`league-list:${leagueId}`, result);
+          resolve(result);
+        } else {
+          const response = await this.client.api
+            .makeApiRequest(`/lol/league/v4/leagues/${leagueId}`, {
+              region: region!,
+              regional: false,
+              name: 'League Entry by league ID',
+              params: `League ID: ${leagueId}`
+            })
+            .catch(reject);
+          if (response && response.data) {
+            const data = <LeagueListData>response.data;
+            const list = new LeagueList(this.client, data);
+            if (cache || store) {
+              for (const entry of list.entries.values()) {
+                const { summonerId, queueType } = entry;
+                if (cache) {
+                  const exists = await this.client.cache.has(`league:${summonerId}`);
+                  const entries: Collection<QueueType, LeagueEntry> = exists
+                    ? (await this.client.cache.get(`league:${summonerId}`))!
+                    : new Collection();
+                  entries.set(queueType, entry);
+                  await this.client.cache.set(`league:${summonerId}`, entries);
+                }
+                if (store) {
+                  const storage = this.client.storage.fetch<LeagueEntryData[]>('league', summonerId);
+                  let stored = storage instanceof Promise ? await storage.catch(() => undefined) : storage;
+                  if (stored && stored.length) stored = stored.filter((e) => e.queueType !== queueType);
+                  else stored = [];
+                  stored.push(data.entries.find((e) => e.summonerId === summonerId && e.queueType === queueType)!);
+                  await this.client.storage.save(stored, 'league', summonerId);
+                }
+              }
+              if (cache) await this.client.cache.set(`league-list:${leagueId}`, list);
+              if (store) await this.client.storage.save(data, 'league-list', leagueId);
             }
-            this.listCache.set(leagueId, list);
-          }
-          resolve(list);
-        } else reject('No league entries found for the provided parameters.');
+            resolve(list);
+          } else reject('No league entries found for the provided parameters.');
+        }
       }
     });
   }
