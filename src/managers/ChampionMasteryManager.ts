@@ -52,44 +52,46 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
       `Fetching champion mastery for summoner ID: ${this.summoner.id}, champ: ${id} with options: `,
       opts
     );
-    return new Promise<ChampionMastery>(async (resolve, reject) => {
-      const champ = await this.client.champions.fetch(id, options).catch(() => undefined);
-      const exists = await this.client.cache.has(`champion-mastery:${this.summoner.id}:${champ?.id}`);
-      if (!champ) reject('Invalid champion ID');
-      else if (exists && !ignoreCache)
-        resolve(await this.client.cache.get(`champion-mastery:${this.summoner.id}:${champ.id}`)!);
-      else {
-        const storage = this.client.storage.fetch<ChampionMasteryData>(
-          `champion-mastery:${this.summoner.id}`,
-          champ.id
-        );
-        const stored = storage instanceof Promise ? await storage.catch(() => undefined) : storage;
-        if (stored && !ignoreStorage) {
-          const mastery = new ChampionMastery(stored, champ);
-          if (cache) await this.client.cache.set(mastery.champion.id, mastery);
-          resolve(mastery);
-        } else {
-          const response = await this.client.api
-            .makeApiRequest(
-              `/lol/champion-mastery/v4/champion-masteries/by-summoner/${this.summoner.id}/by-champion/${champ.key}`,
-              {
-                region: region!,
-                regional: false,
-                name: 'Champion mastery by champion',
-                params: `Summoner ID: ${this.summoner.id}, Champion ID: ${champ.key}`
-              }
-            )
-            .catch(reject);
-          if (response) {
-            const data = <ChampionMasteryData>response.data;
-            const mastery = new ChampionMastery(data, champ);
-            if (cache) await this.client.cache.set(`champion-mastery:${this.summoner.id}:${champ.id}`, mastery);
-            if (store) await this.client.storage.save(data, `champion-mastery:${this.summoner.id}`, champ.id);
-            resolve(mastery);
-          }
-        }
+    const champ = await this.client.champions.fetch(id, options).catch(() => undefined);
+    if (!champ) return Promise.reject('Invalid champion ID');
+
+    if (!ignoreCache) {
+      const exists = await this.client.cache.has(`champion-mastery:${this.summoner.id}:${champ.id}`);
+      if (exists) return this.client.cache.get<ChampionMastery>(`champion-mastery:${this.summoner.id}:${champ.id}`)!;
+    }
+
+    if (!ignoreStorage) {
+      const storage = this.client.storage.fetch<ChampionMasteryData>(`champion-mastery:${this.summoner.id}`, champ.id);
+      const stored = storage instanceof Promise ? await storage.catch(() => undefined) : storage;
+      if (stored) {
+        const mastery = new ChampionMastery(stored, champ);
+        if (cache) await this.client.cache.set(`champion-mastery:${this.summoner.id}:${champ.id}`, mastery);
+        return mastery;
       }
-    });
+    }
+
+    try {
+      const response = await this.client.api.makeApiRequest(
+        `/lol/champion-mastery/v4/champion-masteries/by-summoner/${this.summoner.id}/by-champion/${champ.key}`,
+        {
+          region: region!,
+          regional: false,
+          name: 'Champion mastery by champion',
+          params: `Summoner ID: ${this.summoner.id}, Champion ID: ${champ.key}`
+        }
+      );
+      if (response) {
+        const data = <ChampionMasteryData>response.data;
+        const mastery = new ChampionMastery(data, champ);
+        if (cache) await this.client.cache.set(`champion-mastery:${this.summoner.id}:${champ.id}`, mastery);
+        if (store) await this.client.storage.save(data, `champion-mastery:${this.summoner.id}`, champ.id);
+        return mastery;
+      }
+    } catch (error) {
+      return Promise.reject(error);
+    }
+
+    return Promise.reject('Unknown error. This should never happen.');
   }
 
   /**
@@ -105,39 +107,31 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
       `Fetching ${n}th highest mastery for summoner ID: ${this.summoner.id} with options: `,
       opts
     );
-    return new Promise<ChampionMastery>(async (resolve, reject) => {
-      if (n < 0) reject('The value of `n` must be >= 0.');
-      else {
-        const exists = (await this.client.cache.keys()).filter((k) =>
-          k.startsWith(`champion-mastery:${this.summoner.id}:`)
-        );
-        const dataList = await (exists.length > n && !ignoreCache
-          ? Promise.all(exists.map((k) => this.client.cache.get<ChampionMastery>(k)))
-          : <Promise<ChampionMasteryData[]>>this._fetchRawMasteryData(opts).catch(reject));
-        const ordered = this._sortMastery(dataList);
-        if (ordered.at(n)) {
-          const mastery = ordered.at(n)!;
-          if (mastery instanceof ChampionMastery) resolve(mastery);
-          else {
-            const champ = await this.client.champions.fetchByKey(mastery.championId).catch(() => undefined);
-            if (!champ) reject('Invalid champion ID');
-            else {
-              const cMastery = new ChampionMastery(mastery, champ);
-              if (cache) await this.client.cache.set(`champion-mastery:${this.summoner.id}:${champ.id}`, cMastery);
-              if (store) await this.client.storage.save(mastery, `champion-mastery:${this.summoner.id}`, champ.id);
-              resolve(cMastery);
-            }
-          }
-        } else reject('This summoner does not have mastery points for ' + n + ' champions');
-      }
-    });
-  }
+    if (n < 0) return Promise.reject('The value of `n` must be >= 0.');
 
-  /**
-   * @deprecated use fetchAll instead
-   */
-  refreshAll() {
-    return this.fetchAll();
+    let exists: string[] = [];
+    if (!ignoreCache)
+      exists = (await this.client.cache.keys()).filter((k) => k.startsWith(`champion-mastery:${this.summoner.id}:`));
+
+    const dataList = await (exists.length > n
+      ? Promise.all(exists.map((k) => this.client.cache.get<ChampionMastery>(k)))
+      : <Promise<ChampionMasteryData[]>>this._fetchRawMasteryData(opts));
+
+    const ordered = this._sortMastery(dataList);
+    if (ordered.at(n)) {
+      const mastery = ordered.at(n)!;
+      if (mastery instanceof ChampionMastery) return mastery;
+      else {
+        const champ = await this.client.champions.fetchByKey(mastery.championId).catch(() => undefined);
+        if (!champ) return Promise.reject('Invalid champion ID');
+        const masteryObj = new ChampionMastery(mastery, champ);
+        if (cache) await this.client.cache.set(`champion-mastery:${this.summoner.id}:${champ.id}`, masteryObj);
+        if (store) await this.client.storage.save(mastery, `champion-mastery:${this.summoner.id}`, champ.id);
+        return masteryObj;
+      }
+    }
+
+    return Promise.reject('Unknown error. This should never happen.');
   }
 
   /**
@@ -191,27 +185,26 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
   /**
    * Fetch raw ChampionMasteryData[] response from API
    */
-  private _fetchRawMasteryData(options: FetchOptions) {
-    return new Promise<ChampionMasteryData[]>(async (resolve, reject) => {
-      let result;
-      if (!options.ignoreStorage)
-        result = await this.client.storage.search<ChampionMasteryData>(`champion-mastery:${this.summoner.id}`, {});
-      if (result && result.length > 0) resolve(result);
-      else {
-        const response = await this.client.api
-          .makeApiRequest(`/lol/champion-mastery/v4/champion-masteries/by-summoner/${this.summoner.id}`, {
-            region: this.summoner.region,
-            regional: false,
-            name: 'Champion mastery by summoner',
-            params: `Summoner ID: ${this.summoner.id}`
-          })
-          .catch(reject);
-        if (response) {
-          const data = <ChampionMasteryData[]>response.data;
-          resolve(data);
+  private async _fetchRawMasteryData(options: FetchOptions) {
+    if (!options.ignoreStorage) {
+      const result = await this.client.storage.search<ChampionMasteryData>(`champion-mastery:${this.summoner.id}`, {});
+      if (result && result.length > 0) return result;
+    }
+
+    try {
+      const response = await this.client.api.makeApiRequest(
+        `/lol/champion-mastery/v4/champion-masteries/by-summoner/${this.summoner.id}`,
+        {
+          region: this.summoner.region,
+          regional: false,
+          name: 'Champion mastery by summoner',
+          params: `Summoner ID: ${this.summoner.id}`
         }
-      }
-    });
+      );
+      return <ChampionMasteryData[]>response.data;
+    } catch (e) {
+      return Promise.reject(e);
+    }
   }
 
   /**
