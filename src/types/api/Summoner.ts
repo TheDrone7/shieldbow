@@ -10,3 +10,11 @@ export interface SummonerData {
   profileIconId: number;
   summonerLevel: number;
 }
+
+export interface PartialSummoner {
+  id: string;
+  name: string;
+  profileIconId: number;
+  playerId: string;
+  summonerLevel: number;
+}

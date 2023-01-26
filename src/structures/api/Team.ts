@@ -1,11 +1,7 @@
-import type { Client } from '../../client';
 import type { ParticipantData, TeamData, TeamObjectivesData } from '../../types';
-import type { Champion } from '../dragon/Champion';
+import type { Champion, Item, RuneTree, SummonerSpell } from '../dragon';
 import { Participant } from './Participant';
 import type { Collection } from '@discordjs/collection';
-import type { Item } from '../dragon/Item';
-import type { RuneTree } from '../dragon/RuneTree';
-import type { SummonerSpell } from '../dragon/SummonerSpell';
 
 /**
  * A banned champion in a match.
@@ -46,7 +42,6 @@ export class Team {
    */
   readonly participants: Participant[];
   constructor(
-    client: Client,
     data: TeamData,
     participants: ParticipantData[],
     champions: Collection<string, Champion>,
@@ -61,8 +56,7 @@ export class Team {
     }));
     this.objectives = data.objectives;
     this.participants = participants.map(
-      (p) =>
-        new Participant(client, p, champions.find((c) => c.key === p.championId)!, items, runeTrees, summonerSpells)
+      (p) => new Participant(p, champions.find((c) => c.key === p.championId)!, items, runeTrees, summonerSpells)
     );
     this.win = data.win;
   }

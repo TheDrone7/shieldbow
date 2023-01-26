@@ -1,5 +1,5 @@
 export type { AccountData } from './Account';
-export type { SummonerData } from './Summoner';
+export type { SummonerData, PartialSummoner } from './Summoner';
 export type { ChampionMasteryData } from './ChampionMastery';
 export type { LeagueEntryData } from './LeagueEntry';
 export type { LeagueListData } from './LeagueList';

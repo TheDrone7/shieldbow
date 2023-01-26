@@ -3,10 +3,7 @@ import type { GameMap, GameMode, GameType, MatchData, Queue, Region } from '../.
 import { Collection } from '@discordjs/collection';
 import { Team } from './Team';
 import type { MatchTimeline } from './MatchTimeline';
-import type { Champion } from '../dragon/Champion';
-import type { Item } from '../dragon/Item';
-import type { RuneTree } from '../dragon/RuneTree';
-import type { SummonerSpell } from '../dragon/SummonerSpell';
+import type { Champion, Item, RuneTree, SummonerSpell } from '../dragon';
 
 /**
  * A representation of a league of legends match.
@@ -121,14 +118,8 @@ export class Match {
     const blueTeamParticipants = data.info.participants.filter((p) => p.teamId === 100);
     const redTeamParticipants = data.info.participants.filter((p) => p.teamId === 200);
     this.teams = new Collection<'blue' | 'red', Team>();
-    this.teams.set(
-      'blue',
-      new Team(client, blueTeamData, blueTeamParticipants, champions, items, runeTrees, summonerSpells)
-    );
-    this.teams.set(
-      'red',
-      new Team(client, redTeamData, redTeamParticipants, champions, items, runeTrees, summonerSpells)
-    );
+    this.teams.set('blue', new Team(blueTeamData, blueTeamParticipants, champions, items, runeTrees, summonerSpells));
+    this.teams.set('red', new Team(redTeamData, redTeamParticipants, champions, items, runeTrees, summonerSpells));
   }
 
   /**
@@ -150,8 +141,7 @@ export class Match {
     if (data.info.gameType.length === 0) return true;
     if (data.info.gameVersion.length === 0) return true;
     if (data.info.participants.length === 0) return true;
-    if (data.info.teams.length === 0) return true;
-    return false;
+    return data.info.teams.length === 0;
   }
 
   private _regionFromPlatformId(platformId: string): Region {

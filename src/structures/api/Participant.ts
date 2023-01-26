@@ -1,13 +1,8 @@
-import type { Client } from '../../client';
-import type { ParticipantData, SummonerData } from '../../types';
-import type { Champion } from '../dragon/Champion';
+import type { PartialSummoner, ParticipantData } from '../../types';
+import type { Champion, Item, SummonerSpell, RuneTree } from '../dragon';
 import { Bounty } from './Bounty';
 import { Collection } from '@discordjs/collection';
-import type { Item } from '../dragon/Item';
-import { Summoner } from './Summoner';
-import type { SummonerSpell } from '../dragon/SummonerSpell';
 import { Perks } from './Perks';
-import type { RuneTree } from '../dragon/RuneTree';
 
 /**
  * The participant's turret interaction information.
@@ -397,7 +392,7 @@ export class Participant {
   /**
    * The summoner acting as the participant.
    */
-  readonly summoner: Summoner;
+  readonly summoner: PartialSummoner;
   /**
    * The summoner spells the participant chose for the match.
    */
@@ -452,7 +447,6 @@ export class Participant {
 
   /**
    * Creates a new participant instance.
-   * @param client - The client that requested this data.
    * @param data - The raw participant data from the API.
    * @param champ - The champion played by the participant.
    * @param items - The items purchased by the participant.
@@ -460,7 +454,6 @@ export class Participant {
    * @param summonerSpells - The summoner spells in the game.
    */
   constructor(
-    client: Client,
     data: ParticipantData,
     champ: Champion,
     items: Collection<string, Item>,
@@ -599,22 +592,13 @@ export class Participant {
     this.baronKills = data.baronKills;
     this.dragonKills = data.dragonKills;
 
-    const summonerData: SummonerData = {
-      accountId: undefined!,
+    this.summoner = {
       id: data.summonerId,
       name: data.summonerName,
       profileIconId: data.profileIcon,
-      puuid: data.puuid,
-      revisionDate: Date.now(),
+      playerId: data.puuid,
       summonerLevel: data.summonerLevel
     };
-    const existing = client.summoners.cache.get(data.summonerId);
-    if (existing) {
-      summonerData.accountId = existing.accountId;
-      summonerData.revisionDate = existing.revisionDate.getTime();
-    }
-    this.summoner = new Summoner(client, summonerData);
-    client.summoners.cache.set(data.summonerId, this.summoner);
 
     this.summonerSpells = new Collection<'D' | 'F', SummonerSpell>();
     this.summonerSpellsCasts = new Collection<'D' | 'F', number>();
