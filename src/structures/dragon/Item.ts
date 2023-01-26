@@ -74,7 +74,12 @@ export class Item {
    * Whether this item can be bought from the store.
    */
   readonly hideFromAll: boolean;
-  private _requiredChampion?: Champion;
+
+  /**
+   * If this field is defined, then this item can only be bought/owned by this champion.
+   */
+  readonly requiredChampionId?: string;
+
   /**
    * A link to the image assigned to this item in-game.
    */
@@ -131,18 +136,15 @@ export class Item {
     this.availability = client.maps.filter((m) => data.maps[m.mapId.toString()]);
     this.stats = data.stats;
     this.kind = this.parseDepth(data.depth || 1);
-
-    if (data.requiredChampion)
-      client.champions.fetch(data.requiredChampion).then((c) => {
-        this._requiredChampion = c;
-      });
+    this.requiredChampionId = data.requiredChampion;
   }
 
   /**
    * If this is not undefined, then this item can only be bought/owned by this champion.
    */
-  get requiredChampion(): Champion | undefined {
-    return this._requiredChampion;
+  async requiredChampion(): Promise<Champion> {
+    if (!this.requiredChampionId) return Promise.reject('This item is not champion-specific.');
+    return this.client.champions.fetch(this.requiredChampionId);
   }
 
   /**
