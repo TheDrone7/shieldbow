@@ -31,35 +31,38 @@ export class AccountManager implements BaseManager<Account> {
     const { ignoreCache, ignoreStorage, cache, store } = opts;
     const region = options?.region ?? this.client.region;
     this.client.logger?.trace(`Fetching account data for ID: ${id} with options: `, opts);
-    return new Promise<Account>(async (resolve, reject) => {
-      const existsCached = await this.client.cache.has(`account:${id}`);
-      if (existsCached && !ignoreCache) resolve(await this.client.cache.get<Account>(`account:${id}`)!);
-      else {
-        const storage = this.client.storage.fetch<AccountData>('account', id);
-        const stored = storage instanceof Promise ? await storage.catch(() => undefined) : storage;
-        if (stored && !ignoreStorage) {
-          const account = new Account(stored);
-          if (cache) await this.client.cache.set(`account:${id}`, account);
-          resolve(account);
-        } else {
-          const accountResponse = await this.client.api
-            .makeApiRequest('/riot/account/v1/accounts/by-puuid/' + id, {
-              region,
-              regional: true,
-              name: 'Account by PUUID',
-              params: 'PUUID: ' + id
-            })
-            .catch(reject);
-          if (accountResponse) {
-            const accountData = <AccountData>accountResponse.data;
-            const account = new Account(accountData);
-            if (cache) await this.client.cache.set(`account:${id}`, account);
-            if (store) await this.client.storage.save(accountData, 'account', account.playerId);
-            resolve(account);
-          }
-        }
+    if (!ignoreCache) {
+      const exists = await this.client.cache.has(`account:${id}`);
+      if (exists) return Promise.resolve(await this.client.cache.get<Account>(`account:${id}`)!);
+    }
+    if (!ignoreStorage) {
+      const storage = this.client.storage.fetch<AccountData>('account', id);
+      const stored = storage instanceof Promise ? await storage.catch(() => undefined) : storage;
+      if (stored) {
+        const account = new Account(stored);
+        if (cache) await this.client.cache.set(`account:${id}`, account);
+        return Promise.resolve(account);
       }
-    });
+    }
+    try {
+      const response = await this.client.api.makeApiRequest('/riot/account/v1/accounts/by-puuid/' + id, {
+        region,
+        regional: true,
+        name: 'Account by PUUID',
+        params: 'PUUID: ' + id
+      });
+      if (response) {
+        const accountData = <AccountData>response.data;
+        const account = new Account(accountData);
+        if (cache) await this.client.cache.set(`account:${id}`, account);
+        if (store) await this.client.storage.save(accountData, 'account', account.playerId);
+        return Promise.resolve(account);
+      }
+    } catch (e) {
+      return Promise.reject(e);
+    }
+
+    return Promise.reject('Unknown error. This should never happen.');
   }
 
   /**
@@ -73,33 +76,41 @@ export class AccountManager implements BaseManager<Account> {
     const opts = parseFetchOptions(this.client, 'account', options);
     const { ignoreCache, ignoreStorage, cache, store, region } = opts;
     this.client.logger?.trace(`Fetching account for name#tag: ${name}#${tag} with options: `, opts);
-    return new Promise<Account>(async (resolve, reject) => {
+    if (!ignoreCache) {
       const cached = await this.client.cache.find<Account>((a) => a.username === name && a.userTag === tag);
-      if (cached && !ignoreCache) resolve(cached);
-      else {
-        const stored = await this.client.storage.search<AccountData>('account', { gameName: name, tagLine: tag });
-        if (stored.length > 0 && !ignoreStorage) {
-          const account = new Account(stored[0]);
-          if (cache) await this.client.cache.set(`account:${account.playerId}`, account);
-          resolve(account);
-        } else {
-          const accountResponse = await this.client.api
-            .makeApiRequest('/riot/account/v1/accounts/by-riot-id/' + encodeURIComponent(name) + '/' + tag, {
-              region: region!,
-              regional: true,
-              name: 'Account by name and tag',
-              params: 'NAME: ' + name + ', TAG: ' + tag
-            })
-            .catch(reject);
-          if (accountResponse) {
-            const accountData = <AccountData>accountResponse.data;
-            const account = new Account(accountData);
-            if (cache) await this.client.cache.set(`account:${account.playerId}`, account);
-            if (store) await this.client.storage.save(accountData, 'account', account.playerId);
-            resolve(account);
-          }
-        }
+      if (cached) return Promise.resolve(cached);
+    }
+
+    if (!ignoreStorage) {
+      const stored = await this.client.storage.search<AccountData>('account', { gameName: name, tagLine: tag });
+      if (stored.length > 0) {
+        const account = new Account(stored[0]);
+        if (cache) await this.client.cache.set(`account:${account.playerId}`, account);
+        return Promise.resolve(account);
       }
-    });
+    }
+
+    try {
+      const accountResponse = await this.client.api.makeApiRequest(
+        '/riot/account/v1/accounts/by-riot-id/' + encodeURIComponent(name) + '/' + tag,
+        {
+          region: region!,
+          regional: true,
+          name: 'Account by name and tag',
+          params: 'NAME: ' + name + ', TAG: ' + tag
+        }
+      );
+      if (accountResponse) {
+        const accountData = <AccountData>accountResponse.data;
+        const account = new Account(accountData);
+        if (cache) await this.client.cache.set(`account:${account.playerId}`, account);
+        if (store) await this.client.storage.save(accountData, 'account', account.playerId);
+        return Promise.resolve(account);
+      }
+    } catch (e) {
+      return Promise.reject(e);
+    }
+
+    return Promise.reject('Unknown error. This should never happen.');
   }
 }
