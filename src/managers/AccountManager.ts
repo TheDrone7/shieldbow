@@ -31,38 +31,36 @@ export class AccountManager implements BaseManager<Account> {
     const { ignoreCache, ignoreStorage, cache, store } = opts;
     const region = options?.region ?? this.client.region;
     this.client.logger?.trace(`Fetching account data for ID: ${id} with options: `, opts);
-    if (!ignoreCache) {
-      const exists = await this.client.cache.has(`account:${id}`);
-      if (exists) return Promise.resolve(await this.client.cache.get<Account>(`account:${id}`)!);
-    }
-    if (!ignoreStorage) {
-      const storage = this.client.storage.fetch<AccountData>('account', id);
-      const stored = storage instanceof Promise ? await storage.catch(() => undefined) : storage;
-      if (stored) {
-        const account = new Account(stored);
-        if (cache) await this.client.cache.set(`account:${id}`, account);
-        return Promise.resolve(account);
-      }
-    }
     try {
+      if (!ignoreCache) {
+        const exists = await this.client.cache.has(`account:${id}`);
+        if (exists) return this.client.cache.get<Account>(`account:${id}`);
+      }
+
+      if (!ignoreStorage) {
+        const storage = this.client.storage.fetch<AccountData>('account', id);
+        const stored = storage instanceof Promise ? await storage.catch(() => undefined) : storage;
+        if (stored) {
+          const account = new Account(stored);
+          if (cache) await this.client.cache.set(`account:${id}`, account);
+          return account;
+        }
+      }
+
       const response = await this.client.api.makeApiRequest('/riot/account/v1/accounts/by-puuid/' + id, {
         region,
         regional: true,
         name: 'Account by PUUID',
         params: 'PUUID: ' + id
       });
-      if (response) {
-        const accountData = <AccountData>response.data;
-        const account = new Account(accountData);
-        if (cache) await this.client.cache.set(`account:${id}`, account);
-        if (store) await this.client.storage.save(accountData, 'account', account.playerId);
-        return Promise.resolve(account);
-      }
+      const accountData = <AccountData>response.data;
+      const account = new Account(accountData);
+      if (cache) await this.client.cache.set(`account:${id}`, account);
+      if (store) await this.client.storage.save(accountData, 'account', account.playerId);
+      return account;
     } catch (e) {
       return Promise.reject(e);
     }
-
-    return Promise.reject('Unknown error. This should never happen.');
   }
 
   /**
@@ -76,21 +74,21 @@ export class AccountManager implements BaseManager<Account> {
     const opts = parseFetchOptions(this.client, 'account', options);
     const { ignoreCache, ignoreStorage, cache, store, region } = opts;
     this.client.logger?.trace(`Fetching account for name#tag: ${name}#${tag} with options: `, opts);
-    if (!ignoreCache) {
-      const cached = await this.client.cache.find<Account>((a) => a.username === name && a.userTag === tag);
-      if (cached) return Promise.resolve(cached);
-    }
-
-    if (!ignoreStorage) {
-      const stored = await this.client.storage.search<AccountData>('account', { gameName: name, tagLine: tag });
-      if (stored.length > 0) {
-        const account = new Account(stored[0]);
-        if (cache) await this.client.cache.set(`account:${account.playerId}`, account);
-        return Promise.resolve(account);
-      }
-    }
-
     try {
+      if (!ignoreCache) {
+        const cached = await this.client.cache.find<Account>((a) => a.username === name && a.userTag === tag);
+        if (cached) return cached;
+      }
+
+      if (!ignoreStorage) {
+        const stored = await this.client.storage.search<AccountData>('account', { gameName: name, tagLine: tag });
+        if (stored.length > 0) {
+          const account = new Account(stored[0]);
+          if (cache) await this.client.cache.set(`account:${account.playerId}`, account);
+          return account;
+        }
+      }
+
       const accountResponse = await this.client.api.makeApiRequest(
         '/riot/account/v1/accounts/by-riot-id/' + encodeURIComponent(name) + '/' + tag,
         {
@@ -100,17 +98,13 @@ export class AccountManager implements BaseManager<Account> {
           params: 'NAME: ' + name + ', TAG: ' + tag
         }
       );
-      if (accountResponse) {
-        const accountData = <AccountData>accountResponse.data;
-        const account = new Account(accountData);
-        if (cache) await this.client.cache.set(`account:${account.playerId}`, account);
-        if (store) await this.client.storage.save(accountData, 'account', account.playerId);
-        return Promise.resolve(account);
-      }
+      const accountData = <AccountData>accountResponse.data;
+      const account = new Account(accountData);
+      if (cache) await this.client.cache.set(`account:${account.playerId}`, account);
+      if (store) await this.client.storage.save(accountData, 'account', account.playerId);
+      return account;
     } catch (e) {
       return Promise.reject(e);
     }
-
-    return Promise.reject('Unknown error. This should never happen.');
   }
 }

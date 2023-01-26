@@ -52,25 +52,29 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
       `Fetching champion mastery for summoner ID: ${this.summoner.id}, champ: ${id} with options: `,
       opts
     );
-    const champ = await this.client.champions.fetch(id, options).catch(() => undefined);
-    if (!champ) return Promise.reject('Invalid champion ID');
-
-    if (!ignoreCache) {
-      const exists = await this.client.cache.has(`champion-mastery:${this.summoner.id}:${champ.id}`);
-      if (exists) return this.client.cache.get<ChampionMastery>(`champion-mastery:${this.summoner.id}:${champ.id}`)!;
-    }
-
-    if (!ignoreStorage) {
-      const storage = this.client.storage.fetch<ChampionMasteryData>(`champion-mastery:${this.summoner.id}`, champ.id);
-      const stored = storage instanceof Promise ? await storage.catch(() => undefined) : storage;
-      if (stored) {
-        const mastery = new ChampionMastery(stored, champ);
-        if (cache) await this.client.cache.set(`champion-mastery:${this.summoner.id}:${champ.id}`, mastery);
-        return mastery;
-      }
-    }
 
     try {
+      const champ = await this.client.champions.fetch(id, options).catch(() => undefined);
+      if (!champ) return Promise.reject('Invalid champion ID');
+
+      if (!ignoreCache) {
+        const exists = await this.client.cache.has(`champion-mastery:${this.summoner.id}:${champ.id}`);
+        if (exists) return this.client.cache.get<ChampionMastery>(`champion-mastery:${this.summoner.id}:${champ.id}`)!;
+      }
+
+      if (!ignoreStorage) {
+        const storage = this.client.storage.fetch<ChampionMasteryData>(
+          `champion-mastery:${this.summoner.id}`,
+          champ.id
+        );
+        const stored = storage instanceof Promise ? await storage.catch(() => undefined) : storage;
+        if (stored) {
+          const mastery = new ChampionMastery(stored, champ);
+          if (cache) await this.client.cache.set(`champion-mastery:${this.summoner.id}:${champ.id}`, mastery);
+          return mastery;
+        }
+      }
+
       const response = await this.client.api.makeApiRequest(
         `/lol/champion-mastery/v4/champion-masteries/by-summoner/${this.summoner.id}/by-champion/${champ.key}`,
         {
@@ -80,18 +84,14 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
           params: `Summoner ID: ${this.summoner.id}, Champion ID: ${champ.key}`
         }
       );
-      if (response) {
-        const data = <ChampionMasteryData>response.data;
-        const mastery = new ChampionMastery(data, champ);
-        if (cache) await this.client.cache.set(`champion-mastery:${this.summoner.id}:${champ.id}`, mastery);
-        if (store) await this.client.storage.save(data, `champion-mastery:${this.summoner.id}`, champ.id);
-        return mastery;
-      }
+      const data = <ChampionMasteryData>response.data;
+      const mastery = new ChampionMastery(data, champ);
+      if (cache) await this.client.cache.set(`champion-mastery:${this.summoner.id}:${champ.id}`, mastery);
+      if (store) await this.client.storage.save(data, `champion-mastery:${this.summoner.id}`, champ.id);
+      return mastery;
     } catch (error) {
       return Promise.reject(error);
     }
-
-    return Promise.reject('Unknown error. This should never happen.');
   }
 
   /**
@@ -109,29 +109,31 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
     );
     if (n < 0) return Promise.reject('The value of `n` must be >= 0.');
 
-    let exists: string[] = [];
-    if (!ignoreCache)
-      exists = (await this.client.cache.keys()).filter((k) => k.startsWith(`champion-mastery:${this.summoner.id}:`));
+    try {
+      let exists: string[] = [];
+      if (!ignoreCache)
+        exists = (await this.client.cache.keys()).filter((k) => k.startsWith(`champion-mastery:${this.summoner.id}:`));
 
-    const dataList = await (exists.length > n
-      ? Promise.all(exists.map((k) => this.client.cache.get<ChampionMastery>(k)))
-      : <Promise<ChampionMasteryData[]>>this._fetchRawMasteryData(opts));
+      const dataList = await (exists.length > n
+        ? Promise.all(exists.map((k) => this.client.cache.get<ChampionMastery>(k)))
+        : <Promise<ChampionMasteryData[]>>this._fetchRawMasteryData(opts));
 
-    const ordered = this._sortMastery(dataList);
-    if (ordered.at(n)) {
-      const mastery = ordered.at(n)!;
-      if (mastery instanceof ChampionMastery) return mastery;
-      else {
-        const champ = await this.client.champions.fetchByKey(mastery.championId).catch(() => undefined);
-        if (!champ) return Promise.reject('Invalid champion ID');
-        const masteryObj = new ChampionMastery(mastery, champ);
-        if (cache) await this.client.cache.set(`champion-mastery:${this.summoner.id}:${champ.id}`, masteryObj);
-        if (store) await this.client.storage.save(mastery, `champion-mastery:${this.summoner.id}`, champ.id);
-        return masteryObj;
-      }
+      const ordered = this._sortMastery(dataList);
+      if (ordered.at(n)) {
+        const mastery = ordered.at(n)!;
+        if (mastery instanceof ChampionMastery) return mastery;
+        else {
+          const champ = await this.client.champions.fetchByKey(mastery.championId).catch(() => undefined);
+          if (!champ) return Promise.reject('Invalid champion ID');
+          const masteryObj = new ChampionMastery(mastery, champ);
+          if (cache) await this.client.cache.set(`champion-mastery:${this.summoner.id}:${champ.id}`, masteryObj);
+          if (store) await this.client.storage.save(mastery, `champion-mastery:${this.summoner.id}`, champ.id);
+          return masteryObj;
+        }
+      } else return Promise.reject('The value of `n` is out of bounds.');
+    } catch (error) {
+      return Promise.reject(error);
     }
-
-    return Promise.reject('Unknown error. This should never happen.');
   }
 
   /**
@@ -143,7 +145,7 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
     this.client.logger?.trace(`Fetching all champion mastery for summoner ID: ${this.summoner.id} with options: `, {
       region: this.summoner.region
     });
-    return new Promise<Collection<string, ChampionMastery>>(async (resolve) => {
+    try {
       const dataList = await this._fetchRawMasteryData({ ignoreStorage: true, ...opts }).catch(() => []);
       const champs = await this.client.champions.fetchByKeys(dataList.map((c) => c.championId));
       const result = new Collection<string, ChampionMastery>();
@@ -154,32 +156,35 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
         if (cache) await this.client.cache.set(`champion-mastery:${this.summoner.id}:${champ.id}`, mastery);
         if (store) await this.client.storage.save(data, `champion-mastery:${this.summoner.id}`, champ.id);
       }
-      resolve(result);
-    });
+      return result;
+    } catch (error) {
+      return Promise.reject(error);
+    }
   }
 
   /**
    * Get an updated total mastery score for this summoner.
    */
   async updateTotalScore() {
-    return new Promise<number>(async (resolve, reject) => {
-      this.client.logger?.trace(`Fetching total mastery score for summoner ID: ${this.summoner.id} with options: `, {
-        region: this.summoner.region
-      });
-      const response = await this.client.api
-        .makeApiRequest(`/lol/champion-mastery/v4/scores/by-summoner/${this.summoner.id}`, {
+    this.client.logger?.trace(`Fetching total mastery score for summoner ID: ${this.summoner.id} with options: `, {
+      region: this.summoner.region
+    });
+    try {
+      const response = await this.client.api.makeApiRequest(
+        `/lol/champion-mastery/v4/scores/by-summoner/${this.summoner.id}`,
+        {
           region: this.summoner.region,
           regional: false,
           name: 'Champion mastery score by summoner',
           params: `Summoner ID: ${this.summoner.id}`
-        })
-        .catch(reject);
-      if (response) {
-        const score = <number>response.data;
-        this._totalScore = score;
-        resolve(score);
-      }
-    });
+        }
+      );
+      const score = <number>response.data;
+      this._totalScore = score;
+      return score;
+    } catch (error) {
+      return Promise.reject(error);
+    }
   }
 
   /**
