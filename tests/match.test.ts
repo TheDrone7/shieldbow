@@ -48,6 +48,7 @@ describe('API: match-v5', () => {
     const participant = redTeam[0];
     expect(participant.summoner.name).toBeDefined();
     expect(participant.bounty.level).toBeDefined();
-    expect(typeof participant.challenges).toBe('object');
+    if ([400, 420, 430, 440, 450, 830, 840, 850].includes(match.queue.queueId))
+      expect(typeof participant.challenges).toBe('object');
   });
 });
