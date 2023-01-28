@@ -24,25 +24,26 @@ export class ItemManager implements BaseManager<Item> {
 
   private async _fetchLocalItems(options: FetchOptions) {
     const storagePath = ['items', this.client.patch, this.client.locale].join(':');
-    return new Promise(async (resolve, reject) => {
-      let result;
-      if (!options.ignoreStorage) {
-        this.client.logger?.trace('Fetching items from storage');
-        // This needs to be slightly modified to work with the new storage system.
-        const data = this.client.storage.fetch<{ data: { [id: string]: ItemData } }>(storagePath, 'items');
-        result = data instanceof Promise ? await data.catch(() => undefined) : data;
-      }
-      if (result) resolve(result.data);
+
+    if (!options.ignoreStorage) {
+      this.client.logger?.trace('Fetching items from storage');
+      // This needs to be slightly modified to work with the new storage system.
+      const data = this.client.storage.fetch<{ data: { [id: string]: ItemData } }>(storagePath, 'items');
+      const result = data instanceof Promise ? await data.catch(() => undefined) : data;
+      if (result) return result;
+    }
+
+    try {
+      this.client.logger?.trace('Fetching items from DDragon');
+      const response = await this.client.http.get(`${this.client.version}/data/${this.client.locale}/item.json`);
+      if (response.status !== 200) return Promise.reject('Unable to fetch items from Data dragon');
       else {
-        this.client.logger?.trace('Fetching items from DDragon');
-        const response = await this.client.http.get(`${this.client.version}/data/${this.client.locale}/item.json`);
-        if (response.status !== 200) reject('Unable to fetch items from Data dragon');
-        else {
-          if (options.store) await this.client.storage.save({ data: response.data.data }, storagePath, 'items');
-          resolve(response.data.data);
-        }
+        if (options.store) await this.client.storage.save({ data: response.data.data }, storagePath, 'items');
+        return response.data.data;
       }
-    });
+    } catch (error) {
+      return Promise.reject(error);
+    }
   }
 
   /**
@@ -53,16 +54,18 @@ export class ItemManager implements BaseManager<Item> {
     const opts = parseFetchOptions(this.client, 'items', options);
     const { cache } = opts;
     this.client.logger?.trace('Fetching all items');
-    return new Promise<Collection<string, Item>>(async (resolve, reject) => {
-      const items = <{ [id: string]: ItemData }>await this._fetchLocalItems(opts).catch(reject);
+    try {
+      const items = <{ [id: string]: ItemData }>await this._fetchLocalItems(opts);
       const result = new Collection<string, Item>();
       for (const key of Object.keys(items)) {
         const item = new Item(this.client, key, items[key]);
         result.set(key, item);
         if (cache) await this.client.cache.set(`item:${key}`, item);
       }
-      resolve(result);
-    });
+      return result;
+    } catch (error) {
+      return Promise.reject(error);
+    }
   }
 
   /**
@@ -75,15 +78,19 @@ export class ItemManager implements BaseManager<Item> {
     const opts = parseFetchOptions(this.client, 'items', options);
     const { ignoreCache } = opts;
     this.client.logger?.trace(`Fetching item ${key}`);
-    return new Promise<Item>(async (resolve, reject) => {
-      const exists = await this.client.cache.has(`item:${key}`);
-      if (exists && !ignoreCache) resolve(await this.client.cache.get(`item:${key}`)!);
-      else {
-        const items = await this.fetchAll(opts).catch(reject);
-        if (items && items.has(key)) resolve(items.get(key)!);
-        else reject('There is no item with that ID');
+
+    try {
+      if (!ignoreCache) {
+        const exists = await this.client.cache.has(`item:${key}`);
+        if (exists) return this.client.cache.get<Item>(`item:${key}`);
       }
-    });
+
+      const items = await this.fetchAll(opts);
+      if (items && items.has(key)) return items.get(key)!;
+      else return Promise.reject('There is no item with that ID');
+    } catch (error) {
+      return Promise.reject(error);
+    }
   }
 
   /**
@@ -116,14 +123,16 @@ export class ItemManager implements BaseManager<Item> {
     const opts = parseFetchOptions(this.client, 'items', options);
     const { cache } = opts;
     this.client.logger?.trace(`Fetching items ${keys.join(', ')}`);
-    return new Promise<Collection<string, Item>>(async (resolve, reject) => {
+    try {
       const result = new Collection<string, Item>();
       for (const key of keys) {
-        const item = await this.fetch(key, opts).catch(reject);
+        const item = await this.fetch(key, opts);
         if (item) result.set(key, item);
         if (cache) await this.client.cache.set(`item:${key}`, item);
       }
-      resolve(result);
-    });
+      return result;
+    } catch (error) {
+      return Promise.reject(error);
+    }
   }
 }

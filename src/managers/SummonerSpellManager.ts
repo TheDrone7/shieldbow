@@ -23,39 +23,43 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
 
   private async _fetchLocalSpells(options: FetchOptions) {
     const storagePath = ['spells', this.client.patch, this.client.locale].join(':');
-    return new Promise(async (resolve, reject) => {
-      let result;
-      if (!options.ignoreStorage) {
-        this.client.logger?.trace(`Fetching summoner spells from local storage`);
-        const data = this.client.storage.fetch<{ data: { [id: string]: SummonerSpellData } }>(storagePath, 'spells');
-        result = data instanceof Promise ? await data.catch(() => undefined) : data;
-      }
-      if (result) resolve(result.data);
+
+    if (!options.ignoreStorage) {
+      this.client.logger?.trace(`Fetching summoner spells from local storage`);
+      const data = this.client.storage.fetch<{ data: { [id: string]: SummonerSpellData } }>(storagePath, 'spells');
+      const result = data instanceof Promise ? await data.catch(() => undefined) : data;
+      if (result) return result.data;
+    }
+
+    try {
+      this.client.logger?.trace(`Fetching summoner spells from DDragon`);
+      const response = await this.client.http.get(`${this.client.version}/data/${this.client.locale}/summoner.json`);
+      if (response.status !== 200) return Promise.reject('Unable to fetch summoner spells from Data dragon');
       else {
-        this.client.logger?.trace(`Fetching summoner spells from DDragon`);
-        const response = await this.client.http.get(`${this.client.version}/data/${this.client.locale}/summoner.json`);
-        if (response.status !== 200) reject('Unable to fetch summoner spells from Data dragon');
-        else {
-          if (options.store) await this.client.storage.save({ data: response.data.data }, storagePath, 'spells');
-          resolve(response.data.data);
-        }
+        if (options.store) await this.client.storage.save({ data: response.data.data }, storagePath, 'spells');
+        return response.data.data;
       }
-    });
+    } catch (error) {
+      return Promise.reject(error);
+    }
   }
 
   async fetchAll(options?: FetchOptions) {
     const opts = parseFetchOptions(this.client, 'summonerSpells', options);
     const { cache } = opts;
-    return new Promise<Collection<string, SummonerSpell>>(async (resolve, reject) => {
-      const spells = <{ [id: string]: SummonerSpellData }>await this._fetchLocalSpells(opts).catch(reject);
+
+    try {
+      const spells = <{ [id: string]: SummonerSpellData }>await this._fetchLocalSpells(opts);
       const result = new Collection<string, SummonerSpell>();
       for (const key of Object.keys(spells)) {
         const summonerSpell = new SummonerSpell(this.client, spells[key]);
         result.set(key, summonerSpell);
         if (cache) await this.client.cache.set(`spell:${key}`, summonerSpell);
       }
-      resolve(result);
-    });
+      return result;
+    } catch (error) {
+      return Promise.reject(error);
+    }
   }
 
   /**
@@ -71,15 +75,19 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
     const opts = parseFetchOptions(this.client, 'summonerSpells', options);
     const { ignoreCache } = opts;
     this.client.logger?.trace(`Fetching summoner spell ${key}`);
-    return new Promise<SummonerSpell>(async (resolve, reject) => {
-      const exists = await this.client.cache.has(`spell:${key}`);
-      if (exists && !ignoreCache) resolve(await this.client.cache.get(`spell:${key}`)!);
-      else {
-        const spells = await this.fetchAll(opts);
-        if (spells.has(key)) resolve(spells.get(key)!);
-        else reject('There is no spell with that ID');
+
+    try {
+      if (!ignoreCache) {
+        const exists = await this.client.cache.has(`spell:${key}`);
+        if (exists) return this.client.cache.get<SummonerSpell>(`spell:${key}`);
       }
-    });
+
+      const spells = await this.fetchAll(opts);
+      if (spells.has(key)) return spells.get(key)!;
+      else return Promise.reject('There is no spell with that ID');
+    } catch (error) {
+      return Promise.reject(error);
+    }
   }
 
   /**
@@ -106,7 +114,11 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
       spell.name.toLowerCase().includes(name.toLowerCase())
     );
     if (spell) return spell;
-    const spells = await this.fetchAll(opts);
-    return spells.find((i) => i.name.toLowerCase().includes(name.toLowerCase()));
+    try {
+      const spells = await this.fetchAll(opts);
+      return spells.find((i) => i.name.toLowerCase().includes(name.toLowerCase()));
+    } catch (error) {
+      return Promise.reject(error);
+    }
   }
 }
