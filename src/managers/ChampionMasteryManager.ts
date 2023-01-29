@@ -6,10 +6,12 @@ import { parseFetchOptions } from '../util';
 
 /**
  * A champion mastery manager - to fetch and manage all summoner's champion mastery data.
+ *
+ * Requires API key with access to `champion-mastery-v4` API.
  */
 export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
   /**
-   * The client this manager belongs to.
+   * The client this champion mastery manager belongs to.
    */
   readonly client: Client;
   /**
@@ -22,7 +24,7 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
   /**
    * Creates a new champion mastery manager.
    *
-   * @param client - The client that instantiated this manager.
+   * @param client - The client this champion mastery manager belongs to.
    * @param summoner - The summoner this manager belongs to.
    */
   constructor(client: Client, summoner: Summoner) {

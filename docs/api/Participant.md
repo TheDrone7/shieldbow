@@ -18,7 +18,7 @@ export declare class Participant
 ### Constructor
 
 ```ts
-new Participant (client: Client, data: ParticipantData, champ: Champion, items: Collection<string, Item>, runeTrees: Collection<string, RuneTree>, summonerSpells: Collection<string, SummonerSpell>)
+new Participant (data: ParticipantData, champ: Champion, items: Collection<string, Item>, runeTrees: Collection<string, RuneTree>, summonerSpells: Collection<string, SummonerSpell>)
 ```
 
 Constructs a new instance of the `Participant` class.
@@ -27,7 +27,6 @@ Constructs a new instance of the `Participant` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/Client.md) | The client that requested this data. |
 | data | [ParticipantData](/api/ParticipantData.md) | The raw participant data from the API. |
 | champ | [Champion](/api/Champion.md) | The champion played by the participant. |
 | items | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/Item.md) \> | The items purchased by the participant. |
@@ -463,7 +462,7 @@ The summoner acting as the participant.
 
 
 
-**Type**: [Summoner](/api/Summoner.md)
+**Type**: [PartialSummoner](/api/PartialSummoner.md)
 
 ---
 

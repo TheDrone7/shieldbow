@@ -5,34 +5,26 @@ import { parseFetchOptions } from '../util';
 
 /**
  * A clash manager - to fetch and store clash tournaments and related data.
+ *
+ * Requires API key with access to `clash-v1` API.
  */
 export class ClashManager implements BaseManager<Tournament> {
   /**
-   * The client that instantiated the manager.
+   * The client this clash manager belongs to.
    */
   readonly client: Client;
-  /**
-   * The in-memory cache of tournaments.
-   *
-   * Only use this if you absolutely must.
-   * Prioritize using
-   * {@link ClashManager.fetch | fetch},
-   * {@link ClashManager.fetchByTeamId | fetchByTeamId} or
-   * {@link ClashManager.fetchAll | fetchAll}
-   * instead.
-   */
 
   /**
    * Creates a new clash manager.
-   * @param client - The client that instantiated the manager.
+   * @param client - The client this clash manager belongs to.
    */
   constructor(client: Client) {
     this.client = client;
   }
 
   /**
-   * Fetches a tournament by its ID.
-   * @param id - The ID of the tournament.
+   * Fetch a clash tournament by its ID.
+   * @param id - The ID of the clash tournament.
    * @param options - The basic fetch options.
    */
   async fetch(id: number, options?: FetchOptions) {
@@ -72,9 +64,9 @@ export class ClashManager implements BaseManager<Tournament> {
   }
 
   /**
-   * Fetch all upcoming and active tournaments.
+   * Fetch all upcoming and active clash tournaments.
    *
-   * @param options - The basic fetch options (force is ignored, always true).
+   * @param options - The basic fetch options (always fetches from the API, skipping cache and storage).
    */
   async fetchAll(options?: FetchOptions) {
     const opts = parseFetchOptions(this.client, 'clash', options);
@@ -102,9 +94,9 @@ export class ClashManager implements BaseManager<Tournament> {
   }
 
   /**
-   * Fetch tournament by participating team's ID.
+   * Fetch a clash tournament by participating team's ID.
    * @param teamId - The ID of the team.
-   * @param options - The basic fetch options (always fetches from API).
+   * @param options - The basic fetch options (always fetches from API, skipping cache and storage).
    */
   async fetchByTeamId(teamId: string, options?: FetchOptions) {
     const opts = parseFetchOptions(this.client, 'clash', options);
@@ -128,7 +120,7 @@ export class ClashManager implements BaseManager<Tournament> {
   }
 
   /**
-   * Fetch a team participating in a tournament by the team ID.
+   * Fetch a team participating in a clash tournament by the team ID.
    * @param teamId - The ID of the team.
    * @param options - The basic fetch options.
    */
@@ -168,7 +160,7 @@ export class ClashManager implements BaseManager<Tournament> {
   }
 
   /**
-   * Fetch participation info of a summoner in tournaments by the summoner ID.
+   * Fetch participation info of a summoner in clash tournaments by the summoner ID.
    * @param summonerId - The ID of the summoner.
    * @param options - The basic fetch options.
    */

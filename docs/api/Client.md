@@ -187,7 +187,7 @@ The locale in which all the data is going to be fetched in.
 
 
 
-**Type**: "en_US" \| "cs_CZ" \| "de_DE" \| "el_GR" \| "en_AU" \| "en_GB" \| "en_PH" \| "en_SG" \| "es_AR" \| "es_ES" \| "es_MX" \| "fr_FR" \| "hu_HU" \| "id_ID" \| "it_IT" \| "ja_JP" \| "ko_KR" \| "pl_PL" \| "pt_BR" \| "ro_RO" \| "ru_RU" \| "th_TH" \| "tr_TR" \| "vn_VN" \| "zh_CN" \| "zh_MY" \| "zh_TW"
+**Type**: "cs_CZ" \| "el_GR" \| "pl_PL" \| "ro_RO" \| "hu_HU" \| "en_GB" \| "de_DE" \| "es_ES" \| "it_IT" \| "fr_FR" \| "ja_JP" \| "ko_KR" \| "es_MX" \| "es_AR" \| "pt_BR" \| "en_US" \| "en_AU" \| "ru_RU" \| "tr_TR" \| "ms_MY" \| "en_PH" \| "en_SG" \| "th_TH" \| "vn_VN" \| "id_ID" \| "zh_MY" \| "zh_CN" \| "zh_TW"
 
 ---
 

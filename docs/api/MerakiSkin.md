@@ -1,11 +1,11 @@
 ---
 title: MerakiSkin
-description: 
+description: A representation of a champion's skin data returned by meraki analytics.
 ---
 
 ## MerakiSkin interface
 
-
+A representation of a champion's skin data returned by meraki analytics.
 
 **Signature:**
 

@@ -9,13 +9,13 @@ import { parseFetchOptions } from '../util';
  */
 export class RuneTreeManager implements BaseManager<RuneTree> {
   /**
-   * The client this manager belongs to.
+   * The client this rune tree manager belongs to.
    */
   readonly client: Client;
 
   /**
    * Create a new rune trees manager.
-   * @param client - The client this manager belongs to.
+   * @param client - The client this rune tree manager belongs to.
    */
   constructor(client: Client) {
     this.client = client;
@@ -131,16 +131,6 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
   }
 
   /**
-   * Find a rune tree by its name.
-   *
-   * @deprecated Please use {@link RuneTreeManager.fetchByName | fetchByName} instead.
-   * @param name - The name of the rune tree to look for.
-   */
-  async findByName(name: string) {
-    return this.fetchByName(name);
-  }
-
-  /**
    * Fetch a rune tree by its name.
    * The search is case-insensitive.
    * The special characters are NOT ignored.
@@ -151,16 +141,6 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
   async fetchByName(name: string, options?: FetchOptions) {
     const runeTrees = await this.fetchAll(options).catch(() => undefined);
     return runeTrees?.find((i) => i.name.toLowerCase().includes(name.toLowerCase()));
-  }
-
-  /**
-   * Find a rune by its name.
-   *
-   * @deprecated Please use {@link RuneTreeManager.fetchRuneByName | fetchRuneByName} instead.
-   * @param name - The name of the rune to look for.
-   */
-  async findRuneByName(name: string) {
-    return this.fetchRuneByName(name);
   }
 
   /**
@@ -179,32 +159,12 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
   /**
    * Find a rune tree by its numerical ID.
    *
-   * @deprecated Please use {@link RuneTreeManager.fetchById | fetchById} instead.
-   * @param id - The numerical ID of the rune tree to look for.
-   */
-  async findById(id: number) {
-    return this.fetchById(id);
-  }
-
-  /**
-   * Find a rune tree by its numerical ID.
-   *
    * @param id - The numerical ID of the rune tree to look for.
    * @param options - The basic fetching options.
    */
   async fetchById(id: number, options?: FetchOptions) {
     const runeTrees = await this.fetchAll(options).catch(() => undefined);
     return runeTrees?.find((i) => i.id === id);
-  }
-
-  /**
-   * Find a rune by its numerical ID.
-   *
-   * @deprecated Please use {@link RuneTreeManager.fetchRuneById | fetchRuneById} instead.
-   * @param id - The numerical ID of the rune to look for.
-   */
-  async findRuneById(id: number) {
-    return this.fetchRuneById(id);
   }
 
   /**

@@ -31,14 +31,14 @@ Constructs a new instance of the `SummonerSpellManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/Client.md) | The client this manager belongs to. |
+| client | [Client](/api/Client.md) | The client this summoner spell manager belongs to. |
 ---
 
 ### Properties
 
 #### client
 
-The client this manager belongs to.
+The client this summoner spell manager belongs to.
 
 
 
@@ -74,6 +74,9 @@ fetch(key: string, options?: FetchOptions): Promise<SummonerSpell>;
 
 #### .fetchAll ()
 
+Fetch all summoner spells.
+
+
 
 
 **Signature:**
@@ -86,7 +89,7 @@ fetchAll(options?: FetchOptions): Promise<Collection<string, SummonerSpell>>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| options | [FetchOptions](/api/FetchOptions.md) |  |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [SummonerSpell](/api/SummonerSpell.md) \> \>
 
@@ -111,40 +114,6 @@ fetchByName(name: string, options?: FetchOptions): Promise<SummonerSpell | undef
 | --------- | ---- | ----------- |
 | name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of the spell to look for. |
 | options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
-
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [SummonerSpell](/api/SummonerSpell.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
-
----
-
-#### .findByName ()
-
-Find a spell by its name.
-
-
-
-
-::: warning 
-
-This is now **deprecated**. 
-
-Please use [fetchByName](/api/SummonerSpellManager.md#fetchbyname) instead.
-
-
-
-
-:::
-
-**Signature:**
-
-```ts
-findByName(name: string): Promise<SummonerSpell | undefined>;
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of the spell to look for. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [SummonerSpell](/api/SummonerSpell.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
 

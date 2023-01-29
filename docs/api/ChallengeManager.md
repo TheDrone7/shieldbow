@@ -1,11 +1,11 @@
 ---
 title: ChallengeManager
-description: A challenge manager - to fetch and manage all the challenges' data.
+description: A challenge manager - to fetch and manage all the challenges' data.   Requires API key with access to `lol-challenges-v1` API.
 ---
 
 ## ChallengeManager class
 
-A challenge manager - to fetch and manage all the challenges' data.
+A challenge manager - to fetch and manage all the challenges' data.   Requires API key with access to `lol-challenges-v1` API.
 
 **Signature:**
 
@@ -31,48 +31,18 @@ Constructs a new instance of the `ChallengeManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/Client.md) |  |
+| client | [Client](/api/Client.md) | The client this challenge manager belongs to. |
 ---
 
 ### Properties
 
-#### cache
-
-The challenge info (mapped by challenge ID) stored in the memory.
-
-
-
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [Challenge](/api/Challenge.md) \>
-
----
-
 #### client
 
-The client this manager belongs to.
+The client this challenge manager belongs to.
 
 
 
 **Type**: [Client](/api/Client.md)
-
----
-
-#### leaderBoardCache
-
-The challenge leaderboards (mapped by region and tier type) stored in the memory.
-
-
-
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Region](/api/Region.md), [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [TierType](/api/TierType.md), [ChallengeRank](/api/ChallengeRank.md)[] \> \>
-
----
-
-#### summonerProgressionCache
-
-The challenge progressions of a summoner (mapped by summoner ID).
-
-
-
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [SummonerChallenge](/api/SummonerChallenge.md) \>
 
 ---
 

@@ -31,27 +31,14 @@ Constructs a new instance of the `SummonerManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/Client.md) | The client that instantiated this manager. |
+| client | [Client](/api/Client.md) | The client this summoner manager belongs to. |
 ---
 
 ### Properties
 
-#### cache
-
-The summoners cached in the memory.
-
-
-Only use this if you absolutely must. Prioritize using [fetch](/api/SummonerManager.md#fetch), [fetchBySummonerName](/api/SummonerManager.md#fetchbysummonername) or [fetchByPlayerId](/api/SummonerManager.md#fetchbyplayerid) instead.
-
-
-
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Summoner](/api/Summoner.md) \>
-
----
-
 #### client
 
-The client this manager belongs to.
+The client this summoner manager belongs to.
 
 
 

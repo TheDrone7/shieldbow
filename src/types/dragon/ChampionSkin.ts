@@ -19,6 +19,9 @@ export interface MerakiSkinChroma {
   chromaPath: string;
 }
 
+/**
+ * A representation of a champion's skin data returned by meraki analytics.
+ */
 export interface MerakiSkin {
   name: string;
   id: number;

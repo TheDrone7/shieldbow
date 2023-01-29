@@ -6,17 +6,19 @@ import { parseFetchOptions } from '../util';
 
 /**
  * A champion manager - to fetch and manage all the champion data.
+ *
+ * Does not require an API Key. (Except for {@link ChampionManager.fetchRotations}).
  */
 export class ChampionManager implements BaseManager<Champion> {
   /**
-   * The client that this manager belongs to.
+   * The client that this champion manager belongs to.
    */
   readonly client: Client;
 
   /**
    * Create a new Champions Manager
    *
-   * @param client - The client this manager belongs to.
+   * @param client - The client this champion manager belongs to.
    */
   constructor(client: Client) {
     this.client = client;
@@ -101,7 +103,7 @@ export class ChampionManager implements BaseManager<Champion> {
   /**
    * Fetch all the champions and store it in the cache.
    *
-   * This always fetches freshly from data dragon and community dragon.
+   * This always fetches freshly from data dragon, community dragon and meraki analytics.
    *
    * @param options - The basic fetching options (only `cache` and `store` affect this method).
    */
@@ -131,7 +133,7 @@ export class ChampionManager implements BaseManager<Champion> {
   }
 
   /**
-   * Fetches a champion (from the cache, if already available), or from data dragon and community dragon.
+   * Fetches a champion by the champion ID.
    * @param id - The {@link Champion.id | ID} of the champion whose data needs to be fetched.
    * @param options - The basic fetching options.
    */
@@ -160,27 +162,7 @@ export class ChampionManager implements BaseManager<Champion> {
   }
 
   /**
-   * Find a champion by their 3-digit key.
-   *
-   * @deprecated Use {@link ChampionManager.fetchByKey | fetchByKey} instead.
-   * @param key - The 3-digit key of the champion to look for.
-   */
-  async findByKey(key: number) {
-    return this.fetchByKey(key);
-  }
-
-  /**
-   * Find a champion by their name.
-   *
-   * @deprecated Use {@link ChampionManager.fetchByName | fetchByName} instead.
-   * @param name - The name of the champion to look for.
-   */
-  async findByName(name: string) {
-    return this.fetchByName(name);
-  }
-
-  /**
-   * Fetch and cache champion by their name (instead of ID, which is very similar but not the same as the name).
+   * Fetch a champion by their name (instead of ID, which is very similar but not the same as the name).
    * The search is case-insensitive.
    * The special characters are NOT ignored.
    *

@@ -1,11 +1,11 @@
 ---
 title: CurrentGameManager
-description: A current game manager - to fetch and manage the live games.
+description: A current game manager - to fetch and manage the live games.   Requires API key with access to `spectator-v4` API.
 ---
 
 ## CurrentGameManager class
 
-A current game manager - to fetch and manage the live games.
+A current game manager - to fetch and manage the live games.   Requires API key with access to `spectator-v4` API.
 
 **Signature:**
 
@@ -31,27 +31,14 @@ Constructs a new instance of the `CurrentGameManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/Client.md) | The client that instantiated the manager. |
+| client | [Client](/api/Client.md) | The client this current game manager belongs to. |
 ---
 
 ### Properties
 
-#### cache
-
-The cached live games (mapped by summoner IDs).
-
-
-Only use this if you absolutely must. Prioritize using [fetch](/api/CurrentGameManager.md#fetch) or [fetchFeatured](/api/CurrentGameManager.md#fetchfeatured) instead.
-
-
-
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [CurrentGame](/api/CurrentGame.md) \>
-
----
-
 #### client
 
-The client that instantiated the manager.
+The client this current game manager belongs to.
 
 
 
@@ -64,9 +51,6 @@ The client that instantiated the manager.
 #### .fetch ()
 
 Fetches the live game for the given summoner ID.
-
-
-This method is a special case where the cache is ignored by default.
 
 
 
@@ -90,7 +74,7 @@ fetch(id: string, options?: FetchOptions): Promise<CurrentGame>;
 
 #### .fetchFeatured ()
 
-Fetch a list of featured games. These games are not cached.
+Fetch a list of featured games.
 
 
 
@@ -105,7 +89,7 @@ fetchFeatured(options?: FetchOptions): Promise<CurrentGame[]>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options (only region affects this). |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options (does not fetch from storage or cache). |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [CurrentGame](/api/CurrentGame.md)[] \>
 

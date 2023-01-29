@@ -42,7 +42,7 @@ Find a value in the cache using a predicate and a filter.
 **Signature:**
 
 ```ts
-find<T>(predicate: (t: T) => boolean, filter?: (o: any) => o is T): Promise<T> | T | undefined;
+find<T>(predicate: (t: T) => boolean): Promise<T> | T | undefined;
 ```
 
 **Parameters:**
@@ -50,7 +50,6 @@ find<T>(predicate: (t: T) => boolean, filter?: (o: any) => o is T): Promise<T> |
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | predicate | (t: T) = \> boolean | The predicate to use to find the value. |
-| filter | (o: any) = \> o is T | The filter to use to filter the cache for appropriate type. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< T \> \| T \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
 

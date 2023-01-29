@@ -9,13 +9,13 @@ import { parseFetchOptions } from '../util';
  */
 export class SummonerSpellManager implements BaseManager<SummonerSpell> {
   /**
-   * The client this manager belongs to.
+   * The client this summoner spell manager belongs to.
    */
   readonly client: Client;
 
   /**
    * Creates a new summoner spell manager.
-   * @param client - The client this manager belongs to.
+   * @param client - The client this summoner spell manager belongs to.
    */
   constructor(client: Client) {
     this.client = client;
@@ -44,6 +44,10 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
     }
   }
 
+  /**
+   * Fetch all summoner spells.
+   * @param options - The basic fetching options.
+   */
   async fetchAll(options?: FetchOptions) {
     const opts = parseFetchOptions(this.client, 'summonerSpells', options);
     const { cache } = opts;
@@ -88,16 +92,6 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
     } catch (error) {
       return Promise.reject(error);
     }
-  }
-
-  /**
-   * Find a spell by its name.
-   *
-   * @deprecated Please use {@link SummonerSpellManager.fetchByName | fetchByName} instead.
-   * @param name - The name of the spell to look for.
-   */
-  async findByName(name: string) {
-    return this.fetchByName(name);
   }
 
   /**

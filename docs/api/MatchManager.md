@@ -31,44 +31,18 @@ Constructs a new instance of the `MatchManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/Client.md) | The client that instantiated the manager. |
+| client | [Client](/api/Client.md) | The client this match manager belongs to. |
 ---
 
 ### Properties
 
-#### cache
-
-The collection of cached matches.
-
-
-Only use this if you absolutely must. Prioritize using [fetch](/api/MatchManager.md#fetch) and [fetchMatchListByPlayer](/api/MatchManager.md#fetchmatchlistbyplayer) instead.
-
-
-
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Match](/api/Match.md) \>
-
----
-
 #### client
 
-The client that instantiated the manager.
+The client this match manager belongs to.
 
 
 
 **Type**: [Client](/api/Client.md)
-
----
-
-#### timelineCache
-
-The collection of cached match timelines.
-
-
-Only use this if you absolutely must. Prioritize using [fetchMatchTimeline](/api/MatchManager.md#fetchmatchtimeline) instead.
-
-
-
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [MatchTimeline](/api/MatchTimeline.md) \>
 
 ---
 
@@ -100,7 +74,7 @@ fetch(id: string, options?: FetchOptions): Promise<Match>;
 
 #### .fetchMatchListByPlayer ()
 
-Fetch a list of match IDs by a player ID.
+Fetch a list of match IDs by a player ID. These are neither stored nor cached.
 
 
 

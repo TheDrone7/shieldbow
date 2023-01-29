@@ -5,31 +5,31 @@
 | Class | Description |
 | ----- | ----------- |
 | [Account](/api/Account.md) | A representation of a RIOT account. |
-| [AccountManager](/api/AccountManager.md) | An account manager - to fetch and manage all the RIOT accounts. |
+| [AccountManager](/api/AccountManager.md) | An account manager - to fetch and manage all the RIOT accounts.   Requires API key with access to `account-v1` API. |
 | [ApiError](/api/ApiError.md) | API error class. |
 | [ApiHandler](/api/ApiHandler.md) | A class that handles API requests and rate limits for the RIOT API. |
 | [Bounty](/api/Bounty.md) | A representation of the bounty on a match participant. |
 | [BuildingKillEvent](/api/BuildingKillEvent.md) | A representation of the building kill event. |
 | [Challenge](/api/Challenge.md) | A class representing the details of a challenge. |
 | [ChallengeCategory](/api/ChallengeCategory.md) | A representation of a summoner's challenge category data. |
-| [ChallengeManager](/api/ChallengeManager.md) | A challenge manager - to fetch and manage all the challenges' data. |
+| [ChallengeManager](/api/ChallengeManager.md) | A challenge manager - to fetch and manage all the challenges' data.   Requires API key with access to `lol-challenges-v1` API. |
 | [ChallengePreferences](/api/ChallengePreferences.md) | A representation of a summoner's challenge preferences data. |
 | [ChallengeProgression](/api/ChallengeProgression.md) | A representation of a summoner's challenge progression data. |
 | [ChallengeRank](/api/ChallengeRank.md) | A representation of the ranked challenges stats of a summoner. |
 | [Champion](/api/Champion.md) | A representation of a League of Legends champion. |
 | [ChampionKillEvent](/api/ChampionKillEvent.md) | The representation of the Champion Kill event. |
-| [ChampionManager](/api/ChampionManager.md) | A champion manager - to fetch and manage all the champion data. |
+| [ChampionManager](/api/ChampionManager.md) | A champion manager - to fetch and manage all the champion data.   Does not require an API Key. (Except for [ChampionManager.fetchRotations](/api/ChampionManager.md#fetchrotations)). |
 | [ChampionMastery](/api/ChampionMastery.md) | A representation of a summoner's mastery over a champion. |
-| [ChampionMasteryManager](/api/ChampionMasteryManager.md) | A champion mastery manager - to fetch and manage all summoner's champion mastery data. |
+| [ChampionMasteryManager](/api/ChampionMasteryManager.md) | A champion mastery manager - to fetch and manage all summoner's champion mastery data.   Requires API key with access to `champion-mastery-v4` API. |
 | [ChampionSkin](/api/ChampionSkin.md) | A representation of a champion's skin (visual modification). |
 | [ChampionSpecialKillEvent](/api/ChampionSpecialKillEvent.md) | A representation of the Champion special kill event. |
 | [ChampionSpell](/api/ChampionSpell.md) | The representation of a champion's spell (ability). |
 | [ChampionStat](/api/ChampionStat.md) | A representation of the champion's base stats. |
 | [ChampionTransformEvent](/api/ChampionTransformEvent.md) | A representation of the champion transform event.   As of right now, this only applies to Kayn's transformations. |
-| [ClashManager](/api/ClashManager.md) | A clash manager - to fetch and store clash tournaments and related data. |
+| [ClashManager](/api/ClashManager.md) | A clash manager - to fetch and store clash tournaments and related data.   Requires API key with access to `clash-v1` API. |
 | [Client](/api/Client.md) | The shieldbow client that enables you to interact with Riot Games' League of Legends API. Also connects to the Data Dragon + Community Dragon CDNs. |
 | [CurrentGame](/api/CurrentGame.md) | A representation of an ongoing game. |
-| [CurrentGameManager](/api/CurrentGameManager.md) | A current game manager - to fetch and manage the live games. |
+| [CurrentGameManager](/api/CurrentGameManager.md) | A current game manager - to fetch and manage the live games.   Requires API key with access to `spectator-v4` API. |
 | [CurrentGameParticipant](/api/CurrentGameParticipant.md) | A representation of a participant in a live game. |
 | [CurrentGamePerks](/api/CurrentGamePerks.md) | A representation of the rune setup of a live game participant. |
 | [CurrentGameTeam](/api/CurrentGameTeam.md) | A representation of a team in a live game. |
@@ -38,13 +38,13 @@
 | [GameEndEvent](/api/GameEndEvent.md) | A representation of the game end event. |
 | [Item](/api/Item.md) | A representation of an in-game item. |
 | [ItemDestroyedEvent](/api/ItemDestroyedEvent.md) | A representation of the Item destroyed event. |
-| [ItemManager](/api/ItemManager.md) | An item manager - to fetch and manage all item data. |
+| [ItemManager](/api/ItemManager.md) | An item manager - to fetch and manage all item data.   Does not require an API Key. |
 | [ItemPurchasedEvent](/api/ItemPurchasedEvent.md) | A representation of the Item Purchased event. |
 | [ItemSoldEvent](/api/ItemSoldEvent.md) | A representation of the item sold event. |
 | [ItemUndoEvent](/api/ItemUndoEvent.md) | A representation of the Item Undo event. |
 | [LeagueEntry](/api/LeagueEntry.md) | A representation of a summoner's competitive details. |
 | [LeagueList](/api/LeagueList.md) | A representation of a list of league entries. |
-| [LeagueManager](/api/LeagueManager.md) | A league manager - to fetch and manage all summoner competitive info. |
+| [LeagueManager](/api/LeagueManager.md) | A league manager - to fetch and manage all summoner competitive info.   Requires API key with access to `league-v4` and `league-exp-v4` API. |
 | [LevelUpEvent](/api/LevelUpEvent.md) | A representation of the Level up event. |
 | [LocalStorage](/api/LocalStorage.md) | A basic storage plugin that stores data to the local file system. |
 | [Match](/api/Match.md) | A representation of a league of legends match. |
@@ -66,7 +66,6 @@
 | [RuneTreeManager](/api/RuneTreeManager.md) | A rune trees manager - to fetch and manage rune trees data. |
 | [ShieldbowLogger](/api/ShieldbowLogger.md) | Basic built-in debugging logger?. |
 | [SkillLevelUpEvent](/api/SkillLevelUpEvent.md) | A representation of the Skill Level Up event. |
-| [StorageManager](/api/StorageManager.md) | A basic manager for storing and fetching the local cached JSON files. |
 | [Summoner](/api/Summoner.md) | A representation of a summoner (player). |
 | [SummonerChallenge](/api/SummonerChallenge.md) | A representation of a summoner's challenge data. |
 | [SummonerManager](/api/SummonerManager.md) | A summoner manager - to fetch and manage all the summoner data. |
@@ -159,9 +158,10 @@
 | [MatchTimelineInfo](/api/MatchTimelineInfo.md) | The match timeline details as returned by the API. |
 | [MatchTimelineMetadata](/api/MatchTimelineMetadata.md) | The match timeline metadata as returned by the API. |
 | [MerakiChampion](/api/MerakiChampion.md) | A representation of the champion data returned by meraki analytics. These are used in the LoL wiki. |
-| [MerakiSkin](/api/MerakiSkin.md) |  |
+| [MerakiSkin](/api/MerakiSkin.md) | A representation of a champion's skin data returned by meraki analytics. |
 | [MerakiSkinChroma](/api/MerakiSkinChroma.md) | A representation of a champion's skin data returned by meraki analytics. These are used in the LoL wiki. |
 | [ObjectiveBountyPrestartEventData](/api/ObjectiveBountyPrestartEventData.md) | The event data for the objective bounty prestart event. |
+| [PartialSummoner](/api/PartialSummoner.md) | A partial representation of a summoner. |
 | [ParticipantChampion](/api/ParticipantChampion.md) | The participant's champion details. |
 | [ParticipantChampionStatsData](/api/ParticipantChampionStatsData.md) | The participant champion stats as returned by the API. |
 | [ParticipantDamageStats](/api/ParticipantDamageStats.md) | The participant's damage stats. |

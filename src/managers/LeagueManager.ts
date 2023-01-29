@@ -14,16 +14,18 @@ import { parseFetchOptions } from '../util';
 
 /**
  * A league manager - to fetch and manage all summoner competitive info.
+ *
+ * Requires API key with access to `league-v4` and `league-exp-v4` API.
  */
 export class LeagueManager implements BaseManager<Collection<QueueType, LeagueEntry>> {
   /**
-   * The client this manager belongs to.
+   * The client this league manager belongs to.
    */
   readonly client: Client;
 
   /**
    * Creates a new League manager.
-   * @param client - The client that instantiated this manager.
+   * @param client - The client this league manager belongs to.
    */
   constructor(client: Client) {
     this.client = client;
@@ -86,7 +88,7 @@ export class LeagueManager implements BaseManager<Collection<QueueType, LeagueEn
    * @param queue - The type of queue - RANKED_SOLO_5x5, RANKED_FLEX_SR, etc.
    * @param tier - The tier of the entries - IRON to CHALLENGER.
    * @param division - The division of the entries - I, II, III, IV.
-   * @param options - The basic fetching options (and page number - defaults to 1, force is ignored - always true).
+   * @param options - The basic fetching options (and page number - defaults to 1).
    */
   async fetchByQueueAndTier(
     queue: QueueType,

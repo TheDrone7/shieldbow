@@ -1,11 +1,11 @@
 ---
 title: ItemManager
-description: An item manager - to fetch and manage all item data.
+description: An item manager - to fetch and manage all item data.   Does not require an API Key.
 ---
 
 ## ItemManager class
 
-An item manager - to fetch and manage all item data.
+An item manager - to fetch and manage all item data.   Does not require an API Key.
 
 **Signature:**
 
@@ -31,14 +31,14 @@ Constructs a new instance of the `ItemManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/Client.md) | The client this manager belongs to. |
+| client | [Client](/api/Client.md) | The client this item manager belongs to. |
 ---
 
 ### Properties
 
 #### client
 
-The client this manager belongs to.
+The client this item manager belongs to.
 
 
 
@@ -121,6 +121,9 @@ fetchByName(name: string, options?: FetchOptions): Promise<Item | undefined>;
 
 #### .fetchMany ()
 
+Fetch multiple items at once.
+
+
 
 
 **Signature:**
@@ -133,44 +136,10 @@ fetchMany(keys: string[], options?: FetchOptions): Promise<Collection<string, It
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| keys | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)[] |  |
-| options | [FetchOptions](/api/FetchOptions.md) |  |
+| keys | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)[] | The keys of the items to fetch. |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/Item.md) \> \>
-
----
-
-#### .findByName ()
-
-Find an item by its name.
-
-
-
-
-::: warning 
-
-This is now **deprecated**. 
-
-Please use [fetchByName](/api/ItemManager.md#fetchbyname) instead.
-
-
-
-
-:::
-
-**Signature:**
-
-```ts
-findByName(name: string): Promise<Item | undefined>;
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of the item to look for. |
-
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Item](/api/Item.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
 
 ---
 

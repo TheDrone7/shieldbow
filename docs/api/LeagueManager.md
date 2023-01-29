@@ -1,11 +1,11 @@
 ---
 title: LeagueManager
-description: A league manager - to fetch and manage all summoner competitive info.
+description: A league manager - to fetch and manage all summoner competitive info.   Requires API key with access to `league-v4` and `league-exp-v4` API.
 ---
 
 ## LeagueManager class
 
-A league manager - to fetch and manage all summoner competitive info.
+A league manager - to fetch and manage all summoner competitive info.   Requires API key with access to `league-v4` and `league-exp-v4` API.
 
 **Signature:**
 
@@ -31,44 +31,18 @@ Constructs a new instance of the `LeagueManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/Client.md) | The client that instantiated this manager. |
+| client | [Client](/api/Client.md) | The client this league manager belongs to. |
 ---
 
 ### Properties
 
-#### cache
-
-The competitive info (mapped by summoner ID) stored in the memory.
-
-
-Only use this if you absolutely must. Prioritize using [fetch](/api/LeagueManager.md#fetch) or [fetchByQueueAndTier](/api/LeagueManager.md#fetchbyqueueandtier) instead.
-
-
-
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [QueueType](/api/QueueType.md), [LeagueEntry](/api/LeagueEntry.md) \> \>
-
----
-
 #### client
 
-The client this manager belongs to.
+The client this league manager belongs to.
 
 
 
 **Type**: [Client](/api/Client.md)
-
----
-
-#### listCache
-
-The in-memory cache for league lists.
-
-
-Only use this if you absolutely must. Prioritize using [fetchByLeagueId](/api/LeagueManager.md#fetchbyleagueid) instead.
-
-
-
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [LeagueList](/api/LeagueList.md) \>
 
 ---
 
@@ -144,7 +118,7 @@ fetchByQueueAndTier(queue: QueueType, tier: TierType, division: DivisionType, op
 | queue | [QueueType](/api/QueueType.md) | The type of queue - RANKED_SOLO_5x5, RANKED_FLEX_SR, etc. |
 | tier | [TierType](/api/TierType.md) | The tier of the entries - IRON to CHALLENGER. |
 | division | [DivisionType](/api/DivisionType.md) | The division of the entries - I, II, III, IV. |
-| options | [FetchOptions](/api/FetchOptions.md) & {         page: number;     } | The basic fetching options (and page number - defaults to 1, force is ignored - always true). |
+| options | [FetchOptions](/api/FetchOptions.md) & {         page: number;     } | The basic fetching options (and page number - defaults to 1). |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [LeagueEntry](/api/LeagueEntry.md) \> \>
 

@@ -1,11 +1,11 @@
 ---
 title: ChampionMasteryManager
-description: A champion mastery manager - to fetch and manage all summoner's champion mastery data.
+description: A champion mastery manager - to fetch and manage all summoner's champion mastery data.   Requires API key with access to `champion-mastery-v4` API.
 ---
 
 ## ChampionMasteryManager class
 
-A champion mastery manager - to fetch and manage all summoner's champion mastery data.
+A champion mastery manager - to fetch and manage all summoner's champion mastery data.   Requires API key with access to `champion-mastery-v4` API.
 
 **Signature:**
 
@@ -31,45 +31,19 @@ Constructs a new instance of the `ChampionMasteryManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/Client.md) | The client that instantiated this manager. |
+| client | [Client](/api/Client.md) | The client this champion mastery manager belongs to. |
 | summoner | [Summoner](/api/Summoner.md) | The summoner this manager belongs to. |
 ---
 
 ### Properties
 
-#### cache
-
-The cached mastery data for the summoner.
-
-
-Only use this if you absolutely must. Prioritize using [fetch](/api/ChampionMasteryManager.md#fetch) instead.
-
-
-
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [ChampionMastery](/api/ChampionMastery.md) \>
-
----
-
 #### client
 
-The client this manager belongs to.
+The client this champion mastery manager belongs to.
 
 
 
 **Type**: [Client](/api/Client.md)
-
----
-
-#### sortedCache
-
-The cached champion masteries of the summoner as a sorted array.
-
-
-The array is sorted from the highest mastery to lowest. While sorting, the mastery level is prioritized over the number of points.
-
-
-
-**Type**: [ChampionMastery](/api/ChampionMastery.md)[]
 
 ---
 
@@ -128,9 +102,14 @@ Fetches all the champions' masteries data for this summoner and store them in th
 **Signature:**
 
 ```ts
-fetchAll(): Promise<Collection<string, ChampionMastery>>;
+fetchAll(options?: FetchOptions): Promise<Collection<string, ChampionMastery>>;
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| options | [FetchOptions](/api/FetchOptions.md) |  |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [ChampionMastery](/api/ChampionMastery.md) \> \>
 
@@ -157,31 +136,6 @@ highest(n?: number, options?: FetchOptions): Promise<ChampionMastery>;
 | options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [ChampionMastery](/api/ChampionMastery.md) \>
-
----
-
-#### .refreshAll ()
-
-
-
-::: warning 
-
-This is now **deprecated**. 
-
-use fetchAll instead
-
-
-
-:::
-
-**Signature:**
-
-```ts
-refreshAll(): Promise<Collection<string, ChampionMastery>>;
-```
-
-
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [ChampionMastery](/api/ChampionMastery.md) \> \>
 
 ---
 

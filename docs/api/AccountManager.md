@@ -1,11 +1,11 @@
 ---
 title: AccountManager
-description: An account manager - to fetch and manage all the RIOT accounts.
+description: An account manager - to fetch and manage all the RIOT accounts.   Requires API key with access to `account-v1` API.
 ---
 
 ## AccountManager class
 
-An account manager - to fetch and manage all the RIOT accounts.
+An account manager - to fetch and manage all the RIOT accounts.   Requires API key with access to `account-v1` API.
 
 **Signature:**
 
@@ -36,22 +36,9 @@ Constructs a new instance of the `AccountManager` class.
 
 ### Properties
 
-#### cache
-
-The accounts cached in the memory.
-
-
-Only use this if you absolutely must. Prioritize using [fetch](/api/AccountManager.md#fetch) or [fetchByNameAndTag](/api/AccountManager.md#fetchbynameandtag) instead.
-
-
-
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Account](/api/Account.md) \>
-
----
-
 #### client
 
-The client this accounts manager belongs to.
+The client this account manager belongs to.
 
 
 

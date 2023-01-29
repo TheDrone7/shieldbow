@@ -5,10 +5,12 @@ import { parseFetchOptions } from '../util';
 
 /**
  * An account manager - to fetch and manage all the RIOT accounts.
+ *
+ * Requires API key with access to `account-v1` API.
  */
 export class AccountManager implements BaseManager<Account> {
   /**
-   * The client this accounts manager belongs to.
+   * The client this account manager belongs to.
    */
   readonly client: Client;
 

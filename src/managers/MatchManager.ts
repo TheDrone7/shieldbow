@@ -8,13 +8,13 @@ import { parseFetchOptions } from '../util';
  */
 export class MatchManager implements BaseManager<Match> {
   /**
-   * The client that instantiated the manager.
+   * The client this match manager belongs to.
    */
   readonly client: Client;
 
   /**
    * Creates a new match manager.
-   * @param client - The client that instantiated the manager.
+   * @param client - The client this match manager belongs to.
    */
   constructor(client: Client) {
     this.client = client;

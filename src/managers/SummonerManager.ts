@@ -8,13 +8,13 @@ import { parseFetchOptions } from '../util';
  */
 export class SummonerManager implements BaseManager<Summoner> {
   /**
-   * The client this manager belongs to.
+   * The client this summoner manager belongs to.
    */
   readonly client: Client;
 
   /**
    * Creates a new summoner manager.
-   * @param client - The client that instantiated this manager.
+   * @param client - The client this summoner manager belongs to.
    */
   constructor(client: Client) {
     this.client = client;

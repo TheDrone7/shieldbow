@@ -1,11 +1,11 @@
 ---
 title: ChampionManager
-description: A champion manager - to fetch and manage all the champion data.
+description: A champion manager - to fetch and manage all the champion data.   Does not require an API Key. (Except for [ChampionManager.fetchRotations](/api/ChampionManager.md#fetchrotations)).
 ---
 
 ## ChampionManager class
 
-A champion manager - to fetch and manage all the champion data.
+A champion manager - to fetch and manage all the champion data.   Does not require an API Key. (Except for [ChampionManager.fetchRotations](/api/ChampionManager.md#fetchrotations)).
 
 **Signature:**
 
@@ -31,14 +31,14 @@ Constructs a new instance of the `ChampionManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/Client.md) | The client this manager belongs to. |
+| client | [Client](/api/Client.md) | The client this champion manager belongs to. |
 ---
 
 ### Properties
 
 #### client
 
-The client that this manager belongs to.
+The client that this champion manager belongs to.
 
 
 
@@ -50,7 +50,7 @@ The client that this manager belongs to.
 
 #### .fetch ()
 
-Fetches a champion (from the cache, if already available), or from data dragon and community dragon.
+Fetches a champion by the champion ID.
 
 
 
@@ -77,7 +77,7 @@ fetch(id: string, options?: FetchOptions): Promise<Champion>;
 Fetch all the champions and store it in the cache.
 
 
-This always fetches freshly from data dragon and community dragon.
+This always fetches freshly from data dragon, community dragon and meraki analytics.
 
 
 
@@ -154,7 +154,7 @@ fetchByKeys(keys: number[], options?: FetchOptions): Promise<Collection<string, 
 
 #### .fetchByName ()
 
-Fetch and cache champion by their name (instead of ID, which is very similar but not the same as the name). The search is case-insensitive. The special characters are NOT ignored.
+Fetch a champion by their name (instead of ID, which is very similar but not the same as the name). The search is case-insensitive. The special characters are NOT ignored.
 
 
 
@@ -213,7 +213,7 @@ This is the only method that needs a valid API key in this manager. Needs access
 **Signature:**
 
 ```ts
-fetchRotations(options?: FetchOptions): Promise<Collection<"all" | "new", Champion[]>>;
+fetchRotations(options?: FetchOptions): Promise<Collection<string, Champion[]>>;
 ```
 
 **Parameters:**
@@ -222,75 +222,7 @@ fetchRotations(options?: FetchOptions): Promise<Collection<"all" | "new", Champi
 | --------- | ---- | ----------- |
 | options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< "all" \| "new", [Champion](/api/Champion.md)[] \> \>
-
----
-
-#### .findByKey ()
-
-Find a champion by their 3-digit key.
-
-
-
-
-::: warning 
-
-This is now **deprecated**. 
-
-Use [fetchByKey](/api/ChampionManager.md#fetchbykey) instead.
-
-
-
-
-:::
-
-**Signature:**
-
-```ts
-findByKey(key: number): Promise<Champion | undefined>;
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| key | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The 3-digit key of the champion to look for. |
-
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Champion](/api/Champion.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
-
----
-
-#### .findByName ()
-
-Find a champion by their name.
-
-
-
-
-::: warning 
-
-This is now **deprecated**. 
-
-Use [fetchByName](/api/ChampionManager.md#fetchbyname) instead.
-
-
-
-
-:::
-
-**Signature:**
-
-```ts
-findByName(name: string): Promise<Champion | undefined>;
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of the champion to look for. |
-
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Champion](/api/Champion.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/api/Champion.md)[] \> \>
 
 ---
 

@@ -110,3 +110,26 @@ save<T>(value: T, key: string, id: string): Promise<T>;
 
 ---
 
+#### .search ()
+
+
+
+**Signature:**
+
+```ts
+search<T>(key: string, query: {
+        [key: string]: any;
+    }): Promise<T[]>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| key | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  |
+| query | {         [key: string]: any;     } |  |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< T[] \>
+
+---
+

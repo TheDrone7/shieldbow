@@ -13,13 +13,19 @@ import { parseFetchOptions } from '../util';
 
 /**
  * A challenge manager - to fetch and manage all the challenges' data.
+ *
+ * Requires API key with access to `lol-challenges-v1` API.
  */
 export class ChallengeManager implements BaseManager<Challenge> {
   /**
-   * The client this manager belongs to.
+   * The client this challenge manager belongs to.
    */
   readonly client: Client;
 
+  /**
+   * Create a new challenge manager.
+   * @param client - The client this challenge manager belongs to.
+   */
   constructor(client: Client) {
     this.client = client;
   }

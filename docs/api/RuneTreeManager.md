@@ -31,14 +31,14 @@ Constructs a new instance of the `RuneTreeManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/Client.md) | The client this manager belongs to. |
+| client | [Client](/api/Client.md) | The client this rune tree manager belongs to. |
 ---
 
 ### Properties
 
 #### client
 
-The client this manager belongs to.
+The client this rune tree manager belongs to.
 
 
 
@@ -233,142 +233,6 @@ fetchRuneByName(name: string, options?: FetchOptions): Promise<Rune | undefined>
 | --------- | ---- | ----------- |
 | name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of the rune to look for. |
 | options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
-
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Rune](/api/Rune.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
-
----
-
-#### .findById ()
-
-Find a rune tree by its numerical ID.
-
-
-
-
-::: warning 
-
-This is now **deprecated**. 
-
-Please use [fetchById](/api/RuneTreeManager.md#fetchbyid) instead.
-
-
-
-
-:::
-
-**Signature:**
-
-```ts
-findById(id: number): Promise<RuneTree | undefined>;
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| id | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The numerical ID of the rune tree to look for. |
-
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [RuneTree](/api/RuneTree.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
-
----
-
-#### .findByName ()
-
-Find a rune tree by its name.
-
-
-
-
-::: warning 
-
-This is now **deprecated**. 
-
-Please use [fetchByName](/api/RuneTreeManager.md#fetchbyname) instead.
-
-
-
-
-:::
-
-**Signature:**
-
-```ts
-findByName(name: string): Promise<RuneTree | undefined>;
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of the rune tree to look for. |
-
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [RuneTree](/api/RuneTree.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
-
----
-
-#### .findRuneById ()
-
-Find a rune by its numerical ID.
-
-
-
-
-::: warning 
-
-This is now **deprecated**. 
-
-Please use [fetchRuneById](/api/RuneTreeManager.md#fetchrunebyid) instead.
-
-
-
-
-:::
-
-**Signature:**
-
-```ts
-findRuneById(id: number): Promise<Rune | undefined>;
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| id | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The numerical ID of the rune to look for. |
-
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Rune](/api/Rune.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
-
----
-
-#### .findRuneByName ()
-
-Find a rune by its name.
-
-
-
-
-::: warning 
-
-This is now **deprecated**. 
-
-Please use [fetchRuneByName](/api/RuneTreeManager.md#fetchrunebyname) instead.
-
-
-
-
-:::
-
-**Signature:**
-
-```ts
-findRuneByName(name: string): Promise<Rune | undefined>;
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of the rune to look for. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Rune](/api/Rune.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
 

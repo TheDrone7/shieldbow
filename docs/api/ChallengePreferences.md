@@ -74,11 +74,11 @@ The challenges that this summoner has put on display.
 **Signature:**
 
 ```ts
-fetchDisplayedChallenges(): Promise<Collection<number, import("./Challenge").Challenge>>;
+fetchDisplayedChallenges(): Promise<Challenge[]>;
 ```
 
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), import("./Challenge").Challenge \> \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Challenge](/api/Challenge.md)[] \>
 
 ---
 

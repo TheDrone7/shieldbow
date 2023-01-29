@@ -6,17 +6,19 @@ import { Collection } from '@discordjs/collection';
 
 /**
  * An item manager - to fetch and manage all item data.
+ *
+ * Does not require an API Key.
  */
 export class ItemManager implements BaseManager<Item> {
   /**
-   * The client this manager belongs to.
+   * The client this item manager belongs to.
    */
   readonly client: Client;
 
   /**
    * Create a new item manager.
    *
-   * @param client - The client this manager belongs to.
+   * @param client - The client this item manager belongs to.
    */
   constructor(client: Client) {
     this.client = client;
@@ -94,16 +96,6 @@ export class ItemManager implements BaseManager<Item> {
   }
 
   /**
-   * Find an item by its name.
-   *
-   * @deprecated Please use {@link ItemManager.fetchByName | fetchByName} instead.
-   * @param name - The name of the item to look for.
-   */
-  async findByName(name: string) {
-    return this.fetchByName(name);
-  }
-
-  /**
    * Fetch an item by its name.
    * The search is case-insensitive.
    * The special characters are NOT ignored.
@@ -119,6 +111,12 @@ export class ItemManager implements BaseManager<Item> {
     return items.find((i) => i.name.toLowerCase().includes(name.toLowerCase()));
   }
 
+  /**
+   * Fetch multiple items at once.
+   *
+   * @param keys - The keys of the items to fetch.
+   * @param options - The basic fetching options.
+   */
   async fetchMany(keys: string[], options?: FetchOptions) {
     const opts = parseFetchOptions(this.client, 'items', options);
     const { cache } = opts;

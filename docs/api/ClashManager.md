@@ -1,11 +1,11 @@
 ---
 title: ClashManager
-description: A clash manager - to fetch and store clash tournaments and related data.
+description: A clash manager - to fetch and store clash tournaments and related data.   Requires API key with access to `clash-v1` API.
 ---
 
 ## ClashManager class
 
-A clash manager - to fetch and store clash tournaments and related data.
+A clash manager - to fetch and store clash tournaments and related data.   Requires API key with access to `clash-v1` API.
 
 **Signature:**
 
@@ -31,53 +31,14 @@ Constructs a new instance of the `ClashManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/Client.md) | The client that instantiated the manager. |
+| client | [Client](/api/Client.md) | The client this clash manager belongs to. |
 ---
 
 ### Properties
 
-#### cache
-
-The in-memory cache of tournaments.
-
-
-Only use this if you absolutely must. Prioritize using [fetch](/api/ClashManager.md#fetch), [fetchByTeamId](/api/ClashManager.md#fetchbyteamid) or [fetchAll](/api/ClashManager.md#fetchall) instead.
-
-
-
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [Tournament](/api/Tournament.md) \>
-
----
-
-#### cachedPlayers
-
-The in-memory cache of the tournament players.
-
-
-Only use this if you absolutely must. Prioritize using [fetchPlayer](/api/ClashManager.md#fetchplayer) instead.
-
-
-
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [TournamentPlayer](/api/TournamentPlayer.md)[] \>
-
----
-
-#### cachedTeams
-
-The in-memory cache of the tournament teams.
-
-
-Only use this if you absolutely must. Prioritize using [fetchTeam](/api/ClashManager.md#fetchteam) instead.
-
-
-
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [TournamentTeam](/api/TournamentTeam.md) \>
-
----
-
 #### client
 
-The client that instantiated the manager.
+The client this clash manager belongs to.
 
 
 
@@ -89,7 +50,7 @@ The client that instantiated the manager.
 
 #### .fetch ()
 
-Fetches a tournament by its ID.
+Fetch a clash tournament by its ID.
 
 
 
@@ -104,7 +65,7 @@ fetch(id: number, options?: FetchOptions): Promise<Tournament>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| id | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The ID of the tournament. |
+| id | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The ID of the clash tournament. |
 | options | [FetchOptions](/api/FetchOptions.md) | The basic fetch options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Tournament](/api/Tournament.md) \>
@@ -113,7 +74,7 @@ fetch(id: number, options?: FetchOptions): Promise<Tournament>;
 
 #### .fetchAll ()
 
-Fetch all upcoming and active tournaments.
+Fetch all upcoming and active clash tournaments.
 
 
 
@@ -128,7 +89,7 @@ fetchAll(options?: FetchOptions): Promise<Tournament[]>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| options | [FetchOptions](/api/FetchOptions.md) | The basic fetch options (force is ignored, always true). |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetch options (always fetches from the API, skipping cache and storage). |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Tournament](/api/Tournament.md)[] \>
 
@@ -136,7 +97,7 @@ fetchAll(options?: FetchOptions): Promise<Tournament[]>;
 
 #### .fetchByTeamId ()
 
-Fetch tournament by participating team's ID.
+Fetch a clash tournament by participating team's ID.
 
 
 
@@ -152,7 +113,7 @@ fetchByTeamId(teamId: string, options?: FetchOptions): Promise<Tournament>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | teamId | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the team. |
-| options | [FetchOptions](/api/FetchOptions.md) | The basic fetch options (force is ignored, always true). |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetch options (always fetches from API, skipping cache and storage). |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Tournament](/api/Tournament.md) \>
 
@@ -160,7 +121,7 @@ fetchByTeamId(teamId: string, options?: FetchOptions): Promise<Tournament>;
 
 #### .fetchPlayer ()
 
-Fetch participation info of a summoner in tournaments by the summoner ID.
+Fetch participation info of a summoner in clash tournaments by the summoner ID.
 
 
 
@@ -184,7 +145,7 @@ fetchPlayer(summonerId: string, options?: FetchOptions): Promise<TournamentPlaye
 
 #### .fetchTeam ()
 
-Fetch a team participating in a tournament by the team ID.
+Fetch a team participating in a clash tournament by the team ID.
 
 
 

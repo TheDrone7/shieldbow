@@ -11,6 +11,9 @@ export interface SummonerData {
   summonerLevel: number;
 }
 
+/**
+ * A partial representation of a summoner.
+ */
 export interface PartialSummoner {
   id: string;
   name: string;

@@ -5,16 +5,18 @@ import { parseFetchOptions } from '../util';
 
 /**
  * A current game manager - to fetch and manage the live games.
+ *
+ * Requires API key with access to `spectator-v4` API.
  */
 export class CurrentGameManager implements BaseManager<CurrentGame> {
   /**
-   * The client that instantiated the manager.
+   * The client this current game manager belongs to.
    */
   readonly client: Client;
 
   /**
    * Creates a new current game manager.
-   * @param client - The client that instantiated the manager.
+   * @param client - The client this current game manager belongs to.
    */
   constructor(client: Client) {
     this.client = client;
@@ -22,8 +24,6 @@ export class CurrentGameManager implements BaseManager<CurrentGame> {
 
   /**
    * Fetches the live game for the given summoner ID.
-   *
-   * This method is a special case where the cache is ignored by default.
    *
    * @param id - The summoner ID to fetch the live game for.
    * @param options - The basic fetching options.
@@ -75,7 +75,6 @@ export class CurrentGameManager implements BaseManager<CurrentGame> {
 
   /**
    * Fetch a list of featured games.
-   * These games are not cached.
    *
    * @param options - The basic fetching options (does not fetch from storage or cache).
    */

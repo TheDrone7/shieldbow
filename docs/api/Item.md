@@ -173,13 +173,13 @@ See [details](/api/Item.md#details) if you want to see it with the tags processe
 
 ---
 
-#### requiredChampion
+#### requiredChampionId
 
-If this is not undefined, then this item can only be bought/owned by this champion.
+If this field is defined, then this item can only be bought/owned by this champion.
 
 
 
-**Type**: [Champion](/api/Champion.md) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 
@@ -246,6 +246,23 @@ into(): Promise<import("@discordjs/collection").Collection<string, Item>>;
 
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< import("@discordjs/collection").Collection \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/Item.md) \> \>
+
+---
+
+#### .requiredChampion ()
+
+If this is not undefined, then this item can only be bought/owned by this champion.
+
+
+
+**Signature:**
+
+```ts
+requiredChampion(): Promise<Champion>;
+```
+
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Champion](/api/Champion.md) \>
 
 ---
 
