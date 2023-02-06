@@ -1,0 +1,44 @@
+import type {
+  AccountMethods,
+  ChampionMasteryMethods,
+  ChampionMethods,
+  SummonerMethods,
+  ClashMethods,
+  LeagueMethods,
+  LeagueExpMethods,
+  MatchMethods,
+  SpectatorMethods,
+  LolChallengesMethods,
+  LolStatusMethods
+} from './constants';
+
+export interface RateLimitConfig {
+  limit: number;
+  duration: number;
+}
+
+export interface MethodRateLimitOptions {
+  ACCOUNT?: RateLimitConfig[] | { [k in AccountMethods]: RateLimitConfig[] };
+  CHAMPION_MASTERY?: RateLimitConfig[] | { [k in ChampionMasteryMethods]: RateLimitConfig[] };
+  CHAMPION?: RateLimitConfig[] | { [k in ChampionMethods]: RateLimitConfig[] };
+  CLASH?: RateLimitConfig[] | { [k in ClashMethods]: RateLimitConfig[] };
+  LEAGUE_EXP?: RateLimitConfig[] | { [k in LeagueExpMethods]: RateLimitConfig[] };
+  LEAGUE?: RateLimitConfig[] | { [k in LeagueMethods]: RateLimitConfig[] };
+  LOL_CHALLENGES?: RateLimitConfig[] | { [k in LolChallengesMethods]: RateLimitConfig[] };
+  LOL_STATUS?: RateLimitConfig[] | { [k in LolStatusMethods]: RateLimitConfig[] };
+  MATCH?: RateLimitConfig[] | { [k in MatchMethods]: RateLimitConfig[] };
+  SPECTATOR?: RateLimitConfig[] | { [k in SpectatorMethods]: RateLimitConfig[] };
+  SUMMONER?: RateLimitConfig[] | { [k in SummonerMethods]: RateLimitConfig[] };
+}
+
+export interface RetryOptions {
+  retries: number;
+  retryDelay?: number;
+}
+
+export interface RateLimiterOptions {
+  appLimit?: RateLimitConfig[];
+  methodLimit?: RateLimitConfig[] | MethodRateLimitOptions;
+  retry?: RetryOptions;
+  throw?: boolean;
+}
