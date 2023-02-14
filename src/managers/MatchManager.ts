@@ -62,10 +62,11 @@ export class MatchManager implements BaseManager<Match> {
         }
       }
 
-      const response = await this.client.api.makeApiRequest(`/lol/match/v5/matches/${id}`, {
+      const response = await this.client.api.request(`/lol/match/v5/matches/${id}`, {
         region: region!,
         regional: true,
-        name: 'Get Match By Match ID',
+        api: 'MATCH',
+        method: 'getMatch',
         params: 'Match ID: ' + id
       });
 
@@ -114,10 +115,11 @@ export class MatchManager implements BaseManager<Match> {
         }
       }
 
-      const response = await this.client.api.makeApiRequest(`/lol/match/v5/matches/${matchId}/timeline`, {
+      const response = await this.client.api.request(`/lol/match/v5/matches/${matchId}/timeline`, {
         region: region!,
         regional: true,
-        name: 'Get Match Timeline By Match ID',
+        api: 'MATCH',
+        method: 'getTimeline',
         params: 'Match ID: ' + matchId
       });
 
@@ -152,10 +154,11 @@ export class MatchManager implements BaseManager<Match> {
       if (options?.type) url.searchParams.set('type', options.type);
       if (options?.start) url.searchParams.set('start', options.start.toString());
       if (options?.count) url.searchParams.set('count', options.count.toString());
-      const response = await this.client.api.makeApiRequest(url.pathname + url.search, {
+      const response = await this.client.api.request(url.pathname + url.search, {
         region,
         regional: true,
-        name: 'Get Match List By Player ID',
+        api: 'MATCH',
+        method: 'getMatchIdsByPUUID',
         params: 'Player ID: ' + playerId
       });
       return <string[]>response.data;

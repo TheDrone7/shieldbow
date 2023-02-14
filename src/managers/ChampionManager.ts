@@ -306,8 +306,9 @@ export class ChampionManager implements BaseManager<Champion> {
           ]);
         }
       }
-      const response = await this.client.api.makeApiRequest('/lol/platform/v3/champion-rotations', {
-        name: 'Champion rotation',
+      const response = await this.client.api.request('/lol/platform/v3/champion-rotations', {
+        api: 'CHAMPION',
+        method: 'getChampionInfo',
         params: '',
         region: region!,
         regional: false

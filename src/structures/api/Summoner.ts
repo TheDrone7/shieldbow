@@ -133,26 +133,4 @@ export class Summoner {
     else options = { region: this.region };
     return this.client.challenges.fetchSummonerProgression(this.playerId, options);
   }
-
-  /**
-   * Check a summoner's third party verification code.
-   *
-   * @param code - The code that the summoner's code should match with.
-   */
-  verifyCode(code: string): Promise<boolean> {
-    return new Promise<boolean>(async (resolve, reject) => {
-      const response = await this.client.api
-        .makeApiRequest('/lol/platform/v4/third-party-code/by-summoner/' + this.id, {
-          region: this.region,
-          regional: false,
-          name: 'Verify third party code',
-          params: `Summoner ID: ${this.id}`
-        })
-        .catch(reject);
-      if (response && response.status === 200) {
-        const codeData = <string>response.data;
-        resolve(codeData === code);
-      } else resolve(false);
-    });
-  }
 }

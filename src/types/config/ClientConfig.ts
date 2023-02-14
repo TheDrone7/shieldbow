@@ -3,11 +3,16 @@ import type { CacheConfig } from './CacheConfig';
 import type { StorageConfig } from './StorageConfig';
 import type { LoggerConfig } from './LoggerConfig';
 import type { PreFetchConfig } from './PrefetchConfig';
+import type { RateLimiterOptions } from '../../ratelimiter';
 
 /**
  * The basic configuration for the shieldbow Client.
  */
 export interface ClientConfig {
+  /**
+   * The rate limiter options to modify the behaviour of the part of the client that sends requests to the APIs.
+   */
+  ratelimiter?: RateLimiterOptions;
   /**
    * The client's logger utility configuration.
    * Alternatively, you can pass `true` to use the default logger configuration.

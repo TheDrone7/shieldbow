@@ -31,6 +31,20 @@ export interface MethodRateLimitOptions {
   SUMMONER?: RateLimitConfig[] | { [k in SummonerMethods]: RateLimitConfig[] };
 }
 
+export interface MethodRateLimitConfig {
+  ACCOUNT: { [k: string]: RateLimitConfig[] };
+  CHAMPION_MASTERY: { [k: string]: RateLimitConfig[] };
+  CHAMPION: { [k: string]: RateLimitConfig[] };
+  CLASH: { [k: string]: RateLimitConfig[] };
+  LEAGUE_EXP: { [k: string]: RateLimitConfig[] };
+  LEAGUE: { [k: string]: RateLimitConfig[] };
+  LOL_CHALLENGES: { [k: string]: RateLimitConfig[] };
+  LOL_STATUS: { [k: string]: RateLimitConfig[] };
+  MATCH: { [k: string]: RateLimitConfig[] };
+  SPECTATOR: { [k: string]: RateLimitConfig[] };
+  SUMMONER: { [k: string]: RateLimitConfig[] };
+}
+
 export interface RetryOptions {
   retries: number;
   retryDelay?: number;
@@ -41,4 +55,13 @@ export interface RateLimiterOptions {
   methodLimit?: RateLimitConfig[] | MethodRateLimitOptions;
   retry?: RetryOptions;
   throw?: boolean;
+  strategy?: 'burst' | 'spread';
+}
+
+export interface RateLimiterConfig {
+  appLimit: RateLimitConfig[];
+  methodLimit: MethodRateLimitConfig;
+  retry: RetryOptions;
+  throw: boolean;
+  strategy: 'burst' | 'spread';
 }

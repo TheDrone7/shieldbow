@@ -47,10 +47,11 @@ export class SummonerManager implements BaseManager<Summoner> {
         }
       }
 
-      const response = await this.client.api.makeApiRequest('/lol/summoner/v4/summoners/' + id, {
+      const response = await this.client.api.request('/lol/summoner/v4/summoners/' + id, {
         region: region!,
         regional: false,
-        name: 'Summoner by ID',
+        api: 'SUMMONER',
+        method: 'getBySummonerId',
         params: `ID: ${id}`
       });
       const data = <SummonerData>response.data;
@@ -91,10 +92,11 @@ export class SummonerManager implements BaseManager<Summoner> {
         }
       }
 
-      const response = await this.client.api.makeApiRequest('/lol/summoner/v4/summoners/by-puuid/' + id, {
+      const response = await this.client.api.request('/lol/summoner/v4/summoners/by-puuid/' + id, {
         region: region!,
         regional: false,
-        name: 'Summoner by player ID',
+        api: 'SUMMONER',
+        method: 'getByPUUID',
         params: `ID: ${id}`
       });
       const data = <SummonerData>response.data;
@@ -134,15 +136,13 @@ export class SummonerManager implements BaseManager<Summoner> {
         }
       }
 
-      const response = await this.client.api.makeApiRequest(
-        '/lol/summoner/v4/summoners/by-name/' + encodeURIComponent(name),
-        {
-          region: region!,
-          regional: false,
-          name: 'Summoner by summoner name',
-          params: `Name: ${name}`
-        }
-      );
+      const response = await this.client.api.request('/lol/summoner/v4/summoners/by-name/' + encodeURIComponent(name), {
+        region: region!,
+        regional: false,
+        api: 'SUMMONER',
+        method: 'getBySummonerName',
+        params: `Name: ${name}`
+      });
       const data = <SummonerData>response.data;
       const summoner = new Summoner(this.client, data, region!);
       if (store) await this.client.storage.save(data, 'summoner', summoner.id);

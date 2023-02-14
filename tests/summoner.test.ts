@@ -38,12 +38,6 @@ describe('API: summoner-v4 + account-v1', () => {
     expect(account?.username).toBe('TheDrone7');
   });
 
-  it('can verify third-party-verification-code', async () => {
-    const match = await summoner.verifyCode('random-code').catch(() => {});
-    if (match) expect(match).toBeFalsy();
-    else expect(match).toBeUndefined();
-  });
-
   it('automatically makes regional requests', async () => {
     const faker = await client.summoners.fetchBySummonerName('hide on bush', { region: 'kr' });
     expect(faker.name.toLowerCase()).toBe('hide on bush');

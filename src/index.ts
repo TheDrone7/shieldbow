@@ -3,4 +3,4 @@ export * from './types';
 export * from './structures';
 export * from './util';
 export * from './managers';
-export * from './api';
+export * from './ratelimiter';

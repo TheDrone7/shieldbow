@@ -77,12 +77,13 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
         }
       }
 
-      const response = await this.client.api.makeApiRequest(
+      const response = await this.client.api.request(
         `/lol/champion-mastery/v4/champion-masteries/by-summoner/${this.summoner.id}/by-champion/${champ.key}`,
         {
           region: region!,
           regional: false,
-          name: 'Champion mastery by champion',
+          api: 'CHAMPION_MASTERY',
+          method: 'getAllChampionMasteries',
           params: `Summoner ID: ${this.summoner.id}, Champion ID: ${champ.key}`
         }
       );
@@ -172,12 +173,13 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
       region: this.summoner.region
     });
     try {
-      const response = await this.client.api.makeApiRequest(
+      const response = await this.client.api.request(
         `/lol/champion-mastery/v4/scores/by-summoner/${this.summoner.id}`,
         {
           region: this.summoner.region,
           regional: false,
-          name: 'Champion mastery score by summoner',
+          api: 'CHAMPION_MASTERY',
+          method: 'getChampionMasteryScore',
           params: `Summoner ID: ${this.summoner.id}`
         }
       );
@@ -199,12 +201,13 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
     }
 
     try {
-      const response = await this.client.api.makeApiRequest(
+      const response = await this.client.api.request(
         `/lol/champion-mastery/v4/champion-masteries/by-summoner/${this.summoner.id}`,
         {
           region: this.summoner.region,
           regional: false,
-          name: 'Champion mastery by summoner',
+          api: 'CHAMPION_MASTERY',
+          method: 'getAllChampionMasteries',
           params: `Summoner ID: ${this.summoner.id}`
         }
       );

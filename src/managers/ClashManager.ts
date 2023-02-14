@@ -48,9 +48,10 @@ export class ClashManager implements BaseManager<Tournament> {
     }
 
     try {
-      const response = await this.client.api.makeApiRequest(`/lol/clash/v1/tournaments/${id}`, {
+      const response = await this.client.api.request(`/lol/clash/v1/tournaments/${id}`, {
         region: region!,
-        name: 'Get tournament by tournament ID',
+        api: 'CLASH',
+        method: 'getTournamentById',
         regional: false,
         params: `Tournament ID: ${id}`
       });
@@ -74,9 +75,10 @@ export class ClashManager implements BaseManager<Tournament> {
     this.client.logger?.trace(`Fetching all clash tournaments data with options: `, { cache, region });
 
     try {
-      const response = await this.client.api.makeApiRequest(`/lol/clash/v1/tournaments`, {
+      const response = await this.client.api.request(`/lol/clash/v1/tournaments`, {
         region: region!,
-        name: 'Get all upcoming and active tournaments',
+        api: 'CLASH',
+        method: 'getTournaments',
         regional: false,
         params: `No parameters`
       });
@@ -104,9 +106,10 @@ export class ClashManager implements BaseManager<Tournament> {
     this.client.logger?.trace(`Fetching clash tournament with team ${teamId} with options: `, { cache, region });
 
     try {
-      const response = await this.client.api.makeApiRequest(`/lol/clash/v1/tournaments/by-team/${teamId}`, {
+      const response = await this.client.api.request(`/lol/clash/v1/tournaments/by-team/${teamId}`, {
         region: region!,
-        name: 'Get tournament by team ID',
+        api: 'CLASH',
+        method: 'getTournamentByTeam',
         regional: false,
         params: `Team ID: ${teamId}`
       });
@@ -144,9 +147,10 @@ export class ClashManager implements BaseManager<Tournament> {
         }
       }
 
-      const response = await this.client.api.makeApiRequest(`/lol/clash/v1/teams/${teamId}`, {
+      const response = await this.client.api.request(`/lol/clash/v1/teams/${teamId}`, {
         region: region!,
-        name: 'Get team by team ID',
+        api: 'CLASH',
+        method: 'getTeamById',
         regional: false,
         params: `Team ID: ${teamId}`
       });
@@ -185,9 +189,10 @@ export class ClashManager implements BaseManager<Tournament> {
         }
       }
 
-      const response = await this.client.api.makeApiRequest(`/lol/clash/v1/players/by-summoner/${summonerId}`, {
+      const response = await this.client.api.request(`/lol/clash/v1/players/by-summoner/${summonerId}`, {
         region: region!,
-        name: 'Get tournament players by summoner ID',
+        api: 'CLASH',
+        method: 'getPlayersBySummoner',
         regional: false,
         params: `Summoner ID: ${summonerId}`
       });

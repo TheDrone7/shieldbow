@@ -26,7 +26,7 @@ import {
   ClashManager,
   ChallengeManager
 } from './managers';
-import { ApiHandler } from './api';
+import { RateLimiter } from './ratelimiter';
 import { LocalStorage, MemoryCache, ShieldbowLogger } from './util';
 
 const patchRegex = /\d+\.\d+/;
@@ -55,7 +55,8 @@ export class Client {
   private readonly _challenges: ChallengeManager;
   private readonly _clash: ClashManager;
   private readonly _http: AxiosInstance;
-  private readonly _api: ApiHandler;
+  private readonly _apiKey: string;
+  private _api: RateLimiter;
   private _seasons: Season[];
   private _queues: Queue[];
   private _maps: GameMap[];
@@ -76,6 +77,7 @@ export class Client {
     this._region = 'na';
     this._patch = undefined!;
     this._locale = 'en_US';
+    this._apiKey = apiKey;
 
     this._cacheEnabled = { api: true, dragon: true };
     this._storageEnabled = { api: false, dragon: true };
@@ -102,7 +104,7 @@ export class Client {
     this._challenges = new ChallengeManager(this);
 
     this._http = axios.create({ baseURL: this._cdnBase });
-    this._api = new ApiHandler(this, apiKey);
+    this._api = new RateLimiter(this, {}, apiKey);
   }
 
   /**
@@ -157,6 +159,8 @@ export class Client {
         }
       }
     }
+
+    this._api = new RateLimiter(this, options?.ratelimiter ?? {}, this._apiKey);
 
     // Set the initialized flag to true.
     this._initialized = true;
@@ -428,9 +432,10 @@ export class Client {
     return new Promise(async (resolve, reject) => {
       this.logger?.trace('Fetching status from Riot API.');
       const response = await this.api
-        .makeApiRequest('/lol/status/v4/platform-data', {
+        .request('/lol/status/v4/platform-data', {
           region: this.region,
-          name: 'Get API Status',
+          api: 'LOL_STATUS',
+          method: 'getPlatformData',
           params: 'no params',
           regional: false
         })

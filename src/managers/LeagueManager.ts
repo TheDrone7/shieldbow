@@ -63,10 +63,11 @@ export class LeagueManager implements BaseManager<Collection<QueueType, LeagueEn
         }
       }
 
-      const response = await this.client.api.makeApiRequest('/lol/league/v4/entries/by-summoner/' + id, {
+      const response = await this.client.api.request('/lol/league/v4/entries/by-summoner/' + id, {
         region: region!,
         regional: false,
-        name: 'League Entry by summoner ID',
+        api: 'LEAGUE',
+        method: 'getLeagueEntriesForSummoner',
         params: `Summoner ID: ${id}`
       });
       const data = <LeagueEntryData[]>response.data;
@@ -104,12 +105,13 @@ export class LeagueManager implements BaseManager<Collection<QueueType, LeagueEn
       opts
     );
     try {
-      const response = await this.client.api.makeApiRequest(
+      const response = await this.client.api.request(
         `/lol/league-exp/v4/entries/${queue}/${tier}/${division}?page=${page}`,
         {
           region: region!,
           regional: false,
-          name: 'League Entry by queue and tier',
+          api: 'LEAGUE_EXP',
+          method: 'getLeagueEntries',
           params: `Queue: ${queue}, Tier: ${tier}, Division: ${division}`
         }
       );
@@ -170,10 +172,11 @@ export class LeagueManager implements BaseManager<Collection<QueueType, LeagueEn
         }
       }
 
-      const response = await this.client.api.makeApiRequest(`/lol/league/v4/leagues/${leagueId}`, {
+      const response = await this.client.api.request(`/lol/league/v4/leagues/${leagueId}`, {
         region: region!,
         regional: false,
-        name: 'League Entry by league ID',
+        api: 'LEAGUE',
+        method: 'getLeagueById',
         params: `League ID: ${leagueId}`
       });
       if (response && response.data) {

@@ -40,16 +40,18 @@ export class ChallengeManager implements BaseManager<Challenge> {
     this.client.logger?.trace(`Fetching all challenges data with options: `, opts);
     try {
       const result = new Collection<number, Challenge>();
-      const cResponse = await this.client.api.makeApiRequest(`/lol/challenges/v1/challenges/config`, {
+      const cResponse = await this.client.api.request(`/lol/challenges/v1/challenges/config`, {
         region: region!,
         regional: false,
-        name: 'All challenges config',
+        api: 'LOL_CHALLENGES',
+        method: 'getAllChallengeConfigs',
         params: ''
       });
-      const pResponse = await this.client.api.makeApiRequest(`/lol/challenges/v1/challenges/percentiles`, {
+      const pResponse = await this.client.api.request(`/lol/challenges/v1/challenges/percentiles`, {
         region: region!,
         regional: false,
-        name: 'All challenges percentiles',
+        api: 'LOL_CHALLENGES',
+        method: 'getAllChallengePercentiles',
         params: ''
       });
       const data = <ChallengeConfigData[]>cResponse.data;
@@ -97,16 +99,18 @@ export class ChallengeManager implements BaseManager<Challenge> {
         }
       }
 
-      const cResponse = await this.client.api.makeApiRequest(`/lol/challenges/v1/challenges/${id}/config`, {
+      const cResponse = await this.client.api.request(`/lol/challenges/v1/challenges/${id}/config`, {
         region: region!,
         regional: false,
-        name: 'Challenge config by ID',
+        api: 'LOL_CHALLENGES',
+        method: 'getChallengeConfigs',
         params: `Challenge ID: ${id}`
       });
-      const pResponse = await this.client.api.makeApiRequest(`/lol/challenges/v1/challenges/${id}/percentiles`, {
+      const pResponse = await this.client.api.request(`/lol/challenges/v1/challenges/${id}/percentiles`, {
         region: region!,
         regional: false,
-        name: 'Challenge percentiles by ID',
+        api: 'LOL_CHALLENGES',
+        method: 'getChallengePercentiles',
         params: `Challenge ID: ${id}`
       });
       const data = <ChallengeConfigData>cResponse.data;
@@ -153,12 +157,13 @@ export class ChallengeManager implements BaseManager<Challenge> {
         }
       }
 
-      const response = await this.client.api.makeApiRequest(
+      const response = await this.client.api.request(
         `/lol/challenges/v1/challenges/${id}/leaderboards/by-level/${level}?limit=${limit}`,
         {
           region: region!,
           regional: false,
-          name: 'Challenge leaderboard by level',
+          api: 'LOL_CHALLENGES',
+          method: 'getChallengeLeaderboards',
           params: `Challenge ID: ${id}, Level: ${level}`
         }
       );
@@ -199,10 +204,11 @@ export class ChallengeManager implements BaseManager<Challenge> {
         }
       }
 
-      const response = await this.client.api.makeApiRequest(`/lol/challenges/v1/player-data/${playerId}`, {
+      const response = await this.client.api.request(`/lol/challenges/v1/player-data/${playerId}`, {
         region: region!,
         regional: false,
-        name: 'Challenge progression by summoner ID',
+        api: 'LOL_CHALLENGES',
+        method: 'getPlayerData',
         params: `Summoner ID: ${playerId}`
       });
       const data = <SummonerChallengeData>response.data;

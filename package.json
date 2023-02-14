@@ -67,6 +67,7 @@
     "@discordjs/collection": "^1.0.1",
     "@types/colors": "^1.2.1",
     "axios": "^0.27.2",
+    "axios-retry": "^3.4.0",
     "colors": "^1.4.0",
     "fs-extra": "^10.1.0",
     "tslib": "^2.4.0"

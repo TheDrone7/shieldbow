@@ -54,10 +54,11 @@ export class CurrentGameManager implements BaseManager<CurrentGame> {
         }
       }
 
-      const response = await this.client.api.makeApiRequest('/lol/spectator/v4/active-games/by-summoner/' + id, {
+      const response = await this.client.api.request('/lol/spectator/v4/active-games/by-summoner/' + id, {
         region: region!,
         regional: false,
-        name: 'Current match by summoner ID',
+        api: 'SPECTATOR',
+        method: 'getCurrentGameInfoBySummoner',
         params: 'Summoner ID: ' + id
       });
 
@@ -84,10 +85,11 @@ export class CurrentGameManager implements BaseManager<CurrentGame> {
     this.client.logger?.trace(`Fetching featured games with options: `, opts);
 
     try {
-      const response = await this.client.api.makeApiRequest('/lol/spectator/v4/featured-games', {
+      const response = await this.client.api.request('/lol/spectator/v4/featured-games', {
         region: region!,
         regional: false,
-        name: 'Featured matches',
+        api: 'SPECTATOR',
+        method: 'getFeaturedGames',
         params: 'no params'
       });
       const data = <{ gameList: CurrentGameData[] }>response.data;

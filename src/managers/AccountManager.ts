@@ -49,10 +49,11 @@ export class AccountManager implements BaseManager<Account> {
         }
       }
 
-      const response = await this.client.api.makeApiRequest('/riot/account/v1/accounts/by-puuid/' + id, {
+      const response = await this.client.api.request('/riot/account/v1/accounts/by-puuid/' + id, {
         region,
         regional: true,
-        name: 'Account by PUUID',
+        api: 'ACCOUNT',
+        method: 'getByPuuid',
         params: 'PUUID: ' + id
       });
       const accountData = <AccountData>response.data;
@@ -91,12 +92,13 @@ export class AccountManager implements BaseManager<Account> {
         }
       }
 
-      const accountResponse = await this.client.api.makeApiRequest(
+      const accountResponse = await this.client.api.request(
         '/riot/account/v1/accounts/by-riot-id/' + encodeURIComponent(name) + '/' + tag,
         {
           region: region!,
           regional: true,
-          name: 'Account by name and tag',
+          api: 'ACCOUNT',
+          method: 'getByRiotId',
           params: 'NAME: ' + name + ', TAG: ' + tag
         }
       );
