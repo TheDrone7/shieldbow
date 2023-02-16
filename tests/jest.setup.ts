@@ -10,7 +10,11 @@ global.clientConfig = {
   },
   ratelimiter: {
     strategy: 'spread',
-    throw: false
+    throw: false,
+    retry: {
+      retries: 5,
+      retryDelay: 5000
+    }
   }
 };
 
