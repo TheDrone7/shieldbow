@@ -2,10 +2,7 @@ import type { MethodRateLimitConfig, RateLimitConfig, RateLimiterConfig, RateLim
 import { methods } from './constants';
 
 const parse = (opts: RateLimiterOptions): RateLimiterConfig => {
-  const defaultLimit: RateLimitConfig[] = [
-    { limit: 20, duration: 1000 },
-    { limit: 100, duration: 120000 }
-  ];
+  const defaultLimit: RateLimitConfig[] = [];
 
   // Default config.
   const newOpts: RateLimiterConfig = {

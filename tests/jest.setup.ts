@@ -7,6 +7,10 @@ global.clientConfig = {
   logger: {
     enable: true,
     level: 'ERROR'
+  },
+  ratelimiter: {
+    strategy: 'spread',
+    throw: false
   }
 };
 

@@ -1,7 +1,8 @@
 import type { MethodRateLimitConfig, RateLimitConfig, RateLimiterOptions } from './config';
 import parseOptions from './parseOptions';
+import { parseHeaders } from './parseHeaders';
 import type { Client } from '../client';
-import axios, { AxiosInstance, AxiosResponse } from 'axios';
+import axios, { AxiosInstance, AxiosResponse, AxiosResponseHeaders } from 'axios';
 import type { ApiRequestOptions } from './requestOptions';
 import { ApiError, mockRatelimitedResponse } from './error';
 import { apiBaseURLs, regionalURLs } from '../util/urls';
@@ -9,8 +10,8 @@ import axiosRetry from 'axios-retry';
 import { Queue } from './queue';
 
 export class RateLimiter {
-  private readonly appLimit: RateLimitConfig[];
-  private readonly methodLimit: MethodRateLimitConfig;
+  private appLimit: RateLimitConfig[];
+  private methodLimit: MethodRateLimitConfig;
   private readonly throw: boolean;
   private readonly strategy: 'burst' | 'spread';
   private readonly client: Client;
@@ -47,8 +48,7 @@ export class RateLimiter {
     this.client.logger?.debug(`Request URL: '${url}' - intention: ${request}`);
 
     return new Promise<AxiosResponse>(async (resolve, reject) => {
-      await this.update(options.api, options.method).catch(reject);
-      const check = await this.check(options.api, options.method).catch((e) => {
+      const check = await this._check(options.api, options.method).catch((e) => {
         throw e;
       });
       if (check.limited && this.throw)
@@ -64,6 +64,8 @@ export class RateLimiter {
         const base = options.regional ? regionalURLs[options.region] : apiBaseURLs[options.region];
         setTimeout(async () => {
           const response = await this._http.get(base + url);
+          this.client.logger?.trace(`Request response:`, response.status);
+          await this._updateFromHeaders(response.headers, options.api, options.method);
           if (response.status !== 200)
             reject(new ApiError(response.status, base + url, this._http.defaults.headers.get, response));
           else resolve(response);
@@ -72,27 +74,23 @@ export class RateLimiter {
     });
   }
 
-  async check(api: keyof MethodRateLimitConfig, method: string) {
+  private async _check(api: keyof MethodRateLimitConfig, method: string) {
     const appLimit = await this._checkAppLimit();
     const methodLimit = await this._checkMethodLimit(api, method);
-    this.client.logger?.trace('App limit in (check): ', appLimit);
-    this.client.logger?.trace('Method limit in (check): ', methodLimit);
-    if (appLimit.limited || methodLimit.limited)
+    if (appLimit?.limited || methodLimit?.limited)
       return {
         limited: true,
         delay: Math.max(appLimit.delay, methodLimit.delay)
       };
-    this.client.logger?.trace('Returned limit in (check): ', {
-      limited: false,
-      delay: Math.max(appLimit.delay, methodLimit.delay)
-    });
-    return { limited: false, delay: Math.max(appLimit.delay, methodLimit.delay) };
+
+    return { limited: false, delay: Math.max(appLimit?.delay, methodLimit?.delay, 0) };
   }
 
   private async _checkAppLimit() {
     const appLimits = await this._fetchAppLimitUsage();
     this.client.logger?.trace(`Current time: ${Date.now()}, Cached limits:`, appLimits);
     const now = Date.now();
+    if (!this.appLimit.length) return { limited: false, delay: 0 };
     const appLimit = this.appLimit.map((limit) => {
       const usage = appLimits.filter((time) => time >= now - limit.duration);
       const limited = usage.length >= limit.limit;
@@ -108,6 +106,7 @@ export class RateLimiter {
   private async _checkMethodLimit(api: keyof MethodRateLimitConfig, method: string) {
     const methodLimits = await this._fetchMethodLimitUsage(api, method);
     const now = Date.now();
+    if (!this.methodLimit[api][method].length) return { limited: false, delay: 0 };
     const methodLimit = this.methodLimit[api][method]
       .map((limit) => {
         const usage = methodLimits.filter((time) => time >= now - limit.duration);
@@ -118,7 +117,21 @@ export class RateLimiter {
     return methodLimit[0];
   }
 
-  async update(api: keyof MethodRateLimitConfig, method: string) {
+  private async _updateFromHeaders(headers: AxiosResponseHeaders, api: keyof MethodRateLimitConfig, method: string) {
+    const limits = parseHeaders(headers);
+    this.client?.logger?.debug(`Raw headers:`, headers);
+    this.client?.logger?.debug(`Parsed limits (from headers):`, limits);
+    const { app: appUsage, method: methodUsage } = limits.usage;
+    if (limits.app.length > 0) this.appLimit = limits.app;
+    if (limits.method.length > 0) this.methodLimit[api][method] = limits.method;
+    if (appUsage.length < 1 && methodUsage.length < 1) await this._update(api, method);
+    else {
+      await this.client.cache.set<number[]>('limits:app:usage', appUsage);
+      await this.client.cache.set<number[]>(`limits:method:${api}:${method}:usage`, methodUsage);
+    }
+  }
+
+  private async _update(api: keyof MethodRateLimitConfig, method: string) {
     const appLimits = await this._fetchAppLimitUsage();
     const methodLimits = await this._fetchMethodLimitUsage(api, method);
     this.client.logger?.trace(`Old limits:`, appLimits);
