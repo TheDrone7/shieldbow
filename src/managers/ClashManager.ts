@@ -85,7 +85,7 @@ export class ClashManager implements BaseManager<Tournament> {
       const tournaments: Tournament[] = [];
       for (const tournament of response.data) {
         const t = new Tournament(tournament);
-        tournament.push(t);
+        tournaments.push(t);
         if (cache) await this.client.cache.set(`clash:${t.id}`, t);
         if (store) await this.client.storage.save(tournament, 'clash', t.id.toString());
       }
