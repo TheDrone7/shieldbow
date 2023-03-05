@@ -9,7 +9,6 @@ import type { Champion, Item, RuneTree, SummonerSpell } from '../dragon';
  * A representation of a league of legends match.
  */
 export class Match {
-  private readonly client: Client;
   /**
    * The match ID.
    */
@@ -78,6 +77,7 @@ export class Match {
    * They are mapped by their map sides (`blue` and `red`).
    */
   readonly teams: Collection<'blue' | 'red', Team>;
+  private readonly client: Client;
 
   /**
    * Creates a new match instance.

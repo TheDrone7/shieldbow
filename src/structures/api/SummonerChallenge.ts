@@ -120,10 +120,6 @@ export class ChallengeProgression {
  */
 export class ChallengePreferences {
   /**
-   * The client that instantiated this challenge preferences.
-   */
-  private readonly client: Client;
-  /**
    * The banner accent of this summoner.
    */
   readonly bannerAccent: string;
@@ -135,6 +131,10 @@ export class ChallengePreferences {
    * The IDs of the challenges this summoner has put on display.
    */
   readonly displayedChallengeIds: number[];
+  /**
+   * The client that instantiated this challenge preferences.
+   */
+  private readonly client: Client;
 
   constructor(client: Client, data: ChallengePreferencesData) {
     this.client = client;

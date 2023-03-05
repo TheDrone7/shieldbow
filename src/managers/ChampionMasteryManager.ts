@@ -19,8 +19,6 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
    */
   readonly summoner: Summoner;
 
-  private _totalScore: number;
-
   /**
    * Creates a new champion mastery manager.
    *
@@ -32,6 +30,8 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
     this.summoner = summoner;
     this._totalScore = 0;
   }
+
+  private _totalScore: number;
 
   /**
    * The total mastery score of this summoner.

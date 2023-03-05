@@ -3,6 +3,7 @@
  */
 export interface ICache {
   has(key: string): Promise<boolean> | boolean;
+
   /**
    * Get a value from the cache.
    * @param key - The key of the value to get.

@@ -55,6 +55,16 @@ The client's logger utility configuration. Alternatively, you can pass `true` to
 
 ---
 
+#### ratelimiter
+
+The rate limiter options to modify the behaviour of the part of the client that sends requests to the APIs.
+
+
+
+**Type**: [RateLimiterOptions](/api/RateLimiterOptions.md)
+
+---
+
 #### region
 
 The initial region to fetch all the data from (defaults to `na`)

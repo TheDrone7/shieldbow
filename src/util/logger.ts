@@ -1,4 +1,4 @@
-import { LoggerLevel, type ILogger, type LogLevel } from '../types';
+import { type ILogger, LoggerLevel, type LogLevel } from '../types';
 import colors from 'colors/safe';
 
 /**

@@ -3,6 +3,7 @@ import type { AxiosResponse } from 'axios';
 export class Queue {
   private readonly _items: any[];
   private _pendingPromise: boolean;
+
   constructor() {
     this._items = [];
     this._pendingPromise = false;

@@ -1,5 +1,5 @@
 import type { Client } from '../../client';
-import type { ItemData, GameMap } from '../../types';
+import type { GameMap, ItemData } from '../../types';
 import type { Champion } from '../index';
 
 /**
@@ -26,7 +26,6 @@ export interface ItemGoldValue {
  * A representation of an in-game item.
  */
 export class Item {
-  private readonly client: Client;
   /**
    * The 4-digit unique ID (numerical ID as a string) of the item.
    */
@@ -63,9 +62,6 @@ export class Item {
    * The value indicates the quantity of this item you can store in one slot.
    */
   readonly stacks?: number;
-  private readonly fromIds: string[];
-  private readonly intoIds: string[];
-  private readonly specialRecipeId?: string;
   /**
    * Whether this item is listed in the in-game store.
    */
@@ -74,12 +70,10 @@ export class Item {
    * Whether this item can be bought from the store.
    */
   readonly hideFromAll: boolean;
-
   /**
    * If this field is defined, then this item can only be bought/owned by this champion.
    */
   readonly requiredChampionId?: string;
-
   /**
    * A link to the image assigned to this item in-game.
    */
@@ -109,6 +103,10 @@ export class Item {
    * There might be some issues with items that do not have their `depth` set in the data dragon JSON.
    */
   readonly kind: 'Basic' | 'Epic' | 'Legendary' | 'Mythic';
+  private readonly client: Client;
+  private readonly fromIds: string[];
+  private readonly intoIds: string[];
+  private readonly specialRecipeId?: string;
 
   /**
    * Create a new item instance.
@@ -140,14 +138,6 @@ export class Item {
   }
 
   /**
-   * If this is not undefined, then this item can only be bought/owned by this champion.
-   */
-  async requiredChampion(): Promise<Champion> {
-    if (!this.requiredChampionId) return Promise.reject('This item is not champion-specific.');
-    return this.client.champions.fetch(this.requiredChampionId);
-  }
-
-  /**
    * More detailed description of the item.
    * This is the processed details.
    * With all the HTML-like tags removed.
@@ -159,6 +149,14 @@ export class Item {
       .replace(/\.(?=[A-Z])/g, '.\n\n')
       .replaceAll(/<(br|li|p)\s*\/?>/g, '\n')
       .replace(/<\/?[^>]+(>|$)/g, '');
+  }
+
+  /**
+   * If this is not undefined, then this item can only be bought/owned by this champion.
+   */
+  async requiredChampion(): Promise<Champion> {
+    if (!this.requiredChampionId) return Promise.reject('This item is not champion-specific.');
+    return this.client.champions.fetch(this.requiredChampionId);
   }
 
   /**

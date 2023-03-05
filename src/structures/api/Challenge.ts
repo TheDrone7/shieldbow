@@ -6,7 +6,6 @@ import type { Client } from '../../client';
  * A class representing the details of a challenge.
  */
 export class Challenge {
-  private readonly client: Client;
   /**
    * The ID of the challenge.
    */
@@ -39,6 +38,7 @@ export class Challenge {
    * The percentile of player base that have reached a specific tier (mapped by tier).
    */
   readonly percentiles = new Collection<TierType | 'NONE', number>();
+  private readonly client: Client;
 
   constructor(client: Client, data: ChallengeConfigData, percentiles: { [key in TierType]: number }) {
     this.client = client;

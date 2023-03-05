@@ -2,14 +2,14 @@ import type {
   AccountMethods,
   ChampionMasteryMethods,
   ChampionMethods,
-  SummonerMethods,
   ClashMethods,
-  LeagueMethods,
   LeagueExpMethods,
+  LeagueMethods,
+  LolChallengesMethods,
+  LolStatusMethods,
   MatchMethods,
   SpectatorMethods,
-  LolChallengesMethods,
-  LolStatusMethods
+  SummonerMethods
 } from './constants';
 
 export interface RateLimitConfig {

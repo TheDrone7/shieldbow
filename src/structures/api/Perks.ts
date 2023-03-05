@@ -1,5 +1,5 @@
 import type { PerksData, StatPerk } from '../../types';
-import { statPerks } from '../../util';
+import { rawStatPerks } from '../../util';
 import type { RuneTree } from '../dragon/RuneTree';
 import type { Rune } from '../dragon/Rune';
 import type { Collection } from '@discordjs/collection';
@@ -78,9 +78,9 @@ export class Perks {
    */
   constructor(runeTrees: Collection<string, RuneTree>, data: PerksData) {
     this.stats = {
-      flex: statPerks[data.statPerks.flex],
-      offense: statPerks[data.statPerks.flex],
-      defense: statPerks[data.statPerks.defense]
+      flex: rawStatPerks[data.statPerks.flex],
+      offense: rawStatPerks[data.statPerks.flex],
+      defense: rawStatPerks[data.statPerks.defense]
     };
     this.primaryStyle = new PerkStyle(runeTrees, data.styles.find((p) => p.description === 'primaryStyle')!);
     this.secondaryStyle = new PerkStyle(runeTrees, data.styles.find((p) => p.description === 'subStyle')!);

@@ -24,30 +24,6 @@ export class ItemManager implements BaseManager<Item> {
     this.client = client;
   }
 
-  private async _fetchLocalItems(options: FetchOptions) {
-    const storagePath = ['items', this.client.patch, this.client.locale].join(':');
-
-    if (!options.ignoreStorage) {
-      this.client.logger?.trace('Fetching items from storage');
-      // This needs to be slightly modified to work with the new storage system.
-      const data = this.client.storage.fetch<{ data: { [id: string]: ItemData } }>(storagePath, 'items');
-      const result = data instanceof Promise ? await data.catch(() => undefined) : data;
-      if (result) return result;
-    }
-
-    try {
-      this.client.logger?.trace('Fetching items from DDragon');
-      const response = await this.client.http.get(`${this.client.version}/data/${this.client.locale}/item.json`);
-      if (response.status !== 200) return Promise.reject('Unable to fetch items from Data dragon');
-      else {
-        if (options.store) await this.client.storage.save({ data: response.data.data }, storagePath, 'items');
-        return response.data.data;
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-  }
-
   /**
    * Fetch all items.
    * @param options - The basic fetching options.
@@ -129,6 +105,30 @@ export class ItemManager implements BaseManager<Item> {
         if (cache) await this.client.cache.set(`item:${key}`, item);
       }
       return result;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
+  private async _fetchLocalItems(options: FetchOptions) {
+    const storagePath = ['items', this.client.patch, this.client.locale].join(':');
+
+    if (!options.ignoreStorage) {
+      this.client.logger?.trace('Fetching items from storage');
+      // This needs to be slightly modified to work with the new storage system.
+      const data = this.client.storage.fetch<{ data: { [id: string]: ItemData } }>(storagePath, 'items');
+      const result = data instanceof Promise ? await data.catch(() => undefined) : data;
+      if (result) return result;
+    }
+
+    try {
+      this.client.logger?.trace('Fetching items from DDragon');
+      const response = await this.client.http.get(`${this.client.version}/data/${this.client.locale}/item.json`);
+      if (response.status !== 200) return Promise.reject('Unable to fetch items from Data dragon');
+      else {
+        if (options.store) await this.client.storage.save({ data: response.data.data }, storagePath, 'items');
+        return response.data.data;
+      }
     } catch (error) {
       return Promise.reject(error);
     }

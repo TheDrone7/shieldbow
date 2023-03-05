@@ -34,7 +34,6 @@ export interface Promos {
  * A representation of a summoner's competitive details.
  */
 export class LeagueEntry {
-  private readonly client: Client;
   /**
    * The ID of the summoner this data belongs to.
    */
@@ -91,6 +90,7 @@ export class LeagueEntry {
    * This only exists if the summoner is in a promotion series.
    */
   readonly promos?: Promos;
+  private readonly client: Client;
 
   /**
    * Create a new League Entry instance.

@@ -21,29 +21,6 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
     this.client = client;
   }
 
-  private async _fetchLocalRunes(options: FetchOptions) {
-    const storagePath = ['runes', this.client.patch, this.client.locale].join(':');
-    if (!options.ignoreStorage) {
-      this.client.logger?.trace(`Fetching runes from local storage`);
-      const data = this.client.storage.fetch<RuneTreeData[]>(storagePath, 'runes');
-      const result = data instanceof Promise ? await data.catch(() => undefined) : data;
-      if (result) return result;
-    }
-    try {
-      this.client.logger?.trace(`Fetching runes from DDragon`);
-      const response = await this.client.http.get(
-        `${this.client.version}/data/${this.client.locale}/runesReforged.json`
-      );
-      if (response.status !== 200) return Promise.reject('Unable to fetch runes from Data dragon');
-      else {
-        if (options.store) await this.client.storage.save(response.data, storagePath, 'runes');
-        return response.data;
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-  }
-
   /**
    * Fetch all rune trees.
    * @param options - The basic fetching options.
@@ -176,5 +153,28 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
   async fetchRuneById(id: number, options?: FetchOptions) {
     const runes = await this.fetchAllRunes(options).catch(() => undefined);
     return runes?.find((i) => i.id === id);
+  }
+
+  private async _fetchLocalRunes(options: FetchOptions) {
+    const storagePath = ['runes', this.client.patch, this.client.locale].join(':');
+    if (!options.ignoreStorage) {
+      this.client.logger?.trace(`Fetching runes from local storage`);
+      const data = this.client.storage.fetch<RuneTreeData[]>(storagePath, 'runes');
+      const result = data instanceof Promise ? await data.catch(() => undefined) : data;
+      if (result) return result;
+    }
+    try {
+      this.client.logger?.trace(`Fetching runes from DDragon`);
+      const response = await this.client.http.get(
+        `${this.client.version}/data/${this.client.locale}/runesReforged.json`
+      );
+      if (response.status !== 200) return Promise.reject('Unable to fetch runes from Data dragon');
+      else {
+        if (options.store) await this.client.storage.save(response.data, storagePath, 'runes');
+        return response.data;
+      }
+    } catch (error) {
+      return Promise.reject(error);
+    }
   }
 }

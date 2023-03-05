@@ -2,7 +2,9 @@ import type {
   BuildingKillEventData,
   ChampionKillEventData,
   ChampionSpecialKillEventData,
+  ChampionTransformEventData,
   DamageDealtData,
+  DragonSoulGivenEventData,
   EliteMonsterKillEventData,
   GameEndEventData,
   ItemDestroyedEventData,
@@ -16,9 +18,7 @@ import type {
   TimelineEventData,
   TurretPlateDestroyedEventData,
   WardKillEventData,
-  WardPlacedEventData,
-  DragonSoulGivenEventData,
-  ChampionTransformEventData
+  WardPlacedEventData
 } from '../../types';
 import { Position } from '../Position';
 import { Bounty } from './Bounty';

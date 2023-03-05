@@ -6,10 +6,6 @@ import type { ChallengeRankData, TierType } from '../../types';
  */
 export class ChallengeRank {
   /**
-   * The client this manager belongs to.
-   */
-  private readonly client: Client;
-  /**
    * The unique player ID of the summoner.
    */
   readonly playerId: string;
@@ -25,6 +21,10 @@ export class ChallengeRank {
    * The rank of the summoner in the challenge.
    */
   readonly rank: number;
+  /**
+   * The client this manager belongs to.
+   */
+  private readonly client: Client;
 
   constructor(client: Client, data: ChallengeRankData, tier: TierType) {
     this.client = client;

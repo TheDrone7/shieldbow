@@ -41,6 +41,7 @@ export class Team {
    * The participants in the team.
    */
   readonly participants: Participant[];
+
   constructor(
     data: TeamData,
     participants: ParticipantData[],

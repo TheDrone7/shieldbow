@@ -1,16 +1,16 @@
 ---
-title: Ratelimiter
-description: A utility class that handles ratelimits.
+title: RateLimiter
+description: 
 ---
 
-## Ratelimiter class
+## RateLimiter class
 
-A utility class that handles ratelimits.
+
 
 **Signature:**
 
 ```ts
-export declare class Ratelimiter 
+export declare class RateLimiter 
 ```
 
 ---
@@ -18,68 +18,40 @@ export declare class Ratelimiter
 ### Constructor
 
 ```ts
-new Ratelimiter ()
+new RateLimiter (client: Client, options: RateLimiterOptions, apiKey: string)
 ```
 
-Constructs a new instance of the `Ratelimiter` class.
+Constructs a new instance of the `RateLimiter` class.
 
 **Parameters:**
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
+| client | [Client](/api/Client.md) |  |
+| options | [RateLimiterOptions](/api/RateLimiterOptions.md) |  |
+| apiKey | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  |
 ---
 
 ### Methods
 
-#### .update ()
-
-Parse and update ratelimits from a response.
-
-
-
-
-**Signature:**
-
-```ts
-update(region: Region, response: AxiosResponse, method: string): void;
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| region | [Region](/api/Region.md) | The region the response is from. |
-| response | AxiosResponse | The response to parse. |
-| method | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The method the response is for. |
-
-**Return type**: void
-
----
-
-#### .verify ()
-
-Verify if the request is going beyond the ratelimit.
-
+#### .request ()
 
 
 
 **Signature:**
 
 ```ts
-verify(region: Region, method: string): {
-        pass: boolean;
-        wait: number;
-    };
+request(url: string, options: ApiRequestOptions): Promise<AxiosResponse>;
 ```
 
 **Parameters:**
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| region | [Region](/api/Region.md) | The region the request is for. |
-| method | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The method the request is for. |
+| url | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  |
+| options | [ApiRequestOptions](/api/ApiRequestOptions.md) |  |
 
-**Return type**: {         pass: boolean;         wait: number;     }
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< AxiosResponse \>
 
 ---
 

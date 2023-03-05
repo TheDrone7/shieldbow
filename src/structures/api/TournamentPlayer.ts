@@ -5,7 +5,6 @@ import type { TournamentPlayerData } from '../../types';
  * A representation of a player in a clash tournament.
  */
 export class TournamentPlayer {
-  private readonly client: Client;
   /**
    * The ID of the team this player is on.
    */
@@ -22,6 +21,7 @@ export class TournamentPlayer {
    * The position this player will be playing in the team.
    */
   readonly position: 'UNSELECTED' | 'FILL' | 'TOP' | 'JUNGLE' | 'MIDDLE' | 'BOTTOM' | 'UTILITY';
+  private readonly client: Client;
 
   /**
    * Creates a new tournament player instance.

@@ -7,7 +7,6 @@
 | [Account](/api/Account.md) | A representation of a RIOT account. |
 | [AccountManager](/api/AccountManager.md) | An account manager - to fetch and manage all the RIOT accounts.   Requires API key with access to `account-v1` API. |
 | [ApiError](/api/ApiError.md) | API error class. |
-| [ApiHandler](/api/ApiHandler.md) | A class that handles API requests and rate limits for the RIOT API. |
 | [Bounty](/api/Bounty.md) | A representation of the bounty on a match participant. |
 | [BuildingKillEvent](/api/BuildingKillEvent.md) | A representation of the building kill event. |
 | [Challenge](/api/Challenge.md) | A class representing the details of a challenge. |
@@ -60,7 +59,7 @@
 | [Perks](/api/Perks.md) | A representation of the perks (runes) selected by a summoner for a match. |
 | [PerkStyle](/api/PerkStyle.md) | A representation of a perk style - a tree and 4 (if primary) or 2 (if secondary) runes that were selected. |
 | [Position](/api/Position.md) | A representation of a position in the game. |
-| [Ratelimiter](/api/Ratelimiter.md) | A utility class that handles ratelimits. |
+| [RateLimiter](/api/RateLimiter.md) |  |
 | [Rune](/api/Rune.md) | A representation of an in-game rune. |
 | [RuneTree](/api/RuneTree.md) | A representation of an in-game rune tree |
 | [RuneTreeManager](/api/RuneTreeManager.md) | A rune trees manager - to fetch and manage rune trees data. |
@@ -160,6 +159,8 @@
 | [MerakiChampion](/api/MerakiChampion.md) | A representation of the champion data returned by meraki analytics. These are used in the LoL wiki. |
 | [MerakiSkin](/api/MerakiSkin.md) | A representation of a champion's skin data returned by meraki analytics. |
 | [MerakiSkinChroma](/api/MerakiSkinChroma.md) | A representation of a champion's skin data returned by meraki analytics. These are used in the LoL wiki. |
+| [MethodRateLimitConfig](/api/MethodRateLimitConfig.md) |  |
+| [MethodRateLimitOptions](/api/MethodRateLimitOptions.md) |  |
 | [ObjectiveBountyPrestartEventData](/api/ObjectiveBountyPrestartEventData.md) | The event data for the objective bounty prestart event. |
 | [PartialSummoner](/api/PartialSummoner.md) | A partial representation of a summoner. |
 | [ParticipantChampion](/api/ParticipantChampion.md) | The participant's champion details. |
@@ -181,6 +182,10 @@
 | [PreFetchConfig](/api/PreFetchConfig.md) | Client's pre-fetching data from data dragon configuration. |
 | [Promos](/api/Promos.md) | The league entry promotion series information. |
 | [Queue](/api/Queue.md) | Basic data for types of queues (matches) in the game. |
+| [RateLimitConfig](/api/RateLimitConfig.md) |  |
+| [RateLimiterConfig](/api/RateLimiterConfig.md) |  |
+| [RateLimiterOptions](/api/RateLimiterOptions.md) |  |
+| [RetryOptions](/api/RetryOptions.md) |  |
 | [RuneData](/api/RuneData.md) | The runes data as stored in data dragon. |
 | [RuneTreeData](/api/RuneTreeData.md) | The rune trees data as stored in data dragon. |
 | [Season](/api/Season.md) | Basic data of seasons of the game. |
@@ -218,24 +223,39 @@
 | Variable | Description |
 | -------- | ----------- |
 | [locale](/api/locale.md) | A list of all valid locales. |
+| [methods](/api/methods.md) |  |
+| [mockRatelimitedResponse](/api/mockRatelimitedResponse.md) |  |
 | [parseFetchOptions](/api/parseFetchOptions.md) | A utility for parsing the fetch options using request specific, client config and default settings. |
+| [parseOptions](/api/parseOptions.md) |  |
+| [rawStatPerks](/api/rawStatPerks.md) | The available stat perks. |
+| [responseHelp](/api/responseHelp.md) |  |
 | [Stat](/api/Stat.md) | An array of all possible statistics needed for spell math. |
 | [StatFormula](/api/StatFormula.md) | The part of the stat that needs to be considered during spell math. |
-| [statPerks](/api/statPerks.md) | The available stat perks. |
 ---
 
 ## Type Aliases
 
 | Type Alias | Description |
 | ---------- | ----------- |
+| [AccountMethods](/api/AccountMethods.md) |  |
 | [ApiManagerKey](/api/ApiManagerKey.md) | List of managers that interact with the API. |
 | [CategoryName](/api/CategoryName.md) | The category names for challenge categories. |
+| [ChampionMasteryMethods](/api/ChampionMasteryMethods.md) |  |
+| [ChampionMethods](/api/ChampionMethods.md) |  |
+| [ClashMethods](/api/ClashMethods.md) |  |
 | [DivisionType](/api/DivisionType.md) | Valid divisions for league entries. |
 | [DragonManagerKey](/api/DragonManagerKey.md) | List of managers that interact with DDragon/CDragon. |
+| [LeagueExpMethods](/api/LeagueExpMethods.md) |  |
+| [LeagueMethods](/api/LeagueMethods.md) |  |
 | [Locales](/api/Locales.md) | A valid locale to fetch the data in. |
 | [LocalizedChallengeNameData](/api/LocalizedChallengeNameData.md) | The raw challenge name/description data mapped by locale. |
 | [LogLevel](/api/LogLevel.md) | The Logger levels as a string, for easier usage. |
+| [LolChallengesMethods](/api/LolChallengesMethods.md) |  |
+| [LolStatusMethods](/api/LolStatusMethods.md) |  |
+| [MatchMethods](/api/MatchMethods.md) |  |
 | [QueueType](/api/QueueType.md) | The valid type of Queues by which league entries are mapped. |
 | [Region](/api/Region.md) | A valid League of Legends region. |
+| [SpectatorMethods](/api/SpectatorMethods.md) |  |
 | [Stats](/api/Stats.md) | A valid champion stat that affects their in-game interactions. |
+| [SummonerMethods](/api/SummonerMethods.md) |  |
 | [TierType](/api/TierType.md) | Valid tiers for league entries. |

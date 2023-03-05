@@ -1,4 +1,4 @@
-import type { ChampionData, SpellDamageData, BaseManager, MerakiChampion, FetchOptions } from '../types';
+import type { BaseManager, ChampionData, FetchOptions, MerakiChampion, SpellDamageData } from '../types';
 import type { Client } from '../client';
 import { Collection } from '@discordjs/collection';
 import { Champion } from '../structures';
@@ -22,82 +22,6 @@ export class ChampionManager implements BaseManager<Champion> {
    */
   constructor(client: Client) {
     this.client = client;
-  }
-
-  private async _fetchLocalChamp(name: string, options: FetchOptions) {
-    const storagePath = ['champions', this.client.patch, 'dDragon', this.client.locale].join(':');
-    if (!options.ignoreStorage) {
-      this.client.logger?.trace(`Fetching DDragon (local) champion: ${name}.`);
-      const data = this.client.storage.fetch<{ data: { [key: string]: ChampionData } }>(storagePath, name);
-      const result = data instanceof Promise ? await data.catch(() => undefined) : data;
-      if (result) return result;
-    }
-
-    try {
-      this.client.logger?.trace(`Fetching DDragon champion: ${name}.`);
-      const response = await this.client.http.get(
-        `${this.client.version}/data/${this.client.locale}/champion/${name}.json`
-      );
-      if (response.status !== 200) return Promise.reject("Unable to fetch the champion's data");
-      else {
-        if (options.store) await this.client.storage.save(response.data, storagePath, name);
-        return response.data;
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-  }
-
-  private async _fetchLocalPricing(name: string, options: FetchOptions) {
-    const storagePath = ['champions', this.client.patch, 'meraki'].join(':');
-
-    if (!options.ignoreStorage) {
-      this.client.logger?.trace(`Fetching Meraki (local) champion: ${name}.`);
-      const data = this.client.storage.fetch<MerakiChampion>(storagePath, name);
-      const result = data instanceof Promise ? await data.catch(() => undefined) : data;
-      if (result) return result;
-    }
-
-    try {
-      this.client.logger?.trace(`Fetching Meraki champion: ${name}.`);
-      const response = await this.client.http.get(
-        `https://cdn.merakianalytics.com/riot/lol/resources/latest/en-US/champions/${name}.json`
-      );
-      if (response.status !== 200) return Promise.reject("Unable to fetch the champion's pricing.");
-      else {
-        if (options.store) await this.client.storage.save(response.data, storagePath, name);
-        return response.data;
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-  }
-
-  private async _fetchLocalDamage(name: string, options: FetchOptions) {
-    const storagePath = ['champions', this.client.patch, 'cDragon'].join(':');
-
-    if (!options.ignoreStorage) {
-      this.client.logger?.trace(`Fetching CDragon (local) champion: ${name}.`);
-      const data = this.client.storage.fetch<SpellDamageData>(storagePath, name);
-      const result = data instanceof Promise ? await data.catch(() => undefined) : data;
-      if (result) return result;
-    }
-
-    try {
-      this.client.logger?.trace(`Fetching CDragon champion: ${name}.`);
-      const response = await this.client.http.get(
-        `https://raw.communitydragon.org/${
-          this.client.patch
-        }/game/data/characters/${name.toLowerCase()}/${name.toLowerCase()}.bin.json`
-      );
-      if (response.status !== 200) return Promise.reject("Unable to fetch the champion's damage data");
-      else {
-        if (options.store) await this.client.storage.save(response.data, storagePath, name);
-        return response.data;
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
   }
 
   /**
@@ -324,6 +248,82 @@ export class ChampionManager implements BaseManager<Champion> {
         if (cache) await this.client.cache.set('champion-rotation:all', all.toJSON());
         if (cache) await this.client.cache.set('champion-rotation:new', forNew.toJSON());
         return result;
+      }
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
+  private async _fetchLocalChamp(name: string, options: FetchOptions) {
+    const storagePath = ['champions', this.client.patch, 'dDragon', this.client.locale].join(':');
+    if (!options.ignoreStorage) {
+      this.client.logger?.trace(`Fetching DDragon (local) champion: ${name}.`);
+      const data = this.client.storage.fetch<{ data: { [key: string]: ChampionData } }>(storagePath, name);
+      const result = data instanceof Promise ? await data.catch(() => undefined) : data;
+      if (result) return result;
+    }
+
+    try {
+      this.client.logger?.trace(`Fetching DDragon champion: ${name}.`);
+      const response = await this.client.http.get(
+        `${this.client.version}/data/${this.client.locale}/champion/${name}.json`
+      );
+      if (response.status !== 200) return Promise.reject("Unable to fetch the champion's data");
+      else {
+        if (options.store) await this.client.storage.save(response.data, storagePath, name);
+        return response.data;
+      }
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
+  private async _fetchLocalPricing(name: string, options: FetchOptions) {
+    const storagePath = ['champions', this.client.patch, 'meraki'].join(':');
+
+    if (!options.ignoreStorage) {
+      this.client.logger?.trace(`Fetching Meraki (local) champion: ${name}.`);
+      const data = this.client.storage.fetch<MerakiChampion>(storagePath, name);
+      const result = data instanceof Promise ? await data.catch(() => undefined) : data;
+      if (result) return result;
+    }
+
+    try {
+      this.client.logger?.trace(`Fetching Meraki champion: ${name}.`);
+      const response = await this.client.http.get(
+        `https://cdn.merakianalytics.com/riot/lol/resources/latest/en-US/champions/${name}.json`
+      );
+      if (response.status !== 200) return Promise.reject("Unable to fetch the champion's pricing.");
+      else {
+        if (options.store) await this.client.storage.save(response.data, storagePath, name);
+        return response.data;
+      }
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
+  private async _fetchLocalDamage(name: string, options: FetchOptions) {
+    const storagePath = ['champions', this.client.patch, 'cDragon'].join(':');
+
+    if (!options.ignoreStorage) {
+      this.client.logger?.trace(`Fetching CDragon (local) champion: ${name}.`);
+      const data = this.client.storage.fetch<SpellDamageData>(storagePath, name);
+      const result = data instanceof Promise ? await data.catch(() => undefined) : data;
+      if (result) return result;
+    }
+
+    try {
+      this.client.logger?.trace(`Fetching CDragon champion: ${name}.`);
+      const response = await this.client.http.get(
+        `https://raw.communitydragon.org/${
+          this.client.patch
+        }/game/data/characters/${name.toLowerCase()}/${name.toLowerCase()}.bin.json`
+      );
+      if (response.status !== 200) return Promise.reject("Unable to fetch the champion's damage data");
+      else {
+        if (options.store) await this.client.storage.save(response.data, storagePath, name);
+        return response.data;
       }
     } catch (error) {
       return Promise.reject(error);

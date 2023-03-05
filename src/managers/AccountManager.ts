@@ -1,4 +1,4 @@
-import type { BaseManager, AccountData, FetchOptions } from '../types';
+import type { AccountData, BaseManager, FetchOptions } from '../types';
 import type { Client } from '../client';
 import { Account } from '../structures';
 import { parseFetchOptions } from '../util';

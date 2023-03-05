@@ -10,7 +10,6 @@ import type { CurrentGame } from './CurrentGame';
  * A representation of a summoner (player).
  */
 export class Summoner {
-  private readonly client: Client;
   /**
    * The summoner ID for this summoner.
    */
@@ -48,6 +47,7 @@ export class Summoner {
    * The region this summoner is located in.
    */
   readonly region: Region;
+  private readonly client: Client;
 
   /**
    * Creates a new summoner instance.

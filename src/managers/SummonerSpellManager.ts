@@ -21,29 +21,6 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
     this.client = client;
   }
 
-  private async _fetchLocalSpells(options: FetchOptions) {
-    const storagePath = ['spells', this.client.patch, this.client.locale].join(':');
-
-    if (!options.ignoreStorage) {
-      this.client.logger?.trace(`Fetching summoner spells from local storage`);
-      const data = this.client.storage.fetch<{ data: { [id: string]: SummonerSpellData } }>(storagePath, 'spells');
-      const result = data instanceof Promise ? await data.catch(() => undefined) : data;
-      if (result) return result.data;
-    }
-
-    try {
-      this.client.logger?.trace(`Fetching summoner spells from DDragon`);
-      const response = await this.client.http.get(`${this.client.version}/data/${this.client.locale}/summoner.json`);
-      if (response.status !== 200) return Promise.reject('Unable to fetch summoner spells from Data dragon');
-      else {
-        if (options.store) await this.client.storage.save({ data: response.data.data }, storagePath, 'spells');
-        return response.data.data;
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-  }
-
   /**
    * Fetch all summoner spells.
    * @param options - The basic fetching options.
@@ -111,6 +88,29 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
     try {
       const spells = await this.fetchAll(opts);
       return spells.find((i) => i.name.toLowerCase().includes(name.toLowerCase()));
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
+  private async _fetchLocalSpells(options: FetchOptions) {
+    const storagePath = ['spells', this.client.patch, this.client.locale].join(':');
+
+    if (!options.ignoreStorage) {
+      this.client.logger?.trace(`Fetching summoner spells from local storage`);
+      const data = this.client.storage.fetch<{ data: { [id: string]: SummonerSpellData } }>(storagePath, 'spells');
+      const result = data instanceof Promise ? await data.catch(() => undefined) : data;
+      if (result) return result.data;
+    }
+
+    try {
+      this.client.logger?.trace(`Fetching summoner spells from DDragon`);
+      const response = await this.client.http.get(`${this.client.version}/data/${this.client.locale}/summoner.json`);
+      if (response.status !== 200) return Promise.reject('Unable to fetch summoner spells from Data dragon');
+      else {
+        if (options.store) await this.client.storage.save({ data: response.data.data }, storagePath, 'spells');
+        return response.data.data;
+      }
     } catch (error) {
       return Promise.reject(error);
     }

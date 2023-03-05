@@ -4,27 +4,27 @@ import type {
   GameMap,
   GameMode,
   GameType,
+  ICache,
+  ILogger,
+  IStorage,
   Locales,
+  ManagersConfig,
   Queue,
   Region,
-  Season,
-  ILogger,
-  ICache,
-  IStorage,
-  ManagersConfig
+  Season
 } from './types';
 import {
   AccountManager,
+  ChallengeManager,
   ChampionManager,
+  ClashManager,
+  CurrentGameManager,
   ItemManager,
   LeagueManager,
   MatchManager,
   RuneTreeManager,
   SummonerManager,
-  SummonerSpellManager,
-  CurrentGameManager,
-  ClashManager,
-  ChallengeManager
+  SummonerSpellManager
 } from './managers';
 import { RateLimiter } from './ratelimiter';
 import { LocalStorage, MemoryCache, ShieldbowLogger } from './util';
@@ -38,15 +38,6 @@ const patchRegex = /\d+\.\d+/;
 export class Client {
   private readonly _cdnBase: string;
   private readonly _versions: string;
-  private _initialized: boolean;
-  private _version: string;
-  private _patch: string;
-  private _locale: Locales;
-  private _region: Region;
-  private _champions: ChampionManager;
-  private _items: ItemManager;
-  private _runes: RuneTreeManager;
-  private _summonerSpells: SummonerSpellManager;
   private readonly _summoners: SummonerManager;
   private readonly _accounts: AccountManager;
   private readonly _leagues: LeagueManager;
@@ -56,18 +47,6 @@ export class Client {
   private readonly _clash: ClashManager;
   private readonly _http: AxiosInstance;
   private readonly _apiKey: string;
-  private _api: RateLimiter;
-  private _seasons: Season[];
-  private _queues: Queue[];
-  private _maps: GameMap[];
-  private _gameModes: GameMode[];
-  private _gameTypes: GameType[];
-  private _logger?: ILogger;
-  private _cache: ICache;
-  private _storage: IStorage;
-
-  private _storageEnabled: ManagersConfig;
-  private _cacheEnabled: ManagersConfig;
 
   constructor(apiKey: string) {
     this._cdnBase = 'https://ddragon.leagueoflegends.com/cdn/';
@@ -105,6 +84,312 @@ export class Client {
 
     this._http = axios.create({ baseURL: this._cdnBase });
     this._api = new RateLimiter(this, {}, apiKey);
+  }
+
+  private _initialized: boolean;
+
+  /**
+   * Is this client initialized.
+   */
+  get initialized() {
+    return this._initialized;
+  }
+
+  private _version: string;
+
+  /**
+   * The current Data Dragon CDN version.
+   */
+  get version() {
+    this._ensureInitialized();
+    return this._version;
+  }
+
+  private _patch: string;
+
+  /**
+   * The patch of the game currently in use.
+   *
+   * Must be above 5.1 for proper functionality.
+   */
+  get patch() {
+    this._ensureInitialized();
+    return this._patch;
+  }
+
+  private _locale: Locales;
+
+  /**
+   * The locale in which all the data is going to be fetched in.
+   */
+  get locale() {
+    this._ensureInitialized();
+    return this._locale;
+  }
+
+  private _region: Region;
+
+  /**
+   * The league of legends region from which the data is to be fetched.
+   */
+  get region() {
+    this._ensureInitialized();
+    return this._region;
+  }
+
+  set region(region: Region) {
+    this._ensureInitialized();
+    this._region = region;
+  }
+
+  private _champions: ChampionManager;
+
+  /**
+   * The default champions manager used by the client.
+   */
+  get champions() {
+    this._ensureInitialized();
+    return this._champions;
+  }
+
+  private _items: ItemManager;
+
+  /**
+   * The default items manager used by the client.
+   */
+  get items() {
+    this._ensureInitialized();
+    return this._items;
+  }
+
+  private _runes: RuneTreeManager;
+
+  /**
+   * The default runes manager used by the client.
+   */
+  get runes() {
+    this._ensureInitialized();
+    return this._runes;
+  }
+
+  private _summonerSpells: SummonerSpellManager;
+
+  /**
+   * The default summoner spells manager used by the client.
+   */
+  get summonerSpells() {
+    this._ensureInitialized();
+    return this._summonerSpells;
+  }
+
+  private _api: RateLimiter;
+
+  /**
+   * The default API interactions handler used by the client.
+   */
+  get api() {
+    this._ensureInitialized();
+    return this._api;
+  }
+
+  private _seasons: Season[];
+
+  /**
+   * An array of all seasons and their respective IDs.
+   */
+  get seasons() {
+    this._ensureInitialized();
+    return this._seasons;
+  }
+
+  private _queues: Queue[];
+
+  /**
+   * An array of all queue types and their respective data.
+   */
+  get queues() {
+    this._ensureInitialized();
+    return this._queues;
+  }
+
+  private _maps: GameMap[];
+
+  /**
+   * An array of all maps and their respective data.
+   */
+  get maps() {
+    this._ensureInitialized();
+    return this._maps;
+  }
+
+  private _gameModes: GameMode[];
+
+  /**
+   * An array of all game modes and their respective data.
+   */
+  get gameModes() {
+    this._ensureInitialized();
+    return this._gameModes;
+  }
+
+  private _gameTypes: GameType[];
+
+  /**
+   * An array of all game types and their respective data.
+   */
+  get gameTypes() {
+    this._ensureInitialized();
+    return this._gameTypes;
+  }
+
+  private _logger?: ILogger;
+
+  /**
+   * The client's logging utility.
+   */
+  get logger() {
+    return this._logger;
+  }
+
+  private _cache: ICache;
+
+  /**
+   * The client's caching utility.
+   */
+  get cache() {
+    return this._cache;
+  }
+
+  private _storage: IStorage;
+
+  /**
+   * The client's storage utility.
+   */
+  get storage() {
+    return this._storage;
+  }
+
+  private _storageEnabled: ManagersConfig;
+
+  /**
+   * The client's configuration for storage. This is for internal usage only.
+   *
+   * PLEASE DO NOT TRY TO USE THIS.
+   * Refer to {@link Client.initialize} to configure this.
+   */
+  get storageEnabled() {
+    return this._storageEnabled;
+  }
+
+  private _cacheEnabled: ManagersConfig;
+
+  /**
+   * The client's configuration for caching. This is for internal usage only.
+   *
+   * PLEASE DO NOT TRY TO USE THIS.
+   * Refer to {@link Client.initialize} to configure this.
+   */
+  get cacheEnabled() {
+    return this._cacheEnabled;
+  }
+
+  /**
+   * The axios instance that handles all the CDN requests being made.
+   */
+  get http() {
+    this._ensureInitialized();
+    return this._http;
+  }
+
+  /**
+   * The Data Dragon CDN Base URL
+   */
+  get cdnBase() {
+    this._ensureInitialized();
+    return this._cdnBase;
+  }
+
+  /**
+   * The default summoners manager used by the client.
+   */
+  get summoners() {
+    this._ensureInitialized();
+    return this._summoners;
+  }
+
+  /**
+   * The default riot accounts manager used by the client.
+   * This is mostly for internal usage. You may want to use {@link Client.summoners} instead.
+   */
+  get accounts() {
+    this._ensureInitialized();
+    return this._accounts;
+  }
+
+  /**
+   * The default summoner competitive league data manager used by the client.
+   *
+   * Highly recommended using {@link Client.summoners} for a specific summoner's competitive info.
+   *
+   * Use this only if you want to query a list of users by rank-division.
+   */
+  get leagues() {
+    this._ensureInitialized();
+    return this._leagues;
+  }
+
+  /**
+   * The default match manager used by the client.
+   */
+  get matches() {
+    this._ensureInitialized();
+    return this._matches;
+  }
+
+  /**
+   * The default LOL challenges manager used by the client.
+   */
+  get challenges() {
+    this._ensureInitialized();
+    return this._challenges;
+  }
+
+  /**
+   * The default live match manager used by the client.
+   */
+  get spectator() {
+    this._ensureInitialized();
+    return this._spectator;
+  }
+
+  /**
+   * The default clash tournaments manager used by the client.
+   */
+  get clash() {
+    this._ensureInitialized();
+    return this._clash;
+  }
+
+  /**
+   * Get the current status of the RIOT API.
+   *
+   * No type support for this (yet).
+   */
+  get status() {
+    this._ensureInitialized();
+    return new Promise(async (resolve, reject) => {
+      this.logger?.trace('Fetching status from Riot API.');
+      const response = await this.api
+        .request('/lol/status/v4/platform-data', {
+          region: this.region,
+          api: 'LOL_STATUS',
+          method: 'getPlatformData',
+          params: 'no params',
+          regional: false
+        })
+        .catch(reject);
+      if (response) resolve(response.data);
+    });
   }
 
   /**
@@ -245,206 +530,6 @@ export class Client {
   }
 
   /**
-   * Ensure that client was initialized
-   */
-  private _ensureInitialized(): void {
-    if (!this._initialized) throw new Error('Please initialize the client first.');
-  }
-
-  /**
-   * The axios instance that handles all the CDN requests being made.
-   */
-  get http() {
-    this._ensureInitialized();
-    return this._http;
-  }
-
-  /**
-   * The default API interactions handler used by the client.
-   */
-  get api() {
-    this._ensureInitialized();
-    return this._api;
-  }
-
-  /**
-   * The league of legends region from which the data is to be fetched.
-   */
-  get region() {
-    this._ensureInitialized();
-    return this._region;
-  }
-
-  set region(region: Region) {
-    this._ensureInitialized();
-    this._region = region;
-  }
-
-  /**
-   * The Data Dragon CDN Base URL
-   */
-  get cdnBase() {
-    this._ensureInitialized();
-    return this._cdnBase;
-  }
-
-  /**
-   * The default champions manager used by the client.
-   */
-  get champions() {
-    this._ensureInitialized();
-    return this._champions;
-  }
-
-  /**
-   * The default items manager used by the client.
-   */
-  get items() {
-    this._ensureInitialized();
-    return this._items;
-  }
-
-  /**
-   * The default runes manager used by the client.
-   */
-  get runes() {
-    this._ensureInitialized();
-    return this._runes;
-  }
-
-  /**
-   * The default summoner spells manager used by the client.
-   */
-  get summonerSpells() {
-    this._ensureInitialized();
-    return this._summonerSpells;
-  }
-
-  /**
-   * The default summoners manager used by the client.
-   */
-  get summoners() {
-    this._ensureInitialized();
-    return this._summoners;
-  }
-
-  /**
-   * The default riot accounts manager used by the client.
-   * This is mostly for internal usage. You may want to use {@link Client.summoners} instead.
-   */
-  get accounts() {
-    this._ensureInitialized();
-    return this._accounts;
-  }
-
-  /**
-   * The default summoner competitive league data manager used by the client.
-   *
-   * Highly recommended using {@link Client.summoners} for a specific summoner's competitive info.
-   *
-   * Use this only if you want to query a list of users by rank-division.
-   */
-  get leagues() {
-    this._ensureInitialized();
-    return this._leagues;
-  }
-
-  /**
-   * The default match manager used by the client.
-   */
-  get matches() {
-    this._ensureInitialized();
-    return this._matches;
-  }
-
-  /**
-   * The default LOL challenges manager used by the client.
-   */
-  get challenges() {
-    this._ensureInitialized();
-    return this._challenges;
-  }
-
-  /**
-   * The default live match manager used by the client.
-   */
-  get spectator() {
-    this._ensureInitialized();
-    return this._spectator;
-  }
-
-  /**
-   * The default clash tournaments manager used by the client.
-   */
-  get clash() {
-    this._ensureInitialized();
-    return this._clash;
-  }
-
-  /**
-   * The client's logging utility.
-   */
-  get logger() {
-    return this._logger;
-  }
-
-  /**
-   * The client's caching utility.
-   */
-  get cache() {
-    return this._cache;
-  }
-
-  /**
-   * The client's storage utility.
-   */
-  get storage() {
-    return this._storage;
-  }
-
-  /**
-   * The client's configuration for caching. This is for internal usage only.
-   *
-   * PLEASE DO NOT TRY TO USE THIS.
-   * Refer to {@link Client.initialize} to configure this.
-   */
-  get cacheEnabled() {
-    return this._cacheEnabled;
-  }
-
-  /**
-   * The client's configuration for storage. This is for internal usage only.
-   *
-   * PLEASE DO NOT TRY TO USE THIS.
-   * Refer to {@link Client.initialize} to configure this.
-   */
-  get storageEnabled() {
-    return this._storageEnabled;
-  }
-
-  /**
-   * Get the current status of the RIOT API.
-   *
-   * No type support for this (yet).
-   */
-  get status() {
-    this._ensureInitialized();
-    return new Promise(async (resolve, reject) => {
-      this.logger?.trace('Fetching status from Riot API.');
-      const response = await this.api
-        .request('/lol/status/v4/platform-data', {
-          region: this.region,
-          api: 'LOL_STATUS',
-          method: 'getPlatformData',
-          params: 'no params',
-          regional: false
-        })
-        .catch(reject);
-      if (response) resolve(response.data);
-    });
-  }
-
-  /**
    * Update the locale in which the data is fetched.
    *
    * @param newLocale - The new locale to use for the future requests.
@@ -489,75 +574,9 @@ export class Client {
   }
 
   /**
-   * The current Data Dragon CDN version.
+   * Ensure that client was initialized
    */
-  get version() {
-    this._ensureInitialized();
-    return this._version;
-  }
-
-  /**
-   * The patch of the game currently in use.
-   *
-   * Must be above 5.1 for proper functionality.
-   */
-  get patch() {
-    this._ensureInitialized();
-    return this._patch;
-  }
-
-  /**
-   * Is this client initialized.
-   */
-  get initialized() {
-    return this._initialized;
-  }
-
-  /**
-   * The locale in which all the data is going to be fetched in.
-   */
-  get locale() {
-    this._ensureInitialized();
-    return this._locale;
-  }
-
-  /**
-   * An array of all seasons and their respective IDs.
-   */
-  get seasons() {
-    this._ensureInitialized();
-    return this._seasons;
-  }
-
-  /**
-   * An array of all queue types and their respective data.
-   */
-  get queues() {
-    this._ensureInitialized();
-    return this._queues;
-  }
-
-  /**
-   * An array of all maps and their respective data.
-   */
-  get maps() {
-    this._ensureInitialized();
-    return this._maps;
-  }
-
-  /**
-   * An array of all game modes and their respective data.
-   */
-  get gameModes() {
-    this._ensureInitialized();
-    return this._gameModes;
-  }
-
-  /**
-   * An array of all game types and their respective data.
-   */
-  get gameTypes() {
-    this._ensureInitialized();
-    return this._gameTypes;
+  private _ensureInitialized(): void {
+    if (!this._initialized) throw new Error('Please initialize the client first.');
   }
 }

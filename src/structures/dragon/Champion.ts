@@ -1,18 +1,18 @@
 import type {
   ChampionData,
-  SpellDamageData,
-  Stats,
-  MerakiChampion,
-  MerakiSkin,
-  SpellData,
-  ChampionRating,
   ChampionPassive,
   ChampionPricing,
-  ChampionSprite
+  ChampionRating,
+  ChampionSprite,
+  MerakiChampion,
+  MerakiSkin,
+  SpellDamageData,
+  SpellData,
+  Stats
 } from '../../types';
 import type { Client } from '../../client';
 import { Collection } from '@discordjs/collection';
-import { ChampionStat, ChampionSkin, ChampionSpell } from '../index';
+import { ChampionSkin, ChampionSpell, ChampionStat } from '../index';
 
 /**
  * A representation of a League of Legends champion.

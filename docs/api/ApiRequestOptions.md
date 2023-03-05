@@ -15,9 +15,19 @@ export interface ApiRequestOptions
 
 ### Properties
 
-#### name
+#### api
 
-A string name for the request to be used for error messages.
+The API that is going to be requested (excluding the version, shieldbow only uses the latest versions).
+
+
+
+**Type**: keyof MethodRateLimitConfig
+
+---
+
+#### method
+
+The method that is being used, used for rate limiting.
 
 
 

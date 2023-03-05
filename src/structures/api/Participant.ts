@@ -1,5 +1,5 @@
 import type { PartialSummoner, ParticipantData } from '../../types';
-import type { Champion, Item, SummonerSpell, RuneTree } from '../dragon';
+import type { Champion, Item, RuneTree, SummonerSpell } from '../dragon';
 import { Bounty } from './Bounty';
 import { Collection } from '@discordjs/collection';
 import { Perks } from './Perks';

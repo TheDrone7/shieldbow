@@ -1,14 +1,12 @@
 import type { SpellDamageData, SpellData } from '../../types';
 import type { Champion } from '../index';
-import { arrToString, hash, performMath, multiply, round } from '../../util';
+import { arrToString, hash, multiply, performMath, round } from '../../util';
 import type { Client } from '../../client';
 
 /**
  * The representation of a champion's spell (ability).
  */
 export class ChampionSpell {
-  private readonly champ: Champion;
-
   /**
    * The ID of the spell.
    */
@@ -21,7 +19,6 @@ export class ChampionSpell {
    * A short textual description of the ability.
    */
   readonly description: string;
-  private _rawTooltip: string;
   /**
    * The URL to the icon of this ability.
    */
@@ -65,6 +62,7 @@ export class ChampionSpell {
    * -1 indicates it has no ammo system.
    */
   readonly maxAmmo: number;
+  private readonly champ: Champion;
 
   /**
    * Creates a new Champion Spell instance.
@@ -122,6 +120,8 @@ export class ChampionSpell {
     this._parseTooltip(damage, spell);
   }
 
+  private _rawTooltip: string;
+
   /**
    * The raw tooltip of the champion spell.
    * This is a more detailed description and contains the numbers of any effects and damage the spell applies.
@@ -144,6 +144,12 @@ export class ChampionSpell {
       .replace(/\.(?=[A-Z])/g, '.\n\n')
       .replaceAll(/<(br|li|p)\s*\/?>/g, '\n')
       .replace(/<\/?[^>]+(>|$)/g, '');
+  }
+
+  private static _parseDataValues(values: { mName: string; mValues: number[] }[] = []) {
+    const dataValues: { [key: string]: number[] } = {};
+    for (const data of values) dataValues[data.mName.toLowerCase()] = (data.mValues || []).map((v) => Math.abs(v));
+    return dataValues;
   }
 
   private _parseTooltip(damage: SpellDamageData, spell: any) {
@@ -297,11 +303,5 @@ export class ChampionSpell {
       result = multiply(part1, part2);
     }
     return result;
-  }
-
-  private static _parseDataValues(values: { mName: string; mValues: number[] }[] = []) {
-    const dataValues: { [key: string]: number[] } = {};
-    for (const data of values) dataValues[data.mName.toLowerCase()] = (data.mValues || []).map((v) => Math.abs(v));
-    return dataValues;
   }
 }

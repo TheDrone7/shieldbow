@@ -22,7 +22,7 @@ export declare class ApiError extends Error
 ### Constructor
 
 ```ts
-new ApiError (response: AxiosResponse, request: string, message?: string)
+new ApiError (status: number, url: string, headers: AxiosRequestHeaders, response?: AxiosResponse)
 ```
 
 Constructs a new instance of the `ApiError` class.
@@ -31,20 +31,21 @@ Constructs a new instance of the `ApiError` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
+| status | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) |  |
+| url | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  |
+| headers | AxiosRequestHeaders |  |
 | response | AxiosResponse |  |
-| request | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  |
-| message | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  |
 ---
 
 ### Properties
 
-#### request
+#### headers
 
-A textual representation of contents of the request that errored..
+The headers sent with the request.
 
 
 
-**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
+**Type**: AxiosRequestHeaders
 
 ---
 
@@ -55,6 +56,16 @@ The received response object.
 
 
 **Type**: AxiosResponse
+
+---
+
+#### url
+
+The requested URL.
+
+
+
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ---
 

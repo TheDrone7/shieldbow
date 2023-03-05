@@ -1,4 +1,4 @@
-import type { ParticipantChampionStatsData, ParticipantFrameData, ParticipantDamageStatsData } from '../../types';
+import type { ParticipantChampionStatsData, ParticipantDamageStatsData, ParticipantFrameData } from '../../types';
 import { Position } from '../Position';
 
 /**

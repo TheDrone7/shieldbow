@@ -1,5 +1,5 @@
 import type { Champion } from '../index';
-import type { MerakiSkin, ChampionSkinData, SkinPricing, SkinChroma, MerakiSkinChroma } from '../../types';
+import type { ChampionSkinData, MerakiSkin, MerakiSkinChroma, SkinChroma, SkinPricing } from '../../types';
 
 /**
  * A representation of a champion's skin (visual modification).

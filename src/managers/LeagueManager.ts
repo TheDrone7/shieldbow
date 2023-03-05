@@ -1,11 +1,11 @@
 import type {
   BaseManager,
-  LeagueEntryData,
-  QueueType,
-  TierType,
   DivisionType,
+  FetchOptions,
+  LeagueEntryData,
   LeagueListData,
-  FetchOptions
+  QueueType,
+  TierType
 } from '../types';
 import type { Client } from '../client';
 import { LeagueEntry, LeagueList } from '../structures';

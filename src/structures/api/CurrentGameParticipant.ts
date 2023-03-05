@@ -12,10 +12,6 @@ import type { RuneTree } from '../dragon/RuneTree';
  */
 export class CurrentGameParticipant {
   /**
-   * The client that instantiated this participant.
-   */
-  private readonly _client;
-  /**
    * The ID of the team this participant belongs to.
    */
   readonly teamId: number;
@@ -43,6 +39,10 @@ export class CurrentGameParticipant {
    * The rune setups of this participant.
    */
   readonly perks?: CurrentGamePerks;
+  /**
+   * The client that instantiated this participant.
+   */
+  private readonly _client;
 
   /**
    * Creates a new Current Game Participant instance.

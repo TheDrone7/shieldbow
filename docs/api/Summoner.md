@@ -264,26 +264,3 @@ fetchMatchList(options?: MatchByPlayerOptions): Promise<string[]>;
 
 ---
 
-#### .verifyCode ()
-
-Check a summoner's third party verification code.
-
-
-
-
-**Signature:**
-
-```ts
-verifyCode(code: string): Promise<boolean>;
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| code | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The code that the summoner's code should match with. |
-
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) \>
-
----
-

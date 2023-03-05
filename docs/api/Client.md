@@ -48,7 +48,7 @@ The default API interactions handler used by the client.
 
 
 
-**Type**: [ApiHandler](/api/ApiHandler.md)
+**Type**: [RateLimiter](/api/RateLimiter.md)
 
 ---
 
