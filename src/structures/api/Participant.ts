@@ -603,8 +603,8 @@ export class Participant {
     this.summonerSpells = new Collection<'D' | 'F', SummonerSpell>();
     this.summonerSpellsCasts = new Collection<'D' | 'F', number>();
 
-    this.summonerSpells.set('D', summonerSpells.get(data.summoner1Id.toString())!);
-    this.summonerSpells.set('F', summonerSpells.get(data.summoner2Id.toString())!);
+    this.summonerSpells.set('D', summonerSpells.find((spell) => spell.key === data.summoner1Id)!);
+    this.summonerSpells.set('F', summonerSpells.find((spell) => spell.key === data.summoner2Id)!);
 
     this.summonerSpellsCasts.set('D', data.summoner1Casts);
     this.summonerSpellsCasts.set('F', data.summoner2Casts);
