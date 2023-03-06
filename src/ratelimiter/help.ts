@@ -1,3 +1,7 @@
+/**
+ * Returns a string with a description of the error.
+ * @param status - The status code.
+ */
 export default (status: number) => {
   switch (status) {
     case 400:

@@ -59,7 +59,8 @@
 | [Perks](/api/Perks.md) | A representation of the perks (runes) selected by a summoner for a match. |
 | [PerkStyle](/api/PerkStyle.md) | A representation of a perk style - a tree and 4 (if primary) or 2 (if secondary) runes that were selected. |
 | [Position](/api/Position.md) | A representation of a position in the game. |
-| [RateLimiter](/api/RateLimiter.md) |  |
+| [RateLimiter](/api/RateLimiter.md) | The rate limiter class. Used to send requests to the API. |
+| [RequestQueue](/api/RequestQueue.md) | A queue that can be used to queue up requests. |
 | [Rune](/api/Rune.md) | A representation of an in-game rune. |
 | [RuneTree](/api/RuneTree.md) | A representation of an in-game rune tree |
 | [RuneTreeManager](/api/RuneTreeManager.md) | A rune trees manager - to fetch and manage rune trees data. |
@@ -91,6 +92,7 @@
 | [arrToString(values)](/api/arrToString.md) | Parses the float values and returns rounded strings. |
 | [hash(str, { size })](/api/hash.md) | A simple fnv1a hashing utility - to help with community dragon data parsing. |
 | [multiply(part1, part2)](/api/multiply.md) | Multiplies two spell calculation parts. |
+| [parseHeaders(headers)](/api/parseHeaders.md) | Parses the rate limit headers. |
 | [performMath(calculation, effects, datavalue, maxRank, options)](/api/performMath.md) | A function that takes in calculations and performs the necessary operations to generate appropriate tooltips. |
 | [round(value)](/api/round.md) | Rounds the value to up to 2 decimal points. |
 ---
@@ -159,8 +161,8 @@
 | [MerakiChampion](/api/MerakiChampion.md) | A representation of the champion data returned by meraki analytics. These are used in the LoL wiki. |
 | [MerakiSkin](/api/MerakiSkin.md) | A representation of a champion's skin data returned by meraki analytics. |
 | [MerakiSkinChroma](/api/MerakiSkinChroma.md) | A representation of a champion's skin data returned by meraki analytics. These are used in the LoL wiki. |
-| [MethodRateLimitConfig](/api/MethodRateLimitConfig.md) |  |
-| [MethodRateLimitOptions](/api/MethodRateLimitOptions.md) |  |
+| [MethodRateLimitConfig](/api/MethodRateLimitConfig.md) | The rate limit config structure for methods (internal usage). |
+| [MethodRateLimitOptions](/api/MethodRateLimitOptions.md) | The rate limit config structure for methods (options). |
 | [ObjectiveBountyPrestartEventData](/api/ObjectiveBountyPrestartEventData.md) | The event data for the objective bounty prestart event. |
 | [PartialSummoner](/api/PartialSummoner.md) | A partial representation of a summoner. |
 | [ParticipantChampion](/api/ParticipantChampion.md) | The participant's champion details. |
@@ -182,10 +184,10 @@
 | [PreFetchConfig](/api/PreFetchConfig.md) | Client's pre-fetching data from data dragon configuration. |
 | [Promos](/api/Promos.md) | The league entry promotion series information. |
 | [Queue](/api/Queue.md) | Basic data for types of queues (matches) in the game. |
-| [RateLimitConfig](/api/RateLimitConfig.md) |  |
-| [RateLimiterConfig](/api/RateLimiterConfig.md) |  |
-| [RateLimiterOptions](/api/RateLimiterOptions.md) |  |
-| [RetryOptions](/api/RetryOptions.md) |  |
+| [RateLimitConfig](/api/RateLimitConfig.md) | The rate limit config structure. |
+| [RateLimiterConfig](/api/RateLimiterConfig.md) | The rate limiter config (internal). |
+| [RateLimiterOptions](/api/RateLimiterOptions.md) | The rate limiter options. |
+| [RetryOptions](/api/RetryOptions.md) | The retry options. |
 | [RuneData](/api/RuneData.md) | The runes data as stored in data dragon. |
 | [RuneTreeData](/api/RuneTreeData.md) | The rune trees data as stored in data dragon. |
 | [Season](/api/Season.md) | Basic data of seasons of the game. |
@@ -222,13 +224,15 @@
 
 | Variable | Description |
 | -------- | ----------- |
+| [apiBaseURLs](/api/apiBaseURLs.md) | The list of base URLs by region. |
 | [locale](/api/locale.md) | A list of all valid locales. |
-| [methods](/api/methods.md) |  |
-| [mockRatelimitedResponse](/api/mockRatelimitedResponse.md) |  |
+| [methods](/api/methods.md) | The API method names. |
+| [mockRatelimitedResponse](/api/mockRatelimitedResponse.md) | A mock rate limit error response. This is sent by the rate limiter when the rate limit is exceeded. If it is an actual 429 response by the API, it is a problem with the rate limiter. |
 | [parseFetchOptions](/api/parseFetchOptions.md) | A utility for parsing the fetch options using request specific, client config and default settings. |
-| [parseOptions](/api/parseOptions.md) |  |
+| [parseOptions](/api/parseOptions.md) | Parses the given options for the rate limiter. |
 | [rawStatPerks](/api/rawStatPerks.md) | The available stat perks. |
-| [responseHelp](/api/responseHelp.md) |  |
+| [regionalURLs](/api/regionalURLs.md) | The list of base regional URLs by region. |
+| [responseHelp](/api/responseHelp.md) | Returns a string with a description of the error. |
 | [Stat](/api/Stat.md) | An array of all possible statistics needed for spell math. |
 | [StatFormula](/api/StatFormula.md) | The part of the stat that needs to be considered during spell math. |
 ---
@@ -237,25 +241,25 @@
 
 | Type Alias | Description |
 | ---------- | ----------- |
-| [AccountMethods](/api/AccountMethods.md) |  |
+| [AccountMethods](/api/AccountMethods.md) | The Account API method names. |
 | [ApiManagerKey](/api/ApiManagerKey.md) | List of managers that interact with the API. |
 | [CategoryName](/api/CategoryName.md) | The category names for challenge categories. |
-| [ChampionMasteryMethods](/api/ChampionMasteryMethods.md) |  |
-| [ChampionMethods](/api/ChampionMethods.md) |  |
-| [ClashMethods](/api/ClashMethods.md) |  |
+| [ChampionMasteryMethods](/api/ChampionMasteryMethods.md) | The Champion Mastery API method names. |
+| [ChampionMethods](/api/ChampionMethods.md) | The Champion API method names. |
+| [ClashMethods](/api/ClashMethods.md) | The Clash API method names. |
 | [DivisionType](/api/DivisionType.md) | Valid divisions for league entries. |
 | [DragonManagerKey](/api/DragonManagerKey.md) | List of managers that interact with DDragon/CDragon. |
-| [LeagueExpMethods](/api/LeagueExpMethods.md) |  |
-| [LeagueMethods](/api/LeagueMethods.md) |  |
+| [LeagueExpMethods](/api/LeagueExpMethods.md) | The League Exp API method names. |
+| [LeagueMethods](/api/LeagueMethods.md) | The League API method names. |
 | [Locales](/api/Locales.md) | A valid locale to fetch the data in. |
 | [LocalizedChallengeNameData](/api/LocalizedChallengeNameData.md) | The raw challenge name/description data mapped by locale. |
 | [LogLevel](/api/LogLevel.md) | The Logger levels as a string, for easier usage. |
-| [LolChallengesMethods](/api/LolChallengesMethods.md) |  |
-| [LolStatusMethods](/api/LolStatusMethods.md) |  |
-| [MatchMethods](/api/MatchMethods.md) |  |
+| [LolChallengesMethods](/api/LolChallengesMethods.md) | The Lol Challenges API method names. |
+| [LolStatusMethods](/api/LolStatusMethods.md) | The Lol Status API method names. |
+| [MatchMethods](/api/MatchMethods.md) | The Match API method names. |
 | [QueueType](/api/QueueType.md) | The valid type of Queues by which league entries are mapped. |
 | [Region](/api/Region.md) | A valid League of Legends region. |
-| [SpectatorMethods](/api/SpectatorMethods.md) |  |
+| [SpectatorMethods](/api/SpectatorMethods.md) | The Spectator API method names. |
 | [Stats](/api/Stats.md) | A valid champion stat that affects their in-game interactions. |
-| [SummonerMethods](/api/SummonerMethods.md) |  |
+| [SummonerMethods](/api/SummonerMethods.md) | The Summoner API method names. |
 | [TierType](/api/TierType.md) | Valid tiers for league entries. |

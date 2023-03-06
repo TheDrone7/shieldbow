@@ -1,11 +1,11 @@
 ---
 title: parseOptions
-description: 
+description: Parses the given options for the rate limiter.
 ---
 
 ## parseOptions variable
 
-
+Parses the given options for the rate limiter.
 
 **Signature:**
 

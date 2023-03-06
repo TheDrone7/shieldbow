@@ -1,11 +1,11 @@
 ---
 title: LolChallengesMethods
-description: 
+description: The Lol Challenges API method names.
 ---
 
 ## LolChallengesMethods type
 
-
+The Lol Challenges API method names.
 
 **Signature:**
 

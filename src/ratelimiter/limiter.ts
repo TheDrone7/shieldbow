@@ -5,10 +5,14 @@ import type { Client } from '../client';
 import axios, { AxiosInstance, AxiosResponse, AxiosResponseHeaders } from 'axios';
 import type { ApiRequestOptions } from './requestOptions';
 import { ApiError, mockRatelimitedResponse } from './error';
-import { apiBaseURLs, regionalURLs } from '../util/urls';
+import { apiBaseURLs, regionalURLs } from '../util';
 import axiosRetry from 'axios-retry';
-import { Queue } from './queue';
+import { RequestQueue } from './requestQueue';
 
+/**
+ * The rate limiter class.
+ * Used to send requests to the API.
+ */
 export class RateLimiter {
   private appLimit: RateLimitConfig[];
   private methodLimit: MethodRateLimitConfig;
@@ -16,7 +20,7 @@ export class RateLimiter {
   private readonly strategy: 'burst' | 'spread';
   private readonly client: Client;
   private readonly _http: AxiosInstance;
-  private readonly _queue = new Queue();
+  private readonly _queue = new RequestQueue();
 
   constructor(client: Client, options: RateLimiterOptions, apiKey: string) {
     const config = parseOptions(options);
@@ -39,6 +43,11 @@ export class RateLimiter {
     });
   }
 
+  /**
+   * Send a request to the API.
+   * @param url - The URL to send the request to.
+   * @param options - The request options.
+   */
   async request(url: string, options: ApiRequestOptions): Promise<AxiosResponse> {
     return await this._queue.enqueue(this.requestFromApi.bind(this, url, options));
   }

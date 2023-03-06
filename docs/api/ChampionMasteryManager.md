@@ -115,6 +115,30 @@ fetchAll(options?: FetchOptions): Promise<Collection<string, ChampionMastery>>;
 
 ---
 
+#### .fetchTop ()
+
+Fetches the top n champions' mastery data for this summoner. They are already sorted by mastery level.
+
+
+
+
+**Signature:**
+
+```ts
+fetchTop(n?: number, options?: FetchOptions): Promise<ChampionMastery[]>;
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| n | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The number of champions to fetch, defaults to 3. |
+| options | [FetchOptions](/api/FetchOptions.md) | The basic fetching options. |
+
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [ChampionMastery](/api/ChampionMastery.md)[] \>
+
+---
+
 #### .highest ()
 
 Get the nth highest champion mastery for the summoner.

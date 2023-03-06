@@ -1,11 +1,11 @@
 ---
 title: methods
-description: 
+description: The API method names.
 ---
 
 ## methods variable
 
-
+The API method names.
 
 **Signature:**
 

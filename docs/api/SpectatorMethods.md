@@ -1,11 +1,11 @@
 ---
 title: SpectatorMethods
-description: 
+description: The Spectator API method names.
 ---
 
 ## SpectatorMethods type
 
-
+The Spectator API method names.
 
 **Signature:**
 

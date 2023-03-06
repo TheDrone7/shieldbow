@@ -1,6 +1,9 @@
 import type { AxiosResponse } from 'axios';
 
-export class Queue {
+/**
+ * A queue that can be used to queue up requests.
+ */
+export class RequestQueue {
   private readonly _items: any[];
   private _pendingPromise: boolean;
 
@@ -9,6 +12,10 @@ export class Queue {
     this._pendingPromise = false;
   }
 
+  /**
+   * Enqueues an action to be executed.
+   * @param action - The action to execute.
+   */
   enqueue(action: () => Promise<AxiosResponse>) {
     return new Promise<AxiosResponse>((resolve, reject) => {
       this._items.push({ action, resolve, reject });
@@ -16,6 +23,9 @@ export class Queue {
     });
   }
 
+  /**
+   * Dequeues the first action to be executed.
+   */
   async dequeue() {
     if (this._pendingPromise) return false;
 

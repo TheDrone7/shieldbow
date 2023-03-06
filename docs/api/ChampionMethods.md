@@ -1,11 +1,11 @@
 ---
 title: ChampionMethods
-description: 
+description: The Champion API method names.
 ---
 
 ## ChampionMethods type
 
-
+The Champion API method names.
 
 **Signature:**
 

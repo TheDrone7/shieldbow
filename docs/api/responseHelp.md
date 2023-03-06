@@ -1,11 +1,11 @@
 ---
 title: responseHelp
-description: 
+description: Returns a string with a description of the error.
 ---
 
 ## responseHelp variable
 
-
+Returns a string with a description of the error.
 
 **Signature:**
 

@@ -1,11 +1,11 @@
 ---
 title: MethodRateLimitOptions
-description: 
+description: The rate limit config structure for methods (options).
 ---
 
 ## MethodRateLimitOptions interface
 
-
+The rate limit config structure for methods (options).
 
 **Signature:**
 
@@ -17,6 +17,8 @@ export interface MethodRateLimitOptions
 
 #### ACCOUNT
 
+The rate limit config for the ACCOUNT methods.
+
 
 
 **Type**: [RateLimitConfig](/api/RateLimitConfig.md)[] \| {         [k in AccountMethods]: RateLimitConfig[];     }
@@ -24,6 +26,8 @@ export interface MethodRateLimitOptions
 ---
 
 #### CHAMPION_MASTERY
+
+The rate limit config for the CHAMPION_MASTERY methods.
 
 
 
@@ -33,6 +37,8 @@ export interface MethodRateLimitOptions
 
 #### CHAMPION
 
+The rate limit config for the CHAMPION methods.
+
 
 
 **Type**: [RateLimitConfig](/api/RateLimitConfig.md)[] \| {         [k in ChampionMethods]: RateLimitConfig[];     }
@@ -40,6 +46,8 @@ export interface MethodRateLimitOptions
 ---
 
 #### CLASH
+
+The rate limit config for the CLASH methods.
 
 
 
@@ -49,6 +57,8 @@ export interface MethodRateLimitOptions
 
 #### LEAGUE_EXP
 
+The rate limit config for the LEAGUE_EXP methods.
+
 
 
 **Type**: [RateLimitConfig](/api/RateLimitConfig.md)[] \| {         [k in LeagueExpMethods]: RateLimitConfig[];     }
@@ -56,6 +66,8 @@ export interface MethodRateLimitOptions
 ---
 
 #### LEAGUE
+
+The rate limit config for the LEAGUE methods.
 
 
 
@@ -65,6 +77,8 @@ export interface MethodRateLimitOptions
 
 #### LOL_CHALLENGES
 
+The rate limit config for the LOL_CHALLENGES methods.
+
 
 
 **Type**: [RateLimitConfig](/api/RateLimitConfig.md)[] \| {         [k in LolChallengesMethods]: RateLimitConfig[];     }
@@ -72,6 +86,8 @@ export interface MethodRateLimitOptions
 ---
 
 #### LOL_STATUS
+
+The rate limit config for the LOL_STATUS methods.
 
 
 
@@ -81,6 +97,8 @@ export interface MethodRateLimitOptions
 
 #### MATCH
 
+The rate limit config for the MATCH methods.
+
 
 
 **Type**: [RateLimitConfig](/api/RateLimitConfig.md)[] \| {         [k in MatchMethods]: RateLimitConfig[];     }
@@ -89,6 +107,8 @@ export interface MethodRateLimitOptions
 
 #### SPECTATOR
 
+The rate limit config for the SPECTATOR methods.
+
 
 
 **Type**: [RateLimitConfig](/api/RateLimitConfig.md)[] \| {         [k in SpectatorMethods]: RateLimitConfig[];     }
@@ -96,6 +116,8 @@ export interface MethodRateLimitOptions
 ---
 
 #### SUMMONER
+
+The rate limit config for the SUMMONER methods.
 
 
 

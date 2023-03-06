@@ -1,11 +1,11 @@
 ---
 title: RetryOptions
-description: 
+description: The retry options.
 ---
 
 ## RetryOptions interface
 
-
+The retry options.
 
 **Signature:**
 
@@ -17,6 +17,8 @@ export interface RetryOptions
 
 #### retries
 
+The number of retries.
+
 
 
 **Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
@@ -24,6 +26,8 @@ export interface RetryOptions
 ---
 
 #### retryDelay
+
+The delay between retries.
 
 
 

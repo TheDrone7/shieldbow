@@ -1,11 +1,11 @@
 ---
 title: ClashMethods
-description: 
+description: The Clash API method names.
 ---
 
 ## ClashMethods type
 
-
+The Clash API method names.
 
 **Signature:**
 

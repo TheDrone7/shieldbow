@@ -1,11 +1,11 @@
 ---
 title: RateLimitConfig
-description: 
+description: The rate limit config structure.
 ---
 
 ## RateLimitConfig interface
 
-
+The rate limit config structure.
 
 **Signature:**
 

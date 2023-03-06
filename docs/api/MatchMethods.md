@@ -1,11 +1,11 @@
 ---
 title: MatchMethods
-description: 
+description: The Match API method names.
 ---
 
 ## MatchMethods type
 
-
+The Match API method names.
 
 **Signature:**
 

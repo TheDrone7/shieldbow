@@ -1,11 +1,11 @@
 ---
 title: RateLimiterConfig
-description: 
+description: The rate limiter config (internal).
 ---
 
 ## RateLimiterConfig interface
 
-
+The rate limiter config (internal).
 
 **Signature:**
 

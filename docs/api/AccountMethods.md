@@ -1,11 +1,11 @@
 ---
 title: AccountMethods
-description: 
+description: The Account API method names.
 ---
 
 ## AccountMethods type
 
-
+The Account API method names.
 
 **Signature:**
 

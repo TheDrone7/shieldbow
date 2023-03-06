@@ -1,11 +1,11 @@
 ---
 title: MethodRateLimitConfig
-description: 
+description: The rate limit config structure for methods (internal usage).
 ---
 
 ## MethodRateLimitConfig interface
 
-
+The rate limit config structure for methods (internal usage).
 
 **Signature:**
 

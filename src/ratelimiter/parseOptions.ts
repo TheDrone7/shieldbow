@@ -1,6 +1,10 @@
 import type { MethodRateLimitConfig, RateLimitConfig, RateLimiterConfig, RateLimiterOptions } from './config';
 import { methods } from './constants';
 
+/**
+ * Parses the given options for the rate limiter.
+ * @param opts - The options to parse.
+ */
 const parse = (opts: RateLimiterOptions): RateLimiterConfig => {
   const defaultLimit: RateLimitConfig[] = [];
 

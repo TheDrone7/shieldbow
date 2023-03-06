@@ -1,11 +1,11 @@
 ---
 title: LeagueExpMethods
-description: 
+description: The League Exp API method names.
 ---
 
 ## LeagueExpMethods type
 
-
+The League Exp API method names.
 
 **Signature:**
 

@@ -1,6 +1,10 @@
 import type { RateLimitConfig } from './config';
 import type { AxiosResponseHeaders } from 'axios';
 
+/**
+ * Parses the rate limit headers.
+ * @param headers - The headers to parse.
+ */
 export function parseHeaders(headers: AxiosResponseHeaders): {
   app: RateLimitConfig[];
   method: RateLimitConfig[];

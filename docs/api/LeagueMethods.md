@@ -1,11 +1,11 @@
 ---
 title: LeagueMethods
-description: 
+description: The League API method names.
 ---
 
 ## LeagueMethods type
 
-
+The League API method names.
 
 **Signature:**
 

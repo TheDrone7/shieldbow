@@ -1,11 +1,11 @@
 ---
 title: ChampionMasteryMethods
-description: 
+description: The Champion Mastery API method names.
 ---
 
 ## ChampionMasteryMethods type
 
-
+The Champion Mastery API method names.
 
 **Signature:**
 

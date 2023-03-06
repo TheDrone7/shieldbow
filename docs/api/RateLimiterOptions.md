@@ -1,11 +1,11 @@
 ---
 title: RateLimiterOptions
-description: 
+description: The rate limiter options.
 ---
 
 ## RateLimiterOptions interface
 
-
+The rate limiter options.
 
 **Signature:**
 
@@ -17,6 +17,8 @@ export interface RateLimiterOptions
 
 #### appLimit
 
+The rate limit config for the app.
+
 
 
 **Type**: [RateLimitConfig](/api/RateLimitConfig.md)[]
@@ -24,6 +26,8 @@ export interface RateLimiterOptions
 ---
 
 #### methodLimit
+
+The rate limit config for the methods.
 
 
 
@@ -33,6 +37,8 @@ export interface RateLimiterOptions
 
 #### retry
 
+The retry options.
+
 
 
 **Type**: [RetryOptions](/api/RetryOptions.md)
@@ -41,6 +47,8 @@ export interface RateLimiterOptions
 
 #### strategy
 
+The strategy to use when the rate limit is reached. - `burst`: The request will be sent immediately. - `spread`: The request will be slightly delayed to avoid going over rate limit. Default: `burst`
+
 
 
 **Type**: 'burst' \| 'spread'
@@ -48,6 +56,14 @@ export interface RateLimiterOptions
 ---
 
 #### throw
+
+Whether to throw an error when the rate limit is reached.
+
+
+Default: `true`
+
+
+If `false`, the request will be retried automatically, and the promise will be resolved late.
 
 
 

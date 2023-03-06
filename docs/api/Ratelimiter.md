@@ -1,11 +1,11 @@
 ---
 title: RateLimiter
-description: 
+description: The rate limiter class. Used to send requests to the API.
 ---
 
 ## RateLimiter class
 
-
+The rate limiter class. Used to send requests to the API.
 
 **Signature:**
 
@@ -36,6 +36,9 @@ Constructs a new instance of the `RateLimiter` class.
 
 #### .request ()
 
+Send a request to the API.
+
+
 
 
 **Signature:**
@@ -48,8 +51,8 @@ request(url: string, options: ApiRequestOptions): Promise<AxiosResponse>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| url | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  |
-| options | [ApiRequestOptions](/api/ApiRequestOptions.md) |  |
+| url | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The URL to send the request to. |
+| options | [ApiRequestOptions](/api/ApiRequestOptions.md) | The request options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< AxiosResponse \>
 

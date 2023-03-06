@@ -26,6 +26,11 @@ export class ApiError extends Error {
   }
 }
 
+/**
+ * A mock rate limit error response.
+ * This is sent by the rate limiter when the rate limit is exceeded.
+ * If it is an actual 429 response by the API, it is a problem with the rate limiter.
+ */
 export const mockRatelimitedResponse = {
   data: undefined,
   status: 429,
