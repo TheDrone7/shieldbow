@@ -22,7 +22,7 @@ import type {
 } from '../../types';
 import { Position } from '../Position';
 import { Bounty } from './Bounty';
-import type { Item } from '../dragon/Item';
+import type { Item } from '../dragon';
 import type { Collection } from '@discordjs/collection';
 
 /**

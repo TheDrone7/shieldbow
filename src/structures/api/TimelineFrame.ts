@@ -2,7 +2,7 @@ import { ParticipantFrame } from './ParticipantFrame';
 import type { MatchTimelineFrameData } from '../../types';
 import { type TimelineEvent, TimelineEventFactory } from './TimelineEvent';
 import type { Collection } from '@discordjs/collection';
-import type { Item } from '../dragon/Item';
+import type { Item } from '../dragon';
 
 /**
  * A representation of a frame in a match timeline.

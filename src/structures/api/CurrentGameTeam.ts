@@ -1,10 +1,8 @@
 import type { Client } from '../../client';
 import type { CurrentGameBanData, CurrentGameParticipantData } from '../../types';
-import type { Champion } from '../dragon/Champion';
+import type { Champion, RuneTree, SummonerSpell } from '../dragon';
 import { CurrentGameParticipant } from './CurrentGameParticipant';
 import type { Collection } from '@discordjs/collection';
-import type { RuneTree } from '../dragon/RuneTree';
-import type { SummonerSpell } from '../dragon/SummonerSpell';
 
 /**
  * Current game's team's champion ban information.

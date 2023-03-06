@@ -1,11 +1,9 @@
 import type { Client } from '../../client';
 import type { CurrentGameParticipantData, FetchOptions } from '../../types';
-import type { SummonerSpell } from '../dragon/SummonerSpell';
-import type { Champion } from '../dragon/Champion';
+import type { SummonerSpell, Champion, RuneTree } from '../dragon';
 import { Collection } from '@discordjs/collection';
 import { CurrentGamePerks } from './CurrentGamePerks';
 import type { Summoner } from './Summoner';
-import type { RuneTree } from '../dragon/RuneTree';
 
 /**
  * A representation of a participant in a live game.

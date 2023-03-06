@@ -1,4 +1,4 @@
-import type { ImageData } from '../index';
+import type { ImageData } from './Image';
 
 /**
  * The summoner spell data as stored in data dragon.

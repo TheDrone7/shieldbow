@@ -1,7 +1,7 @@
 import type { MatchTimelineData } from '../../types';
 import { TimelineFrame } from './TimelineFrame';
 import type { Collection } from '@discordjs/collection';
-import type { Item } from '../dragon/Item';
+import type { Item } from '../dragon';
 
 /**
  * A representation of the timeline data for a match.

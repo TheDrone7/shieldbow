@@ -1,4 +1,4 @@
-import type { ImageData } from '../index';
+import type { ImageData } from './Image';
 
 /**
  * A representation of the item data returned by Data Dragon.

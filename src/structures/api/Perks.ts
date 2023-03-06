@@ -1,7 +1,6 @@
 import type { PerksData, StatPerk } from '../../types';
 import { rawStatPerks } from '../../util';
-import type { RuneTree } from '../dragon/RuneTree';
-import type { Rune } from '../dragon/Rune';
+import type { RuneTree, Rune } from '../dragon';
 import type { Collection } from '@discordjs/collection';
 
 /**
