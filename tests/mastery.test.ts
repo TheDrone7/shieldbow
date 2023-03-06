@@ -26,6 +26,13 @@ describe('API: champion-mastery-v4', () => {
     expect(mastery.level).toBe(7);
   });
 
+  it('can fetch n highest masteries', async () => {
+    const fetched = await masteries.fetchTop(10);
+    expect(fetched.length).toBe(10);
+    expect(fetched[0].level).toBe(7);
+    expect(fetched[0].champion.name).toBe('Kayn');
+  });
+
   it('can fetch total points', async () => {
     await masteries.updateTotalScore();
     const points = masteries.totalScore;
