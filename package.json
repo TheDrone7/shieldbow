@@ -34,8 +34,8 @@
     "lint:test": "eslint --color \"src/**/**.ts\" \"tests/**/**.ts\"",
     "pretest": "run-s format:test lint:test build",
     "test": "jest --runInBand",
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs",
+    "docs:dev": "cd docs && npm run dev",
+    "docs:build": "cd docs && npm run generate",
     "extract": "api-extractor run",
     "document": "tsc docs/generator.ts --outDir docs/ && node docs/generator.js",
     "docs:gen": "run-s build extract document"
