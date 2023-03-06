@@ -1,17 +1,15 @@
-/*
- * For a detailed explanation regarding each configuration property and type check, visit:
- * https://jestjs.io/docs/configuration
- */
-
 export default {
   extensionsToTreatAsEsm: ['.ts'],
   preset: 'ts-jest',
   testEnvironment: 'node',
-  globals: {
-    'ts-jest': {
-      tsconfig: 'tsconfig.test.json',
-      useESM: true
-    }
+  transform: {
+    '^.+\\.ts$': [
+      'ts-jest',
+      {
+        tsconfig: 'tsconfig.test.json',
+        useESM: true
+      }
+    ]
   },
   setupFiles: ['./tests/jest.setup.ts'],
   testSequencer: './tests/sequencer.js',

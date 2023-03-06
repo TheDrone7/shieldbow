@@ -70,7 +70,7 @@ export type Stats =
 /**
  * A valid locale to fetch the data in.
  */
-export type Locales = typeof locale[number];
+export type Locales = (typeof locale)[number];
 
 export * from './LeagueConstants';
 

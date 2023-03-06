@@ -30,44 +30,44 @@ export const methods = {
 /**
  * The Account API method names.
  */
-export type AccountMethods = typeof methods['ACCOUNT'][number];
+export type AccountMethods = (typeof methods)['ACCOUNT'][number];
 /**
  * The Champion Mastery API method names.
  */
-export type ChampionMasteryMethods = typeof methods['CHAMPION_MASTERY'][number];
+export type ChampionMasteryMethods = (typeof methods)['CHAMPION_MASTERY'][number];
 /**
  * The Champion API method names.
  */
-export type ChampionMethods = typeof methods['CHAMPION'][number];
+export type ChampionMethods = (typeof methods)['CHAMPION'][number];
 /**
  * The Clash API method names.
  */
-export type ClashMethods = typeof methods['CLASH'][number];
+export type ClashMethods = (typeof methods)['CLASH'][number];
 /**
  * The League Exp API method names.
  */
-export type LeagueExpMethods = typeof methods['LEAGUE_EXP'][number];
+export type LeagueExpMethods = (typeof methods)['LEAGUE_EXP'][number];
 /**
  * The League API method names.
  */
-export type LeagueMethods = typeof methods['LEAGUE'][number];
+export type LeagueMethods = (typeof methods)['LEAGUE'][number];
 /**
  * The Lol Challenges API method names.
  */
-export type LolChallengesMethods = typeof methods['LOL_CHALLENGES'][number];
+export type LolChallengesMethods = (typeof methods)['LOL_CHALLENGES'][number];
 /**
  * The Lol Status API method names.
  */
-export type LolStatusMethods = typeof methods['LOL_STATUS'][number];
+export type LolStatusMethods = (typeof methods)['LOL_STATUS'][number];
 /**
  * The Match API method names.
  */
-export type MatchMethods = typeof methods['MATCH'][number];
+export type MatchMethods = (typeof methods)['MATCH'][number];
 /**
  * The Spectator API method names.
  */
-export type SpectatorMethods = typeof methods['SPECTATOR'][number];
+export type SpectatorMethods = (typeof methods)['SPECTATOR'][number];
 /**
  * The Summoner API method names.
  */
-export type SummonerMethods = typeof methods['SUMMONER'][number];
+export type SummonerMethods = (typeof methods)['SUMMONER'][number];

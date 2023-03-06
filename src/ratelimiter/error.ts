@@ -1,4 +1,4 @@
-import type { AxiosRequestHeaders, AxiosResponse } from 'axios';
+import { AxiosHeaders, type AxiosResponse, type RawAxiosRequestHeaders } from 'axios';
 import help from './help';
 
 /**
@@ -12,13 +12,13 @@ export class ApiError extends Error {
   /**
    * The headers sent with the request.
    */
-  readonly headers: AxiosRequestHeaders;
+  readonly headers: RawAxiosRequestHeaders;
   /**
    * The received response object.
    */
   readonly response?: AxiosResponse;
 
-  constructor(status: number, url: string, headers: AxiosRequestHeaders, response?: AxiosResponse) {
+  constructor(status: number, url: string, headers: RawAxiosRequestHeaders, response?: AxiosResponse<any>) {
     super(`${status}:: ${help(status)}.`);
     this.url = url;
     this.headers = headers;
@@ -43,5 +43,7 @@ export const mockRatelimitedResponse = {
     'X-Method-Rate-Limit-Count': '23:60',
     'X-Rate-Limit-Type': 'application'
   },
-  config: {}
+  config: {
+    headers: new AxiosHeaders()
+  }
 };

@@ -2,7 +2,7 @@ import type { MethodRateLimitConfig, RateLimitConfig, RateLimiterOptions } from 
 import parseOptions from './parseOptions';
 import { parseHeaders } from './parseHeaders';
 import type { Client } from '../client';
-import axios, { AxiosInstance, AxiosResponse, AxiosResponseHeaders } from 'axios';
+import axios, { AxiosInstance, AxiosResponse, RawAxiosResponseHeaders, AxiosResponseHeaders } from 'axios';
 import type { ApiRequestOptions } from './requestOptions';
 import { ApiError, mockRatelimitedResponse } from './error';
 import { apiBaseURLs, regionalURLs } from '../util';
@@ -126,7 +126,11 @@ export class RateLimiter {
     return methodLimit[0];
   }
 
-  private async _updateFromHeaders(headers: AxiosResponseHeaders, api: keyof MethodRateLimitConfig, method: string) {
+  private async _updateFromHeaders(
+    headers: RawAxiosResponseHeaders | AxiosResponseHeaders,
+    api: keyof MethodRateLimitConfig,
+    method: string
+  ) {
     const limits = parseHeaders(headers);
     this.client?.logger?.debug(`Raw headers:`, headers);
     this.client?.logger?.debug(`Parsed limits (from headers):`, limits);
