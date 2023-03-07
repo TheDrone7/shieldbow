@@ -34,6 +34,7 @@
     "lint:test": "eslint --color \"src/**/**.ts\" \"tests/**/**.ts\"",
     "pretest": "run-s format:test lint:test build",
     "test": "jest --runInBand",
+    "docs:install": "cd docs && npm install",
     "docs:dev": "cd docs && npm run dev",
     "docs:build": "cd docs && npm run generate",
     "extract": "api-extractor run",
