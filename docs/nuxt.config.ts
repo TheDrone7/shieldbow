@@ -2,6 +2,7 @@ export default defineNuxtConfig({
   app: {
     baseURL: '/shieldbow/'
   },
+  ssr: false,
   extends: '@nuxt-themes/docus',
   css: [
     '@fontsource/quicksand',
