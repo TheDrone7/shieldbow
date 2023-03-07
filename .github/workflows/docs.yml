@@ -30,11 +30,9 @@ jobs:
       - name: Build Documentation site
         run: npm run docs:gen && npm run docs:build
 
-      - name: Deploy to GitHub Pages
-        uses: crazy-max/ghaction-github-pages@v2
+      # deploy to gh-pages
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3.9.2
         with:
-          target_branch: gh-pages
-          build_dir: docs/.output/public/
-        env:
-          # @see https://docs.github.com/en/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/.output/public
