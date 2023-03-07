@@ -8,7 +8,7 @@ export default defineAppConfig({
       npm: {
         label: 'NPM',
         href: 'https://www.npmjs.com/package/shieldbow',
-        icon: 'logos:npm-icon'
+        icon: 'simple-icons:npm'
       },
       github: 'TheDrone7/shieldbow'
     },
