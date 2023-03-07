@@ -18,8 +18,8 @@ export default defineNuxtConfig({
         }
       }
     },
-    app: {
-      baseURL: '/shieldbow/'
-    },
+  },
+  experimental: {
+    payloadExtraction: false
   }
 })
