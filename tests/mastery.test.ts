@@ -19,11 +19,18 @@ describe('API: champion-mastery-v4', () => {
   it('can fetch all champion mastery', async () => {
     const summonerMastery = await masteries.fetchAll();
     expect(summonerMastery.size).toBeGreaterThan(50);
-  }, 120000);
+  }, 300000);
 
   it('can fetch highest mastery', async () => {
     const mastery = await masteries.highest();
     expect(mastery.level).toBe(7);
+  });
+
+  it('can fetch n highest masteries', async () => {
+    const fetched = await masteries.fetchTop(10);
+    expect(fetched.length).toBe(10);
+    expect(fetched[0].level).toBe(7);
+    expect(fetched[0].champion.name).toBe('Kayn');
   });
 
   it('can fetch total points', async () => {

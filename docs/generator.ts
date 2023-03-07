@@ -35,8 +35,8 @@ const builtins = {
   Collection: 'https://discord.js.org/#/docs/collection/stable/class/Collection'
 };
 
-const pathToApi = join(__dirname, '.vuepress', '.temp', 'api-reference', 'shieldbow.api.json');
-const pathToDocs = join(__dirname, 'api');
+const pathToApi = join(__dirname, '.nuxt', '.temp', 'api-reference', 'shieldbow.api.json');
+const pathToDocs = join(__dirname, 'content', 'api');
 
 const apiModel = new ApiModel();
 apiModel.loadPackage(pathToApi);
@@ -64,7 +64,7 @@ const parseSummary = (summary: DocNode) => {
     else if (node instanceof DocLinkTag) {
       const d = node.codeDestination?.memberReferences.map((r) => r.memberIdentifier?.identifier);
       const d2 = node.urlDestination;
-      const link = d ? `/api/${d[0]}.md#${d[1] ? d[1].toLowerCase() : ''}` : d2;
+      const link = d ? `/api/${d[0]!.toLowerCase()}#${d[1] ? d[1].toLowerCase() : ''}` : d2;
       const linkText = node.linkText || d?.join('.') || d2;
       text += `[${linkText}](${link})`;
     } else console.log(node.kind);
@@ -72,7 +72,7 @@ const parseSummary = (summary: DocNode) => {
   return text;
 };
 
-const linkTo = (name: string) => `[${name}](/api/${name}.md)`;
+const linkTo = (name: string) => `[${name}](/api/${name.toLowerCase()})`;
 
 const parseTypeString = (type: string) => {
   type = type.replace(/(?<!\\)</g, ' \\< ');
@@ -92,7 +92,7 @@ const parseTypeString = (type: string) => {
 console.info('Deleting the existing docs...');
 if (existsSync(pathToDocs)) {
   const files = readdirSync(pathToDocs);
-  files.forEach((file) => unlinkSync(join(pathToDocs, file)));
+  files.forEach((file) => file.includes('.md') ? unlinkSync(join(pathToDocs, file)) : null);
 } else mkdirSync(pathToDocs);
 
 let index = `# API Reference\n\n`;
@@ -107,13 +107,13 @@ for (const cls of classes) {
   const cName = parseName(cls.displayName);
   const summary = cls.tsdocComment ? parseSummary(cls.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
   const deprecated = cls.tsdocComment?.deprecatedBlock ? parseSummary(cls.tsdocComment.deprecatedBlock.content) : '';
-  index += `| [${cName}](/api/${cName}.md) | ${summary} |\n`;
+  index += `| [${cName}](/api/${cName.toLowerCase()}) | ${summary} |\n`;
 
   // Create the class document.
   let doc = `---\ntitle: ${cName}\ndescription: ${summary}\n---\n\n`;
-  doc += `## ${cName} class\n\n`;
+  doc += `# ${cName} class\n\n---\n\n`;
   doc += `${summary}\n\n`;
-  if (deprecated.length) doc += `::: warning \n\nThis is now **deprecated**. ${deprecated}\n\n:::\n\n`;
+  if (deprecated.length) doc += `::alert{type="warning"} \n\nThis is now **deprecated**. ${deprecated}\n\n::\n\n`;
   doc += `**Signature:**\n\n`;
   doc += `\`\`\`ts\n${cls.excerpt.text}\n\`\`\`\n\n`;
   if (cls.extendsType && cls.extendsType.excerpt && !cls.extendsType.excerpt.isEmpty)
@@ -157,7 +157,7 @@ for (const cls of classes) {
       const typeValue = parseTypeString(prop.propertyTypeExcerpt.text);
       doc += '#### ' + prop.name + '\n\n';
       doc += `${summary}\n\n`;
-      if (deprecated.length) doc += `::: warning \n\nThis is now **deprecated**. ${deprecated}\n\n:::\n\n`;
+      if (deprecated.length) doc += `::alert{type="warning"} \n\nThis is now **deprecated**. ${deprecated}\n\n::\n\n`;
       doc += `**Type**: ${typeValue}\n\n`;
       doc += '---\n\n';
     }
@@ -172,7 +172,7 @@ for (const cls of classes) {
       const typeValue = parseTypeString(method.returnTypeExcerpt.text);
       doc += `#### .${method.displayName} ()\n\n`;
       doc += `${summary}\n\n`;
-      if (deprecated.length) doc += `::: warning \n\nThis is now **deprecated**. ${deprecated}\n\n:::\n\n`;
+      if (deprecated.length) doc += `::alert{type="warning"} \n\nThis is now **deprecated**. ${deprecated}\n\n::\n\n`;
       doc += `**Signature:**\n\n`;
       doc += `\`\`\`ts\n${method.excerpt.text}\n\`\`\`\n\n`;
       if (method.parameters.length) {
@@ -202,13 +202,13 @@ for (const func of functions) {
   const summary = func.tsdocComment ? parseSummary(func.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
   const deprecated = func.tsdocComment?.deprecatedBlock ? parseSummary(func.tsdocComment.deprecatedBlock.content) : '';
   const name = `${fName}(${func.parameters.map((p) => p.name).join(', ')})`;
-  index += `| [${name}](/api/${fName}.md) | ${summary} |\n`;
+  index += `| [${name}](/api/${fName.toLowerCase()}) | ${summary} |\n`;
 
   // Create the function document.
   let doc = `---\ntitle: ${fName}() function\ndescription: ${summary}\n---\n\n`;
   doc += `## ${fName}(${func.parameters.map((p) => p.name).join(', ')}) function\n\n`;
   doc += `${summary}\n\n`;
-  if (deprecated.length) doc += `::: warning \n\nThis is now **deprecated**. ${deprecated}\n\n:::\n\n`;
+  if (deprecated.length) doc += `::alert{type="warning"} \n\nThis is now **deprecated**. ${deprecated}\n\n::\n\n`;
   doc += `**Signature:**\n\n`;
   doc += `\`\`\`ts\n${func.excerpt.text}\n\`\`\`\n\n`;
 
@@ -238,13 +238,13 @@ for (const ifc of interfaces) {
   const iName = parseName(ifc.displayName);
   const summary = ifc.tsdocComment ? parseSummary(ifc.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
   const deprecated = ifc.tsdocComment?.deprecatedBlock ? parseSummary(ifc.tsdocComment.deprecatedBlock.content) : '';
-  index += `| [${iName}](/api/${iName}.md) | ${summary} |\n`;
+  index += `| [${iName}](/api/${iName.toLowerCase()}) | ${summary} |\n`;
 
   // Create the interface document.
   let doc = `---\ntitle: ${iName}\ndescription: ${summary}\n---\n\n`;
   doc += `## ${iName} interface\n\n`;
   doc += `${summary}\n\n`;
-  if (deprecated.length) doc += `::: warning \n\nThis is now **deprecated**. ${deprecated}\n\n:::\n\n`;
+  if (deprecated.length) doc += `::alert{type="warning"} \n\nThis is now **deprecated**. ${deprecated}\n\n::\n\n`;
   doc += '**Signature:**\n\n';
   doc += `\`\`\`ts\n${ifc.excerpt.text}\n\`\`\`\n\n`;
   const references = ifc.excerptTokens.filter((token) => token.kind === 'Reference');
@@ -265,7 +265,7 @@ for (const ifc of interfaces) {
       const typeValue = parseTypeString(prop.propertyTypeExcerpt.text);
       doc += '#### ' + prop.name + '\n\n';
       doc += `${summary}\n\n`;
-      if (deprecated.length) doc += `::: warning \n\nThis is now **deprecated**. ${deprecated}\n\n:::\n\n`;
+      if (deprecated.length) doc += `::alert{type="warning"} \n\nThis is now **deprecated**. ${deprecated}\n\n::\n\n`;
       doc += `**Type**: ${typeValue}\n\n`;
       doc += '---\n\n';
     }
@@ -280,7 +280,7 @@ for (const ifc of interfaces) {
       const typeValue = parseTypeString(method.returnTypeExcerpt.text);
       doc += `#### .${method.displayName} ()\n\n`;
       doc += `${summary}\n\n`;
-      if (deprecated.length) doc += `::: warning \n\nThis is now **deprecated**. ${deprecated}\n\n:::\n\n`;
+      if (deprecated.length) doc += `::alert{type="warning"} \n\nThis is now **deprecated**. ${deprecated}\n\n::\n\n`;
       doc += `**Signature:**\n\n`;
       doc += `\`\`\`ts\n${method.excerpt.text}\n\`\`\`\n\n`;
       if (method.parameters.length) {
@@ -309,13 +309,13 @@ for (const v of variables) {
   const vName = parseName(v.displayName);
   const summary = v.tsdocComment ? parseSummary(v.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
   const deprecated = v.tsdocComment?.deprecatedBlock ? parseSummary(v.tsdocComment.deprecatedBlock.content) : '';
-  index += `| [${vName}](/api/${vName}.md) | ${summary} |\n`;
+  index += `| [${vName}](/api/${vName.toLowerCase()}) | ${summary} |\n`;
 
   // Create the variable document.
   let doc = `---\ntitle: ${vName}\ndescription: ${summary}\n---\n\n`;
   doc += `## ${vName} variable\n\n`;
   doc += `${summary}\n\n`;
-  if (deprecated.length) doc += `::: warning \n\nThis is now **deprecated**. ${deprecated}\n\n:::\n\n`;
+  if (deprecated.length) doc += `::alert{type="warning"} \n\nThis is now **deprecated**. ${deprecated}\n\n::\n\n`;
   doc += '**Signature:**\n\n';
   doc += `\`\`\`ts\n${v.excerpt.text}\n\`\`\`\n\n`;
   const references = v.excerptTokens.filter((token) => token.kind === 'Reference');
@@ -337,13 +337,13 @@ for (const t of types) {
   const tName = parseName(t.displayName);
   const summary = t.tsdocComment ? parseSummary(t.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
   const deprecated = t.tsdocComment?.deprecatedBlock ? parseSummary(t.tsdocComment.deprecatedBlock.content) : '';
-  index += `| [${tName}](/api/${tName}.md) | ${summary} |\n`;
+  index += `| [${tName}](/api/${tName.toLowerCase()}) | ${summary} |\n`;
 
   // Create the type alias document.
   let doc = `---\ntitle: ${tName}\ndescription: ${summary}\n---\n\n`;
   doc += `## ${tName} type\n\n`;
   doc += `${summary}\n\n`;
-  if (deprecated.length) doc += `::: warning \n\nThis is now **deprecated**. ${deprecated}\n\n:::\n\n`;
+  if (deprecated.length) doc += `::alert{type="warning"} \n\nThis is now **deprecated**. ${deprecated}\n\n::\n\n`;
   doc += '**Signature:**\n\n';
   doc += `\`\`\`ts\n${t.excerpt.text}\n\`\`\`\n\n`;
   const references = t.excerptTokens.filter((token) => token.kind === 'Reference');
@@ -356,4 +356,4 @@ for (const t of types) {
 }
 
 console.info('Writing the index...');
-writeFileSync(join(pathToDocs, 'index.md'), index);
+writeFileSync(join(pathToDocs, '0.index.md'), index);

@@ -20,8 +20,8 @@ var builtins = {
     Promise: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise',
     Collection: 'https://discord.js.org/#/docs/collection/stable/class/Collection'
 };
-var pathToApi = (0, path_1.join)(__dirname, '.vuepress', '.temp', 'api-reference', 'shieldbow.api.json');
-var pathToDocs = (0, path_1.join)(__dirname, 'api');
+var pathToApi = (0, path_1.join)(__dirname, '.nuxt', '.temp', 'api-reference', 'shieldbow.api.json');
+var pathToDocs = (0, path_1.join)(__dirname, 'content', 'api');
 var apiModel = new api_extractor_model_1.ApiModel();
 apiModel.loadPackage(pathToApi);
 var api = apiModel.packages[0].members[0];
@@ -55,7 +55,7 @@ var parseSummary = function (summary) {
         else if (node instanceof tsdoc_1.DocLinkTag) {
             var d = (_a = node.codeDestination) === null || _a === void 0 ? void 0 : _a.memberReferences.map(function (r) { var _a; return (_a = r.memberIdentifier) === null || _a === void 0 ? void 0 : _a.identifier; });
             var d2 = node.urlDestination;
-            var link = d ? "/api/".concat(d[0], ".md#").concat(d[1] ? d[1].toLowerCase() : '') : d2;
+            var link = d ? "/api/".concat(d[0].toLowerCase(), "#").concat(d[1] ? d[1].toLowerCase() : '') : d2;
             var linkText = node.linkText || (d === null || d === void 0 ? void 0 : d.join('.')) || d2;
             text += "[".concat(linkText, "](").concat(link, ")");
         }
@@ -64,7 +64,7 @@ var parseSummary = function (summary) {
     }
     return text;
 };
-var linkTo = function (name) { return "[".concat(name, "](/api/").concat(name, ".md)"); };
+var linkTo = function (name) { return "[".concat(name, "](/api/").concat(name.toLowerCase(), ")"); };
 var parseTypeString = function (type) {
     type = type.replace(/(?<!\\)</g, ' \\< ');
     type = type.replace(/(?<!\\)>/g, ' \\>');
@@ -99,10 +99,10 @@ var _loop_1 = function (cls) {
     var cName = parseName(cls.displayName);
     var summary = cls.tsdocComment ? parseSummary(cls.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
     var deprecated = ((_a = cls.tsdocComment) === null || _a === void 0 ? void 0 : _a.deprecatedBlock) ? parseSummary(cls.tsdocComment.deprecatedBlock.content) : '';
-    index += "| [".concat(cName, "](/api/").concat(cName, ".md) | ").concat(summary, " |\n");
+    index += "| [".concat(cName, "](/api/").concat(cName.toLowerCase(), ") | ").concat(summary, " |\n");
     // Create the class document.
     var doc = "---\ntitle: ".concat(cName, "\ndescription: ").concat(summary, "\n---\n\n");
-    doc += "## ".concat(cName, " class\n\n");
+    doc += "# ".concat(cName, " class\n\n---\n\n");
     doc += "".concat(summary, "\n\n");
     if (deprecated.length)
         doc += "::: warning \n\nThis is now **deprecated**. ".concat(deprecated, "\n\n:::\n\n");
@@ -199,7 +199,7 @@ var _loop_2 = function (func) {
     var summary = func.tsdocComment ? parseSummary(func.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
     var deprecated = ((_d = func.tsdocComment) === null || _d === void 0 ? void 0 : _d.deprecatedBlock) ? parseSummary(func.tsdocComment.deprecatedBlock.content) : '';
     var name_1 = "".concat(fName, "(").concat(func.parameters.map(function (p) { return p.name; }).join(', '), ")");
-    index += "| [".concat(name_1, "](/api/").concat(fName, ".md) | ").concat(summary, " |\n");
+    index += "| [".concat(name_1, "](/api/").concat(fName.toLowerCase(), ") | ").concat(summary, " |\n");
     // Create the function document.
     var doc = "---\ntitle: ".concat(fName, "() function\ndescription: ").concat(summary, "\n---\n\n");
     doc += "## ".concat(fName, "(").concat(func.parameters.map(function (p) { return p.name; }).join(', '), ") function\n\n");
@@ -235,7 +235,7 @@ var _loop_3 = function (ifc) {
     var iName = parseName(ifc.displayName);
     var summary = ifc.tsdocComment ? parseSummary(ifc.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
     var deprecated = ((_e = ifc.tsdocComment) === null || _e === void 0 ? void 0 : _e.deprecatedBlock) ? parseSummary(ifc.tsdocComment.deprecatedBlock.content) : '';
-    index += "| [".concat(iName, "](/api/").concat(iName, ".md) | ").concat(summary, " |\n");
+    index += "| [".concat(iName, "](/api/").concat(iName.toLowerCase(), ") | ").concat(summary, " |\n");
     // Create the interface document.
     var doc = "---\ntitle: ".concat(iName, "\ndescription: ").concat(summary, "\n---\n\n");
     doc += "## ".concat(iName, " interface\n\n");
@@ -312,7 +312,7 @@ for (var _m = 0, variables_1 = variables; _m < variables_1.length; _m++) {
     var vName = parseName(v.displayName);
     var summary = v.tsdocComment ? parseSummary(v.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
     var deprecated = ((_h = v.tsdocComment) === null || _h === void 0 ? void 0 : _h.deprecatedBlock) ? parseSummary(v.tsdocComment.deprecatedBlock.content) : '';
-    index += "| [".concat(vName, "](/api/").concat(vName, ".md) | ").concat(summary, " |\n");
+    index += "| [".concat(vName, "](/api/").concat(vName.toLowerCase(), ") | ").concat(summary, " |\n");
     // Create the variable document.
     var doc = "---\ntitle: ".concat(vName, "\ndescription: ").concat(summary, "\n---\n\n");
     doc += "## ".concat(vName, " variable\n\n");
@@ -338,7 +338,7 @@ for (var _o = 0, types_1 = types; _o < types_1.length; _o++) {
     var tName = parseName(t.displayName);
     var summary = t.tsdocComment ? parseSummary(t.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
     var deprecated = ((_j = t.tsdocComment) === null || _j === void 0 ? void 0 : _j.deprecatedBlock) ? parseSummary(t.tsdocComment.deprecatedBlock.content) : '';
-    index += "| [".concat(tName, "](/api/").concat(tName, ".md) | ").concat(summary, " |\n");
+    index += "| [".concat(tName, "](/api/").concat(tName.toLowerCase(), ") | ").concat(summary, " |\n");
     // Create the type alias document.
     var doc = "---\ntitle: ".concat(tName, "\ndescription: ").concat(summary, "\n---\n\n");
     doc += "## ".concat(tName, " type\n\n");
@@ -356,4 +356,4 @@ for (var _o = 0, types_1 = types; _o < types_1.length; _o++) {
     (0, fs_1.writeFileSync)((0, path_1.join)(pathToDocs, "".concat(tName, ".md")), doc);
 }
 console.info('Writing the index...');
-(0, fs_1.writeFileSync)((0, path_1.join)(pathToDocs, 'index.md'), index);
+(0, fs_1.writeFileSync)((0, path_1.join)(pathToDocs, '0.index.md'), index);

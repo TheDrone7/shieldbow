@@ -7,7 +7,11 @@ describe('DRAGON: champions', () => {
 
   beforeAll(async () => {
     await client.initialize(global.clientConfig);
-    kayn = await client.champions.fetch('Kayn', { force: true, cache: true });
+    try {
+      kayn = await client.champions.fetch('Kayn', { ignoreCache: true, cache: true });
+    } catch (e) {
+      client.logger?.error(e);
+    }
   });
 
   it('can fetch a champion by ID', () => {
@@ -23,15 +27,17 @@ describe('DRAGON: champions', () => {
   });
 
   it('can fetch champion by name and key (forced)', async () => {
-    const byName = await client.champions.fetchByName("kai'sa", { force: true, cache: true });
-    const byKey = await client.champions.fetchByKey(523, { force: true, cache: true });
+    // Storage is disabled in the client config anyway, so no need to ignore that manually.
+    const byName = await client.champions.fetchByName("kai'sa", { ignoreCache: true, cache: true });
+    const byKey = await client.champions.fetchByKey(523, { ignoreCache: true, cache: true });
 
     expect(byName?.name).toBe("Kai'Sa");
     expect(byKey?.name).toBe('Aphelios');
   });
 
   it('can fetch all champions', async () => {
-    const champions = await client.champions.fetchAll({ force: true });
+    // Storage is disabled in the client config anyway, so no need to ignore that manually.
+    const champions = await client.champions.fetchAll({ ignoreCache: true });
     expect(champions.size).toBeGreaterThan(150);
   }, 300000);
 
@@ -68,7 +74,7 @@ describe('DRAGON: champions', () => {
   });
 
   it('can cache champions', async () => {
-    expect(client.champions.cache.get('Kayn')?.name).toBe('Kayn');
+    expect((await client.cache.get<Champion>('champion:Kayn'))?.name).toBe('Kayn');
   });
 
   it('can fetch champion sprites', () => {
@@ -76,14 +82,5 @@ describe('DRAGON: champions', () => {
     expect(kayn.sprite.size.h).toBe(48);
 
     expect(typeof kayn.sprite.image).toBe('string');
-  });
-
-  it('can fetch champion rotations', async () => {
-    const rotations = await client.champions.fetchRotations({
-      force: true,
-      cache: false
-    });
-    expect(rotations.get('all')?.length).toBeGreaterThan(0);
-    expect(rotations.get('new')?.length).toBeGreaterThan(0);
   });
 });

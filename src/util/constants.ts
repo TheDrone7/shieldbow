@@ -43,7 +43,7 @@ export const Stat = [
 /**
  * The available stat perks.
  */
-export const statPerks: { [key: number]: StatPerk } = {
+export const rawStatPerks: { [key: number]: StatPerk } = {
   5003: {
     name: 'MagicResist',
     id: 5003,

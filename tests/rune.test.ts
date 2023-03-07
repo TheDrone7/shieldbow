@@ -18,8 +18,8 @@ describe('DRAGON: runes', () => {
   });
 
   it('can fetch runes and rune trees by name', async () => {
-    const precision = await client.runes.fetchByName('precision', { force: true });
-    const conqueror = await client.runes.fetchRuneByName('conqueror', { force: true });
+    const precision = await client.runes.fetchByName('precision', { ignoreCache: true });
+    const conqueror = await client.runes.fetchRuneByName('conqueror', { ignoreCache: true });
     expect(precision?.name).toBe('Precision');
     expect(conqueror?.name).toBe('Conqueror');
   });
@@ -32,18 +32,18 @@ describe('DRAGON: runes', () => {
   });
 
   it('can cache runes', async () => {
-    expect(client.runes.cache.get('Domination')?.name).toBe(domination.name);
+    expect((await client.cache.get<RuneTree>('rune:Domination'))?.name).toBe(domination.name);
   });
 
   it('can pre-fetch runes', async () => {
     const client2 = new Client(process.env.riot_api_key!);
     await client2.initialize({
       cache: false,
+      storage: false,
       fetch: {
         runes: true
       }
     });
-    expect(client2.runes.cache.size).toBe(5);
-    expect(client2.runes.cachedRunes.length).toBeGreaterThan(50);
+    expect((await client.cache.keys()).filter((k) => k.startsWith('rune:')).length).toBe(5);
   });
 });

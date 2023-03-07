@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           # choose node.js version to use
-          node-version: '16'
+          node-version: '18'
 
       # install dependencies if the cache did not hit
       - name: Install dependencies
@@ -32,7 +32,7 @@ jobs:
         uses: crazy-max/ghaction-github-pages@v2
         with:
           target_branch: gh-pages
-          build_dir: docs/.vuepress/dist
+          build_dir: docs/.output/public/
         env:
           # @see https://docs.github.com/en/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

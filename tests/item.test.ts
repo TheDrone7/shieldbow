@@ -15,14 +15,14 @@ describe('DRAGON: items', () => {
   });
 
   it('can fetch items by name', async () => {
-    const byName = await client.items.fetchByName('Boots', { force: true });
+    const byName = await client.items.fetchByName('Boots', { ignoreCache: true });
     expect(byName?.name).toBe(boots.name);
   });
 
-  it('parses the item recipe', () => {
-    expect(boots.into.size).toBe(7);
-    expect(boots.from.size).toBe(0);
-    expect(boots.specialRecipe).toBeUndefined();
+  it('parses the item recipe', async () => {
+    expect((await boots.into()).size).toBe(7);
+    expect((await boots.from()).size).toBe(0);
+    expect(await boots.specialRecipe()).toBeUndefined();
   });
 
   it('fetches item details', () => {
@@ -30,17 +30,19 @@ describe('DRAGON: items', () => {
   });
 
   it('can cache items', async () => {
-    expect(client.items.cache.get('1001')?.name).toBe(boots.name);
+    expect((await client.cache.get<Item>('item:1001'))?.name).toBe(boots.name);
   });
 
   it('can pre-fetch items', async () => {
     const client2 = new Client(process.env.riot_api_key!);
+    // Custom config to test pre-fetching.
     await client2.initialize({
       cache: false,
+      storage: false,
       fetch: {
         items: true
       }
     });
-    expect(client2.items.cache.size).toBeGreaterThan(100);
+    expect((await client.cache.keys()).filter((k) => k.startsWith('item:')).length).toBeGreaterThan(100);
   });
 });

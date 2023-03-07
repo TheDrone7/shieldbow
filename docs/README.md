@@ -1,25 +1,57 @@
+# Docus Starter
+
+Starter template for [Docus](https://docus.dev).
+
+## Clone
+
+Clone the repository (using `nuxi`):
+
+```bash
+npx nuxi init -t themes/docus
+```
+
+## Setup
+
+Install dependencies:
+
+```bash
+yarn install
+```
+
+## Development
+
+```bash
+yarn dev
+```
+
+## Edge Side Rendering
+
+Can be deployed to Vercel Functions, Netlify Functions, AWS, and most Node-compatible environments.
+
+Look at all the available presets [here](https://v3.nuxtjs.org/guide/deploy/presets).
+
+```bash
+yarn build
+```
+
+## Static Generation
+
+Use the `generate` command to build your application.
+
+The HTML files will be generated in the .output/public directory and ready to be deployed to any static compatible hosting.
+
+```bash
+yarn generate
+```
+
+## Preview build
+
+You might want to preview the result of your build locally, to do so, run the following command:
+
+```bash
+yarn preview
+```
+
 ---
-home: true
-heroText: Shieldbow
-tagline: An all-purpose, easy-to-use API wrapper for the league of legends API
-actions:
-- text: Get Started
-  link: /guide/getting-started
-  type: primary
-- text: API Reference
-  link: /api
-  type: secondary
-features:
-- title: Easy to use
-  details: Terms simplified for usage by all league of legends players and not just developers.
-- title: Type Support
-  details: Fully written in typescript for the best type support.
-- title: Performant
-  details: Pre-fetching and caching to quickly resolve any and all data that might be needed.
-- title: Extensive Support
-  details: Full support for almost all API endpoints.
-- title: Feature Rich
-  details: Tons of interconnected properties to allow quick fetching of related data.
-- title: Flexible
-  details: Highly configurable and exposes internals to easily extend the library.
----
+
+For a detailed explanation of how things work, check out [Docus](https://docus.dev).

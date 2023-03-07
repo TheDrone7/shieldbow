@@ -1,35 +1,23 @@
 import type { BaseManager, FetchOptions, SummonerData } from '../types';
 import type { Client } from '../client';
-import { Collection } from '@discordjs/collection';
 import { Account, Summoner } from '../structures';
+import { parseFetchOptions } from '../util';
 
 /**
  * A summoner manager - to fetch and manage all the summoner data.
  */
 export class SummonerManager implements BaseManager<Summoner> {
   /**
-   * The summoners cached in the memory.
-   *
-   * Only use this if you absolutely must.
-   * Prioritize using
-   * {@link SummonerManager.fetch | fetch},
-   * {@link SummonerManager.fetchBySummonerName | fetchBySummonerName} or
-   * {@link SummonerManager.fetchByPlayerId | fetchByPlayerId}
-   * instead.
-   */
-  readonly cache: Collection<string, Summoner>;
-  /**
-   * The client this manager belongs to.
+   * The client this summoner manager belongs to.
    */
   readonly client: Client;
 
   /**
    * Creates a new summoner manager.
-   * @param client - The client that instantiated this manager.
+   * @param client - The client this summoner manager belongs to.
    */
   constructor(client: Client) {
     this.client = client;
-    this.cache = new Collection<string, Summoner>();
   }
 
   /**
@@ -39,29 +27,41 @@ export class SummonerManager implements BaseManager<Summoner> {
    * @param options - The basic fetching options.
    */
   async fetch(id: string, options?: FetchOptions) {
-    const force = options?.force ?? false;
-    const cache = options?.cache ?? true;
-    const region = options?.region ?? this.client.region;
-    this.client.logger.trace(`Fetching summoner by ID ${id} with options: `, { force, cache, region });
-    return new Promise<Summoner>(async (resolve, reject) => {
-      if (this.cache.has(id) && !force) resolve(this.cache.get(id)!);
-      else {
-        const response = await this.client.api
-          .makeApiRequest('/lol/summoner/v4/summoners/' + id, {
-            region,
-            regional: false,
-            name: 'Summoner by ID',
-            params: `ID: ${id}`
-          })
-          .catch(reject);
-        if (response) {
-          const data = <SummonerData>response.data;
-          const summoner = new Summoner(this.client, data, region);
-          if (cache) this.cache.set(summoner.id, summoner);
-          resolve(summoner);
+    const opts = parseFetchOptions(this.client, 'summoner', options);
+    const { ignoreCache, ignoreStorage, store, cache, region } = opts;
+    this.client.logger?.trace(`Fetching summoner by ID ${id} with options: `, opts);
+
+    try {
+      if (!ignoreCache) {
+        const exists = await this.client.cache.has(`summoner:${id}`);
+        if (exists) return this.client.cache.get<Summoner>(`summoner:${id}`);
+      }
+
+      if (!ignoreStorage) {
+        const storage = this.client.storage.fetch<SummonerData>('summoner', id);
+        const stored = storage instanceof Promise ? await storage.catch(() => undefined) : storage;
+        if (stored) {
+          const summoner = new Summoner(this.client, stored, region!);
+          if (cache) await this.client.cache.set(`summoner:${id}`, summoner);
+          return summoner;
         }
       }
-    });
+
+      const response = await this.client.api.request('/lol/summoner/v4/summoners/' + id, {
+        region: region!,
+        regional: false,
+        api: 'SUMMONER',
+        method: 'getBySummonerId',
+        params: `ID: ${id}`
+      });
+      const data = <SummonerData>response.data;
+      const summoner = new Summoner(this.client, data, region!);
+      if (cache) await this.client.cache.set(`summoner${id}`, summoner);
+      if (store) await this.client.storage.save(data, 'summoner', summoner.id);
+      return Promise.resolve(summoner);
+    } catch (e) {
+      return Promise.reject(e);
+    }
   }
 
   /**
@@ -72,29 +72,41 @@ export class SummonerManager implements BaseManager<Summoner> {
    */
   async fetchByPlayerId(playerId: string | Account, options?: FetchOptions) {
     const id = typeof playerId === 'string' ? playerId : playerId.playerId;
-    const force = options?.force ?? false;
-    const cache = options?.cache ?? true;
-    const region = options?.region ?? this.client.region;
-    this.client.logger.trace(`Fetching summoner by PUUID ${playerId} with options: `, { force, cache, region });
-    return new Promise<Summoner>(async (resolve, reject) => {
-      if (this.cache.find((s) => s.playerId === id) && !force) resolve(this.cache.find((s) => s.playerId === id)!);
-      else {
-        const response = await this.client.api
-          .makeApiRequest('/lol/summoner/v4/summoners/by-puuid/' + id, {
-            region,
-            regional: false,
-            name: 'Summoner by player ID',
-            params: `ID: ${id}`
-          })
-          .catch(reject);
-        if (response) {
-          const data = <SummonerData>response.data;
-          const summoner = new Summoner(this.client, data, region);
-          if (cache) this.cache.set(summoner.id, summoner);
-          resolve(summoner);
+    const opts = parseFetchOptions(this.client, 'summoner', options);
+    const { ignoreCache, ignoreStorage, store, cache, region } = opts;
+    this.client.logger?.trace(`Fetching summoner by PUUID ${id} with options: `, opts);
+
+    try {
+      if (!ignoreCache) {
+        const cached = await this.client.cache.find<Summoner>((s) => s.playerId === id);
+        if (cached) return cached;
+      }
+
+      if (!ignoreStorage) {
+        const storage = this.client.storage.search<SummonerData>(`summoner`, { puuid: id });
+        const stored = storage instanceof Promise ? await storage.catch(() => undefined) : storage;
+        if (stored && stored.length > 0) {
+          const summoner = new Summoner(this.client, stored[0], region!);
+          if (cache) await this.client.cache.set(`summoner:${summoner.id}`, summoner);
+          return summoner;
         }
       }
-    });
+
+      const response = await this.client.api.request('/lol/summoner/v4/summoners/by-puuid/' + id, {
+        region: region!,
+        regional: false,
+        api: 'SUMMONER',
+        method: 'getByPUUID',
+        params: `ID: ${id}`
+      });
+      const data = <SummonerData>response.data;
+      const summoner = new Summoner(this.client, data, region!);
+      if (store) await this.client.storage.save(data, 'summoner', summoner.id);
+      if (cache) await this.client.cache.set(`summoner:${summoner.id}`, summoner);
+      return summoner;
+    } catch (e) {
+      return Promise.reject(e);
+    }
   }
 
   /**
@@ -104,28 +116,40 @@ export class SummonerManager implements BaseManager<Summoner> {
    * @param options - The basic fetching options.
    */
   async fetchBySummonerName(name: string, options?: FetchOptions) {
-    const force = options?.force ?? false;
-    const cache = options?.cache ?? true;
-    const region = options?.region ?? this.client.region;
-    this.client.logger.trace(`Fetching summoner by name '${name}' with options: `, { force, cache, region });
-    return new Promise<Summoner>(async (resolve, reject) => {
-      if (this.cache.find((s) => s.name === name) && !force) resolve(this.cache.find((s) => s.name === name)!);
-      else {
-        const response = await this.client.api
-          .makeApiRequest('/lol/summoner/v4/summoners/by-name/' + encodeURIComponent(name), {
-            region,
-            regional: false,
-            name: 'Summoner by summoner name',
-            params: `ID: ${name}`
-          })
-          .catch(reject);
-        if (response) {
-          const data = <SummonerData>response.data;
-          const summoner = new Summoner(this.client, data, region);
-          if (cache) this.cache.set(summoner.id, summoner);
-          resolve(summoner);
+    const opts = parseFetchOptions(this.client, 'summoner', options);
+    const { ignoreCache, ignoreStorage, store, cache, region } = opts;
+    this.client.logger?.trace(`Fetching summoner by name '${name}' with options: `, opts);
+
+    try {
+      if (!ignoreCache) {
+        const cached = await this.client.cache.find<Summoner>((s) => s.name === name);
+        if (cached) return Promise.resolve(cached);
+      }
+
+      if (!ignoreStorage) {
+        const storage = this.client.storage.search<SummonerData>(`summoner`, { name });
+        const stored = storage instanceof Promise ? await storage.catch(() => undefined) : storage;
+        if (stored && stored.length > 0) {
+          const summoner = new Summoner(this.client, stored[0], region!);
+          if (cache) await this.client.cache.set(`summoner:${summoner.id}`, summoner);
+          return Promise.resolve(summoner);
         }
       }
-    });
+
+      const response = await this.client.api.request('/lol/summoner/v4/summoners/by-name/' + encodeURIComponent(name), {
+        region: region!,
+        regional: false,
+        api: 'SUMMONER',
+        method: 'getBySummonerName',
+        params: `Name: ${name}`
+      });
+      const data = <SummonerData>response.data;
+      const summoner = new Summoner(this.client, data, region!);
+      if (store) await this.client.storage.save(data, 'summoner', summoner.id);
+      if (cache) await this.client.cache.set(`summoner:${summoner.id}`, summoner);
+      return Promise.resolve(summoner);
+    } catch (e) {
+      return Promise.reject(e);
+    }
   }
 }

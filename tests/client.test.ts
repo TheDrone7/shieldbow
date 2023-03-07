@@ -12,17 +12,17 @@ describe('UTIL: client', () => {
   });
 
   it('can fetch in different locales', async () => {
-    const boots = await client.items.fetch('1001', { force: true });
+    const boots = await client.items.fetch('1001', { ignoreCache: true });
     await client.updateLocale('ko_KR', false);
-    const krBoots = await client.items.fetch('1001', { force: true });
+    const krBoots = await client.items.fetch('1001', { ignoreCache: true });
     expect(boots.name).toBe('Boots');
     expect(krBoots.name).toBe('장화');
   });
 
   it('can fetch from different patches', async () => {
-    const boots = await client.items.fetch('1001', { force: true });
+    const boots = await client.items.fetch('1001', { ignoreCache: true });
     await client.updatePatch('12.9', false);
-    const oldBoots = await client.items.fetch('1001', { force: true });
+    const oldBoots = await client.items.fetch('1001', { ignoreCache: true });
     expect(boots.name).toBeDefined();
     expect(oldBoots.name).toBeDefined();
   });

@@ -1,20 +1,33 @@
 import axios, { AxiosInstance } from 'axios';
-import type { ClientConfig, GameMap, GameMode, GameType, Locales, Queue, Region, Season, ILogger } from './types';
+import type {
+  ClientConfig,
+  GameMap,
+  GameMode,
+  GameType,
+  ICache,
+  ILogger,
+  IStorage,
+  Locales,
+  ManagersConfig,
+  Queue,
+  Region,
+  Season
+} from './types';
 import {
   AccountManager,
+  ChallengeManager,
   ChampionManager,
+  ClashManager,
+  CurrentGameManager,
   ItemManager,
   LeagueManager,
   MatchManager,
   RuneTreeManager,
   SummonerManager,
-  SummonerSpellManager,
-  CurrentGameManager,
-  ClashManager,
-  ChallengeManager
+  SummonerSpellManager
 } from './managers';
-import { ApiHandler } from './api';
-import { ShieldbowLogger } from './util';
+import { RateLimiter } from './ratelimiter';
+import { LocalStorage, MemoryCache, ShieldbowLogger } from './util';
 
 const patchRegex = /\d+\.\d+/;
 
@@ -25,17 +38,6 @@ const patchRegex = /\d+\.\d+/;
 export class Client {
   private readonly _cdnBase: string;
   private readonly _versions: string;
-  private _initialized: boolean;
-  private _version: string;
-  private _patch: string;
-  private _locale: Locales;
-  private _region: Region;
-  private _cacheEnabled: boolean;
-  private _cacheRoot: string;
-  private _champions: ChampionManager;
-  private _items: ItemManager;
-  private _runes: RuneTreeManager;
-  private _summonerSpells: SummonerSpellManager;
   private readonly _summoners: SummonerManager;
   private readonly _accounts: AccountManager;
   private readonly _leagues: LeagueManager;
@@ -44,13 +46,7 @@ export class Client {
   private readonly _challenges: ChallengeManager;
   private readonly _clash: ClashManager;
   private readonly _http: AxiosInstance;
-  private readonly _api: ApiHandler;
-  private _seasons: Season[];
-  private _queues: Queue[];
-  private _maps: GameMap[];
-  private _gameModes: GameMode[];
-  private _gameTypes: GameType[];
-  private _logger: ILogger;
+  private readonly _apiKey: string;
 
   constructor(apiKey: string) {
     this._cdnBase = 'https://ddragon.leagueoflegends.com/cdn/';
@@ -60,8 +56,13 @@ export class Client {
     this._region = 'na';
     this._patch = undefined!;
     this._locale = 'en_US';
-    this._cacheEnabled = true;
-    this._cacheRoot = 'data';
+    this._apiKey = apiKey;
+
+    this._cacheEnabled = { api: true, dragon: true };
+    this._storageEnabled = { api: false, dragon: true };
+
+    this._cache = new MemoryCache();
+    this._storage = new LocalStorage(this, 'data');
 
     this._seasons = [];
     this._queues = [];
@@ -69,10 +70,10 @@ export class Client {
     this._gameModes = [];
     this._gameTypes = [];
 
-    this._champions = new ChampionManager(this, { enable: true, root: 'data' });
-    this._items = new ItemManager(this, { enable: true, root: 'data' });
-    this._runes = new RuneTreeManager(this, { enable: true, root: 'data' });
-    this._summonerSpells = new SummonerSpellManager(this, { enable: true, root: 'data' });
+    this._champions = new ChampionManager(this);
+    this._items = new ItemManager(this);
+    this._runes = new RuneTreeManager(this);
+    this._summonerSpells = new SummonerSpellManager(this);
     this._summoners = new SummonerManager(this);
     this._accounts = new AccountManager(this);
     this._leagues = new LeagueManager(this);
@@ -82,150 +83,51 @@ export class Client {
     this._challenges = new ChallengeManager(this);
 
     this._http = axios.create({ baseURL: this._cdnBase });
-    this._api = new ApiHandler(this, apiKey);
-    this._logger = new ShieldbowLogger('WARN');
+    this._api = new RateLimiter(this, {}, apiKey);
   }
 
+  private _initialized: boolean;
+
   /**
-   * Initialize the client to prepare it for interacting with the API.
-   * This can also be rerun if you want to configure anything and quickly fetch any required data.
+   * Is this client initialized.
+   */
+  get initialized() {
+    return this._initialized;
+  }
+
+  private _version: string;
+
+  /**
+   * The current Data Dragon CDN version.
+   */
+  get version() {
+    this._ensureInitialized();
+    return this._version;
+  }
+
+  private _patch: string;
+
+  /**
+   * The patch of the game currently in use.
    *
-   * @param options - The client configuration.
+   * Must be above 5.1 for proper functionality.
    */
-  async initialize(options?: ClientConfig) {
-    // Parse the configuration
-    const region = options?.region || 'na';
-    this._region = region;
-    const version = options?.version || undefined;
-    this._version = version!;
-    this._patch = version !== undefined ? version.match(patchRegex)!.shift()! : undefined!;
-    const language = options?.locale || undefined;
-    if (language !== undefined) this._locale = language;
-    if (typeof options?.logger === 'boolean') options.logger = { enable: options.logger };
-    if (typeof options?.cache === 'boolean') options.cache = { enable: options.cache };
-    if (typeof options?.fetch === 'boolean')
-      options.fetch = {
-        champions: options?.fetch,
-        items: options?.fetch,
-        runes: options?.fetch,
-        summonerSpells: options?.fetch
-      };
-
-    // Set up the logging utility if enabled.
-    const enableLogging = options?.logger?.enable ?? true;
-    if (enableLogging) {
-      const loggerLevel = options?.logger?.level || 'WARN';
-      this._logger = options?.logger?.custom || new ShieldbowLogger(loggerLevel);
-    }
-
-    const enableCache = options?.cache?.enable ?? true;
-    const cacheRoot = options?.cache?.localRoot || 'data';
-
-    // Update the client configuration.
-    if (version === undefined || language === undefined) {
-      this.logger.trace('Fetching latest version and locale from the API.');
-      const response = await axios
-        .get(region ? `https://ddragon.leagueoflegends.com/realms/${region}.json` : this._versions)
-        .catch(() => {});
-      if (response?.status !== 200)
-        throw new Error('Unable to fetch data dragon version. Please confirm the region exists.');
-      else {
-        const result = <string[] | { v: string; l: Locales }>response.data;
-        if (Array.isArray(result)) {
-          this._version = version !== undefined ? version : result[0];
-          this._patch = this._version.match(patchRegex)!.shift()!;
-          this._locale = 'en_US';
-        } else {
-          this._version = version !== undefined ? version : result.v;
-          this._locale = language !== undefined ? language : result.l;
-          this._patch = this._version.match(patchRegex)!.shift()!;
-        }
-      }
-    }
-
-    this._initialized = true;
-
-    // Get the game constants from data dragon (this is static data)
-    this.logger.trace('Fetching seasons static data from DDragon.');
-    const seasonsResponse = await axios
-      .get('https://static.developer.riotgames.com/docs/lol/seasons.json')
-      .catch(() => {});
-    this.logger.trace('Fetching queues static data from DDragon.');
-    const queuesResponse = await axios
-      .get('https://static.developer.riotgames.com/docs/lol/queues.json')
-      .catch(() => {});
-    this.logger.trace('Fetching maps static data from DDragon.');
-    const mapsResponse = await axios.get('https://static.developer.riotgames.com/docs/lol/maps.json').catch(() => {});
-    this.logger.trace('Fetching game modes static data from DDragon.');
-    const gameModesResponse = await axios
-      .get('https://static.developer.riotgames.com/docs/lol/gameModes.json')
-      .catch(() => {});
-    this.logger.trace('Fetching game types static data from DDragon.');
-    const gameTypesResponse = await axios
-      .get('https://static.developer.riotgames.com/docs/lol/gameTypes.json')
-      .catch(() => {});
-
-    if (seasonsResponse?.status !== 200) throw new Error('Unable to fetch seasons static data from data dragon.');
-    if (queuesResponse?.status !== 200) throw new Error('Unable to fetch queues static data from data dragon.');
-    if (mapsResponse?.status !== 200) throw new Error('Unable to fetch maps static data from data dragon.');
-    if (gameModesResponse?.status !== 200) throw new Error('Unable to fetch game modes static data from data dragon.');
-    if (gameTypesResponse?.status !== 200) throw new Error('Unable to fetch game types static data from data dragon.');
-
-    this.logger.trace('Parsing fetched static data into defined interfaces.');
-    this._seasons = <Season[]>seasonsResponse.data;
-    this._queues = <Queue[]>queuesResponse.data.map((q: Queue) => ({
-      ...q,
-      notes: q.notes ?? undefined
-    }));
-    this._maps = <GameMap[]>mapsResponse.data.map((m: { mapId: number; mapName: string; notes: string }) => ({
-      ...m,
-      image: this.cdnBase + this.version + `/img/map/map${m.mapId}.png`
-    }));
-    this._gameModes = <GameMode[]>gameModesResponse.data;
-    this._gameTypes = <GameType[]>gameTypesResponse.data;
-
-    // Update the cache config
-    if (this._cacheEnabled !== enableCache || this._cacheRoot !== cacheRoot) {
-      this.logger.trace('Set-up caching.');
-      this._cacheEnabled = enableCache;
-      this._cacheRoot = cacheRoot;
-
-      this._champions = new ChampionManager(this, { enable: this._cacheEnabled, root: this._cacheRoot });
-      this._items = new ItemManager(this, { enable: this._cacheEnabled, root: this._cacheRoot });
-      this._runes = new RuneTreeManager(this, { enable: this._cacheEnabled, root: this._cacheRoot });
-      this._summonerSpells = new SummonerSpellManager(this, { enable: this._cacheEnabled, root: this._cacheRoot });
-    }
-
-    // Fetch the data and cache it for faster data retrieval.
-    this.logger.trace('Prefetch specified data from DDragon.');
-    if (options?.fetch?.champions ?? false) await this.champions.fetchAll();
-    if (options?.fetch?.items ?? false) await this.items.fetch('1001');
-    if (options?.fetch?.runes ?? false) await this.runes.fetch('Domination');
-    if (options?.fetch?.summonerSpells ?? false) await this.summonerSpells.fetch('SummonerFlash');
-  }
-
-  /**
-   * Ensure that client was initialized
-   */
-  private _ensureInitialized(): void {
-    if (!this._initialized) throw new Error('Please initialize the client first.');
-  }
-
-  /**
-   * The axios instance that handles all the CDN requests being made.
-   */
-  get http() {
+  get patch() {
     this._ensureInitialized();
-    return this._http;
+    return this._patch;
   }
 
+  private _locale: Locales;
+
   /**
-   * The default API interactions handler used by the client.
+   * The locale in which all the data is going to be fetched in.
    */
-  get api() {
+  get locale() {
     this._ensureInitialized();
-    return this._api;
+    return this._locale;
   }
+
+  private _region: Region;
 
   /**
    * The league of legends region from which the data is to be fetched.
@@ -240,13 +142,7 @@ export class Client {
     this._region = region;
   }
 
-  /**
-   * The Data Dragon CDN Base URL
-   */
-  get cdnBase() {
-    this._ensureInitialized();
-    return this._cdnBase;
-  }
+  private _champions: ChampionManager;
 
   /**
    * The default champions manager used by the client.
@@ -256,6 +152,8 @@ export class Client {
     return this._champions;
   }
 
+  private _items: ItemManager;
+
   /**
    * The default items manager used by the client.
    */
@@ -263,6 +161,8 @@ export class Client {
     this._ensureInitialized();
     return this._items;
   }
+
+  private _runes: RuneTreeManager;
 
   /**
    * The default runes manager used by the client.
@@ -272,12 +172,141 @@ export class Client {
     return this._runes;
   }
 
+  private _summonerSpells: SummonerSpellManager;
+
   /**
    * The default summoner spells manager used by the client.
    */
   get summonerSpells() {
     this._ensureInitialized();
     return this._summonerSpells;
+  }
+
+  private _api: RateLimiter;
+
+  /**
+   * The default API interactions handler used by the client.
+   */
+  get api() {
+    this._ensureInitialized();
+    return this._api;
+  }
+
+  private _seasons: Season[];
+
+  /**
+   * An array of all seasons and their respective IDs.
+   */
+  get seasons() {
+    this._ensureInitialized();
+    return this._seasons;
+  }
+
+  private _queues: Queue[];
+
+  /**
+   * An array of all queue types and their respective data.
+   */
+  get queues() {
+    this._ensureInitialized();
+    return this._queues;
+  }
+
+  private _maps: GameMap[];
+
+  /**
+   * An array of all maps and their respective data.
+   */
+  get maps() {
+    this._ensureInitialized();
+    return this._maps;
+  }
+
+  private _gameModes: GameMode[];
+
+  /**
+   * An array of all game modes and their respective data.
+   */
+  get gameModes() {
+    this._ensureInitialized();
+    return this._gameModes;
+  }
+
+  private _gameTypes: GameType[];
+
+  /**
+   * An array of all game types and their respective data.
+   */
+  get gameTypes() {
+    this._ensureInitialized();
+    return this._gameTypes;
+  }
+
+  private _logger?: ILogger;
+
+  /**
+   * The client's logging utility.
+   */
+  get logger() {
+    return this._logger;
+  }
+
+  private _cache: ICache;
+
+  /**
+   * The client's caching utility.
+   */
+  get cache() {
+    return this._cache;
+  }
+
+  private _storage: IStorage;
+
+  /**
+   * The client's storage utility.
+   */
+  get storage() {
+    return this._storage;
+  }
+
+  private _storageEnabled: ManagersConfig;
+
+  /**
+   * The client's configuration for storage. This is for internal usage only.
+   *
+   * PLEASE DO NOT TRY TO USE THIS.
+   * Refer to {@link Client.initialize} to configure this.
+   */
+  get storageEnabled() {
+    return this._storageEnabled;
+  }
+
+  private _cacheEnabled: ManagersConfig;
+
+  /**
+   * The client's configuration for caching. This is for internal usage only.
+   *
+   * PLEASE DO NOT TRY TO USE THIS.
+   * Refer to {@link Client.initialize} to configure this.
+   */
+  get cacheEnabled() {
+    return this._cacheEnabled;
+  }
+
+  /**
+   * The axios instance that handles all the CDN requests being made.
+   */
+  get http() {
+    this._ensureInitialized();
+    return this._http;
+  }
+
+  /**
+   * The Data Dragon CDN Base URL
+   */
+  get cdnBase() {
+    this._ensureInitialized();
+    return this._cdnBase;
   }
 
   /**
@@ -342,13 +371,6 @@ export class Client {
   }
 
   /**
-   * The client's logging utility.
-   */
-  get logger() {
-    return this._logger;
-  }
-
-  /**
    * Get the current status of the RIOT API.
    *
    * No type support for this (yet).
@@ -356,17 +378,155 @@ export class Client {
   get status() {
     this._ensureInitialized();
     return new Promise(async (resolve, reject) => {
-      this.logger.trace('Fetching status from Riot API.');
+      this.logger?.trace('Fetching status from Riot API.');
       const response = await this.api
-        .makeApiRequest('/lol/status/v4/platform-data', {
+        .request('/lol/status/v4/platform-data', {
           region: this.region,
-          name: 'Get API Status',
+          api: 'LOL_STATUS',
+          method: 'getPlatformData',
           params: 'no params',
           regional: false
         })
         .catch(reject);
       if (response) resolve(response.data);
     });
+  }
+
+  /**
+   * Initialize the client to prepare it for interacting with the API.
+   * This can also be rerun if you want to configure anything and quickly fetch any required data.
+   *
+   * @param options - The client configuration.
+   */
+  async initialize(options?: ClientConfig) {
+    // Parse the basic configuration
+    const region = options?.region || 'na';
+    this._region = region;
+    const version = options?.version || undefined;
+    this._version = version!;
+    this._patch = version !== undefined ? version.match(patchRegex)!.shift()! : undefined!;
+    const language = options?.locale || undefined;
+    if (language !== undefined) this._locale = language;
+    if (typeof options?.logger === 'boolean') options.logger = { enable: options.logger };
+    if (typeof options?.fetch === 'boolean')
+      options.fetch = {
+        champions: options?.fetch,
+        items: options?.fetch,
+        runes: options?.fetch,
+        summonerSpells: options?.fetch
+      };
+
+    // Set up the logging utility if enabled.
+    const enableLogging = options?.logger?.enable ?? true;
+    if (enableLogging) {
+      const loggerLevel = options?.logger?.level || 'WARN';
+      this._logger = options?.logger?.custom || new ShieldbowLogger(loggerLevel);
+    }
+
+    // Update the client's basic configuration.
+    if (version === undefined || language === undefined) {
+      this.logger?.trace('Fetching latest version and locale from the API.');
+      const response = await axios
+        .get(region ? `https://ddragon.leagueoflegends.com/realms/${region}.json` : this._versions)
+        .catch(() => {});
+      if (response?.status !== 200)
+        throw new Error('Unable to fetch data dragon version. Please confirm the region exists.');
+      else {
+        const result = <string[] | { v: string; l: Locales }>response.data;
+        if (Array.isArray(result)) {
+          this._version = version !== undefined ? version : result[0];
+          this._patch = this._version.match(patchRegex)!.shift()!;
+          this._locale = 'en_US';
+        } else {
+          this._version = version !== undefined ? version : result.v;
+          this._locale = language !== undefined ? language : result.l;
+          this._patch = this._version.match(patchRegex)!.shift()!;
+        }
+      }
+    }
+
+    this._api = new RateLimiter(this, options?.ratelimiter ?? {}, this._apiKey);
+
+    // Set the initialized flag to true.
+    this._initialized = true;
+
+    // If no options are provided, set the defaults for cache, storage and prefetching.
+    if (typeof options === 'undefined')
+      options = { fetch: false, cache: true, storage: { enable: { api: false, dragon: true } } };
+
+    // Parse the caching configuration and set up the cache.
+    this.logger?.trace('Parsing caching configuration.');
+    if (typeof options.cache === 'undefined') options.cache = true;
+    if (typeof options.cache === 'boolean') options.cache = { enable: options.cache };
+    if (typeof options.cache.enable === 'boolean')
+      options.cache.enable = { api: options.cache.enable, dragon: options.cache.enable };
+
+    this._cacheEnabled = options.cache.enable!;
+    this._cache = options.cache.custom ? options.cache.custom : new MemoryCache();
+
+    // Parse the storage configuration and set up the storage.
+    this.logger?.trace('Parsing storage configuration.');
+    if (typeof options.storage === 'undefined') options.storage = { enable: { api: false, dragon: true } };
+    if (typeof options.storage === 'boolean') options.storage = { enable: options.storage };
+    if (typeof options.storage.enable === 'boolean')
+      options.storage.enable = { api: options.storage.enable, dragon: options.storage.enable };
+
+    this._storageEnabled = options.storage.enable!;
+    const storageRoot = options?.storage?.root || 'data';
+    this._storage = options.storage.custom ? options.storage.custom : new LocalStorage(this, storageRoot);
+
+    // Get the game constants from data dragon (this is static data, so it's always fetched).
+    this.logger?.trace('Fetching seasons static data from DDragon.');
+    const seasonsResponse = await axios
+      .get('https://static.developer.riotgames.com/docs/lol/seasons.json')
+      .catch(() => {});
+    this.logger?.trace('Fetching queues static data from DDragon.');
+    const queuesResponse = await axios
+      .get('https://static.developer.riotgames.com/docs/lol/queues.json')
+      .catch(() => {});
+    this.logger?.trace('Fetching maps static data from DDragon.');
+    const mapsResponse = await axios.get('https://static.developer.riotgames.com/docs/lol/maps.json').catch(() => {});
+    this.logger?.trace('Fetching game modes static data from DDragon.');
+    const gameModesResponse = await axios
+      .get('https://static.developer.riotgames.com/docs/lol/gameModes.json')
+      .catch(() => {});
+    this.logger?.trace('Fetching game types static data from DDragon.');
+    const gameTypesResponse = await axios
+      .get('https://static.developer.riotgames.com/docs/lol/gameTypes.json')
+      .catch(() => {});
+
+    if (seasonsResponse?.status !== 200) throw new Error('Unable to fetch seasons static data from data dragon.');
+    if (queuesResponse?.status !== 200) throw new Error('Unable to fetch queues static data from data dragon.');
+    if (mapsResponse?.status !== 200) throw new Error('Unable to fetch maps static data from data dragon.');
+    if (gameModesResponse?.status !== 200) throw new Error('Unable to fetch game modes static data from data dragon.');
+    if (gameTypesResponse?.status !== 200) throw new Error('Unable to fetch game types static data from data dragon.');
+
+    this.logger?.trace('Parsing fetched static data into defined interfaces.');
+    this._seasons = <Season[]>seasonsResponse.data;
+    this._queues = <Queue[]>queuesResponse.data.map((q: Queue) => ({
+      ...q,
+      notes: q.notes ?? undefined
+    }));
+    this._maps = <GameMap[]>mapsResponse.data.map((m: { mapId: number; mapName: string; notes: string }) => ({
+      ...m,
+      image: this.cdnBase + this.version + `/img/map/map${m.mapId}.png`
+    }));
+    this._gameModes = <GameMode[]>gameModesResponse.data;
+    this._gameTypes = <GameType[]>gameTypesResponse.data;
+
+    // Prefetch the data and cache it for faster data retrieval.
+    this.logger?.trace('Prefetch specified data from DDragon.');
+    if (typeof options?.fetch === 'boolean')
+      options.fetch = {
+        champions: options.fetch,
+        items: options.fetch,
+        runes: options.fetch,
+        summonerSpells: options.fetch
+      };
+    if (options?.fetch?.champions ?? false) await this.champions.fetchAll();
+    if (options?.fetch?.items ?? false) await this.items.fetch('1001');
+    if (options?.fetch?.runes ?? false) await this.runes.fetch('Domination');
+    if (options?.fetch?.summonerSpells ?? false) await this.summonerSpells.fetch('SummonerFlash');
   }
 
   /**
@@ -377,10 +537,10 @@ export class Client {
    */
   async updateLocale(newLocale: Locales, refetch: boolean = true) {
     this._ensureInitialized();
-    this.logger.trace('Assigning new locale.');
+    this.logger?.trace('Assigning new locale.');
     this._locale = newLocale;
     if (refetch) {
-      this.logger.trace('Re-fetching data from DDragon.');
+      this.logger?.trace('Re-fetching data from DDragon.');
       await this.champions.fetchAll();
       await this.items.fetch('1001');
       await this.runes.fetch('Domination');
@@ -401,11 +561,11 @@ export class Client {
    */
   async updatePatch(patch: string, refetch: boolean = true) {
     this._ensureInitialized();
-    this.logger.trace('Update patch and DDragon version.');
+    this.logger?.trace('Update patch and DDragon version.');
     this._patch = patch;
     this._version = patch + '.1';
     if (refetch) {
-      this.logger.trace('Re-fetching data from DDragon.');
+      this.logger?.trace('Re-fetching data from DDragon.');
       await this.champions.fetchAll();
       await this.items.fetch('1001');
       await this.runes.fetch('Domination');
@@ -414,75 +574,9 @@ export class Client {
   }
 
   /**
-   * The current Data Dragon CDN version.
+   * Ensure that client was initialized
    */
-  get version() {
-    this._ensureInitialized();
-    return this._version;
-  }
-
-  /**
-   * The patch of the game currently in use.
-   *
-   * Must be above 5.1 for proper functionality.
-   */
-  get patch() {
-    this._ensureInitialized();
-    return this._patch;
-  }
-
-  /**
-   * Is this client initialized.
-   */
-  get initialized() {
-    return this._initialized;
-  }
-
-  /**
-   * The locale in which all the data is going to be fetched in.
-   */
-  get locale() {
-    this._ensureInitialized();
-    return this._locale;
-  }
-
-  /**
-   * An array of all seasons and their respective IDs.
-   */
-  get seasons() {
-    this._ensureInitialized();
-    return this._seasons;
-  }
-
-  /**
-   * An array of all queue types and their respective data.
-   */
-  get queues() {
-    this._ensureInitialized();
-    return this._queues;
-  }
-
-  /**
-   * An array of all maps and their respective data.
-   */
-  get maps() {
-    this._ensureInitialized();
-    return this._maps;
-  }
-
-  /**
-   * An array of all game modes and their respective data.
-   */
-  get gameModes() {
-    this._ensureInitialized();
-    return this._gameModes;
-  }
-
-  /**
-   * An array of all game types and their respective data.
-   */
-  get gameTypes() {
-    this._ensureInitialized();
-    return this._gameTypes;
+  private _ensureInitialized(): void {
+    if (!this._initialized) throw new Error('Please initialize the client first.');
   }
 }

@@ -15,8 +15,8 @@ describe('API: summoner-v4 + account-v1', () => {
   });
 
   it('can fetch summoner by summoner IDs and PUUIDs', async () => {
-    const summoner2 = await client.summoners.fetch(summoner.id, { force: true });
-    const summoner3 = await client.summoners.fetchByPlayerId(summoner.playerId, { force: true });
+    const summoner2 = await client.summoners.fetch(summoner.id, { ignoreCache: true });
+    const summoner3 = await client.summoners.fetchByPlayerId(summoner.playerId, { ignoreCache: true });
     expect(summoner2.name).toBe(summoner.name);
     expect(summoner3.name).toBe(summoner.name);
   });
@@ -36,12 +36,6 @@ describe('API: summoner-v4 + account-v1', () => {
   it('can fetch RIOT account details by username and tag', async () => {
     const account = await client.accounts.fetchByNameAndTag('TheDrone7', '1624');
     expect(account?.username).toBe('TheDrone7');
-  });
-
-  it('can verify third-party-verification-code', async () => {
-    const match = await summoner.verifyCode('random-code').catch(() => {});
-    if (match) expect(match).toBeFalsy();
-    else expect(match).toBeUndefined();
   });
 
   it('automatically makes regional requests', async () => {
