@@ -1,4 +1,7 @@
 export default defineNuxtConfig({
+  app: {
+    baseURL: '/shieldbow/'
+  },
   extends: '@nuxt-themes/docus',
   css: [
     '@fontsource/quicksand',
@@ -14,6 +17,9 @@ export default defineNuxtConfig({
           indexName: 'shieldbow'
         }
       }
-    }
+    },
+    app: {
+      baseURL: '/shieldbow/'
+    },
   }
 })
