@@ -2,7 +2,8 @@ export default defineNuxtConfig({
   extends: '@nuxt-themes/docus',
   css: [
     '@fontsource/quicksand',
-    '@fontsource/fira-code'
+    '@fontsource/fira-code',
+    '@/assets/overwrites.css'
   ],
   runtimeConfig: {
     public: {
