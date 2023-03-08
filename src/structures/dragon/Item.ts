@@ -115,6 +115,7 @@ export class Item {
    * @param data - The raw item data from data dragon.
    */
   constructor(client: Client, id: string, data: ItemData) {
+    client.logger?.trace(`Parsing item data (id: ${id})`);
     this.client = client;
     this.id = id;
     this.name = data.name;

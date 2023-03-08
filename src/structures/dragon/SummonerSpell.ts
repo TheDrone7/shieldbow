@@ -65,6 +65,7 @@ export class SummonerSpell {
    * @param data - The raw summoner spell data from the API.
    */
   constructor(client: Client, data: SummonerSpellData) {
+    client.logger?.trace(`Parsing summoner spell data (id: ${data.id})`);
     this.id = data.id;
     this.key = parseInt(data.key);
     this.name = data.name;

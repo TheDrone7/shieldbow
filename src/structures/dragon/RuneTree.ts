@@ -36,6 +36,7 @@ export class RuneTree {
    * @param data - The raw rune tree data from data dragon.
    */
   constructor(client: Client, data: RuneTreeData) {
+    client.logger?.trace(`Parsing rune tree data (id: ${data.id})`);
     this.id = data.id;
     this.key = data.key;
     this.icon = client.cdnBase + 'img/' + data.icon;

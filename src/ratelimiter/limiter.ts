@@ -132,7 +132,6 @@ export class RateLimiter {
     method: string
   ) {
     const limits = parseHeaders(headers);
-    this.client?.logger?.debug(`Raw headers:`, headers);
     this.client?.logger?.debug(`Parsed limits (from headers):`, limits);
     const { app: appUsage, method: methodUsage } = limits.usage;
     if (limits.app.length > 0) this.appLimit = limits.app;

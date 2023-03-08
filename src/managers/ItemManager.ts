@@ -118,7 +118,7 @@ export class ItemManager implements BaseManager<Item> {
       // This needs to be slightly modified to work with the new storage system.
       const data = this.client.storage.fetch<{ data: { [id: string]: ItemData } }>(storagePath, 'items');
       const result = data instanceof Promise ? await data.catch(() => undefined) : data;
-      if (result) return result;
+      if (result) return result.data;
     }
 
     try {

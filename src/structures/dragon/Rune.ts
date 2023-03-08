@@ -30,6 +30,7 @@ export class Rune {
    * @param data - The raw rune data from data dragon.
    */
   constructor(client: Client, data: RuneData) {
+    client.logger?.trace(`Parsing rune data (id: ${data.id})`);
     this.id = data.id;
     this.key = data.key;
     this.name = data.name;

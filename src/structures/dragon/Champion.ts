@@ -132,6 +132,7 @@ export class Champion {
    * @param meraki - The raw champion data from meraki analytics
    */
   constructor(client: Client, data: ChampionData, damage: SpellDamageData, meraki: MerakiChampion) {
+    client.logger?.trace(`Parsing champion data (id: ${data.id})`);
     this.name = data.name;
     this.id = data.id;
     this.key = parseInt(data.key);
