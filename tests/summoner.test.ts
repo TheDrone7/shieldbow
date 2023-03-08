@@ -15,26 +15,45 @@ describe('API: summoner-v4 + account-v1', () => {
   });
 
   it('can fetch summoner by summoner IDs and PUUIDs', async () => {
-    const summoner2 = await client.summoners.fetch(summoner.id, { ignoreCache: true });
-    const summoner3 = await client.summoners.fetchByPlayerId(summoner.playerId, { ignoreCache: true });
+    const summoner2 = await client.summoners.fetch(summoner.id, { ...global.fetchOpts, ignoreCache: true });
+    const summoner3 = await client.summoners.fetchByPlayerId(summoner.playerId, {
+      ...global.fetchOpts,
+      ignoreCache: true
+    });
     expect(summoner2.name).toBe(summoner.name);
     expect(summoner3.name).toBe(summoner.name);
   });
 
   it('can cache summoners', async () => {
-    const cachedSummoner2 = await client.summoners.fetch(summoner.id);
-    const cachedSummoner3 = await client.summoners.fetchByPlayerId(summoner.playerId);
+    const cachedSummoner2 = await client.summoners.fetch(summoner.id, { ignoreCache: false });
+    const cachedSummoner3 = await client.summoners.fetchByPlayerId(summoner.playerId, { ignoreCache: false });
     expect(cachedSummoner2.name).toBe(summoner.name);
     expect(cachedSummoner3.name).toBe(summoner.name);
   });
 
   it('can fetch RIOT account details for a summoner', async () => {
-    const account = await summoner.fetchAccount().catch(console.error);
+    const account = await summoner.fetchAccount(global.fetchOpts).catch(console.error);
     expect(account?.username).toBe('TheDrone7');
   });
 
   it('can fetch RIOT account details by username and tag', async () => {
-    const account = await client.accounts.fetchByNameAndTag('TheDrone7', '1624');
+    const account = await client.accounts.fetchByNameAndTag('TheDrone7', '1624', {
+      ignoreCache: true,
+      ignoreStorage: true
+    });
+    expect(account?.username).toBe('TheDrone7');
+  });
+
+  it('can fetch stored RIOT account details by username and tag', async () => {
+    const account = await client.accounts.fetchByNameAndTag('TheDrone7', '1624', {
+      ignoreCache: true,
+      ignoreStorage: false
+    });
+    expect(account?.username).toBe('TheDrone7');
+  });
+
+  it('can fetch cached RIOT account details by username and tag', async () => {
+    const account = await client.accounts.fetchByNameAndTag('TheDrone7', '1624', { ignoreCache: false });
     expect(account?.username).toBe('TheDrone7');
   });
 

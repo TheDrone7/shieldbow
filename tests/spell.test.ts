@@ -7,11 +7,24 @@ describe('DRAGON: summoner spells', () => {
 
   beforeAll(async () => {
     await client.initialize(global.clientConfig);
-    flash = await client.summonerSpells.fetch('SummonerFlash');
+    flash = await client.summonerSpells.fetch('SummonerFlash', {
+      ignoreCache: true,
+      cache: true,
+      ignoreStorage: true,
+      store: true
+    });
   });
 
   it('can fetch summoner spells by ID', () => {
     expect(flash.name).toBe('Flash');
+  });
+
+  it('can fetch summoner spells from storage', async () => {
+    const stored = await client.summonerSpells.fetch('SummonerFlash', {
+      ignoreCache: true,
+      ignoreStorage: false
+    });
+    expect(stored.name).toEqual(flash.name);
   });
 
   it('can fetch summoner spells by name', async () => {

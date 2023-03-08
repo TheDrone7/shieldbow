@@ -2,7 +2,10 @@ import { config } from 'dotenv';
 
 global.clientConfig = {
   cache: true,
-  storage: false,
+  storage: {
+    enable: true,
+    root: 'dev/data'
+  },
   region: 'na',
   logger: {
     enable: true,
@@ -16,6 +19,13 @@ global.clientConfig = {
       retryDelay: 5000
     }
   }
+};
+
+global.fetchOpts = {
+  ignoreCache: false,
+  ignoreStorage: true,
+  cache: true,
+  store: true
 };
 
 config();

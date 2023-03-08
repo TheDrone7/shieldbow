@@ -8,8 +8,33 @@ describe('DRAGON: runes', () => {
 
   beforeAll(async () => {
     await client.initialize(global.clientConfig);
-    domination = await client.runes.fetch('Domination');
-    electrocute = await client.runes.fetchRune('Electrocute');
+    domination = await client.runes.fetch('Domination', {
+      ignoreCache: true,
+      cache: true,
+      ignoreStorage: true,
+      store: true
+    });
+    electrocute = await client.runes.fetchRune('Electrocute', {
+      ignoreCache: true,
+      cache: true,
+      ignoreStorage: true,
+      store: true
+    });
+  });
+
+  it('can fetch runes and rune trees by ID', () => {
+    expect(domination.name).toBe('Domination');
+    expect(electrocute.name).toBe('Electrocute');
+  });
+
+  it('can fetch runes and rune trees by ID from storage', async () => {
+    const storedRunes = await client.runes.fetchAll({
+      ignoreCache: true,
+      ignoreStorage: false
+    });
+    expect(storedRunes.size).toBe(5);
+    const storedDomination = storedRunes.get('Domination')!;
+    expect(storedDomination.key).toBe(domination.key);
   });
 
   it('can fetch runes and rune trees by ID', () => {

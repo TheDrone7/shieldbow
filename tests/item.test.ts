@@ -7,11 +7,27 @@ describe('DRAGON: items', () => {
 
   beforeAll(async () => {
     await client.initialize(global.clientConfig);
-    boots = await client.items.fetch('1001');
+    boots = await client.items.fetch('1001', { ignoreCache: true, cache: true, ignoreStorage: true, store: true });
   });
 
   it('can fetch items by ID', () => {
     expect(boots.name).toBe('Boots');
+  });
+
+  it('can fetch items by ID from cache', async () => {
+    const cached = await client.items.fetch('1001', {
+      ignoreCache: false,
+      ignoreStorage: false
+    });
+    expect(cached.name).toBe(boots.name);
+  });
+
+  it('can fetch items by ID from storage', async () => {
+    const stored = await client.items.fetch('1001', {
+      ignoreCache: true,
+      ignoreStorage: false
+    });
+    expect(stored.name).toBe(boots.name);
   });
 
   it('can fetch items by name', async () => {
