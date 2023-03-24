@@ -3,7 +3,7 @@ export default defineAppConfig({
     title: 'Shieldbow',
     description: 'A powerful, flexible and easy to use API wrapper for Riot Games\' League of Legends API.',
     image: '/Shieldbow.png',
-    url: 'https://thedrone7.github.io/shieldbow/',
+    url: 'https://thedrone7.github.io/',
     socials: {
       npm: {
         label: 'NPM',
