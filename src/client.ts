@@ -423,6 +423,9 @@ export class Client {
       this._logger = options?.logger?.custom || new ShieldbowLogger(loggerLevel);
     }
 
+    this.logger?.debug('Initializing client... logging enabled.');
+    this.logger?.debug('Order: version, locale, rate limiter, cache, storage, static data.');
+
     // Update the client's basic configuration.
     if (version === undefined || language === undefined) {
       this.logger?.trace('Fetching latest version and locale from the API.');
@@ -434,10 +437,12 @@ export class Client {
       else {
         const result = <string[] | { v: string; l: Locales }>response.data;
         if (Array.isArray(result)) {
+          this.logger?.trace(`Using version ${version ?? result[0]} and locale en_US.`);
           this._version = version !== undefined ? version : result[0];
           this._patch = this._version.match(patchRegex)!.shift()!;
           this._locale = 'en_US';
         } else {
+          this.logger?.trace(`Using version ${version ?? result.v} and locale ${language ?? result.l}.`);
           this._version = version !== undefined ? version : result.v;
           this._locale = language !== undefined ? language : result.l;
           this._patch = this._version.match(patchRegex)!.shift()!;
@@ -445,6 +450,7 @@ export class Client {
       }
     }
 
+    this.logger?.trace('Initializing the API rate limiter.');
     this._api = new RateLimiter(this, options?.ratelimiter ?? {}, this._apiKey);
 
     // Set the initialized flag to true.
@@ -513,9 +519,10 @@ export class Client {
     }));
     this._gameModes = <GameMode[]>gameModesResponse.data;
     this._gameTypes = <GameType[]>gameTypesResponse.data;
+    this.logger?.debug('Client initialized, now prefetching.');
 
     // Prefetch the data and cache it for faster data retrieval.
-    this.logger?.trace('Prefetch specified data from DDragon.');
+    this.logger?.trace('Prefetch specified data from DDragon.', options?.fetch);
     if (typeof options?.fetch === 'boolean')
       options.fetch = {
         champions: options.fetch,
@@ -537,10 +544,10 @@ export class Client {
    */
   async updateLocale(newLocale: Locales, refetch: boolean = true) {
     this._ensureInitialized();
-    this.logger?.trace('Assigning new locale.');
+    this.logger?.debug('Assigning new locale.');
     this._locale = newLocale;
     if (refetch) {
-      this.logger?.trace('Re-fetching data from DDragon.');
+      this.logger?.debug('Re-fetching data from DDragon.');
       await this.champions.fetchAll();
       await this.items.fetch('1001');
       await this.runes.fetch('Domination');
@@ -561,11 +568,11 @@ export class Client {
    */
   async updatePatch(patch: string, refetch: boolean = true) {
     this._ensureInitialized();
-    this.logger?.trace('Update patch and DDragon version.');
+    this.logger?.debug('Update patch and DDragon version.');
     this._patch = patch;
     this._version = patch + '.1';
     if (refetch) {
-      this.logger?.trace('Re-fetching data from DDragon.');
+      this.logger?.debug('Re-fetching data from DDragon.');
       await this.champions.fetchAll();
       await this.items.fetch('1001');
       await this.runes.fetch('Domination');

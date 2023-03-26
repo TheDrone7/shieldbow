@@ -32,14 +32,16 @@ export class AccountManager implements BaseManager<Account> {
     const opts = parseFetchOptions(this.client, 'account', options);
     const { ignoreCache, ignoreStorage, cache, store } = opts;
     const region = options?.region ?? this.client.region;
-    this.client.logger?.trace(`Fetching account data for ID: ${id} with options: `, opts);
+    this.client.logger?.debug(`Fetching account data for ID: ${id} with options: `, opts);
     try {
       if (!ignoreCache) {
+        this.client.logger?.trace(`Checking cache for account with ID: ${id}`);
         const exists = await this.client.cache.has(`account:${id}`);
         if (exists) return this.client.cache.get<Account>(`account:${id}`);
       }
 
       if (!ignoreStorage) {
+        this.client.logger?.trace(`Checking storage for account with ID: ${id}`);
         const storage = this.client.storage.fetch<AccountData>('account', id);
         const stored = storage instanceof Promise ? await storage.catch(() => undefined) : storage;
         if (stored) {
@@ -49,6 +51,7 @@ export class AccountManager implements BaseManager<Account> {
         }
       }
 
+      this.client.logger?.trace(`Fetching account from API with ID: ${id}`);
       const response = await this.client.api.request('/riot/account/v1/accounts/by-puuid/' + id, {
         region,
         regional: true,
@@ -56,8 +59,11 @@ export class AccountManager implements BaseManager<Account> {
         method: 'getByPuuid',
         params: 'PUUID: ' + id
       });
+
+      this.client.logger?.trace(`Account found, creating new Account instance.`);
       const accountData = <AccountData>response.data;
       const account = new Account(accountData);
+      this.client.logger?.trace(`Caching, storing and returning account (according to options).`);
       if (cache) await this.client.cache.set(`account:${id}`, account);
       if (store) await this.client.storage.save(accountData, 'account', account.playerId);
       return account;
@@ -76,14 +82,16 @@ export class AccountManager implements BaseManager<Account> {
   async fetchByNameAndTag(name: string, tag: string, options?: FetchOptions) {
     const opts = parseFetchOptions(this.client, 'account', options);
     const { ignoreCache, ignoreStorage, cache, store, region } = opts;
-    this.client.logger?.trace(`Fetching account for name#tag: ${name}#${tag} with options: `, opts);
+    this.client.logger?.debug(`Fetching account for name#tag: ${name}#${tag} with options: `, opts);
     try {
       if (!ignoreCache) {
+        this.client.logger?.trace(`Checking cache for account with name#tag: ${name}#${tag}`);
         const cached = await this.client.cache.find<Account>((a) => a.username === name && a.userTag === tag);
         if (cached) return cached;
       }
 
       if (!ignoreStorage) {
+        this.client.logger?.trace(`Checking storage for account with name#tag: ${name}#${tag}`);
         const stored = await this.client.storage.search<AccountData>('account', { gameName: name, tagLine: tag });
         if (stored.length > 0) {
           const account = new Account(stored[0]);
@@ -92,6 +100,7 @@ export class AccountManager implements BaseManager<Account> {
         }
       }
 
+      this.client.logger?.trace(`Fetching account from API with name#tag: ${name}#${tag}`);
       const accountResponse = await this.client.api.request(
         '/riot/account/v1/accounts/by-riot-id/' + encodeURIComponent(name) + '/' + tag,
         {
@@ -102,8 +111,12 @@ export class AccountManager implements BaseManager<Account> {
           params: 'NAME: ' + name + ', TAG: ' + tag
         }
       );
+
+      this.client.logger?.trace(`Account found, creating new Account instance.`);
       const accountData = <AccountData>accountResponse.data;
       const account = new Account(accountData);
+
+      this.client.logger?.trace(`Caching, storing and returning account (according to options).`);
       if (cache) await this.client.cache.set(`account:${account.playerId}`, account);
       if (store) await this.client.storage.save(accountData, 'account', account.playerId);
       return account;
