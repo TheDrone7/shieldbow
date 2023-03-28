@@ -82,7 +82,7 @@ export class Client {
     this._clash = new ClashManager(this);
     this._challenges = new ChallengeManager(this);
 
-    this._http = axios.create({ baseURL: this._cdnBase });
+    this._http = axios.create({ baseURL: this._cdnBase, validateStatus: () => true });
     this._api = new RateLimiter(this, {}, apiKey);
   }
 

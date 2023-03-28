@@ -13,7 +13,7 @@ describe('DRAGON: champions', () => {
       kayn = await client.champions.fetch('Kayn', global.fetchOpts);
       rotations = await client.champions.fetchRotations(global.fetchOpts);
     } catch (e) {
-      client.logger?.error(e);
+      client.logger?.error(`${e}`);
     }
   });
 

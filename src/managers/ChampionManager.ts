@@ -293,8 +293,18 @@ export class ChampionManager implements BaseManager<Champion> {
       const response = await this.client.http.get(
         `https://cdn.merakianalytics.com/riot/lol/resources/latest/en-US/champions/${name}.json`
       );
-      if (response.status !== 200) return Promise.reject("Unable to fetch the champion's pricing.");
-      else {
+      if (response.status !== 200) {
+        // Try fetching from the complete JSON file (Milio's introduction led to this)
+        const response = await this.client.http.get(
+          `https://cdn.merakianalytics.com/riot/lol/resources/latest/en-US/champions.json`
+        );
+        if (response.status !== 200) return Promise.reject("Unable to fetch the champion's pricing.");
+        else {
+          const data = response.data as { [key: string]: MerakiChampion };
+          if (options.store) await this.client.storage.save(data[name], storagePath, name);
+          return data[name];
+        }
+      } else {
         if (options.store) await this.client.storage.save(response.data, storagePath, name);
         return response.data;
       }

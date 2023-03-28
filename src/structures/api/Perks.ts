@@ -48,7 +48,7 @@ export class PerkStyle {
     }
   ) {
     this.tree = runeTrees.find((t) => t.id === data.style)!;
-    const runes = this.tree.slots.map((r) => [...r.values()]).flat();
+    const runes = runeTrees.map((t) => t.slots.map((r) => [...r.values()])).flat(2);
     this.selected = data.selections.map((s) => runes.find((r) => r.id === s.perk)!);
   }
 }

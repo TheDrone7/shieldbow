@@ -1,4 +1,4 @@
-import { Match, Client, MatchTimeline } from '../dist';
+import { Match, Client, MatchTimeline, RuneTree } from '../dist';
 
 jest.setTimeout(300000);
 
@@ -23,6 +23,13 @@ describe('API: match-v5', () => {
     } catch (e: any) {
       if (e instanceof Error) expect(e.message).toMatch('malformed');
     }
+  });
+
+  it('fetches match with malformed perks', async () => {
+    const match = await client.matches.fetch('EUW1_6316245747', { region: 'euw' });
+    const participant = match.teams.get('blue')!.participants[0];
+    expect(participant.perks.primaryStyle.tree).toBeInstanceOf(RuneTree);
+    expect(participant.perks.primaryStyle.selected.length).toBe(4);
   });
 
   it('can fetch match list', () => {
