@@ -36,7 +36,13 @@ const builtins = {
 };
 
 const pathToApi = join(__dirname, '.nuxt', '.temp', 'api-reference', 'shieldbow.api.json');
-const pathToDocs = join(__dirname, 'content', 'api');
+const pathToDocs = join(__dirname, 'content', '2.api');
+const pathToClasses = join(pathToDocs, '1.classes');
+const pathToInterfaces = join(pathToDocs, '2.interfaces');
+const pathToFunctions = join(pathToDocs, '3.functions');
+const pathToTypes = join(pathToDocs, '4.types');
+const pathToVariables = join(pathToDocs, '5.variables');
+const pathsToDocs = [pathToClasses, pathToInterfaces, pathToFunctions, pathToTypes, pathToVariables];
 
 const apiModel = new ApiModel();
 apiModel.loadPackage(pathToApi);
@@ -91,8 +97,12 @@ const parseTypeString = (type: string) => {
 // Delete the already existing docs.
 console.info('Deleting the existing docs...');
 if (existsSync(pathToDocs)) {
-  const files = readdirSync(pathToDocs);
-  files.forEach((file) => file.includes('.md') ? unlinkSync(join(pathToDocs, file)) : null);
+  for (const p of pathsToDocs) {
+    if (existsSync(p)) {
+      const files = readdirSync(p);
+      files.forEach((file) => file.includes('.md') ? unlinkSync(join(p, file)) : null);
+    } else mkdirSync(p);
+  }
 } else mkdirSync(pathToDocs);
 
 let index = `# API Reference\n\n`;
@@ -188,7 +198,7 @@ for (const cls of classes) {
       doc += '---\n\n';
     }
   }
-  writeFileSync(join(pathToDocs, `${cName}.md`), doc);
+  writeFileSync(join(pathToClasses, `${cName}.md`), doc);
 }
 
 console.info('Processing the functions...');
@@ -225,7 +235,7 @@ for (const func of functions) {
     doc += `**Return type :** ${returnType}\n\n`;
     doc += '---\n\n';
   }
-  writeFileSync(join(pathToDocs, `${fName}.md`), doc);
+  writeFileSync(join(pathToFunctions, `${fName}.md`), doc);
 }
 
 console.info('Processing the interfaces...');
@@ -296,7 +306,7 @@ for (const ifc of interfaces) {
       doc += '---\n\n';
     }
   }
-  writeFileSync(join(pathToDocs, `${iName}.md`), doc);
+  writeFileSync(join(pathToInterfaces, `${iName}.md`), doc);
 }
 
 console.info('Processing the variables...');
@@ -324,7 +334,7 @@ for (const v of variables) {
     doc += references.map((r) => parseTypeString(r.text)).join(', ');
     doc += '\n\n';
   }
-  writeFileSync(join(pathToDocs, `${vName}.md`), doc);
+  writeFileSync(join(pathToVariables, `${vName}.md`), doc);
 }
 
 console.info('Processing the types...');
@@ -352,7 +362,7 @@ for (const t of types) {
     doc += references.map((r) => parseTypeString(r.text)).join(', ');
     doc += '\n\n';
   }
-  writeFileSync(join(pathToDocs, `${tName}.md`), doc);
+  writeFileSync(join(pathToTypes, `${tName}.md`), doc);
 }
 
 console.info('Writing the index...');

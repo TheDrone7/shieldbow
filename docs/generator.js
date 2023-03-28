@@ -21,7 +21,13 @@ var builtins = {
     Collection: 'https://discord.js.org/#/docs/collection/stable/class/Collection'
 };
 var pathToApi = (0, path_1.join)(__dirname, '.nuxt', '.temp', 'api-reference', 'shieldbow.api.json');
-var pathToDocs = (0, path_1.join)(__dirname, 'content', 'api');
+var pathToDocs = (0, path_1.join)(__dirname, 'content', '2.api');
+var pathToClasses = (0, path_1.join)(pathToDocs, '1.classes');
+var pathToInterfaces = (0, path_1.join)(pathToDocs, '2.interfaces');
+var pathToFunctions = (0, path_1.join)(pathToDocs, '3.functions');
+var pathToTypes = (0, path_1.join)(pathToDocs, '4.types');
+var pathToVariables = (0, path_1.join)(pathToDocs, '5.variables');
+var pathsToDocs = [pathToClasses, pathToInterfaces, pathToFunctions, pathToTypes, pathToVariables];
 var apiModel = new api_extractor_model_1.ApiModel();
 apiModel.loadPackage(pathToApi);
 var api = apiModel.packages[0].members[0];
@@ -84,8 +90,18 @@ var parseTypeString = function (type) {
 // Delete the already existing docs.
 console.info('Deleting the existing docs...');
 if ((0, fs_1.existsSync)(pathToDocs)) {
-    var files = (0, fs_1.readdirSync)(pathToDocs);
-    files.forEach(function (file) { return (0, fs_1.unlinkSync)((0, path_1.join)(pathToDocs, file)); });
+    var _loop_1 = function (p) {
+        if ((0, fs_1.existsSync)(p)) {
+            var files = (0, fs_1.readdirSync)(p);
+            files.forEach(function (file) { return file.includes('.md') ? (0, fs_1.unlinkSync)((0, path_1.join)(p, file)) : null; });
+        }
+        else
+            (0, fs_1.mkdirSync)(p);
+    };
+    for (var _i = 0, pathsToDocs_1 = pathsToDocs; _i < pathsToDocs_1.length; _i++) {
+        var p = pathsToDocs_1[_i];
+        _loop_1(p);
+    }
 }
 else
     (0, fs_1.mkdirSync)(pathToDocs);
@@ -95,7 +111,7 @@ console.info('Processing the classes...');
 index += "## Classes\n\n";
 index += '| Class | Description |\n';
 index += '| ----- | ----------- |\n';
-var _loop_1 = function (cls) {
+var _loop_2 = function (cls) {
     var cName = parseName(cls.displayName);
     var summary = cls.tsdocComment ? parseSummary(cls.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
     var deprecated = ((_a = cls.tsdocComment) === null || _a === void 0 ? void 0 : _a.deprecatedBlock) ? parseSummary(cls.tsdocComment.deprecatedBlock.content) : '';
@@ -105,7 +121,7 @@ var _loop_1 = function (cls) {
     doc += "# ".concat(cName, " class\n\n---\n\n");
     doc += "".concat(summary, "\n\n");
     if (deprecated.length)
-        doc += "::: warning \n\nThis is now **deprecated**. ".concat(deprecated, "\n\n:::\n\n");
+        doc += "::alert{type=\"warning\"} \n\nThis is now **deprecated**. ".concat(deprecated, "\n\n::\n\n");
     doc += "**Signature:**\n\n";
     doc += "```ts\n".concat(cls.excerpt.text, "\n```\n\n");
     if (cls.extendsType && cls.extendsType.excerpt && !cls.extendsType.excerpt.isEmpty)
@@ -141,8 +157,8 @@ var _loop_1 = function (cls) {
     var methods = cls.members.filter(function (member) { return member.kind === 'Method'; });
     if (properties.length) {
         doc += "### Properties\n\n";
-        for (var _p = 0, properties_1 = properties; _p < properties_1.length; _p++) {
-            var prop = properties_1[_p];
+        for (var _q = 0, properties_1 = properties; _q < properties_1.length; _q++) {
+            var prop = properties_1[_q];
             var summary_1 = prop.tsdocComment ? parseSummary(prop.tsdocComment.summarySection) : '';
             var deprecated_1 = ((_b = prop.tsdocComment) === null || _b === void 0 ? void 0 : _b.deprecatedBlock)
                 ? parseSummary(prop.tsdocComment.deprecatedBlock.content)
@@ -151,15 +167,15 @@ var _loop_1 = function (cls) {
             doc += '#### ' + prop.name + '\n\n';
             doc += "".concat(summary_1, "\n\n");
             if (deprecated_1.length)
-                doc += "::: warning \n\nThis is now **deprecated**. ".concat(deprecated_1, "\n\n:::\n\n");
+                doc += "::alert{type=\"warning\"} \n\nThis is now **deprecated**. ".concat(deprecated_1, "\n\n::\n\n");
             doc += "**Type**: ".concat(typeValue, "\n\n");
             doc += '---\n\n';
         }
     }
     if (methods.length) {
         doc += "### Methods\n\n";
-        for (var _q = 0, methods_1 = methods; _q < methods_1.length; _q++) {
-            var method = methods_1[_q];
+        for (var _r = 0, methods_1 = methods; _r < methods_1.length; _r++) {
+            var method = methods_1[_r];
             var summary_2 = method.tsdocComment ? parseSummary(method.tsdocComment.summarySection) : '';
             var deprecated_2 = ((_c = method.tsdocComment) === null || _c === void 0 ? void 0 : _c.deprecatedBlock)
                 ? parseSummary(method.tsdocComment.deprecatedBlock.content)
@@ -168,7 +184,7 @@ var _loop_1 = function (cls) {
             doc += "#### .".concat(method.displayName, " ()\n\n");
             doc += "".concat(summary_2, "\n\n");
             if (deprecated_2.length)
-                doc += "::: warning \n\nThis is now **deprecated**. ".concat(deprecated_2, "\n\n:::\n\n");
+                doc += "::alert{type=\"warning\"} \n\nThis is now **deprecated**. ".concat(deprecated_2, "\n\n::\n\n");
             doc += "**Signature:**\n\n";
             doc += "```ts\n".concat(method.excerpt.text, "\n```\n\n");
             if (method.parameters.length) {
@@ -184,17 +200,17 @@ var _loop_1 = function (cls) {
             doc += '---\n\n';
         }
     }
-    (0, fs_1.writeFileSync)((0, path_1.join)(pathToDocs, "".concat(cName, ".md")), doc);
+    (0, fs_1.writeFileSync)((0, path_1.join)(pathToClasses, "".concat(cName, ".md")), doc);
 };
-for (var _i = 0, classes_1 = classes; _i < classes_1.length; _i++) {
-    var cls = classes_1[_i];
-    _loop_1(cls);
+for (var _k = 0, classes_1 = classes; _k < classes_1.length; _k++) {
+    var cls = classes_1[_k];
+    _loop_2(cls);
 }
 console.info('Processing the functions...');
 index += '---\n\n## Functions\n\n';
 index += '| Function | Description |\n';
 index += '| -------- | ----------- |\n';
-var _loop_2 = function (func) {
+var _loop_3 = function (func) {
     var fName = parseName(func.displayName);
     var summary = func.tsdocComment ? parseSummary(func.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
     var deprecated = ((_d = func.tsdocComment) === null || _d === void 0 ? void 0 : _d.deprecatedBlock) ? parseSummary(func.tsdocComment.deprecatedBlock.content) : '';
@@ -205,7 +221,7 @@ var _loop_2 = function (func) {
     doc += "## ".concat(fName, "(").concat(func.parameters.map(function (p) { return p.name; }).join(', '), ") function\n\n");
     doc += "".concat(summary, "\n\n");
     if (deprecated.length)
-        doc += "::: warning \n\nThis is now **deprecated**. ".concat(deprecated, "\n\n:::\n\n");
+        doc += "::alert{type=\"warning\"} \n\nThis is now **deprecated**. ".concat(deprecated, "\n\n::\n\n");
     doc += "**Signature:**\n\n";
     doc += "```ts\n".concat(func.excerpt.text, "\n```\n\n");
     if (func.parameters.length) {
@@ -221,17 +237,17 @@ var _loop_2 = function (func) {
         doc += "**Return type :** ".concat(returnType, "\n\n");
         doc += '---\n\n';
     }
-    (0, fs_1.writeFileSync)((0, path_1.join)(pathToDocs, "".concat(fName, ".md")), doc);
+    (0, fs_1.writeFileSync)((0, path_1.join)(pathToFunctions, "".concat(fName, ".md")), doc);
 };
-for (var _k = 0, functions_1 = functions; _k < functions_1.length; _k++) {
-    var func = functions_1[_k];
-    _loop_2(func);
+for (var _l = 0, functions_1 = functions; _l < functions_1.length; _l++) {
+    var func = functions_1[_l];
+    _loop_3(func);
 }
 console.info('Processing the interfaces...');
 index += '---\n\n## Interfaces\n\n';
 index += '| Interface | Description |\n';
 index += '| --------- | ----------- |\n';
-var _loop_3 = function (ifc) {
+var _loop_4 = function (ifc) {
     var iName = parseName(ifc.displayName);
     var summary = ifc.tsdocComment ? parseSummary(ifc.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
     var deprecated = ((_e = ifc.tsdocComment) === null || _e === void 0 ? void 0 : _e.deprecatedBlock) ? parseSummary(ifc.tsdocComment.deprecatedBlock.content) : '';
@@ -241,7 +257,7 @@ var _loop_3 = function (ifc) {
     doc += "## ".concat(iName, " interface\n\n");
     doc += "".concat(summary, "\n\n");
     if (deprecated.length)
-        doc += "::: warning \n\nThis is now **deprecated**. ".concat(deprecated, "\n\n:::\n\n");
+        doc += "::alert{type=\"warning\"} \n\nThis is now **deprecated**. ".concat(deprecated, "\n\n::\n\n");
     doc += '**Signature:**\n\n';
     doc += "```ts\n".concat(ifc.excerpt.text, "\n```\n\n");
     var references = ifc.excerptTokens.filter(function (token) { return token.kind === 'Reference'; });
@@ -254,8 +270,8 @@ var _loop_3 = function (ifc) {
     var methods = ifc.members.filter(function (member) { return member.kind === 'MethodSignature'; });
     if (properties.length) {
         doc += "### Properties\n\n";
-        for (var _r = 0, properties_2 = properties; _r < properties_2.length; _r++) {
-            var prop = properties_2[_r];
+        for (var _s = 0, properties_2 = properties; _s < properties_2.length; _s++) {
+            var prop = properties_2[_s];
             var summary_3 = prop.tsdocComment ? parseSummary(prop.tsdocComment.summarySection) : '';
             var deprecated_3 = ((_f = prop.tsdocComment) === null || _f === void 0 ? void 0 : _f.deprecatedBlock)
                 ? parseSummary(prop.tsdocComment.deprecatedBlock.content)
@@ -264,15 +280,15 @@ var _loop_3 = function (ifc) {
             doc += '#### ' + prop.name + '\n\n';
             doc += "".concat(summary_3, "\n\n");
             if (deprecated_3.length)
-                doc += "::: warning \n\nThis is now **deprecated**. ".concat(deprecated_3, "\n\n:::\n\n");
+                doc += "::alert{type=\"warning\"} \n\nThis is now **deprecated**. ".concat(deprecated_3, "\n\n::\n\n");
             doc += "**Type**: ".concat(typeValue, "\n\n");
             doc += '---\n\n';
         }
     }
     if (methods.length) {
         doc += "### Methods\n\n";
-        for (var _s = 0, methods_2 = methods; _s < methods_2.length; _s++) {
-            var method = methods_2[_s];
+        for (var _t = 0, methods_2 = methods; _t < methods_2.length; _t++) {
+            var method = methods_2[_t];
             var summary_4 = method.tsdocComment ? parseSummary(method.tsdocComment.summarySection) : '';
             var deprecated_4 = ((_g = method.tsdocComment) === null || _g === void 0 ? void 0 : _g.deprecatedBlock)
                 ? parseSummary(method.tsdocComment.deprecatedBlock.content)
@@ -281,7 +297,7 @@ var _loop_3 = function (ifc) {
             doc += "#### .".concat(method.displayName, " ()\n\n");
             doc += "".concat(summary_4, "\n\n");
             if (deprecated_4.length)
-                doc += "::: warning \n\nThis is now **deprecated**. ".concat(deprecated_4, "\n\n:::\n\n");
+                doc += "::alert{type=\"warning\"} \n\nThis is now **deprecated**. ".concat(deprecated_4, "\n\n::\n\n");
             doc += "**Signature:**\n\n";
             doc += "```ts\n".concat(method.excerpt.text, "\n```\n\n");
             if (method.parameters.length) {
@@ -297,18 +313,18 @@ var _loop_3 = function (ifc) {
             doc += '---\n\n';
         }
     }
-    (0, fs_1.writeFileSync)((0, path_1.join)(pathToDocs, "".concat(iName, ".md")), doc);
+    (0, fs_1.writeFileSync)((0, path_1.join)(pathToInterfaces, "".concat(iName, ".md")), doc);
 };
-for (var _l = 0, interfaces_1 = interfaces; _l < interfaces_1.length; _l++) {
-    var ifc = interfaces_1[_l];
-    _loop_3(ifc);
+for (var _m = 0, interfaces_1 = interfaces; _m < interfaces_1.length; _m++) {
+    var ifc = interfaces_1[_m];
+    _loop_4(ifc);
 }
 console.info('Processing the variables...');
 index += '---\n\n## Variables\n\n';
 index += '| Variable | Description |\n';
 index += '| -------- | ----------- |\n';
-for (var _m = 0, variables_1 = variables; _m < variables_1.length; _m++) {
-    var v = variables_1[_m];
+for (var _o = 0, variables_1 = variables; _o < variables_1.length; _o++) {
+    var v = variables_1[_o];
     var vName = parseName(v.displayName);
     var summary = v.tsdocComment ? parseSummary(v.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
     var deprecated = ((_h = v.tsdocComment) === null || _h === void 0 ? void 0 : _h.deprecatedBlock) ? parseSummary(v.tsdocComment.deprecatedBlock.content) : '';
@@ -318,7 +334,7 @@ for (var _m = 0, variables_1 = variables; _m < variables_1.length; _m++) {
     doc += "## ".concat(vName, " variable\n\n");
     doc += "".concat(summary, "\n\n");
     if (deprecated.length)
-        doc += "::: warning \n\nThis is now **deprecated**. ".concat(deprecated, "\n\n:::\n\n");
+        doc += "::alert{type=\"warning\"} \n\nThis is now **deprecated**. ".concat(deprecated, "\n\n::\n\n");
     doc += '**Signature:**\n\n';
     doc += "```ts\n".concat(v.excerpt.text, "\n```\n\n");
     var references = v.excerptTokens.filter(function (token) { return token.kind === 'Reference'; });
@@ -327,14 +343,14 @@ for (var _m = 0, variables_1 = variables; _m < variables_1.length; _m++) {
         doc += references.map(function (r) { return parseTypeString(r.text); }).join(', ');
         doc += '\n\n';
     }
-    (0, fs_1.writeFileSync)((0, path_1.join)(pathToDocs, "".concat(vName, ".md")), doc);
+    (0, fs_1.writeFileSync)((0, path_1.join)(pathToVariables, "".concat(vName, ".md")), doc);
 }
 console.info('Processing the types...');
 index += '---\n\n## Type Aliases\n\n';
 index += '| Type Alias | Description |\n';
 index += '| ---------- | ----------- |\n';
-for (var _o = 0, types_1 = types; _o < types_1.length; _o++) {
-    var t = types_1[_o];
+for (var _p = 0, types_1 = types; _p < types_1.length; _p++) {
+    var t = types_1[_p];
     var tName = parseName(t.displayName);
     var summary = t.tsdocComment ? parseSummary(t.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
     var deprecated = ((_j = t.tsdocComment) === null || _j === void 0 ? void 0 : _j.deprecatedBlock) ? parseSummary(t.tsdocComment.deprecatedBlock.content) : '';
@@ -344,7 +360,7 @@ for (var _o = 0, types_1 = types; _o < types_1.length; _o++) {
     doc += "## ".concat(tName, " type\n\n");
     doc += "".concat(summary, "\n\n");
     if (deprecated.length)
-        doc += "::: warning \n\nThis is now **deprecated**. ".concat(deprecated, "\n\n:::\n\n");
+        doc += "::alert{type=\"warning\"} \n\nThis is now **deprecated**. ".concat(deprecated, "\n\n::\n\n");
     doc += '**Signature:**\n\n';
     doc += "```ts\n".concat(t.excerpt.text, "\n```\n\n");
     var references = t.excerptTokens.filter(function (token) { return token.kind === 'Reference'; });
@@ -353,7 +369,7 @@ for (var _o = 0, types_1 = types; _o < types_1.length; _o++) {
         doc += references.map(function (r) { return parseTypeString(r.text); }).join(', ');
         doc += '\n\n';
     }
-    (0, fs_1.writeFileSync)((0, path_1.join)(pathToDocs, "".concat(tName, ".md")), doc);
+    (0, fs_1.writeFileSync)((0, path_1.join)(pathToTypes, "".concat(tName, ".md")), doc);
 }
 console.info('Writing the index...');
 (0, fs_1.writeFileSync)((0, path_1.join)(pathToDocs, '0.index.md'), index);
