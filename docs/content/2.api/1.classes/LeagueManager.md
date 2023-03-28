@@ -17,7 +17,7 @@ export declare class LeagueManager implements BaseManager<Collection<QueueType, 
 
 Implements: BaseManager&lt;Collection&lt;QueueType, LeagueEntry&gt;&gt;
 
-**References:** [BaseManager](/api/basemanager), [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection), [QueueType](/api/queuetype), [LeagueEntry](/api/leagueentry)
+**References:** [BaseManager](/api/interfaces/basemanager), [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection), [QueueType](/api/types/queuetype), [LeagueEntry](/api/classes/leagueentry)
 
 ---
 
@@ -33,7 +33,7 @@ Constructs a new instance of the `LeagueManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) | The client this league manager belongs to. |
+| client | [Client](/api/classes/client) | The client this league manager belongs to. |
 ---
 
 ### Properties
@@ -44,7 +44,7 @@ The client this league manager belongs to.
 
 
 
-**Type**: [Client](/api/client)
+**Type**: [Client](/api/classes/client)
 
 ---
 
@@ -68,9 +68,9 @@ fetch(id: string, options?: FetchOptions): Promise<Collection<QueueType, LeagueE
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the summoner whose competitive info you want to find. |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetching options. |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetching options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [QueueType](/api/queuetype), [LeagueEntry](/api/leagueentry) \> \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [QueueType](/api/types/queuetype), [LeagueEntry](/api/classes/leagueentry) \> \>
 
 ---
 
@@ -92,9 +92,9 @@ fetchByLeagueId(leagueId: string, options?: FetchOptions): Promise<LeagueList>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | leagueId | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The League ID. |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetching options (exception: `force` defaults to true). |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetching options (exception: `force` defaults to true). |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [LeagueList](/api/leaguelist) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [LeagueList](/api/classes/leaguelist) \>
 
 ---
 
@@ -117,12 +117,12 @@ fetchByQueueAndTier(queue: QueueType, tier: TierType, division: DivisionType, op
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| queue | [QueueType](/api/queuetype) | The type of queue - RANKED_SOLO_5x5, RANKED_FLEX_SR, etc. |
-| tier | [TierType](/api/tiertype) | The tier of the entries - IRON to CHALLENGER. |
-| division | [DivisionType](/api/divisiontype) | The division of the entries - I, II, III, IV. |
-| options | [FetchOptions](/api/fetchoptions) & {         page: number;     } | The basic fetching options (and page number - defaults to 1). |
+| queue | [QueueType](/api/types/queuetype) | The type of queue - RANKED_SOLO_5x5, RANKED_FLEX_SR, etc. |
+| tier | [TierType](/api/types/tiertype) | The tier of the entries - IRON to CHALLENGER. |
+| division | [DivisionType](/api/types/divisiontype) | The division of the entries - I, II, III, IV. |
+| options | [FetchOptions](/api/interfaces/fetchoptions) & {         page: number;     } | The basic fetching options (and page number - defaults to 1). |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [LeagueEntry](/api/leagueentry) \> \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [LeagueEntry](/api/classes/leagueentry) \> \>
 
 ---
 

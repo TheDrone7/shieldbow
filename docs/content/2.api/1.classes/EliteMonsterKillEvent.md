@@ -17,7 +17,7 @@ export declare class EliteMonsterKillEvent extends TimelineEvent
 
 **Extends: TimelineEvent**
 
-**References:** [TimelineEvent](/api/timelineevent)
+**References:** [TimelineEvent](/api/classes/timelineevent)
 
 ---
 
@@ -33,7 +33,7 @@ Constructs a new instance of the `EliteMonsterKillEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [EliteMonsterKillEventData](/api/elitemonsterkilleventdata) | The raw data of the event. |
+| data | [EliteMonsterKillEventData](/api/interfaces/elitemonsterkilleventdata) | The raw data of the event. |
 ---
 
 ### Properties
@@ -110,7 +110,7 @@ The position at which the monster was killed.
 
 
 
-**Type**: [Position](/api/position)
+**Type**: [Position](/api/classes/position)
 
 ---
 

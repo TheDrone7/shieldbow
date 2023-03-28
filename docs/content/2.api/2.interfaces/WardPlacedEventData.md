@@ -13,7 +13,7 @@ The event data for the ward placed event.
 export interface WardPlacedEventData extends TimelineEventData 
 ```
 
-**References:** [TimelineEventData](/api/timelineeventdata)
+**References:** [TimelineEventData](/api/interfaces/timelineeventdata)
 
 ### Properties
 

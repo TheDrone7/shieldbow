@@ -17,7 +17,7 @@ export declare class ItemSoldEvent extends TimelineEvent
 
 **Extends: TimelineEvent**
 
-**References:** [TimelineEvent](/api/timelineevent)
+**References:** [TimelineEvent](/api/classes/timelineevent)
 
 ---
 
@@ -33,8 +33,8 @@ Constructs a new instance of the `ItemSoldEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [ItemSoldEventData](/api/itemsoldeventdata) | The raw data of the event. |
-| item | [Item](/api/item) | The item that was sold. |
+| data | [ItemSoldEventData](/api/interfaces/itemsoldeventdata) | The raw data of the event. |
+| item | [Item](/api/classes/item) | The item that was sold. |
 ---
 
 ### Properties
@@ -45,7 +45,7 @@ The item that was sold.
 
 
 
-**Type**: [Item](/api/item)
+**Type**: [Item](/api/classes/item)
 
 ---
 

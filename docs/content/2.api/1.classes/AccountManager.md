@@ -17,7 +17,7 @@ export declare class AccountManager implements BaseManager<Account>
 
 Implements: BaseManager&lt;Account&gt;
 
-**References:** [BaseManager](/api/basemanager), [Account](/api/account)
+**References:** [BaseManager](/api/interfaces/basemanager), [Account](/api/classes/account)
 
 ---
 
@@ -33,7 +33,7 @@ Constructs a new instance of the `AccountManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) | The client this account manager belongs to. |
+| client | [Client](/api/classes/client) | The client this account manager belongs to. |
 ---
 
 ### Properties
@@ -44,7 +44,7 @@ The client this account manager belongs to.
 
 
 
-**Type**: [Client](/api/client)
+**Type**: [Client](/api/classes/client)
 
 ---
 
@@ -68,9 +68,9 @@ fetch(id: string, options?: FetchOptions): Promise<Account>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The PUUID of the RIOT account. |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetching options. |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetching options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Account](/api/account) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Account](/api/classes/account) \>
 
 ---
 
@@ -93,9 +93,9 @@ fetchByNameAndTag(name: string, tag: string, options?: FetchOptions): Promise<Ac
 | --------- | ---- | ----------- |
 | name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The name of this RIOT account. |
 | tag | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The tag of this RIOT account. |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetching options. |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetching options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Account](/api/account) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Account](/api/classes/account) \>
 
 ---
 

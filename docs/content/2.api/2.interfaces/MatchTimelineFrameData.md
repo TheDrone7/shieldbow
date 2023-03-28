@@ -19,7 +19,7 @@ export interface MatchTimelineFrameData
 
 
 
-**Type**: [TimelineEventData](/api/timelineeventdata)[]
+**Type**: [TimelineEventData](/api/interfaces/timelineeventdata)[]
 
 ---
 

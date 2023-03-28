@@ -17,7 +17,7 @@ export declare class GameEndEvent extends TimelineEvent
 
 **Extends: TimelineEvent**
 
-**References:** [TimelineEvent](/api/timelineevent)
+**References:** [TimelineEvent](/api/classes/timelineevent)
 
 ---
 
@@ -33,7 +33,7 @@ Constructs a new instance of the `GameEndEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [GameEndEventData](/api/gameendeventdata) | The raw data of the event. |
+| data | [GameEndEventData](/api/interfaces/gameendeventdata) | The raw data of the event. |
 ---
 
 ### Properties

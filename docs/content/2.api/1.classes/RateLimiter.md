@@ -29,8 +29,8 @@ Constructs a new instance of the `RateLimiter` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) |  |
-| options | [RateLimiterOptions](/api/ratelimiteroptions) |  |
+| client | [Client](/api/classes/client) |  |
+| options | [RateLimiterOptions](/api/interfaces/ratelimiteroptions) |  |
 | apiKey | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  |
 ---
 
@@ -54,7 +54,7 @@ request(url: string, options: ApiRequestOptions): Promise<AxiosResponse>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | url | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The URL to send the request to. |
-| options | [ApiRequestOptions](/api/apirequestoptions) | The request options. |
+| options | [ApiRequestOptions](/api/interfaces/apirequestoptions) | The request options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< AxiosResponse \>
 

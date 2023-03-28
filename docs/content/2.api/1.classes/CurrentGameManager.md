@@ -17,7 +17,7 @@ export declare class CurrentGameManager implements BaseManager<CurrentGame>
 
 Implements: BaseManager&lt;CurrentGame&gt;
 
-**References:** [BaseManager](/api/basemanager), [CurrentGame](/api/currentgame)
+**References:** [BaseManager](/api/interfaces/basemanager), [CurrentGame](/api/classes/currentgame)
 
 ---
 
@@ -33,7 +33,7 @@ Constructs a new instance of the `CurrentGameManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) | The client this current game manager belongs to. |
+| client | [Client](/api/classes/client) | The client this current game manager belongs to. |
 ---
 
 ### Properties
@@ -44,7 +44,7 @@ The client this current game manager belongs to.
 
 
 
-**Type**: [Client](/api/client)
+**Type**: [Client](/api/classes/client)
 
 ---
 
@@ -68,9 +68,9 @@ fetch(id: string, options?: FetchOptions): Promise<CurrentGame>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The summoner ID to fetch the live game for. |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetching options. |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetching options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [CurrentGame](/api/currentgame) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [CurrentGame](/api/classes/currentgame) \>
 
 ---
 
@@ -91,9 +91,9 @@ fetchFeatured(options?: FetchOptions): Promise<CurrentGame[]>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetching options (does not fetch from storage or cache). |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetching options (does not fetch from storage or cache). |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [CurrentGame](/api/currentgame)[] \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [CurrentGame](/api/classes/currentgame)[] \>
 
 ---
 

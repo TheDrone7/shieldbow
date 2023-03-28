@@ -21,7 +21,7 @@ The defense stat rune.
 
 
 
-**Type**: [StatPerk](/api/statperk)
+**Type**: [StatPerk](/api/interfaces/statperk)
 
 ---
 
@@ -31,7 +31,7 @@ The flex stat rune.
 
 
 
-**Type**: [StatPerk](/api/statperk)
+**Type**: [StatPerk](/api/interfaces/statperk)
 
 ---
 
@@ -41,7 +41,7 @@ The offense stat rune.
 
 
 
-**Type**: [StatPerk](/api/statperk)
+**Type**: [StatPerk](/api/interfaces/statperk)
 
 ---
 

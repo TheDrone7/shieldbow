@@ -15,5 +15,5 @@ rawStatPerks: {
 }
 ```
 
-**References:** [StatPerk](/api/statperk)
+**References:** [StatPerk](/api/interfaces/statperk)
 

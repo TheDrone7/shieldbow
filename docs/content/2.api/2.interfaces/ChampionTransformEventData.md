@@ -13,7 +13,7 @@ The event data for the champion transform event.
 export interface ChampionTransformEventData extends TimelineEventData 
 ```
 
-**References:** [TimelineEventData](/api/timelineeventdata)
+**References:** [TimelineEventData](/api/interfaces/timelineeventdata)
 
 ### Properties
 

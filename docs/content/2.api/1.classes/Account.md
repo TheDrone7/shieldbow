@@ -29,7 +29,7 @@ Constructs a new instance of the `Account` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [AccountData](/api/accountdata) | The raw account data from the API. |
+| data | [AccountData](/api/interfaces/accountdata) | The raw account data from the API. |
 ---
 
 ### Properties

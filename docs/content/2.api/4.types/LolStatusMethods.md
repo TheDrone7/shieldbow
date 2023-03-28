@@ -13,5 +13,5 @@ The Lol Status API method names.
 export type LolStatusMethods = (typeof methods)['LOL_STATUS'][number];
 ```
 
-**References:** [methods](/api/methods)
+**References:** [methods](/api/variables/methods)
 

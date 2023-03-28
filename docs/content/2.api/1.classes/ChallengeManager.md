@@ -17,7 +17,7 @@ export declare class ChallengeManager implements BaseManager<Challenge>
 
 Implements: BaseManager&lt;Challenge&gt;
 
-**References:** [BaseManager](/api/basemanager), [Challenge](/api/challenge)
+**References:** [BaseManager](/api/interfaces/basemanager), [Challenge](/api/classes/challenge)
 
 ---
 
@@ -33,7 +33,7 @@ Constructs a new instance of the `ChallengeManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) | The client this challenge manager belongs to. |
+| client | [Client](/api/classes/client) | The client this challenge manager belongs to. |
 ---
 
 ### Properties
@@ -44,7 +44,7 @@ The client this challenge manager belongs to.
 
 
 
-**Type**: [Client](/api/client)
+**Type**: [Client](/api/classes/client)
 
 ---
 
@@ -68,9 +68,9 @@ fetch(id: number, options?: FetchOptions): Promise<Challenge>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | id | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The ID of the challenge you want to find. |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetching options. |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetching options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Challenge](/api/challenge) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Challenge](/api/classes/challenge) \>
 
 ---
 
@@ -91,9 +91,9 @@ fetchAll(options?: FetchOptions): Promise<Collection<number, Challenge>>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetching options (force is ignored here). |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetching options (force is ignored here). |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [Challenge](/api/challenge) \> \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [Challenge](/api/classes/challenge) \> \>
 
 ---
 
@@ -118,9 +118,9 @@ fetchLeaderboard(id: number, level: 'MASTER' | 'GRANDMASTER' | 'CHALLENGER', opt
 | --------- | ---- | ----------- |
 | id | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The ID of the challenge whose leaderboard you want to find. |
 | level | 'MASTER' \| 'GRANDMASTER' \| 'CHALLENGER' | The tier of the leaderboard. |
-| options | [FetchOptions](/api/fetchoptions) & {         limit: number;     } | The basic fetching options, with an additional limit option. Limit (or count) is 200 by default. |
+| options | [FetchOptions](/api/interfaces/fetchoptions) & {         limit: number;     } | The basic fetching options, with an additional limit option. Limit (or count) is 200 by default. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [ChallengeRank](/api/challengerank)[] \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [ChallengeRank](/api/classes/challengerank)[] \>
 
 ---
 
@@ -142,9 +142,9 @@ fetchSummonerProgression(playerId: string, options?: FetchOptions): Promise<Summ
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | playerId | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The player ID (puuid) of the summoner whose progress you want to find. |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetching options. |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetching options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [SummonerChallenge](/api/summonerchallenge) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [SummonerChallenge](/api/classes/summonerchallenge) \>
 
 ---
 

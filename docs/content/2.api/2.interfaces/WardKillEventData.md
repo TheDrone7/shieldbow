@@ -13,7 +13,7 @@ The event data for the ward kill event.
 export interface WardKillEventData extends TimelineEventData 
 ```
 
-**References:** [TimelineEventData](/api/timelineeventdata)
+**References:** [TimelineEventData](/api/interfaces/timelineeventdata)
 
 ### Properties
 

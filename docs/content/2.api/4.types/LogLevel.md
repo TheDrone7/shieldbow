@@ -13,5 +13,5 @@ The Logger levels as a string, for easier usage.
 export type LogLevel = keyof typeof LoggerLevel;
 ```
 
-**References:** [LoggerLevel](/api/loggerlevel)
+**References:** [LoggerLevel](/api/interfaces/loggerlevel)
 

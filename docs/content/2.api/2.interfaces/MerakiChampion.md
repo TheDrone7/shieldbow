@@ -75,7 +75,7 @@ export interface MerakiChampion
 
 
 
-**Type**: [MerakiSkin](/api/merakiskin)[]
+**Type**: [MerakiSkin](/api/interfaces/merakiskin)[]
 
 ---
 

@@ -29,8 +29,8 @@ Constructs a new instance of the `RuneTree` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) | The client that requested this data. |
-| data | [RuneTreeData](/api/runetreedata) | The raw rune tree data from data dragon. |
+| client | [Client](/api/classes/client) | The client that requested this data. |
+| data | [RuneTreeData](/api/interfaces/runetreedata) | The raw rune tree data from data dragon. |
 ---
 
 ### Properties
@@ -81,7 +81,7 @@ The slots of this rune tree. The slots are numbered from 1 to 4. The first slot 
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [Rune](/api/rune) \> \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [Rune](/api/classes/rune) \> \>
 
 ---
 

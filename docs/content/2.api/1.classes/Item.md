@@ -29,9 +29,9 @@ Constructs a new instance of the `Item` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) | The client requesting the data. |
+| client | [Client](/api/classes/client) | The client requesting the data. |
 | id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the item. |
-| data | [ItemData](/api/itemdata) | The raw item data from data dragon. |
+| data | [ItemData](/api/interfaces/itemdata) | The raw item data from data dragon. |
 ---
 
 ### Properties
@@ -42,7 +42,7 @@ The list of maps on which you can buy this item.
 
 
 
-**Type**: [GameMap](/api/gamemap)[]
+**Type**: [GameMap](/api/interfaces/gamemap)[]
 
 ---
 
@@ -98,7 +98,7 @@ The value of this item in terms of in-game gold.
 
 
 
-**Type**: [ItemGoldValue](/api/itemgoldvalue)
+**Type**: [ItemGoldValue](/api/interfaces/itemgoldvalue)
 
 ---
 
@@ -230,7 +230,7 @@ from(): Promise<import("@discordjs/collection").Collection<string, Item>>;
 ```
 
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< import("@discordjs/collection").Collection \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/item) \> \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< import("@discordjs/collection").Collection \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/classes/item) \> \>
 
 ---
 
@@ -247,7 +247,7 @@ into(): Promise<import("@discordjs/collection").Collection<string, Item>>;
 ```
 
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< import("@discordjs/collection").Collection \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/item) \> \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< import("@discordjs/collection").Collection \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/classes/item) \> \>
 
 ---
 
@@ -264,7 +264,7 @@ requiredChampion(): Promise<Champion>;
 ```
 
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Champion](/api/champion) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Champion](/api/classes/champion) \>
 
 ---
 
@@ -281,7 +281,7 @@ specialRecipe(): Promise<Item | undefined>;
 ```
 
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Item](/api/item) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Item](/api/classes/item) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
 
 ---
 

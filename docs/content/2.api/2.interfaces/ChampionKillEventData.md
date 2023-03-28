@@ -13,7 +13,7 @@ The event data for the champion kill event.
 export interface ChampionKillEventData extends TimelineEventData 
 ```
 
-**References:** [TimelineEventData](/api/timelineeventdata)
+**References:** [TimelineEventData](/api/interfaces/timelineeventdata)
 
 ### Properties
 
@@ -53,7 +53,7 @@ export interface ChampionKillEventData extends TimelineEventData
 
 
 
-**Type**: [PositionData](/api/positiondata)
+**Type**: [PositionData](/api/interfaces/positiondata)
 
 ---
 
@@ -77,7 +77,7 @@ export interface ChampionKillEventData extends TimelineEventData
 
 
 
-**Type**: [DamageDealtData](/api/damagedealtdata)[]
+**Type**: [DamageDealtData](/api/interfaces/damagedealtdata)[]
 
 ---
 
@@ -85,7 +85,7 @@ export interface ChampionKillEventData extends TimelineEventData
 
 
 
-**Type**: [DamageDealtData](/api/damagedealtdata)[]
+**Type**: [DamageDealtData](/api/interfaces/damagedealtdata)[]
 
 ---
 

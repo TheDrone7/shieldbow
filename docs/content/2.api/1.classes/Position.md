@@ -29,7 +29,7 @@ Constructs a new instance of the `Position` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [PositionData](/api/positiondata) |  |
+| data | [PositionData](/api/interfaces/positiondata) |  |
 ---
 
 ### Properties

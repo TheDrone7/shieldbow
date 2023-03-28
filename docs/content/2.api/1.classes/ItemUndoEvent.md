@@ -17,7 +17,7 @@ export declare class ItemUndoEvent extends TimelineEvent
 
 **Extends: TimelineEvent**
 
-**References:** [TimelineEvent](/api/timelineevent)
+**References:** [TimelineEvent](/api/classes/timelineevent)
 
 ---
 
@@ -33,9 +33,9 @@ Constructs a new instance of the `ItemUndoEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [ItemUndoEventData](/api/itemundoeventdata) | The raw data of the event. |
-| after | [Item](/api/item) | The item in the item slot after the undo (might be nothing). |
-| before | [Item](/api/item) | The item in the item slot before the undo. |
+| data | [ItemUndoEventData](/api/interfaces/itemundoeventdata) | The raw data of the event. |
+| after | [Item](/api/classes/item) | The item in the item slot after the undo (might be nothing). |
+| before | [Item](/api/classes/item) | The item in the item slot before the undo. |
 ---
 
 ### Properties
@@ -46,7 +46,7 @@ The item in the item slot after the undo (might be nothing).
 
 
 
-**Type**: [Item](/api/item)
+**Type**: [Item](/api/classes/item)
 
 ---
 
@@ -56,7 +56,7 @@ The item in the item slot before the undo.
 
 
 
-**Type**: [Item](/api/item)
+**Type**: [Item](/api/classes/item)
 
 ---
 

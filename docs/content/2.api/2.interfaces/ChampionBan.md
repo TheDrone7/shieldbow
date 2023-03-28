@@ -21,7 +21,7 @@ The banned champion.
 
 
 
-**Type**: [Champion](/api/champion)
+**Type**: [Champion](/api/classes/champion)
 
 ---
 

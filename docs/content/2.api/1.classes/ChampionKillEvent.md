@@ -17,7 +17,7 @@ export declare class ChampionKillEvent extends TimelineEvent
 
 **Extends: TimelineEvent**
 
-**References:** [TimelineEvent](/api/timelineevent)
+**References:** [TimelineEvent](/api/classes/timelineevent)
 
 ---
 
@@ -33,7 +33,7 @@ Constructs a new instance of the `ChampionKillEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [ChampionKillEventData](/api/championkilleventdata) | The raw data of the event. |
+| data | [ChampionKillEventData](/api/interfaces/championkilleventdata) | The raw data of the event. |
 ---
 
 ### Properties
@@ -54,7 +54,7 @@ The bounty achieved by the killer.
 
 
 
-**Type**: [Bounty](/api/bounty)
+**Type**: [Bounty](/api/classes/bounty)
 
 ---
 
@@ -84,7 +84,7 @@ The position at which the kill took place.
 
 
 
-**Type**: [Position](/api/position)
+**Type**: [Position](/api/classes/position)
 
 ---
 
@@ -114,7 +114,7 @@ The damage dealt by the victim.
 
 
 
-**Type**: [DamageDealtData](/api/damagedealtdata)[]
+**Type**: [DamageDealtData](/api/interfaces/damagedealtdata)[]
 
 ---
 
@@ -124,7 +124,7 @@ The damage dealt to the victim.
 
 
 
-**Type**: [DamageDealtData](/api/damagedealtdata)[]
+**Type**: [DamageDealtData](/api/interfaces/damagedealtdata)[]
 
 ---
 

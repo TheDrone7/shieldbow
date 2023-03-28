@@ -29,9 +29,9 @@ Constructs a new instance of the `ChampionSkin` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| champ | [Champion](/api/champion) | The champion this skin belongs to. |
-| data | [ChampionSkinData](/api/championskindata) | The raw skin data from data dragon. |
-| meraki | [MerakiSkin](/api/merakiskin) | The raw skin data from meraki. |
+| champ | [Champion](/api/classes/champion) | The champion this skin belongs to. |
+| data | [ChampionSkinData](/api/interfaces/championskindata) | The raw skin data from data dragon. |
+| meraki | [MerakiSkin](/api/interfaces/merakiskin) | The raw skin data from meraki. |
 ---
 
 ### Properties
@@ -62,7 +62,7 @@ The champion this skin belongs to.
 
 
 
-**Type**: [Champion](/api/champion)
+**Type**: [Champion](/api/classes/champion)
 
 ---
 
@@ -72,7 +72,7 @@ The skin's chromas.
 
 
 
-**Type**: [SkinChroma](/api/skinchroma)[]
+**Type**: [SkinChroma](/api/interfaces/skinchroma)[]
 
 ---
 
@@ -142,7 +142,7 @@ The in-game price of the skin.
 
 
 
-**Type**: [SkinPricing](/api/skinpricing)
+**Type**: [SkinPricing](/api/interfaces/skinpricing)
 
 ---
 

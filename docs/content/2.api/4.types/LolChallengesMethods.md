@@ -13,5 +13,5 @@ The Lol Challenges API method names.
 export type LolChallengesMethods = (typeof methods)['LOL_CHALLENGES'][number];
 ```
 
-**References:** [methods](/api/methods)
+**References:** [methods](/api/variables/methods)
 

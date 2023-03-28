@@ -21,7 +21,7 @@ The rate limit config for the app.
 
 
 
-**Type**: [RateLimitConfig](/api/ratelimitconfig)[]
+**Type**: [RateLimitConfig](/api/interfaces/ratelimitconfig)[]
 
 ---
 
@@ -31,7 +31,7 @@ The rate limit config for the methods.
 
 
 
-**Type**: [RateLimitConfig](/api/ratelimitconfig)[] \| [MethodRateLimitOptions](/api/methodratelimitoptions)
+**Type**: [RateLimitConfig](/api/interfaces/ratelimitconfig)[] \| [MethodRateLimitOptions](/api/interfaces/methodratelimitoptions)
 
 ---
 
@@ -41,7 +41,7 @@ The retry options.
 
 
 
-**Type**: [RetryOptions](/api/retryoptions)
+**Type**: [RetryOptions](/api/interfaces/retryoptions)
 
 ---
 

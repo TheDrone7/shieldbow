@@ -13,5 +13,5 @@ Parses the given options for the rate limiter.
 parse: (opts: RateLimiterOptions) => RateLimiterConfig
 ```
 
-**References:** [RateLimiterOptions](/api/ratelimiteroptions), [RateLimiterConfig](/api/ratelimiterconfig)
+**References:** [RateLimiterOptions](/api/interfaces/ratelimiteroptions), [RateLimiterConfig](/api/interfaces/ratelimiterconfig)
 

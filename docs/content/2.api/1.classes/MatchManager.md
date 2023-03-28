@@ -17,7 +17,7 @@ export declare class MatchManager implements BaseManager<Match>
 
 Implements: BaseManager&lt;Match&gt;
 
-**References:** [BaseManager](/api/basemanager), [Match](/api/match)
+**References:** [BaseManager](/api/interfaces/basemanager), [Match](/api/classes/match)
 
 ---
 
@@ -33,7 +33,7 @@ Constructs a new instance of the `MatchManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) | The client this match manager belongs to. |
+| client | [Client](/api/classes/client) | The client this match manager belongs to. |
 ---
 
 ### Properties
@@ -44,7 +44,7 @@ The client this match manager belongs to.
 
 
 
-**Type**: [Client](/api/client)
+**Type**: [Client](/api/classes/client)
 
 ---
 
@@ -68,9 +68,9 @@ fetch(id: string, options?: FetchOptions): Promise<Match>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the match |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetch options |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetch options |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Match](/api/match) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Match](/api/classes/match) \>
 
 ---
 
@@ -91,8 +91,8 @@ fetchMatchListByPlayer(player: Summoner | string, options?: MatchByPlayerOptions
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| player | [Summoner](/api/summoner) \| [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The summoner or their player ID whose matches need to be fetched. |
-| options | [MatchByPlayerOptions](/api/matchbyplayeroptions) | The options for filtering the matches. |
+| player | [Summoner](/api/classes/summoner) \| [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The summoner or their player ID whose matches need to be fetched. |
+| options | [MatchByPlayerOptions](/api/interfaces/matchbyplayeroptions) | The options for filtering the matches. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)[] \>
 
@@ -116,9 +116,9 @@ fetchMatchTimeline(matchId: string, options?: FetchOptions): Promise<MatchTimeli
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | matchId | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the match |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetch options |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetch options |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [MatchTimeline](/api/matchtimeline) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [MatchTimeline](/api/classes/matchtimeline) \>
 
 ---
 

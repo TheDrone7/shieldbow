@@ -19,7 +19,7 @@ export interface CurrentGameData
 
 
 
-**Type**: [CurrentGameBanData](/api/currentgamebandata)[]
+**Type**: [CurrentGameBanData](/api/interfaces/currentgamebandata)[]
 
 ---
 
@@ -91,7 +91,7 @@ export interface CurrentGameData
 
 
 
-**Type**: [CurrentGameParticipantData](/api/currentgameparticipantdata)[]
+**Type**: [CurrentGameParticipantData](/api/interfaces/currentgameparticipantdata)[]
 
 ---
 

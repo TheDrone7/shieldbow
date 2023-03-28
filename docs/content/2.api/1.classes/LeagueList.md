@@ -29,8 +29,8 @@ Constructs a new instance of the `LeagueList` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) | The client requesting the data. |
-| data | [LeagueListData](/api/leaguelistdata) | The raw league list data from the API. |
+| client | [Client](/api/classes/client) | The client requesting the data. |
+| data | [LeagueListData](/api/interfaces/leaguelistdata) | The raw league list data from the API. |
 ---
 
 ### Properties
@@ -44,7 +44,7 @@ These are mapped by the summoner name.
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [LeagueEntry](/api/leagueentry) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [LeagueEntry](/api/classes/leagueentry) \>
 
 ---
 
@@ -74,7 +74,7 @@ The type of queue - such as RANKED_SOLO_5x5, RANKED_FLEX_SR, RANKED_FLEX_TT.
 
 
 
-**Type**: [QueueType](/api/queuetype)
+**Type**: [QueueType](/api/types/queuetype)
 
 ---
 
@@ -84,7 +84,7 @@ The tier of the entries in this list.
 
 
 
-**Type**: [TierType](/api/tiertype)
+**Type**: [TierType](/api/types/tiertype)
 
 ---
 

@@ -13,5 +13,5 @@ The League Exp API method names.
 export type LeagueExpMethods = (typeof methods)['LEAGUE_EXP'][number];
 ```
 
-**References:** [methods](/api/methods)
+**References:** [methods](/api/variables/methods)
 

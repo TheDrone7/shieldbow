@@ -27,7 +27,7 @@ export interface MatchTimelineInfo
 
 
 
-**Type**: [MatchTimelineFrameData](/api/matchtimelineframedata)[]
+**Type**: [MatchTimelineFrameData](/api/interfaces/matchtimelineframedata)[]
 
 ---
 

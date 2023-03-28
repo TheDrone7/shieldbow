@@ -13,5 +13,5 @@ The Summoner API method names.
 export type SummonerMethods = (typeof methods)['SUMMONER'][number];
 ```
 
-**References:** [methods](/api/methods)
+**References:** [methods](/api/variables/methods)
 

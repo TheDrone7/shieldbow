@@ -29,9 +29,9 @@ Constructs a new instance of the `Summoner` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) | The client that requested this data. |
-| summoner | [SummonerData](/api/summonerdata) | The raw summoner data from the API. |
-| region | [Region](/api/region) | The region this summoner is located in. |
+| client | [Client](/api/classes/client) | The client that requested this data. |
+| summoner | [SummonerData](/api/interfaces/summonerdata) | The raw summoner data from the API. |
+| region | [Region](/api/types/region) | The region this summoner is located in. |
 ---
 
 ### Properties
@@ -52,7 +52,7 @@ A manager for the summoner's champion mastery.
 
 
 
-**Type**: [ChampionMasteryManager](/api/championmasterymanager)
+**Type**: [ChampionMasteryManager](/api/classes/championmasterymanager)
 
 ---
 
@@ -112,7 +112,7 @@ The region this summoner is located in.
 
 
 
-**Type**: [Region](/api/region)
+**Type**: [Region](/api/types/region)
 
 ---
 
@@ -145,9 +145,9 @@ fetchAccount(options?: FetchOptions): Promise<Account>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetching options. |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetching options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Account](/api/account) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Account](/api/classes/account) \>
 
 ---
 
@@ -168,7 +168,7 @@ fetchChallenges(options?: FetchOptions): Promise<import("./SummonerChallenge").S
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetching options. |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetching options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< import("./SummonerChallenge").SummonerChallenge \>
 
@@ -191,7 +191,7 @@ fetchClashEntries(options?: FetchOptions): Promise<import("./TournamentPlayer").
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetching options. |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetching options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< import("./TournamentPlayer").TournamentPlayer[] \>
 
@@ -214,9 +214,9 @@ fetchLeagueEntries(options?: FetchOptions): Promise<Collection<string, LeagueEnt
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetching options. |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetching options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [LeagueEntry](/api/leagueentry) \> \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [LeagueEntry](/api/classes/leagueentry) \> \>
 
 ---
 
@@ -237,9 +237,9 @@ fetchLiveMatch(options?: FetchOptions): Promise<CurrentGame>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetching options. |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetching options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [CurrentGame](/api/currentgame) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [CurrentGame](/api/classes/currentgame) \>
 
 ---
 
@@ -260,7 +260,7 @@ fetchMatchList(options?: MatchByPlayerOptions): Promise<string[]>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| options | [MatchByPlayerOptions](/api/matchbyplayeroptions) | The match list filtering options. |
+| options | [MatchByPlayerOptions](/api/interfaces/matchbyplayeroptions) | The match list filtering options. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)[] \>
 

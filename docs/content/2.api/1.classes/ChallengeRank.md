@@ -29,9 +29,9 @@ Constructs a new instance of the `ChallengeRank` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) |  |
-| data | [ChallengeRankData](/api/challengerankdata) |  |
-| tier | [TierType](/api/tiertype) |  |
+| client | [Client](/api/classes/client) |  |
+| data | [ChallengeRankData](/api/interfaces/challengerankdata) |  |
+| tier | [TierType](/api/types/tiertype) |  |
 ---
 
 ### Properties
@@ -72,7 +72,7 @@ The tier this summoner belongs to regarding this challenge.
 
 
 
-**Type**: [TierType](/api/tiertype)
+**Type**: [TierType](/api/types/tiertype)
 
 ---
 

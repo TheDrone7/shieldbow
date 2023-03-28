@@ -29,7 +29,7 @@ Constructs a new instance of the `ParticipantFrameChampionStats` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [ParticipantChampionStatsData](/api/participantchampionstatsdata) | The raw data from the API. |
+| data | [ParticipantChampionStatsData](/api/interfaces/participantchampionstatsdata) | The raw data from the API. |
 ---
 
 ### Properties

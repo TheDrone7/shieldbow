@@ -13,5 +13,5 @@ The Spectator API method names.
 export type SpectatorMethods = (typeof methods)['SPECTATOR'][number];
 ```
 
-**References:** [methods](/api/methods)
+**References:** [methods](/api/variables/methods)
 

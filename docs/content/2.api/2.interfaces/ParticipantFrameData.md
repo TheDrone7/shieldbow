@@ -19,7 +19,7 @@ export interface ParticipantFrameData
 
 
 
-**Type**: [ParticipantChampionStatsData](/api/participantchampionstatsdata)
+**Type**: [ParticipantChampionStatsData](/api/interfaces/participantchampionstatsdata)
 
 ---
 
@@ -35,7 +35,7 @@ export interface ParticipantFrameData
 
 
 
-**Type**: [ParticipantDamageStatsData](/api/participantdamagestatsdata)
+**Type**: [ParticipantDamageStatsData](/api/interfaces/participantdamagestatsdata)
 
 ---
 
@@ -83,7 +83,7 @@ export interface ParticipantFrameData
 
 
 
-**Type**: [PositionData](/api/positiondata)
+**Type**: [PositionData](/api/interfaces/positiondata)
 
 ---
 

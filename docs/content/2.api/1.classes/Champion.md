@@ -29,10 +29,10 @@ Constructs a new instance of the `Champion` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) | The client creating this instance. |
-| data | [ChampionData](/api/championdata) | The raw champion data from data dragon. |
-| damage | [SpellDamageData](/api/spelldamagedata) | The raw champion data from community dragon |
-| meraki | [MerakiChampion](/api/merakichampion) | The raw champion data from meraki analytics |
+| client | [Client](/api/classes/client) | The client creating this instance. |
+| data | [ChampionData](/api/interfaces/championdata) | The raw champion data from data dragon. |
+| damage | [SpellDamageData](/api/interfaces/spelldamagedata) | The raw champion data from community dragon |
+| meraki | [MerakiChampion](/api/interfaces/merakichampion) | The raw champion data from meraki analytics |
 ---
 
 ### Properties
@@ -193,7 +193,7 @@ The champion's passive ability summarized.
 
 
 
-**Type**: [ChampionPassive](/api/championpassive)
+**Type**: [ChampionPassive](/api/interfaces/championpassive)
 
 ---
 
@@ -203,7 +203,7 @@ The in-game pricing of the champion.
 
 
 
-**Type**: [ChampionPricing](/api/championpricing)
+**Type**: [ChampionPricing](/api/interfaces/championpricing)
 
 ---
 
@@ -213,7 +213,7 @@ The champion's magic, defense, attack, difficulty ratings.
 
 
 
-**Type**: [ChampionRating](/api/championrating)
+**Type**: [ChampionRating](/api/interfaces/championrating)
 
 ---
 
@@ -253,7 +253,7 @@ A collection of the available skins for this champion. The default skin always h
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [ChampionSkin](/api/championskin) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [ChampionSkin](/api/classes/championskin) \>
 
 ---
 
@@ -263,7 +263,7 @@ The champion's spells (abilities), mapped by the key they are assigned to, by de
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< 'Q' \| 'W' \| 'E' \| 'R', [ChampionSpell](/api/championspell) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< 'Q' \| 'W' \| 'E' \| 'R', [ChampionSpell](/api/classes/championspell) \>
 
 ---
 
@@ -273,7 +273,7 @@ The sprite information of the champion.
 
 
 
-**Type**: [ChampionSprite](/api/championsprite)
+**Type**: [ChampionSprite](/api/interfaces/championsprite)
 
 ---
 
@@ -283,7 +283,7 @@ A collection of the champion's base stats.
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Stats](/api/stats), [ChampionStat](/api/championstat) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Stats](/api/types/stats), [ChampionStat](/api/classes/championstat) \>
 
 ---
 

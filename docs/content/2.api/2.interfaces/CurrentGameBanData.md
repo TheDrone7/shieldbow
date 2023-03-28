@@ -13,7 +13,7 @@ The champion ban data as returned by the API.
 export interface CurrentGameBanData extends TeamBanData 
 ```
 
-**References:** [TeamBanData](/api/teambandata)
+**References:** [TeamBanData](/api/interfaces/teambandata)
 
 ### Properties
 

@@ -13,5 +13,5 @@ The Champion Mastery API method names.
 export type ChampionMasteryMethods = (typeof methods)['CHAMPION_MASTERY'][number];
 ```
 
-**References:** [methods](/api/methods)
+**References:** [methods](/api/variables/methods)
 

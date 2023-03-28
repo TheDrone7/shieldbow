@@ -17,7 +17,7 @@ export declare class WardPlacedEvent extends TimelineEvent
 
 **Extends: TimelineEvent**
 
-**References:** [TimelineEvent](/api/timelineevent)
+**References:** [TimelineEvent](/api/classes/timelineevent)
 
 ---
 
@@ -33,7 +33,7 @@ Constructs a new instance of the `WardPlacedEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [WardPlacedEventData](/api/wardplacedeventdata) | The raw data of the event. |
+| data | [WardPlacedEventData](/api/interfaces/wardplacedeventdata) | The raw data of the event. |
 ---
 
 ### Properties

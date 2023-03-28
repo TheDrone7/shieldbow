@@ -21,7 +21,7 @@ The caching settings. Alternatively, you can pass `true` or `false` to enable or
 
 
 
-**Type**: [CacheConfig](/api/cacheconfig) \| [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
+**Type**: [CacheConfig](/api/interfaces/cacheconfig) \| [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
 ---
 
@@ -31,7 +31,7 @@ The data to fetch beforehand when initializing the client. This can delay the in
 
 
 
-**Type**: [PreFetchConfig](/api/prefetchconfig) \| [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
+**Type**: [PreFetchConfig](/api/interfaces/prefetchconfig) \| [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
 ---
 
@@ -41,7 +41,7 @@ The locale in which to fetch all the data (defaults to region's default)
 
 
 
-**Type**: [Locales](/api/locales)
+**Type**: [Locales](/api/types/locales)
 
 ---
 
@@ -51,7 +51,7 @@ The client's logger utility configuration. Alternatively, you can pass `true` to
 
 
 
-**Type**: [LoggerConfig](/api/loggerconfig) \| [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
+**Type**: [LoggerConfig](/api/interfaces/loggerconfig) \| [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
 ---
 
@@ -61,7 +61,7 @@ The rate limiter options to modify the behaviour of the part of the client that 
 
 
 
-**Type**: [RateLimiterOptions](/api/ratelimiteroptions)
+**Type**: [RateLimiterOptions](/api/interfaces/ratelimiteroptions)
 
 ---
 
@@ -71,7 +71,7 @@ The initial region to fetch all the data from (defaults to `na`)
 
 
 
-**Type**: [Region](/api/region)
+**Type**: [Region](/api/types/region)
 
 ---
 
@@ -81,7 +81,7 @@ The storage settings. Alternatively, you can pass `true` or `false` to enable or
 
 
 
-**Type**: [StorageConfig](/api/storageconfig) \| [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
+**Type**: [StorageConfig](/api/interfaces/storageconfig) \| [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
 ---
 

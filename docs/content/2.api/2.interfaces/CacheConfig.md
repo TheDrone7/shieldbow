@@ -21,7 +21,7 @@ The custom cache plugin to use. This will override the default memory cache plug
 
 
 
-**Type**: [ICache](/api/icache)
+**Type**: [ICache](/api/interfaces/icache)
 
 ---
 
@@ -31,7 +31,7 @@ Whether to enable caching of fetched data (defaults to true for all). Can be set
 
 
 
-**Type**: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) \| [ManagersConfig](/api/managersconfig)
+**Type**: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) \| [ManagersConfig](/api/interfaces/managersconfig)
 
 ---
 

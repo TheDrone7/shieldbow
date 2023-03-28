@@ -29,7 +29,7 @@ Constructs a new instance of the `TotalChallengePoints` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [TotalChallengePointsData](/api/totalchallengepointsdata) |  |
+| data | [TotalChallengePointsData](/api/interfaces/totalchallengepointsdata) |  |
 ---
 
 ### Properties
@@ -70,7 +70,7 @@ The tier this summoner has reached in challenges.
 
 
 
-**Type**: [TierType](/api/tiertype)
+**Type**: [TierType](/api/types/tiertype)
 
 ---
 

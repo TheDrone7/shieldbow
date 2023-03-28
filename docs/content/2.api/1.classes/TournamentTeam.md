@@ -29,8 +29,8 @@ Constructs a new instance of the `TournamentTeam` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) | The client that requested this data. |
-| data | [TournamentTeamData](/api/tournamentteamdata) | The raw tournament team data from the API. |
+| client | [Client](/api/classes/client) | The client that requested this data. |
+| data | [TournamentTeamData](/api/interfaces/tournamentteamdata) | The raw tournament team data from the API. |
 ---
 
 ### Properties
@@ -91,7 +91,7 @@ The list of players in the team.
 
 
 
-**Type**: [TournamentPlayer](/api/tournamentplayer)[]
+**Type**: [TournamentPlayer](/api/classes/tournamentplayer)[]
 
 ---
 

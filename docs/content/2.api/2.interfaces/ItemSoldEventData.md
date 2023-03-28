@@ -13,7 +13,7 @@ The event data for the item sold event.
 export interface ItemSoldEventData extends TimelineEventData 
 ```
 
-**References:** [TimelineEventData](/api/timelineeventdata)
+**References:** [TimelineEventData](/api/interfaces/timelineeventdata)
 
 ### Properties
 

@@ -13,7 +13,7 @@ The event data for building kill event.
 export interface BuildingKillEventData extends TimelineEventData 
 ```
 
-**References:** [TimelineEventData](/api/timelineeventdata)
+**References:** [TimelineEventData](/api/interfaces/timelineeventdata)
 
 ### Properties
 
@@ -61,7 +61,7 @@ export interface BuildingKillEventData extends TimelineEventData
 
 
 
-**Type**: [PositionData](/api/positiondata)
+**Type**: [PositionData](/api/interfaces/positiondata)
 
 ---
 

@@ -13,5 +13,5 @@ The Account API method names.
 export type AccountMethods = (typeof methods)['ACCOUNT'][number];
 ```
 
-**References:** [methods](/api/methods)
+**References:** [methods](/api/variables/methods)
 

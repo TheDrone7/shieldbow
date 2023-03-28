@@ -13,7 +13,7 @@ The event data for the elite monster kill event.
 export interface EliteMonsterKillEventData extends TimelineEventData 
 ```
 
-**References:** [TimelineEventData](/api/timelineeventdata)
+**References:** [TimelineEventData](/api/interfaces/timelineeventdata)
 
 ### Properties
 
@@ -69,7 +69,7 @@ export interface EliteMonsterKillEventData extends TimelineEventData
 
 
 
-**Type**: [PositionData](/api/positiondata)
+**Type**: [PositionData](/api/interfaces/positiondata)
 
 ---
 

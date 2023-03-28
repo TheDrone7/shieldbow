@@ -13,7 +13,7 @@ The event data for the turret plate destroyed event.
 export interface TurretPlateDestroyedEventData extends TimelineEventData 
 ```
 
-**References:** [TimelineEventData](/api/timelineeventdata)
+**References:** [TimelineEventData](/api/interfaces/timelineeventdata)
 
 ### Properties
 
@@ -37,7 +37,7 @@ export interface TurretPlateDestroyedEventData extends TimelineEventData
 
 
 
-**Type**: [PositionData](/api/positiondata)
+**Type**: [PositionData](/api/interfaces/positiondata)
 
 ---
 

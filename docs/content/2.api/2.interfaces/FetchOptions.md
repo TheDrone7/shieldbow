@@ -51,7 +51,7 @@ The region to fetch from. Defaults to the client's region.
 
 
 
-**Type**: [Region](/api/region)
+**Type**: [Region](/api/types/region)
 
 ---
 

@@ -17,7 +17,7 @@ export declare class PauseEndEvent extends TimelineEvent
 
 **Extends: TimelineEvent**
 
-**References:** [TimelineEvent](/api/timelineevent)
+**References:** [TimelineEvent](/api/classes/timelineevent)
 
 ---
 
@@ -33,7 +33,7 @@ Constructs a new instance of the `PauseEndEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [PauseEndEventData](/api/pauseendeventdata) | The raw data of the event. |
+| data | [PauseEndEventData](/api/interfaces/pauseendeventdata) | The raw data of the event. |
 ---
 
 ### Properties

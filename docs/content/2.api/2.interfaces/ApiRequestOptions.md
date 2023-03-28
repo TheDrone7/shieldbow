@@ -51,7 +51,7 @@ The region to make the request to.
 
 
 
-**Type**: [Region](/api/region)
+**Type**: [Region](/api/types/region)
 
 ---
 

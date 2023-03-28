@@ -29,8 +29,8 @@ Constructs a new instance of the `ChallengePreferences` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) |  |
-| data | [ChallengePreferencesData](/api/challengepreferencesdata) |  |
+| client | [Client](/api/classes/client) |  |
+| data | [ChallengePreferencesData](/api/interfaces/challengepreferencesdata) |  |
 ---
 
 ### Properties
@@ -80,7 +80,7 @@ fetchDisplayedChallenges(): Promise<Challenge[]>;
 ```
 
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Challenge](/api/challenge)[] \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Challenge](/api/classes/challenge)[] \>
 
 ---
 

@@ -17,7 +17,7 @@ export declare class ClashManager implements BaseManager<Tournament>
 
 Implements: BaseManager&lt;Tournament&gt;
 
-**References:** [BaseManager](/api/basemanager), [Tournament](/api/tournament)
+**References:** [BaseManager](/api/interfaces/basemanager), [Tournament](/api/classes/tournament)
 
 ---
 
@@ -33,7 +33,7 @@ Constructs a new instance of the `ClashManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) | The client this clash manager belongs to. |
+| client | [Client](/api/classes/client) | The client this clash manager belongs to. |
 ---
 
 ### Properties
@@ -44,7 +44,7 @@ The client this clash manager belongs to.
 
 
 
-**Type**: [Client](/api/client)
+**Type**: [Client](/api/classes/client)
 
 ---
 
@@ -68,9 +68,9 @@ fetch(id: number, options?: FetchOptions): Promise<Tournament>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | id | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The ID of the clash tournament. |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetch options. |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetch options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Tournament](/api/tournament) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Tournament](/api/classes/tournament) \>
 
 ---
 
@@ -91,9 +91,9 @@ fetchAll(options?: FetchOptions): Promise<Tournament[]>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetch options (always fetches from the API, skipping cache and storage). |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetch options (always fetches from the API, skipping cache and storage). |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Tournament](/api/tournament)[] \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Tournament](/api/classes/tournament)[] \>
 
 ---
 
@@ -115,9 +115,9 @@ fetchByTeamId(teamId: string, options?: FetchOptions): Promise<Tournament>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | teamId | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the team. |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetch options (always fetches from API, skipping cache and storage). |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetch options (always fetches from API, skipping cache and storage). |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Tournament](/api/tournament) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Tournament](/api/classes/tournament) \>
 
 ---
 
@@ -139,9 +139,9 @@ fetchPlayer(summonerId: string, options?: FetchOptions): Promise<TournamentPlaye
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | summonerId | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the summoner. |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetch options. |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetch options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [TournamentPlayer](/api/tournamentplayer)[] \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [TournamentPlayer](/api/classes/tournamentplayer)[] \>
 
 ---
 
@@ -163,9 +163,9 @@ fetchTeam(teamId: string, options?: FetchOptions): Promise<TournamentTeam>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | teamId | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the team. |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetch options. |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetch options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [TournamentTeam](/api/tournamentteam) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [TournamentTeam](/api/classes/tournamentteam) \>
 
 ---
 

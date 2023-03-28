@@ -21,7 +21,7 @@ The custom logger to use, if you don't want to use the built-in one. This must i
 
 
 
-**Type**: [ILogger](/api/ilogger)
+**Type**: [ILogger](/api/interfaces/ilogger)
 
 ---
 
@@ -41,7 +41,7 @@ The log level to use (defaults to `WARN`). Only logs with a level equal to or hi
 
 
 
-**Type**: [LogLevel](/api/loglevel)
+**Type**: [LogLevel](/api/types/loglevel)
 
 ---
 

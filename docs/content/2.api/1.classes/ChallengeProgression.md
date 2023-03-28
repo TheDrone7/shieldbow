@@ -29,7 +29,7 @@ Constructs a new instance of the `ChallengeProgression` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [ChallengeProgressionData](/api/challengeprogressiondata) |  |
+| data | [ChallengeProgressionData](/api/interfaces/challengeprogressiondata) |  |
 ---
 
 ### Properties
@@ -80,7 +80,7 @@ The tier this summoner has reached in this challenge.
 
 
 
-**Type**: [TierType](/api/tiertype)
+**Type**: [TierType](/api/types/tiertype)
 
 ---
 

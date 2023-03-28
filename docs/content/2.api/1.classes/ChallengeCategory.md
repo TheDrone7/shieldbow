@@ -29,8 +29,8 @@ Constructs a new instance of the `ChallengeCategory` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| name | [CategoryName](/api/categoryname) |  |
-| data | [ChallengeCategoryData](/api/challengecategorydata) |  |
+| name | [CategoryName](/api/types/categoryname) |  |
+| data | [ChallengeCategoryData](/api/interfaces/challengecategorydata) |  |
 ---
 
 ### Properties
@@ -81,7 +81,7 @@ The tier this summoner has reached in this challenge category.
 
 
 
-**Type**: [TierType](/api/tiertype)
+**Type**: [TierType](/api/types/tiertype)
 
 ---
 

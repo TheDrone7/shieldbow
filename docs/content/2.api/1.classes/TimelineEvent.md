@@ -29,7 +29,7 @@ Constructs a new instance of the `TimelineEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [TimelineEventData](/api/timelineeventdata) | The raw data of the event. |
+| data | [TimelineEventData](/api/interfaces/timelineeventdata) | The raw data of the event. |
 ---
 
 ### Properties

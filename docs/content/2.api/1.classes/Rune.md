@@ -29,8 +29,8 @@ Constructs a new instance of the `Rune` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) | The client that requested this data. |
-| data | [RuneData](/api/runedata) | The raw rune data from data dragon. |
+| client | [Client](/api/classes/client) | The client that requested this data. |
+| data | [RuneData](/api/interfaces/runedata) | The raw rune data from data dragon. |
 ---
 
 ### Properties

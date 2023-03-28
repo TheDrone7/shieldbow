@@ -17,7 +17,7 @@ export declare class LevelUpEvent extends TimelineEvent
 
 **Extends: TimelineEvent**
 
-**References:** [TimelineEvent](/api/timelineevent)
+**References:** [TimelineEvent](/api/classes/timelineevent)
 
 ---
 
@@ -33,7 +33,7 @@ Constructs a new instance of the `LevelUpEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [LevelUpEventData](/api/levelupeventdata) | The raw data of the event. |
+| data | [LevelUpEventData](/api/interfaces/levelupeventdata) | The raw data of the event. |
 ---
 
 ### Properties

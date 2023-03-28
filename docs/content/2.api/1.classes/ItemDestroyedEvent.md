@@ -17,7 +17,7 @@ export declare class ItemDestroyedEvent extends TimelineEvent
 
 **Extends: TimelineEvent**
 
-**References:** [TimelineEvent](/api/timelineevent)
+**References:** [TimelineEvent](/api/classes/timelineevent)
 
 ---
 
@@ -33,8 +33,8 @@ Constructs a new instance of the `ItemDestroyedEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [ItemDestroyedEventData](/api/itemdestroyedeventdata) | The raw data of the event. |
-| item | [Item](/api/item) | The destroyed item. |
+| data | [ItemDestroyedEventData](/api/interfaces/itemdestroyedeventdata) | The raw data of the event. |
+| item | [Item](/api/classes/item) | The destroyed item. |
 ---
 
 ### Properties
@@ -45,7 +45,7 @@ The destroyed item.
 
 
 
-**Type**: [Item](/api/item)
+**Type**: [Item](/api/classes/item)
 
 ---
 

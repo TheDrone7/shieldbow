@@ -29,8 +29,8 @@ Constructs a new instance of the `CurrentGamePerks` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| runeTrees | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/api/runetree) \> | The collection of the runes in the game. |
-| data | [CurrentGamePerksData](/api/currentgameperksdata) | The raw current game participant perks data from the API. |
+| runeTrees | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/api/classes/runetree) \> | The collection of the runes in the game. |
+| data | [CurrentGamePerksData](/api/interfaces/currentgameperksdata) | The raw current game participant perks data from the API. |
 ---
 
 ### Properties
@@ -41,7 +41,7 @@ The primary rune tree selected by the participant.
 
 
 
-**Type**: [RuneTree](/api/runetree)
+**Type**: [RuneTree](/api/classes/runetree)
 
 ---
 
@@ -51,7 +51,7 @@ The secondary rune tree selected by the participant.
 
 
 
-**Type**: [RuneTree](/api/runetree)
+**Type**: [RuneTree](/api/classes/runetree)
 
 ---
 
@@ -61,7 +61,7 @@ The runes selected by the participant.
 
 
 
-**Type**: [Rune](/api/rune)[]
+**Type**: [Rune](/api/classes/rune)[]
 
 ---
 
@@ -71,7 +71,7 @@ The stat runes selected by the participant.
 
 
 
-**Type**: [StatPerk](/api/statperk)[]
+**Type**: [StatPerk](/api/interfaces/statperk)[]
 
 ---
 

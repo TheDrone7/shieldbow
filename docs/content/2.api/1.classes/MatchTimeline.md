@@ -29,8 +29,8 @@ Constructs a new instance of the `MatchTimeline` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [MatchTimelineData](/api/matchtimelinedata) | The raw timeline data from the API. |
-| items | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/item) \> | A collection of all items in the game. |
+| data | [MatchTimelineData](/api/interfaces/matchtimelinedata) | The raw timeline data from the API. |
+| items | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/classes/item) \> | A collection of all items in the game. |
 ---
 
 ### Properties
@@ -61,7 +61,7 @@ The returned frames in the match timeline.
 
 
 
-**Type**: [TimelineFrame](/api/timelineframe)[]
+**Type**: [TimelineFrame](/api/classes/timelineframe)[]
 
 ---
 

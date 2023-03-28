@@ -17,7 +17,7 @@ export declare class ChampionSpecialKillEvent extends TimelineEvent
 
 **Extends: TimelineEvent**
 
-**References:** [TimelineEvent](/api/timelineevent)
+**References:** [TimelineEvent](/api/classes/timelineevent)
 
 ---
 
@@ -33,7 +33,7 @@ Constructs a new instance of the `ChampionSpecialKillEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [ChampionSpecialKillEventData](/api/championspecialkilleventdata) | The raw data of the event. |
+| data | [ChampionSpecialKillEventData](/api/interfaces/championspecialkilleventdata) | The raw data of the event. |
 ---
 
 ### Properties
@@ -64,7 +64,7 @@ The position at which the special kill took place.
 
 
 
-**Type**: [Position](/api/position)
+**Type**: [Position](/api/classes/position)
 
 ---
 

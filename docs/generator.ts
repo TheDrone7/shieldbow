@@ -78,7 +78,16 @@ const parseSummary = (summary: DocNode) => {
   return text;
 };
 
-const linkTo = (name: string) => `[${name}](/api/${name.toLowerCase()})`;
+const findType = (name: string): string => {
+  if (types.some((t) => t.displayName === name)) return 'types';
+  if (interfaces.some((t) => t.displayName === name)) return 'interfaces';
+  if (classes.some((t) => t.displayName === name)) return 'classes';
+  if (functions.some((t) => t.displayName === name)) return 'classes';
+  if (variables.some((t) => t.displayName === name)) return 'variables';
+  return 'interfaces';
+}
+
+const linkTo = (name: string) => `[${name}](/api/${findType(name)}/${name.toLowerCase()})`;
 
 const parseTypeString = (type: string) => {
   type = type.replace(/(?<!\\)</g, ' \\< ');
@@ -117,7 +126,7 @@ for (const cls of classes) {
   const cName = parseName(cls.displayName);
   const summary = cls.tsdocComment ? parseSummary(cls.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
   const deprecated = cls.tsdocComment?.deprecatedBlock ? parseSummary(cls.tsdocComment.deprecatedBlock.content) : '';
-  index += `| [${cName}](/api/${cName.toLowerCase()}) | ${summary} |\n`;
+  index += `| [${cName}](/api/classes/${cName.toLowerCase()}) | ${summary} |\n`;
 
   // Create the class document.
   let doc = `---\ntitle: ${cName}\ndescription: ${summary}\n---\n\n`;
@@ -212,7 +221,7 @@ for (const func of functions) {
   const summary = func.tsdocComment ? parseSummary(func.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
   const deprecated = func.tsdocComment?.deprecatedBlock ? parseSummary(func.tsdocComment.deprecatedBlock.content) : '';
   const name = `${fName}(${func.parameters.map((p) => p.name).join(', ')})`;
-  index += `| [${name}](/api/${fName.toLowerCase()}) | ${summary} |\n`;
+  index += `| [${name}](/api/functions/${fName.toLowerCase()}) | ${summary} |\n`;
 
   // Create the function document.
   let doc = `---\ntitle: ${fName}() function\ndescription: ${summary}\n---\n\n`;
@@ -248,7 +257,7 @@ for (const ifc of interfaces) {
   const iName = parseName(ifc.displayName);
   const summary = ifc.tsdocComment ? parseSummary(ifc.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
   const deprecated = ifc.tsdocComment?.deprecatedBlock ? parseSummary(ifc.tsdocComment.deprecatedBlock.content) : '';
-  index += `| [${iName}](/api/${iName.toLowerCase()}) | ${summary} |\n`;
+  index += `| [${iName}](/api/interfaces/${iName.toLowerCase()}) | ${summary} |\n`;
 
   // Create the interface document.
   let doc = `---\ntitle: ${iName}\ndescription: ${summary}\n---\n\n`;
@@ -319,7 +328,7 @@ for (const v of variables) {
   const vName = parseName(v.displayName);
   const summary = v.tsdocComment ? parseSummary(v.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
   const deprecated = v.tsdocComment?.deprecatedBlock ? parseSummary(v.tsdocComment.deprecatedBlock.content) : '';
-  index += `| [${vName}](/api/${vName.toLowerCase()}) | ${summary} |\n`;
+  index += `| [${vName}](/api/variables/${vName.toLowerCase()}) | ${summary} |\n`;
 
   // Create the variable document.
   let doc = `---\ntitle: ${vName}\ndescription: ${summary}\n---\n\n`;
@@ -347,7 +356,7 @@ for (const t of types) {
   const tName = parseName(t.displayName);
   const summary = t.tsdocComment ? parseSummary(t.tsdocComment.summarySection).replace(/\n/g, ' ').trimEnd() : '';
   const deprecated = t.tsdocComment?.deprecatedBlock ? parseSummary(t.tsdocComment.deprecatedBlock.content) : '';
-  index += `| [${tName}](/api/${tName.toLowerCase()}) | ${summary} |\n`;
+  index += `| [${tName}](/api/types/${tName.toLowerCase()}) | ${summary} |\n`;
 
   // Create the type alias document.
   let doc = `---\ntitle: ${tName}\ndescription: ${summary}\n---\n\n`;

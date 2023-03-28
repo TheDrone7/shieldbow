@@ -59,7 +59,7 @@ export interface ChampionData
 
 
 
-**Type**: [ChampionRating](/api/championrating)
+**Type**: [ChampionRating](/api/interfaces/championrating)
 
 ---
 
@@ -107,7 +107,7 @@ export interface ChampionData
 
 
 
-**Type**: [ChampionSkinData](/api/championskindata)[]
+**Type**: [ChampionSkinData](/api/interfaces/championskindata)[]
 
 ---
 
@@ -115,7 +115,7 @@ export interface ChampionData
 
 
 
-**Type**: [SpellData](/api/spelldata)[]
+**Type**: [SpellData](/api/interfaces/spelldata)[]
 
 ---
 

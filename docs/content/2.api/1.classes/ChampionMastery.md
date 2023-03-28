@@ -29,8 +29,8 @@ Constructs a new instance of the `ChampionMastery` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [ChampionMasteryData](/api/championmasterydata) | The raw champion mastery data from the API. |
-| champion | [Champion](/api/champion) | The champion these details are for. |
+| data | [ChampionMasteryData](/api/interfaces/championmasterydata) | The raw champion mastery data from the API. |
+| champion | [Champion](/api/classes/champion) | The champion these details are for. |
 ---
 
 ### Properties
@@ -41,7 +41,7 @@ The champion these details are for.
 
 
 
-**Type**: [Champion](/api/champion)
+**Type**: [Champion](/api/classes/champion)
 
 ---
 

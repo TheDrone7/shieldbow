@@ -29,12 +29,12 @@ Constructs a new instance of the `Team` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [TeamData](/api/teamdata) |  |
-| participants | [ParticipantData](/api/participantdata)[] |  |
-| champions | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/api/champion) \> |  |
-| items | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/item) \> |  |
-| runeTrees | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/api/runetree) \> |  |
-| summonerSpells | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [SummonerSpell](/api/summonerspell) \> |  |
+| data | [TeamData](/api/interfaces/teamdata) |  |
+| participants | [ParticipantData](/api/interfaces/participantdata)[] |  |
+| champions | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/api/classes/champion) \> |  |
+| items | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/classes/item) \> |  |
+| runeTrees | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/api/classes/runetree) \> |  |
+| summonerSpells | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [SummonerSpell](/api/classes/summonerspell) \> |  |
 ---
 
 ### Properties
@@ -45,7 +45,7 @@ The champions banned by the team.
 
 
 
-**Type**: [ChampionBan](/api/championban)[]
+**Type**: [ChampionBan](/api/interfaces/championban)[]
 
 ---
 
@@ -65,7 +65,7 @@ The objectives secured by the team.
 
 
 
-**Type**: [TeamObjectivesData](/api/teamobjectivesdata)
+**Type**: [TeamObjectivesData](/api/interfaces/teamobjectivesdata)
 
 ---
 
@@ -75,7 +75,7 @@ The participants in the team.
 
 
 
-**Type**: [Participant](/api/participant)[]
+**Type**: [Participant](/api/classes/participant)[]
 
 ---
 

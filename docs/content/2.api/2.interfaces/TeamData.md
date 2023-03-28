@@ -19,7 +19,7 @@ export interface TeamData
 
 
 
-**Type**: [TeamBanData](/api/teambandata)[]
+**Type**: [TeamBanData](/api/interfaces/teambandata)[]
 
 ---
 
@@ -27,7 +27,7 @@ export interface TeamData
 
 
 
-**Type**: [TeamObjectivesData](/api/teamobjectivesdata)
+**Type**: [TeamObjectivesData](/api/interfaces/teamobjectivesdata)
 
 ---
 

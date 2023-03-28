@@ -17,7 +17,7 @@ export declare class ShieldbowLogger implements ILogger
 
 Implements: ILogger
 
-**References:** [ILogger](/api/ilogger)
+**References:** [ILogger](/api/interfaces/ilogger)
 
 ---
 
@@ -33,7 +33,7 @@ Constructs a new instance of the `ShieldbowLogger` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| level | [LogLevel](/api/loglevel) | The logger's level. |
+| level | [LogLevel](/api/types/loglevel) | The logger's level. |
 ---
 
 ### Properties
@@ -44,7 +44,7 @@ The logger's level, only messages above or equal to this level will be logged.
 
 
 
-**Type**: [LoggerLevel](/api/loggerlevel)
+**Type**: [LoggerLevel](/api/interfaces/loggerlevel)
 
 ---
 
@@ -136,7 +136,7 @@ hasLevel(level: LoggerLevel): boolean;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| level | [LoggerLevel](/api/loggerlevel) | The level to check. |
+| level | [LoggerLevel](/api/interfaces/loggerlevel) | The level to check. |
 
 **Return type**: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
@@ -182,7 +182,7 @@ log(level: LoggerLevel, ...message: any[]): void;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| level | [LoggerLevel](/api/loggerlevel) | The level at which the message should be logged. |
+| level | [LoggerLevel](/api/interfaces/loggerlevel) | The level at which the message should be logged. |
 | message | any[] | The message to log. |
 
 **Return type**: void

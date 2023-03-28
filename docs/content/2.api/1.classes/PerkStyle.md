@@ -38,7 +38,7 @@ Constructs a new instance of the `PerkStyle` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| runeTrees | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/api/runetree) \> | The collection of rune trees in the game. |
+| runeTrees | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/api/classes/runetree) \> | The collection of rune trees in the game. |
 | data | {         description: string;         selections: {             perk: number;             var1: number;             var2: number;             var3: number;         }[];         style: number;     } | The raw perk style data from the API. |
 ---
 
@@ -50,7 +50,7 @@ The selected runes.
 
 
 
-**Type**: [Rune](/api/rune)[]
+**Type**: [Rune](/api/classes/rune)[]
 
 ---
 
@@ -60,7 +60,7 @@ The rune tree that this perk style is based on.
 
 
 
-**Type**: [RuneTree](/api/runetree)
+**Type**: [RuneTree](/api/classes/runetree)
 
 ---
 

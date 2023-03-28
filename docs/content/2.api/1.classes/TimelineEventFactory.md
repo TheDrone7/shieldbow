@@ -36,10 +36,10 @@ static create(data: TimelineEventData, items: Collection<string, Item>): Timelin
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [TimelineEventData](/api/timelineeventdata) | The raw data. |
-| items | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/item) \> | A collection of all items. |
+| data | [TimelineEventData](/api/interfaces/timelineeventdata) | The raw data. |
+| items | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/classes/item) \> | A collection of all items. |
 
-**Return type**: [TimelineEvent](/api/timelineevent)
+**Return type**: [TimelineEvent](/api/classes/timelineevent)
 
 ---
 

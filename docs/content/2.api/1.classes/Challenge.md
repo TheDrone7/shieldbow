@@ -31,8 +31,8 @@ Constructs a new instance of the `Challenge` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) |  |
-| data | [ChallengeConfigData](/api/challengeconfigdata) |  |
+| client | [Client](/api/classes/client) |  |
+| data | [ChallengeConfigData](/api/interfaces/challengeconfigdata) |  |
 | percentiles | {         [key in TierType]: number;     } |  |
 ---
 
@@ -54,7 +54,7 @@ The long descriptions of the challenge mapped by locale.
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Locales](/api/locales), [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Locales](/api/types/locales), [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \>
 
 ---
 
@@ -94,7 +94,7 @@ The names of the challenge mapped by locale.
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Locales](/api/locales), [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Locales](/api/types/locales), [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \>
 
 ---
 
@@ -104,7 +104,7 @@ The percentile of player base that have reached a specific tier (mapped by tier)
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [TierType](/api/tiertype) \| "NONE", [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [TierType](/api/types/tiertype) \| "NONE", [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) \>
 
 ---
 
@@ -124,7 +124,7 @@ The short descriptions of the challenge mapped by locale.
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Locales](/api/locales), [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Locales](/api/types/locales), [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \>
 
 ---
 
@@ -144,7 +144,7 @@ The thresholds of the challenge mapped by tier.
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [TierType](/api/tiertype) \| 'NONE', [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [TierType](/api/types/tiertype) \| 'NONE', [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) \>
 
 ---
 

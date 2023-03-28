@@ -15,5 +15,5 @@ export type LocalizedChallengeNameData = {
 };
 ```
 
-**References:** [Locales](/api/locales), [LocalizedChallengeData](/api/localizedchallengedata)
+**References:** [Locales](/api/types/locales), [LocalizedChallengeData](/api/interfaces/localizedchallengedata)
 

@@ -43,7 +43,7 @@ export interface TournamentData
 
 
 
-**Type**: [TournamentScheduleData](/api/tournamentscheduledata)[]
+**Type**: [TournamentScheduleData](/api/interfaces/tournamentscheduledata)[]
 
 ---
 

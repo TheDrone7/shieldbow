@@ -13,7 +13,7 @@ The event data for the objective bounty prestart event.
 export interface ObjectiveBountyPrestartEventData extends TimelineEventData 
 ```
 
-**References:** [TimelineEventData](/api/timelineeventdata)
+**References:** [TimelineEventData](/api/interfaces/timelineeventdata)
 
 ### Properties
 

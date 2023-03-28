@@ -21,7 +21,7 @@ The sprite coordinate data of a champion.
 
 
 
-**Type**: [SpriteCoordinate](/api/spritecoordinate)
+**Type**: [SpriteCoordinate](/api/interfaces/spritecoordinate)
 
 ---
 
@@ -41,7 +41,7 @@ The sprite size data of a champion.
 
 
 
-**Type**: [SpriteSize](/api/spritesize)
+**Type**: [SpriteSize](/api/interfaces/spritesize)
 
 ---
 

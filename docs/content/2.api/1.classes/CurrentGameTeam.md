@@ -29,12 +29,12 @@ Constructs a new instance of the `CurrentGameTeam` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) | The client requesting the data. |
-| bans | [CurrentGameBanData](/api/currentgamebandata)[] | The raw bans data for this team from the API. |
-| participants | [CurrentGameParticipantData](/api/currentgameparticipantdata)[] | The raw participants data for this team from the API. |
-| champions | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/api/champion) \> | The champions involved in the game. |
-| runeTrees | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/api/runetree) \> | The collection of the runes in the game. |
-| summonerSpells | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [SummonerSpell](/api/summonerspell) \> | The collection of the summoner spells in the game. |
+| client | [Client](/api/classes/client) | The client requesting the data. |
+| bans | [CurrentGameBanData](/api/interfaces/currentgamebandata)[] | The raw bans data for this team from the API. |
+| participants | [CurrentGameParticipantData](/api/interfaces/currentgameparticipantdata)[] | The raw participants data for this team from the API. |
+| champions | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/api/classes/champion) \> | The champions involved in the game. |
+| runeTrees | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/api/classes/runetree) \> | The collection of the runes in the game. |
+| summonerSpells | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [SummonerSpell](/api/classes/summonerspell) \> | The collection of the summoner spells in the game. |
 ---
 
 ### Properties
@@ -45,7 +45,7 @@ The champions banned by this team.
 
 
 
-**Type**: [CurrentGameChampionBan](/api/currentgamechampionban)[]
+**Type**: [CurrentGameChampionBan](/api/interfaces/currentgamechampionban)[]
 
 ---
 
@@ -65,7 +65,7 @@ The team's participants.
 
 
 
-**Type**: [CurrentGameParticipant](/api/currentgameparticipant)[]
+**Type**: [CurrentGameParticipant](/api/classes/currentgameparticipant)[]
 
 ---
 

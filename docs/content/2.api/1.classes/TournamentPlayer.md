@@ -29,9 +29,9 @@ Constructs a new instance of the `TournamentPlayer` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) | The client that requested this data. |
+| client | [Client](/api/classes/client) | The client that requested this data. |
 | teamId | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The ID of the team this player is on. |
-| data | [TournamentPlayerData](/api/tournamentplayerdata) | The raw player data from the API. |
+| data | [TournamentPlayerData](/api/interfaces/tournamentplayerdata) | The raw player data from the API. |
 ---
 
 ### Properties

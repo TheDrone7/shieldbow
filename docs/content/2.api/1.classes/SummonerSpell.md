@@ -29,8 +29,8 @@ Constructs a new instance of the `SummonerSpell` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) | The client that requested this data. |
-| data | [SummonerSpellData](/api/summonerspelldata) | The raw summoner spell data from the API. |
+| client | [Client](/api/classes/client) | The client that requested this data. |
+| data | [SummonerSpellData](/api/interfaces/summonerspelldata) | The raw summoner spell data from the API. |
 ---
 
 ### Properties
@@ -101,7 +101,7 @@ The game modes you can pick this summoner spell in.
 
 
 
-**Type**: [GameMode](/api/gamemode)[]
+**Type**: [GameMode](/api/interfaces/gamemode)[]
 
 ---
 

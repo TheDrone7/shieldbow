@@ -17,7 +17,7 @@ export declare class TurretPlateDestroyedEvent extends TimelineEvent
 
 **Extends: TimelineEvent**
 
-**References:** [TimelineEvent](/api/timelineevent)
+**References:** [TimelineEvent](/api/classes/timelineevent)
 
 ---
 
@@ -33,7 +33,7 @@ Constructs a new instance of the `TurretPlateDestroyedEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [TurretPlateDestroyedEventData](/api/turretplatedestroyedeventdata) | The raw data of the event. |
+| data | [TurretPlateDestroyedEventData](/api/interfaces/turretplatedestroyedeventdata) | The raw data of the event. |
 ---
 
 ### Properties
@@ -64,7 +64,7 @@ The position at which the turret plating was destroyed.
 
 
 
-**Type**: [Position](/api/position)
+**Type**: [Position](/api/classes/position)
 
 ---
 

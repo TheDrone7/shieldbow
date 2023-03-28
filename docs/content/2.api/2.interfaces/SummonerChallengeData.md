@@ -27,7 +27,7 @@ export interface SummonerChallengeData
 
 
 
-**Type**: [ChallengeProgressionData](/api/challengeprogressiondata)[]
+**Type**: [ChallengeProgressionData](/api/interfaces/challengeprogressiondata)[]
 
 ---
 
@@ -35,7 +35,7 @@ export interface SummonerChallengeData
 
 
 
-**Type**: [ChallengePreferencesData](/api/challengepreferencesdata)
+**Type**: [ChallengePreferencesData](/api/interfaces/challengepreferencesdata)
 
 ---
 
@@ -43,7 +43,7 @@ export interface SummonerChallengeData
 
 
 
-**Type**: [TotalChallengePointsData](/api/totalchallengepointsdata)
+**Type**: [TotalChallengePointsData](/api/interfaces/totalchallengepointsdata)
 
 ---
 

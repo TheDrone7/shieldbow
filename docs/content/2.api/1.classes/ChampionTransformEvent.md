@@ -17,7 +17,7 @@ export declare class ChampionTransformEvent extends TimelineEvent
 
 **Extends: TimelineEvent**
 
-**References:** [TimelineEvent](/api/timelineevent)
+**References:** [TimelineEvent](/api/classes/timelineevent)
 
 ---
 
@@ -33,7 +33,7 @@ Constructs a new instance of the `ChampionTransformEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [ChampionTransformEventData](/api/championtransformeventdata) | The raw data of the event. |
+| data | [ChampionTransformEventData](/api/interfaces/championtransformeventdata) | The raw data of the event. |
 ---
 
 ### Properties

@@ -13,7 +13,7 @@ The complete clash tournament player data as returned by the API.
 export interface TournamentPlayerFullData extends TournamentPlayerData 
 ```
 
-**References:** [TournamentPlayerData](/api/tournamentplayerdata)
+**References:** [TournamentPlayerData](/api/interfaces/tournamentplayerdata)
 
 ### Properties
 

@@ -21,7 +21,7 @@ The client this manager is being used by.
 
 
 
-**Type**: [Client](/api/client)
+**Type**: [Client](/api/classes/client)
 
 ---
 
@@ -45,7 +45,7 @@ fetch(id: any, options?: FetchOptions): Promise<T>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | id | any | The ID of the data entity being fetched. |
-| options | [FetchOptions](/api/fetchoptions) | Basic fetch options, setting the force option to `true` must ignore the cache. |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | Basic fetch options, setting the force option to `true` must ignore the cache. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< T \>
 

@@ -13,5 +13,5 @@ The Clash API method names.
 export type ClashMethods = (typeof methods)['CLASH'][number];
 ```
 
-**References:** [methods](/api/methods)
+**References:** [methods](/api/variables/methods)
 

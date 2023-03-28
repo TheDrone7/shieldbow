@@ -29,11 +29,11 @@ Constructs a new instance of the `CurrentGame` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) | The client that requested this data. |
-| data | [CurrentGameData](/api/currentgamedata) | The raw current game data from the API. |
-| champions | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/api/champion) \> | The champions that are involved in the game. |
-| runeTrees | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/api/runetree) \> | The collection of the runes in the game. |
-| summonerSpells | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [SummonerSpell](/api/summonerspell) \> | The collection of the summoner spells in the game. |
+| client | [Client](/api/classes/client) | The client that requested this data. |
+| data | [CurrentGameData](/api/interfaces/currentgamedata) | The raw current game data from the API. |
+| champions | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/api/classes/champion) \> | The champions that are involved in the game. |
+| runeTrees | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/api/classes/runetree) \> | The collection of the runes in the game. |
+| summonerSpells | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [SummonerSpell](/api/classes/summonerspell) \> | The collection of the summoner spells in the game. |
 ---
 
 ### Properties
@@ -67,7 +67,7 @@ The map on which the game is being played.
 
 
 
-**Type**: [GameMap](/api/gamemap)
+**Type**: [GameMap](/api/interfaces/gamemap)
 
 ---
 
@@ -87,7 +87,7 @@ The game mode.
 
 
 
-**Type**: [GameMode](/api/gamemode)
+**Type**: [GameMode](/api/interfaces/gamemode)
 
 ---
 
@@ -117,7 +117,7 @@ The type of queue for the game.
 
 
 
-**Type**: [Queue](/api/queue)
+**Type**: [Queue](/api/interfaces/queue)
 
 ---
 
@@ -137,7 +137,7 @@ A collection of the participating teams.
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< 'red' \| 'blue', [CurrentGameTeam](/api/currentgameteam) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< 'red' \| 'blue', [CurrentGameTeam](/api/classes/currentgameteam) \>
 
 ---
 
@@ -147,7 +147,7 @@ The type of game.
 
 
 
-**Type**: [GameType](/api/gametype)
+**Type**: [GameType](/api/interfaces/gametype)
 
 ---
 

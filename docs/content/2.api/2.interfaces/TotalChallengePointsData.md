@@ -27,7 +27,7 @@ export interface TotalChallengePointsData
 
 
 
-**Type**: [TierType](/api/tiertype)
+**Type**: [TierType](/api/types/tiertype)
 
 ---
 

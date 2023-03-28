@@ -29,8 +29,8 @@ Constructs a new instance of the `LeagueEntry` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) | The client requesting the data. |
-| data | [LeagueEntryData](/api/leagueentrydata) | The raw league entry data from the API. |
+| client | [Client](/api/classes/client) | The client requesting the data. |
+| data | [LeagueEntryData](/api/interfaces/leagueentrydata) | The raw league entry data from the API. |
 ---
 
 ### Properties
@@ -41,7 +41,7 @@ The division under the tier - From 1 to 4 (I - IV).
 
 
 
-**Type**: [DivisionType](/api/divisiontype)
+**Type**: [DivisionType](/api/types/divisiontype)
 
 ---
 
@@ -111,7 +111,7 @@ This only exists if the summoner is in a promotion series.
 
 
 
-**Type**: [Promos](/api/promos)
+**Type**: [Promos](/api/interfaces/promos)
 
 ---
 
@@ -121,7 +121,7 @@ The type of queue - such as RANKED_SOLO_5x5, RANKED_FLEX_SR or RANKED_FLEX_TT.
 
 
 
-**Type**: [QueueType](/api/queuetype)
+**Type**: [QueueType](/api/types/queuetype)
 
 ---
 
@@ -151,7 +151,7 @@ The tier the summoner belongs to - such as BRONZE, GOLD, etc.
 
 
 
-**Type**: [TierType](/api/tiertype)
+**Type**: [TierType](/api/types/tiertype)
 
 ---
 
@@ -194,9 +194,9 @@ fetchSummoner(options?: FetchOptions): Promise<Summoner>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetching options. |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetching options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Summoner](/api/summoner) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Summoner](/api/classes/summoner) \>
 
 ---
 

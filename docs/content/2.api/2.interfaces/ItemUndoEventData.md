@@ -13,7 +13,7 @@ The event data for the item undo event.
 export interface ItemUndoEventData extends TimelineEventData 
 ```
 
-**References:** [TimelineEventData](/api/timelineeventdata)
+**References:** [TimelineEventData](/api/interfaces/timelineeventdata)
 
 ### Properties
 

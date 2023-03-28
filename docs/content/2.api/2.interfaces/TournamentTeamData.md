@@ -59,7 +59,7 @@ export interface TournamentTeamData
 
 
 
-**Type**: [TournamentPlayerData](/api/tournamentplayerdata)[]
+**Type**: [TournamentPlayerData](/api/interfaces/tournamentplayerdata)[]
 
 ---
 

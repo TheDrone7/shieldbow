@@ -13,7 +13,7 @@ The event data for the champion level up event.
 export interface LevelUpEventData extends TimelineEventData 
 ```
 
-**References:** [TimelineEventData](/api/timelineeventdata)
+**References:** [TimelineEventData](/api/interfaces/timelineeventdata)
 
 ### Properties
 

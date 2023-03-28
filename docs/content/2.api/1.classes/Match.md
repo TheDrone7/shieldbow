@@ -29,12 +29,12 @@ Constructs a new instance of the `Match` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) | The client requesting the data. |
-| data | [MatchData](/api/matchdata) | The raw match data from the API. |
-| champions | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/api/champion) \> | The champions involved in the match. |
-| items | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/item) \> | The items used in the match. |
-| runeTrees | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/api/runetree) \> | The rune trees in the game. |
-| summonerSpells | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [SummonerSpell](/api/summonerspell) \> | The summoner spells in the game. |
+| client | [Client](/api/classes/client) | The client requesting the data. |
+| data | [MatchData](/api/interfaces/matchdata) | The raw match data from the API. |
+| champions | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Champion](/api/classes/champion) \> | The champions involved in the match. |
+| items | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/classes/item) \> | The items used in the match. |
+| runeTrees | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/api/classes/runetree) \> | The rune trees in the game. |
+| summonerSpells | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [SummonerSpell](/api/classes/summonerspell) \> | The summoner spells in the game. |
 ---
 
 ### Properties
@@ -85,7 +85,7 @@ The game mode for the match.
 
 
 
-**Type**: [GameMode](/api/gamemode)
+**Type**: [GameMode](/api/interfaces/gamemode)
 
 ---
 
@@ -105,7 +105,7 @@ The type of game.
 
 
 
-**Type**: [GameType](/api/gametype)
+**Type**: [GameType](/api/interfaces/gametype)
 
 ---
 
@@ -135,7 +135,7 @@ The map on which the match was played.
 
 
 
-**Type**: [GameMap](/api/gamemap)
+**Type**: [GameMap](/api/interfaces/gamemap)
 
 ---
 
@@ -145,7 +145,7 @@ The queue type of the match.
 
 
 
-**Type**: [Queue](/api/queue)
+**Type**: [Queue](/api/interfaces/queue)
 
 ---
 
@@ -158,7 +158,7 @@ Eg: `NA` or `EUW`.
 
 
 
-**Type**: [Region](/api/region)
+**Type**: [Region](/api/types/region)
 
 ---
 
@@ -181,7 +181,7 @@ They are mapped by their map sides (`blue` and `red`).
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< 'blue' \| 'red', [Team](/api/team) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< 'blue' \| 'red', [Team](/api/classes/team) \>
 
 ---
 
@@ -220,7 +220,7 @@ fetchTimeline(): Promise<MatchTimeline>;
 ```
 
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [MatchTimeline](/api/matchtimeline) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [MatchTimeline](/api/classes/matchtimeline) \>
 
 ---
 

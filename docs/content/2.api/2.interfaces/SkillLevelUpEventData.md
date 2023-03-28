@@ -13,7 +13,7 @@ The event data for the skill level up event.
 export interface SkillLevelUpEventData extends TimelineEventData 
 ```
 
-**References:** [TimelineEventData](/api/timelineeventdata)
+**References:** [TimelineEventData](/api/interfaces/timelineeventdata)
 
 ### Properties
 

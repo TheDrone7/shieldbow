@@ -29,11 +29,11 @@ Constructs a new instance of the `CurrentGameParticipant` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) | The client that requested this data. |
-| data | [CurrentGameParticipantData](/api/currentgameparticipantdata) | The raw current game participant data from the API. |
-| champ | [Champion](/api/champion) | The champion being played by this participant. |
-| runeTrees | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/api/runetree) \> | The collection of the runes in the game. |
-| summonerSpells | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [SummonerSpell](/api/summonerspell) \> | The collection of the summoner spells in the game. |
+| client | [Client](/api/classes/client) | The client that requested this data. |
+| data | [CurrentGameParticipantData](/api/interfaces/currentgameparticipantdata) | The raw current game participant data from the API. |
+| champ | [Champion](/api/classes/champion) | The champion being played by this participant. |
+| runeTrees | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/api/classes/runetree) \> | The collection of the runes in the game. |
+| summonerSpells | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [SummonerSpell](/api/classes/summonerspell) \> | The collection of the summoner spells in the game. |
 ---
 
 ### Properties
@@ -54,7 +54,7 @@ The champion being played by this participant.
 
 
 
-**Type**: [Champion](/api/champion)
+**Type**: [Champion](/api/classes/champion)
 
 ---
 
@@ -64,7 +64,7 @@ The rune setups of this participant.
 
 
 
-**Type**: [CurrentGamePerks](/api/currentgameperks)
+**Type**: [CurrentGamePerks](/api/classes/currentgameperks)
 
 ---
 
@@ -94,7 +94,7 @@ The summoner spells being used by this participant.
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< 'D' \| 'F', [SummonerSpell](/api/summonerspell) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< 'D' \| 'F', [SummonerSpell](/api/classes/summonerspell) \>
 
 ---
 
@@ -127,9 +127,9 @@ fetchSummoner(options?: FetchOptions): Promise<Summoner>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetching options. |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetching options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Summoner](/api/summoner) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Summoner](/api/classes/summoner) \>
 
 ---
 

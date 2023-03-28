@@ -13,5 +13,5 @@ A valid locale to fetch the data in.
 export type Locales = (typeof locale)[number];
 ```
 
-**References:** [locale](/api/locale)
+**References:** [locale](/api/variables/locale)
 

@@ -19,7 +19,7 @@ export interface RateLimiterConfig
 
 
 
-**Type**: [RateLimitConfig](/api/ratelimitconfig)[]
+**Type**: [RateLimitConfig](/api/interfaces/ratelimitconfig)[]
 
 ---
 
@@ -27,7 +27,7 @@ export interface RateLimiterConfig
 
 
 
-**Type**: [MethodRateLimitConfig](/api/methodratelimitconfig)
+**Type**: [MethodRateLimitConfig](/api/interfaces/methodratelimitconfig)
 
 ---
 
@@ -35,7 +35,7 @@ export interface RateLimiterConfig
 
 
 
-**Type**: [RetryOptions](/api/retryoptions)
+**Type**: [RetryOptions](/api/interfaces/retryoptions)
 
 ---
 

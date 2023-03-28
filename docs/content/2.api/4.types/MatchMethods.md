@@ -13,5 +13,5 @@ The Match API method names.
 export type MatchMethods = (typeof methods)['MATCH'][number];
 ```
 
-**References:** [methods](/api/methods)
+**References:** [methods](/api/variables/methods)
 

@@ -43,7 +43,7 @@ export interface CurrentGameParticipantData
 
 
 
-**Type**: [CurrentGamePerksData](/api/currentgameperksdata)
+**Type**: [CurrentGamePerksData](/api/interfaces/currentgameperksdata)
 
 ---
 

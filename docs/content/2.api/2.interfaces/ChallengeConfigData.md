@@ -35,7 +35,7 @@ export interface ChallengeConfigData
 
 
 
-**Type**: [LocalizedChallengeNameData](/api/localizedchallengenamedata)
+**Type**: [LocalizedChallengeNameData](/api/types/localizedchallengenamedata)
 
 ---
 

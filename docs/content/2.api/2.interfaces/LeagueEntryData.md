@@ -75,7 +75,7 @@ export interface LeagueEntryData
 
 
 
-**Type**: [QueueType](/api/queuetype)
+**Type**: [QueueType](/api/types/queuetype)
 
 ---
 
@@ -83,7 +83,7 @@ export interface LeagueEntryData
 
 
 
-**Type**: [DivisionType](/api/divisiontype)
+**Type**: [DivisionType](/api/types/divisiontype)
 
 ---
 
@@ -107,7 +107,7 @@ export interface LeagueEntryData
 
 
 
-**Type**: [TierType](/api/tiertype)
+**Type**: [TierType](/api/types/tiertype)
 
 ---
 

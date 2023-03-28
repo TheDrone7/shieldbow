@@ -17,7 +17,7 @@ export declare class SummonerManager implements BaseManager<Summoner>
 
 Implements: BaseManager&lt;Summoner&gt;
 
-**References:** [BaseManager](/api/basemanager), [Summoner](/api/summoner)
+**References:** [BaseManager](/api/interfaces/basemanager), [Summoner](/api/classes/summoner)
 
 ---
 
@@ -33,7 +33,7 @@ Constructs a new instance of the `SummonerManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) | The client this summoner manager belongs to. |
+| client | [Client](/api/classes/client) | The client this summoner manager belongs to. |
 ---
 
 ### Properties
@@ -44,7 +44,7 @@ The client this summoner manager belongs to.
 
 
 
-**Type**: [Client](/api/client)
+**Type**: [Client](/api/classes/client)
 
 ---
 
@@ -68,9 +68,9 @@ fetch(id: string, options?: FetchOptions): Promise<Summoner>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | id | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The summoner ID of the summoner. |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetching options. |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetching options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Summoner](/api/summoner) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Summoner](/api/classes/summoner) \>
 
 ---
 
@@ -91,10 +91,10 @@ fetchByPlayerId(playerId: string | Account, options?: FetchOptions): Promise<Sum
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| playerId | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Account](/api/account) | The PUUID of the summoner or associated RIOT account. |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetching options. |
+| playerId | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Account](/api/classes/account) | The PUUID of the summoner or associated RIOT account. |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetching options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Summoner](/api/summoner) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Summoner](/api/classes/summoner) \>
 
 ---
 
@@ -116,9 +116,9 @@ fetchBySummonerName(name: string, options?: FetchOptions): Promise<Summoner>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | name | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The summoner name of the summoner to fetch. |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetching options. |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetching options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Summoner](/api/summoner) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Summoner](/api/classes/summoner) \>
 
 ---
 

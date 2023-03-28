@@ -17,7 +17,7 @@ export declare class LocalStorage implements IStorage
 
 Implements: IStorage
 
-**References:** [IStorage](/api/istorage)
+**References:** [IStorage](/api/interfaces/istorage)
 
 ---
 
@@ -33,7 +33,7 @@ Constructs a new instance of the `LocalStorage` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) | The client to use. |
+| client | [Client](/api/classes/client) | The client to use. |
 | root | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The root path to use. |
 ---
 

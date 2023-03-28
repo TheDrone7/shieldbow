@@ -29,7 +29,7 @@ Constructs a new instance of the `ParticipantFrame` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [ParticipantFrameData](/api/participantframedata) | The raw data from the API. |
+| data | [ParticipantFrameData](/api/interfaces/participantframedata) | The raw data from the API. |
 ---
 
 ### Properties
@@ -40,7 +40,7 @@ The participant's champion stats.
 
 
 
-**Type**: [ParticipantFrameChampionStats](/api/participantframechampionstats)
+**Type**: [ParticipantFrameChampionStats](/api/classes/participantframechampionstats)
 
 ---
 
@@ -70,7 +70,7 @@ The participant's damage stats.
 
 
 
-**Type**: [ParticipantFrameDamageStats](/api/participantframedamagestats)
+**Type**: [ParticipantFrameDamageStats](/api/classes/participantframedamagestats)
 
 ---
 
@@ -130,7 +130,7 @@ The position of this participant on the map.
 
 
 
-**Type**: [Position](/api/position)
+**Type**: [Position](/api/classes/position)
 
 ---
 

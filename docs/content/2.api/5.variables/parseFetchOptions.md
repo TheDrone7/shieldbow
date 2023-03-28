@@ -13,5 +13,5 @@ A utility for parsing the fetch options using request specific, client config an
 parseFetchOptions: (client: Client, manager: DragonManagerKey | ApiManagerKey, options?: FetchOptions) => FetchOptions
 ```
 
-**References:** [Client](/api/client), [DragonManagerKey](/api/dragonmanagerkey), [ApiManagerKey](/api/apimanagerkey), [FetchOptions](/api/fetchoptions), [FetchOptions](/api/fetchoptions)
+**References:** [Client](/api/classes/client), [DragonManagerKey](/api/types/dragonmanagerkey), [ApiManagerKey](/api/types/apimanagerkey), [FetchOptions](/api/interfaces/fetchoptions), [FetchOptions](/api/interfaces/fetchoptions)
 

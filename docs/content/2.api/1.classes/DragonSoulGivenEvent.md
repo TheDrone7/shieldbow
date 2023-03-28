@@ -29,7 +29,7 @@ Constructs a new instance of the `DragonSoulGivenEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [DragonSoulGivenEventData](/api/dragonsoulgiveneventdata) | The raw data of the event. |
+| data | [DragonSoulGivenEventData](/api/interfaces/dragonsoulgiveneventdata) | The raw data of the event. |
 ---
 
 ### Properties

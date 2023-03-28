@@ -35,7 +35,7 @@ export interface ChallengeProgressionData
 
 
 
-**Type**: [TierType](/api/tiertype)
+**Type**: [TierType](/api/types/tiertype)
 
 ---
 

@@ -19,7 +19,7 @@ export interface TeamObjectivesData
 
 
 
-**Type**: [TeamObjectiveData](/api/teamobjectivedata)
+**Type**: [TeamObjectiveData](/api/interfaces/teamobjectivedata)
 
 ---
 
@@ -27,7 +27,7 @@ export interface TeamObjectivesData
 
 
 
-**Type**: [TeamObjectiveData](/api/teamobjectivedata)
+**Type**: [TeamObjectiveData](/api/interfaces/teamobjectivedata)
 
 ---
 
@@ -35,7 +35,7 @@ export interface TeamObjectivesData
 
 
 
-**Type**: [TeamObjectiveData](/api/teamobjectivedata)
+**Type**: [TeamObjectiveData](/api/interfaces/teamobjectivedata)
 
 ---
 
@@ -43,7 +43,7 @@ export interface TeamObjectivesData
 
 
 
-**Type**: [TeamObjectiveData](/api/teamobjectivedata)
+**Type**: [TeamObjectiveData](/api/interfaces/teamobjectivedata)
 
 ---
 
@@ -51,7 +51,7 @@ export interface TeamObjectivesData
 
 
 
-**Type**: [TeamObjectiveData](/api/teamobjectivedata)
+**Type**: [TeamObjectiveData](/api/interfaces/teamobjectivedata)
 
 ---
 
@@ -59,7 +59,7 @@ export interface TeamObjectivesData
 
 
 
-**Type**: [TeamObjectiveData](/api/teamobjectivedata)
+**Type**: [TeamObjectiveData](/api/interfaces/teamobjectivedata)
 
 ---
 

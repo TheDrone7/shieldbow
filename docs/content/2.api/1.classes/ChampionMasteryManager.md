@@ -17,7 +17,7 @@ export declare class ChampionMasteryManager implements BaseManager<ChampionMaste
 
 Implements: BaseManager&lt;ChampionMastery&gt;
 
-**References:** [BaseManager](/api/basemanager), [ChampionMastery](/api/championmastery)
+**References:** [BaseManager](/api/interfaces/basemanager), [ChampionMastery](/api/classes/championmastery)
 
 ---
 
@@ -33,8 +33,8 @@ Constructs a new instance of the `ChampionMasteryManager` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) | The client this champion mastery manager belongs to. |
-| summoner | [Summoner](/api/summoner) | The summoner this manager belongs to. |
+| client | [Client](/api/classes/client) | The client this champion mastery manager belongs to. |
+| summoner | [Summoner](/api/classes/summoner) | The summoner this manager belongs to. |
 ---
 
 ### Properties
@@ -45,7 +45,7 @@ The client this champion mastery manager belongs to.
 
 
 
-**Type**: [Client](/api/client)
+**Type**: [Client](/api/classes/client)
 
 ---
 
@@ -55,7 +55,7 @@ The ID of the summoner whose mastery is managed by this manager.
 
 
 
-**Type**: [Summoner](/api/summoner)
+**Type**: [Summoner](/api/classes/summoner)
 
 ---
 
@@ -88,10 +88,10 @@ fetch(champion: Champion | string, options?: FetchOptions): Promise<ChampionMast
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| champion | [Champion](/api/champion) \| [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The champion (or its ID) whose mastery data needs to be fetched. |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetching options. |
+| champion | [Champion](/api/classes/champion) \| [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | The champion (or its ID) whose mastery data needs to be fetched. |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetching options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [ChampionMastery](/api/championmastery) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [ChampionMastery](/api/classes/championmastery) \>
 
 ---
 
@@ -111,9 +111,9 @@ fetchAll(options?: FetchOptions): Promise<Collection<string, ChampionMastery>>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| options | [FetchOptions](/api/fetchoptions) |  |
+| options | [FetchOptions](/api/interfaces/fetchoptions) |  |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [ChampionMastery](/api/championmastery) \> \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [ChampionMastery](/api/classes/championmastery) \> \>
 
 ---
 
@@ -135,9 +135,9 @@ fetchTop(n?: number, options?: FetchOptions): Promise<ChampionMastery[]>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | n | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The number of champions to fetch, defaults to 3. |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetching options. |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetching options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [ChampionMastery](/api/championmastery)[] \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [ChampionMastery](/api/classes/championmastery)[] \>
 
 ---
 
@@ -159,9 +159,9 @@ highest(n?: number, options?: FetchOptions): Promise<ChampionMastery>;
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | n | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The ranking of the champion in the summoner's champions mastery, defaults to 0 (highest). |
-| options | [FetchOptions](/api/fetchoptions) | The basic fetching options. |
+| options | [FetchOptions](/api/interfaces/fetchoptions) | The basic fetching options. |
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [ChampionMastery](/api/championmastery) \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [ChampionMastery](/api/classes/championmastery) \>
 
 ---
 

@@ -31,7 +31,7 @@ A reference to the actual champion.
 
 
 
-**Type**: [Champion](/api/champion)
+**Type**: [Champion](/api/classes/champion)
 
 ---
 

@@ -29,10 +29,10 @@ Constructs a new instance of the `ChampionSpell` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) | The client creating this instance. |
-| champ | [Champion](/api/champion) | The champion this spell belongs to. |
-| data | [SpellData](/api/spelldata) | The raw spell data from data dragon. |
-| damage | [SpellDamageData](/api/spelldamagedata) | The raw spell data from community dragon. |
+| client | [Client](/api/classes/client) | The client creating this instance. |
+| champ | [Champion](/api/classes/champion) | The champion this spell belongs to. |
+| data | [SpellData](/api/interfaces/spelldata) | The raw spell data from data dragon. |
+| damage | [SpellDamageData](/api/interfaces/spelldamagedata) | The raw spell data from community dragon. |
 ---
 
 ### Properties

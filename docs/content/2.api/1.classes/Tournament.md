@@ -29,7 +29,7 @@ Constructs a new instance of the `Tournament` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [TournamentData](/api/tournamentdata) | The raw tournament data from the API. |
+| data | [TournamentData](/api/interfaces/tournamentdata) | The raw tournament data from the API. |
 ---
 
 ### Properties
@@ -50,7 +50,7 @@ The tournament's schedule.
 
 
 
-**Type**: [TournamentSchedule](/api/tournamentschedule)[]
+**Type**: [TournamentSchedule](/api/classes/tournamentschedule)[]
 
 ---
 

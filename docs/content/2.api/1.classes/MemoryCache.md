@@ -17,7 +17,7 @@ export declare class MemoryCache implements ICache
 
 Implements: ICache
 
-**References:** [ICache](/api/icache)
+**References:** [ICache](/api/interfaces/icache)
 
 ---
 

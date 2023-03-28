@@ -21,7 +21,7 @@ The rate limit config for the ACCOUNT methods.
 
 
 
-**Type**: [RateLimitConfig](/api/ratelimitconfig)[] \| {         [k in AccountMethods]: RateLimitConfig[];     }
+**Type**: [RateLimitConfig](/api/interfaces/ratelimitconfig)[] \| {         [k in AccountMethods]: RateLimitConfig[];     }
 
 ---
 
@@ -31,7 +31,7 @@ The rate limit config for the CHAMPION_MASTERY methods.
 
 
 
-**Type**: [RateLimitConfig](/api/ratelimitconfig)[] \| {         [k in ChampionMasteryMethods]: RateLimitConfig[];     }
+**Type**: [RateLimitConfig](/api/interfaces/ratelimitconfig)[] \| {         [k in ChampionMasteryMethods]: RateLimitConfig[];     }
 
 ---
 
@@ -41,7 +41,7 @@ The rate limit config for the CHAMPION methods.
 
 
 
-**Type**: [RateLimitConfig](/api/ratelimitconfig)[] \| {         [k in ChampionMethods]: RateLimitConfig[];     }
+**Type**: [RateLimitConfig](/api/interfaces/ratelimitconfig)[] \| {         [k in ChampionMethods]: RateLimitConfig[];     }
 
 ---
 
@@ -51,7 +51,7 @@ The rate limit config for the CLASH methods.
 
 
 
-**Type**: [RateLimitConfig](/api/ratelimitconfig)[] \| {         [k in ClashMethods]: RateLimitConfig[];     }
+**Type**: [RateLimitConfig](/api/interfaces/ratelimitconfig)[] \| {         [k in ClashMethods]: RateLimitConfig[];     }
 
 ---
 
@@ -61,7 +61,7 @@ The rate limit config for the LEAGUE_EXP methods.
 
 
 
-**Type**: [RateLimitConfig](/api/ratelimitconfig)[] \| {         [k in LeagueExpMethods]: RateLimitConfig[];     }
+**Type**: [RateLimitConfig](/api/interfaces/ratelimitconfig)[] \| {         [k in LeagueExpMethods]: RateLimitConfig[];     }
 
 ---
 
@@ -71,7 +71,7 @@ The rate limit config for the LEAGUE methods.
 
 
 
-**Type**: [RateLimitConfig](/api/ratelimitconfig)[] \| {         [k in LeagueMethods]: RateLimitConfig[];     }
+**Type**: [RateLimitConfig](/api/interfaces/ratelimitconfig)[] \| {         [k in LeagueMethods]: RateLimitConfig[];     }
 
 ---
 
@@ -81,7 +81,7 @@ The rate limit config for the LOL_CHALLENGES methods.
 
 
 
-**Type**: [RateLimitConfig](/api/ratelimitconfig)[] \| {         [k in LolChallengesMethods]: RateLimitConfig[];     }
+**Type**: [RateLimitConfig](/api/interfaces/ratelimitconfig)[] \| {         [k in LolChallengesMethods]: RateLimitConfig[];     }
 
 ---
 
@@ -91,7 +91,7 @@ The rate limit config for the LOL_STATUS methods.
 
 
 
-**Type**: [RateLimitConfig](/api/ratelimitconfig)[] \| {         [k in LolStatusMethods]: RateLimitConfig[];     }
+**Type**: [RateLimitConfig](/api/interfaces/ratelimitconfig)[] \| {         [k in LolStatusMethods]: RateLimitConfig[];     }
 
 ---
 
@@ -101,7 +101,7 @@ The rate limit config for the MATCH methods.
 
 
 
-**Type**: [RateLimitConfig](/api/ratelimitconfig)[] \| {         [k in MatchMethods]: RateLimitConfig[];     }
+**Type**: [RateLimitConfig](/api/interfaces/ratelimitconfig)[] \| {         [k in MatchMethods]: RateLimitConfig[];     }
 
 ---
 
@@ -111,7 +111,7 @@ The rate limit config for the SPECTATOR methods.
 
 
 
-**Type**: [RateLimitConfig](/api/ratelimitconfig)[] \| {         [k in SpectatorMethods]: RateLimitConfig[];     }
+**Type**: [RateLimitConfig](/api/interfaces/ratelimitconfig)[] \| {         [k in SpectatorMethods]: RateLimitConfig[];     }
 
 ---
 
@@ -121,7 +121,7 @@ The rate limit config for the SUMMONER methods.
 
 
 
-**Type**: [RateLimitConfig](/api/ratelimitconfig)[] \| {         [k in SummonerMethods]: RateLimitConfig[];     }
+**Type**: [RateLimitConfig](/api/interfaces/ratelimitconfig)[] \| {         [k in SummonerMethods]: RateLimitConfig[];     }
 
 ---
 

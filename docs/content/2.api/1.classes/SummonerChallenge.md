@@ -29,8 +29,8 @@ Constructs a new instance of the `SummonerChallenge` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| client | [Client](/api/client) |  |
-| data | [SummonerChallengeData](/api/summonerchallengedata) |  |
+| client | [Client](/api/classes/client) |  |
+| data | [SummonerChallengeData](/api/interfaces/summonerchallengedata) |  |
 ---
 
 ### Properties
@@ -41,7 +41,7 @@ The challenge categories overview of this summoner.
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [CategoryName](/api/categoryname), [ChallengeCategory](/api/challengecategory) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [CategoryName](/api/types/categoryname), [ChallengeCategory](/api/classes/challengecategory) \>
 
 ---
 
@@ -51,7 +51,7 @@ Individual challenge progression stats of this summoner.
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [ChallengeProgression](/api/challengeprogression) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [ChallengeProgression](/api/classes/challengeprogression) \>
 
 ---
 
@@ -61,7 +61,7 @@ The preferences of this summoner.
 
 
 
-**Type**: [ChallengePreferences](/api/challengepreferences)
+**Type**: [ChallengePreferences](/api/classes/challengepreferences)
 
 ---
 
@@ -71,7 +71,7 @@ The overview of this summoner in challenges.
 
 
 
-**Type**: [TotalChallengePoints](/api/totalchallengepoints)
+**Type**: [TotalChallengePoints](/api/classes/totalchallengepoints)
 
 ---
 

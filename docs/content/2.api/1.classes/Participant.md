@@ -29,11 +29,11 @@ Constructs a new instance of the `Participant` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [ParticipantData](/api/participantdata) | The raw participant data from the API. |
-| champ | [Champion](/api/champion) | The champion played by the participant. |
-| items | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/item) \> | The items purchased by the participant. |
-| runeTrees | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/api/runetree) \> | The rune trees in the game. |
-| summonerSpells | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [SummonerSpell](/api/summonerspell) \> | The summoner spells in the game. |
+| data | [ParticipantData](/api/interfaces/participantdata) | The raw participant data from the API. |
+| champ | [Champion](/api/classes/champion) | The champion played by the participant. |
+| items | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/classes/item) \> | The items purchased by the participant. |
+| runeTrees | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [RuneTree](/api/classes/runetree) \> | The rune trees in the game. |
+| summonerSpells | [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [SummonerSpell](/api/classes/summonerspell) \> | The summoner spells in the game. |
 ---
 
 ### Properties
@@ -74,7 +74,7 @@ The bounty on this participant's head.
 
 
 
-**Type**: [Bounty](/api/bounty)
+**Type**: [Bounty](/api/classes/bounty)
 
 ---
 
@@ -94,7 +94,7 @@ The stats of the champion being played by this participant.
 
 
 
-**Type**: [ParticipantChampion](/api/participantchampion)
+**Type**: [ParticipantChampion](/api/interfaces/participantchampion)
 
 ---
 
@@ -224,7 +224,7 @@ An overview of the healing done by the participant.
 
 
 
-**Type**: [ParticipantHealingStats](/api/participanthealingstats)
+**Type**: [ParticipantHealingStats](/api/interfaces/participanthealingstats)
 
 ---
 
@@ -244,7 +244,7 @@ The number of inhibitors killed/lost.
 
 
 
-**Type**: [ParticipantInhibitorStats](/api/participantinhibitorstats)
+**Type**: [ParticipantInhibitorStats](/api/interfaces/participantinhibitorstats)
 
 ---
 
@@ -254,7 +254,7 @@ The items in the participant's inventory.
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [Item](/api/item) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [Item](/api/classes/item) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \>
 
 ---
 
@@ -344,7 +344,7 @@ An overview of the magic damage dealt/taken by the participant.
 
 
 
-**Type**: [ParticipantDamageStats](/api/participantdamagestats)
+**Type**: [ParticipantDamageStats](/api/interfaces/participantdamagestats)
 
 ---
 
@@ -364,7 +364,7 @@ The number of multi-kills scored by this participant.
 
 
 
-**Type**: [ParticipantMultkills](/api/participantmultkills)
+**Type**: [ParticipantMultkills](/api/interfaces/participantmultkills)
 
 ---
 
@@ -424,7 +424,7 @@ The perks (runes) selected by the participant.
 
 
 
-**Type**: [Perks](/api/perks)
+**Type**: [Perks](/api/classes/perks)
 
 ---
 
@@ -434,7 +434,7 @@ An overview of the physical damage dealt/taken by the participant.
 
 
 
-**Type**: [ParticipantDamageStats](/api/participantdamagestats)
+**Type**: [ParticipantDamageStats](/api/interfaces/participantdamagestats)
 
 ---
 
@@ -444,7 +444,7 @@ The participant's position in the team.
 
 
 
-**Type**: [ParticipantPosition](/api/participantposition)
+**Type**: [ParticipantPosition](/api/interfaces/participantposition)
 
 ---
 
@@ -464,7 +464,7 @@ The summoner acting as the participant.
 
 
 
-**Type**: [PartialSummoner](/api/partialsummoner)
+**Type**: [PartialSummoner](/api/interfaces/partialsummoner)
 
 ---
 
@@ -474,7 +474,7 @@ The summoner spells the participant chose for the match.
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< 'D' \| 'F', [SummonerSpell](/api/summonerspell) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< 'D' \| 'F', [SummonerSpell](/api/classes/summonerspell) \>
 
 ---
 
@@ -537,7 +537,7 @@ An overview of the damage dealt/taken/shielded by the participant.
 
 
 
-**Type**: [ParticipantTotalDamage](/api/participanttotaldamage)
+**Type**: [ParticipantTotalDamage](/api/interfaces/participanttotaldamage)
 
 ---
 
@@ -547,7 +547,7 @@ An overview of the true damage dealt/taken by the participant.
 
 
 
-**Type**: [ParticipantDamageStats](/api/participantdamagestats)
+**Type**: [ParticipantDamageStats](/api/interfaces/participantdamagestats)
 
 ---
 
@@ -557,7 +557,7 @@ The number of turrets destroyed/lost.
 
 
 
-**Type**: [ParticipantTurretStats](/api/participantturretstats)
+**Type**: [ParticipantTurretStats](/api/interfaces/participantturretstats)
 
 ---
 
@@ -567,7 +567,7 @@ The vision control stats of the participant.
 
 
 
-**Type**: [ParticipantVision](/api/participantvision)
+**Type**: [ParticipantVision](/api/interfaces/participantvision)
 
 ---
 

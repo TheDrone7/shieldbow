@@ -19,7 +19,7 @@ export interface MatchTimelineData
 
 
 
-**Type**: [MatchTimelineInfo](/api/matchtimelineinfo)
+**Type**: [MatchTimelineInfo](/api/interfaces/matchtimelineinfo)
 
 ---
 
@@ -27,7 +27,7 @@ export interface MatchTimelineData
 
 
 
-**Type**: [MatchTimelineMetadata](/api/matchtimelinemetadata)
+**Type**: [MatchTimelineMetadata](/api/interfaces/matchtimelinemetadata)
 
 ---
 

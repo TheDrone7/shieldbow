@@ -17,7 +17,7 @@ export declare class ItemPurchasedEvent extends TimelineEvent
 
 **Extends: TimelineEvent**
 
-**References:** [TimelineEvent](/api/timelineevent)
+**References:** [TimelineEvent](/api/classes/timelineevent)
 
 ---
 
@@ -33,8 +33,8 @@ Constructs a new instance of the `ItemPurchasedEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [ItemPurchasedEventData](/api/itempurchasedeventdata) | The raw data of the event. |
-| item | [Item](/api/item) | The item that was purchased. |
+| data | [ItemPurchasedEventData](/api/interfaces/itempurchasedeventdata) | The raw data of the event. |
+| item | [Item](/api/classes/item) | The item that was purchased. |
 ---
 
 ### Properties
@@ -45,7 +45,7 @@ The item that was purchased.
 
 
 
-**Type**: [Item](/api/item)
+**Type**: [Item](/api/classes/item)
 
 ---
 

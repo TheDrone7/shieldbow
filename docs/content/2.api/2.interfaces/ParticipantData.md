@@ -483,7 +483,7 @@ export interface ParticipantData
 
 
 
-**Type**: [PerksData](/api/perksdata)
+**Type**: [PerksData](/api/interfaces/perksdata)
 
 ---
 

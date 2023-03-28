@@ -13,7 +13,7 @@ The event data for the item destroyed event.
 export interface ItemDestroyedEventData extends TimelineEventData 
 ```
 
-**References:** [TimelineEventData](/api/timelineeventdata)
+**References:** [TimelineEventData](/api/interfaces/timelineeventdata)
 
 ### Properties
 

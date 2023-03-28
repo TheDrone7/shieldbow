@@ -21,7 +21,7 @@ The custom storage plugin to use. This will override the default local storage p
 
 
 
-**Type**: [IStorage](/api/istorage)
+**Type**: [IStorage](/api/interfaces/istorage)
 
 ---
 
@@ -34,7 +34,7 @@ By default, this is enabled for DDragon/CDragon data, and disabled for API data.
 
 
 
-**Type**: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) \| [ManagersConfig](/api/managersconfig)
+**Type**: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) \| [ManagersConfig](/api/interfaces/managersconfig)
 
 ---
 

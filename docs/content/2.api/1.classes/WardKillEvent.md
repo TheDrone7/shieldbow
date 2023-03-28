@@ -17,7 +17,7 @@ export declare class WardKillEvent extends TimelineEvent
 
 **Extends: TimelineEvent**
 
-**References:** [TimelineEvent](/api/timelineevent)
+**References:** [TimelineEvent](/api/classes/timelineevent)
 
 ---
 
@@ -33,7 +33,7 @@ Constructs a new instance of the `WardKillEvent` class.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| data | [WardKillEventData](/api/wardkilleventdata) | The raw data of the event. |
+| data | [WardKillEventData](/api/interfaces/wardkilleventdata) | The raw data of the event. |
 ---
 
 ### Properties

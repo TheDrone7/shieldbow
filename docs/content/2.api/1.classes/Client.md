@@ -40,7 +40,7 @@ The default riot accounts manager used by the client. This is mostly for interna
 
 
 
-**Type**: [AccountManager](/api/accountmanager)
+**Type**: [AccountManager](/api/classes/accountmanager)
 
 ---
 
@@ -50,7 +50,7 @@ The default API interactions handler used by the client.
 
 
 
-**Type**: [RateLimiter](/api/ratelimiter)
+**Type**: [RateLimiter](/api/classes/ratelimiter)
 
 ---
 
@@ -60,7 +60,7 @@ The client's caching utility.
 
 
 
-**Type**: [ICache](/api/icache)
+**Type**: [ICache](/api/interfaces/icache)
 
 ---
 
@@ -73,7 +73,7 @@ PLEASE DO NOT TRY TO USE THIS. Refer to [Client.initialize](/api/client#initiali
 
 
 
-**Type**: [ManagersConfig](/api/managersconfig)
+**Type**: [ManagersConfig](/api/interfaces/managersconfig)
 
 ---
 
@@ -93,7 +93,7 @@ The default LOL challenges manager used by the client.
 
 
 
-**Type**: [ChallengeManager](/api/challengemanager)
+**Type**: [ChallengeManager](/api/classes/challengemanager)
 
 ---
 
@@ -103,7 +103,7 @@ The default champions manager used by the client.
 
 
 
-**Type**: [ChampionManager](/api/championmanager)
+**Type**: [ChampionManager](/api/classes/championmanager)
 
 ---
 
@@ -113,7 +113,7 @@ The default clash tournaments manager used by the client.
 
 
 
-**Type**: [ClashManager](/api/clashmanager)
+**Type**: [ClashManager](/api/classes/clashmanager)
 
 ---
 
@@ -123,7 +123,7 @@ An array of all game modes and their respective data.
 
 
 
-**Type**: [GameMode](/api/gamemode)[]
+**Type**: [GameMode](/api/interfaces/gamemode)[]
 
 ---
 
@@ -133,7 +133,7 @@ An array of all game types and their respective data.
 
 
 
-**Type**: [GameType](/api/gametype)[]
+**Type**: [GameType](/api/interfaces/gametype)[]
 
 ---
 
@@ -163,7 +163,7 @@ The default items manager used by the client.
 
 
 
-**Type**: [ItemManager](/api/itemmanager)
+**Type**: [ItemManager](/api/classes/itemmanager)
 
 ---
 
@@ -179,7 +179,7 @@ Use this only if you want to query a list of users by rank-division.
 
 
 
-**Type**: [LeagueManager](/api/leaguemanager)
+**Type**: [LeagueManager](/api/classes/leaguemanager)
 
 ---
 
@@ -199,7 +199,7 @@ The client's logging utility.
 
 
 
-**Type**: [ILogger](/api/ilogger) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
+**Type**: [ILogger](/api/interfaces/ilogger) \| [Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
 
 ---
 
@@ -209,7 +209,7 @@ An array of all maps and their respective data.
 
 
 
-**Type**: [GameMap](/api/gamemap)[]
+**Type**: [GameMap](/api/interfaces/gamemap)[]
 
 ---
 
@@ -219,7 +219,7 @@ The default match manager used by the client.
 
 
 
-**Type**: [MatchManager](/api/matchmanager)
+**Type**: [MatchManager](/api/classes/matchmanager)
 
 ---
 
@@ -242,7 +242,7 @@ An array of all queue types and their respective data.
 
 
 
-**Type**: [Queue](/api/queue)[]
+**Type**: [Queue](/api/interfaces/queue)[]
 
 ---
 
@@ -252,7 +252,7 @@ The league of legends region from which the data is to be fetched.
 
 
 
-**Type**: [Region](/api/region)
+**Type**: [Region](/api/types/region)
 
 ---
 
@@ -262,7 +262,7 @@ The default runes manager used by the client.
 
 
 
-**Type**: [RuneTreeManager](/api/runetreemanager)
+**Type**: [RuneTreeManager](/api/classes/runetreemanager)
 
 ---
 
@@ -272,7 +272,7 @@ An array of all seasons and their respective IDs.
 
 
 
-**Type**: [Season](/api/season)[]
+**Type**: [Season](/api/interfaces/season)[]
 
 ---
 
@@ -282,7 +282,7 @@ The default live match manager used by the client.
 
 
 
-**Type**: [CurrentGameManager](/api/currentgamemanager)
+**Type**: [CurrentGameManager](/api/classes/currentgamemanager)
 
 ---
 
@@ -305,7 +305,7 @@ The client's storage utility.
 
 
 
-**Type**: [IStorage](/api/istorage)
+**Type**: [IStorage](/api/interfaces/istorage)
 
 ---
 
@@ -318,7 +318,7 @@ PLEASE DO NOT TRY TO USE THIS. Refer to [Client.initialize](/api/client#initiali
 
 
 
-**Type**: [ManagersConfig](/api/managersconfig)
+**Type**: [ManagersConfig](/api/interfaces/managersconfig)
 
 ---
 
@@ -328,7 +328,7 @@ The default summoners manager used by the client.
 
 
 
-**Type**: [SummonerManager](/api/summonermanager)
+**Type**: [SummonerManager](/api/classes/summonermanager)
 
 ---
 
@@ -338,7 +338,7 @@ The default summoner spells manager used by the client.
 
 
 
-**Type**: [SummonerSpellManager](/api/summonerspellmanager)
+**Type**: [SummonerSpellManager](/api/classes/summonerspellmanager)
 
 ---
 
@@ -371,7 +371,7 @@ initialize(options?: ClientConfig): Promise<void>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| options | [ClientConfig](/api/clientconfig) | The client configuration. |
+| options | [ClientConfig](/api/interfaces/clientconfig) | The client configuration. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< void \>
 
@@ -394,7 +394,7 @@ updateLocale(newLocale: Locales, refetch?: boolean): Promise<void>;
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| newLocale | [Locales](/api/locales) | The new locale to use for the future requests. |
+| newLocale | [Locales](/api/types/locales) | The new locale to use for the future requests. |
 | refetch | [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) | Whether to fetch all data dragon data in the new locale right away. |
 
 **Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< void \>
