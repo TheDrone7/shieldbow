@@ -28,7 +28,7 @@ jobs:
 
       # run build script
       - name: Build Documentation site
-        run: npm run docs:gen && npm run docs:build
+        run: npm run docs:gen && npm run docs:build && npm run add-domain
 
       # deploy to gh-pages
       - name: Deploy
