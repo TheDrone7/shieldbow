@@ -40,7 +40,7 @@
     "extract": "api-extractor run",
     "document": "tsc docs/generator.ts --outDir docs/ && node docs/generator.js",
     "docs:gen": "run-s build extract document",
-    "add-domain": "echo \"shieldbow.thedrone7.dev\" > docs/.output/CNAME"
+    "add-domain": "echo \"shieldbow.thedrone7.dev\" > docs/.output/public/CNAME"
   },
   "pre-commit": {
     "run": "run-s format lint build"
