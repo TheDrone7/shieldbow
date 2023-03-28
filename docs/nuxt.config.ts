@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
   app: {
-    baseURL: '/shieldbow/'
+    baseURL: '/'
   },
   extends: '@nuxt-themes/docus',
   css: [
