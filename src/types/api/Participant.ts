@@ -4,7 +4,10 @@ import type { PerksData } from './Perks';
  * Match participant data as returned by the API
  */
 export interface ParticipantData {
+  allInPings: number;
+  assistMePings: number;
   assists: number;
+  baitPings: number;
   baronKills: number;
   basicPings: number;
   bountyLevel: number;
@@ -14,24 +17,30 @@ export interface ParticipantData {
   championId: number;
   championName: string;
   championTransform: number;
+  commandPings: number;
   consumablesPurchased: number;
   damageDealtToBuildings: number;
   damageDealtToObjectives: number;
   damageDealtToTurrets: number;
   damageSelfMitigated: number;
+  dangerPings: number;
   deaths: number;
   detectorWardsPlaced: number;
   doubleKills: number;
   dragonKills: number;
   eligibleForProgression: boolean;
+  enemyMissingPings: number;
+  enemyVisionPings: number;
   firstBloodAssist: boolean;
   firstBloodKill: boolean;
   firstTowerAssist: boolean;
   firstTowerKill: boolean;
   gameEndedInEarlySurrender: boolean;
   gameEndedInSurrender: boolean;
+  getBackPings: number;
   goldEarned: number;
   goldSpent: number;
+  holdPings: number;
   individualPosition: string;
   inhibitorKills: number;
   inhibitorTakedowns: number;
@@ -54,12 +63,14 @@ export interface ParticipantData {
   magicDamageDealt: number;
   magicDamageDealtToChampions: number;
   magicDamageTaken: number;
+  needVisionPings: number;
   neutralMinionsKilled: number;
   nexusKills: number;
   nexusTakedowns: number;
   nexusLost: number;
   objectivesStolen: number;
   objectivesStolenAssists: number;
+  onMyWayPings: number;
   participantId: number;
   pentaKills: number;
   perks: PerksData;
@@ -67,6 +78,7 @@ export interface ParticipantData {
   physicalDamageDealtToChampions: number;
   physicalDamageTaken: number;
   profileIcon: number;
+  pushPings: number;
   puuid: string;
   quadraKills: number;
   riotIdName: string;
@@ -107,6 +119,7 @@ export interface ParticipantData {
   turretTakedowns: number;
   turretsLost: number;
   unrealKills: number;
+  visionClearedPings: number;
   visionScore: number;
   visionWardsBoughtInGame: number;
   wardsKilled: number;

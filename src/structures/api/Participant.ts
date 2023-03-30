@@ -238,6 +238,58 @@ export class Participant {
    */
   readonly basicPings: number;
   /**
+   * The number of times this participant used the all in pings.
+   */
+  readonly allInPings: number;
+  /**
+   * The number of times this participant used the assist me pings.
+   */
+  readonly assistMePings: number;
+  /**
+   * The number of times this participant used the bait pings.
+   */
+  readonly baitPings: number;
+  /**
+   * The number of times this participant used command pings.
+   */
+  readonly commandPings: number;
+  /**
+   * The number of times this participant used the retreat pings.
+   */
+  readonly dangerPings: number;
+  /**
+   * The number of times this participant used the enemy missing pings.
+   */
+  readonly enemyMissingPings: number;
+  /**
+   * The number of times this participant used the enemy vision pings.
+   */
+  readonly enemyVisionPings: number;
+  /**
+   * The number of times this participant used the caution pings.
+   */
+  readonly getBackPings: number;
+  /**
+   * The number of times this participant used the hold pings.
+   */
+  readonly holdPings: number;
+  /**
+   * The number of times this participant used the need vision pings.
+   */
+  readonly needVisionPings: number;
+  /**
+   * The number of times this participant used the on my way pings.
+   */
+  readonly onMyWayPings: number;
+  /**
+   * The number of times this participant used the push pings.
+   */
+  readonly pushPings: number;
+  /**
+   * The number of times this participant used the vision cleared pings.
+   */
+  readonly visionClearedPings: number;
+  /**
    * The number of kills scored by this participant.
    */
   readonly kills: number;
@@ -466,6 +518,19 @@ export class Participant {
     this.challenges = data.challenges;
 
     this.basicPings = data.basicPings;
+    this.allInPings = data.allInPings;
+    this.assistMePings = data.assistMePings;
+    this.baitPings = data.baitPings;
+    this.commandPings = data.commandPings;
+    this.dangerPings = data.dangerPings;
+    this.enemyMissingPings = data.enemyMissingPings;
+    this.enemyVisionPings = data.enemyVisionPings;
+    this.getBackPings = data.getBackPings;
+    this.holdPings = data.holdPings;
+    this.needVisionPings = data.needVisionPings;
+    this.onMyWayPings = data.onMyWayPings;
+    this.pushPings = data.pushPings;
+    this.visionClearedPings = data.visionClearedPings;
 
     this.kills = data.kills;
     this.deaths = data.deaths;

@@ -15,7 +15,31 @@ export interface ParticipantData
 
 ### Properties
 
+#### allInPings
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
+#### assistMePings
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
 #### assists
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
+#### baitPings
 
 
 
@@ -95,6 +119,14 @@ export interface ParticipantData
 
 ---
 
+#### commandPings
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
 #### consumablesPurchased
 
 
@@ -128,6 +160,14 @@ export interface ParticipantData
 ---
 
 #### damageSelfMitigated
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
+#### dangerPings
 
 
 
@@ -172,6 +212,22 @@ export interface ParticipantData
 
 
 **Type**: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
+
+---
+
+#### enemyMissingPings
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
+#### enemyVisionPings
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -223,6 +279,14 @@ export interface ParticipantData
 
 ---
 
+#### getBackPings
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
 #### goldEarned
 
 
@@ -232,6 +296,14 @@ export interface ParticipantData
 ---
 
 #### goldSpent
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
+#### holdPings
 
 
 
@@ -415,6 +487,14 @@ export interface ParticipantData
 
 ---
 
+#### needVisionPings
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
 #### neutralMinionsKilled
 
 
@@ -456,6 +536,14 @@ export interface ParticipantData
 ---
 
 #### objectivesStolenAssists
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
+#### onMyWayPings
 
 
 
@@ -512,6 +600,14 @@ export interface ParticipantData
 ---
 
 #### profileIcon
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
+#### pushPings
 
 
 
@@ -832,6 +928,14 @@ export interface ParticipantData
 ---
 
 #### unrealKills
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
+#### visionClearedPings
 
 
 
