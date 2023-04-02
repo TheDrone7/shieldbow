@@ -64,7 +64,7 @@
   "bugs": {
     "url": "https://github.com/TheDrone7/shieldbow/issues"
   },
-  "homepage": "https://thedrone7.github.io/shieldbow/",
+  "homepage": "https://shieldbow.thedrone7.dev/",
   "dependencies": {
     "@discordjs/collection": "^1.3.0",
     "axios": "^1.3.4",
