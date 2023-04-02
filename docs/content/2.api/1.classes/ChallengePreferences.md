@@ -45,6 +45,16 @@ The banner accent of this summoner.
 
 ---
 
+#### crestBorder
+
+Type of the border the summoner has currently selected. "1" is level border, "2" is highest rank border.
+
+
+
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
+
+---
+
 #### displayedChallengeIds
 
 The IDs of the challenges this summoner has put on display.
@@ -52,6 +62,16 @@ The IDs of the challenges this summoner has put on display.
 
 
 **Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)[]
+
+---
+
+#### prestigeCrestBorderLevel
+
+Level of the border the summoner has currently selected.
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 

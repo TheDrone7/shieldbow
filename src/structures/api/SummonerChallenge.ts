@@ -132,6 +132,14 @@ export class ChallengePreferences {
    */
   readonly displayedChallengeIds: number[];
   /**
+   * Type of the border the summoner has currently selected. "1" is level border, "2" is highest rank border.
+   */
+  readonly crestBorder: string;
+  /**
+   * Level of the border the summoner has currently selected.
+   */
+  readonly prestigeCrestBorderLevel: number;
+  /**
    * The client that instantiated this challenge preferences.
    */
   private readonly client: Client;
@@ -141,6 +149,8 @@ export class ChallengePreferences {
     this.bannerAccent = data.bannerAccent;
     this.title = data.title;
     this.displayedChallengeIds = data.challengeIds;
+    this.crestBorder = data.crestBorder;
+    this.prestigeCrestBorderLevel = data.prestigeCrestBorderLevel;
   }
 
   /**

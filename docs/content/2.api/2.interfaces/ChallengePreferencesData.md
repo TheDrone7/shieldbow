@@ -31,6 +31,22 @@ export interface ChallengePreferencesData
 
 ---
 
+#### crestBorder
+
+
+
+**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
+
+---
+
+#### prestigeCrestBorderLevel
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
 #### title
 
 
