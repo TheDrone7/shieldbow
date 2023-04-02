@@ -38,9 +38,39 @@ Constructs a new instance of the `Participant` class.
 
 ### Properties
 
+#### allInPings
+
+The number of times this participant used the all in pings.
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
+#### assistMePings
+
+The number of times this participant used the assist me pings.
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
 #### assists
 
 The number of kills the participant assisted a teammate with.
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
+#### baitPings
+
+The number of times this participant used the bait pings.
 
 
 
@@ -98,6 +128,16 @@ The stats of the champion being played by this participant.
 
 ---
 
+#### commandPings
+
+The number of times this participant used command pings.
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
 #### consumablesPurchased
 
 The number of consumable items purchased by the participant.
@@ -138,6 +178,16 @@ The amount of time (in seconds) the participant inflicted crowd control on the e
 
 ---
 
+#### dangerPings
+
+The number of times this participant used the retreat pings.
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
 #### deaths
 
 The number of deaths of the participant.
@@ -151,6 +201,26 @@ The number of deaths of the participant.
 #### dragonKills
 
 The number of dragons killed by the participant.
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
+#### enemyMissingPings
+
+The number of times this participant used the enemy missing pings.
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
+#### enemyVisionPings
+
+The number of times this participant used the enemy vision pings.
 
 
 
@@ -198,6 +268,16 @@ Whether the participant was the first to destroy a turret.
 
 ---
 
+#### getBackPings
+
+The number of times this participant used the caution pings.
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
 #### goldEarned
 
 The amount of gold earned by the participant.
@@ -225,6 +305,16 @@ An overview of the healing done by the participant.
 
 
 **Type**: [ParticipantHealingStats](/api/interfaces/participanthealingstats)
+
+---
+
+#### holdPings
+
+The number of times this participant used the hold pings.
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -368,6 +458,16 @@ The number of multi-kills scored by this participant.
 
 ---
 
+#### needVisionPings
+
+The number of times this participant used the need vision pings.
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
 #### nexusKilled
 
 Whether the participant killed the nexus.
@@ -418,6 +518,16 @@ The number of objectives such as dragon or baron nashor the participant helped t
 
 ---
 
+#### onMyWayPings
+
+The number of times this participant used the on my way pings.
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
 #### perks
 
 The perks (runes) selected by the participant.
@@ -445,6 +555,16 @@ The participant's position in the team.
 
 
 **Type**: [ParticipantPosition](/api/interfaces/participantposition)
+
+---
+
+#### pushPings
+
+The number of times this participant used the push pings.
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
@@ -568,6 +688,16 @@ The vision control stats of the participant.
 
 
 **Type**: [ParticipantVision](/api/interfaces/participantvision)
+
+---
+
+#### visionClearedPings
+
+The number of times this participant used the vision cleared pings.
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
