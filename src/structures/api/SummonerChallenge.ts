@@ -132,11 +132,11 @@ export class ChallengePreferences {
    */
   readonly displayedChallengeIds: number[];
   /**
-   * Type of the border the summoner has currently selected. "1" is level border, "2" is highest rank border.
+   * Type of the border the summoner has currently selected.
    */
-  readonly crestBorder: string;
+  readonly crestBorder: 'level' | 'ranked';
   /**
-   * Level of the border the summoner has currently selected.
+   * The level at which summoner unlocked currently equipped level border.
    */
   readonly prestigeCrestBorderLevel: number;
   /**
@@ -149,7 +149,7 @@ export class ChallengePreferences {
     this.bannerAccent = data.bannerAccent;
     this.title = data.title;
     this.displayedChallengeIds = data.challengeIds;
-    this.crestBorder = data.crestBorder;
+    this.crestBorder = data.crestBorder === '2' ? 'ranked' : 'level';
     this.prestigeCrestBorderLevel = data.prestigeCrestBorderLevel;
   }
 

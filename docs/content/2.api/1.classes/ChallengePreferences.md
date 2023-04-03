@@ -47,11 +47,11 @@ The banner accent of this summoner.
 
 #### crestBorder
 
-Type of the border the summoner has currently selected. "1" is level border, "2" is highest rank border.
+Type of the border the summoner has currently selected.
 
 
 
-**Type**: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
+**Type**: 'level' \| 'ranked'
 
 ---
 
@@ -67,7 +67,7 @@ The IDs of the challenges this summoner has put on display.
 
 #### prestigeCrestBorderLevel
 
-Level of the border the summoner has currently selected.
+The level at which summoner unlocked currently equipped level border.
 
 
 
