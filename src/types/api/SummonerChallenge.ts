@@ -43,6 +43,8 @@ export interface ChallengePreferencesData {
   bannerAccent: string;
   title: string;
   challengeIds: number[];
+  crestBorder: string;
+  prestigeCrestBorderLevel: number;
 }
 
 /**
