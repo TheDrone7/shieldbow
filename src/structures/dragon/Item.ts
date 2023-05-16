@@ -174,7 +174,7 @@ export class Item {
    */
   async into() {
     const intoItems = await this.client.items.fetchMany(this.intoIds);
-    return this.fromIds.map((id) => intoItems.get(id)!);
+    return this.intoIds.map((id) => intoItems.get(id)!);
   }
 
   /**
