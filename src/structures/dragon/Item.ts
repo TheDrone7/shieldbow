@@ -165,14 +165,16 @@ export class Item {
    * You need to buy these item and spend additional gold to get this item.
    */
   async from() {
-    return this.client.items.fetchMany(this.fromIds);
+    const fromItems = await this.client.items.fetchMany(this.fromIds);
+    return this.fromIds.map((id) => fromItems.get(id)!);
   }
 
   /**
    * A collection of items the current item is a component of.
    */
   async into() {
-    return this.client.items.fetchMany(this.intoIds);
+    const intoItems = await this.client.items.fetchMany(this.intoIds);
+    return this.fromIds.map((id) => intoItems.get(id)!);
   }
 
   /**
