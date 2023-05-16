@@ -54,7 +54,7 @@ export class RateLimiter {
 
   private async requestFromApi(url: string, options: ApiRequestOptions) {
     const request = `${options.api}:${options.method} (${options.params})`;
-    this.client.logger?.debug(`Request URL: '${url}' - intention: ${request}`);
+    this.client.logger?.trace(`Request URL: '${url}' - intention: ${request}`);
 
     return new Promise<AxiosResponse>(async (resolve, reject) => {
       const check = await this._check(options.api, options.method).catch((e) => {

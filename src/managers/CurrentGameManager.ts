@@ -31,10 +31,11 @@ export class CurrentGameManager implements BaseManager<CurrentGame> {
   async fetch(id: string, options?: FetchOptions) {
     const opts = parseFetchOptions(this.client, 'currentGame', options);
     const { ignoreCache, ignoreStorage, cache, store, region } = opts;
-    this.client.logger?.trace(`Fetching live game ${id} with options: `, opts);
+    this.client.logger?.debug(`Fetching live game ${id} with options: `, opts);
 
     try {
       if (!ignoreCache) {
+        this.client.logger?.trace(`Checking cache for live game`);
         const exists = await this.client.cache.has(`spectator:${id}`);
         if (exists) return this.client.cache.get<CurrentGame>(`spectator:${id}`);
       }
@@ -43,9 +44,11 @@ export class CurrentGameManager implements BaseManager<CurrentGame> {
       const spells = await this.client.summonerSpells.fetchAll();
 
       if (!ignoreStorage) {
+        this.client.logger?.trace(`Checking storage for live game`);
         const storage = this.client.storage.fetch<CurrentGameData>('spectator', id);
         const stored = storage instanceof Promise ? await storage.catch(() => undefined) : storage;
         if (stored) {
+          this.client.logger?.trace(`Live game found, parsing data and returning...`);
           const champs = await this.client.champions.fetchByKeys(stored.participants.map((p) => p.championId));
           const banned = await this.client.champions.fetchByKeys(stored.bannedChampions.map((b) => b.championId));
           const result = new CurrentGame(this.client, stored, banned.concat(champs), runeTrees, spells);
@@ -54,6 +57,7 @@ export class CurrentGameManager implements BaseManager<CurrentGame> {
         }
       }
 
+      this.client.logger?.trace(`No live game found in cache or storage, fetching from API...`);
       const response = await this.client.api.request('/lol/spectator/v4/active-games/by-summoner/' + id, {
         region: region!,
         regional: false,
@@ -62,6 +66,7 @@ export class CurrentGameManager implements BaseManager<CurrentGame> {
         params: 'Summoner ID: ' + id
       });
 
+      this.client.logger?.trace(`Live game fetched, parsing data and returning...`);
       const data = <CurrentGameData>response.data;
       const champs = await this.client.champions.fetchByKeys(data.participants.map((p) => p.championId));
       const banned = await this.client.champions.fetchByKeys(data.bannedChampions.map((b) => b.championId));
@@ -82,9 +87,10 @@ export class CurrentGameManager implements BaseManager<CurrentGame> {
   async fetchFeatured(options?: FetchOptions) {
     const opts = parseFetchOptions(this.client, 'currentGame', options);
     const { region, cache, store } = opts;
-    this.client.logger?.trace(`Fetching featured games with options: `, opts);
+    this.client.logger?.debug(`Fetching featured live games with options: `, opts);
 
     try {
+      this.client.logger?.trace(`Fetching featured live games from API...`);
       const response = await this.client.api.request('/lol/spectator/v4/featured-games', {
         region: region!,
         regional: false,
@@ -92,9 +98,11 @@ export class CurrentGameManager implements BaseManager<CurrentGame> {
         method: 'getFeaturedGames',
         params: 'no params'
       });
+      this.client.logger?.trace(`Featured live games fetched, fetching relevant ddragon data...`);
       const data = <{ gameList: CurrentGameData[] }>response.data;
       const runeTrees = await this.client.runes.fetchAll();
       const spells = await this.client.summonerSpells.fetchAll();
+      this.client.logger?.trace(`Parsing data and returning...`);
       const games = [];
       for (const game of data.gameList) {
         const participantChamps = await this.client.champions.fetchByKeys(game.participants.map((p) => p.championId));

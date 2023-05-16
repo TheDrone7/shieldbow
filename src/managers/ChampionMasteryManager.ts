@@ -50,21 +50,25 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
     const opts = parseFetchOptions(this.client, 'championMastery', options);
     const { cache, store, ignoreCache, ignoreStorage, region } = opts;
     const id = champion instanceof Champion ? champion.id : champion;
-    this.client.logger?.trace(
+    this.client.logger?.debug(
       `Fetching champion mastery for summoner ID: ${this.summoner.id}, champ: ${id} with options: `,
       opts
     );
 
     try {
+      this.client.logger?.trace(`Fetching champion: ${id} data...`);
       const champ = await this.client.champions.fetch(id, options).catch(() => undefined);
       if (!champ) return Promise.reject('Invalid champion ID');
 
+      this.client.logger?.trace('Champion data found.');
       if (!ignoreCache) {
+        this.client.logger?.trace('Fetching champion mastery from cache...');
         const exists = await this.client.cache.has(`champion-mastery:${this.summoner.id}:${champ.id}`);
         if (exists) return this.client.cache.get<ChampionMastery>(`champion-mastery:${this.summoner.id}:${champ.id}`)!;
       }
 
       if (!ignoreStorage) {
+        this.client.logger?.trace('Fetching champion mastery from storage...');
         const storage = this.client.storage.fetch<ChampionMasteryData>(
           `champion-mastery:${this.summoner.id}`,
           champ.id
@@ -77,6 +81,7 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
         }
       }
 
+      this.client.logger?.trace('Fetching champion mastery from the API...');
       const response = await this.client.api.request(
         `/lol/champion-mastery/v4/champion-masteries/by-summoner/${this.summoner.id}/by-champion/${champ.key}`,
         {
@@ -87,6 +92,8 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
           params: `Summoner ID: ${this.summoner.id}, Champion ID: ${champ.key}`
         }
       );
+
+      this.client.logger?.trace('Champion mastery fetched from API, parsing, caching, and storing...');
       const data = <ChampionMasteryData>response.data;
       const mastery = new ChampionMastery(data, champ);
       if (cache) await this.client.cache.set(`champion-mastery:${this.summoner.id}:${champ.id}`, mastery);
@@ -106,7 +113,7 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
   async highest(n: number = 0, options?: FetchOptions) {
     const opts = parseFetchOptions(this.client, 'championMastery', options);
     const { cache, ignoreCache, store } = opts;
-    this.client.logger?.trace(
+    this.client.logger?.debug(
       `Fetching ${n}th highest mastery for summoner ID: ${this.summoner.id} with options: `,
       opts
     );
@@ -114,8 +121,10 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
 
     try {
       let exists: string[] = [];
-      if (!ignoreCache)
+      if (!ignoreCache) {
+        this.client.logger?.trace('Fetching champion mastery from cache...');
         exists = (await this.client.cache.keys()).filter((k) => k.startsWith(`champion-mastery:${this.summoner.id}:`));
+      }
 
       const dataList = await (exists.length > n
         ? Promise.all(exists.map((k) => this.client.cache.get<ChampionMastery>(k)))
@@ -123,9 +132,11 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
 
       const ordered = this._sortMastery(dataList);
       if (ordered.at(n)) {
+        this.client.logger?.trace('Champion mastery exists, returning...');
         const mastery = ordered.at(n)!;
         if (mastery instanceof ChampionMastery) return mastery;
         else {
+          this.client.logger?.trace('Champion mastery found, fetching champion...');
           const champ = await this.client.champions.fetchByKey(mastery.championId).catch(() => undefined);
           if (!champ) return Promise.reject('Invalid champion ID');
           const masteryObj = new ChampionMastery(mastery, champ);
@@ -149,7 +160,7 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
   async fetchTop(n: number = 3, options?: FetchOptions) {
     const opts = parseFetchOptions(this.client, 'championMastery', options);
     const { cache, ignoreCache, store } = opts;
-    this.client.logger?.trace(
+    this.client.logger?.debug(
       `Fetching ${n} highest masteries for summoner ID: ${this.summoner.id} with options: `,
       opts
     );
@@ -157,16 +168,19 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
 
     try {
       let exists: string[] = [];
-      if (!ignoreCache)
+      if (!ignoreCache) {
+        this.client.logger?.trace('Fetching champion masteries from cache...');
         exists = (await this.client.cache.keys())
           .filter((k) => k.startsWith(`champion-mastery:${this.summoner.id}:`))
           .slice(0, n);
+      }
 
       const dataList = await (exists.length >= n
         ? Promise.all(exists.map((k) => this.client.cache.get<ChampionMastery>(k)))
         : <Promise<ChampionMasteryData[]>>this._fetchRawMasteryData(opts, n));
 
       const ordered = this._sortMastery(dataList);
+      this.client.logger?.trace('Champion masteries fetched, processing and returning...');
       if (ordered.at(0) instanceof ChampionMastery) return ordered as ChampionMastery[];
       const masteries = ordered as ChampionMasteryData[];
       const toReturn: ChampionMastery[] = [];
@@ -190,13 +204,13 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
   async fetchAll(options?: FetchOptions) {
     const opts = parseFetchOptions(this.client, 'championMastery', options);
     const { cache, store } = opts;
-    this.client.logger?.trace(`Fetching all champion mastery for summoner ID: ${this.summoner.id} with options: `, {
-      region: this.summoner.region
-    });
+    this.client.logger?.debug(`Fetching champion masteries for summoner ID: ${this.summoner.id} with options: `, opts);
     try {
       const dataList = await this._fetchRawMasteryData({ ignoreStorage: true, ...opts }).catch(() => []);
+      this.client.logger?.trace('Masteries fetched, now fetching related champions');
       const champs = await this.client.champions.fetchByKeys(dataList.map((c) => c.championId));
       const result = new Collection<string, ChampionMastery>();
+      this.client.logger?.trace('Masteries and champions fetched, processing and returning...');
       for (const data of dataList) {
         const champ = champs.find((c) => c.key === data.championId)!;
         const mastery = new ChampionMastery(data, champ);
@@ -214,7 +228,7 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
    * Get an updated total mastery score for this summoner.
    */
   async updateTotalScore() {
-    this.client.logger?.trace(`Fetching total mastery score for summoner ID: ${this.summoner.id} with options: `, {
+    this.client.logger?.debug(`Fetching total mastery score for summoner ID: ${this.summoner.id} with options: `, {
       region: this.summoner.region
     });
     try {
@@ -228,6 +242,7 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
           params: `Summoner ID: ${this.summoner.id}`
         }
       );
+      this.client.logger?.trace('Total mastery score fetched, processing and returning...');
       const score = <number>response.data;
       this._totalScore = score;
       return score;
