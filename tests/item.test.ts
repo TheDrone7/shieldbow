@@ -36,8 +36,8 @@ describe('DRAGON: items', () => {
   });
 
   it('parses the item recipe', async () => {
-    expect((await boots.into()).size).toBe(7);
-    expect((await boots.from()).size).toBe(0);
+    expect((await boots.into()).length).toBe(7);
+    expect((await boots.from()).length).toBe(0);
     expect(await boots.specialRecipe()).toBeUndefined();
   });
 
