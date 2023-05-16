@@ -466,6 +466,8 @@ export class Client {
     if (typeof options.cache === 'boolean') options.cache = { enable: options.cache };
     if (typeof options.cache.enable === 'boolean')
       options.cache.enable = { api: options.cache.enable, dragon: options.cache.enable };
+    if (typeof options.cache.enable?.api === 'undefined') options.cache.enable!.api = true;
+    if (typeof options.cache.enable?.dragon === 'undefined') options.cache.enable!.dragon = true;
 
     this._cacheEnabled = options.cache.enable!;
     this._cache = options.cache.custom ? options.cache.custom : new MemoryCache();
@@ -476,6 +478,8 @@ export class Client {
     if (typeof options.storage === 'boolean') options.storage = { enable: options.storage };
     if (typeof options.storage.enable === 'boolean')
       options.storage.enable = { api: options.storage.enable, dragon: options.storage.enable };
+    if (typeof options.storage.enable?.api === 'undefined') options.storage.enable!.api = false;
+    if (typeof options.storage.enable?.dragon === 'undefined') options.storage.enable!.dragon = true;
 
     this._storageEnabled = options.storage.enable!;
     const storageRoot = options?.storage?.root || 'data';
