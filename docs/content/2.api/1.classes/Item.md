@@ -226,11 +226,11 @@ The components of this item. You need to buy these item and spend additional gol
 **Signature:**
 
 ```ts
-from(): Promise<import("@discordjs/collection").Collection<string, Item>>;
+from(): Promise<Item[]>;
 ```
 
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< import("@discordjs/collection").Collection \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/classes/item) \> \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Item](/api/classes/item)[] \>
 
 ---
 
@@ -243,11 +243,11 @@ A collection of items the current item is a component of.
 **Signature:**
 
 ```ts
-into(): Promise<import("@discordjs/collection").Collection<string, Item>>;
+into(): Promise<Item[]>;
 ```
 
 
-**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< import("@discordjs/collection").Collection \< [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Item](/api/classes/item) \> \>
+**Return type**: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) \< [Item](/api/classes/item)[] \>
 
 ---
 
