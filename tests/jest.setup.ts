@@ -9,7 +9,7 @@ global.clientConfig = {
   region: 'na',
   logger: {
     enable: true,
-    level: 'WARN'
+    level: 'ERROR'
   },
   ratelimiter: {
     strategy: 'spread',

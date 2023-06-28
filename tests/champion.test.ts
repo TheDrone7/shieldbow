@@ -1,6 +1,8 @@
 import { Champion, Client } from '../dist';
 import type { Collection } from '@discordjs/collection';
 
+jest.setTimeout(300000);
+
 describe('DRAGON: champions', () => {
   const client = new Client(process.env.RIOT_API_KEY!);
 
