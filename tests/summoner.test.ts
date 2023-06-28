@@ -37,7 +37,7 @@ describe('API: summoner-v4 + account-v1', () => {
   });
 
   it('can fetch RIOT account details by username and tag', async () => {
-    const account = await client.accounts.fetchByNameAndTag('TheDrone7', '1624', {
+    const account = await client.accounts.fetchByNameAndTag('TheDrone7', '9999', {
       ignoreCache: true,
       ignoreStorage: true
     });
@@ -45,7 +45,7 @@ describe('API: summoner-v4 + account-v1', () => {
   });
 
   it('can fetch stored RIOT account details by username and tag', async () => {
-    const account = await client.accounts.fetchByNameAndTag('TheDrone7', '1624', {
+    const account = await client.accounts.fetchByNameAndTag('TheDrone7', '9999', {
       ignoreCache: true,
       ignoreStorage: false
     });
@@ -53,7 +53,7 @@ describe('API: summoner-v4 + account-v1', () => {
   });
 
   it('can fetch cached RIOT account details by username and tag', async () => {
-    const account = await client.accounts.fetchByNameAndTag('TheDrone7', '1624', { ignoreCache: false });
+    const account = await client.accounts.fetchByNameAndTag('TheDrone7', '9999', { ignoreCache: false });
     expect(account?.username).toBe('TheDrone7');
   });
 
