@@ -36,6 +36,9 @@ const patchRegex = /\d+\.\d+/;
  * Also connects to the Data Dragon + Community Dragon CDNs.
  */
 export class Client {
+  set summonerSpells(value: SummonerSpellManager) {
+    this._summonerSpells = value;
+  }
   private readonly _cdnBase: string;
   private readonly _versions: string;
   private readonly _summoners: SummonerManager;
@@ -142,7 +145,7 @@ export class Client {
     this._region = region;
   }
 
-  private _champions: ChampionManager;
+  private readonly _champions: ChampionManager;
 
   /**
    * The default champions manager used by the client.
@@ -152,7 +155,7 @@ export class Client {
     return this._champions;
   }
 
-  private _items: ItemManager;
+  private readonly _items: ItemManager;
 
   /**
    * The default items manager used by the client.
@@ -162,7 +165,7 @@ export class Client {
     return this._items;
   }
 
-  private _runes: RuneTreeManager;
+  private readonly _runes: RuneTreeManager;
 
   /**
    * The default runes manager used by the client.
@@ -434,19 +437,35 @@ export class Client {
         .catch(() => {});
       if (response?.status !== 200)
         throw new Error('Unable to fetch data dragon version. Please confirm the region exists.');
-      else {
-        const result = <string[] | { v: string; l: Locales }>response.data;
-        if (Array.isArray(result)) {
-          this.logger?.trace(`Using version ${version ?? result[0]} and locale en_US.`);
-          this._version = version !== undefined ? version : result[0];
-          this._patch = this._version.match(patchRegex)!.shift()!;
-          this._locale = 'en_US';
-        } else {
-          this.logger?.trace(`Using version ${version ?? result.v} and locale ${language ?? result.l}.`);
-          this._version = version !== undefined ? version : result.v;
-          this._locale = language !== undefined ? language : result.l;
-          this._patch = this._version.match(patchRegex)!.shift()!;
-        }
+      const result = <string[] | { v: string; l: Locales }>response.data;
+      if (Array.isArray(result)) {
+        this.logger?.trace(`Using version ${version ?? result[0]} and locale en_US.`);
+        this._version = version !== undefined ? version : result[0];
+        this._patch = this._version.match(patchRegex)!.shift()!;
+        this._locale = 'en_US';
+      } else {
+        this.logger?.trace(`Using version ${version ?? result.v} and locale ${language ?? result.l}.`);
+        this._version = version !== undefined ? version : result.v;
+        this._locale = language !== undefined ? language : result.l;
+        this._patch = this._version.match(patchRegex)!.shift()!;
+      }
+
+      // Check if appropriate community dragon version exists
+      // If it doesn't roll back to previous patch
+      const cDragonUrl = `https://raw.communitydragon.org/${this._patch}/content-metadata.json`;
+      const cDragonResponse = await axios.get(cDragonUrl).catch(() => {});
+      if (cDragonResponse?.status !== 200) {
+        this.logger?.warn(
+          `Unable to fetch community dragon version for patch ${this._patch}. Rolling back to previous patch.`
+        );
+        const allVersionsResponse = await axios.get(this._versions).catch(() => {});
+        if (allVersionsResponse?.status !== 200)
+          throw new Error('Unable to fetch data dragon version. Data Dragon might be down.');
+        const allVersions = <string[]>allVersionsResponse.data;
+        const previousVersion = allVersions[allVersions.indexOf(this._version) + 1];
+        this.logger?.trace(`Using version ${previousVersion} and locale ${this._locale}.`);
+        this._version = previousVersion;
+        this._patch = this._version.match(patchRegex)!.shift()!;
       }
     }
 
