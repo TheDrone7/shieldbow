@@ -469,6 +469,14 @@ export class Participant {
    */
   readonly timePlayed: number;
   /**
+   * The amount of jungle minions killed in the ally jungle.
+   */
+  readonly totalAllyJungleMinionsKilled: number;
+  /**
+   * The amount of jungle minions killed in the enemy jungle.
+   */
+  readonly totalEnemyJungleMinionsKilled: number;
+  /**
    * An overview of the healing done by the participant.
    */
   readonly healing: ParticipantHealingStats;
@@ -587,6 +595,9 @@ export class Participant {
       toTurrets: data.damageDealtToTurrets,
       mitigated: data.damageSelfMitigated
     };
+
+    this.totalAllyJungleMinionsKilled = data.totalAllyJungleMinionsKilled;
+    this.totalEnemyJungleMinionsKilled = data.totalEnemyJungleMinionsKilled;
 
     this.magicDamage = {
       dealt: data.magicDamageDealt,
