@@ -25,13 +25,34 @@ describe('API: champion-mastery-v4', () => {
   }, 300000);
 
   it('can fetch highest mastery', async () => {
-    const mastery = await masteries.highest();
+    const mastery = await masteries.highest(0, {
+      ignoreCache: true,
+      ignoreStorage: true
+    });
+    expect(mastery.level).toBe(7);
+  });
+
+  it('can fetch highest mastery from cache', async () => {
+    const mastery = await masteries.highest(0, {
+      ignoreCache: false,
+      ignoreStorage: true
+    });
     expect(mastery.level).toBe(7);
   });
 
   it('can fetch n highest masteries', async () => {
     const fetched = await masteries.fetchTop(10, {
       ignoreCache: true,
+      ignoreStorage: true
+    });
+    expect(fetched.length).toBe(10);
+    expect(fetched[0].level).toBe(7);
+    expect(fetched[0].champion.name).toBe('Kayn');
+  });
+
+  it('can fetch n highest masteries from cache', async () => {
+    const fetched = await masteries.fetchTop(10, {
+      ignoreCache: false,
       ignoreStorage: true
     });
     expect(fetched.length).toBe(10);
