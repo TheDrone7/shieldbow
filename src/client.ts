@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosInstance } from "axios";
 import type {
   ClientConfig,
   GameMap,
@@ -12,7 +12,7 @@ import type {
   Queue,
   Region,
   Season
-} from './types';
+} from "./types";
 import {
   AccountManager,
   ChallengeManager,
@@ -25,9 +25,9 @@ import {
   RuneTreeManager,
   SummonerManager,
   SummonerSpellManager
-} from './managers';
-import { RateLimiter } from './ratelimiter';
-import { LocalStorage, MemoryCache, ShieldbowLogger } from './util';
+} from "./managers";
+import { RateLimiter } from "./ratelimiter";
+import { LocalStorage, MemoryCache, ShieldbowLogger } from "./util";
 
 const patchRegex = /\d+\.\d+/;
 
@@ -401,7 +401,7 @@ export class Client {
    *
    * @param options - The client configuration.
    */
-  async initialize(options?: ClientConfig) {
+  async initialize(options?: ClientConfig): Promise<void> {
     // Parse the basic configuration
     const region = options?.region || 'na';
     this._region = region;
@@ -451,7 +451,7 @@ export class Client {
       }
 
       // Check if appropriate community dragon version exists
-      // If it doesn't roll back to previous patch
+      // If it doesn't roll back to previous patch and re-initialize
       const cDragonUrl = `https://raw.communitydragon.org/${this._patch}/content-metadata.json`;
       const cDragonResponse = await axios.get(cDragonUrl).catch(() => {});
       if (cDragonResponse?.status !== 200) {
@@ -462,10 +462,11 @@ export class Client {
         if (allVersionsResponse?.status !== 200)
           throw new Error('Unable to fetch data dragon version. Data Dragon might be down.');
         const allVersions = <string[]>allVersionsResponse.data;
-        const previousVersion = allVersions[allVersions.indexOf(this._version) + 1];
-        this.logger?.trace(`Using version ${previousVersion} and locale ${this._locale}.`);
-        this._version = previousVersion;
-        this._patch = this._version.match(patchRegex)!.shift()!;
+        const cIndex = allVersions.indexOf(this._version);
+        const nIndex = cIndex < 0 ? 0 : cIndex + 1;
+        const previousVersion = allVersions[nIndex];
+        this.logger?.trace(`Retrying with version ${previousVersion}`);
+        return await this.initialize({ ...options, version: previousVersion });
       }
     }
 
