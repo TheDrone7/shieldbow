@@ -35,7 +35,7 @@ export class RateLimiter {
         'Content-Type': 'application/json'
       },
       responseType: 'json',
-      validateStatus: (_) => true
+      validateStatus: () => true
     });
     axiosRetry(this._http, {
       retries: config.retry.retries,

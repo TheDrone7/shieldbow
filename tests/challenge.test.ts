@@ -22,8 +22,24 @@ describe('API: lol-challenges-v1', () => {
     expect(challenges.get(0)?.name).toBe('CRYSTAL');
   });
 
+  it('can fetch stored challenge by ID', async () => {
+    const challenge = await client.challenges.fetch(0, global.fetchOpts);
+    expect(challenge).toBeDefined();
+    expect(challenge.name).toBe('CRYSTAL');
+  });
+
   it('can fetch challenge leaderboard', async () => {
     const leaders = await client.challenges.fetchLeaderboard(101106, 'MASTER', { limit: 10, ...global.fetchOpts });
+    expect(leaders).toBeDefined();
+    expect(leaders.length).toBe(10);
+  });
+
+  it('can fetch stored challenge leaderboard', async () => {
+    const leaders = await client.challenges.fetchLeaderboard(101106, 'MASTER', {
+      limit: 10,
+      ...global.fetchOpts,
+      ignoreStorage: false
+    });
     expect(leaders).toBeDefined();
     expect(leaders.length).toBe(10);
   });

@@ -51,7 +51,7 @@ to generate the docs. This also ensures that you have exported everything proper
 Before moving forward, go to [Riot developer portal](https://developer.riotgames.com/) and grab a development API key.
 In the root directory (with package.json), create a new file called `.env` and inside it, place the following line.
 ```
-riot_api_key="DEVELOPER_API_KEY"
+RIOT_API_KEY="DEVELOPER_API_KEY"
 ```
 and replace `DEVELOPER_API_KEY` with your developer API Key.
 
