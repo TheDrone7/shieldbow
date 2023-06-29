@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from "axios";
+import axios, { AxiosInstance } from 'axios';
 import type {
   ClientConfig,
   GameMap,
@@ -12,7 +12,7 @@ import type {
   Queue,
   Region,
   Season
-} from "./types";
+} from './types';
 import {
   AccountManager,
   ChallengeManager,
@@ -25,9 +25,9 @@ import {
   RuneTreeManager,
   SummonerManager,
   SummonerSpellManager
-} from "./managers";
-import { RateLimiter } from "./ratelimiter";
-import { LocalStorage, MemoryCache, ShieldbowLogger } from "./util";
+} from './managers';
+import { RateLimiter } from './ratelimiter';
+import { LocalStorage, MemoryCache, ShieldbowLogger } from './util';
 
 const patchRegex = /\d+\.\d+/;
 
