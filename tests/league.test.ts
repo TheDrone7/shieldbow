@@ -77,9 +77,16 @@ describe('API: league-v4 + league-exp-v4', () => {
     }
   });
 
-  it('can fetch entries by tier', async () => {
+  it('can fetch apex entries by tier', async () => {
     const challengers = await client.leagues
       .fetchByQueueAndTier('RANKED_SOLO_5x5', 'CHALLENGER', 'I')
+      .catch(() => new Collection());
+    expect(challengers.size).toBeGreaterThanOrEqual(0);
+  });
+
+  it('can fetch league entries by tier', async () => {
+    const challengers = await client.leagues
+      .fetchByQueueAndTier('RANKED_SOLO_5x5', 'DIAMOND', 'I')
       .catch(() => new Collection());
     expect(challengers.size).toBeGreaterThanOrEqual(0);
   });
