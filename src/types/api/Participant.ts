@@ -101,10 +101,12 @@ export interface ParticipantData {
   teamPosition: string;
   timeCCingOthers: number;
   timePlayed: number;
+  totalAllyJungleMinionsKilled: number;
   totalDamageDealt: number;
   totalDamageDealtToChampions: number;
   totalDamageShieldedOnTeammates: number;
   totalDamageTaken: number;
+  totalEnemyJungleMinionsKilled: number;
   totalHeal: number;
   totalHealsOnTeammates: number;
   totalMinionsKilled: number;

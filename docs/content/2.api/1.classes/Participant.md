@@ -651,6 +651,16 @@ If this is lower than the game duration, the participant was AFK for that durati
 
 ---
 
+#### totalAllyJungleMinionsKilled
+
+The amount of jungle minions killed in the ally jungle.
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
 #### totalDamage
 
 An overview of the damage dealt/taken/shielded by the participant.
@@ -658,6 +668,16 @@ An overview of the damage dealt/taken/shielded by the participant.
 
 
 **Type**: [ParticipantTotalDamage](/api/interfaces/participanttotaldamage)
+
+---
+
+#### totalEnemyJungleMinionsKilled
+
+The amount of jungle minions killed in the enemy jungle.
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
