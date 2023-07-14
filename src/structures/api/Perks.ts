@@ -78,7 +78,7 @@ export class Perks {
   constructor(runeTrees: Collection<string, RuneTree>, data: PerksData) {
     this.stats = {
       flex: rawStatPerks[data.statPerks.flex],
-      offense: rawStatPerks[data.statPerks.flex],
+      offense: rawStatPerks[data.statPerks.offense],
       defense: rawStatPerks[data.statPerks.defense]
     };
     this.primaryStyle = new PerkStyle(runeTrees, data.styles.find((p) => p.description === 'primaryStyle')!);
