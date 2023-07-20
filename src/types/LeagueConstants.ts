@@ -11,6 +11,7 @@ export type TierType =
   | 'GRANDMASTER'
   | 'MASTER'
   | 'DIAMOND'
+  | 'EMERALD'
   | 'PLATINUM'
   | 'GOLD'
   | 'SILVER'
