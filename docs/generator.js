@@ -1,6 +1,6 @@
 "use strict";
 var _a, _b, _c, _d, _e, _f, _g, _h, _j;
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var fs_1 = require("fs");
 var html_escaper_1 = require("html-escaper");
 var path_1 = require("path");
