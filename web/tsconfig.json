@@ -1,13 +1,7 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "paths": {
-      "@/*": ["./src/*"],
-      "types/*": ["./src/types/*"],
-      "util/*": ["./src/util/*"],
-      "structures/*": ["./src/structures/*"],
-      "managers/*": ["./src/managers/*"]
-    },
+    "baseUrl": "./src",
     "rootDir": "src",
     "outDir": "dist"
   },

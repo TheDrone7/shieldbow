@@ -1,3 +1,6 @@
+import { Locale } from './locale';
+import { Region } from './region';
+
 /**
  * A union type of condition checks.
  *
@@ -28,6 +31,31 @@ export interface ManagerConfig {
 }
 
 /**
+ * The options for fetching data.
+ */
+export interface FetchOptions {
+  /**
+   * Whether to include the version (and locale) in the URL.
+   *
+   * For data dragon: true by default.
+   * For community dragon: true by default (does not depend on locale).
+   * For meraki: false by default (ignored).
+   */
+  noVersion?: boolean;
+  /**
+   * Whether to cache the fetched data (in-memory).
+   *
+   * This prevents the client from fetching the same data multiple times.
+   * This lowers the load on the CDNs and makes the client faster.
+   */
+  cache?: boolean;
+  /**
+   * Whether to ignore the cache and force fetching the data from the CDNs.
+   */
+  ignoreCache?: boolean;
+}
+
+/**
  * The client configuration options.
  */
 export interface ClientConfig {
@@ -49,15 +77,6 @@ export interface ClientConfig {
    */
   prefetch?: ManagerConfig | boolean;
   /**
-   * Whether to cache the fetched data (in-memory).
-   *
-   * This prevents the client from fetching the same data multiple times.
-   * This lowers the load on the CDNs and makes the client faster.
-   *
-   * Defaults to `true`.
-   */
-  cache?: boolean;
-  /**
    * The data dragon CDN version
    *
    * Defaults to latest as per the specified region.
@@ -68,9 +87,30 @@ export interface ClientConfig {
    *
    * Defaults to region's default locale.
    */
-  locale?: string;
+  locale?: Locale;
   /**
    * The region to fetch all the data from.
    */
-  region?: string;
+  region?: Region;
+  /**
+   * The base URLs for the various CDNs shieldbow uses.
+   */
+  cdn?: {
+    /**
+     * The base URL for the Data Dragon CDN.
+     */
+    dDragon?: string;
+    /**
+     * The base URL for the Community Dragon CDN.
+     */
+    cDragon?: string;
+    /**
+     * The base URL for the Meraki Analytics CDN.
+     */
+    meraki?: string;
+  };
+  /**
+   * The options to use when fetching data.
+   */
+  defaultFetchOptions?: FetchOptions;
 }

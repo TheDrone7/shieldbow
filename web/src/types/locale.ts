@@ -35,4 +35,4 @@ export const locale = [
 /**
  * A valid locale to fetch the data in.
  */
-export type Locales = (typeof locale)[number];
+export type Locale = (typeof locale)[number];
