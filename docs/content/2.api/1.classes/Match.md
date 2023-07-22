@@ -181,7 +181,7 @@ They are mapped by their map sides (`blue` and `red`).
 
 
 
-**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< 'blue' \| 'red', [Team](/api/classes/team) \>
+**Type**: [Collection](https://discord.js.org/#/docs/collection/stable/class/Collection) \< 'blue' \| 'red' \| 'Poro' \| 'Minion' \| 'Scuttle' \| 'Krug', [Team](/api/classes/team) \>
 
 ---
 

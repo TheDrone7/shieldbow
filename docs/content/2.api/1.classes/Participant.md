@@ -548,6 +548,76 @@ An overview of the physical damage dealt/taken by the participant.
 
 ---
 
+#### placement
+
+Participants placement in the Arena gamemode.
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
+#### playerAugment1
+
+1st participant augment in the Arena gamemode.
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
+#### playerAugment2
+
+2nd participant augment in the Arena gamemode.
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
+#### playerAugment3
+
+3rd participant augment in the Arena gamemode.
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
+#### playerAugment4
+
+4th participant augment in the Arena gamemode.
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
+#### playerSubteamId
+
+TeamId of the participant.
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
+#### playerSubteamName
+
+Team name of the participants team.
+
+
+
+**Type**: subteamNames
+
+---
+
 #### position
 
 The participant's position in the team.
@@ -575,6 +645,16 @@ Whether the game ended in early surrender - a remake.
 
 
 **Type**: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
+
+---
+
+#### subteamPlacement
+
+Participants teams placement in the Arena gamemode.
+
+
+
+**Type**: [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
 ---
 
