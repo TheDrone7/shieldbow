@@ -5,6 +5,11 @@ import { Collection } from '@discordjs/collection';
 import { Perks } from './Perks';
 
 /**
+ * Team name of the participants team in the Arena gamemode.
+ */
+export type subteamNames = undefined | 'Poro' | 'Minion' | 'Scuttle' | 'Krug';
+
+/**
  * The participant's turret interaction information.
  */
 export interface ParticipantTurretStats {
@@ -418,6 +423,38 @@ export class Participant {
    */
   readonly physicalDamage: ParticipantDamageStats;
   /**
+   * Participants placement in the Arena gamemode.
+   */
+  readonly placement: number;
+  /**
+   * 1st participant augment in the Arena gamemode.
+   */
+  readonly playerAugment1: number;
+  /**
+   * 2nd participant augment in the Arena gamemode.
+   */
+  readonly playerAugment2: number;
+  /**
+   * 3rd participant augment in the Arena gamemode.
+   */
+  readonly playerAugment3: number;
+  /**
+   * 4th participant augment in the Arena gamemode.
+   */
+  readonly playerAugment4: number;
+  /**
+   * TeamId of the participant.
+   */
+  readonly playerSubteamId: number;
+  /**
+   * Team name of the participants team.
+   */
+  readonly playerSubteamName: subteamNames;
+  /**
+   * Participants teams placement in the Arena gamemode.
+   */
+  readonly subteamPlacement: number;
+  /**
    * Whether the participant killed the nexus.
    */
   readonly nexusKilled: boolean;
@@ -611,6 +648,15 @@ export class Participant {
       toChampions: data.physicalDamageDealtToChampions
     };
 
+    this.placement = data.placement;
+    this.playerAugment1 = data.playerAugment1;
+    this.playerAugment2 = data.playerAugment2;
+    this.playerAugment3 = data.playerAugment3;
+    this.playerAugment4 = data.playerAugment4;
+    this.playerSubteamId = data.playerSubteamId;
+    this.playerSubteamName = this._teamIdToTeamName(data.playerSubteamId);
+    this.subteamPlacement = data.subteamPlacement;
+
     this.trueDamage = {
       dealt: data.trueDamageDealt,
       taken: data.trueDamageTaken,
@@ -696,5 +742,20 @@ export class Participant {
       onTeam: data.totalHealsOnTeammates,
       units: data.totalUnitsHealed
     };
+  }
+
+  private _teamIdToTeamName(teamId: Number): subteamNames {
+    switch (teamId) {
+      case 1:
+        return 'Poro';
+      case 2:
+        return 'Minion';
+      case 3:
+        return 'Scuttle';
+      case 4:
+        return 'Krug';
+      default:
+        return undefined;
+    }
   }
 }

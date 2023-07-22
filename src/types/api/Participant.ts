@@ -77,6 +77,13 @@ export interface ParticipantData {
   physicalDamageDealt: number;
   physicalDamageDealtToChampions: number;
   physicalDamageTaken: number;
+  placement: number;
+  playerAugment1: number;
+  playerAugment2: number;
+  playerAugment3: number;
+  playerAugment4: number;
+  playerSubteamId: number;
+  subteamPlacement: number;
   profileIcon: number;
   pushPings: number;
   puuid: string;
