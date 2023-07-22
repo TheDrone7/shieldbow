@@ -1,6 +1,11 @@
 import type { PerksData } from './Perks';
 
 /**
+ * Team name of the participants team in the Arena gamemode.
+ */
+export type SubteamNames = undefined | 'Poro' | 'Minion' | 'Scuttle' | 'Krug';
+
+/**
  * Match participant data as returned by the API
  */
 export interface ParticipantData {

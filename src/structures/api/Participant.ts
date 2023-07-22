@@ -3,11 +3,7 @@ import type { Champion, Item, RuneTree, SummonerSpell } from '../dragon';
 import { Bounty } from './Bounty';
 import { Collection } from '@discordjs/collection';
 import { Perks } from './Perks';
-
-/**
- * Team name of the participants team in the Arena gamemode.
- */
-export type subteamNames = undefined | 'Poro' | 'Minion' | 'Scuttle' | 'Krug';
+import { SubteamNames } from '../../types/api/Participant';
 
 /**
  * The participant's turret interaction information.
@@ -449,7 +445,7 @@ export class Participant {
   /**
    * Team name of the participants team.
    */
-  readonly playerSubteamName: subteamNames;
+  readonly playerSubteamName: SubteamNames;
   /**
    * Participants teams placement in the Arena gamemode.
    */
@@ -744,7 +740,7 @@ export class Participant {
     };
   }
 
-  private _teamIdToTeamName(teamId: Number): subteamNames {
+  private _teamIdToTeamName(teamId: Number): SubteamNames {
     switch (teamId) {
       case 1:
         return 'Poro';
