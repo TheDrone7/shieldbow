@@ -614,7 +614,7 @@ Team name of the participants team.
 
 
 
-**Type**: subteamNames
+**Type**: SubteamNames
 
 ---
 

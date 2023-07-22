@@ -41,7 +41,7 @@ Constructs a new instance of the `Team` class.
 
 #### bans
 
-The champions banned by the team.
+The champions banned by the team. Note: Bans in the Arena gamemode are shared across all teams.
 
 
 

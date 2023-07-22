@@ -27,6 +27,7 @@ export class Team {
   readonly id: number;
   /**
    * The champions banned by the team.
+   * Note: Bans in the Arena gamemode are shared across all teams.
    */
   readonly bans: ChampionBan[];
   /**
