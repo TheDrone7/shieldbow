@@ -76,7 +76,7 @@ export class Match {
    *
    * They are mapped by their map sides (`blue` and `red`).
    */
-  readonly teams: Collection<'blue' | 'red', Team>;
+  readonly teams: Collection<'blue' | 'red' | 'Poro' | 'Minion' | 'Scuttle' | 'Krug', Team>;
   private readonly client: Client;
 
   /**
@@ -113,13 +113,33 @@ export class Match {
     this.region = this._regionFromPlatformId(data.info.platformId);
     this.queue = client.queues.find((q) => q.queueId === data.info.queueId)!;
     this.tournamentCode = data.info.tournamentCode;
+
     const blueTeamData = data.info.teams.find((t) => t.teamId === 100)!;
-    const redTeamData = data.info.teams.find((t) => t.teamId === 200)!;
-    const blueTeamParticipants = data.info.participants.filter((p) => p.teamId === 100);
-    const redTeamParticipants = data.info.participants.filter((p) => p.teamId === 200);
-    this.teams = new Collection<'blue' | 'red', Team>();
-    this.teams.set('blue', new Team(blueTeamData, blueTeamParticipants, champions, items, runeTrees, summonerSpells));
-    this.teams.set('red', new Team(redTeamData, redTeamParticipants, champions, items, runeTrees, summonerSpells));
+
+    // as per #70, it is not possible to check for the ARENA map the efficient way, so it is hardcoded
+    if (data.info.mapId === 30) {
+      const teamData = blueTeamData;
+      const poroTeamParticipants = data.info.participants.filter((p) => p.playerSubteamId === 1);
+      const minionTeamParticipants = data.info.participants.filter((p) => p.playerSubteamId === 2);
+      const scuttleTeamParticipants = data.info.participants.filter((p) => p.playerSubteamId === 3);
+      const krugTeamParticipants = data.info.participants.filter((p) => p.playerSubteamId === 4);
+      this.teams = new Collection<'Poro' | 'Minion' | 'Scuttle' | 'Krug', Team>();
+      this.teams.set('Poro', new Team(teamData, poroTeamParticipants, champions, items, runeTrees, summonerSpells));
+      this.teams.set('Minion', new Team(teamData, minionTeamParticipants, champions, items, runeTrees, summonerSpells));
+      this.teams.set(
+        'Scuttle',
+        new Team(teamData, scuttleTeamParticipants, champions, items, runeTrees, summonerSpells)
+      );
+      this.teams.set('Krug', new Team(teamData, krugTeamParticipants, champions, items, runeTrees, summonerSpells));
+    } else {
+      const redTeamData = data.info.teams.find((t) => t.teamId === 200)!;
+
+      const blueTeamParticipants = data.info.participants.filter((p) => p.teamId === 100);
+      const redTeamParticipants = data.info.participants.filter((p) => p.teamId === 200);
+      this.teams = new Collection<'blue' | 'red', Team>();
+      this.teams.set('blue', new Team(blueTeamData, blueTeamParticipants, champions, items, runeTrees, summonerSpells));
+      this.teams.set('red', new Team(redTeamData, redTeamParticipants, champions, items, runeTrees, summonerSpells));
+    }
   }
 
   /**
