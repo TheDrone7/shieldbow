@@ -166,6 +166,16 @@ export class Match {
         return 'tr';
       case 'RU':
         return 'ru';
+      case 'PH2':
+        return 'ph';
+      case 'SG2':
+        return 'sg';
+      case 'TH2':
+        return 'th';
+      case 'TW2':
+        return 'tw';
+      case 'VN2':
+        return 'vn';
       default:
         return 'na';
     }
