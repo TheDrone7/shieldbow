@@ -122,7 +122,7 @@ export class Client {
    * (false by default, always true for meraki).
    * @returns The generated URL.
    */
-  private generateUrl(
+  generateUrl(
     path: string,
     source: 'dDragon' | 'cDragon' | 'meraki' = 'dDragon',
     noVersion = !!this._defaultFetchOptions.noVersion
@@ -196,7 +196,7 @@ export class Client {
     this._defaultFetchOptions = {
       cache: config?.defaultFetchOptions?.cache ?? true,
       ignoreCache: config?.defaultFetchOptions?.ignoreCache ?? false,
-      noVersion: config?.defaultFetchOptions?.noVersion ?? true
+      noVersion: config?.defaultFetchOptions?.noVersion ?? false
     };
 
     // Prefetch static data such as maps, queues, etc.
