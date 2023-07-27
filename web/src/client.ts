@@ -1,6 +1,6 @@
 // import { Collection } from '@discordjs/collection';
-import type { ClientConfig, FetchOptions, Locale, Region, Season, GameMap, GameMode, GameType, Queue } from './types';
-import { constants } from './utilities';
+import type { ClientConfig, FetchOptions, Locale, Region, Season, GameMap, GameMode, GameType, Queue } from 'types';
+import { constants } from 'utilities';
 
 const patchRegex = /\d+\.\d+/;
 

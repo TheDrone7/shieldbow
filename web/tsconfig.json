@@ -3,7 +3,13 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "rootDir": "src",
-    "outDir": "dist"
+    "outDir": "dist",
+    "paths": {
+      "types/*": ["types/*"],
+      "utilties/*": ["utilties/*"],
+      "structures/*": ["structures/*"],
+      "managers/*": ["managers/*"]
+    }
   },
   "include": ["src"]
 }

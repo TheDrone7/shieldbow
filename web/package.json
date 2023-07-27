@@ -4,8 +4,8 @@
   "description": "A browser-safe, lightweight part of the shieldbow library.",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w",
+    "build": "tsc && tsc-alias",
+    "watch": "tsc && (concurrently \"tsc -w\" \"tsc-alias -w\")",
     "format": "prettier --write \"src/**/**.ts\" \"tests/**/**.ts\"",
     "lint": "eslint --fix --color \"src/**/**.ts\" \"tests/**/**.ts\"",
     "format:test": "prettier --check \"src/**/**.ts\" \"tests/**/**.ts\"",
@@ -49,6 +49,7 @@
     "@microsoft/api-extractor": "^7.36.3",
     "@types/jest": "^29.5.3",
     "@typescript-eslint/parser": "^6.1.0",
+    "concurrently": "^8.2.0",
     "eslint": "^8.45.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^5.0.0",
@@ -58,6 +59,7 @@
     "prettier": "^3.0.0",
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.1",
+    "tsc-alias": "^1.8.7",
     "typescript": "^5.1.6"
   }
 }
