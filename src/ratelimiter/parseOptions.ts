@@ -86,7 +86,11 @@ const parse = (opts: RateLimiterOptions): RateLimiterConfig => {
   if (Array.isArray(opts.methodLimit.LEAGUE))
     opts.methodLimit.LEAGUE = {
       getLeagueEntriesForSummoner: opts.methodLimit.LEAGUE,
-      getLeagueById: opts.methodLimit.LEAGUE
+      getLeagueById: opts.methodLimit.LEAGUE,
+      getLeagueEntries: opts.methodLimit.LEAGUE,
+      getChallengerLeague: opts.methodLimit.LEAGUE,
+      getGrandmasterLeague: opts.methodLimit.LEAGUE,
+      getMasterLeague: opts.methodLimit.LEAGUE
     };
 
   if (Array.isArray(opts.methodLimit.LOL_STATUS))

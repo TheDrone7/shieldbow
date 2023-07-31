@@ -12,7 +12,14 @@ export const methods = {
   CHAMPION: ['getChampionInfo'],
   CLASH: ['getTeamById', 'getPlayersBySummoner', 'getTournaments', 'getTournamentById', 'getTournamentByTeam'],
   LEAGUE_EXP: ['getLeagueEntries'],
-  LEAGUE: ['getLeagueEntriesForSummoner', 'getLeagueById'],
+  LEAGUE: [
+    'getLeagueEntriesForSummoner',
+    'getLeagueById',
+    'getLeagueEntries',
+    'getChallengerLeague',
+    'getGrandmasterLeague',
+    'getMasterLeague'
+  ],
   LOL_CHALLENGES: [
     'getAllChallengeConfigs',
     'getAllChallengePercentiles',

@@ -16,7 +16,7 @@ methods: {
     readonly CHAMPION: readonly ["getChampionInfo"];
     readonly CLASH: readonly ["getTeamById", "getPlayersBySummoner", "getTournaments", "getTournamentById", "getTournamentByTeam"];
     readonly LEAGUE_EXP: readonly ["getLeagueEntries"];
-    readonly LEAGUE: readonly ["getLeagueEntriesForSummoner", "getLeagueById"];
+    readonly LEAGUE: readonly ["getLeagueEntriesForSummoner", "getLeagueById", "getLeagueEntries", "getChallengerLeague", "getGrandmasterLeague", "getMasterLeague"];
     readonly LOL_CHALLENGES: readonly ["getAllChallengeConfigs", "getAllChallengePercentiles", "getChallengeConfigs", "getChallengeLeaderboards", "getChallengePercentiles", "getPlayerData"];
     readonly LOL_STATUS: readonly ["getPlatformData"];
     readonly MATCH: readonly ["getMatchIdsByPUUID", "getMatch", "getTimeline"];
