@@ -1,4 +1,6 @@
+import { ICache } from './cache';
 import { Locale } from './locale';
+import { ILogger, LogLevel } from './logger';
 import { Region } from './region';
 
 /**
@@ -138,4 +140,24 @@ export interface ClientConfig {
    * The options to use when fetching data.
    */
   defaultFetchOptions?: FetchConfig;
+
+  /**
+   * The cache to use for caching data.
+   * Defaults to an in-memory cache.
+   *
+   * NOTE: To use this, the `cache` fetch option must be true (defaults to true).
+   */
+  cache?: ICache;
+
+  /**
+   * The logger to use for logging.
+   * Defaults to built-in console logger.
+   */
+  logger: ILogger;
+  /**
+   * The log level to use for logging (only if using the built-in logger).
+   *
+   * Defaults to `WARN`
+   */
+  logLevel: LogLevel;
 }

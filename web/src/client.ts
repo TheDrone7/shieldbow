@@ -244,7 +244,14 @@ export class Client {
     this._gameTypes = await this._fetcher<GameType[]>(constants.gameTypesUrl);
     this._queues = await this._fetcher<Queue[]>(constants.queuesUrl);
 
+    this._cache = config?.cache ?? new MemoryCache();
+    this._logger = config?.logger ?? new ShieldbowLogger(config?.logLevel ?? 'WARN');
+
     // TODO: If selected, prefetch other data as well.
+    if (typeof config?.prefetch === 'object' && config.prefetch.champions) {
+      const champions = await this.champions.fetchAll();
+      this.logger?.debug(`Prefetched ${champions.size} champions.`);
+    }
   }
 
   /**
