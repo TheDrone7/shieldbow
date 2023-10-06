@@ -70,7 +70,7 @@ export interface IDataDragonChampionSpell {
   costType: string;
   maxammo: string;
   range: number[];
-  rangeBurn: number;
+  rangeBurn: string;
   image: IImage;
   resource: string;
 }

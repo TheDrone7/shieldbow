@@ -10,3 +10,9 @@ export type StatName =
   | 'crit'
   | 'attackDamage'
   | 'attackSpeed';
+
+export interface StatPerk {
+  id: number;
+  name: string;
+  description: string;
+}

@@ -31,6 +31,31 @@ export interface ManagerConfig {
 }
 
 /**
+ * The configuration for default options for fetching data.
+ */
+export interface FetchConfig {
+  /**
+   * Whether to include the version (and locale) in the URL.
+   *
+   * For data dragon: true by default.
+   * For community dragon: true by default (does not depend on locale).
+   * For meraki: false by default (ignored).
+   */
+  noVersion: ManagerConfig | ConfigConditional;
+  /**
+   * Whether to cache the fetched data (in-memory).
+   *
+   * This prevents the client from fetching the same data multiple times.
+   * This lowers the load on the CDNs and makes the client faster.
+   */
+  cache: ManagerConfig | ConfigConditional;
+  /**
+   * Whether to ignore the cache and force fetching the data from the CDNs.
+   */
+  ignoreCache: ManagerConfig | ConfigConditional;
+}
+
+/**
  * The options for fetching data.
  */
 export interface FetchOptions {
@@ -112,5 +137,5 @@ export interface ClientConfig {
   /**
    * The options to use when fetching data.
    */
-  defaultFetchOptions?: FetchOptions;
+  defaultFetchOptions?: FetchConfig;
 }

@@ -1,0 +1,1 @@
+export { ChampionManager } from './champion';

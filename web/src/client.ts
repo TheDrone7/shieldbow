@@ -1,6 +1,18 @@
-// import { Collection } from '@discordjs/collection';
-import type { ClientConfig, FetchOptions, Locale, Region, Season, GameMap, GameMode, GameType, Queue } from 'types';
-import { constants } from 'utilities';
+import { ChampionManager } from 'managers';
+import type {
+  ClientConfig,
+  Locale,
+  Region,
+  Season,
+  GameMap,
+  GameMode,
+  GameType,
+  Queue,
+  FetchConfig,
+  ILogger,
+  ICache
+} from 'types';
+import { constants, MemoryCache, ShieldbowLogger } from 'utilities';
 
 const patchRegex = /\d+\.\d+/;
 
@@ -15,12 +27,16 @@ export class Client {
   private _locale: Locale;
   private _version: string;
   private _fetcher: <T>(url: string) => Promise<T>;
-  private _defaultFetchOptions: FetchOptions;
+  private _defaultFetchOptions: FetchConfig;
   private _seasons: Season[];
   private _maps: GameMap[];
   private _gameModes: GameMode[];
   private _gameTypes: GameType[];
   private _queues: Queue[];
+  private _logger: ILogger;
+  private _cache: ICache;
+
+  readonly champions: ChampionManager;
   /**
    * Create a new shieldbow web client.
    */
@@ -32,13 +48,21 @@ export class Client {
     this._fetcher = undefined!;
     this._region = 'na';
     this._locale = 'en_US';
-    this._defaultFetchOptions = {};
+    this._defaultFetchOptions = {
+      cache: true,
+      ignoreCache: false,
+      noVersion: false
+    };
 
     this._seasons = [];
     this._maps = [];
     this._gameModes = [];
     this._gameTypes = [];
     this._queues = [];
+    this._logger = new ShieldbowLogger();
+    this._cache = new MemoryCache();
+
+    this.champions = new ChampionManager(this);
   }
 
   /**
@@ -104,6 +128,20 @@ export class Client {
    */
   get queues(): Queue[] {
     return this._queues;
+  }
+
+  /**
+   * The logger used by the client.
+   */
+  get logger(): ILogger {
+    return this._logger;
+  }
+
+  /**
+   * The cache used by the client.
+   */
+  get cache(): ICache {
+    return this._cache;
   }
 
   /**
@@ -207,5 +245,16 @@ export class Client {
     this._queues = await this._fetcher<Queue[]>(constants.queuesUrl);
 
     // TODO: If selected, prefetch other data as well.
+  }
+
+  /**
+   * The default fetch options to be used by the client.
+   */
+  get defaultFetchOptions(): FetchConfig {
+    return this._defaultFetchOptions;
+  }
+
+  get fetch(): <T>(url: string) => Promise<T> {
+    return this._fetcher;
   }
 }
