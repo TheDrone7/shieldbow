@@ -124,7 +124,7 @@ export interface IMerakiChampion {
   icon: string;
   resource: string;
   attackType: 'MELEE' | 'RANGED';
-  adaptiveType: string;
+  adaptiveType: 'PHYSICAL_DAMAGE' | 'MAGIC_DAMAGE';
   stats: {
     health: IMerakiChampionStat;
     healthRegen: IMerakiChampionStat;
