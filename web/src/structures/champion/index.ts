@@ -25,6 +25,9 @@ export interface ChampionPricing {
   readonly sale: number;
 }
 
+/**
+ * Represents a champion in League of Legends.
+ */
 export class Champion {
   /**
    * The ID of the champion.
