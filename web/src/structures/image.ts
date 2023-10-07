@@ -22,8 +22,8 @@ export class Image {
    */
   readonly size: { width: number; height: number };
   constructor(client: Client, data: IImage) {
-    this.fullUrl = client.generateUrl(`img/${data.group}/${data.full}`);
-    this.spriteUrl = client.generateUrl(`img/sprite/${data.sprite}`);
+    this.fullUrl = client.generateImageUrl(`${data.group}/${data.full}`);
+    this.spriteUrl = client.generateImageUrl(`sprite/${data.sprite}`);
     this.position = { x: data.x, y: data.y };
     this.size = { width: data.w, height: data.h };
   }

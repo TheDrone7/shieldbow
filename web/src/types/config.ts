@@ -18,18 +18,9 @@ export type ConfigConditional = boolean | undefined | (<T>(obj: T) => boolean);
 export interface ManagerConfig {
   champions: ConfigConditional;
   items: ConfigConditional;
-  maps: ConfigConditional;
   challenges: ConfigConditional;
   runes: ConfigConditional;
   summonerSpells: ConfigConditional;
-  tftArenas: ConfigConditional;
-  tftAugments: ConfigConditional;
-  tftChampions: ConfigConditional;
-  tftItems: ConfigConditional;
-  tftQueues: ConfigConditional;
-  tftRegalias: ConfigConditional;
-  tftTacticians: ConfigConditional;
-  tftTraits: ConfigConditional;
 }
 
 /**

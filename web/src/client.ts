@@ -175,6 +175,13 @@ export class Client {
       : `${this._merakiBase}${path}`;
   }
 
+  generateImageUrl(path: string, source: 'dDragon' | 'cDragon' = 'dDragon'): string {
+    this.ensureInitialized();
+    return source === 'dDragon'
+      ? `${this._dDragonBase}${this.version}/img/${path}`
+      : `${this._cDragonBase}${this.patch}/${path}`;
+  }
+
   public async initialize(config?: ClientConfig) {
     // Read and set the CDN bases.
     this._dDragonBase = config?.cdn?.cDragon ?? this._dDragonBase;
