@@ -1,5 +1,5 @@
 import type { Client } from 'client';
-import type { BaseManager, FetchOptions, IDDragonItem } from 'types';
+import type { BaseManager, FetchOptions, IDDragonItem, IMerakiItem } from 'types';
 import { Item } from 'structures';
 import { parseFetchOptions } from 'utilities';
 import { Collection } from '@discordjs/collection';
@@ -34,9 +34,10 @@ export class ItemManager implements BaseManager<Item> {
     this.client.logger?.trace('Fetching all items');
     try {
       const items = <{ [id: string]: IDDragonItem }>await this._fetchItemsFromDDragon(opts);
+      const merakiItems = <{ [id: string]: IMerakiItem }>await this._fetchItemsFromMeraki();
       const result = new Collection<string, Item>();
       for (const key of Object.keys(items)) {
-        const item = new Item(this.client, key, items[key]);
+        const item = new Item(this.client, key, items[key], merakiItems[key]);
         result.set(key, item);
         if (cache) await this.client.cache.set(`item:${key}`, item);
       }
@@ -113,7 +114,19 @@ export class ItemManager implements BaseManager<Item> {
   private async _fetchItemsFromDDragon(options: FetchOptions) {
     try {
       this.client.logger?.trace('Fetching items from DDragon');
-      const response = await this.client.fetch(this.client.generateUrl('item.json', 'dDragon', options.noVersion));
+      const response = await this.client.fetch<{ data: unknown }>(
+        this.client.generateUrl('item.json', 'dDragon', options.noVersion)
+      );
+      return response.data;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
+  private async _fetchItemsFromMeraki() {
+    try {
+      this.client.logger?.trace('Fetching items from Meraki');
+      const response = await this.client.fetch(this.client.generateUrl('items.json', 'meraki'));
       return response;
     } catch (error) {
       return Promise.reject(error);

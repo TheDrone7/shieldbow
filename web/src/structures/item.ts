@@ -1,4 +1,4 @@
-import { GameMap, IDDragonItem } from 'types';
+import { GameMap, IDDragonItem, IMerakiItem, IMerakiItemStats } from 'types';
 import { Client } from 'client';
 import { Champion, Image } from '.';
 
@@ -47,7 +47,7 @@ export class Item {
    *
    * (In case of items such as Muramana, which requires Manamune)
    */
-  readonly specialRecipeId?: string;
+  readonly specialRecipeId?: number;
   /**
    * The number of stacks the item can have. (If any)
    */
@@ -104,6 +104,12 @@ export class Item {
   readonly stats: {
     [id: string]: number;
   };
+  /**
+   * The stats provided by this item, as provided by meraki analytics.
+   *
+   * This is provided as it is much nicer to use than the raw stats from data dragon.
+   */
+  readonly merakiStats: IMerakiItemStats;
 
   /**
    * The kind of item.
@@ -115,7 +121,7 @@ export class Item {
    * @param client - The client that created the item.
    * @param item - The raw item data from data dragon.
    */
-  constructor(client: Client, id: string, item: IDDragonItem) {
+  constructor(client: Client, id: string, item: IDDragonItem, meraki: IMerakiItem) {
     this.client = client;
     this.id = id;
     this.name = item.name;
@@ -138,6 +144,8 @@ export class Item {
     this.hideFromAll = item.hideFromAll ?? false;
     this.requiredChampionId = item.requiredChampion;
     this.kind = this.parseDepth(item.depth);
+    this.specialRecipeId = item.specialRecipe;
+    this.merakiStats = meraki.stats;
   }
 
   /**
@@ -184,7 +192,7 @@ export class Item {
    * Instead, you need to buy the `specialRecipe` item and complete a quest to get it.
    */
   async specialRecipe(): Promise<Item | undefined> {
-    return this.specialRecipeId ? this.client.items.fetch(this.specialRecipeId) : undefined;
+    return this.specialRecipeId ? this.client.items.fetch(this.specialRecipeId.toString()) : undefined;
   }
 
   /**
