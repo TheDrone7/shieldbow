@@ -18,7 +18,6 @@ export interface IDDragonItem {
   description: string;
   colloq: string;
   plaintext: string;
-  into: string[];
   image: IImage;
   gold: IDDragonItemGold;
   tags: string[];
@@ -28,4 +27,15 @@ export interface IDDragonItem {
   stats: {
     [id: string]: number;
   };
+  consumed?: boolean;
+  stacks?: number;
+  depth?: number;
+  consumeOnFull?: boolean;
+  into?: string[];
+  from?: string[];
+  specialRecipe?: number;
+  inStore?: boolean;
+  hideFromAll?: boolean;
+  requiredChampion?: string;
+  requiredAlly?: string;
 }

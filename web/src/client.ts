@@ -1,4 +1,4 @@
-import { ChampionManager } from 'managers';
+import { ChampionManager, ItemManager } from 'managers';
 import type {
   ClientConfig,
   Locale,
@@ -37,6 +37,7 @@ export class Client {
   private _cache: ICache;
 
   readonly champions: ChampionManager;
+  readonly items: ItemManager;
   /**
    * Create a new shieldbow web client.
    */
@@ -63,6 +64,7 @@ export class Client {
     this._cache = new MemoryCache();
 
     this.champions = new ChampionManager(this);
+    this.items = new ItemManager(this);
   }
 
   /**
