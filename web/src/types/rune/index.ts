@@ -1,0 +1,1 @@
+export { IDDragonRune } from './rune';
