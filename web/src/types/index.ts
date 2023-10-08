@@ -9,3 +9,4 @@ export * from './stat';
 export * from './manager';
 export * from './logger';
 export * from './cache';
+export * from './rune';

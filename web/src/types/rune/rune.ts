@@ -1,3 +1,6 @@
+/**
+ * Data Dragon Rune interface.
+ */
 export interface IDDragonRune {
   id: number;
   key: string;
