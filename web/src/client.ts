@@ -1,4 +1,4 @@
-import { ChampionManager, ItemManager } from 'managers';
+import { ChampionManager, ItemManager, RuneTreeManager } from 'managers';
 import type {
   ClientConfig,
   Locale,
@@ -38,6 +38,8 @@ export class Client {
 
   readonly champions: ChampionManager;
   readonly items: ItemManager;
+  readonly runes: RuneTreeManager;
+
   /**
    * Create a new shieldbow web client.
    */
@@ -65,6 +67,7 @@ export class Client {
 
     this.champions = new ChampionManager(this);
     this.items = new ItemManager(this);
+    this.runes = new RuneTreeManager(this);
   }
 
   /**
@@ -255,6 +258,8 @@ export class Client {
 
     this._cache = config?.cache ?? new MemoryCache();
     this._logger = config?.logger ?? new ShieldbowLogger(config?.logLevel ?? 'WARN');
+
+    this.runes.initialize();
 
     // TODO: If selected, prefetch other data as well.
     if (typeof config?.prefetch === 'object' && config.prefetch.champions) {

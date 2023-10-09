@@ -6,8 +6,6 @@ import { Collection } from '@discordjs/collection';
 
 /**
  * An item manager - to fetch and manage all item data.
- *
- * Does not require an API Key.
  */
 export class ItemManager implements BaseManager<Item> {
   /**

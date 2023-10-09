@@ -121,7 +121,7 @@ export class Item {
    * @param client - The client that created the item.
    * @param item - The raw item data from data dragon.
    */
-  constructor(client: Client, id: string, item: IDDragonItem, meraki: IMerakiItem) {
+  constructor(client: Client, id: string, item: IDDragonItem, meraki?: IMerakiItem) {
     this.client = client;
     this.id = id;
     this.name = item.name;
@@ -145,7 +145,7 @@ export class Item {
     this.requiredChampionId = item.requiredChampion;
     this.kind = this.parseDepth(item.depth);
     this.specialRecipeId = item.specialRecipe;
-    this.merakiStats = meraki.stats;
+    this.merakiStats = meraki?.stats!;
   }
 
   /**

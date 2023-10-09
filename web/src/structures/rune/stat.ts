@@ -1,3 +1,5 @@
+import { Client } from 'client';
+
 /**
  * Represents a Stat Rune in League of Legends.
  */
@@ -19,10 +21,10 @@ export class StatRune {
    */
   readonly description: string;
 
-  constructor(name: string, id: number, icon: string, description: string) {
+  constructor(client: Client, name: string, id: number, icon: string, description: string) {
     this.name = name;
     this.id = id;
-    this.icon = icon;
+    this.icon = client.generateUrl(icon, 'dDragon', true);
     this.description = description;
   }
 }
