@@ -1,4 +1,4 @@
-import { ChampionManager, ItemManager, RuneTreeManager } from 'managers';
+import { ChampionManager, ItemManager, RuneTreeManager, SummonerSpellManager } from 'managers';
 import type {
   ClientConfig,
   Locale,
@@ -39,6 +39,7 @@ export class Client {
   readonly champions: ChampionManager;
   readonly items: ItemManager;
   readonly runes: RuneTreeManager;
+  readonly summonerSpells: SummonerSpellManager;
 
   /**
    * Create a new shieldbow web client.
@@ -68,6 +69,7 @@ export class Client {
     this.champions = new ChampionManager(this);
     this.items = new ItemManager(this);
     this.runes = new RuneTreeManager(this);
+    this.summonerSpells = new SummonerSpellManager(this);
   }
 
   /**

@@ -46,7 +46,7 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
     const opts = parseFetchOptions(this.client, 'runes', options);
     const { cache } = opts;
     try {
-      const runeTrees = <IDDragonRuneTree[]>await this._fetchLocalRunes(opts);
+      const runeTrees = <IDDragonRuneTree[]>await this._fetchRunesFromDDragon(opts);
       const result = new Collection<string, RuneTree>();
       for (const tree of runeTrees) {
         const runeTree = new RuneTree(this.client, tree);
@@ -175,7 +175,7 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
     return runes?.find((i) => i.id === id);
   }
 
-  private async _fetchLocalRunes(options: FetchOptions) {
+  private async _fetchRunesFromDDragon(options: FetchOptions) {
     try {
       this.client.logger?.trace(`Fetching runes from DDragon`);
       const response = await this.client.fetch(
