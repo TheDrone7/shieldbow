@@ -1,4 +1,5 @@
 import { Collection } from '@discordjs/collection';
+import { Client } from 'client';
 import { IDDragonChallenge, TierType } from 'types';
 
 /**
@@ -58,7 +59,7 @@ export class Challenge {
    * Creates a new challenge
    * @param data - The challenge's raw data from DataDragon
    */
-  constructor(data: IDDragonChallenge) {
+  constructor(client: Client, data: IDDragonChallenge) {
     this.id = data.id;
     this.name = data.name;
     this.description = data.description;
@@ -68,8 +69,8 @@ export class Challenge {
     this.thresholds = new Collection<Exclude<TierType, 'EMERALD'>, number>();
 
     for (const [key, value] of Object.entries(data.levelToIconPath))
-      this.icons.set(key as Exclude<TierType, 'EMERALD'>, value);
-    for (const [key, value] of Object.entries(data.threshold)) {
+      this.icons.set(key as Exclude<TierType, 'EMERALD'>, client.generateImageUrl(value));
+    for (const [key, value] of Object.entries(data.thresholds)) {
       this.thresholds.set(key as Exclude<TierType, 'EMERALD'>, value.value);
 
       // TODO: So far, the only rewards seem to be titles

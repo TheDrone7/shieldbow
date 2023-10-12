@@ -41,5 +41,5 @@ export interface IDDragonChallenge {
   shortDescription: string;
   hasLeaderboard: boolean;
   levelToIconPath: ChallengeLevelToIconPath;
-  threshold: ChallengeThreshold;
+  thresholds: ChallengeThreshold;
 }

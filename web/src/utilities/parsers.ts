@@ -4,7 +4,7 @@ import { ConfigConditional, FetchOptions } from 'types/config';
 /**
  * The key of a manager.
  */
-export type ManagerKey = 'champions' | 'items' | 'runes' | 'summonerSpells';
+export type ManagerKey = 'champions' | 'items' | 'runes' | 'summonerSpells' | 'challenges';
 
 /**
  * A utility function to parse fetch options.
