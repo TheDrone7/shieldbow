@@ -6,12 +6,14 @@ import { Collection } from '@discordjs/collection';
  */
 export class MemoryCache implements ICache {
   private base: Collection<string, any>;
+  private _enabled: boolean;
 
   /**
    * Creates a new LocalCache instance.
    */
-  constructor() {
+  constructor(enabled = true) {
     this.base = new Collection<string, any>();
+    this._enabled = enabled;
   }
 
   /**
@@ -60,6 +62,7 @@ export class MemoryCache implements ICache {
    * @param key - The key of the value to remove.
    */
   remove(key: string): void {
+    if (!this._enabled) return;
     this.base.delete(key);
   }
 
@@ -69,6 +72,7 @@ export class MemoryCache implements ICache {
    * @param value - The value to set.
    */
   set<T>(key: string, value: T): void {
+    if (!this._enabled) return;
     this.base.set(key, value);
   }
 }

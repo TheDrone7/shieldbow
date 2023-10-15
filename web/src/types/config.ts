@@ -136,19 +136,38 @@ export interface ClientConfig {
    * The cache to use for caching data.
    * Defaults to an in-memory cache.
    *
+   * Can be set to `false` to disable caching.
    * NOTE: To use this, the `cache` fetch option must be true (defaults to true).
    */
-  cache?: ICache;
+  cache?: ICache | boolean;
 
   /**
-   * The logger to use for logging.
-   * Defaults to built-in console logger.
-   */
-  logger: ILogger;
-  /**
-   * The log level to use for logging (only if using the built-in logger).
+   * The logger settings.
    *
-   * Defaults to `WARN`
+   * Can be set to `false` to disable logging.
+   *
+   * Can be set to `true` to enable logging with default settings.
    */
-  logLevel: LogLevel;
+  logger?:
+    | {
+        /**
+         * Whether to enable logging.
+         * Defaults to `true`.
+         */
+        enabled?: boolean;
+        /**
+         * The log level to use for logging (only if using the built-in logger).
+         *
+         * Defaults to `WARN`
+         */
+        level?: LogLevel;
+        /**
+         * The logger to use for logging if you want to use a custom logger.
+         * This logger must implement the `ILogger` interface.
+         *
+         * Ignore to use the built-in logger.
+         */
+        customLogger?: ILogger;
+      }
+    | boolean;
 }

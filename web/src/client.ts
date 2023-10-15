@@ -253,15 +253,23 @@ export class Client {
       noVersion: config?.defaultFetchOptions?.noVersion ?? false
     };
 
+    // Parse cache options
+    if (typeof config?.cache === 'object') this._cache = config.cache;
+    else this._cache = new MemoryCache(config?.cache ?? true);
+
+    // Set up the logger.
+    if (typeof config?.logger === 'object')
+      if (config.logger.customLogger) this._logger = config.logger.customLogger;
+      else this._logger = new ShieldbowLogger(config.logger.enabled ? config.logger.level || 'WARN' : 'CRITICAL');
+    else if (config?.logger === true) this._logger = new ShieldbowLogger('WARN');
+    else this._logger = new ShieldbowLogger('CRITICAL');
+
     // Prefetch static data such as maps, queues, etc.
     this._seasons = await this._fetcher<Season[]>(constants.seasonsUrl);
     this._maps = await this._fetcher<GameMap[]>(constants.mapsUrl);
     this._gameModes = await this._fetcher<GameMode[]>(constants.gameModesUrl);
     this._gameTypes = await this._fetcher<GameType[]>(constants.gameTypesUrl);
     this._queues = await this._fetcher<Queue[]>(constants.queuesUrl);
-
-    this._cache = config?.cache ?? new MemoryCache();
-    this._logger = config?.logger ?? new ShieldbowLogger(config?.logLevel ?? 'WARN');
 
     this.runes.initialize();
 
