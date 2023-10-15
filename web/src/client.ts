@@ -265,10 +265,30 @@ export class Client {
 
     this.runes.initialize();
 
-    // TODO: If selected, prefetch other data as well.
+    // If selected, prefetch other data as well.
     if (typeof config?.prefetch === 'object' && config.prefetch.champions) {
       const champions = await this.champions.fetchAll();
       this.logger?.debug(`Prefetched ${champions.size} champions.`);
+    }
+
+    if (typeof config?.prefetch === 'object' && config.prefetch.runes) {
+      const runes = await this.runes.fetchAll();
+      this.logger?.debug(`Prefetched ${runes.size} rune trees.`);
+    }
+
+    if (typeof config?.prefetch === 'object' && config.prefetch.items) {
+      const items = await this.items.fetchAll();
+      this.logger?.debug(`Prefetched ${items.size} items.`);
+    }
+
+    if (typeof config?.prefetch === 'object' && config.prefetch.summonerSpells) {
+      const summonerSpells = await this.summonerSpells.fetchAll();
+      this.logger?.debug(`Prefetched ${summonerSpells.size} summoner spells.`);
+    }
+
+    if (typeof config?.prefetch === 'object' && config.prefetch.challenges) {
+      const challenges = await this.challenges.fetchAll();
+      this.logger?.debug(`Prefetched ${challenges.size} challenges.`);
     }
   }
 
