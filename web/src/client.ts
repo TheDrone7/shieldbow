@@ -307,6 +307,59 @@ export class Client {
     return this._defaultFetchOptions;
   }
 
+  /**
+   * Update the locale of the client.
+   */
+  get initialized(): boolean {
+    return this._version !== undefined;
+  }
+
+  /**
+   * Update the locale in which the data is fetched.
+   *
+   * @param newLocale - The new locale to use for the future requests.
+   * @param refetch - Whether to fetch all data dragon data in the new locale right away.
+   */
+  async updateLocale(newLocale: Locale, refetch: boolean = true) {
+    this.ensureInitialized();
+    this.logger?.debug('Assigning new locale.');
+    this._locale = newLocale;
+    if (refetch) {
+      this.logger?.debug('Re-fetching data from DDragon.');
+      await this.champions.fetchAll();
+      await this.items.fetch('1001');
+      await this.runes.fetch('Domination');
+      await this.summonerSpells.fetch('SummonerFlash');
+    }
+  }
+
+  /**
+   * Update the patch from which the data is fetched.
+   *
+   * NOTE: The patch must be 2 integers separated by a `.`.
+   * For example: `10.11` or `12.9`.
+   *
+   * This should NOT be the data dragon version.
+   *
+   * @param patch - The new patch to use for the future requests.
+   * @param refetch - Whether to fetch all data dragon data from the new patch right away.
+   */
+  async updatePatch(patch: string, refetch: boolean = true) {
+    this.ensureInitialized();
+    this.logger?.debug('Update DDragon version.');
+    this._version = patch + '.1';
+    if (refetch) {
+      this.logger?.debug('Re-fetching data from DDragon.');
+      await this.champions.fetchAll();
+      await this.items.fetch('1001');
+      await this.runes.fetch('Domination');
+      await this.summonerSpells.fetch('SummonerFlash');
+    }
+  }
+
+  /**
+   * The fetch method used by the client.
+   */
   get fetch(): <T>(url: string) => Promise<T> {
     return this._fetcher;
   }
