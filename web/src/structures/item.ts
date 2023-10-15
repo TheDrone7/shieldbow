@@ -183,7 +183,9 @@ export class Item {
    * A collection of items the current item is a component of.
    */
   async into() {
+    console.log(this.intoIds);
     const intoItems = await this.client.items.fetchMany(this.intoIds);
+    console.log(intoItems.map((i) => i.name).join(','));
     return this.intoIds.map((id) => intoItems.get(id)!);
   }
 
