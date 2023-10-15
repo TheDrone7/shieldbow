@@ -11,7 +11,8 @@
     "format:test": "prettier --check \"src/**/**.ts\" \"tests/**/**.ts\"",
     "lint:test": "eslint --color \"src/**/**.ts\" \"tests/**/**.ts\"",
     "pretest": "run-s format:test lint:test build",
-    "test": "jest --runInBand"
+    "test": "jest --runInBand",
+    "extract": "api-extractor run"
   },
   "repository": {
     "type": "git",

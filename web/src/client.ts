@@ -36,10 +36,25 @@ export class Client {
   private _logger: ILogger;
   private _cache: ICache;
 
+  /**
+   * The champion manager - allows you to fetch and manage League of Legends champions.
+   */
   readonly champions: ChampionManager;
+  /**
+   * The item manager - allows you to fetch and manage League of Legends items.
+   */
   readonly items: ItemManager;
+  /**
+   * The rune tree manager - allows you to fetch and manage League of Legends runes and rune trees.
+   */
   readonly runes: RuneTreeManager;
+  /**
+   * The summoner spell manager - allows you to fetch and manage League of Legends summoner spells.
+   */
   readonly summonerSpells: SummonerSpellManager;
+  /**
+   * The challenge manager - allows you to fetch and manage League of Legends challenges.
+   */
   readonly challenges: ChallengeManager;
 
   /**

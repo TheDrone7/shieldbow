@@ -205,3 +205,9 @@ export class Champion {
     return this.skins[0];
   }
 }
+
+export * from './skin';
+export * from './stat';
+export * from './info';
+export * from './ability';
+export * from './passive';
