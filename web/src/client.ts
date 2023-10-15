@@ -260,9 +260,12 @@ export class Client {
     // Set up the logger.
     if (typeof config?.logger === 'object')
       if (config.logger.customLogger) this._logger = config.logger.customLogger;
-      else this._logger = new ShieldbowLogger(config.logger.enabled ? config.logger.level || 'WARN' : 'CRITICAL');
-    else if (config?.logger === true) this._logger = new ShieldbowLogger('WARN');
-    else this._logger = new ShieldbowLogger('CRITICAL');
+      else
+        this._logger = new ShieldbowLogger(
+          config.logger.enabled === false ? 'CRITICAL' : config.logger.level ?? 'WARN'
+        );
+    else if (config?.logger === false) this._logger = new ShieldbowLogger('CRITICAL');
+    else this._logger = new ShieldbowLogger('WARN');
 
     // Prefetch static data such as maps, queues, etc.
     this._seasons = await this._fetcher<Season[]>(constants.seasonsUrl);
