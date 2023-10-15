@@ -6,6 +6,7 @@ import { ChampionInfo } from './info';
 import { ChampionSpell } from './ability';
 import { ChampionPassive } from './passive';
 import { Client } from 'client';
+import { Image } from '..';
 
 /**
  * Represents the pricing of a champion.
@@ -30,7 +31,27 @@ export interface ChampionPricing {
  */
 export class Champion {
   /**
-   * The ID of the champion.
+   * The ID of the champion. To get the ID, in the champion's name
+   *
+   * - Capitalize the words
+   *
+   * - Remove any spaces and special characters
+   *
+   * - The words after a `'` - such as in Kai'sa, remain lowercase.
+   *
+   * Examples:
+   *
+   * - Kayn -\> Kayn
+   *
+   * - Cho'Gath -\> Chogath
+   *
+   * - Dr. Mundo -\> DrMundo
+   *
+   * There are 2 exceptions to this rule.
+   *
+   * 1. Wukong -\> MonkeyKing
+   *
+   * 2. Renata Glasc -\> Renata
    */
   readonly id: string;
   /**
@@ -117,6 +138,10 @@ export class Champion {
    * The spells of the champion.
    */
   readonly spells: Collection<'Q' | 'W' | 'E' | 'R', ChampionSpell>;
+  /**
+   * The image of the champion.
+   */
+  readonly image: Image;
 
   /**
    * Creates a new Champion instance.
@@ -152,6 +177,7 @@ export class Champion {
       sale: meraki.price.saleRp
     };
     this.faction = meraki.faction;
+    this.image = new Image(client, dDragon.image);
     this.passive = new ChampionPassive(client, dDragon.passive, meraki.abilities.P);
     this.spells = new Collection<'Q' | 'W' | 'E' | 'R', ChampionSpell>();
 
@@ -173,5 +199,9 @@ export class Champion {
     this.spells.set('W', new ChampionSpell(client, this, dDragon.spells[1], cDragon, meraki.abilities.W));
     this.spells.set('E', new ChampionSpell(client, this, dDragon.spells[2], cDragon, meraki.abilities.E));
     this.spells.set('R', new ChampionSpell(client, this, dDragon.spells[3], cDragon, meraki.abilities.R));
+  }
+
+  get defaultSkin(): ChampionSkin {
+    return this.skins[0];
   }
 }
