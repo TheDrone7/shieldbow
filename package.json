@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "@shieldbow/web": "workspace:^",
+    "turbo": "^1.10.15"
+  },
+  "scripts": {
+    "build": "turbo run build --no-daemon",
+    "test": "turbo run test --no-daemon"
+  }
+}
