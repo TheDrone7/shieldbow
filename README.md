@@ -34,7 +34,7 @@ See the [documentation](https://thedrone7.github.io/shieldbow/) to learn more!
 
 ---
 
-# @shieldbow/web (v1) - The web-friendly version of shieldbow
+# @shieldbow/web (v1)
 
 An all-purpose, easy-to-use client for the league of legends API.
 This is safe to use on the frontend, requires no API key, but is less powerful than the full library.
