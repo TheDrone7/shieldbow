@@ -34,7 +34,6 @@ export class ChallengeManager implements BaseManager<Challenge> {
       const challenges = <IDDragonChallenge[]>await this._fetchChallengesFromDDragon(opts);
       const result = new Collection<number, Challenge>();
       for (const challenge of challenges) {
-        console.log(challenge.name);
         const challengeInstance = new Challenge(this.client, challenge);
         result.set(challenge.id, challengeInstance);
         if (cache) await this.client.cache.set(`challenge:${challenge.id}`, challengeInstance);

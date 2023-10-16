@@ -16,7 +16,7 @@ describe('UTIL: logger', () => {
     jest.restoreAllMocks();
   });
 
-  const spy = jest.spyOn(console, 'log');
+  const spy = jest.spyOn(console, 'info');
 
   it('initializes properly', async () => {
     expect(client.logger).toBeDefined();

@@ -42,7 +42,26 @@ export class ShieldbowLogger implements ILogger {
         .join(' ')
         .split('\n')
         .map((m) => `[${date}] ${levelString} :: ${m}`);
-      console.log(messages.join('\n'));
+      switch (level) {
+        case LoggerLevel.CRITICAL:
+          console.error(messages.join('\n'));
+          break;
+        case LoggerLevel.DEBUG:
+          console.debug(messages.join('\n'));
+          break;
+        case LoggerLevel.ERROR:
+          console.error(messages.join('\n'));
+          break;
+        case LoggerLevel.INFO:
+          console.info(messages.join('\n'));
+          break;
+        case LoggerLevel.TRACE:
+          console.trace(messages.join('\n'));
+          break;
+        case LoggerLevel.WARN:
+          console.warn(messages.join('\n'));
+          break;
+      }
     }
   }
 
