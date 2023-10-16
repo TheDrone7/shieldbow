@@ -7,6 +7,9 @@
   },
   "scripts": {
     "build": "turbo run build --no-daemon",
-    "test": "turbo run test --no-daemon"
+    "test": "turbo run test --no-daemon",
+		"change": "changeset",
+		"bump": "changeset version",
+		"release": "changeset publish"
   }
 }
