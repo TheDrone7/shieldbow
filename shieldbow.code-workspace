@@ -1,0 +1,14 @@
+{
+    "folders": [
+        {
+            "path": "."
+        },
+        {
+            "name": "web",
+            "path": "packages/web"
+        }
+    ],
+    "settings": {
+        "jest.disabledWorkspaceFolders": ["shieldbow"]
+    }
+}

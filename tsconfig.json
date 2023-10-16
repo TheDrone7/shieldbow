@@ -20,10 +20,8 @@
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "outDir": "dist",
     "preserveConstEnums": true,
     "pretty": true,
-    "rootDir": "src",
     "removeComments": false,
     "resolveJsonModule": true,
     "sourceMap": true,
@@ -31,6 +29,5 @@
     "target": "ES2021",
     "tsBuildInfoFile": "dist/.tsbuildinfo",
     "useDefineForClassFields": true
-  },
-  "include": ["src"]
+  }
 }

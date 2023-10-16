@@ -1,4 +1,4 @@
-# shieldbow
+# shieldbow (v2)
 
 An all-purpose, easy-to-use API wrapper for the league of legends API
 <div align="center">
@@ -10,6 +10,10 @@ An all-purpose, easy-to-use API wrapper for the league of legends API
 		<a href="https://codecov.io/gh/TheDrone7/shieldbow"><img src="https://img.shields.io/codecov/c/gh/TheDrone7/shieldbow?style=for-the-badge" alt="code coverage" /></a>
 	</p>
 </div>
+
+> The code in the repository is for the unpublished, work in progress version (v3) of shieldbow.
+
+> The published version (v2) is available for use on npm.
 
 ---
 
@@ -27,3 +31,26 @@ pnpm add shieldbow
 ```
 
 See the [documentation](https://thedrone7.github.io/shieldbow/) to learn more!
+
+---
+
+# @shieldbow/web (v1) - The web-friendly version of shieldbow
+
+An all-purpose, easy-to-use client for the league of legends API.
+This is safe to use on the frontend, requires no API key, but is less powerful than the full library.
+
+This is part of Shieldbow (v3) - a work in progress.
+
+There are no shieldbow-web specific documentation (yet), but is fairly intuitive and similar to shieldbow (v2) on the surface.
+The documentation will be available upon completion of shieldbow (v3).
+
+To install shieldbow-web, use (depending on your package manager)
+```bash
+npm install @shieldbow/web
+
+yarn add @shieldbow/web
+
+pnpm add @shieldbow/web
+```
+
+---
