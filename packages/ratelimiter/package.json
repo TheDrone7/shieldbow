@@ -1,6 +1,6 @@
 {
   "name": "@shieldbow/ratelimiter",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The ratelimiter for the shieldbow library",
   "main": "dist/index.js",
   "scripts": {
