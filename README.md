@@ -46,11 +46,49 @@ The documentation will be available upon completion of shieldbow (v3).
 
 To install shieldbow-web, use (depending on your package manager)
 ```bash
-npm install @shieldbow/web
+npm install @shieldbow/web axios
 
-yarn add @shieldbow/web
+yarn add @shieldbow/web axios
 
-pnpm add @shieldbow/web
+pnpm add @shieldbow/web axios
+```
+
+### NOTE
+
+In [`@shieldbow/web`](https://npmjs.com/package/@shieldbow/web), the `axios` package is an optional dependency.
+
+This means that you can use any other HTTP client too! However, if you do not provide a HTTP client,
+shieldbow will try to default to `axios` (if it is installed).
+
+If it is not installed, shieldbow will throw an error.
+
+You can provide your own HTTP client by passing it to the `Client` initialization
+
+Here is an example with the built-in JavaScript fetch API (which is available in the browser)
+```ts
+
+// Typescript
+client.initialize({
+	// ... other options,
+	fetchMethod: <T>(url: string) => fetch(url).then(res => {
+		if (!res.ok) throw new Error(res.statusText);
+		if (res.headers.get('content-type')?.includes('application/json')) return res.json() as Promise<T>;
+		else return res.text() as unknown as Promise<T>;
+	});
+})
+
+// Javascript
+client.initialize({
+	// ... other options,
+	fetchMethod: function (url) {
+		return fetch(url).then(res => {
+			if (!res.ok) throw new Error(res.statusText);
+			if (res.headers.get('content-type')?.includes('application/json')) return res.json();
+			else return res.text();
+		});
+	}
+})
+```
 ```
 
 ---
