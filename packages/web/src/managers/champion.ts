@@ -12,6 +12,8 @@ export class ChampionManager implements BaseManager<Champion> {
    * The client that this champion manager belongs to.
    */
   readonly client: Client;
+  private _cacheVersion: string;
+  private _cache: Collection<string, IMerakiChampion> = new Collection();
 
   /**
    * Create a new Champions Manager
@@ -20,6 +22,7 @@ export class ChampionManager implements BaseManager<Champion> {
    */
   constructor(client: Client) {
     this.client = client;
+    this._cacheVersion = client.version!;
   }
 
   /**
@@ -197,15 +200,15 @@ export class ChampionManager implements BaseManager<Champion> {
         options.noVersion
       )
     );
-    try {
-      meraki = await this.client.fetch(this.client.generateUrl(`champions/${id}.json`, 'meraki', options.noVersion));
-    } catch (err: any) {
-      if (err.message.includes('404') || err.message.toLowerCase().includes('not found')) {
-        const allMeraki = await this.client.fetch<{ [id: string]: IMerakiChampion }>(
-          this.client.generateUrl('champions.json', 'meraki', options.noVersion)
-        );
-        if (allMeraki[id]) meraki = allMeraki[id];
-      }
+    if (this.client.version === this._cacheVersion && this._cache.has(id)) meraki = this._cache.get(id)!;
+    else {
+      const allMeraki = await this.client.fetch<{ [id: string]: IMerakiChampion }>(
+        this.client.generateMerakiUrl('champion')
+      );
+      this._cacheVersion = this.client.version!;
+      this._cache.clear();
+      for (const id of Object.keys(allMeraki)) this._cache.set(id, allMeraki[id]);
+      if (allMeraki[id]) meraki = allMeraki[id];
     }
     return { cDragon: <ICDragonChampion>cDragon, meraki };
   }

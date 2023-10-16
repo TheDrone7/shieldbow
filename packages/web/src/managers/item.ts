@@ -124,7 +124,7 @@ export class ItemManager implements BaseManager<Item> {
   private async _fetchItemsFromMeraki() {
     try {
       this.client.logger?.trace('Fetching items from Meraki');
-      const response = await this.client.fetch(this.client.generateUrl('items.json', 'meraki'));
+      const response = await this.client.fetch(this.client.generateMerakiUrl('item'));
       return response;
     } catch (error) {
       return Promise.reject(error);

@@ -35,6 +35,7 @@ export class Client {
   private _queues: Queue[];
   private _logger: ILogger;
   private _cache: ICache;
+  private _merakiPatch: { champion: number; item: number };
 
   /**
    * The champion manager - allows you to fetch and manage League of Legends champions.
@@ -73,6 +74,7 @@ export class Client {
       ignoreCache: false,
       noVersion: false
     };
+    this._merakiPatch = { champion: -1, item: -1 };
 
     this._seasons = [];
     this._maps = [];
@@ -179,24 +181,39 @@ export class Client {
    * Generate URLs to fetch from the CDNs.
    *
    * @param path - The path to fetch from (must NOT start with a `/`).
-   * @param source - The CDN to fetch from (dDragon by default).
+   * @param source - The CDN to fetch from (dDragon (default) or cDragon).
    * @param noVersion - Whether to ignore the version (and locale) and just provide the path
    * (false by default, always true for meraki).
    * @returns The generated URL.
    */
   generateUrl(
     path: string,
-    source: 'dDragon' | 'cDragon' | 'meraki' = 'dDragon',
+    source: 'dDragon' | 'cDragon' = 'dDragon',
     noVersion = !!this._defaultFetchOptions.noVersion
   ): string {
     this.ensureInitialized();
     return source === 'dDragon'
       ? `${this._dDragonBase}${noVersion ? '' : `${this.version}/data/${this.locale}/`}${path}`
-      : source === 'cDragon'
-      ? `${this._cDragonBase}${noVersion ? '' : this.patch + '/'}${path}`
-      : `${this._merakiBase}${path}`;
+      : `${this._cDragonBase}${noVersion ? '' : this.patch + '/'}${path}`;
   }
 
+  /**
+   * Generate meraki urls
+   * @param type - The type of file to fetch (champion or item)
+   * @returns - The generated URL
+   */
+  generateMerakiUrl(type: 'champion' | 'item') {
+    return `${this._merakiBase}${
+      this._merakiPatch[type] === -1 ? 'latest/en-US/' : 'old/en-US/' + this._merakiPatch[type] + '_'
+    }${type}s.json`;
+  }
+
+  /**
+   *
+   * @param path - The path to fetch from (must NOT start with a `/`).
+   * @param source - The CDN to fetch from (dDragon (default) or cDragon).
+   * @returns - The generated URL.
+   */
   generateImageUrl(path: string, source: 'dDragon' | 'cDragon' = 'dDragon'): string {
     this.ensureInitialized();
     return source === 'dDragon'
@@ -204,6 +221,10 @@ export class Client {
       : `${this._cDragonBase}${this.patch}/${path}`;
   }
 
+  /**
+   * Initialize the client, unusable before this.
+   * @param config - The configuration for the client.
+   */
   public async initialize(config?: ClientConfig) {
     // Read and set the CDN bases.
     this._dDragonBase = config?.cdn?.cDragon ?? this._dDragonBase;
@@ -282,6 +303,9 @@ export class Client {
     else if (config?.logger === false) this._logger = new ShieldbowLogger('CRITICAL');
     else this._logger = new ShieldbowLogger('WARN');
 
+    // Set up the meraki patch
+    await this._updateMerakiDetails(this.patch);
+
     // Prefetch static data such as maps, queues, etc.
     this._seasons = await this._fetcher<Season[]>(constants.seasonsUrl);
     this._maps = await this._fetcher<GameMap[]>(constants.mapsUrl);
@@ -342,6 +366,8 @@ export class Client {
     this.ensureInitialized();
     this.logger?.debug('Assigning new locale.');
     this._locale = newLocale;
+    this.logger?.debug('Clearing cache.');
+    await this._cache.clear();
     if (refetch) {
       this.logger?.debug('Re-fetching data from DDragon.');
       await this.champions.fetchAll();
@@ -366,6 +392,10 @@ export class Client {
     this.ensureInitialized();
     this.logger?.debug('Update DDragon version.');
     this._version = patch + '.1';
+    this.logger?.debug('Update Meraki version.');
+    await this._updateMerakiDetails(patch);
+    this.logger?.debug('Clear cache.');
+    await this._cache.clear();
     if (refetch) {
       this.logger?.debug('Re-fetching data from DDragon.');
       await this.champions.fetchAll();
@@ -380,5 +410,60 @@ export class Client {
    */
   get fetch(): <T>(url: string) => Promise<T> {
     return this._fetcher;
+  }
+
+  private async _updateMerakiDetails(patch: string) {
+    const { patches } = await this.fetch<{ patches: { name: string; start: number }[] }>(constants.merakiPatchesUrl);
+    const patchIndex = patches.findIndex((p) => p.name === patch);
+    if (patchIndex === -1) {
+      this.logger?.debug(`Could not find patch ${patch} in meraki patches.`);
+      this._merakiPatch = { champion: -1, item: -1 };
+      return;
+    }
+
+    // Get the start and end of the patch
+    const patchStart = patches[patchIndex].start;
+    const patchEnd = patches[patchIndex + 1]?.start ?? -1;
+
+    if (patchEnd === -1) {
+      this.logger?.debug(`Could not find end of patch ${patch} in meraki patches (latest patch).`);
+      this._merakiPatch = { champion: -1, item: -1 };
+      return;
+    }
+
+    this.logger?.debug(`Found patch ${patch} in meraki patches. Start: ${patchStart}, End: ${patchEnd}.`);
+
+    // Get the list of files
+    const files = await this.fetch<string>(constants.defaultMerakiABase + 'old/en-US/');
+
+    // Get the file names from the HTML links (content between the <a> tags)
+    // Filter out any non-json files (.tar.gz for older versions)
+    const fileNames = files
+      .split('\r\n')
+      .filter((l) => l.startsWith('<a'))
+      .map((f) => f.match(/>(.*?)</)![1])
+      .filter((f) => f.endsWith('.json') && !isNaN(parseInt(f[0])));
+
+    // Get the timestamps from filenames of champion files.
+    const champStamps = fileNames
+      .filter((f) => f.includes('champion'))
+      .map((f) => parseInt(f.split('.')[0].split('_')[0]));
+
+    // Get the timestamps from filenames of item files.
+    const itemStamps = fileNames.filter((f) => f.includes('items')).map((f) => parseInt(f.split('.')[0].split('_')[0]));
+
+    // Find the last (highest) timestamp within the patch for champs
+    const champStamp = champStamps
+      .filter((f) => f >= patchStart && f <= patchEnd)
+      .sort()
+      .pop();
+
+    // Find the last (highest) timestamp within the patch for items
+    const itemStamp = itemStamps
+      .filter((f) => f >= patchStart && f <= patchEnd)
+      .sort()
+      .pop();
+
+    this._merakiPatch = { champion: champStamp ?? -1, item: itemStamp ?? -1 };
   }
 }
