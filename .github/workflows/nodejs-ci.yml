@@ -10,21 +10,23 @@ on:
     branches: [ "main" ]
 
 jobs:
-  # Cache and install dependencies
-  cache-and-install:
+  build:
+    name: Build and Test
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
 
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - uses: pnpm/action-setup@v2
-        name: Install pnpm
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
         with:
           version: 8
           run_install: false
@@ -34,8 +36,8 @@ jobs:
         run: |
           echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
 
-      - uses: actions/cache@v3
-        name: Setup pnpm cache
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
         with:
           path: ${{ env.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
@@ -45,19 +47,15 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-  # Build the project, run tests and upload coverage to Codecov
-  build:
-    runs-on: ubuntu-latest
+      - name: Build
+        run: pnpm build
 
-    strategy:
-      matrix:
-        node-version: [18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-    steps:
-      - run: pnpm run test
-      - run: curl -Os https://uploader.codecov.io/latest/linux/codecov
-      - run: chmod +x codecov
-      - run: ./codecov
+      - name: Test
+        run: pnpm test
+      
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.codecov_token }}
     env:
       RIOT_API_KEY: ${{ secrets.api_key }}
