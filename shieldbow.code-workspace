@@ -6,9 +6,16 @@
         {
             "name": "web",
             "path": "packages/web"
+        },
+        {
+            "name": "rate-limiter",
+            "path": "packages/ratelimiter"
         }
     ],
     "settings": {
-        "jest.disabledWorkspaceFolders": ["shieldbow"]
+        "jest.disabledWorkspaceFolders": [
+					"shieldbow",
+					"rate-limiter"
+				]
     }
 }

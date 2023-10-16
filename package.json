@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
+    "@shieldbow/ratelimiter": "workspace:^",
     "@shieldbow/web": "workspace:^",
     "turbo": "^1.10.15"
   },
