@@ -26,6 +26,9 @@ importers:
       '@shieldbow/web':
         specifier: workspace:^
         version: link:../web
+      tslib:
+        specifier: ^2.6.2
+        version: 2.6.2
     devDependencies:
       '@microsoft/api-extractor':
         specifier: ^7.38.0
