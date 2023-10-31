@@ -6,6 +6,10 @@
         {
             "name": "web",
             "path": "packages/web"
+        },
+        {
+            "name": "cache",
+            "path": "packages/cache"
         }
     ],
     "settings": {

@@ -1,7 +1,7 @@
 {
-  "name": "@shieldbow/web",
-  "version": "1.0.1",
-  "description": "A browser-safe, lightweight part of the shieldbow library.",
+  "name": "@shieldbow/cache",
+  "version": "1.0.0",
+  "description": "A base cache for the shieldbow library.",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc && tsc-alias",
@@ -27,7 +27,7 @@
     "ts",
     "javascript",
     "js",
-    "web"
+    "cache"
   ],
   "author": "TheDrone7 <h@thedrone7.dev> (https://thedrone7.dev)",
   "license": "GPL-3.0",
@@ -39,12 +39,8 @@
   ],
   "homepage": "https://github.com/TheDrone7/shieldbow#readme",
   "dependencies": {
-    "@discordjs/collection": "^1.5.3",
-    "html-escaper": "^3.0.3",
+    "node-cache": "^5.1.2",
     "tslib": "^2.6.2"
-  },
-  "optionalDependencies": {
-    "axios": "^1.5.1"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "^7.38.0",
@@ -61,6 +57,7 @@
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.1",
     "tsc-alias": "^1.8.8",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "uid": "^2.0.2"
   }
 }
