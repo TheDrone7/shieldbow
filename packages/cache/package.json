@@ -1,0 +1,63 @@
+{
+  "name": "@shieldbow/cache",
+  "version": "0.0.1",
+  "description": "A base cache for the shieldbow library.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc && tsc-alias",
+    "watch": "tsc && (concurrently \"tsc -w\" \"tsc-alias -w\")",
+    "format": "prettier --write \"src/**/**.ts\" \"tests/**/**.ts\"",
+    "lint": "eslint --fix --color \"src/**/**.ts\" \"tests/**/**.ts\"",
+    "format:test": "prettier --check \"src/**/**.ts\" \"tests/**/**.ts\"",
+    "lint:test": "eslint --color \"src/**/**.ts\" \"tests/**/**.ts\"",
+    "pretest": "run-s format:test lint:test build",
+    "test": "jest --runInBand",
+    "extract": "api-extractor run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheDrone7/shieldbow.git"
+  },
+  "keywords": [
+    "lol",
+    "shieldbow",
+    "league",
+    "leagueoflegends",
+    "typescript",
+    "ts",
+    "javascript",
+    "js",
+    "cache"
+  ],
+  "author": "TheDrone7 <h@thedrone7.dev> (https://thedrone7.dev)",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/TheDrone7/shieldbow/issues"
+  },
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/TheDrone7/shieldbow#readme",
+  "dependencies": {
+    "node-cache": "^5.1.2",
+    "tslib": "^2.6.2"
+  },
+  "devDependencies": {
+    "@microsoft/api-extractor": "^7.38.0",
+    "@types/jest": "^29.5.5",
+    "@typescript-eslint/parser": "^6.7.4",
+    "concurrently": "^8.2.1",
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "^8.10.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "jest": "^29.7.0",
+    "jest-junit": "^16.0.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.0.3",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.1",
+    "tsc-alias": "^1.8.8",
+    "typescript": "^5.2.2",
+    "uid": "^2.0.2"
+  }
+}
