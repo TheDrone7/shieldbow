@@ -116,7 +116,7 @@ export class RateLimiter {
         else await new Promise((resolve) => setTimeout(resolve, limit.reset - Date.now()));
         continue;
       } else if (this._strategy === 'spread') {
-        const timeRemaining = Date.now() - limit.reset;
+        const timeRemaining = limit.reset - Date.now();
         const requestsRemaining = limit.limit - limit.count;
         const timePerRequest = timeRemaining / requestsRemaining;
         waitTimes.push(timePerRequest);
