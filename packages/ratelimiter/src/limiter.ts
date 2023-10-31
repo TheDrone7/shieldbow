@@ -81,10 +81,11 @@ export class RateLimiter {
 
   /**
    * Make the program wait until the rate limit is reset.
+   * @returns The time to wait (in ms).
    */
-  async waitForAppLimit() {
+  async waitForAppLimit(): Promise<number> {
     const limits = await this.getAppLimits();
-    if (!limits) return;
+    if (!limits) return 0;
     const waitTimes: number[] = [0];
     for (const limit of limits)
       if (limit.reset < Date.now()) continue;
@@ -98,16 +99,17 @@ export class RateLimiter {
         const timePerRequest = timeRemaining / requestsRemaining;
         waitTimes.push(timePerRequest);
       }
-    await new Promise((resolve) => setTimeout(resolve, Math.max(...waitTimes)));
+    return Math.max(...waitTimes);
   }
 
   /**
    * Wait for the method limit to reset.
    * @param method - The method to wait for.
+   * @returns The time to wait (in ms).
    */
-  async waitForMethodLimit(method: string) {
+  async waitForMethodLimit(method: string): Promise<number> {
     const limits = await this.getMethodLimits(method);
-    if (!limits) return;
+    if (!limits) return 0;
     const waitTimes: number[] = [0];
     for (const limit of limits)
       if (limit.reset < Date.now()) continue;
@@ -121,7 +123,7 @@ export class RateLimiter {
         const timePerRequest = timeRemaining / requestsRemaining;
         waitTimes.push(timePerRequest);
       }
-    await new Promise((resolve) => setTimeout(resolve, Math.max(...waitTimes)));
+    return Math.max(...waitTimes);
   }
 
   /**
@@ -129,7 +131,9 @@ export class RateLimiter {
    * @param method - The method to wait for.
    */
   async waitForLimit(method: string) {
-    await this.waitForAppLimit();
-    await this.waitForMethodLimit(method);
+    const appWait = await this.waitForAppLimit();
+    const methodWait = await this.waitForMethodLimit(method);
+    const waitTime = Math.max(appWait, methodWait);
+    if (waitTime) await new Promise((resolve) => setTimeout(resolve, waitTime));
   }
 }
