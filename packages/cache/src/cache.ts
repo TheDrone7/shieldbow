@@ -32,13 +32,16 @@ export class ShieldbowMemoryCache implements ICache {
     // No eviction is needed if maxSize is -1.
     if (this.maxSize === -1) return;
 
-    const { ksize, vsize } = this.cache.getStats();
+    let { ksize, vsize } = this.cache.getStats();
 
     // If the cache size is less than the maxSize, do nothing.
     if (ksize + vsize <= this.maxSize) return;
 
+    // If the eviction strategy is none, do nothing.
+    if (this.evictionStrategy === 'none') return;
+
     // Evict items from the cache until the cache size is less than the maxSize.
-    while (ksize + vsize > this.maxSize)
+    while (ksize + vsize > this.maxSize) {
       if (this.evictionStrategy === 'lru') {
         if (this.lruQueue.length === 0) return;
         const key = this.lruQueue.shift();
@@ -50,7 +53,7 @@ export class ShieldbowMemoryCache implements ICache {
         let min = Infinity;
         let minKey = '';
         for (const [key, value] of this.lfuMap.entries())
-          if (value < min) {
+          if (value < min && value > 0) {
             min = value;
             minKey = key;
           }
@@ -60,6 +63,9 @@ export class ShieldbowMemoryCache implements ICache {
 
         this.lfuMap.delete(minKey);
       }
+
+      ({ ksize, vsize } = this.cache.getStats());
+    }
   }
 
   /**
@@ -128,7 +134,7 @@ export class ShieldbowMemoryCache implements ICache {
    */
   set<T>(key: string, value: T, ttl?: number): boolean {
     const success = ttl ? this.cache.set(key, value, ttl) : this.cache.set(key, value);
-    if (success && this.evictionStrategy !== 'lru') this.updateLRUQueue(key);
+    if (success && this.evictionStrategy === 'lru') this.updateLRUQueue(key);
     if (success && this.evictionStrategy === 'lfu') this.updateLFUMap(key);
     this.handleEviction();
     return success;
@@ -163,7 +169,7 @@ export class ShieldbowMemoryCache implements ICache {
   }
 
   private updateLFUMap(key: string) {
-    const count = this.lfuMap.get(key) ?? 0;
+    const count = this.lfuMap.get(key) ?? -1;
     this.lfuMap.set(key, count + 1);
   }
 }
