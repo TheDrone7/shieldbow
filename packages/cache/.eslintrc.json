@@ -1,0 +1,37 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "env": {
+    "node": true,
+    "es2021": true,
+    "jest": true
+  },
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    "linebreak-style": ["error", "unix"],
+    "no-duplicate-imports": "error",
+    "no-async-promise-executor": "off",
+    "no-use-before-define": "error",
+    "curly": ["error", "multi"],
+    "dot-notation": "error",
+    "eqeqeq": ["error", "always"],
+    "prefer-arrow-callback": "error",
+    "prefer-const": "error",
+    "multiline-ternary": ["error", "always-multiline"],
+    "no-extra-parens": ["error", "all", { "nestedBinaryExpressions": false }],
+    "no-trailing-spaces": ["error", { "skipBlankLines": true }],
+    "prettier/prettier": 2,
+    "no-unused-vars": "off",
+    "max-len": [
+      "error",
+      120,
+      { "ignoreTemplateLiterals": true, "ignoreUrls": true }
+    ],
+    "no-case-declarations": "off"
+  },
+  "extends": ["eslint:recommended", "prettier"],
+  "plugins": ["prettier"],
+  "noInlineConfig": true
+}

@@ -2,8 +2,9 @@
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
     "@shieldbow/ratelimiter": "workspace:^",
+    "@shieldbow/cache": "workspace:^",
     "@shieldbow/web": "workspace:^",
-    "turbo": "^1.10.15"
+    "turbo": "^1.10.16"
   },
   "scripts": {
     "build": "turbo run build --no-daemon",

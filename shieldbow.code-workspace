@@ -10,7 +10,11 @@
         {
             "name": "rate-limiter",
             "path": "packages/ratelimiter"
-        }
+        },
+				{
+					"name": "cache",
+					"path": "packages/cache"
+				}
     ],
     "settings": {
         "jest.disabledWorkspaceFolders": [
