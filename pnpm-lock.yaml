@@ -11,12 +11,12 @@ importers:
       '@changesets/cli':
         specifier: ^2.26.2
         version: 2.26.2
-      '@shieldbow/ratelimiter':
-        specifier: workspace:^
-        version: link:packages/ratelimiter
       '@shieldbow/cache':
         specifier: workspace:^
         version: link:packages/cache
+      '@shieldbow/ratelimiter':
+        specifier: workspace:^
+        version: link:packages/ratelimiter
       '@shieldbow/web':
         specifier: workspace:^
         version: link:packages/web
@@ -84,9 +84,9 @@ importers:
 
   packages/ratelimiter:
     dependencies:
-      '@shieldbow/web':
+      '@shieldbow/cache':
         specifier: workspace:^
-        version: link:../web
+        version: link:../cache
       tslib:
         specifier: ^2.6.2
         version: 2.6.2

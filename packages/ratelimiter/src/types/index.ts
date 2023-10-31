@@ -1,2 +1,2 @@
-export { IRateLimit, ILimitUsage } from './limit';
+export { IRateLimit } from './limit';
 export { RateLimitStrategy, IRateLimiterConfig } from './config';

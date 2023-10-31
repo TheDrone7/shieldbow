@@ -1,4 +1,4 @@
-import { ICache } from '@shieldbow/web';
+import { ICache } from '@shieldbow/cache';
 
 /**
  * Rate limit strategy
@@ -17,4 +17,15 @@ export interface IRateLimiterConfig {
    * The rate limit strategy to use.
    */
   strategy?: RateLimitStrategy;
+
+  /**
+   * Whether or not to throw an error when the rate limit is exceeded.
+   *
+   * If true, an error will be thrown.
+   *
+   * If false, the program will halt until the rate limit is reset.
+   *
+   * Defaults to false.
+   */
+  throwOnLimit?: boolean;
 }
