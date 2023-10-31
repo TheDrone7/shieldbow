@@ -18,8 +18,7 @@
     ],
     "settings": {
         "jest.disabledWorkspaceFolders": [
-					"shieldbow",
-					"rate-limiter"
+					"shieldbow"
 				]
     }
 }
