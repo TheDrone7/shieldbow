@@ -4,4 +4,4 @@
 
 ### Major Changes
 
-- d42cb2c9: Added jsconfig for better devex.
+- d42cb2c9: First major release, first complete version.
