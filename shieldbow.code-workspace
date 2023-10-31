@@ -7,15 +7,12 @@
             "name": "web",
             "path": "packages/web"
         },
-				{
-						"name": "cache",
-						"path": "packages/cache"
-				}
+        {
+            "name": "cache",
+            "path": "packages/cache"
+        }
     ],
     "settings": {
-        "jest.disabledWorkspaceFolders": [
-					"shieldbow",
-					"cache"
-				]
+        "jest.disabledWorkspaceFolders": ["shieldbow"]
     }
 }
