@@ -30,6 +30,18 @@ describe('RL: Spread', () => {
     expect(end - start).toBeLessThan(3000);
   });
 
+  it('should spread requests but not overdo it (might double if both app and method are set)', async () => {
+    const start = Date.now();
+    limiter.setAppLimits(sampleHeaders, nullCounts);
+    limiter.setMethodLimits('something', sampleHeaders, nullCounts);
+    await limiter.waitForLimit('something');
+    const end = Date.now();
+    // The number should be around 2500 because
+    // the limit is 2 requests per 5 seconds.
+    expect(end - start).toBeGreaterThan(2000);
+    expect(end - start).toBeLessThan(3000);
+  });
+
   it('should wait for rate limit to reset', async () => {
     const start = Date.now();
     limiter.setAppLimits(sampleHeaders, sampleCounts);
