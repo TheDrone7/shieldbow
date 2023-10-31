@@ -17,10 +17,10 @@ export class ShieldbowMemoryCache implements ICache {
    *
    * @param config - The configuration for the cache.
    */
-  constructor(config: ICacheConfig) {
-    this.evictionStrategy = config.eviction ?? 'none';
-    this.cache = new Cache({ stdTTL: config.ttlSeconds, checkperiod: 1, useClones: false });
-    this.maxSize = config.maxSize ? config.maxSize * 1024 : -1;
+  constructor(config?: ICacheConfig) {
+    this.evictionStrategy = config?.eviction ?? 'none';
+    this.cache = new Cache({ stdTTL: config?.ttlSeconds, checkperiod: 1, useClones: false });
+    this.maxSize = config?.maxSize ? config.maxSize * 1024 : -1;
     this.lruQueue = [];
     this.lfuMap = new Map();
   }
