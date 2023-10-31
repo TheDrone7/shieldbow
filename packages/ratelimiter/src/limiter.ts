@@ -85,6 +85,7 @@ export class RateLimiter {
   async waitForAppLimit() {
     const limits = await this.getAppLimits();
     if (!limits) return;
+    const waitTimes: number[] = [0];
     for (const limit of limits)
       if (limit.reset < Date.now()) continue;
       else if (limit.count >= limit.limit) {
@@ -92,11 +93,12 @@ export class RateLimiter {
         else await new Promise((resolve) => setTimeout(resolve, limit.reset - Date.now()));
         continue;
       } else if (this._strategy === 'spread') {
-        const timeRemaining = Date.now() - limit.reset;
+        const timeRemaining = limit.reset - Date.now();
         const requestsRemaining = limit.limit - limit.count;
         const timePerRequest = timeRemaining / requestsRemaining;
-        await new Promise((resolve) => setTimeout(resolve, timePerRequest));
+        waitTimes.push(timePerRequest);
       }
+    await new Promise((resolve) => setTimeout(resolve, Math.max(...waitTimes)));
   }
 
   /**
@@ -106,6 +108,7 @@ export class RateLimiter {
   async waitForMethodLimit(method: string) {
     const limits = await this.getMethodLimits(method);
     if (!limits) return;
+    const waitTimes: number[] = [0];
     for (const limit of limits)
       if (limit.reset < Date.now()) continue;
       else if (limit.count >= limit.limit) {
@@ -116,8 +119,9 @@ export class RateLimiter {
         const timeRemaining = Date.now() - limit.reset;
         const requestsRemaining = limit.limit - limit.count;
         const timePerRequest = timeRemaining / requestsRemaining;
-        await new Promise((resolve) => setTimeout(resolve, timePerRequest));
+        waitTimes.push(timePerRequest);
       }
+    await new Promise((resolve) => setTimeout(resolve, Math.max(...waitTimes)));
   }
 
   /**
