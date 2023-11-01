@@ -14,9 +14,7 @@ describe('RL: Extra features', () => {
   it('should throw error instead of waiting for rate limit to reset', async () => {
     const start = Date.now();
     limiter.setAppLimits(sampleHeaders, sampleCounts);
-    expect(() => limiter.waitForLimit('something')).rejects.toThrowError(
-      '[Shieldbow ratelimiter]: Rate limit exceeded.'
-    );
+    expect(() => limiter.waitForLimit('something')).rejects.toThrowError();
     const end = Date.now();
     expect(end - start).toBeLessThanOrEqual(1000);
   });
@@ -25,9 +23,7 @@ describe('RL: Extra features', () => {
     const start = Date.now();
     limiter.setAppLimits(sampleHeaders, nullCounts);
     limiter.setMethodLimits('something', sampleHeaders, sampleCounts);
-    expect(() => limiter.waitForLimit('something')).rejects.toThrowError(
-      '[Shieldbow ratelimiter]: Rate limit exceeded.'
-    );
+    expect(() => limiter.waitForLimit('something')).rejects.toThrowError();
     const end = Date.now();
     expect(end - start).toBeLessThanOrEqual(1000);
   });

@@ -1,5 +1,6 @@
 import type { ICache } from '@shieldbow/cache';
 import type { IRateLimit, IRateLimiterConfig, RateLimitStrategy } from 'types';
+import { ShieldbowRateLimiterError } from './error';
 
 /**
  * The RateLimiter class.
@@ -90,7 +91,7 @@ export class RateLimiter {
     for (const limit of limits)
       if (limit.reset < Date.now()) continue;
       else if (limit.count >= limit.limit) {
-        if (this._throwOnLimit) throw new Error('[Shieldbow ratelimiter]: Rate limit exceeded.');
+        if (this._throwOnLimit) throw new ShieldbowRateLimiterError('app', limit);
         else await new Promise((resolve) => setTimeout(resolve, limit.reset - Date.now()));
         continue;
       } else if (this._strategy === 'spread') {
@@ -114,7 +115,7 @@ export class RateLimiter {
     for (const limit of limits)
       if (limit.reset < Date.now()) continue;
       else if (limit.count >= limit.limit) {
-        if (this._throwOnLimit) throw new Error('[Shieldbow ratelimiter]: Rate limit exceeded.');
+        if (this._throwOnLimit) throw new ShieldbowRateLimiterError(method, limit);
         else await new Promise((resolve) => setTimeout(resolve, limit.reset - Date.now()));
         continue;
       } else if (this._strategy === 'spread') {
