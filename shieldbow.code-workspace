@@ -1,7 +1,8 @@
 {
     "folders": [
         {
-            "path": "."
+            "path": ".",
+						"name": "repository"
         },
         {
             "name": "web",
@@ -14,11 +15,16 @@
 				{
 					"name": "cache",
 					"path": "packages/cache"
+				},
+				{
+					"name": "shieldbow",
+					"path": "packages/shieldbow"
 				}
     ],
     "settings": {
         "jest.disabledWorkspaceFolders": [
-					"shieldbow"
+					"shieldbow",
+					"repository"
 				]
     }
 }
