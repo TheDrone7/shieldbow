@@ -126,14 +126,34 @@ export class RateLimiter {
     return Math.max(...waitTimes);
   }
 
+  private async increment(method: string) {
+    const appLimits = await this.getAppLimits();
+    const methodLimits = await this.getMethodLimits(method);
+    if (appLimits) {
+      for (const limit of appLimits) {
+        if (limit.reset < Date.now()) continue;
+        limit.count++;
+      }
+      await this._cache.set(`${this._keyPrefix}app:limit`, appLimits);
+    }
+    if (methodLimits) {
+      for (const limit of methodLimits) {
+        if (limit.reset < Date.now()) continue;
+        limit.count++;
+      }
+      await this._cache.set(`${this._keyPrefix}method:${method}:limit`, methodLimits);
+    }
+  }
+
   /**
    * Wait for the app and method limits to reset.
    * @param method - The method to wait for.
    */
   async waitForLimit(method: string) {
-    const appWait = await this.waitForAppLimit();
-    const methodWait = await this.waitForMethodLimit(method);
-    const waitTime = Math.max(appWait, methodWait);
-    if (waitTime) await new Promise((resolve) => setTimeout(resolve, waitTime));
+    const appSpread = await this.waitForAppLimit();
+    const methodSpread = await this.waitForMethodLimit(method);
+    const spreadTime = Math.max(appSpread, methodSpread);
+    if (spreadTime) await new Promise((resolve) => setTimeout(resolve, spreadTime));
+    await this.increment(method);
   }
 }
