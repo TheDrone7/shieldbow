@@ -9,10 +9,10 @@ import type {
   GameType,
   Queue,
   FetchConfig,
-  ILogger,
-  ICache
+  ILogger
 } from 'types';
-import { constants, MemoryCache, ShieldbowLogger } from 'utilities';
+import { constants, ShieldbowLogger } from 'utilities';
+import { ShieldbowMemoryCache as MemoryCache, ICache } from '@shieldbow/cache';
 
 const patchRegex = /\d+\.\d+/;
 
@@ -291,7 +291,7 @@ export class Client {
 
     // Parse cache options
     if (typeof config?.cache === 'object') this._cache = config.cache;
-    else this._cache = new MemoryCache(config?.cache ?? true);
+    else this._cache = new MemoryCache({ maxSize: config?.cache ? -1 : 0 });
 
     // Set up the logger.
     if (typeof config?.logger === 'object')

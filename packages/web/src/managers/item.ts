@@ -59,7 +59,7 @@ export class ItemManager implements BaseManager<Item> {
     try {
       if (!ignoreCache) {
         const exists = await this.client.cache.has(`item:${key}`);
-        if (exists) return this.client.cache.get<Item>(`item:${key}`);
+        if (exists) return this.client.cache.get<Item>(`item:${key}`)!;
       }
 
       const items = await this.fetchAll(opts);

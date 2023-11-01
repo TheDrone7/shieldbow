@@ -70,7 +70,7 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
       if (keys.length < 5) runeTrees = await this.fetchAll(options);
       else
         for (const key of keys) {
-          const runeTree = await this.client.cache.get<RuneTree>(key);
+          const runeTree = await this.client.cache.get<RuneTree>(key)!;
           runeTrees.set(runeTree.key, runeTree);
         }
 
@@ -94,7 +94,7 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
     try {
       if (!ignoreCache) {
         const exists = await this.client.cache.has(`rune:${key}`);
-        if (exists) return this.client.cache.get<RuneTree>(`rune:${key}`);
+        if (exists) return this.client.cache.get<RuneTree>(`rune:${key}`)!;
       }
 
       const runeTrees = await this.fetchAll(opts);
