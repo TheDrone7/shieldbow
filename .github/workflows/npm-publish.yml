@@ -4,6 +4,8 @@
 name: Node.js Package
 
 on:
+  push:
+    branches: [ "main" ]
   workflow_dispatch:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
