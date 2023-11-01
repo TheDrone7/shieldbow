@@ -1,5 +1,11 @@
 # @shieldbow/web
 
+## 1.1.0
+
+### Minor Changes
+
+- fe07762: Migrated cache to @shieldbow/cache
+
 ## 1.0.1
 
 ### Patch Changes
