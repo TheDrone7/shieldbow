@@ -67,7 +67,7 @@ export class ChampionManager implements BaseManager<Champion> {
     try {
       if (!ignoreCache) {
         const exists = await this.client.cache.has(cacheId);
-        if (exists) return this.client.cache.get<Champion>(cacheId);
+        if (exists) return this.client.cache.get<Champion>(cacheId)!;
       }
 
       const champs = <{ data: { [key: string]: IDataDragonChampion } }>(

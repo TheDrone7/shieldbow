@@ -60,7 +60,7 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
     try {
       if (!ignoreCache) {
         const exists = await this.client.cache.has(`spell:${key}`);
-        if (exists) return this.client.cache.get<SummonerSpell>(`spell:${key}`);
+        if (exists) return this.client.cache.get<SummonerSpell>(`spell:${key}`)!;
       }
 
       const spells = await this.fetchAll(opts);

@@ -1,4 +1,4 @@
-import { ICache } from './cache';
+import { ICache } from '@shieldbow/cache';
 import { Locale } from './locale';
 import { ILogger, LogLevel } from './logger';
 import { Region } from './region';

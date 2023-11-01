@@ -58,7 +58,7 @@ export class ChallengeManager implements BaseManager<Challenge> {
     try {
       if (!ignoreCache) {
         const exists = await this.client.cache.has(`challenge:${key}`);
-        if (exists) return this.client.cache.get<Challenge>(`challenge:${key}`);
+        if (exists) return this.client.cache.get<Challenge>(`challenge:${key}`)!;
       }
 
       const challenges = await this.fetchAll(opts);

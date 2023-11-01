@@ -142,6 +142,9 @@ importers:
       '@discordjs/collection':
         specifier: ^1.5.3
         version: 1.5.3
+      '@shieldbow/cache':
+        specifier: workspace:^
+        version: link:../cache
       html-escaper:
         specifier: ^3.0.3
         version: 3.0.3
