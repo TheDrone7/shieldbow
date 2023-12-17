@@ -209,6 +209,7 @@ export class Client {
   }
 
   /**
+   * Generate an image URL to fetch from the CDNs.
    *
    * @param path - The path to fetch from (must NOT start with a `/`).
    * @param source - The CDN to fetch from (dDragon (default) or cDragon).
@@ -350,7 +351,7 @@ export class Client {
   }
 
   /**
-   * Update the locale of the client.
+   * Whether the client has been initialized.
    */
   get initialized(): boolean {
     return this._version !== undefined;
