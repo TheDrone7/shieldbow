@@ -3,6 +3,9 @@ import { ILogger, Locale, Region, LogLevel, ManagerConfig as WebMConfig } from '
 import { WebOptions } from './web';
 import { FetchOptions } from './fetch';
 
+/**
+ * The config for the client.
+ */
 export interface ClientConfig {
   /**
    * The cache to use for caching data.
