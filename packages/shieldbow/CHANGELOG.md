@@ -1,5 +1,12 @@
 # @shieldbow/cache
 
+## 2.2.3
+
+### Patch Changes
+
+- Updated dependencies [8f571ea]
+  - @shieldbow/storage@1.0.1
+
 ## 2.2.2
 
 ### Patch Changes

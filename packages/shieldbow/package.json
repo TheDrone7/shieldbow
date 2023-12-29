@@ -1,6 +1,6 @@
 {
   "name": "shieldbow",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "A powerful, flexible and easy to use API wrapper for Riot Games' League of Legends API",
   "main": "dist/index.js",
   "scripts": {
