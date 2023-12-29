@@ -26,7 +26,7 @@ export class Client {
   private _region: Region;
   private _locale: Locale;
   private _version: string;
-  private _fetcher: <T>(url: string) => Promise<T>;
+  protected _fetcher: <T>(url: string) => Promise<T>;
   private _defaultFetchOptions: FetchConfig;
   private _seasons: Season[];
   private _maps: GameMap[];
