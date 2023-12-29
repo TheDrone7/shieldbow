@@ -1,9 +1,13 @@
 {
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "baseUrl": "./src",
-    "rootDir": "src",
-    "outDir": "dist"
-  },
-  "include": ["src"]
-}
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {
+	  "baseUrl": "./src",
+	  "rootDir": "src",
+	  "outDir": "dist",
+	  "moduleResolution": "NodeNext",
+	  "target": "ESNext",
+	  "module": "NodeNext"
+	},
+	"include": ["src"]
+  }
+  
