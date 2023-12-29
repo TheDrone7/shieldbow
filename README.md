@@ -1,7 +1,7 @@
 # shieldbow (v2)
 
-> PLEASE REVERT TO SHIELDBOW v2.2.1 IF YOU ARE USING v2.2.2
-> v2.2.2 was released accidentally, it is actually a pre-release for v3.0.0
+> PLEASE REVERT TO SHIELDBOW v2.2.1 IF YOU ARE USING v2.2.2 OR NEWER
+> NEWER RELEASES ARE NOT STABLE, AND ARE WORK IN PROGRESS
 
 An all-purpose, easy-to-use API wrapper for the league of legends API
 <div align="center">
