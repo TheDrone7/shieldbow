@@ -173,7 +173,7 @@ export class Client {
   /**
    * Ensure that the client is ready to be used.
    */
-  private ensureInitialized(): void {
+  protected ensureInitialized(): void {
     if (this._version === undefined) throw new Error('Client has not been initialized.');
   }
 
