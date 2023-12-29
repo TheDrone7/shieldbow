@@ -20,3 +20,8 @@ $ pnpm add shieldbow
 ```
 
 
+TODO: (these changes are dependent on @shieldbow/web)
+
+= [ ] Modify the `fetcher` to require the status code and headers to be passed along with the response object.
+- [ ] Allow more config for the cache, right along with the client config.
+
