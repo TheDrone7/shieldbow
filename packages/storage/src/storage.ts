@@ -1,6 +1,6 @@
 import type { ILocalStorageConfig } from 'config';
 import type { IStorage } from 'interface';
-import { existsSync, writeFileSync, readFileSync, readdirSync, unlinkSync } from 'node:fs';
+import { existsSync, writeFileSync, readFileSync, readdirSync, rmSync, rmdirSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 
 /**
@@ -33,7 +33,7 @@ export class ShieldbowLocalStorage implements IStorage {
    * @param file - The file to look for.
    */
   has(directory: string, file: string): boolean | Promise<boolean> {
-    return existsSync(`${this.root}/${directory}/${file}.json`);
+    return existsSync(join(this.root, directory, `${file}.json`));
   }
 
   /**
@@ -42,7 +42,7 @@ export class ShieldbowLocalStorage implements IStorage {
    * @param fileName - The name of the file to load.
    */
   load<T>(directory: string, fileName: string): T | Promise<T> | undefined {
-    const path = `${this.root}/${directory}/${fileName}.json`;
+    const path = join(this.root, directory, `${fileName}.json`);
 
     if (!existsSync(path)) return Promise.reject('File does not exist.');
     else return JSON.parse(readFileSync(path, 'utf-8'));
@@ -61,7 +61,8 @@ export class ShieldbowLocalStorage implements IStorage {
    * @param directory - The directory to fetch the files from.
    */
   keys(directory: string): string[] | Promise<string[]> {
-    const entries = readdirSync(`${this.root}/${directory}`, { withFileTypes: true, recursive: true });
+    const dirPath = join(this.root, directory);
+    const entries = readdirSync(dirPath, { withFileTypes: true, recursive: true });
     return entries
       .filter((entry) => entry.isFile() && entry.name.endsWith('.json'))
       .map((entry) => entry.name.replace('.json', ''));
@@ -72,10 +73,11 @@ export class ShieldbowLocalStorage implements IStorage {
    * @param directory - The directory to load the files from.
    */
   loadAll(directory: string): unknown[] | Promise<unknown[]> {
-    const entries = readdirSync(`${this.root}/${directory}`, { withFileTypes: true, recursive: true });
+    const dirPath = join(this.root, directory);
+    const entries = readdirSync(dirPath, { withFileTypes: true, recursive: true });
     return entries
       .filter((entry) => entry.isFile() && entry.name.endsWith('.json'))
-      .map((entry) => JSON.parse(readFileSync(`${this.root}/${directory}/${entry.name}`, 'utf-8')));
+      .map((entry) => JSON.parse(readFileSync(join(this.root, directory, `${entry.name}`), 'utf-8')));
   }
 
   /**
@@ -84,10 +86,12 @@ export class ShieldbowLocalStorage implements IStorage {
    * @param predicate - The predicate to use to find the file.
    */
   find<T>(directory: string, predicate: (t: T) => boolean): T | Promise<T> | undefined {
-    const entries = readdirSync(`${this.root}/${directory}`, { withFileTypes: true, recursive: true });
+    const dirPath = join(this.root, directory);
+    const entries = readdirSync(dirPath, { withFileTypes: true, recursive: true });
     for (const entry of entries)
       if (entry.isFile() && entry.name.endsWith('.json')) {
-        const file = JSON.parse(readFileSync(`${this.root}/${directory}/${entry.name}`, 'utf-8'));
+        const filePath = join(this.root, directory, entry.name);
+        const file = JSON.parse(readFileSync(filePath, 'utf-8'));
         if (predicate(file)) return file;
       }
 
@@ -100,11 +104,12 @@ export class ShieldbowLocalStorage implements IStorage {
    * @param predicate - The predicate to use to filter the cache.
    */
   filter<T>(directory: string, predicate: (t: T) => boolean): T[] | Promise<T[]> {
-    const entries = readdirSync(`${this.root}/${directory}`, { withFileTypes: true, recursive: true });
+    const dirPath = join(this.root, directory);
+    const entries = readdirSync(dirPath, { withFileTypes: true, recursive: true });
     const files = [];
     for (const entry of entries)
       if (entry.isFile() && entry.name.endsWith('.json')) {
-        const file = JSON.parse(readFileSync(`${this.root}/${directory}/${entry.name}`, 'utf-8'));
+        const file = JSON.parse(readFileSync(join(this.root, directory, entry.name), 'utf-8'));
         if (predicate(file)) files.push(file);
       }
 
@@ -119,9 +124,14 @@ export class ShieldbowLocalStorage implements IStorage {
    */
   save<T>(directory: string, fileName: string, value: T): boolean | Promise<boolean> {
     const data = JSON.stringify(value, null, this.preserveWhitespace ? 2 : undefined);
-    writeFileSync(`${this.root}/${directory}/${fileName}.json`, data, 'utf-8');
+    const dir = join(this.root, directory);
 
-    if (!existsSync(`${this.root}/${directory}/${fileName}.json`)) return Promise.reject('File was not written.');
+    if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
+
+    const path = join(this.root, directory, `${fileName}.json`);
+    writeFileSync(path, data, 'utf-8');
+
+    if (!existsSync(path)) return Promise.reject('File was not written.');
     else return true;
   }
 
@@ -132,7 +142,7 @@ export class ShieldbowLocalStorage implements IStorage {
    */
   delete(directory: string, fileName: string): boolean | Promise<boolean> {
     try {
-      unlinkSync(join(this.root, directory, `${fileName}.json`));
+      rmSync(join(this.root, directory, `${fileName}.json`));
       return true;
     } catch (error) {
       return Promise.reject(error);
@@ -144,22 +154,25 @@ export class ShieldbowLocalStorage implements IStorage {
    * @param collection - The directory to delete the files from.
    */
   clear(collection: string): boolean | Promise<boolean> {
-    const entries = readdirSync(`${this.root}/${collection}`, { withFileTypes: true });
+    const dirPath = join(this.root, collection);
 
-    for (const entry of entries)
-      if (entry.isFile() && entry.name.endsWith('.json')) unlinkSync(`${this.root}/${collection}/${entry.name}`);
-
-    return true;
+    try {
+      rmdirSync(dirPath, { recursive: true });
+      return true;
+    } catch (err) {
+      return Promise.reject(err);
+    }
   }
 
   /**
    * Delete all files from the storage.
    */
   clearAll(): boolean | Promise<boolean> {
-    const entries = readdirSync(this.root, { withFileTypes: true });
-
-    for (const entry of entries) if (entry.isDirectory()) this.clear(entry.name);
-
-    return true;
+    try {
+      rmdirSync(this.root, { recursive: true });
+      return true;
+    } catch (err) {
+      return Promise.reject(err);
+    }
   }
 }
