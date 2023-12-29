@@ -142,6 +142,12 @@ importers:
 
   packages/shieldbow:
     dependencies:
+      '@discordjs/collection':
+        specifier: 2.0.0
+        version: 2.0.0
+      '@shieldbow/storage':
+        specifier: workspace:^
+        version: link:../storage
       '@shieldbow/web':
         specifier: workspace:^
         version: link:../web
@@ -158,9 +164,6 @@ importers:
       '@microsoft/api-extractor':
         specifier: ^7.38.3
         version: 7.38.3(@types/node@20.10.5)
-      '@shieldbow/storage':
-        specifier: workspace:^
-        version: link:../storage
       '@types/jest':
         specifier: ^29.5.8
         version: 29.5.8

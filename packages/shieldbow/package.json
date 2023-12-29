@@ -38,8 +38,9 @@
   ],
   "homepage": "https://github.com/TheDrone7/shieldbow#readme",
   "dependencies": {
-    "@shieldbow/web": "workspace:^",
+    "@discordjs/collection": "2.0.0",
     "@shieldbow/storage": "workspace:^",
+    "@shieldbow/web": "workspace:^",
     "axios": "^1.5.1",
     "axios-retry": "^4.0.0",
     "tslib": "^2.6.2"
