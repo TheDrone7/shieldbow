@@ -82,13 +82,7 @@ export interface ClientConfig {
    */
   prefetch?: WebMConfig | boolean;
   /**
-   * The method to use to fetch data from the API, CDNs.
-   *
-   * Defaults to using `axios` package.
-   *
-   * @param url - The URL to fetch.
-   * @returns - A promise of the fetched data.
+   * The options to use for the rate limiter.
    */
-  fetchMethod?: <T>(url: string) => Promise<T>;
   ratelimit?: RateLimiterOptions;
 }
