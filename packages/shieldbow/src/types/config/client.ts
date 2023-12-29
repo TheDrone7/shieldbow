@@ -3,6 +3,7 @@ import { ILogger, Locale, Region, LogLevel, ManagerConfig as WebMConfig } from '
 import { WebOptions } from './web';
 import { ClientFetchOptions } from './fetch';
 import { RateLimiterOptions } from './ratelimiter';
+import { ClientStorageConfig } from './storage';
 
 /**
  * The config for the client.
@@ -12,10 +13,13 @@ export interface ClientConfig {
    * The cache to use for caching data.
    * Defaults to an in-memory cache.
    *
-   * Can be set to `false` to disable caching.
    * NOTE: To use this, the `cache` fetch option must be true (defaults to true).
    */
-  cache?: ICache | boolean;
+  cache?: ICache;
+  /**
+   * The storage to use for storing data.
+   */
+  storage?: ClientStorageConfig;
   /**
    * The logger settings.
    *

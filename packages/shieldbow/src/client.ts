@@ -6,6 +6,7 @@ import { ICache, ShieldbowMemoryCache } from '@shieldbow/cache';
 import axios, { AxiosInstance } from 'axios';
 import axiosRetry from 'axios-retry';
 import { ShieldbowError } from './error';
+import { IStorage } from '@shieldbow/storage';
 
 /**
  * The shieldbow client class.
@@ -15,7 +16,7 @@ export class Client extends WebClient {
   #apiKey: string;
   #rateLimiter: RateLimiter;
   #http: AxiosInstance;
-  #fetcher: <T>(url: string, debugMessage?: string, method?: string) => Promise<T>;
+  #storage: IStorage;
 
   /**
    * Create a new shieldbow client.
@@ -48,14 +49,23 @@ export class Client extends WebClient {
       validateStatus: () => true
     });
 
-    this.#fetcher = undefined!;
+    this.#storage = undefined!;
   }
 
   /**
    * The default options to use when fetching anything.
    */
   get defaultOpts() {
+    this.ensureInitialized();
     return this.#defaultFetchConfig;
+  }
+
+  /**
+   * The storage to use for storing data (if enabled).
+   */
+  get storage() {
+    this.ensureInitialized();
+    return this.#storage;
   }
 
   /**
@@ -76,7 +86,13 @@ export class Client extends WebClient {
       retryDelay: () => config.ratelimit?.retry?.delay ?? 3000
     });
 
-    this.#fetcher = async <T>(url: string, debugMessage?: string, method: string = '') => {
+    if (parsedConfig.storage?.custom !== undefined) this.#storage = parsedConfig.storage.custom;
+    else {
+      const { ShieldbowLocalStorage } = await import('@shieldbow/storage');
+      this.#storage = new ShieldbowLocalStorage(parsedConfig.storage?.config);
+    }
+
+    this._fetcher = async <T>(url: string, debugMessage?: string, method: string = '') => {
       const response = await this.#http.get(url);
       const { status, data, headers } = response;
 
@@ -99,7 +115,7 @@ export class Client extends WebClient {
    * This throws errors and updates rate limits.
    */
   get fetch() {
-    return this.#fetcher;
+    return this._fetcher;
   }
 
   /**
