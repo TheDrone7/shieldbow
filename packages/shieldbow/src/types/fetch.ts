@@ -24,4 +24,10 @@ export interface FetchOptions {
    * The region to fetch the data from.
    */
   region?: Region;
+  /**
+   * Whether or not to include the version when generating the URL.
+   *
+   * (This is only used for the data dragon and community dragon URLs)
+   */
+  noVersion?: ConfigConditional;
 }
