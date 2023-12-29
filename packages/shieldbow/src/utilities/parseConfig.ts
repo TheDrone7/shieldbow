@@ -39,7 +39,6 @@ export function parseClientConfig(config: ClientConfig): ClientConfig {
   parsed.fetchOptions = parseFetchOpts(config.fetchOptions);
   parsed.fetchOptions.region = parsed.region;
 
-  parsed.fetchMethod = config.fetchMethod;
   parsed.prefetch = config.prefetch;
 
   return parsed;
