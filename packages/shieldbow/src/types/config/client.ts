@@ -1,7 +1,7 @@
 import { ICache } from '@shieldbow/cache';
 import { ILogger, Locale, Region, LogLevel, ManagerConfig as WebMConfig } from '@shieldbow/web';
 import { WebOptions } from './web';
-import { FetchOptions } from './fetch';
+import { ClientFetchOptions } from './fetch';
 import { RateLimiterOptions } from './ratelimiter';
 
 /**
@@ -72,7 +72,7 @@ export interface ClientConfig {
   /**
    * Default fetch options to use.
    */
-  fetchOptions?: FetchOptions;
+  fetchOptions?: ClientFetchOptions;
   /**
    * Whether to pre-fetch data when initializing the client.
    *

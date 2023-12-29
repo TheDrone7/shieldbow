@@ -1,5 +1,5 @@
 import { Client as WebClient } from '@shieldbow/web';
-import { ClientConfig, FetchConfig, RequestOptions } from 'types';
+import { ClientConfig, ClientFetchConfig, RequestOptions } from 'types';
 import { parseClientConfig, genWebConfig, divideToManager, apiBaseURLs, regionalURLs, seaRegions } from 'utilities';
 import { RateLimiter } from '@shieldbow/ratelimiter';
 import { ICache, ShieldbowMemoryCache } from '@shieldbow/cache';
@@ -11,7 +11,7 @@ import { ShieldbowError } from './error';
  * The shieldbow client class.
  */
 export class Client extends WebClient {
-  #defaultFetchConfig: FetchConfig;
+  #defaultFetchConfig: ClientFetchConfig;
   #apiKey: string;
   #rateLimiter: RateLimiter;
   #http: AxiosInstance;

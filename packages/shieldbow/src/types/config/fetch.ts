@@ -4,7 +4,7 @@ import { ManagerConfig } from './manager';
 /**
  * The fetch options (to be provided by the user).
  */
-export interface FetchOptions {
+export interface ClientFetchOptions {
   /**
    * Whether or not to cache the fetched data.
    */
@@ -30,7 +30,7 @@ export interface FetchOptions {
 /**
  * The fetch config (to be used internally).
  */
-export interface FetchConfig {
+export interface ClientFetchConfig {
   /**
    * Whether or not to cache the fetched data.
    */

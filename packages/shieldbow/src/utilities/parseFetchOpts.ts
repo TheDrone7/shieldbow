@@ -1,5 +1,5 @@
 import { ConfigConditional } from '@shieldbow/web';
-import { FetchOptions, FetchConfig, ManagerConfig } from 'types';
+import { ClientFetchConfig, ClientFetchOptions, ManagerConfig } from 'types';
 
 export function divideToManager(opts: ManagerConfig | ConfigConditional): ManagerConfig {
   if (typeof opts !== 'object')
@@ -21,7 +21,7 @@ export function divideToManager(opts: ManagerConfig | ConfigConditional): Manage
   return opts;
 }
 
-export function parseFetchOpts(opts?: FetchOptions): FetchConfig {
+export function parseFetchOpts(opts?: ClientFetchOptions): ClientFetchConfig {
   return {
     cache: divideToManager(opts?.cache),
     ignoreCache: divideToManager(opts?.ignoreCache),
