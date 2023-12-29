@@ -39,6 +39,7 @@
   "homepage": "https://github.com/TheDrone7/shieldbow#readme",
   "dependencies": {
     "@shieldbow/web": "workspace:^",
+    "@shieldbow/storage": "workspace:^",
     "axios": "^1.5.1",
     "axios-retry": "^4.0.0",
     "tslib": "^2.6.2"
