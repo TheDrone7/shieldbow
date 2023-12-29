@@ -1,6 +1,6 @@
 import type { ILocalStorageConfig } from 'config';
 import type { IStorage } from 'interface';
-import { existsSync, writeFileSync, readFileSync, readdirSync, rmSync, rmdirSync, mkdirSync } from 'node:fs';
+import { existsSync, writeFileSync, readFileSync, readdirSync, rmSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 
 /**
@@ -157,7 +157,8 @@ export class ShieldbowLocalStorage implements IStorage {
     const dirPath = join(this.root, collection);
 
     try {
-      rmdirSync(dirPath, { recursive: true });
+      rmSync(dirPath, { recursive: true, force: true });
+      mkdirSync(dirPath, { recursive: true });
       return true;
     } catch (err) {
       return Promise.reject(err);
@@ -169,7 +170,8 @@ export class ShieldbowLocalStorage implements IStorage {
    */
   clearAll(): boolean | Promise<boolean> {
     try {
-      rmdirSync(this.root, { recursive: true });
+      rmSync(this.root, { recursive: true, force: true });
+      mkdirSync(this.root, { recursive: true });
       return true;
     } catch (err) {
       return Promise.reject(err);
