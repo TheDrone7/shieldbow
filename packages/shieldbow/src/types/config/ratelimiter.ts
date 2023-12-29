@@ -3,7 +3,7 @@ import { RateLimitStrategy } from '@shieldbow/ratelimiter';
 /**
  * The configuration for the rate limiter.
  */
-export interface RateLimiterConfig {
+export interface RateLimiterOptions {
   /**
    * The rate limiting strategy to use.
    */
@@ -13,13 +13,16 @@ export interface RateLimiterConfig {
    */
   throwOnLimit?: boolean;
   /**
-   * Retrying options.
+   * Retrying options (this is only for 5XX responses).
+   *
+   * That is, if the server is unable to handle the request for any reason.
+   * If there is a 4XX response (issue was on user end), it will not retry.
    */
   retry?: {
     /**
      * The number of times to retry a request.
      *
-     * 0 means no retries.
+     * 0 means no retries (default).
      */
     times: number;
     /**
@@ -30,4 +33,18 @@ export interface RateLimiterConfig {
      */
     delay: number;
   };
+}
+
+/**
+ * The retrial configuration for the client.
+ */
+export interface RetrialConfig {
+  /**
+   * The number of times to retry a request.
+   */
+  times: number;
+  /**
+   * The delay between retries.
+   */
+  delay: number;
 }

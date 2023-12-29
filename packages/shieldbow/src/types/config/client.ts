@@ -2,6 +2,7 @@ import { ICache } from '@shieldbow/cache';
 import { ILogger, Locale, Region, LogLevel, ManagerConfig as WebMConfig } from '@shieldbow/web';
 import { WebOptions } from './web';
 import { FetchOptions } from './fetch';
+import { RateLimiterOptions } from './ratelimiter';
 
 /**
  * The config for the client.
@@ -89,4 +90,5 @@ export interface ClientConfig {
    * @returns - A promise of the fetched data.
    */
   fetchMethod?: <T>(url: string) => Promise<T>;
+  ratelimit?: RateLimiterOptions;
 }
