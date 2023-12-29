@@ -1,6 +1,6 @@
 {
   "name": "@shieldbow/cache",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A base cache for the shieldbow library.",
   "main": "dist/index.js",
   "scripts": {
