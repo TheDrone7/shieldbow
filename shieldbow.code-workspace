@@ -2,7 +2,7 @@
     "folders": [
         {
             "path": ".",
-						"name": "repository"
+            "name": "repository"
         },
         {
             "name": "web",
@@ -12,19 +12,20 @@
             "name": "rate-limiter",
             "path": "packages/ratelimiter"
         },
-				{
-					"name": "cache",
-					"path": "packages/cache"
-				},
-				{
-					"name": "shieldbow",
-					"path": "packages/shieldbow"
-				}
+        {
+            "name": "cache",
+            "path": "packages/cache"
+        },
+        {
+            "name": "storage",
+            "path": "packages/storage"
+        },
+        {
+            "name": "shieldbow",
+            "path": "packages/shieldbow"
+        }
     ],
     "settings": {
-        "jest.disabledWorkspaceFolders": [
-					"shieldbow",
-					"repository"
-				]
+        "jest.disabledWorkspaceFolders": ["shieldbow", "repository"]
     }
 }
