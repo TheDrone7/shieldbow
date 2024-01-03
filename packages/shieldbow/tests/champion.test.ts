@@ -49,6 +49,16 @@ describe('DRAGON: champion', () => {
     expect(kayn2.name).toBe('Kayn');
   });
 
+  it('should store to local file', async () => {
+    const dDragon = await client.storage.has(`ddragon-${client.version}-champion`, 'Kayn');
+    const cDragon = await client.storage.has(`cdragon-${client.version}-champion`, 'Kayn');
+    const meraki = await client.storage.has(`meraki-${client.version}-champion`, 'Kayn');
+
+    expect(dDragon).toBeTruthy();
+    expect(cDragon).toBeTruthy();
+    expect(meraki).toBeTruthy();
+  });
+
   it('should be able to fetch by name', async () => {
     const kaisa = await client.champions.fetchByName("Kai'Sa", globalThis.fetchOpts);
     expect(kaisa).toBeDefined();

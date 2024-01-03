@@ -54,11 +54,7 @@ export class ChampionManager extends WebCM {
         const toCache = typeof opts.cache === 'function' ? opts.cache(champion) : opts.cache;
         if (toCache) await this.client.cache.set(`champion:${key}`, champion);
         const toStore = typeof opts.store === 'function' ? opts.store(champion) : opts.store;
-        if (toStore) {
-          await this.client.storage.save(`dDragon-champion`, key, champ);
-          await this.client.storage.save(`cDragon-champion`, key, cDragon);
-          await this.client.storage.save(`meraki-champion`, key, meraki);
-        }
+        if (toStore) await this.client.storage.save(`ddragon-${this.client.version}-champion`, key, champ);
       }
       return result;
     } catch (error) {
@@ -332,25 +328,69 @@ export class ChampionManager extends WebCM {
   }
 
   protected override async fetchChampionOthers(id: string, options: FetchOptions) {
-    let meraki: IMerakiChampion = undefined!;
-    this.client.logger?.trace(`Fetching champion '${id}' from other sources`);
-    const cDragon = await this.client.fetch(
-      this.client.generateUrl(
-        `game/data/characters/${id.toLowerCase()}/${id.toLowerCase()}.bin.json`,
-        'cDragon',
-        !!options.noVersion
-      )
-    );
-    if (this.client.version === this._cacheVersion && this._cache.has(id)) meraki = this._cache.get(id)!;
-    else {
+    let returnedMeraki: IMerakiChampion = undefined!;
+    let returnedCDragon: ICDragonChampion = undefined!;
+
+    this.client.logger?.trace(`Checking storage for cdragon champion '${id}'.`);
+    try {
+      const cDragon = await this.client.storage.load<ICDragonChampion>(`cdragon-${this.client.version}-champion`, id);
+      const toIgnoreStorage =
+        typeof options.ignoreStorage === 'function' && cDragon !== undefined
+          ? options.ignoreStorage(!!cDragon)
+          : !!options.ignoreStorage;
+      if (!toIgnoreStorage) {
+        this.client.logger?.trace(`Found champion cdragon '${id}' in storage, returning from storage.`);
+        returnedCDragon = cDragon!;
+      } else throw new Error('Ignore storage is true');
+    } catch (err) {
+      this.client.logger?.trace(`Fetching champion '${id}' from cDragon.`);
+      const cDragon = await this.client.fetch(
+        this.client.generateUrl(
+          `game/data/characters/${id.toLowerCase()}/${id.toLowerCase()}.bin.json`,
+          'cDragon',
+          !!options.noVersion
+        )
+      );
+      this.client.logger?.trace(`Fetched champion '${id}' from cDragon, now processing.`);
+      const champ = <ICDragonChampion>cDragon;
+      const toStore = typeof options.store === 'function' ? options.store(champ) : options.store;
+      if (toStore) {
+        this.client.logger?.trace(`Storing champion '${id}' in storage.`);
+        this.client.storage.save(`cdragon-${this.client.version}-champion`, id, champ);
+      }
+      returnedCDragon = champ;
+    }
+
+    this.client.logger?.trace(`Checking storage for meraki champion '${id}'.`);
+    try {
+      if (this.client.version === this._cacheVersion && this._cache.has(id)) {
+        this.client.logger?.trace(`Found champion meraki '${id}' in meraki cache, returning from cache.`);
+        returnedMeraki = this._cache.get(id)!;
+      } else {
+        const meraki = await this.client.storage.load<IMerakiChampion>(`meraki-${this.client.version}-champion`, id);
+        const toIgnoreStorage =
+          typeof options.ignoreStorage === 'function' && meraki !== undefined
+            ? options.ignoreStorage(!!meraki)
+            : !!options.ignoreStorage;
+        if (!toIgnoreStorage) {
+          this.client.logger?.trace(`Found champion meraki '${id}' in storage, returning from storage.`);
+          returnedMeraki = meraki!;
+        }
+      }
+    } catch (err) {
       const allMeraki = await this.client.fetch<{ [id: string]: IMerakiChampion }>(
         this.client.generateMerakiUrl('champion')
       );
       this._cacheVersion = this.client.version!;
       this._cache.clear();
-      for (const id of Object.keys(allMeraki)) this._cache.set(id, allMeraki[id]);
-      if (allMeraki[id]) meraki = allMeraki[id];
+      for (const k of Object.keys(allMeraki)) {
+        this._cache.set(k, allMeraki[k]);
+        const toStore = typeof options.store === 'function' ? options.store(allMeraki[k]) : options.store;
+        if (toStore) this.client.storage.save(`meraki-${this.client.version}-champion`, k, allMeraki[k]);
+      }
+      if (allMeraki[id]) returnedMeraki = allMeraki[id];
     }
-    return { cDragon: <ICDragonChampion>cDragon, meraki };
+
+    return { cDragon: returnedCDragon, meraki: returnedMeraki };
   }
 }
