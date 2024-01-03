@@ -82,6 +82,22 @@ describe('DRAGON: rune tree', () => {
     expect(all.length).toBeGreaterThan(10);
   });
 
+  it('should have stat runes', () => {
+    const statRunes = client.runes.statRunes;
+    expect(statRunes).toBeDefined();
+    expect(statRunes.length).toBe(6);
+  });
+
+  it('should be able to fetch by numerical ID', async () => {
+    const sorcery = await client.runes.fetchById(8200, globalThis.fetchOpts);
+    expect(sorcery).toBeDefined();
+    expect(sorcery?.name).toBe('Sorcery');
+
+    const arcaneComet = await client.runes.fetchRuneById(8229, globalThis.fetchOpts);
+    expect(arcaneComet).toBeDefined();
+    expect(arcaneComet?.name).toBe('Arcane Comet');
+  });
+
   afterAll(async () => {
     await client.storage.clearAll();
   });

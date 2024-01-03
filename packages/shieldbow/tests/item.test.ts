@@ -81,6 +81,14 @@ describe('DRAGON: item', () => {
     expect(all.size).toBeGreaterThan(200);
   });
 
+  it('should be able to fetch multiple items at once', async () => {
+    const keys = boots.intoIds;
+    const multiple = await client.items.fetchMany(keys, globalThis.fetchOpts);
+    expect(multiple).toBeDefined();
+    expect(multiple.size).toBeGreaterThan(0);
+    expect(multiple.size).toBe(keys.length);
+  });
+
   afterAll(async () => {
     await client.storage.clearAll();
   });
