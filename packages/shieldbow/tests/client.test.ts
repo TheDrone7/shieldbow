@@ -18,12 +18,7 @@ describe('SHIELDBOW: client', () => {
   });
 
   it('should initialize properly with defaults', async () => {
-    await client.initialize({
-      logger: {
-        enabled: true,
-        level: 'TRACE'
-      }
-    });
+    await client.initialize();
     expect(client.initialized).toBe(true);
   });
 });
