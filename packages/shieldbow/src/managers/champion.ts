@@ -137,28 +137,47 @@ export class ChampionManager implements BaseManager<Champion> {
 
     try {
       const result = new Collection<string, Champion>();
-      if (!ignoreCache)
-        for (const name of names) {
-          const champ = await this.client.cache.find<Champion>((c: Champion) =>
-            c.name.toLowerCase().includes(name.toLowerCase())
-          );
-          if (champ) {
+      for (const name of names) {
+        const champ = await this.client.cache.find<Champion>((c: Champion) =>
+          c.name.toLowerCase().includes(name.toLowerCase())
+        );
+        if (champ) {
+          this.client.logger?.trace(`Found champion '${champ.id}' in cache.`);
+          const toIgnoreCache = typeof ignoreCache === 'function' ? ignoreCache(champ) : !!ignoreCache;
+          if (!toIgnoreCache) {
+            this.client.logger?.trace(`Adding champion '${champ.id}' to result.`);
             result.set(champ.id, champ);
             names = names.filter((n) => n !== name);
           }
         }
-      if (names.length < 1) return result;
-      const response = await this.client.fetch(this.client.generateUrl('championFull.json'));
-      const champs = <{ data: { [champ: string]: IDataDragonChampion } }>response;
-      for (const key of Object.keys(champs.data)) {
-        const champ = champs.data[key];
-        if (names.some((n) => champ.name.toLowerCase().includes(n.toLowerCase()))) {
-          const { cDragon, meraki } = await this.fetchChampionOthers(champ.id, opts);
-          const champion = new Champion(this.client, champs.data[key], cDragon, meraki);
-          result.set(key, champion);
-          if (cache) await this.client.cache.set(`champion:${key}`, champion);
+      }
+
+      if (names.length < 1) {
+        this.client.logger?.trace(`All champions found in cache, now returning.`);
+        return result;
+      }
+
+      this.client.logger?.trace(`Some champions not found in cache, now fetching.`);
+
+      const expected = names.length;
+      const champs = await this.fetchMultipleChampDragonByProp(names, 'name', opts);
+      if (champs.length < expected) {
+        this.client.logger?.error(`Failed to fetch all champions. Expected: ${expected}, got: ${champs.length}`);
+        return Promise.reject('Unable to fetch all champions');
+      }
+
+      for (const champ of champs) {
+        const { cDragon, meraki } = await this.fetchChampionOthers(champ.id, opts);
+        const champion = new Champion(this.client, champ, cDragon, meraki);
+        result.set(champ.id, champion);
+
+        const toCache = typeof cache === 'function' ? cache(champion) : cache;
+        if (toCache) {
+          this.client.logger?.trace(`Storing champion '${champ.id}' in cache.`);
+          await this.client.cache.set(`champion:${champ.id}`, champion);
         }
       }
+
       return result;
     } catch (error) {
       return Promise.reject(error);
@@ -181,24 +200,39 @@ export class ChampionManager implements BaseManager<Champion> {
 
     try {
       const result = new Collection<string, Champion>();
-      if (!ignoreCache)
-        for (const key of keys) {
-          const champ = await this.client.cache.find((c: Champion) => c.key === key);
-          if (champ) {
+      for (const key of keys) {
+        const champ = await this.client.cache.find((c: Champion) => c.key === key);
+        if (champ) {
+          this.client.logger?.trace(`Found champion '${champ.id}' in cache.`);
+
+          const toIgnoreCache = typeof ignoreCache === 'function' ? ignoreCache(champ) : !!ignoreCache;
+          if (!toIgnoreCache) {
+            this.client.logger?.trace(`Adding champion '${champ.id}' to result.`);
             result.set(champ.id, champ);
             keys = keys.filter((k) => k !== key);
           }
         }
+      }
+
       if (keys.length < 1) return result;
-      const response = await this.client.fetch(this.client.generateUrl('championFull.json'));
-      const champs = <{ data: { [champ: string]: IDataDragonChampion } }>response;
-      for (const key of Object.keys(champs.data)) {
-        const champ = champs.data[key];
-        if (keys.some((k) => champ.key === String(k))) {
-          const { cDragon, meraki } = await this.fetchChampionOthers(champ.id, opts);
-          const champion = new Champion(this.client, champs.data[key], cDragon, meraki);
-          result.set(key, champion);
-          if (cache) await this.client.cache.set(`champion:${key}`, champion);
+
+      const expected = keys.length;
+      const champs = await this.fetchMultipleChampDragonByProp(keys, 'key', opts);
+
+      if (champs.length < expected) {
+        this.client.logger?.error(`Failed to fetch all champions. Expected: ${expected}, got: ${champs.length}`);
+        return Promise.reject('Unable to fetch all champions');
+      }
+
+      for (const champ of champs) {
+        const { cDragon, meraki } = await this.fetchChampionOthers(champ.id, opts);
+        const champion = new Champion(this.client, champ, cDragon, meraki);
+        result.set(champ.id, champion);
+
+        const toCache = typeof cache === 'function' ? cache(champion) : cache;
+        if (toCache) {
+          this.client.logger?.trace(`Storing champion '${champ.id}' in cache.`);
+          await this.client.cache.set(`champion:${champ.id}`, champion);
         }
       }
       return result;
@@ -234,6 +268,56 @@ export class ChampionManager implements BaseManager<Champion> {
     }
 
     return champs.data[key];
+  }
+
+  private async fetchMultipleChampDragonByProp(val: unknown[], prop: string, options: FetchOptions) {
+    const result: IDataDragonChampion[] = [];
+    val = [...val].map((v) => String(v).toLowerCase());
+
+    this.client.logger?.trace(`Checking storage for champion with '${prop}' in '${val}'.`);
+    const dDragon = await this.client.storage.filter<IDataDragonChampion>(
+      `ddragon-${this.client.version}-champion`,
+      (c: IDataDragonChampion) => val.includes(c[prop as keyof IDataDragonChampion].toString().toLowerCase())
+    );
+
+    for (const c of dDragon) {
+      const toIgnoreStorage =
+        typeof options.ignoreStorage === 'function' ? options.ignoreStorage(c) : !!options.ignoreStorage;
+
+      if (!toIgnoreStorage) {
+        this.client.logger?.trace(`Found champion with '${prop}' in '${val}' in storage (${c.id}), adding to result.`);
+        result.push(c);
+        val = val.filter((v) => v !== c[prop as keyof IDataDragonChampion]);
+      }
+    }
+
+    if (val.length === 0) {
+      this.client.logger?.trace(`Found all champions in storage (${dDragon.map((c) => c.id)}), now returning.`);
+      return result;
+    }
+
+    this.client.logger?.trace(`Champions with '${prop}' in '${val}' not found in storage, fetching from data dragon.`);
+    const response = await this.client.fetch(
+      this.client.generateUrl(`championFull.json`, 'dDragon', !!options.noVersion)
+    );
+
+    this.client.logger?.trace(`Fetched all champions, now processing.`);
+    const champs = <{ data: { [champ: string]: IDataDragonChampion } }>response;
+    const keys = Object.keys(champs.data);
+
+    for (const key of keys) {
+      const champ = champs.data[key];
+      if (val.includes(champ[prop as keyof IDataDragonChampion].toString().toLowerCase())) {
+        const toStore = typeof options.store === 'function' ? options.store(champ) : options.store;
+        if (toStore) {
+          this.client.logger?.trace(`Storing champion '${champ.id}' in storage.`);
+          this.client.storage.save(`ddragon-${this.client.version}-champion`, champ.id, champ);
+        }
+        result.push(champ);
+      }
+    }
+
+    return result;
   }
 
   private async fetchChampionOthers(id: string, options: FetchOptions) {
