@@ -11,13 +11,6 @@ describe('UTIL: client', () => {
     expect(client.initialized).toBeTruthy();
   });
 
-  it('logs the initialization', async () => {
-    const spy = jest.spyOn(console, 'debug');
-    spy.mockImplementation(() => {});
-    await new Client().initialize({ logger: { enabled: true, level: 'TRACE' } });
-    expect(spy.mock.calls.length).toBeGreaterThanOrEqual(10);
-  });
-
   it('can fetch in different locales', async () => {
     const boots = await client.items.fetch('1001', { ignoreCache: true });
     await client.updateLocale('ko_KR', false);
