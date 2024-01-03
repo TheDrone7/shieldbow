@@ -1,8 +1,5 @@
 # shieldbow (v2)
 
-> PLEASE REVERT TO SHIELDBOW v2.2.1 IF YOU ARE USING v2.2.2 OR NEWER
-> NEWER RELEASES ARE NOT STABLE, AND ARE WORK IN PROGRESS
-
 An all-purpose, easy-to-use API wrapper for the league of legends API
 <div align="center">
 	<br />
