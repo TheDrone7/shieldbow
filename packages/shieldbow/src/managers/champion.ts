@@ -1,4 +1,10 @@
-import { BaseManager, IDataDragonChampion, IMerakiChampion, ICDragonChampion, Champion } from '@shieldbow/web';
+import {
+  IDataDragonChampion,
+  IMerakiChampion,
+  ICDragonChampion,
+  Champion,
+  ChampionManager as WebCM
+} from '@shieldbow/web';
 import type { Client } from 'client';
 import { Collection } from '@discordjs/collection';
 import { FetchOptions } from 'types';
@@ -7,13 +13,11 @@ import { parseFetchOptions } from 'utilities';
 /**
  * A champion manager - to fetch and manage all the champion data.
  */
-export class ChampionManager implements BaseManager<Champion> {
+export class ChampionManager extends WebCM {
   /**
    * The client that this champion manager belongs to.
    */
   readonly client: Client;
-  private _cacheVersion: string;
-  private _cache: Collection<string, IMerakiChampion> = new Collection();
 
   /**
    * Create a new Champions Manager
@@ -21,6 +25,7 @@ export class ChampionManager implements BaseManager<Champion> {
    * @param client - The client this champion manager belongs to.
    */
   constructor(client: Client) {
+    super(client);
     this.client = client;
     this._cacheVersion = client.version!;
   }
@@ -320,7 +325,7 @@ export class ChampionManager implements BaseManager<Champion> {
     return result;
   }
 
-  private async fetchChampionOthers(id: string, options: FetchOptions) {
+  protected override async fetchChampionOthers(id: string, options: FetchOptions) {
     let meraki: IMerakiChampion = undefined!;
     this.client.logger?.trace(`Fetching champion '${id}' from other sources`);
     const cDragon = await this.client.fetch(

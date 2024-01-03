@@ -7,6 +7,7 @@ import axios, { AxiosInstance } from 'axios';
 import axiosRetry from 'axios-retry';
 import { ShieldbowError } from './error';
 import { IStorage } from '@shieldbow/storage';
+import { ChampionManager } from 'managers';
 
 /**
  * The shieldbow client class.
@@ -17,6 +18,8 @@ export class Client extends WebClient {
   #rateLimiter: RateLimiter;
   #http: AxiosInstance;
   #storage: IStorage;
+
+  readonly champions: ChampionManager;
 
   /**
    * Create a new shieldbow client.
@@ -50,6 +53,8 @@ export class Client extends WebClient {
     });
 
     this.#storage = undefined!;
+
+    this.champions = new ChampionManager(this);
   }
 
   /**
