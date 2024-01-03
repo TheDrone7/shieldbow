@@ -1,27 +1,25 @@
 import type { Client } from 'client';
-import type { BaseManager, FetchOptions, IDDragonRuneTree } from 'types';
-import { Rune, RuneTree, StatRune } from 'structures';
+import { Rune, RuneTree, StatRune, statRunesData, IDDragonRuneTree, RuneTreeManager as WebRTM } from '@shieldbow/web';
 import { Collection } from '@discordjs/collection';
-import { parseFetchOptions, statRunesData } from 'utilities';
+import { parseFetchOptions } from 'utilities';
+import type { FetchOptions } from 'types';
 
 /**
  * A rune trees manager - to fetch and manage rune trees data.
  */
-export class RuneTreeManager implements BaseManager<RuneTree> {
+export class RuneTreeManager extends WebRTM {
   /**
    * The client this rune tree manager belongs to.
    */
   readonly client: Client;
-
-  protected _statRunes: StatRune[];
 
   /**
    * Create a new rune trees manager.
    * @param client - The client this rune tree manager belongs to.
    */
   constructor(client: Client) {
+    super(client);
     this.client = client;
-    this._statRunes = [];
   }
 
   /**
@@ -179,7 +177,7 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
     try {
       this.client.logger?.trace(`Fetching runes from DDragon`);
       const response = await this.client.fetch(
-        this.client.generateUrl(`runesReforged.json`, 'dDragon', options.noVersion)
+        this.client.generateUrl(`runesReforged.json`, 'dDragon', !!options.noVersion)
       );
       return response;
     } catch (error) {
