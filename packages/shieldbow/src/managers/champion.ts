@@ -90,7 +90,7 @@ export class ChampionManager extends WebCM {
 
       const champ = await this.fetchChampionDragon(id, opts);
       const { cDragon, meraki } = await this.fetchChampionOthers(id, opts);
-      const champion = new Champion(this.client, champ, cDragon, meraki);
+      const champion = new Champion(this.client, champ!, cDragon, meraki);
 
       const toCache = typeof cache === 'function' ? cache(champion) : cache;
       if (toCache) {
@@ -248,31 +248,36 @@ export class ChampionManager extends WebCM {
 
   private async fetchChampionDragon(id: string, options: FetchOptions) {
     this.client.logger?.trace(`Checking storage for champion '${id}'.`);
-    const dDragon = await this.client.storage.load<IDataDragonChampion>(`ddragon-${this.client.version}-champion`, id);
-    const toIgnoreStorage =
-      typeof options.ignoreStorage === 'function' && dDragon !== undefined
-        ? options.ignoreStorage(!!dDragon)
-        : !!options.ignoreStorage;
-    if (dDragon && !toIgnoreStorage) {
-      this.client.logger?.trace(`Found champion '${id}' in storage, now returning.`);
-      return dDragon;
+    try {
+      const dDragon = await this.client.storage.load<IDataDragonChampion>(
+        `ddragon-${this.client.version}-champion`,
+        id
+      );
+      const toIgnoreStorage =
+        typeof options.ignoreStorage === 'function' && dDragon !== undefined
+          ? options.ignoreStorage(!!dDragon)
+          : !!options.ignoreStorage;
+      if (!toIgnoreStorage) {
+        this.client.logger?.trace(`Found champion '${id}' in storage, now returning.`);
+        return dDragon;
+      } else throw new Error('Ignore storage is true');
+    } catch (err) {
+      this.client.logger?.trace(`Champion '${id}' not found in storage, fetching from data dragon.`);
+      const response = await this.client.fetch(
+        this.client.generateUrl(`champion/${id}.json`, 'dDragon', !!options.noVersion)
+      );
+      this.client.logger?.trace(`Fetched champion '${id}' from data dragon, now processing.`);
+      const champs = <{ data: { [champ: string]: IDataDragonChampion } }>response;
+      const key = Object.keys(champs.data)[0];
+
+      const toStore = typeof options.store === 'function' ? options.store(champs.data[key]) : options.store;
+      if (toStore) {
+        this.client.logger?.trace(`Storing champion '${id}' in storage.`);
+        this.client.storage.save(`ddragon-${this.client.version}-champion`, id, champs.data[key]);
+      }
+
+      return champs.data[key];
     }
-
-    this.client.logger?.trace(`Champion '${id}' not found in storage, fetching from data dragon.`);
-    const response = await this.client.fetch(
-      this.client.generateUrl(`champion/${id}.json`, 'dDragon', !!options.noVersion)
-    );
-    this.client.logger?.trace(`Fetched champion '${id}' from data dragon, now processing.`);
-    const champs = <{ data: { [champ: string]: IDataDragonChampion } }>response;
-    const key = Object.keys(champs.data)[0];
-
-    const toStore = typeof options.store === 'function' ? options.store(champs.data[key]) : options.store;
-    if (toStore) {
-      this.client.logger?.trace(`Storing champion '${id}' in storage.`);
-      this.client.storage.save(`ddragon-${this.client.version}-champion`, id, champs.data[key]);
-    }
-
-    return champs.data[key];
   }
 
   private async fetchMultipleChampDragonByProp(val: unknown[], prop: string, options: FetchOptions) {
