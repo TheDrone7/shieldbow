@@ -21,7 +21,7 @@ describe('DRAGON: items', () => {
     expect(cached.name).toBe(boots.name);
   });
 
-  it('can fetch items by ID from storage', async () => {
+  it('can fetch items by ID from API', async () => {
     const stored = await client.items.fetch('1001', {
       ignoreCache: true
     });
