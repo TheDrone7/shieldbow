@@ -1,4 +1,4 @@
-import { Client } from '../dist';
+import { Client, ShieldbowLogger } from '../dist';
 
 describe('UTIL: logger', () => {
   const client = new Client();
@@ -30,5 +30,12 @@ describe('UTIL: logger', () => {
   it('cannot log trace', () => {
     client.logger?.trace('Test trace');
     expect(spy).not.toHaveBeenCalled();
+  });
+
+  it('uses debug for trace', () => {
+    const debugSpy = jest.spyOn(console, 'debug');
+    const logger = new ShieldbowLogger('TRACE');
+    logger.trace('Test trace');
+    expect(debugSpy).toHaveBeenCalled();
   });
 });
