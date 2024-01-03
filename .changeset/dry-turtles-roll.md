@@ -1,5 +1,5 @@
 ---
-"shieldbow": major
+"shieldbow": minor
 "@shieldbow/web": patch
 ---
 
