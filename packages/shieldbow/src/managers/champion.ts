@@ -78,17 +78,18 @@ export class ChampionManager extends WebCM {
     this.client.logger?.trace(`Fetching champion '${id}' with options: `, opts);
     if (id === 'FiddleSticks') id = 'Fiddlesticks'; // There is some internal inconsistency in Riot's JSON files.
     try {
-      if (ignoreCache !== false) {
+      if (ignoreCache !== true) {
         this.client.logger?.trace(`Checking cache for champion '${id}'.`);
-        const exists = await this.client.cache.has(cacheId);
-        const toIgnoreCache = typeof ignoreCache === 'function' ? ignoreCache(exists) : !!ignoreCache;
-        if (exists && toIgnoreCache) {
+        const champ = this.client.cache.get<Champion>(cacheId);
+        const toIgnoreCache = typeof ignoreCache === 'function' ? ignoreCache(champ) : !!ignoreCache;
+        if (champ && !toIgnoreCache) {
           this.client.logger?.trace(`Found champion '${id}' in cache, now returning.`);
-          return this.client.cache.get<Champion>(cacheId)!;
+          return champ;
         }
       }
 
-      const champ = await this.fetchChampionDragon(id, opts);
+      const champ = await this.fetchChampionDragon(id, opts).catch(() => undefined);
+      if (!champ) return Promise.reject(`Champion with ID: '${id}' was not found in data dragon.`);
       const { cDragon, meraki } = await this.fetchChampionOthers(id, opts);
       const champion = new Champion(this.client, champ!, cDragon, meraki);
 
