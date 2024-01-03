@@ -49,7 +49,8 @@ export class RuneTreeManager extends WebRTM {
       for (const tree of runeTrees) {
         const runeTree = new RuneTree(this.client, tree);
         result.set(runeTree.key, runeTree);
-        if (cache) await this.client.cache.set(`rune:${runeTree.key}`, runeTree);
+        const toCache = typeof cache === 'function' ? cache(runeTree) : !!cache;
+        if (toCache) await this.client.cache.set(`rune:${runeTree.key}`, runeTree);
       }
       return result;
     } catch (error) {
@@ -62,15 +63,18 @@ export class RuneTreeManager extends WebRTM {
    * @param options - The basic fetching options.
    */
   async fetchAllRunes(options?: FetchOptions): Promise<Rune[]> {
+    const opts = parseFetchOptions(this.client, 'runes', options);
+    const { ignoreCache } = opts;
     try {
       let runeTrees = new Collection<string, RuneTree>();
       const keys = (await this.client.cache.keys()).filter((k) => k.startsWith('rune:'));
-      if (keys.length < 5) runeTrees = await this.fetchAll(options);
-      else
-        for (const key of keys) {
-          const runeTree = await this.client.cache.get<RuneTree>(key)!;
-          runeTrees.set(runeTree.key, runeTree);
-        }
+      for (const key of keys) {
+        const runeTree = await this.client.cache.get<RuneTree>(key)!;
+        const toIgnoreCache = typeof ignoreCache === 'function' ? ignoreCache(runeTree) : !!ignoreCache;
+        if (!toIgnoreCache) runeTrees.set(runeTree.key, runeTree);
+      }
+
+      if (runeTrees.size < 5) runeTrees = await this.fetchAll(opts);
 
       return runeTrees.map((t) => [t.runes.map((r) => [...r.values()]), ...t.keystones]).flat(3);
     } catch (error) {
@@ -90,10 +94,10 @@ export class RuneTreeManager extends WebRTM {
     this.client.logger?.trace(`Fetching rune tree ${key}`);
 
     try {
-      if (!ignoreCache) {
-        const exists = await this.client.cache.has(`rune:${key}`);
-        if (exists) return this.client.cache.get<RuneTree>(`rune:${key}`)!;
-      }
+      const runeTree = await this.client.cache.get<RuneTree>(`rune:${key}`);
+      const toIgnoreCache =
+        typeof ignoreCache === 'function' && runeTree !== undefined ? ignoreCache(runeTree) : !!ignoreCache;
+      if (runeTree && !toIgnoreCache) return runeTree;
 
       const runeTrees = await this.fetchAll(opts);
       if (runeTrees && runeTrees.has(key)) return runeTrees.get(key)!;
@@ -174,14 +178,29 @@ export class RuneTreeManager extends WebRTM {
   }
 
   protected async _fetchRunesFromDDragon(options: FetchOptions) {
+    const { store, ignoreStorage } = options;
+    this.client.logger?.trace(`Checking runes in storage.`);
     try {
+      const runes = await this.client.storage.load<IDDragonRuneTree[]>(`ddragon-${this.client.version}`, 'runes');
+      const toIgnoreStorage =
+        typeof ignoreStorage === 'function' && runes !== undefined ? ignoreStorage(runes) : !!ignoreStorage;
+      if (runes && !toIgnoreStorage) {
+        this.client.logger?.trace(`Runes found in storage, now returning.`);
+        return runes;
+      } else throw new Error('Ignore storage');
+    } catch (error) {
       this.client.logger?.trace(`Fetching runes from DDragon`);
-      const response = await this.client.fetch(
+      const response = await this.client.fetch<IDDragonRuneTree[]>(
         this.client.generateUrl(`runesReforged.json`, 'dDragon', !!options.noVersion)
       );
+      if (response) {
+        const toStore = typeof store === 'function' ? store(response) : !!store;
+        if (toStore) {
+          this.client.logger?.trace(`Storing runes in storage.`);
+          await this.client.storage.save(`ddragon-${this.client.version}`, 'runes', response);
+        }
+      }
       return response;
-    } catch (error) {
-      return Promise.reject(error);
     }
   }
 }
