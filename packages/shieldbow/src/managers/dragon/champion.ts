@@ -7,7 +7,7 @@ import {
 } from '@shieldbow/web';
 import type { Client } from 'client';
 import { Collection } from '@discordjs/collection';
-import { FetchOptions } from 'types';
+import { FetchOptions, IChampionRotation } from 'types';
 import { parseFetchOptions } from 'utilities';
 
 /**
@@ -238,6 +238,34 @@ export class ChampionManager extends WebCM {
         }
       }
       return result;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
+  /**
+   * Fetches the current free champion rotation.
+   * @param options - The basic fetching options.
+   */
+  async fetchRotation(options?: FetchOptions) {
+    const opts = parseFetchOptions(this.client, 'champions', options);
+    this.client.logger?.trace(`Fetching champion rotation with options: `, opts);
+
+    try {
+      const response = await this.client.request<IChampionRotation>('/lol/platform/v3/champion-rotations', {
+        debug: '',
+        method: 'getChampionRotation',
+        regional: false,
+        region: opts.region ?? this.client.region
+      });
+
+      const rotation = new Collection<'all' | 'new', Champion[]>();
+      const all = await this.fetchByKeys(response.freeChampionIds, opts);
+      const newChamps = await this.fetchByKeys(response.freeChampionIdsForNewPlayers, opts);
+
+      rotation.set('all', [...all.values()]);
+      rotation.set('new', [...newChamps.values()]);
+      return rotation;
     } catch (error) {
       return Promise.reject(error);
     }
