@@ -87,7 +87,7 @@ export class ChampionManager extends WebCM {
       const champ = await this.fetchChampionDragon(id, opts).catch(() => undefined);
       if (!champ) return Promise.reject(`Champion with ID: '${id}' was not found in data dragon.`);
       const { cDragon, meraki } = await this.fetchChampionOthers(id, opts);
-      const champion = new Champion(this.client, champ!, cDragon, meraki);
+      const champion: Champion = new Champion(this.client, champ!, cDragon, meraki);
 
       const toCache = typeof cache === 'function' ? cache(champion) : cache;
       if (toCache) {
