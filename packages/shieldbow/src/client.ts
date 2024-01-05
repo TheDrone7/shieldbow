@@ -7,8 +7,14 @@ import axios, { AxiosInstance } from 'axios';
 import axiosRetry from 'axios-retry';
 import { ShieldbowError } from './error';
 import { IStorage, ShieldbowLocalStorage } from '@shieldbow/storage';
-import { ChampionManager, ItemManager, RuneTreeManager, SummonerSpellManager } from 'managers/dragon';
-import { AccountManager } from 'managers';
+import {
+  ChampionManager,
+  ItemManager,
+  RuneTreeManager,
+  SummonerSpellManager,
+  AccountManager,
+  SummonerManager
+} from 'managers';
 
 /**
  * The shieldbow client class.
@@ -40,6 +46,10 @@ export class Client extends WebClient {
    * The account manager - to fetch and manage all account data.
    */
   readonly accounts: AccountManager;
+  /**
+   * The summoner manager - to fetch and manage all summoner data.
+   */
+  readonly summoners: SummonerManager;
 
   /**
    * Create a new shieldbow client.
@@ -79,6 +89,7 @@ export class Client extends WebClient {
     this.runes = new RuneTreeManager(this);
     this.summonerSpells = new SummonerSpellManager(this);
     this.accounts = new AccountManager(this);
+    this.summoners = new SummonerManager(this);
   }
 
   /**
