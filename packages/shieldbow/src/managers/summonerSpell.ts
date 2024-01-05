@@ -104,7 +104,7 @@ export class SummonerSpellManager extends WebSSM {
     try {
       const ssData = await this.client.storage.load<{ [key: string]: IDDragonSummonerSpell }>(
         `ddragon-${this.client.version}`,
-        'summoner'
+        'spell'
       );
       const toIgnoreStorage =
         typeof options.ignoreStorage === 'function' ? options.ignoreStorage(ssData) : !!options.ignoreStorage;
@@ -118,7 +118,7 @@ export class SummonerSpellManager extends WebSSM {
       if (!response.data) return Promise.reject('Unable to fetch summoner spells from DDragon');
 
       const toStore = typeof options.store === 'function' ? options.store(response.data) : !!options.store;
-      if (toStore) await this.client.storage.save(`ddragon-${this.client.version}`, 'summoner', response.data);
+      if (toStore) await this.client.storage.save(`ddragon-${this.client.version}`, 'spell', response.data);
       return response.data;
     }
   }

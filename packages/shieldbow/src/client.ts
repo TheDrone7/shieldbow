@@ -34,7 +34,7 @@ export class Client extends WebClient {
   /**
    * The summoner spell manager - to fetch and manage all summoner spell data.
    */
-  readonly spells: SummonerSpellManager;
+  readonly summonerSpells: SummonerSpellManager;
 
   /**
    * Create a new shieldbow client.
@@ -72,7 +72,7 @@ export class Client extends WebClient {
     this.champions = new ChampionManager(this);
     this.items = new ItemManager(this);
     this.runes = new RuneTreeManager(this);
-    this.spells = new SummonerSpellManager(this);
+    this.summonerSpells = new SummonerSpellManager(this);
   }
 
   /**
