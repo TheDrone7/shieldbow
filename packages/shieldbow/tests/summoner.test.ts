@@ -12,7 +12,7 @@ describe('API: summoner-v4', () => {
     await client.initialize(globalThis.clientConfig);
     try {
       const account = await client.accounts.fetchByRiotId('TheDrone7', '0000', globalThis.fetchOpts);
-      summoner = await client.summoners.fetch(account.playerId, globalThis.fetchOpts);
+      summoner = await account.fetchSummoner(globalThis.fetchOpts);
     } catch (e) {
       client.logger?.error(`${e}`);
     }
@@ -23,8 +23,6 @@ describe('API: summoner-v4', () => {
     expect(summoner.name).toBe('TheDrone7');
     expect(summoner.level).toBeGreaterThan(400);
     expect(summoner.id).toBeDefined();
-
-    console.log(summoner);
   });
 
   it('should be unable to fetch unknown summoner', async () => {

@@ -142,14 +142,15 @@ export class AccountManager implements BaseManager<Account> {
 
   private async processData(data: IAccount, opts: FetchOptions): Promise<Account> {
     const { cache, store } = opts;
+    const region = opts.region ?? this.client.region;
 
     const toStore = typeof store === 'function' ? store(data) : !!store;
     if (toStore) {
       this.client.logger?.trace(`Storing account with PUUID: ${data.puuid}`);
-      await this.client.storage?.save('accounts', data.puuid, data);
+      await this.client.storage?.save('accounts', data.puuid, { ...data, region });
     }
 
-    const account = new Account(this.client, data);
+    const account = new Account(this.client, region, data);
 
     const toCache = typeof cache === 'function' ? cache(account) : !!cache;
     if (toCache) {

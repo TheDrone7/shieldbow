@@ -1,3 +1,4 @@
+import { Region } from '@shieldbow/web';
 import { Client } from 'client';
 import { IAccount } from 'types';
 
@@ -21,6 +22,10 @@ export class Account {
    * The player's tagline.
    */
   public readonly tagLine: string;
+  /**
+   * The region the summoner associated with this account is in.
+   */
+  public region: Region;
 
   /**
    * Create a new account object from the raw data.
@@ -28,8 +33,9 @@ export class Account {
    * @param client - The client that instantiated this account.
    * @param data - The raw account data received from the API.
    */
-  constructor(client: Client, data: IAccount) {
+  constructor(client: Client, region: Region, data: IAccount) {
     this.#client = client;
+    this.region = region;
     this.playerId = data.puuid;
     this.username = data.gameName;
     this.tagLine = data.tagLine;
@@ -55,6 +61,6 @@ export class Account {
    * @param fetchOptions - The fetch options.
    */
   public async fetchSummoner(fetchOptions?: any) {
-    return await this.#client.summoners.fetch(this.playerId, fetchOptions);
+    return await this.#client.summoners.fetch(this.playerId, { ...fetchOptions, region: this.region });
   }
 }
