@@ -67,4 +67,8 @@ describe('API: summoner-v4', () => {
     const storage = await client.storage.has(`summoners`, summoner.playerId);
     expect(storage).toBeTruthy();
   });
+
+  afterAll(async () => {
+    await client.storage.clearAll();
+  });
 });

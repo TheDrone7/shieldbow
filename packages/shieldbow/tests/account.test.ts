@@ -71,4 +71,8 @@ describe('API: account-v1', () => {
     const storage = await client.storage.has(`accounts`, account.id);
     expect(storage).toBeTruthy();
   });
+
+  afterAll(async () => {
+    await client.storage.clearAll();
+  });
 });
