@@ -1,4 +1,4 @@
-import { Summoner, Client } from '../dist';
+import { Summoner, Client, Account } from '../dist';
 import { config } from 'dotenv';
 
 config();
@@ -6,12 +6,13 @@ config();
 describe('API: summoner-v4', () => {
   const client = new Client(process.env.RIOT_API_KEY!);
 
+  let account: Account;
   let summoner: Summoner;
 
   beforeAll(async () => {
     await client.initialize(globalThis.clientConfig);
     try {
-      const account = await client.accounts.fetchByRiotId('TheDrone7', '0000', globalThis.fetchOpts);
+      account = await client.accounts.fetchByRiotId('TheDrone7', '0000', globalThis.fetchOpts);
       summoner = await account.fetchSummoner(globalThis.fetchOpts);
     } catch (e) {
       client.logger?.error(`${e}`);
@@ -24,6 +25,15 @@ describe('API: summoner-v4', () => {
     expect(summoner.name).toBe('TheDrone7');
     expect(summoner.level).toBeGreaterThan(400);
     expect(summoner.id).toBeDefined();
+
+    expect(summoner.profileIconUrl).toBeDefined();
+    expect(summoner.revisionDate).toBeInstanceOf(Date);
+  });
+
+  it("should be able to fetch summoner's account", async () => {
+    const acc = await summoner.fetchAccount(globalThis.fetchOpts);
+    expect(acc).toBeDefined();
+    expect(acc).toBe(account);
   });
 
   it('should cache summoner', async () => {
