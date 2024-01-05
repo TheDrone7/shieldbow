@@ -115,6 +115,7 @@ export class Client extends WebClient {
     const parsedConfig = parseClientConfig(config);
     const webConfig = genWebConfig(parsedConfig);
     await super.initialize(webConfig);
+    this.#defaultFetchConfig.region = this.region;
 
     this.logger.trace('Web client initialized, setting up rate limiter.');
     this.#rateLimiter = new RateLimiter({
