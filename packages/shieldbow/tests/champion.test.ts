@@ -101,6 +101,22 @@ describe('DRAGON: champion', () => {
     expect(aphelios3?.name).toBe('Aphelios');
   });
 
+  it('should be unable to fetch by unknown name or key', async () => {
+    await expect(async () => {
+      await client.champions.fetchByName('Unknown', globalThis.fetchOpts);
+    }).rejects.toBeTruthy();
+
+    await expect(async () => {
+      await client.champions.fetchByKey(-1, globalThis.fetchOpts);
+    }).rejects.toBeTruthy();
+  });
+
+  it('should be able to fetch FiddleSticks', async () => {
+    const fiddle = await client.champions.fetch('FiddleSticks', globalThis.fetchOpts);
+    expect(fiddle).toBeDefined();
+    expect(fiddle.id).toBe('Fiddlesticks');
+  });
+
   it('should be able to fetch all champions', async () => {
     const all = await client.champions.fetchAll(globalThis.fetchOpts);
     expect(all).toBeDefined();

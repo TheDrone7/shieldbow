@@ -164,7 +164,7 @@ export class ChampionManager extends WebCM {
       const expected = names.length;
       const champs = await this.fetchMultipleChampDragonByProp(names, 'name', opts);
       if (champs.length < expected) {
-        this.client.logger?.error(`Failed to fetch all champions. Expected: ${expected}, got: ${champs.length}`);
+        this.client.logger?.trace(`Failed to fetch all champions. Expected: ${expected}, got: ${champs.length}`);
         return Promise.reject('Unable to fetch all champions');
       }
 
@@ -222,7 +222,7 @@ export class ChampionManager extends WebCM {
       const champs = await this.fetchMultipleChampDragonByProp(keys, 'key', opts);
 
       if (champs.length < expected) {
-        this.client.logger?.error(`Failed to fetch all champions. Expected: ${expected}, got: ${champs.length}`);
+        this.client.logger?.trace(`Failed to fetch all champions. Expected: ${expected}, got: ${champs.length}`);
         return Promise.reject('Unable to fetch all champions');
       }
 
