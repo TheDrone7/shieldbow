@@ -50,9 +50,11 @@ export class Account {
   }
 
   /**
-   * The client that instantiated this account.
+   * Fetch the summoner associated with this account.
+   *
+   * @param fetchOptions - The fetch options.
    */
-  get client() {
-    return this.#client;
+  public async fetchSummoner(fetchOptions?: any) {
+    return await this.#client.summoners.fetch(this.playerId, fetchOptions);
   }
 }
