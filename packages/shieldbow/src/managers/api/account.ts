@@ -20,6 +20,10 @@ export class AccountManager implements BaseManager<Account> {
 
   /**
    * Fetch an account by the player's ID - the PUUID.
+   *
+   * @param id - The player's ID - the PUUID.
+   * @param options - The options for fetching.
+   * @returns The fetched account.
    */
   async fetch(id: string, options?: FetchOptions): Promise<Account> {
     const opts = parseFetchOptions(this.client, 'account', options);
@@ -43,6 +47,70 @@ export class AccountManager implements BaseManager<Account> {
     } catch (error) {
       this.client.logger?.trace(`Failed to fetch account with PUUID: ${id}`);
       return Promise.reject(error);
+    }
+  }
+
+  /**
+   * Fetch an account by the player's Riot ID - the username and tagline.
+   * @param username - The player's username (Or gameName, the part before the #).
+   * @param tagLine - The player's tagline (The part after the #).
+   * @param options - The options for fetching.
+   * @returns The fetched account.
+   */
+  async fetchByRiotId(username: string, tagLine: string, options?: FetchOptions): Promise<Account> {
+    const opts = parseFetchOptions(this.client, 'account', options);
+
+    this.client.logger?.trace(`Fetching account with riot ID: ${username}#${tagLine}`);
+    const url = `/riot/account/v1/accounts/by-riot-id/${username}/${tagLine}`;
+
+    try {
+      const cached = await this.findInternal(username, tagLine, opts);
+      if (cached) return cached;
+
+      const data = await this.client.request<IAccount>(url, {
+        regional: true,
+        method: 'accountByRiotId',
+        debug: `Riot ID: ${username}#${tagLine}`,
+        region: opts.region
+      });
+
+      this.client.logger?.trace(`Fetched account with Riot ID: ${username}#${tagLine}, processing`);
+      return this.processData(data, opts);
+    } catch (error) {
+      this.client.logger?.trace(`Failed to fetch account with Riot ID: ${username}#${tagLine}`);
+      return Promise.reject(error);
+    }
+  }
+
+  private async findInternal(username: string, tagLine: string, opts: FetchOptions): Promise<Account | undefined> {
+    const { ignoreCache, ignoreStorage } = opts;
+
+    const cached = this.client.cache.find<Account>((a) => a.username === username && a.tagLine === tagLine);
+    const toIgnoreCache = cached && typeof ignoreCache === 'function' ? ignoreCache(cached) : !!ignoreCache;
+    if (!toIgnoreCache && cached) {
+      this.client.logger?.trace(`Found account with riot ID: ${username}#${tagLine} in cache`);
+      return cached;
+    } else if (toIgnoreCache)
+      this.client.logger?.trace(`Cache ignored for account with riot ID: '${username}#${tagLine}'`);
+    else this.client.logger?.trace(`Account with riot ID: ${username}#${tagLine} not found in cache`);
+
+    try {
+      const stored = await this.client.storage.find<IAccount>(
+        'accounts',
+        (a) => a.gameName === username && a.tagLine === tagLine
+      );
+      const toIgnoreStorage = stored && typeof ignoreStorage === 'function' ? ignoreStorage(stored) : !!ignoreStorage;
+      if (!toIgnoreStorage && stored) {
+        this.client.logger?.trace(`Found account with riot ID: ${username}#${tagLine} in storage`);
+        return this.processData(stored, opts);
+      } else if (toIgnoreStorage)
+        this.client.logger?.trace(`Storage ignored for account with riot ID: '${username}#${tagLine}'`);
+      else this.client.logger?.trace(`Account with riot ID: ${username}#${tagLine} not found in storage`);
+      throw new Error('Not found in storage');
+    } catch (error) {
+      this.client.logger?.trace(`Account with riot ID: ${username}#${tagLine} not found in storage`);
+      this.client.logger?.trace(error);
+      return undefined;
     }
   }
 
