@@ -123,6 +123,16 @@ describe('DRAGON: champion', () => {
     expect(all.size).toBeGreaterThan(100);
   });
 
+  it('should be able to fetch champion rotation', async () => {
+    const rotation = await client.champions.fetchRotation(globalThis.fetchOpts);
+    expect(rotation).toBeDefined();
+    expect(rotation.get('all')).toBeDefined();
+    expect(rotation.get('new')).toBeDefined();
+
+    expect(rotation.get('all')).toHaveLength(20);
+    expect(rotation.get('new')).toHaveLength(20);
+  });
+
   afterAll(async () => {
     await client.storage.clearAll();
   });
