@@ -7,7 +7,7 @@ import axios, { AxiosInstance } from 'axios';
 import axiosRetry from 'axios-retry';
 import { ShieldbowError } from './error';
 import { IStorage, ShieldbowLocalStorage } from '@shieldbow/storage';
-import { ChampionManager, ItemManager, RuneTreeManager, SummonerSpellManager } from 'managers';
+import { ChampionManager, ItemManager, RuneTreeManager, SummonerSpellManager } from 'managers/dragon';
 
 /**
  * The shieldbow client class.

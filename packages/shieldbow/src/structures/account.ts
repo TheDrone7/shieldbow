@@ -1,9 +1,14 @@
+import { Client } from 'client';
 import { IAccount } from 'types';
 
 /**
  * A class representing a player's RIOT account.
  */
 export class Account {
+  /**
+   * The client that instantiated this account.
+   */
+  #client: Client;
   /**
    * The player's unique ID - the PUUID.
    */
@@ -19,9 +24,12 @@ export class Account {
 
   /**
    * Create a new account object from the raw data.
+   *
+   * @param client - The client that instantiated this account.
    * @param data - The raw account data received from the API.
    */
-  constructor(data: IAccount) {
+  constructor(client: Client, data: IAccount) {
+    this.#client = client;
     this.playerId = data.puuid;
     this.username = data.gameName;
     this.tagLine = data.tagLine;
@@ -39,5 +47,12 @@ export class Account {
    */
   get id() {
     return this.playerId;
+  }
+
+  /**
+   * The client that instantiated this account.
+   */
+  get client() {
+    return this.#client;
   }
 }
