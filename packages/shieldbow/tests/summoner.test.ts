@@ -18,25 +18,12 @@ describe('API: summoner-v4', () => {
     }
   });
 
-  it('should fetch summoner by account', () => {
+  it('should fetch summoner by account (PUUID)', () => {
     expect(summoner).toBeDefined();
+    expect(summoner.region).toBe('euw');
     expect(summoner.name).toBe('TheDrone7');
     expect(summoner.level).toBeGreaterThan(400);
     expect(summoner.id).toBeDefined();
-  });
-
-  it('should be unable to fetch unknown summoner', async () => {
-    await expect(async () => {
-      await client.summoners.fetch(summoner.id, globalThis.fetchOpts);
-    }).rejects.toBeTruthy();
-  });
-
-  it('should be able to fetch summoner by summoner ID', async () => {
-    const summoner2 = await client.summoners.fetchBySummonerId(summoner.id, globalThis.fetchOpts);
-    expect(summoner2).toBeDefined();
-    expect(summoner2.name).toBe('TheDrone7');
-    expect(summoner2.level).toBeGreaterThan(400);
-    expect(summoner2.id).toBeDefined();
   });
 
   it('should cache summoner', async () => {
@@ -64,6 +51,45 @@ describe('API: summoner-v4', () => {
   it('should store to local file', async () => {
     const storage = await client.storage.has(`summoners`, summoner.playerId);
     expect(storage).toBeTruthy();
+  });
+
+  it('should be unable to fetch unknown summoner', async () => {
+    await expect(async () => {
+      await client.summoners.fetch(summoner.id, globalThis.fetchOpts);
+    }).rejects.toBeTruthy();
+  });
+
+  it('should be able to fetch summoner by summoner ID (from API)', async () => {
+    const summoner2 = await client.summoners
+      .fetchBySummonerId(summoner.id, {
+        ...globalThis.fetchOpts,
+        ignoreCache: true,
+        ignoreStorage: true
+      })
+      .catch(console.error);
+    expect(summoner2).toBeDefined();
+    expect(summoner2?.name).toBe('TheDrone7');
+    expect(summoner2?.level).toBeGreaterThan(400);
+    expect(summoner2?.id).toBeDefined();
+  });
+
+  it('should be able to fetch summoner by summoner ID (from storage)', async () => {
+    const summoner2 = await client.summoners.fetchBySummonerId(summoner.id, {
+      ...globalThis.fetchOpts,
+      ignoreCache: true
+    });
+    expect(summoner2).toBeDefined();
+    expect(summoner2.name).toBe('TheDrone7');
+    expect(summoner2.level).toBeGreaterThan(400);
+    expect(summoner2.id).toBeDefined();
+  });
+
+  it('should be able to fetch summoner by summoner ID (from cache)', async () => {
+    const summoner2 = await client.summoners.fetchBySummonerId(summoner.id, globalThis.fetchOpts);
+    expect(summoner2).toBeDefined();
+    expect(summoner2.name).toBe('TheDrone7');
+    expect(summoner2.level).toBeGreaterThan(400);
+    expect(summoner2.id).toBeDefined();
   });
 
   afterAll(async () => {

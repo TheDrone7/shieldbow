@@ -68,7 +68,7 @@ export class SummonerManager implements BaseManager<Summoner> {
       if (cached) return cached;
 
       const data = await this.client.request<ISummoner>(url, {
-        regional: true,
+        regional: false,
         method: 'summonerBySummonerId',
         debug: `Summoner ID: ${id}`,
         region: opts.region
@@ -128,12 +128,9 @@ export class SummonerManager implements BaseManager<Summoner> {
     try {
       const stored = await this.client.storage.load<ISummoner>('summoners', id);
       const toIgnoreStorage = stored && typeof ignoreStorage === 'function' ? ignoreStorage(stored) : !!ignoreStorage;
-      if (!toIgnoreStorage && stored) {
-        this.client.logger?.trace(`Found summoner with PUUID: ${id} in storage`);
-        return this.processData(stored, opts);
-      } else if (toIgnoreStorage) this.client.logger?.trace(`Storage ignored for summoner with PUUID: '${id}'`);
-      else this.client.logger?.trace(`Summoner with PUUID: ${id} not found in storage`);
-      throw new Error('Not found in storage');
+      if (toIgnoreStorage || !stored) throw new Error('Storage ignored');
+      this.client.logger?.trace(`Found summoner with PUUID: ${id} in storage`);
+      return this.processData(stored, opts);
     } catch (error) {
       this.client.logger?.trace(`Summoner with PUUID: ${id} not found in storage`);
       this.client.logger?.trace(error);
