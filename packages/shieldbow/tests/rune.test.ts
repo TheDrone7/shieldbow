@@ -78,7 +78,7 @@ describe('DRAGON: rune tree', () => {
   it('should be able to fetch all runes', async () => {
     const all = await client.runes.fetchAllRunes(globalThis.fetchOpts);
     expect(all).toBeDefined();
-    expect(all.length).toBeGreaterThan(10);
+    expect(all.length).toBeGreaterThan(20);
   });
 
   it('should have stat runes', () => {
