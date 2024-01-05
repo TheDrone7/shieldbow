@@ -89,7 +89,10 @@ export class ItemManager extends WebIM {
     const item = await this.client.cache.find<Item>(
       (item) => item.isPurchasable !== undefined && item.name.toLowerCase().includes(name.toLowerCase())
     );
-    if (item) return item;
+    if (item) {
+      const toIgnoreCache = typeof opts.ignoreCache === 'function' ? opts.ignoreCache(item) : !!opts.ignoreCache;
+      if (!toIgnoreCache) return item;
+    }
     const items = await this.fetchAll(opts);
     return items.find((i) => i.name.toLowerCase().includes(name.toLowerCase()));
   }
