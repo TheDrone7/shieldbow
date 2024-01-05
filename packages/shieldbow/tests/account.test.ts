@@ -99,6 +99,12 @@ describe('API: account-v1', () => {
     expect(account3.id).toBeDefined();
   });
 
+  it('should be unable to fetch account by invalid PUUID', async () => {
+    await expect(async () => {
+      await client.accounts.fetch('invalid', globalThis.fetchOpts);
+    }).rejects.toBeTruthy();
+  });
+
   afterAll(async () => {
     await client.storage.clearAll();
   });
