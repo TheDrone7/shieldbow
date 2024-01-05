@@ -32,41 +32,6 @@ describe('API: account-v1', () => {
     }).rejects.toBeTruthy();
   });
 
-  it('should be able to fetch account by PUUID', async () => {
-    const account2 = await client.accounts.fetch(account.id, {
-      ...globalThis.fetchOpts,
-      ignoreCache: true,
-      ignoreStorage: true
-    });
-    expect(account2).toBeDefined();
-    expect(account.region).toBe('euw');
-    expect(account2.username).toBe('TheDrone7');
-    expect(account2.tagLine).toBe('0000');
-    expect(account2.tag).toBe('TheDrone7#0000');
-    expect(account2.id).toBeDefined();
-
-    // And from cache
-    const account3 = await client.accounts.fetch(account.id, globalThis.fetchOpts);
-    expect(account3).toBeDefined();
-    expect(account.region).toBe('euw');
-    expect(account3.username).toBe('TheDrone7');
-    expect(account3.tagLine).toBe('0000');
-    expect(account3.tag).toBe('TheDrone7#0000');
-    expect(account3.id).toBeDefined();
-
-    // And from storage
-    const account4 = await client.accounts.fetch(account.id, {
-      ...globalThis.fetchOpts,
-      ignoreCache: true
-    });
-    expect(account4).toBeDefined();
-    expect(account.region).toBe('euw');
-    expect(account4.username).toBe('TheDrone7');
-    expect(account4.tagLine).toBe('0000');
-    expect(account4.tag).toBe('TheDrone7#0000');
-    expect(account4.id).toBeDefined();
-  });
-
   it('should cache account', async () => {
     const account2 = await client.accounts.fetchByRiotId(account.username, account.tagLine, globalThis.fetchOpts);
     expect(account2).toBeDefined();
@@ -95,6 +60,43 @@ describe('API: account-v1', () => {
   it('should store to local file', async () => {
     const storage = await client.storage.has(`accounts`, account.id);
     expect(storage).toBeTruthy();
+  });
+
+  it('should be able to fetch account by PUUID (from API)', async () => {
+    const account2 = await client.accounts.fetch(account.id, {
+      ...globalThis.fetchOpts,
+      ignoreCache: true,
+      ignoreStorage: true
+    });
+    expect(account2).toBeDefined();
+    expect(account.region).toBe('euw');
+    expect(account2.username).toBe('TheDrone7');
+    expect(account2.tagLine).toBe('0000');
+    expect(account2.tag).toBe('TheDrone7#0000');
+    expect(account2.id).toBeDefined();
+  });
+
+  it('should be able to fetch account by PUUID (from storage)', async () => {
+    const account4 = await client.accounts.fetch(account.id, {
+      ...globalThis.fetchOpts,
+      ignoreCache: true
+    });
+    expect(account4).toBeDefined();
+    expect(account4.region).toBe('euw');
+    expect(account4.username).toBe('TheDrone7');
+    expect(account4.tagLine).toBe('0000');
+    expect(account4.tag).toBe('TheDrone7#0000');
+    expect(account4.id).toBeDefined();
+  });
+
+  it('should be able to fetch account by PUUID (from cache)', async () => {
+    const account3 = await client.accounts.fetch(account.id, globalThis.fetchOpts);
+    expect(account3).toBeDefined();
+    expect(account3.region).toBe('euw');
+    expect(account3.username).toBe('TheDrone7');
+    expect(account3.tagLine).toBe('0000');
+    expect(account3.tag).toBe('TheDrone7#0000');
+    expect(account3.id).toBeDefined();
   });
 
   afterAll(async () => {
