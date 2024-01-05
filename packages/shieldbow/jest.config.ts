@@ -11,6 +11,7 @@ export default {
       }
     ]
   },
+  setupFiles: ['./tests/jest.setup.ts'],
   clearMocks: true,
   collectCoverage: true,
   coverageDirectory: 'coverage',
