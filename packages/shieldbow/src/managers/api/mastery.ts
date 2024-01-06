@@ -175,6 +175,26 @@ export class ChampionMasteryManager {
   }
 
   /**
+   * Fetch the nth highest champion mastery for the summoner.
+   * @param player - The player ID (puuid) of the summoner. Can also be a {@link Summoner} or {@link Account} instance.
+   * @param n - The rank of the mastery to fetch (n = 1, default, means the highest mastery).
+   * @param options - The basic fetching options.
+   * @returns The champion mastery.
+   */
+  async fetchHighest(
+    player: string | Summoner | Account,
+    n: number = 1,
+    options?: FetchOptions
+  ): Promise<ChampionMastery> {
+    try {
+      const top = await this.fetchTop(player, n, options);
+      return top[n - 1];
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
+  /**
    * Check if a champion mastery exists for the player in the cache or storage.
    * @param puuid - The player ID (puuid) of the summoner.
    * @param opts - The options for checking.
