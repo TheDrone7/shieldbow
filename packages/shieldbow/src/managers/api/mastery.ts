@@ -195,6 +195,36 @@ export class ChampionMasteryManager {
   }
 
   /**
+   * Fetch the total mastery score for a player. (Ignores the cache and storage)
+   * @param player - The player ID (puuid) of the summoner. Can also be a {@link Summoner} or {@link Account} instance.
+   * @param options - The basic fetching options.
+   * @returns The total mastery score.
+   */
+  async fetchScore(player: string | Summoner | Account, options?: FetchOptions): Promise<number> {
+    const opts = parseFetchOptions(this.client, 'championMastery', options);
+
+    const puuid = typeof player === 'string' ? player : player.playerId;
+    const region = typeof player === 'string' ? opts.region ?? this.client.region : player.region;
+
+    this.client.logger?.trace(`Fetching total mastery score for ${puuid}`);
+    const url = `/lol/champion-mastery/v4/scores/by-puuid/${puuid}`;
+
+    try {
+      const data = await this.client.request<number>(url, {
+        regional: false,
+        method: 'championMasteryScore',
+        debug: `PUUID: ${puuid}`,
+        region
+      });
+
+      this.client.logger?.trace(`Fetched total mastery score for ${puuid}, returning.`);
+      return data;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
+  /**
    * Check if a champion mastery exists for the player in the cache or storage.
    * @param puuid - The player ID (puuid) of the summoner.
    * @param opts - The options for checking.
