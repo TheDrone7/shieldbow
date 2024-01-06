@@ -1,11 +1,9 @@
 import { Region } from '@shieldbow/web';
 import { Client } from 'client';
-import { ChampionMasteryManager } from 'managers';
 import { FetchOptions, ISummoner } from 'types';
 
 export class Summoner {
   #client: Client;
-  #mastery: ChampionMasteryManager;
 
   /**
    * The ID of the summoner's profile icon.
@@ -51,7 +49,6 @@ export class Summoner {
     this.playerId = data.puuid;
     this.level = data.summonerLevel;
     this.region = region;
-    this.#mastery = new ChampionMasteryManager(client, this);
   }
 
   /**
@@ -59,13 +56,6 @@ export class Summoner {
    */
   get profileIconUrl(): string {
     return this.#client.generateImageUrl(`profileicon/${this.profileIconId}.png`);
-  }
-
-  /**
-   * The champion mastery manager for this summoner.
-   */
-  get mastery(): ChampionMasteryManager {
-    return this.#mastery;
   }
 
   /**

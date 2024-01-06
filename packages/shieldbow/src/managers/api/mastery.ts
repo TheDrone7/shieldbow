@@ -1,52 +1,43 @@
-import { BaseManager, Champion } from '@shieldbow/web';
-import { ChampionMastery, Summoner } from 'structures';
+import { Champion } from '@shieldbow/web';
+import { ChampionMastery, Summoner, Account } from 'structures';
 import { parseFetchOptions } from 'utilities';
 import { Client } from 'client';
 import { IChampionMastery, FetchOptions } from 'types';
+import { Collection } from '@discordjs/collection';
 
 /**
  * The champion mastery manager - handles all champion mastery related API calls.
  */
-export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
+export class ChampionMasteryManager {
   /**
    * The client that instantiated this instance.
    */
   readonly client: Client;
-  /**
-   * The summoner this manager belongs to.
-   */
-  readonly summoner: Summoner;
-  #totalScore: number;
 
   /**
    * Create a new ChampionMasteryManager instance.
    * @param client - The client that instantiated this instance.
    */
-  constructor(client: Client, summoner: Summoner) {
+  constructor(client: Client) {
     this.client = client;
-    this.summoner = summoner;
-    this.#totalScore = 0;
-  }
-
-  /**
-   * The total mastery score of the summoner.
-   *
-   * This is not a specific champion's mastery score.
-   * It is the sum of all champion mastery levels.
-   */
-  get totalScore(): number {
-    return this.#totalScore;
   }
 
   /**
    * Fetch a specific champion's mastery data for the summoner.
+   * @param player - The player ID (puuid) of the summoner. Can also be a {@link Summoner} or {@link Account} instance.
    * @param id - The champion's ID or numerical key. Can also be a {@link Champion} instance.
    * @param options - The options for the fetch.
    */
-  async fetch(champion: Champion | string | number, options?: FetchOptions): Promise<ChampionMastery> {
+  async fetch(
+    player: Account | Summoner | string,
+    champion: Champion | string | number,
+    options?: FetchOptions
+  ): Promise<ChampionMastery> {
     const opts = parseFetchOptions(this.client, 'championMastery', options);
+    const puuid = typeof player === 'string' ? player : player.playerId;
+    const region = typeof player === 'string' ? opts.region ?? this.client.region : player.region;
 
-    this.client.logger?.trace(`Fetching champion mastery for ${this.summoner.name} on ${champion}`);
+    this.client.logger?.trace(`Fetching champion mastery for PUUID ${puuid} on ${champion}`);
     this.client.logger?.trace('Checking if champion exists.');
 
     let champ: Champion | undefined;
@@ -62,74 +53,120 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
     }
 
     this.client.logger?.trace(`Champion '${champ.name}' found, fetching mastery.`);
-    const url = `/lol/champion-mastery/v4/champion-masteries/by-puuid/${this.summoner.playerId}/by-champion/${champ.key}`;
+    const url = `/lol/champion-mastery/v4/champion-masteries/by-puuid/${puuid}/by-champion/${champ.key}`;
 
     try {
-      const cached = await this.checkInternal(champ, opts);
+      const cached = await this.checkInternal(puuid, champ, opts);
       if (cached) return cached;
 
       const data = await this.client.request<IChampionMastery>(url, {
         regional: false,
         method: 'championMasteryByChampion',
-        debug: `PUUID: ${this.summoner.playerId}, Champion: ${champ.key} (${champ.name})`,
-        region: this.summoner.region
+        debug: `PUUID: ${puuid}, Champion: ${champ.key} (${champ.name})`,
+        region
       });
 
-      this.client.logger?.trace(`Fetched champion mastery for ${this.summoner.name} on ${champ.name}, processing.`);
-      return this.processData(data, champ, opts);
+      this.client.logger?.trace(`Fetched champion mastery for ${puuid} on ${champ.name}, processing.`);
+      return this.processData(puuid, data, champ, opts);
     } catch (error) {
-      this.client.logger?.trace(`Failed to fetch champion mastery for ${this.summoner.name} on ${champ.name}`);
+      this.client.logger?.trace(`Failed to fetch champion mastery for ${puuid} on ${champ.name}`);
       return Promise.reject(error);
     }
   }
 
   /**
+   * Fetch all champion masteries for the summoner.
+   * @param player - The player ID (puuid) of the summoner. Can also be a {@link Summoner} or {@link Account} instance.
+   * @param options - The basic fetching options.
+   * @returns A collection of champion masteries.
+   */
+  async fetchAll(
+    player: string | Summoner | Account,
+    options?: FetchOptions
+  ): Promise<Collection<string, ChampionMastery>> {
+    const result = new Collection<string, ChampionMastery>();
+    const opts = parseFetchOptions(this.client, 'championMastery', options);
+
+    const puuid = typeof player === 'string' ? player : player.playerId;
+    const region = typeof player === 'string' ? opts.region ?? this.client.region : player.region;
+
+    this.client.logger?.trace(`Fetching all champion masteries for ${puuid}`);
+    const url = `/lol/champion-mastery/v4/champion-masteries/by-puuid/${puuid}`;
+
+    try {
+      const data = await this.client.request<IChampionMastery[]>(url, {
+        regional: false,
+        method: 'championMasteryAll',
+        debug: `PUUID: ${puuid}`,
+        region
+      });
+
+      this.client.logger?.trace(`Fetched all champion masteries for ${puuid}, processing.`);
+      for (const mastery of data) {
+        const champ = await this.client.champions.fetchByKey(mastery.championId).catch(() => undefined);
+        if (!champ) {
+          this.client.logger?.warn(`Champion ${mastery.championId} was not found, skipping...`);
+          continue;
+        }
+        const processed = await this.processData(puuid, mastery, champ, opts);
+        result.set(champ.id, processed);
+      }
+    } catch (error) {
+      return Promise.reject(error);
+    }
+
+    return result;
+  }
+
+  /**
    * Check if a champion mastery exists in the cache or storage.
+   * @param puuid - The player ID (puuid) of the summoner.
    * @param champ - The champion to check for.
    * @param opts - The options for checking.
    * @returns The champion mastery if found, otherwise undefined.
    */
-  private async checkInternal(champ: Champion, opts: FetchOptions) {
+  private async checkInternal(puuid: string, champ: Champion, opts: FetchOptions) {
     const { ignoreCache, ignoreStorage } = opts;
-    const cached = this.client.cache.get<ChampionMastery>(`mastery-${this.summoner.playerId}-${champ.key}`);
+    const cached = this.client.cache.get<ChampionMastery>(`mastery-${puuid}-${champ.key}`);
     const toIgnoreCache = cached && typeof ignoreCache === 'function' ? ignoreCache(cached) : !!ignoreCache;
     if (cached && !toIgnoreCache) return cached;
 
     try {
       const stored = await this.client.storage.load<IChampionMastery>(
-        `champion-mastery-${this.summoner.playerId}`,
+        `champion-mastery-${puuid}`,
         champ.key.toString()
       );
 
       const toIgnoreStorage = stored && typeof ignoreStorage === 'function' ? ignoreStorage(stored) : !!ignoreStorage;
-      if (stored && !toIgnoreStorage) return this.processData(stored, champ, opts);
+      if (stored && !toIgnoreStorage) return this.processData(puuid, stored, champ, opts);
       else throw new Error('Not found in storage');
     } catch (error) {
-      this.client.logger?.trace(`Champion mastery for ${this.summoner.name} on ${champ.name} not found in storage`);
+      this.client.logger?.trace(`Champion mastery for ${puuid} on ${champ.name} not found in storage`);
       return undefined;
     }
   }
 
   /**
    * Process the data fetched from the API as per the options.
+   * @param puuid - The player ID (puuid) of the summoner.
    * @param data - The data fetched from the API.
    * @param champ - The champion this mastery is for.
    * @param opts - The options for processing.
    * @returns The processed data.
    */
-  private async processData(data: IChampionMastery, champ: Champion, opts: FetchOptions) {
+  private async processData(puuid: string, data: IChampionMastery, champ: Champion, opts: FetchOptions) {
     const { store, cache } = opts;
     const toStore = typeof store === 'function' ? store(data) : !!store;
     if (toStore) {
-      this.client.logger?.trace(`Storing champion mastery for ${this.summoner.name} on ${champ.name}`);
-      await this.client.storage.save(`champion-mastery-${this.summoner.playerId}`, champ.key.toString(), data);
+      this.client.logger?.trace(`Storing champion mastery for ${puuid} on ${champ.name}`);
+      await this.client.storage.save(`champion-mastery-${puuid}`, champ.key.toString(), data);
     }
 
     const mastery = new ChampionMastery(this.client, opts.region ?? this.client.region, champ, data);
     const toCache = typeof cache === 'function' ? cache(mastery) : !!cache;
     if (toCache) {
-      this.client.logger?.trace(`Caching champion mastery for ${this.summoner.name} on ${champ.name}`);
-      this.client.cache.set(`mastery-${this.summoner.playerId}-${champ.key}`, mastery);
+      this.client.logger?.trace(`Caching champion mastery for ${puuid} on ${champ.name}`);
+      this.client.cache.set(`mastery-${puuid}-${champ.key}`, mastery);
     }
 
     return mastery;
