@@ -23,7 +23,7 @@ export class ChampionMasteryManager {
   }
 
   /**
-   * Fetch a specific champion's mastery data for the summoner.
+   * Fetch a specific champion's mastery data for a summoner.
    * @param player - The player ID (puuid) of the summoner. Can also be a {@link Summoner} or {@link Account} instance.
    * @param id - The champion's ID or numerical key. Can also be a {@link Champion} instance.
    * @param options - The options for the fetch.
@@ -75,7 +75,8 @@ export class ChampionMasteryManager {
   }
 
   /**
-   * Fetch all champion masteries for the summoner.
+   * Fetch all champion masteries for a summoner. (Ignores the cache and storage)
+   *
    * @param player - The player ID (puuid) of the summoner. Can also be a {@link Summoner} or {@link Account} instance.
    * @param options - The basic fetching options.
    * @returns A collection of champion masteries.
@@ -116,6 +117,106 @@ export class ChampionMasteryManager {
     }
 
     return result;
+  }
+
+  /**
+   * Fetch the top champion masteries for the summoner.
+   * @param player - The player ID (puuid) of the summoner. Can also be a {@link Summoner} or {@link Account} instance.
+   * @param count - The number of masteries to fetch.
+   * @param options - The basic fetching options.
+   *
+   * @returns An array of champion masteries (sorted by mastery level and points)
+   */
+  async fetchTop(
+    player: string | Summoner | Account,
+    count: number = 3,
+    options?: FetchOptions
+  ): Promise<ChampionMastery[]> {
+    const opts = parseFetchOptions(this.client, 'championMastery', options);
+    const puuid = typeof player === 'string' ? player : player.playerId;
+    const region = typeof player === 'string' ? opts.region ?? this.client.region : player.region;
+
+    this.client.logger?.trace(`Fetching top champion masteries for ${puuid}`);
+    const url = `/lol/champion-mastery/v4/champion-masteries/by-puuid/${puuid}/top?count=${count}`;
+
+    try {
+      const cached = await this.checkAllInternal(puuid, opts);
+      if (cached && cached.length >= count) {
+        cached.sort((a, b) => {
+          if (a.level === b.level) return b.totalPoints - a.totalPoints;
+          else return b.level - a.level;
+        });
+        return cached.slice(0, count);
+      }
+
+      const data = await this.client.request<IChampionMastery[]>(url, {
+        regional: false,
+        method: 'championMasteryTop',
+        debug: `PUUID: ${puuid}`,
+        region
+      });
+
+      this.client.logger?.trace(`Fetched top champion masteries for ${puuid}, processing.`);
+      const result: ChampionMastery[] = [];
+      for (const mastery of data) {
+        const champ = await this.client.champions.fetchByKey(mastery.championId).catch(() => undefined);
+        if (!champ) {
+          this.client.logger?.warn(`Champion ${mastery.championId} was not found, skipping...`);
+          continue;
+        }
+        const processed = await this.processData(puuid, mastery, champ, opts);
+        result.push(processed);
+      }
+
+      return result;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
+  /**
+   * Check if a champion mastery exists for the player in the cache or storage.
+   * @param puuid - The player ID (puuid) of the summoner.
+   * @param opts - The options for checking.
+   * @returns An array of champion masteries if found, otherwise undefined.
+   */
+  private async checkAllInternal(puuid: string, opts: FetchOptions) {
+    const { ignoreCache, ignoreStorage } = opts;
+    const cached = await this.client.cache.filter<ChampionMastery>(
+      (cm) =>
+        cm instanceof ChampionMastery &&
+        cm.playerId === puuid &&
+        cm.totalPoints !== undefined &&
+        cm.chestGranted !== undefined
+    );
+    const toIgnoreCache =
+      cached.length > 0 && typeof ignoreCache === 'function' ? cached.some((c) => ignoreCache(c)) : !!ignoreCache;
+    if (cached.length > 0 && !toIgnoreCache) return cached;
+
+    try {
+      const stored = (await this.client.storage.loadAll(`champion-mastery-${puuid}`)) as IChampionMastery[];
+
+      const toIgnoreStorage =
+        stored.length > 0 && typeof ignoreStorage === 'function'
+          ? stored.some((s) => ignoreStorage(s))
+          : !!ignoreStorage;
+      if (stored.length > 0 && !toIgnoreStorage) {
+        const result = [];
+        for (const mastery of stored) {
+          const champ = await this.client.champions.fetchByKey(mastery.championId).catch(() => undefined);
+          if (!champ) {
+            this.client.logger?.warn(`Champion ${mastery.championId} was not found, skipping...`);
+            continue;
+          }
+          const processed = await this.processData(puuid, mastery, champ, opts);
+          result.push(processed);
+        }
+        return result;
+      } else throw new Error('Not found in storage');
+    } catch (error) {
+      this.client.logger?.trace(`Champion mastery for ${puuid} not found in storage`);
+      return undefined;
+    }
   }
 
   /**
