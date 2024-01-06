@@ -69,10 +69,10 @@ export class ChampionMasteryManager implements BaseManager<ChampionMastery> {
       if (cached) return cached;
 
       const data = await this.client.request<IChampionMastery>(url, {
-        regional: true,
+        regional: false,
         method: 'championMasteryByChampion',
         debug: `PUUID: ${this.summoner.playerId}, Champion: ${champ.key} (${champ.name})`,
-        region: opts.region
+        region: this.summoner.region
       });
 
       this.client.logger?.trace(`Fetched champion mastery for ${this.summoner.name} on ${champ.name}, processing.`);
