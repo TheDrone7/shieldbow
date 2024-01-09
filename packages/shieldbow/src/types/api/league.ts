@@ -17,11 +17,11 @@ export interface ILeagueItem {
   freshBlood: boolean;
   wins: number;
   summonerName: string;
-  miniSeries: IMiniSeries;
+  miniSeries?: IMiniSeries;
   inactive: boolean;
   veteran: boolean;
   hotStreak: boolean;
-  rank: string;
+  rank: DivisionType;
   leaguePoints: number;
   losses: number;
   summonerId: string;
@@ -32,9 +32,9 @@ export interface ILeagueItem {
  */
 export interface ILeagueList {
   leagueId: string;
-  tier: string;
+  tier: TierType;
   entries: ILeagueItem[];
-  queue: string;
+  queue: QueueType;
   name: string;
 }
 
@@ -55,5 +55,5 @@ export interface ILeagueEntry {
   veteran: boolean;
   freshBlood: boolean;
   inactive: boolean;
-  miniSeries: IMiniSeries;
+  miniSeries?: IMiniSeries;
 }
