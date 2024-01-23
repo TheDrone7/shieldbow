@@ -14,7 +14,8 @@ import {
   SummonerSpellManager,
   AccountManager,
   SummonerManager,
-  ChampionMasteryManager
+  ChampionMasteryManager,
+  LeagueManager
 } from 'managers';
 
 /**
@@ -55,6 +56,10 @@ export class Client extends WebClient {
    * The champion mastery manager - to fetch and manage all champion mastery data.
    */
   readonly championMasteries: ChampionMasteryManager;
+  /**
+   * The league manager - to fetch and manage all league data.
+   */
+  readonly leagues: LeagueManager;
 
   /**
    * Create a new shieldbow client.
@@ -96,6 +101,7 @@ export class Client extends WebClient {
     this.accounts = new AccountManager(this);
     this.summoners = new SummonerManager(this);
     this.championMasteries = new ChampionMasteryManager(this);
+    this.leagues = new LeagueManager(this);
   }
 
   /**
