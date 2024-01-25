@@ -108,6 +108,15 @@ export class LeagueEntry {
   }
 
   /**
+   * Fetch the league list (ranked ladder) this entry belongs to.
+   * @param options - The fetching options.
+   * @returns The league list this entry belongs to.
+   */
+  async fetchLeagueList(options?: FetchOptions) {
+    return this.#client.leagues.fetchByLeagueId(this.leagueId, { ...options, region: this.#region });
+  }
+
+  /**
    * The win rate of the player.
    */
   get winRate() {

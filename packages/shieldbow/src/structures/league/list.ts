@@ -6,6 +6,7 @@ import { LeagueItem } from '.';
 export class LeagueList {
   #client: Client;
   #region: Region;
+  #items: LeagueItem[];
   /**
    * The ID of the league.
    */
@@ -26,10 +27,6 @@ export class LeagueList {
    * All {@link LeagueList.items | items} belong to this queue.
    */
   readonly queue: string;
-  /**
-   * The items of the league.
-   */
-  readonly items: LeagueItem[];
 
   /**
    * Create a new league list instance.
@@ -44,16 +41,23 @@ export class LeagueList {
     this.tier = data.tier;
     this.name = data.name;
     this.queue = data.queue;
-    this.items = data.entries.map((li) => new LeagueItem(client, data.tier, region, li));
+    this.#items = data.entries.map((li) => new LeagueItem(client, data.tier, region, li));
   }
 
-  get internals() {
-    return { c: this.#client, r: this.#region };
+  /**
+   * The items of the league.
+   */
+  get items() {
+    return this.#items;
   }
 
+  /**
+   * Fetch the league list again (update in place and return too).
+   * @returns The updated league list.
+   */
   async refetchList() {
-    /**
-     * TODO: IMPLEMENT THIS
-     */
+    const data = await this.#client.leagues.fetchByLeagueId(this.leagueId, { region: this.#region });
+    this.#items = data.items;
+    return this;
   }
 }

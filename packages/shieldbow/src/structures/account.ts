@@ -1,6 +1,6 @@
-import { Region } from '@shieldbow/web';
+import { Champion, Region } from '@shieldbow/web';
 import { Client } from 'client';
-import { IAccount } from 'types';
+import { FetchOptions, IAccount } from 'types';
 
 /**
  * A class representing a player's RIOT account.
@@ -60,7 +60,35 @@ export class Account {
    *
    * @param fetchOptions - The fetch options.
    */
-  public async fetchSummoner(fetchOptions?: any) {
+  public async fetchSummoner(fetchOptions?: FetchOptions) {
     return await this.#client.summoners.fetch(this.playerId, { ...fetchOptions, region: this.region });
+  }
+
+  /**
+   * Fetch the champion mastery for a specific champion for the summoner.
+   * @param champion - The champion whose mastery to fetch.
+   * @param options - The fetch options.
+   * @returns The champion mastery for the specified champion.
+   */
+  async fetchChampionMastery(champion: string | number | Champion, options?: FetchOptions) {
+    return this.#client.championMasteries.fetch(this, champion, { ...options, region: this.region });
+  }
+
+  /**
+   * Fetch all champion masteries for the summoner.
+   * @param options - The fetch options.
+   * @returns The champion masteries for the summoner.
+   */
+  async fetchAllChampionMasteries(options?: FetchOptions) {
+    return this.#client.championMasteries.fetchAll(this, { ...options, region: this.region });
+  }
+
+  /**
+   * Fetch the total champion mastery score for the summoner.
+   * @param options - The fetch options.
+   * @returns The total champion mastery score for the summoner.
+   */
+  async fetchChampionMasteryScore(options?: FetchOptions) {
+    return this.#client.championMasteries.fetchScore(this, { ...options, region: this.region });
   }
 }
