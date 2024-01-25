@@ -124,7 +124,7 @@ export class LeagueManager implements BaseManager<Collection<QueueType, LeagueEn
   }
 
   private async fetchByQueueApex(queue: QueueType, tier: TierType, options: FetchOptions) {
-    const url = `/lol/league/v4/${queue.toLowerCase()}leagues/by-queue/${queue}`;
+    const url = `/lol/league/v4/${tier.toLowerCase()}leagues/by-queue/${queue}`;
 
     try {
       const data = await this.client.request<ILeagueList>(url, {
@@ -182,9 +182,11 @@ export class LeagueManager implements BaseManager<Collection<QueueType, LeagueEn
 
   private async checkInternalEntries(id: string, region: Region, options: FetchOptions) {
     try {
-      const stored = await this.client.storage.load<ILeagueEntry[]>('league', id);
+      const stored = await this.client.storage.load<(ILeagueEntry & { region: Region })[]>('league', id);
       const toIgnoreStorage =
-        stored && typeof options.ignoreStorage === 'function' ? options.ignoreStorage(stored) : !!options.ignoreStorage;
+        stored && stored[0]?.region === region && typeof options.ignoreStorage === 'function'
+          ? options.ignoreStorage(stored)
+          : !!options.ignoreStorage;
       if (!toIgnoreStorage) return this.processData(stored!, region, options);
 
       const cached = this.client.cache.get<Collection<QueueType, LeagueEntry>>(`league:${id}`);
@@ -206,7 +208,12 @@ export class LeagueManager implements BaseManager<Collection<QueueType, LeagueEn
 
     const summonerId = data[0].summonerId;
     const toStore = typeof options.store === 'function' ? options.store(leagues) : !!options.store;
-    if (toStore) await this.client.storage.save('league', summonerId, { ...data, region });
+    if (toStore)
+      await this.client.storage.save(
+        'league',
+        summonerId,
+        data.map((d) => ({ ...d, region }))
+      );
 
     const toCache = typeof options.cache === 'function' ? options.cache(leagues) : !!options.cache;
     if (toCache) this.client.cache.set(`league:${summonerId}`, leagues);
