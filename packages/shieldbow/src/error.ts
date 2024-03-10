@@ -1,3 +1,7 @@
+/**
+ * Enum for error messages, by status code.
+ * Also suggests what the issue might be.
+ */
 export enum ShieldbowErrorMessage {
   'Bad request, you probably provided invalid parameters, or the request is broken.' = 400,
   'Unauthorized, please make sure a valid API key is provided.' = 401,
@@ -13,6 +17,9 @@ export enum ShieldbowErrorMessage {
   'Gateway timeout, the server timed out (riot oof).' = 504
 }
 
+/**
+ * Error class for Shieldbow errors.
+ */
 export class ShieldbowError extends Error {
   constructor(debug: string, statusCode: number) {
     const message = `Shieldbow error while: ${debug}\n\nStatus Code: ${statusCode}\n\nDetails: ${
