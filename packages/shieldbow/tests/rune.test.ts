@@ -96,8 +96,4 @@ describe('DRAGON: rune tree', () => {
     expect(arcaneComet).toBeDefined();
     expect(arcaneComet?.name).toBe('Arcane Comet');
   });
-
-  afterAll(async () => {
-    await client.storage.clearAll();
-  });
 });

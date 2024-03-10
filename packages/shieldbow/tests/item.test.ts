@@ -88,8 +88,4 @@ describe('DRAGON: item', () => {
     expect(multiple.size).toBeGreaterThan(0);
     expect(multiple.size).toBe(keys.length);
   });
-
-  afterAll(async () => {
-    await client.storage.clearAll();
-  });
 });

@@ -11,6 +11,7 @@ export default {
       }
     ]
   },
+  globalTeardown: './tests/teardown.js',
   setupFiles: ['./tests/jest.setup.ts'],
   testSequencer: './tests/sequencer.js',
   clearMocks: true,

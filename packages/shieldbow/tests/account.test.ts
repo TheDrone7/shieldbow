@@ -104,8 +104,4 @@ describe('API: account-v1', () => {
       await client.accounts.fetch('invalid', globalThis.fetchOpts);
     }).rejects.toBeTruthy();
   });
-
-  afterAll(async () => {
-    await client.storage.clearAll();
-  });
 });

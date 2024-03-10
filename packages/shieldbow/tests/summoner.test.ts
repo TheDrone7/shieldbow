@@ -101,8 +101,4 @@ describe('API: summoner-v4', () => {
     expect(summoner2.level).toBeGreaterThan(400);
     expect(summoner2.id).toBeDefined();
   });
-
-  afterAll(async () => {
-    await client.storage.clearAll();
-  });
 });

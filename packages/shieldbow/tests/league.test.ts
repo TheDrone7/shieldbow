@@ -141,8 +141,4 @@ describe('API: league-v4', () => {
     expect(leagueItem.rank).toContain('SILVER');
     expect(leagueItem.labels).toBeInstanceOf(Array);
   });
-
-  afterAll(async () => {
-    await client.storage.clearAll();
-  });
 });

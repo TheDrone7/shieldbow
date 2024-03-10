@@ -132,8 +132,4 @@ describe('DRAGON: champion', () => {
     expect(rotation.get('all')).toHaveLength(20);
     expect(rotation.get('new')).toHaveLength(20);
   });
-
-  afterAll(async () => {
-    await client.storage.clearAll();
-  });
 });

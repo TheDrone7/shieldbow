@@ -1,5 +1,5 @@
 import { Champion } from '@shieldbow/web';
-import { Account, ChampionMastery, Client } from '../dist';
+import { Account, ChampionMastery, Client, Summoner } from '../dist';
 import { config } from 'dotenv';
 import { Collection } from '@discordjs/collection';
 
@@ -41,7 +41,7 @@ describe('API: champion-mastery-v4', () => {
   };
 
   it('should be able to fetch champion mastery by champion (API)', async () => {
-    const mastery = await client.championMasteries.fetch(account.playerId, 'Kayn', {
+    const mastery = await account.fetchChampionMastery('Kayn', {
       ...globalThis.fetchOpts,
       ignoreCache: true,
       ignoreStorage: true
@@ -51,7 +51,7 @@ describe('API: champion-mastery-v4', () => {
   });
 
   it('should be able to fetch champion mastery by champion ID (cache)', async () => {
-    const mastery = await client.championMasteries.fetch(account.playerId, 141, {
+    const mastery = await account.fetchChampionMastery(141, {
       ...globalThis.fetchOpts,
       ignoreStorage: false,
       ignoreCache: true
@@ -60,7 +60,7 @@ describe('API: champion-mastery-v4', () => {
   });
 
   it('should be able to fetch champion mastery by champion ID (storage)', async () => {
-    const mastery = await client.championMasteries.fetch(account.playerId, 141, {
+    const mastery = await account.fetchChampionMastery(141, {
       ...globalThis.fetchOpts,
       ignoreStorage: false,
       ignoreCache: true
@@ -69,14 +69,14 @@ describe('API: champion-mastery-v4', () => {
   });
 
   it('should be able to fetch champion mastery score (API only)', async () => {
-    const score = await client.championMasteries.fetchScore(account);
+    const score = await account.fetchChampionMasteryScore();
     expect(score).toBeDefined();
     expect(score).toBeGreaterThan(400);
   });
 
   it('should be unable to fetch invalid champion mastery', async () => {
     await expect(async () => {
-      await client.championMasteries.fetch(account, 'invalid', globalThis.fetchOpts);
+      await account.fetchChampionMastery('invalid', globalThis.fetchOpts);
     }).rejects.toBeTruthy();
   });
 
@@ -93,7 +93,7 @@ describe('API: champion-mastery-v4', () => {
   });
 
   it('should be able to fetch all champion masteries', async () => {
-    const masteries = await client.championMasteries.fetchAll(account, globalThis.fetchOpts);
+    const masteries = await account.fetchAllChampionMasteries(globalThis.fetchOpts);
     expect(masteries).toBeDefined();
     expect(masteries).toBeInstanceOf(Collection);
     expect(masteries.size).toBeGreaterThan(100);
@@ -153,7 +153,25 @@ describe('API: champion-mastery-v4', () => {
     validate(mastery);
   });
 
-  afterAll(async () => {
-    await client.storage.clearAll();
+  it('should be able to fetch the account and summoner (mastery helpers)', async () => {
+    const mastery = await client.championMasteries.fetchHighest(account, 1, globalThis.fetchOpts);
+    const mAccount = await mastery.fetchAccount();
+    const mSummoner = await mastery.fetchSummoner();
+
+    expect(mAccount).toBeDefined();
+    expect(mAccount).toBeInstanceOf(Account);
+    expect(mAccount.id).toBe(account.id);
+    expect(mAccount.tag).toBe(account.tag);
+
+    expect(mSummoner).toBeDefined();
+    expect(mSummoner).toBeInstanceOf(Summoner);
+    expect(mSummoner.playerId).toBe(account.playerId);
+    return expect(
+      (async () => {
+        await mSummoner.fetchChampionMastery('Kayn', globalThis.fetchOpts);
+        await mSummoner.fetchAllChampionMasteries(globalThis.fetchOpts);
+        return await mSummoner.fetchChampionMasteryScore();
+      })()
+    ).resolves.toBeTruthy();
   });
 });

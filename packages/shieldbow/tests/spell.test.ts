@@ -80,8 +80,4 @@ describe('DRAGON: summoner spell', () => {
     expect(all).toBeDefined();
     expect(all.size).toBeGreaterThan(10);
   });
-
-  afterAll(async () => {
-    await client.storage.clearAll();
-  });
 });
