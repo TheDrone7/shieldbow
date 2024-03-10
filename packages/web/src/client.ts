@@ -227,11 +227,23 @@ export class Client {
    * @param config - The configuration for the client.
    */
   public async initialize(config?: ClientConfig) {
+    // Set up the logger.
+    if (typeof config?.logger === 'object')
+      if (config.logger.customLogger) this._logger = config.logger.customLogger;
+      else
+        this._logger = new ShieldbowLogger(
+          config.logger.enabled === false ? 'CRITICAL' : config.logger.level ?? 'WARN'
+        );
+    else if (config?.logger === false) this._logger = new ShieldbowLogger('CRITICAL');
+    else this._logger = new ShieldbowLogger('WARN');
+
+    this._logger?.trace('Initializing client... reading and setting cdn bases');
     // Read and set the CDN bases.
-    this._dDragonBase = config?.cdn?.cDragon ?? this._dDragonBase;
-    this._cDragonBase = config?.cdn?.dDragon ?? this._cDragonBase;
+    this._dDragonBase = config?.cdn?.dDragon ?? this._dDragonBase;
+    this._cDragonBase = config?.cdn?.cDragon ?? this._cDragonBase;
     this._merakiBase = config?.cdn?.meraki ?? this._merakiBase;
 
+    this._logger?.trace('Initializing client... setting fetch method');
     // Set up the fetch method.
     if (config?.fetchMethod) this._fetcher = config.fetchMethod;
     else {
@@ -246,16 +258,19 @@ export class Client {
       };
     }
 
+    this._logger?.trace('Initializing client... setting region and locale');
     // Set the region
     // Default to NA and en_US
     this._region = config?.region ?? this._region;
     this._locale = config?.locale ?? this._locale;
 
+    this._logger?.trace('Initializing client... fetching versions');
     // Fetch the default versions and locales.
     const versions = await this._fetcher<{ v: string; l: Locale }>(constants.versionsUrl + this._region + '.json');
     this._version = versions.v;
     this._locale = versions.l;
 
+    this._logger?.trace('Initializing client... fetching all versions');
     // Update version by configuration (if provided).
     const allVersions = await this._fetcher<string[]>(constants.allVersionsUrl);
     if (typeof config?.version === 'string') {
@@ -263,6 +278,7 @@ export class Client {
       if (latestMatch) this._version = latestMatch;
     }
 
+    this._logger?.trace('Initializing client... fetching aatrox');
     // Check if appropriate versions exist.
     // Community dragon can sometimes have a delay in getting the patch live.
     const aatroxUrls = [
@@ -270,19 +286,28 @@ export class Client {
       this.generateUrl('game/data/characters/aatrox/aatrox.bin.json', 'cDragon')
     ];
 
+    this.logger?.debug('Fetching Aatrox to check if CDragon is ready.');
+    this.logger?.trace('Fetching Aatrox from DDragon: ' + aatroxUrls[0]);
+    this.logger?.trace('Fetching Aatrox from CDragon: ' + aatroxUrls[1]);
     let aatrox = await Promise.all(aatroxUrls.map((u) => this._fetcher(u).catch(() => undefined)));
     while (aatrox.some((a) => a === undefined)) {
       // CDragon is not yet ready, roll back to previous patch.
+      this.logger?.debug('CDragon is not ready, rolling back to previous patch.');
       const previousPatch = allVersions.at(allVersions.indexOf(this._version) + 1);
+      this.logger?.debug('Previous patch: ' + previousPatch);
       if (previousPatch) this._version = previousPatch;
       else throw new Error('IMPOSSIBLE: Could not find a version that is supported by the CDragon.');
 
       // Regenerate URLs and refetch Aatrox.
+      this.logger?.debug('Re-fetching Aatrox to check if CDragon is ready.');
+      this.logger?.trace('Fetching Aatrox from DDragon: ' + aatroxUrls[0]);
+      this.logger?.trace('Fetching Aatrox from CDragon: ' + aatroxUrls[1]);
       aatroxUrls[0] = this.generateUrl('champion/Aatrox.json');
       aatroxUrls[1] = this.generateUrl('game/data/characters/aatrox/aatrox.bin.json', 'cDragon');
       aatrox = await Promise.all(aatroxUrls.map((u) => this._fetcher(u).catch(() => undefined)));
     }
 
+    this._logger?.trace('Initializing client... setting default fetch options');
     // Parse fetching options
     this._defaultFetchOptions = {
       cache: config?.defaultFetchOptions?.cache ?? true,
@@ -290,23 +315,16 @@ export class Client {
       noVersion: config?.defaultFetchOptions?.noVersion ?? false
     };
 
+    this._logger?.trace('Initializing client... setting cache');
     // Parse cache options
     if (typeof config?.cache === 'object') this._cache = config.cache;
     else this._cache = new MemoryCache({ maxSize: config?.cache ? -1 : 0 });
 
-    // Set up the logger.
-    if (typeof config?.logger === 'object')
-      if (config.logger.customLogger) this._logger = config.logger.customLogger;
-      else
-        this._logger = new ShieldbowLogger(
-          config.logger.enabled === false ? 'CRITICAL' : config.logger.level ?? 'WARN'
-        );
-    else if (config?.logger === false) this._logger = new ShieldbowLogger('CRITICAL');
-    else this._logger = new ShieldbowLogger('WARN');
-
+    this._logger?.trace('Initializing client... setting up meraki');
     // Set up the meraki patch
     await this._updateMerakiDetails(this.patch);
 
+    this._logger?.trace('Initializing client... fetching static data');
     // Prefetch static data such as maps, queues, etc.
     this._seasons = await this._fetcher<Season[]>(constants.seasonsUrl);
     this._maps = await this._fetcher<GameMap[]>(constants.mapsUrl);
@@ -314,8 +332,10 @@ export class Client {
     this._gameTypes = await this._fetcher<GameType[]>(constants.gameTypesUrl);
     this._queues = await this._fetcher<Queue[]>(constants.queuesUrl);
 
+    this._logger?.trace('Initializing client... initializing managers');
     this.runes.initialize();
 
+    this._logger?.trace('Initializing client... pre-fetching data');
     // If selected, prefetch other data as well.
     if (typeof config?.prefetch === 'object' && config.prefetch.champions) {
       const champions = await this.champions.fetchAll();

@@ -32,7 +32,9 @@ export function parseClientConfig(config: ClientConfig): ClientConfig {
 
   // Parse the web options
   if (config.locale === undefined) parsed.locale = 'en_US';
+  else parsed.locale = config.locale;
   if (config.region === undefined) parsed.region = 'na';
+  else parsed.region = config.region;
 
   parsed.web = parseWebConfig(config.web);
 

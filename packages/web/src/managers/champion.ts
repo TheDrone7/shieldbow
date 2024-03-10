@@ -12,8 +12,8 @@ export class ChampionManager implements BaseManager<Champion> {
    * The client that this champion manager belongs to.
    */
   readonly client: Client;
-  private _cacheVersion: string;
-  private _cache: Collection<string, IMerakiChampion> = new Collection();
+  protected _cacheVersion: string;
+  protected _cache: Collection<string, IMerakiChampion> = new Collection();
 
   /**
    * Create a new Champions Manager
@@ -190,7 +190,7 @@ export class ChampionManager implements BaseManager<Champion> {
     }
   }
 
-  private async fetchChampionOthers(id: string, options: FetchOptions) {
+  protected async fetchChampionOthers(id: string, options: FetchOptions) {
     let meraki: IMerakiChampion = undefined!;
     this.client.logger?.trace(`Fetching champion '${id}' from other sources`);
     const cDragon = await this.client.fetch(

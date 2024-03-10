@@ -6,7 +6,17 @@ import { ICache, ShieldbowMemoryCache } from '@shieldbow/cache';
 import axios, { AxiosInstance } from 'axios';
 import axiosRetry from 'axios-retry';
 import { ShieldbowError } from './error';
-import { IStorage } from '@shieldbow/storage';
+import { IStorage, ShieldbowLocalStorage } from '@shieldbow/storage';
+import {
+  ChampionManager,
+  ItemManager,
+  RuneTreeManager,
+  SummonerSpellManager,
+  AccountManager,
+  SummonerManager,
+  ChampionMasteryManager,
+  LeagueManager
+} from 'managers';
 
 /**
  * The shieldbow client class.
@@ -17,6 +27,39 @@ export class Client extends WebClient {
   #rateLimiter: RateLimiter;
   #http: AxiosInstance;
   #storage: IStorage;
+
+  /**
+   * The champion manager - to fetch and manage all champion data.
+   */
+  readonly champions: ChampionManager;
+  /**
+   * The item manager - to fetch and manage all item data.
+   */
+  readonly items: ItemManager;
+  /**
+   * The rune tree manager - to fetch and manage all rune tree data.
+   */
+  readonly runes: RuneTreeManager;
+  /**
+   * The summoner spell manager - to fetch and manage all summoner spell data.
+   */
+  readonly summonerSpells: SummonerSpellManager;
+  /**
+   * The account manager - to fetch and manage all account data.
+   */
+  readonly accounts: AccountManager;
+  /**
+   * The summoner manager - to fetch and manage all summoner data.
+   */
+  readonly summoners: SummonerManager;
+  /**
+   * The champion mastery manager - to fetch and manage all champion mastery data.
+   */
+  readonly championMasteries: ChampionMasteryManager;
+  /**
+   * The league manager - to fetch and manage all league data.
+   */
+  readonly leagues: LeagueManager;
 
   /**
    * Create a new shieldbow client.
@@ -50,6 +93,15 @@ export class Client extends WebClient {
     });
 
     this.#storage = undefined!;
+
+    this.champions = new ChampionManager(this);
+    this.items = new ItemManager(this);
+    this.runes = new RuneTreeManager(this);
+    this.summonerSpells = new SummonerSpellManager(this);
+    this.accounts = new AccountManager(this);
+    this.summoners = new SummonerManager(this);
+    this.championMasteries = new ChampionMasteryManager(this);
+    this.leagues = new LeagueManager(this);
   }
 
   /**
@@ -75,23 +127,28 @@ export class Client extends WebClient {
     const parsedConfig = parseClientConfig(config);
     const webConfig = genWebConfig(parsedConfig);
     await super.initialize(webConfig);
+    this.#defaultFetchConfig.region = this.region;
 
+    this.logger.trace('Web client initialized, setting up rate limiter.');
     this.#rateLimiter = new RateLimiter({
       cache: parsedConfig.cache === undefined ? new ShieldbowMemoryCache() : (parsedConfig.cache as ICache)
     });
 
+    this.logger.trace('Setting up HTTP client.');
     axiosRetry(this.#http, {
       retries: config.ratelimit?.retry?.times ?? 0,
       retryCondition: (error) => (error.response?.status ?? 501) % 500 < 100,
       retryDelay: () => config.ratelimit?.retry?.delay ?? 3000
     });
 
+    this.logger.trace('Setting up storage.');
     if (parsedConfig.storage?.custom !== undefined) this.#storage = parsedConfig.storage.custom;
     else {
-      const { ShieldbowLocalStorage } = await import('@shieldbow/storage');
+      this.logger.trace('Loading storage from package.');
       this.#storage = new ShieldbowLocalStorage(parsedConfig.storage?.config);
     }
 
+    this.logger.trace('Setting fetch method.');
     this._fetcher = async <T>(url: string, debugMessage?: string, method: string = '') => {
       const response = await this.#http.get(url);
       const { status, data, headers } = response;
@@ -107,6 +164,8 @@ export class Client extends WebClient {
 
       return data as T;
     };
+
+    this.logger.trace('Shieldbow client initialized.');
   }
 
   /**
