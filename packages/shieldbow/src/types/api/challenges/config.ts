@@ -1,3 +1,4 @@
+import { Locale } from '@shieldbow/web';
 import { ChallengeState, ChallengeTracking } from './literal';
 
 /**
@@ -14,11 +15,11 @@ export interface ILocalizedChallengeConfig {
  */
 export interface IChallengeConfig {
   id: number;
-  localizedNames: Record<string, ILocalizedChallengeConfig>;
+  localizedNames: Record<Locale, ILocalizedChallengeConfig>;
   state: ChallengeState;
-  tracking: ChallengeTracking;
-  startTimestamp: number;
-  endTimestamp: number;
+  tracking?: ChallengeTracking;
+  startTimestamp?: number;
+  endTimestamp?: number;
   leaderboard: boolean;
   thresholds: Record<string, number>;
 }
