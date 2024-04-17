@@ -1,3 +1,5 @@
+import { TierType } from 'types';
+
 /**
  * The state of a challenge.
  *
@@ -15,3 +17,18 @@ export type ChallengeState = 'DISABLED' | 'HIDDEN' | 'ENABLED' | 'ARCHIVED';
  * - `SEASON`: The challenge is tracked over the current season and resets at the end of the season.
  */
 export type ChallengeTracking = 'LIFETIME' | 'SEASON';
+
+/**
+ * The tier of a challenge.
+ *
+ * The `EMERALD` tier is not used in challenges.
+ */
+export type ChallengeTier = Exclude<TierType, 'EMERALD'> | 'NONE';
+
+/**
+ * The percentile of a challenge.
+ * Describes the percentile of players that have achieved a certain tier in a challenge.
+ *
+ * Varies from 0 to 1.
+ */
+export type ChallengePercentile = Record<ChallengeTier, number>;
