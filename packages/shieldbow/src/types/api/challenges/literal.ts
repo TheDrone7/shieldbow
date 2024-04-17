@@ -32,3 +32,10 @@ export type ChallengeTier = Exclude<TierType, 'EMERALD'> | 'NONE';
  * Varies from 0 to 1.
  */
 export type ChallengePercentile = Record<ChallengeTier, number>;
+
+/**
+ * The categories of a challenge.
+ *
+ * These are also challenges themselves.
+ */
+export type ChallengeCategory = 'IMAGINATION' | 'TEAMWORK' | 'EXPERTISE' | 'COLLECTION' | 'VETERANCY';
