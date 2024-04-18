@@ -31,7 +31,7 @@ export interface IPlayerClientPreferences {
   title: string;
   challengeIds: number[];
   crestBorder: string;
-  prestigeCrestBorder: number;
+  prestigeCrestBorderLevel: number;
 }
 
 /**
