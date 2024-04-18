@@ -6,7 +6,7 @@ import { ILeagueEntry, QueueType, FetchOptions, TierType, DivisionType, ILeagueL
 import { parseFetchOptions } from 'utilities';
 
 /**
- * The manager for the League API.
+ * The league manager - handles all league-related API calls.
  */
 export class LeagueManager implements BaseManager<Collection<QueueType, LeagueEntry>> {
   /**

@@ -4,6 +4,9 @@ import { Account } from 'structures';
 import { Client } from 'client';
 import { parseFetchOptions } from 'utilities';
 
+/**
+ * The accounts manager - handles all RIOT account related API calls.
+ */
 export class AccountManager implements BaseManager<Account> {
   /**
    * The client that instantiated this manager.

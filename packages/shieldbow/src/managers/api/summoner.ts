@@ -4,6 +4,9 @@ import { Summoner } from 'structures';
 import { Client } from 'client';
 import { parseFetchOptions } from 'utilities';
 
+/**
+ * The summoner manager - handles all summoner-related API calls.
+ */
 export class SummonerManager implements BaseManager<Summoner> {
   /**
    * The client that instantiated this manager.
@@ -87,7 +90,7 @@ export class SummonerManager implements BaseManager<Summoner> {
     const region = opts.region ?? this.client.region;
 
     const cached = this.client.cache.find<Summoner>(
-      (a) => a.id === sId && a.id !== a.playerId && a.name !== undefined && a.level !== undefined
+      (a) => a.id === sId && a.id !== a.playerId && a.level !== undefined
     );
     const toIgnoreCache = cached && typeof ignoreCache === 'function' ? ignoreCache(cached) : !!ignoreCache;
     if (!toIgnoreCache && cached) {
