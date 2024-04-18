@@ -182,19 +182,18 @@ export class LeagueManager implements BaseManager<Collection<QueueType, LeagueEn
 
   private async checkInternalEntries(id: string, region: Region, options: FetchOptions) {
     try {
-      const stored = await this.client.storage.load<(ILeagueEntry & { region: Region })[]>('league', id);
-      const toIgnoreStorage =
-        stored && stored[0]?.region === region && typeof options.ignoreStorage === 'function'
-          ? options.ignoreStorage(stored)
-          : !!options.ignoreStorage;
-      if (!toIgnoreStorage) return this.processData(stored!, region, options);
-
       const cached = this.client.cache.get<Collection<QueueType, LeagueEntry>>(`league:${id}`);
       const toIgnoreCache =
         cached && typeof options.ignoreCache === 'function' ? options.ignoreCache(cached) : !!options.ignoreCache;
 
       if (!toIgnoreCache) return cached;
 
+      const stored = await this.client.storage.load<(ILeagueEntry & { region: Region })[]>('league', id);
+      const toIgnoreStorage =
+        stored && stored[0]?.region === region && typeof options.ignoreStorage === 'function'
+          ? options.ignoreStorage(stored)
+          : !!options.ignoreStorage;
+      if (!toIgnoreStorage) return this.processData(stored!, region, options);
       return undefined;
     } catch (err) {
       this.client.logger?.trace(`League entries with Summoner ID: ${id} not found in storage`);
