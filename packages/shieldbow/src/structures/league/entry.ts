@@ -15,10 +15,6 @@ export class LeagueEntry {
    */
   readonly summonerId: string;
   /**
-   * The name of the summoner whose details these are.
-   */
-  readonly summonerName: string;
-  /**
    * The queue in which this ranked data was achieved by the summoner.
    *
    * RANKED_SOLO_5x5 - SoloQ / Ranked solo/duo
@@ -84,7 +80,6 @@ export class LeagueEntry {
     this.#region = region;
     this.leagueId = data.leagueId;
     this.summonerId = data.summonerId;
-    this.summonerName = data.summonerName;
     this.queue = data.queueType;
     this.tier = data.tier;
     this.division = data.rank;

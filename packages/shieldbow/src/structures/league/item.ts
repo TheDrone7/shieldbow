@@ -7,10 +7,6 @@ export class LeagueItem {
   #client: Client;
   #region: Region;
   /**
-   * The name of the summoner whose stats these are.
-   */
-  readonly summonerName: string;
-  /**
    * The ID of the summoner whose stats these are.
    */
   readonly summonerId: string;
@@ -71,7 +67,6 @@ export class LeagueItem {
     this.#client = client;
     this.#region = region;
     this.tier = tier;
-    this.summonerName = data.summonerName;
     this.summonerId = data.summonerId;
     this.freshBlood = data.freshBlood;
     this.wins = data.wins;

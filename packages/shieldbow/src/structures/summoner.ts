@@ -14,10 +14,6 @@ export class Summoner {
    */
   readonly revisionTimestamp: number;
   /**
-   * The in-game name of the summoner (deprecated).
-   */
-  readonly name: string;
-  /**
    * The summoner's encrypted summoner ID.
    */
   readonly id: string;
@@ -44,7 +40,6 @@ export class Summoner {
     this.#client = client;
     this.profileIconId = data.profileIconId;
     this.revisionTimestamp = data.revisionDate;
-    this.name = data.name;
     this.id = data.id;
     this.playerId = data.puuid;
     this.level = data.summonerLevel;
