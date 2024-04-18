@@ -215,7 +215,7 @@ export class LeagueManager implements BaseManager<Collection<QueueType, LeagueEn
       );
 
     const toCache = typeof options.cache === 'function' ? options.cache(leagues) : !!options.cache;
-    if (toCache) this.client.cache.set(`league:${summonerId}`, leagues);
+    if (toCache) await this.client.cache.set(`league:${summonerId}`, leagues);
 
     return leagues;
   }
