@@ -36,6 +36,7 @@ export class PlayerChallengeProgress {
   value: number;
   /**
    * The timestamp that the player achieved the current tier of the challenge.
+   * If the player has not achieved any tier in the challenge (NONE), this will be 0.
    */
   achievedTime: number;
 
@@ -50,7 +51,7 @@ export class PlayerChallengeProgress {
     this.playersInTier = data.playersInLevel;
     this.tier = data.level;
     this.value = data.value;
-    this.achievedTime = data.achievedTime;
+    this.achievedTime = data.achievedTime ?? 0;
   }
 
   /**

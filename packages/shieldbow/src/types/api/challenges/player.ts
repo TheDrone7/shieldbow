@@ -20,7 +20,7 @@ export interface IPlayerChallengeProgression {
   playersInLevel?: number;
   level: ChallengeTier;
   value: number;
-  achievedTime: number;
+  achievedTime?: number;
 }
 
 /**
