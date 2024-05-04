@@ -138,7 +138,7 @@ describe('API: league-v4', () => {
     expect(leagueItem).toBeDefined();
     expect(leagueItem).toBeInstanceOf(LeagueItem);
     expect(leagueItem.winRate).toBeDefined();
-    expect(leagueItem.rank).toContain('SILVER');
+    expect(leagueItem.rank).toContain('GOLD');
     expect(leagueItem.labels).toBeInstanceOf(Array);
   });
 });

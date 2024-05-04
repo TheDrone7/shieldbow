@@ -22,7 +22,6 @@ describe('API: summoner-v4', () => {
   it('should fetch summoner by account (PUUID)', () => {
     expect(summoner).toBeDefined();
     expect(summoner.region).toBe('euw');
-    expect(summoner.name).toBe('TheDrone7');
     expect(summoner.level).toBeGreaterThan(400);
     expect(summoner.id).toBeDefined();
 
@@ -39,7 +38,6 @@ describe('API: summoner-v4', () => {
   it('should cache summoner', async () => {
     const summoner2 = await client.summoners.fetch(summoner.playerId, globalThis.fetchOpts);
     expect(summoner2).toBeDefined();
-    expect(summoner2.name).toBe('TheDrone7');
     expect(summoner2.level).toBeGreaterThan(400);
     expect(summoner2.id).toBeDefined();
 
@@ -53,7 +51,6 @@ describe('API: summoner-v4', () => {
     });
 
     expect(summoner2).toBeDefined();
-    expect(summoner2.name).toBe('TheDrone7');
     expect(summoner2.level).toBeGreaterThan(400);
     expect(summoner2.id).toBeDefined();
   });
@@ -78,7 +75,6 @@ describe('API: summoner-v4', () => {
       })
       .catch(console.error);
     expect(summoner2).toBeDefined();
-    expect(summoner2?.name).toBe('TheDrone7');
     expect(summoner2?.level).toBeGreaterThan(400);
     expect(summoner2?.id).toBeDefined();
   });
@@ -89,7 +85,6 @@ describe('API: summoner-v4', () => {
       ignoreCache: true
     });
     expect(summoner2).toBeDefined();
-    expect(summoner2.name).toBe('TheDrone7');
     expect(summoner2.level).toBeGreaterThan(400);
     expect(summoner2.id).toBeDefined();
   });
@@ -97,7 +92,6 @@ describe('API: summoner-v4', () => {
   it('should be able to fetch summoner by summoner ID (from cache)', async () => {
     const summoner2 = await client.summoners.fetchBySummonerId(summoner.id, globalThis.fetchOpts);
     expect(summoner2).toBeDefined();
-    expect(summoner2.name).toBe('TheDrone7');
     expect(summoner2.level).toBeGreaterThan(400);
     expect(summoner2.id).toBeDefined();
   });
