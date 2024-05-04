@@ -1,6 +1,14 @@
 import { BaseManager } from '@shieldbow/web';
-import { FetchOptions, IChallengeConfig, ChallengePercentile, IPlayerChallenge } from 'types';
-import { LolChallenge, PlayerChallenges } from 'structures';
+import {
+  FetchOptions,
+  IChallengeConfig,
+  ChallengePercentile,
+  IPlayerChallenge,
+  ChallengeApexLevel,
+  ChallengeLeaderboardOptions,
+  IChallengeLeaderboardEntry
+} from 'types';
+import { ChallengeLeaderboardEntry, LolChallenge, PlayerChallenges } from 'structures';
 import { Client } from 'client';
 import { parseFetchOptions } from 'utilities';
 
@@ -192,6 +200,45 @@ export class ChallengeManager implements BaseManager<LolChallenge> {
     }
   }
 
+  /**
+   * Fetch the leaderboard for a challenge.
+   * @param id - The ID of the challenge.
+   * @param tier - The tier of the leaderboard to fetch.
+   * @param options - The options for fetching.
+   *
+   * @returns The fetched and processed challenge leaderboard.
+   */
+  async fetchLeaderboard(
+    id: number,
+    tier: ChallengeApexLevel = 'CHALLENGER',
+    options?: FetchOptions & ChallengeLeaderboardOptions
+  ) {
+    const opts = parseFetchOptions(this.client, 'challenges', options);
+
+    const limit = options?.limit ?? 0;
+
+    this.client.logger?.trace(`Fetching challenge leaderboard with challenge ID: ${id}`);
+    const url = `/lol/challenges/v1/challenges/${id}/leaderboard/by-level/${tier}${limit > 0 ? `?limit=${limit}` : ''}`;
+
+    try {
+      const cached = await this.checkInternalLeaderboard(id, tier, opts);
+      if (cached && cached.length >= limit) return cached.slice(0, limit > 0 ? limit : cached.length);
+
+      const data = await this.client.request<IChallengeLeaderboardEntry[]>(url, {
+        regional: false,
+        method: 'challengeLeaderboard',
+        region: opts.region,
+        debug: `Challenge ID: ${id}, Tier: ${tier}`
+      });
+
+      this.client.logger?.trace(`Fetched challenge leaderboard with challenge ID: ${id}`);
+      return this.processLeaderboardData(id, tier, data, opts);
+    } catch (err) {
+      this.client.logger?.trace(`Failed to fetch challenge leaderboard with challenge ID: ${id}`);
+      return Promise.reject(err);
+    }
+  }
+
   private async checkInternal(id: number, options: FetchOptions) {
     const { ignoreCache, ignoreStorage } = options;
 
@@ -242,6 +289,34 @@ export class ChallengeManager implements BaseManager<LolChallenge> {
     }
   }
 
+  private async checkInternalLeaderboard(id: number, tier: ChallengeApexLevel, options: FetchOptions) {
+    const { ignoreCache, ignoreStorage } = options;
+
+    try {
+      const cached = await this.client.cache.get<ChallengeLeaderboardEntry[]>(`challenge-leaderboard:${id}-${tier}`);
+      const toIgnoreCache = cached && typeof ignoreCache === 'function' ? ignoreCache(cached) : !!ignoreCache;
+      if (!toIgnoreCache) {
+        this.client.logger?.trace(`Fetched challenge leaderboard with challenge ID: ${id} from cache`);
+        return cached;
+      }
+
+      const stored = await this.client.storage.load<IChallengeLeaderboardEntry[]>(
+        `challenge-leaderboard`,
+        `${id}-${tier}`
+      );
+      const toIgnoreStorage = stored && typeof ignoreStorage === 'function' ? ignoreStorage(stored) : !!ignoreStorage;
+      if (!toIgnoreStorage) {
+        this.client.logger?.trace(`Fetched challenge leaderboard with challenge ID: ${id} from storage`);
+        return this.processLeaderboardData(id, tier, stored!, options);
+      }
+
+      return undefined;
+    } catch (err) {
+      this.client.logger?.trace(`Challenge leaderboard with id ${id} not found in storage.`);
+      return undefined;
+    }
+  }
+
   private async processData(data: IChallengeConfig, options: FetchOptions) {
     const { store, cache } = options;
     const challenge = new LolChallenge(this.client, data);
@@ -278,5 +353,29 @@ export class ChallengeManager implements BaseManager<LolChallenge> {
     }
 
     return challenge;
+  }
+
+  private async processLeaderboardData(
+    id: number,
+    tier: ChallengeApexLevel,
+    data: IChallengeLeaderboardEntry[],
+    options: FetchOptions
+  ) {
+    const { store, cache } = options;
+    const entries = data.map((d) => new ChallengeLeaderboardEntry(d));
+
+    const toStore = typeof store === 'function' ? store(data) : !!store;
+    if (toStore) {
+      this.client.logger?.trace(`Storing challenge leaderboard with challenge ID: ${id} (Tier: ${tier})`);
+      await this.client.storage.save(`challenge-leaderboard`, `${id}-${tier}`, data);
+    }
+
+    const toCache = typeof cache === 'function' ? cache(entries) : !!cache;
+    if (toCache) {
+      this.client.logger?.trace(`Caching challenge leaderboard with challenge ID: ${id} (Tier: ${tier})`);
+      await this.client.cache.set(`challenge-leaderboard:${id}-${tier}`, entries);
+    }
+
+    return entries;
   }
 }
