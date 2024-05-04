@@ -98,4 +98,11 @@ export class LolChallenge {
   get percentiles() {
     return this.#percentiles;
   }
+
+  /**
+   * Set the percentile by tier for the challenge.
+   */
+  set percentiles(percentiles: ChallengePercentile | undefined) {
+    this.#percentiles = percentiles;
+  }
 }
