@@ -6,3 +6,4 @@ export type {
   IPlayerChallengesTotal,
   IPlayerClientPreferences
 } from './player';
+export type { ChallengeApexLevel, ChallengeLeaderboardOptions, IChallengeLeaderboardEntry } from './leaderboard';
