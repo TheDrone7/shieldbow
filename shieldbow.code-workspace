@@ -29,6 +29,7 @@
         "jest.disabledWorkspaceFolders": [
             "repository"
         ],
+        "jest.runMode": "watch",
         "liveServer.settings.multiRootWorkspaceName": "shieldbow"
     }
 }
