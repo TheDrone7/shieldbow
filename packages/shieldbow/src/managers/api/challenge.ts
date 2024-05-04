@@ -123,7 +123,7 @@ export class ChallengeManager implements BaseManager<LolChallenge> {
       });
 
       this.client.logger?.trace('Fetched all challenges (config), processing');
-      return data.map((d) => this.processData(d, opts));
+      return Promise.all(data.map((d) => this.processData(d, opts)));
     } catch (err) {
       this.client.logger?.trace('Failed to fetch all challenges (config)');
       return Promise.reject(err);

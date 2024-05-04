@@ -172,4 +172,19 @@ describe('API: lol-challenges-v1', () => {
     const storage = await client.storage.has(`challenge-leaderboard`, `201003-CHALLENGER`);
     expect(storage).toBeTruthy();
   });
+
+  it('should be able to fetch all challenge configs', async () => {
+    const configs = await client.lolChallenges.fetchAll(globalThis.fetchOpts);
+    expect(configs).toBeDefined();
+    expect(configs.length).toBeGreaterThan(10);
+    expect(configs[0].id).toBeDefined();
+    expect(configs[0]?.name).toBeDefined();
+    expect(configs[0]?.state).toBeDefined();
+  });
+
+  it('should be able to fetch all challenge percentiles', async () => {
+    const percentiles = await client.lolChallenges.fetchAllPercentiles(globalThis.fetchOpts);
+    expect(percentiles).toBeDefined();
+    expect(Object.entries(percentiles).length).toBeGreaterThan(10);
+  });
 });
