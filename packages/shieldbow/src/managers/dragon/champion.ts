@@ -97,7 +97,6 @@ export class ChampionManager extends WebCM {
       return champion;
     } catch (error) {
       this.client.logger?.warn(`Failed to fetch champion: '${id}'.`);
-      this.client.logger?.error(error);
       return Promise.reject(error);
     }
   }
