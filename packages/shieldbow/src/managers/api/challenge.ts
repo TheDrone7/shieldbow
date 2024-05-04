@@ -49,7 +49,6 @@ export class ChallengeManager implements BaseManager<LolChallenge> {
       return this.processData(data, opts);
     } catch (err) {
       this.client.logger?.trace(`Failed to fetch challenge (config) with ID: ${id}`);
-      this.client.logger?.error(err);
       return Promise.reject(err);
     }
   }
@@ -63,11 +62,11 @@ export class ChallengeManager implements BaseManager<LolChallenge> {
    *
    * @returns The fetched challenge percentiles.
    */
-  async fetchChallengePercentile(id: number, options?: FetchOptions) {
+  async fetchPercentiles(id: number, options?: FetchOptions) {
     const opts = parseFetchOptions(this.client, 'challenges', options);
 
     this.client.logger?.trace(`Fetching challenge (percentile) with ID: ${id}`);
-    const url = `/lol/challenges/v1/challenges/${id}/percentile`;
+    const url = `/lol/challenges/v1/challenges/${id}/percentiles`;
 
     try {
       const cached = await this.checkInternal(id, opts);
@@ -89,7 +88,6 @@ export class ChallengeManager implements BaseManager<LolChallenge> {
       return data;
     } catch (err) {
       this.client.logger?.trace(`Failed to fetch challenge (percentile) with ID: ${id}`);
-      this.client.logger?.error(err);
       return Promise.reject(err);
     }
   }
@@ -120,7 +118,6 @@ export class ChallengeManager implements BaseManager<LolChallenge> {
       return data.map((d) => this.processData(d, opts));
     } catch (err) {
       this.client.logger?.trace('Failed to fetch all challenges (config)');
-      this.client.logger?.error(err);
       return Promise.reject(err);
     }
   }
@@ -158,7 +155,6 @@ export class ChallengeManager implements BaseManager<LolChallenge> {
       return data;
     } catch (err) {
       this.client.logger?.trace('Failed to fetch all challenges (percentile)');
-      this.client.logger?.error(err);
       return Promise.reject(err);
     }
   }
@@ -175,7 +171,7 @@ export class ChallengeManager implements BaseManager<LolChallenge> {
     const opts = parseFetchOptions(this.client, 'challenges', options);
 
     this.client.logger?.trace(`Fetching player challenges with PUUID: ${playerId}`);
-    const url = `/lol/challenges/v1/players-data/${playerId}`;
+    const url = `/lol/challenges/v1/player-data/${playerId}`;
 
     try {
       const cached = await this.checkInternalPlayer(playerId, opts);
@@ -192,7 +188,6 @@ export class ChallengeManager implements BaseManager<LolChallenge> {
       return this.processPlayerData(playerId, data, opts);
     } catch (err) {
       this.client.logger?.trace(`Failed to fetch player challenges with ID: ${playerId}`);
-      this.client.logger?.error(err);
       return Promise.reject(err);
     }
   }
@@ -201,7 +196,7 @@ export class ChallengeManager implements BaseManager<LolChallenge> {
     const { ignoreCache, ignoreStorage } = options;
 
     try {
-      const cached = await this.client.cache.get<LolChallenge>(`challenge:${id}`);
+      const cached = await this.client.cache.get<LolChallenge>(`lol-challenge:${id}`);
       const toIgnoreCache = cached && typeof ignoreCache === 'function' ? ignoreCache(cached) : !!ignoreCache;
       if (!toIgnoreCache) {
         this.client.logger?.trace(`Fetched challenge (config) with ID: ${id} from cache`);
@@ -254,13 +249,13 @@ export class ChallengeManager implements BaseManager<LolChallenge> {
     const toStore = typeof store === 'function' ? store(data) : !!store;
     if (toStore) {
       this.client.logger?.trace(`Storing challenge (config) with ID: ${data.id}`);
-      await this.client.storage.save(`challenge`, data.id.toString(), data);
+      await this.client.storage.save(`challenges`, data.id.toString(), data);
     }
 
     const toCache = typeof cache === 'function' ? cache(challenge) : !!cache;
     if (toCache) {
       this.client.logger?.trace(`Caching challenge (config) with ID: ${data.id}`);
-      await this.client.cache.set(`challenge:${data.id}`, challenge);
+      await this.client.cache.set(`lol-challenge:${data.id}`, challenge);
     }
 
     return challenge;
