@@ -212,13 +212,15 @@ export class ChallengeManager implements BaseManager<LolChallenge> {
     id: number,
     tier: ChallengeApexLevel = 'CHALLENGER',
     options?: FetchOptions & ChallengeLeaderboardOptions
-  ) {
+  ): Promise<ChallengeLeaderboardEntry[]> {
     const opts = parseFetchOptions(this.client, 'challenges', options);
 
     const limit = options?.limit ?? 0;
 
     this.client.logger?.trace(`Fetching challenge leaderboard with challenge ID: ${id}`);
-    const url = `/lol/challenges/v1/challenges/${id}/leaderboard/by-level/${tier}${limit > 0 ? `?limit=${limit}` : ''}`;
+    const url = `/lol/challenges/v1/challenges/${id}/leaderboards/by-level/${tier}${
+      limit > 0 ? `?limit=${limit}` : ''
+    }`;
 
     try {
       const cached = await this.checkInternalLeaderboard(id, tier, opts);

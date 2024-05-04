@@ -1,4 +1,4 @@
-import { Client, LolChallenge, PlayerChallenges } from '../dist';
+import { Account, Client, LolChallenge, PlayerChallenges } from '../dist';
 import { config } from 'dotenv';
 
 config();
@@ -8,11 +8,13 @@ describe('API: lol-challenges-v1', () => {
   const client = new Client(process.env.RIOT_API_KEY!);
 
   let udk: LolChallenge;
+  let account: Account;
 
   beforeAll(async () => {
     await client.initialize(globalThis.clientConfig);
     try {
       udk = await client.lolChallenges.fetch(201003, globalThis.fetchOpts);
+      account = await client.accounts.fetchByRiotId('TheDrone7', '0000', globalThis.fetchOpts);
     } catch (e) {
       client.logger?.error(`${e}`);
     }
@@ -90,7 +92,6 @@ describe('API: lol-challenges-v1', () => {
   });
 
   it('should be able to fetch player challenges (from API)', async () => {
-    const account = await client.accounts.fetchByRiotId('TheDrone7', '0000', globalThis.fetchOpts);
     const challenges = await client.lolChallenges.fetchPlayerChallenges(account!.id, globalThis.fetchOpts);
     expect(challenges).toBeDefined();
     expect(challenges.total.current).toBeGreaterThan(10000);
@@ -103,7 +104,6 @@ describe('API: lol-challenges-v1', () => {
   });
 
   it('should be able to fetch player challenges (from cache)', async () => {
-    const account = await client.accounts.fetchByRiotId('TheDrone7', '0000', globalThis.fetchOpts);
     const challenges = await client.lolChallenges.fetchPlayerChallenges(account!.id, {
       ...globalThis.fetchOpts,
       ignoreCache: false,
@@ -124,7 +124,6 @@ describe('API: lol-challenges-v1', () => {
   });
 
   it('should be able to fetch player challenges (from storage)', async () => {
-    const account = await client.accounts.fetchByRiotId('TheDrone7', '0000', globalThis.fetchOpts);
     const challenges = await client.lolChallenges.fetchPlayerChallenges(account!.id, {
       ...globalThis.fetchOpts,
       ignoreStorage: false,
@@ -134,6 +133,43 @@ describe('API: lol-challenges-v1', () => {
     expect(challenges).toBeDefined();
 
     const storage = await client.storage.has(`player-challenges`, account!.id.toString());
+    expect(storage).toBeTruthy();
+  });
+
+  it('should be able to fetch challenge leaderboard', async () => {
+    const leaderboard = await client.lolChallenges.fetchLeaderboard(201003, 'CHALLENGER', globalThis.fetchOpts);
+    expect(leaderboard).toBeDefined();
+    expect(leaderboard.length).toBeGreaterThan(0);
+    expect(leaderboard[0].playerId).toBeDefined();
+    expect(leaderboard[0].challengeValue).toBeGreaterThan(0);
+    expect(leaderboard[0].position).toBeGreaterThan(0);
+  });
+
+  it('should be able to fetch challenge leaderboard (from cache)', async () => {
+    const leaderboard = await client.lolChallenges.fetchLeaderboard(201003, 'CHALLENGER', {
+      ...globalThis.fetchOpts,
+      ignoreCache: false,
+      cache: false
+    });
+    expect(leaderboard).toBeDefined();
+    expect(leaderboard.length).toBeGreaterThan(0);
+    expect(leaderboard[0].playerId).toBeDefined();
+    expect(leaderboard[0].challengeValue).toBeGreaterThan(0);
+    expect(leaderboard[0].position).toBeGreaterThan(0);
+
+    const leaderboard2 = await client.cache.get(`challenge-leaderboard:201003-CHALLENGER`);
+    expect(leaderboard2).toBeDefined();
+  });
+
+  it('should be able to fetch challenge leaderboard (from storage)', async () => {
+    const leaderboard = await client.lolChallenges.fetchLeaderboard(201003, 'CHALLENGER', {
+      ...globalThis.fetchOpts,
+      ignoreStorage: false,
+      ignoreCache: true
+    });
+    expect(leaderboard).toBeDefined();
+
+    const storage = await client.storage.has(`challenge-leaderboard`, `201003-CHALLENGER`);
     expect(storage).toBeTruthy();
   });
 });
