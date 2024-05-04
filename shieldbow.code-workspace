@@ -27,7 +27,6 @@
     ],
     "settings": {
         "jest.disabledWorkspaceFolders": [
-            "shieldbow",
             "repository"
         ],
         "liveServer.settings.multiRootWorkspaceName": "shieldbow"
