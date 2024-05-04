@@ -63,6 +63,7 @@ const dataValuePart = (
   });
   if (key) {
     const currentValue: number[] = data[key].map((n) => round(n * (options.percent ? 100 : 1)));
+    if (currentValue.length < 1) return '?';
     return (
       (level > -1 ? currentValue[level].toString() : getJoined(currentValue, maxRank) + (options.percent ? '%' : '')) ||
       '?'
