@@ -309,10 +309,15 @@ export class ChampionManager extends WebCM {
     val = [...val].map((v) => String(v).toLowerCase());
 
     this.client.logger?.trace(`Checking storage for champion with '${prop}' in '${val}'.`);
-    const dDragon = await this.client.storage.filter<IDataDragonChampion>(
-      `ddragon-${this.client.version}-champion`,
-      (c: IDataDragonChampion) => val.includes(c[prop as keyof IDataDragonChampion].toString().toLowerCase())
-    );
+    let dDragon: IDataDragonChampion[] = [];
+    try {
+      dDragon = await this.client.storage.filter<IDataDragonChampion>(
+        `ddragon-${this.client.version}-champion`,
+        (c: IDataDragonChampion) => val.includes(c[prop as keyof IDataDragonChampion].toString().toLowerCase())
+      );
+    } catch (err) {
+      this.client.logger?.trace(`Champions with '${prop}' in '${val}' not found in storage.`);
+    }
 
     for (const c of dDragon) {
       const toIgnoreStorage =
