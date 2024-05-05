@@ -44,8 +44,12 @@ export class LiveGameManager implements BaseManager<FeaturedGame> {
       this.client.logger?.trace(`Fetched live game for player: ${playerId}`);
       this.client.logger?.trace(`Now fetching related data`);
 
-      const champions = await this.client.champions.fetchByKeys(data.participants.map((p) => p.championId));
-      const bannedChampions = await this.client.champions.fetchByKeys(data.bannedChampions.map((b) => b.championId));
+      const champions = await this.client.champions.fetchByKeys(
+        data.participants.map((p) => p.championId).filter((c) => c > 0)
+      );
+      const bannedChampions = await this.client.champions.fetchByKeys(
+        data.bannedChampions.map((b) => b.championId).filter((c) => c > 0)
+      );
       const spells = await this.client.summonerSpells.fetchAll();
       const runeTrees = await this.client.runes.fetchAll();
       const statRunes = this.client.runes.statRunes;
@@ -85,10 +89,16 @@ export class LiveGameManager implements BaseManager<FeaturedGame> {
 
       this.client.logger?.trace(`Fetched featured games, now processing`);
       const champions = await this.client.champions.fetchByKeys(
-        data.gameList.map((g) => g.participants.map((p) => p.championId)).flat()
+        data.gameList
+          .map((g) => g.participants.map((p) => p.championId))
+          .flat()
+          .filter((c) => c > 0)
       );
       const bannedChampions = await this.client.champions.fetchByKeys(
-        data.gameList.map((g) => g.bannedChampions.map((b) => b.championId)).flat()
+        data.gameList
+          .map((g) => g.bannedChampions.map((b) => b.championId))
+          .flat()
+          .filter((c) => c > 0)
       );
       const spells = await this.client.summonerSpells.fetchAll();
 

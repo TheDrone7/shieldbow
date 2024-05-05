@@ -7,10 +7,13 @@ import { ISpectatorBannedChampion } from 'types';
 export class BannedChampion {
   /**
    * The champion that was banned.
+   *
+   * Undefined means no champion was banned (ID is -1).
    */
-  readonly champion: Champion;
+  readonly champion?: Champion;
   /**
    * The ID of the champion that was banned.
+   * (-1 means no champion was banned)
    *
    * This is a fallback to {@link BannedChampion.champion | champion}.
    */
@@ -28,7 +31,7 @@ export class BannedChampion {
    * Creates a new BannedChampion.
    * @param data - The raw data from the spectator-v5 API.
    */
-  constructor(data: ISpectatorBannedChampion, champion: Champion) {
+  constructor(data: ISpectatorBannedChampion, champion?: Champion) {
     this.champion = champion;
     this.championId = data.championId;
     this.teamId = data.teamId;

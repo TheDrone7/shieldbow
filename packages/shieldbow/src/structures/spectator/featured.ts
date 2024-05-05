@@ -71,7 +71,11 @@ export class FeaturedGame {
         new SpectatorParticipant(client, participant, spells, champions.find((c) => c.key === participant.championId)!)
     );
     this.bannedChampions = data.bannedChampions.map(
-      (champion) => new BannedChampion(champion, champions.find((c) => c.key === champion.championId)!)
+      (champion) =>
+        new BannedChampion(
+          champion,
+          champions.find((c) => c.key === champion.championId)
+        )
     );
   }
 }
