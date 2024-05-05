@@ -1,7 +1,8 @@
 import { Collection } from '@discordjs/collection';
-import { Champion, SummonerSpell } from '@shieldbow/web';
+import { Champion, RuneTree, StatRune, SummonerSpell } from '@shieldbow/web';
 import { Client } from 'client';
-import { FetchOptions, ISpectatorParticipant } from 'types';
+import { FetchOptions, ILiveGameParticipant, ISpectatorParticipant } from 'types';
+import { LiveGameParticipantRunes } from './runes';
 
 /**
  * Represents a participant in a featured live game.
@@ -158,5 +159,37 @@ export class SpectatorParticipant {
    */
   async fetchChallenges(options: FetchOptions) {
     return this.#client.lolChallenges.fetchPlayerChallenges(this.summonerId, options);
+  }
+}
+
+/**
+ * Represents a participant in a live game (fetched by PUUID).
+ */
+export class LiveGameParticipant extends SpectatorParticipant {
+  /**
+   * The runes selected by the participant.
+   */
+  readonly runes: LiveGameParticipantRunes;
+
+  /**
+   * Creates a new live game participant.
+   * @param client - The client this participant was fetched by.
+   * @param data - The raw data for the participant.
+   * @param spells - A collection of all summoner spells.
+   * @param champion - The champion object for the participant's champion ID.
+   * @param runeTrees - The rune trees available in the game.
+   * @param statRunes - The stat runes available in the game.
+   */
+  constructor(
+    client: Client,
+    data: ILiveGameParticipant,
+    spells: Collection<string, SummonerSpell>,
+    champion: Champion,
+    runeTrees: Collection<string, RuneTree>,
+    statRunes: StatRune[]
+  ) {
+    super(client, data, spells, champion);
+    const runes = runeTrees.map((t) => [t.runes.map((r) => [...r.values()]), ...t.keystones]).flat(3);
+    this.runes = new LiveGameParticipantRunes(data.perks, [...runeTrees.values()], runes, statRunes);
   }
 }
