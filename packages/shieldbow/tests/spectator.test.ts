@@ -57,7 +57,6 @@ describe('API: spectator-v5', () => {
     const cached = await client.cache.has(`live-game:${puuid}`);
     const stored = await client.storage.has(`live-game`, puuid);
 
-    console.log(await client.cache.keys());
     expect(cached).toBeTruthy();
     expect(stored).toBeTruthy();
   });
