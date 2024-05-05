@@ -5,3 +5,4 @@ export type { IChampionMastery } from './mastery';
 export type { ILeagueEntry, ILeagueItem, ILeagueList, IMiniSeries } from './league';
 export { IApexPlayerInfo } from './player';
 export * from './challenges';
+export * from './spectator';
