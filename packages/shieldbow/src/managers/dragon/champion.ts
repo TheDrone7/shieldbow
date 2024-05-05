@@ -160,7 +160,7 @@ export class ChampionManager extends WebCM {
 
       this.client.logger?.trace(`Some champions not found in cache, now fetching.`);
 
-      const expected = names.length;
+      const expected = new Set(names).size;
       const champs = await this.fetchMultipleChampDragonByProp(names, 'name', opts);
       if (champs.length < expected) {
         this.client.logger?.trace(`Failed to fetch all champions. Expected: ${expected}, got: ${champs.length}`);
@@ -217,7 +217,7 @@ export class ChampionManager extends WebCM {
 
       if (keys.length < 1) return result;
 
-      const expected = keys.length;
+      const expected = new Set(keys).size;
       const champs = await this.fetchMultipleChampDragonByProp(keys, 'key', opts);
 
       if (champs.length < expected) {
