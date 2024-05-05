@@ -37,12 +37,12 @@ export class LiveGame extends FeaturedGame {
   ) {
     super(client, data, champions, spells);
     this.participants = data.participants.map(
-      (participant: any) =>
+      (participant) =>
         new LiveGameParticipant(
           client,
           participant,
           spells,
-          champions.find((c) => c.id === participant.championId)!,
+          champions.find((c) => c.key === participant.championId)!,
           runeTrees,
           statRunes
         )
