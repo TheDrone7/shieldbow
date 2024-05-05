@@ -43,10 +43,9 @@ describe('API: spectator-v5', () => {
     featured.forEach(checkGame);
   });
 
-  it('should fetch a live game', async () => {
+  it('should fetch, cache and store a live game', async () => {
     const puuid = featured[0].participants[0].playerId;
     const game = await client.spectator.fetch(puuid, globalThis.fetchOpts);
-    console.log(game);
     checkGame(game);
 
     expect(game.participants[0].runes).toBeDefined();
@@ -54,5 +53,12 @@ describe('API: spectator-v5', () => {
     expect(game.participants[0].runes.secondaryTree).toBeDefined();
     expect(game.participants[0].runes.selectedRunes).toHaveLength(6);
     expect(game.participants[0].runes.statRunes).toHaveLength(3);
+
+    const cached = await client.cache.has(`live-game:${puuid}`);
+    const stored = await client.storage.has(`live-game`, puuid);
+
+    console.log(await client.cache.keys());
+    expect(cached).toBeTruthy();
+    expect(stored).toBeTruthy();
   });
 });
