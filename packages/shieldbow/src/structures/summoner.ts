@@ -22,6 +22,11 @@ export class Summoner {
    */
   readonly playerId: string;
   /**
+   * The summoner's encrypted account ID.
+   * (No known uses in the current version of the API | 29-06-2024)
+   */
+  readonly accountId: string;
+  /**
    * The summoner's in-game level.
    */
   readonly level: number;
@@ -42,6 +47,7 @@ export class Summoner {
     this.revisionTimestamp = data.revisionDate;
     this.id = data.id;
     this.playerId = data.puuid;
+    this.accountId = data.accountId;
     this.level = data.summonerLevel;
     this.region = region;
   }
