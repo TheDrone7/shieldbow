@@ -64,9 +64,9 @@ describe('DRAGON: rune tree', () => {
     expect(client.cache.has('rune:Precision')).toBeTruthy();
 
     // Also check for rune
-    const lethalTempo = await client.runes.fetchRuneByName('Lethal Tempo', globalThis.fetchOpts);
-    expect(lethalTempo).toBeDefined();
-    expect(lethalTempo?.name).toBe('Lethal Tempo');
+    const aftershock = await client.runes.fetchRuneByName('Aftershock', globalThis.fetchOpts);
+    expect(aftershock).toBeDefined();
+    expect(aftershock?.name).toBe('Aftershock');
   });
 
   it('should be able to fetch all rune trees', async () => {

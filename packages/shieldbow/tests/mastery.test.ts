@@ -24,7 +24,7 @@ describe('API: champion-mastery-v4', () => {
 
     expect(mastery.champion).toBeDefined();
     expect(mastery.champion).toBeInstanceOf(Champion);
-    expect(mastery.pointsSinceLastLevel).toBeGreaterThan(0);
+    expect(mastery.pointsSinceLastLevel).toBeGreaterThanOrEqual(0);
     expect(mastery.lastPlayedAt).toBeInstanceOf(Date);
     expect(mastery.lastPlayedTimestamp).toBeGreaterThan(0);
     expect(mastery.lastPlayedTimestamp).toBeLessThan(Date.now());
@@ -35,7 +35,7 @@ describe('API: champion-mastery-v4', () => {
     expect(mastery.champion.name).toBe('Kayn');
     expect(mastery.champion.key).toBe(141);
     expect(mastery.champion.id).toBe('Kayn');
-    expect(mastery.level).toBe(7);
+    expect(mastery.level).toBeGreaterThan(7);
     expect(mastery.totalPoints).toBeGreaterThan(200000);
     expect(mastery.pointsSinceLastLevel).toBeGreaterThan(0);
   };

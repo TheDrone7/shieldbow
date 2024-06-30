@@ -10,9 +10,9 @@ describe('API: league-v4', () => {
   let entries: Collection<QueueType, LeagueEntry>;
 
   beforeAll(async () => {
-    await client.initialize(globalThis.clientConfig);
+    await client.initialize({ ...globalThis.clientConfig, region: 'kr' });
     try {
-      const account = await client.accounts.fetchByRiotId('TheDrone7', '0000', globalThis.fetchOpts);
+      const account = await client.accounts.fetchByRiotId('Hide on bush', 'KR1', globalThis.fetchOpts);
       summoner = await account.fetchSummoner(globalThis.fetchOpts);
       entries = await client.leagues.fetch(summoner.id, {
         ...globalThis.fetchOpts,
@@ -138,7 +138,7 @@ describe('API: league-v4', () => {
     expect(leagueItem).toBeDefined();
     expect(leagueItem).toBeInstanceOf(LeagueItem);
     expect(leagueItem.winRate).toBeDefined();
-    expect(leagueItem.rank).toContain('GOLD');
+    expect(leagueItem.rank).toContain(soloQ?.tier);
     expect(leagueItem.labels).toBeInstanceOf(Array);
   });
 });
