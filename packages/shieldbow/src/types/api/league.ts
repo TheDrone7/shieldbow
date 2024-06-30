@@ -1,6 +1,7 @@
 import { DivisionType, QueueType, TierType } from 'types';
 
 /**
+ * @deprecated Mini series is promos, removed from the game.
  * The raw mini series data from the API.
  */
 export interface IMiniSeries {
