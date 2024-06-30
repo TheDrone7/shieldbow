@@ -17,7 +17,8 @@ import {
   ChampionMasteryManager,
   LeagueManager,
   ChallengeManager,
-  LiveGameManager
+  LiveGameManager,
+  ClashManager
 } from 'managers';
 
 /**
@@ -70,6 +71,10 @@ export class Client extends WebClient {
    * The live game manager - to fetch and manage all live game data.
    */
   readonly spectator: LiveGameManager;
+  /**
+   * The clash manager - to fetch and manage all clash tournaments data.
+   */
+  readonly clash: ClashManager;
 
   /**
    * Create a new shieldbow client.
@@ -114,6 +119,7 @@ export class Client extends WebClient {
     this.leagues = new LeagueManager(this);
     this.lolChallenges = new ChallengeManager(this);
     this.spectator = new LiveGameManager(this);
+    this.clash = new ClashManager(this);
   }
 
   /**
