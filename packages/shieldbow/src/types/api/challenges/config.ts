@@ -1,5 +1,6 @@
 import { Locale } from '@shieldbow/web';
 import { ChallengeState, ChallengeTracking } from './literal';
+import { TierType } from 'types/constants';
 
 /**
  * The localized data for the challenge config.
@@ -21,5 +22,5 @@ export interface IChallengeConfig {
   startTimestamp?: number;
   endTimestamp?: number;
   leaderboard: boolean;
-  thresholds: Record<string, number>;
+  thresholds: Record<TierType, number>;
 }
