@@ -6,3 +6,4 @@ export type { ILeagueEntry, ILeagueItem, ILeagueList, IMiniSeries } from './leag
 export { IApexPlayerInfo } from './player';
 export * from './challenges';
 export * from './spectator';
+export * from './clash';
