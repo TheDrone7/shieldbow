@@ -1,5 +1,5 @@
-import { Client as WebClient } from '@shieldbow/web';
-import { ClientConfig, ClientFetchConfig, RequestOptions } from 'types';
+import { Region, Client as WebClient } from '@shieldbow/web';
+import { ClientConfig, ClientFetchConfig, IPlatform, RequestOptions } from 'types';
 import { parseClientConfig, genWebConfig, divideToManager, apiBaseURLs, regionalURLs, seaRegions } from 'utilities';
 import { RateLimiter } from '@shieldbow/ratelimiter';
 import { ICache, ShieldbowMemoryCache } from '@shieldbow/cache';
@@ -20,6 +20,7 @@ import {
   LiveGameManager,
   ClashManager
 } from 'managers';
+import { PlatformData } from 'structures';
 
 /**
  * The shieldbow client class.
@@ -215,5 +216,23 @@ export class Client extends WebClient {
 
     const requestUrl = `${baseUrl}${url}`;
     return (await this.fetch<T>(requestUrl)) as T;
+  }
+
+  /**
+   * Fetch the status of a region using lol-status-v4 API.
+   * @param region - The region to fetch the status for.
+   * @returns The fetched platform data.
+   */
+  async fetchStatus(region?: Region) {
+    const reqRegion = region ?? this.defaultOpts.region ?? this.region;
+    const url = `/lol/status/v4/platform-data`;
+    const platform = await this.request<IPlatform>(url, {
+      region: reqRegion,
+      method: 'lolStatus',
+      regional: false,
+      debug: ''
+    });
+
+    return new PlatformData(platform);
   }
 }
