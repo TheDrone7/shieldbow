@@ -237,7 +237,7 @@ export class ChampionMasteryManager {
         cm instanceof ChampionMastery &&
         cm.playerId === puuid &&
         cm.totalPoints !== undefined &&
-        cm.chestGranted !== undefined
+        cm.champion !== undefined
     );
     const toIgnoreCache =
       cached.length > 0 && typeof ignoreCache === 'function' ? cached.some((c) => ignoreCache(c)) : !!ignoreCache;
