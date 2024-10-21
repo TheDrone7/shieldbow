@@ -5,9 +5,7 @@ class ShieldbowSequencer extends Sequencer {
     const DRAGONS = ['champion', 'item', 'rune', 'spell'];
     const processed = super.sort(tests);
     const sorter = (a, b) => {
-      if (a.path.includes('ratelimit')) return 1;
-      else if (b.path.includes('ratelimit')) return -1;
-      else if (DRAGONS.some((d) => a.path.includes(d))) return -1;
+      if (DRAGONS.some((d) => a.path.includes(d))) return -1;
       else if (DRAGONS.some((d) => b.path.includes(d))) return 1;
       else return 0;
     };

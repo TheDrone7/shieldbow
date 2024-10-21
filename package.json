@@ -1,17 +1,23 @@
 {
+  "name": "@shieldbow/root",
+  "private": true,
   "devDependencies": {
-    "@changesets/cli": "^2.27.1",
+    "@changesets/cli": "^2.27.6",
     "@shieldbow/cache": "workspace:^",
     "@shieldbow/ratelimiter": "workspace:^",
     "@shieldbow/web": "workspace:^",
-    "syncpack": "^12.0.1",
-    "turbo": "^1.11.2"
+    "syncpack": "^12.3.3",
+    "turbo": "^2.0.6"
   },
   "scripts": {
-    "build": "turbo run build --no-daemon",
-    "test": "turbo run test --no-daemon",
+    "build": "turbo run build",
+    "test": "turbo run test",
     "change": "changeset",
     "bump": "changeset version",
     "release": "changeset publish"
-  }
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "packageManager": "pnpm@8.15.1"
 }

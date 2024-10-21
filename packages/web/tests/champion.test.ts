@@ -103,7 +103,7 @@ describe('DRAGON: champions', () => {
 
   it('can fetch champion assets', () => {
     expect(kayn.skins[0].uncenteredSplashUrl).toBe(
-      'http://raw.communitydragon.org/pbe/plugins/rcp-be-lol-game-data/global/default/v1/champion-splashes/uncentered/141/141000.jpg'
+      'https://raw.communitydragon.org/pbe/plugins/rcp-be-lol-game-data/global/default/assets/characters/kayn/skins/base/images/kayn_splash_uncentered_0.jpg'
     );
     expect(kayn.skins[0].loadScreenUrl).toBe(
       'https://raw.communitydragon.org/pbe/plugins/rcp-be-lol-game-data/global/default/assets/characters/kayn/skins/base/kaynloadscreen.jpg'

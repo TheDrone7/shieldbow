@@ -13,7 +13,7 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
    */
   readonly client: Client;
 
-  private _statRunes: StatRune[];
+  protected _statRunes: StatRune[];
 
   /**
    * Create a new rune trees manager.
@@ -175,7 +175,7 @@ export class RuneTreeManager implements BaseManager<RuneTree> {
     return runes?.find((i) => i.id === id);
   }
 
-  private async _fetchRunesFromDDragon(options: FetchOptions) {
+  protected async _fetchRunesFromDDragon(options: FetchOptions) {
     try {
       this.client.logger?.trace(`Fetching runes from DDragon`);
       const response = await this.client.fetch(

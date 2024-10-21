@@ -9,8 +9,10 @@ export const constants = {
   merakiPatchesUrl: 'https://cdn.merakianalytics.com/riot/lol/resources/patches.json',
   gameModesUrl: 'https://static.developer.riotgames.com/docs/lol/gameModes.json',
   gameTypesUrl: 'https://static.developer.riotgames.com/docs/lol/gameTypes.json',
+  /* TODO: replace with cdragon */
   mapsUrl: 'https://static.developer.riotgames.com/docs/lol/maps.json',
   queuesUrl: 'https://static.developer.riotgames.com/docs/lol/queues.json',
+  /* TODO: remove seasons */
   seasonsUrl: 'https://static.developer.riotgames.com/docs/lol/seasons.json'
 };
 
