@@ -17,3 +17,4 @@ export type {
 export * from './challenges';
 export * from './spectator';
 export * from './clash';
+export * from './match';
