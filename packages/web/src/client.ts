@@ -232,7 +232,7 @@ export class Client {
       if (config.logger.customLogger) this._logger = config.logger.customLogger;
       else
         this._logger = new ShieldbowLogger(
-          config.logger.enabled === false ? 'CRITICAL' : config.logger.level ?? 'WARN'
+          config.logger.enabled === false ? 'CRITICAL' : (config.logger.level ?? 'WARN')
         );
     else if (config?.logger === false) this._logger = new ShieldbowLogger('CRITICAL');
     else this._logger = new ShieldbowLogger('WARN');
