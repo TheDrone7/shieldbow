@@ -15,6 +15,10 @@ String.prototype.toWords = function (): string {
     .toLowerCase();
 };
 
+export async function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 export { breakdown, cleanStructure, Structure, StructureData, CleanStructure, CleanStructureData } from './structure';
 
 export { writeToFile, readFromFile } from './files';
