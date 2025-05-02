@@ -6,3 +6,6 @@ export const GAME_NAME = 'TheDrone7' as const;
 export const TAG_LINE = '0000' as const;
 
 export const PUUID = 'mtAz4KCvblzjQVwpZ6IYFLwes4H5RcxJoGbh398ezh325FikKBCFdO7xRSllgRs8URGN7pFNOQwPZg' as const;
+
+export const CHALLENGE_ID = 302103 as const;
+export const LEADERBOARD_LEVEL = 'GRANDMASTER' as const;
