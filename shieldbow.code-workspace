@@ -1,33 +1,38 @@
 {
     "folders": [
-        {
-            "path": ".",
-            "name": "repository"
-        },
-        {
-            "name": "web",
-            "path": "packages/web"
-        },
-        {
-            "name": "rate-limiter",
-            "path": "packages/ratelimiter"
-        },
-        {
-            "name": "cache",
-            "path": "packages/cache"
-        },
-        {
-            "name": "storage",
-            "path": "packages/storage"
-        },
-        {
-            "name": "shieldbow",
-            "path": "packages/shieldbow"
-        }
+      {
+        "path": ".",
+        "name": "repository"
+      },
+      {
+        "name": "web",
+        "path": "packages/web"
+      },
+      {
+        "name": "rate-limiter",
+        "path": "packages/ratelimiter"
+      },
+      {
+        "name": "cache",
+        "path": "packages/cache"
+      },
+      {
+        "name": "storage",
+        "path": "packages/storage"
+      },
+      {
+        "name": "shieldbow",
+        "path": "packages/shieldbow"
+      },
+      {
+        "name": "helper",
+        "path": "packages/helper"
+      }
     ],
     "settings": {
         "jest.disabledWorkspaceFolders": [
-            "repository"
+            "repository",
+            "helper"
         ],
         "jest.runMode": "watch",
         "liveServer.settings.multiRootWorkspaceName": "shieldbow"
