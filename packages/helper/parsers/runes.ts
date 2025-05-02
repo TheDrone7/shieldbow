@@ -1,5 +1,4 @@
-import { breakdown, cleanStructure, type Structure, writeToFile } from 'utilities';
-import { typeOut } from 'typers';
+import { breakdown, cleanStructure, type Structure, writeToFile, typeOut } from 'utilities';
 
 export async function parseRunes(version: string) {
   const runesUrl = `https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/runesReforged.json`;

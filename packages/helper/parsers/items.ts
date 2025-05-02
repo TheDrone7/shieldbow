@@ -1,5 +1,4 @@
-import { breakdown, cleanStructure, type Structure, writeToFile } from 'utilities';
-import { typeOut } from 'typers';
+import { breakdown, cleanStructure, type Structure, writeToFile, typeOut } from 'utilities';
 
 export async function parseItems(version: string) {
   const itemUrl = `https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/item.json`;
