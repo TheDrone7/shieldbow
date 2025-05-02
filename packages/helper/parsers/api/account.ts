@@ -37,9 +37,9 @@ export async function accountV1() {
   }
 
   // Save the structure
-  writeToFile('structures/account.json', JSON.stringify(cleanStructure(structure), null, 2));
+  writeToFile('structures/api/account.json', JSON.stringify(cleanStructure(structure), null, 2));
 
   // Generate types
-  typeOut('structures/account.json', 'account', 'the API');
+  typeOut('structures/api/account.json', 'account', 'the API');
   console.log('Account V1 types generated successfully.\n');
 }
