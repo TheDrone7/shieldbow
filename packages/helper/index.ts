@@ -1,4 +1,4 @@
-import { parseChampions, parseItems, parseRunes, parseSummoners } from 'parsers';
+import { parseChampions, parseItems, parseRunes, parseSummoners, generateApi } from 'parsers';
 
 (async () => {
   const versions = await fetch('https://ddragon.leagueoflegends.com/api/versions.json').then((res) => res.json());
@@ -11,5 +11,7 @@ import { parseChampions, parseItems, parseRunes, parseSummoners } from 'parsers'
   await parseRunes(latestVersion);
   await parseSummoners(latestVersion);
 
-  console.log('All parsers completed successfully.');
+  await generateApi();
+
+  await console.log('All parsers completed successfully.');
 })();

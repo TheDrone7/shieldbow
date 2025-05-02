@@ -5,11 +5,11 @@ export type GenerateStructure = {
   [key: string]: CleanStructure;
 };
 
-export function generateDocstring(key: string) {
-  return `/**\n * The raw ${key.toWords()} data from data dragon.\n */\n`;
+export function generateDocstring(key: string, source: string) {
+  return `/**\n * The raw ${key.toWords()} data from ${source}.\n */\n`;
 }
 
-export function generateInterfaces(object: CleanStructure, key: string) {
+export function generateInterfaces(object: CleanStructure, key: string, source: string) {
   let output = '';
 
   const toGenerate: GenerateStructure[] = [];
@@ -23,7 +23,7 @@ export function generateInterfaces(object: CleanStructure, key: string) {
     const [curKey, curObject] = Object.entries(current)[0];
     if (Object.entries(curObject).length === 0) continue;
 
-    output += generateDocstring(curKey);
+    output += generateDocstring(curKey, source);
     output += `export interface I${curKey.capitalize()} {\n`;
 
     for (const [k, v] of Object.entries(curObject)) {
@@ -53,11 +53,11 @@ export function generateInterfaces(object: CleanStructure, key: string) {
   return output.trimEnd() + '\n';
 }
 
-export function typeOut(filename: string, key: string) {
+export function typeOut(filename: string, key: string, source: string = 'data dragon') {
   const fileContent = readFromFile(filename);
   const object: CleanStructure = JSON.parse(fileContent);
 
-  const output = generateInterfaces(object, key);
+  const output = generateInterfaces(object, key, source);
   const outputFilename = filename.replace('.json', '.ts').replace('structures', 'types');
   writeToFile(outputFilename, output);
 }
