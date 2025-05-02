@@ -18,3 +18,9 @@ String.prototype.toWords = function (): string {
 export { breakdown, cleanStructure, Structure, StructureData, CleanStructure, CleanStructureData } from './structure';
 
 export { writeToFile, readFromFile } from './files';
+
+export { request } from './request';
+
+export * from './constants';
+
+export { typeOut } from './typer';

@@ -5,8 +5,8 @@
   "main": "index.ts",
   "scripts": {
     "start": "ts-node -r tsconfig-paths/register index.ts",
-    "format": "prettier --write \"parsers/**/**.ts\" \"typers/**/**.ts\" \"utilities/**/**.ts\" index.ts",
-    "lint": "eslint --fix --color \"parsers/**/**.ts\" \"typers/**/**.ts\" \"utilities/**/**.ts\" index.ts"
+    "format": "prettier --write \"parsers/**/**.ts\" \"utilities/**/**.ts\" index.ts",
+    "lint": "eslint --fix --color \"parsers/**/**.ts\" \"utilities/**/**.ts\" index.ts"
   },
   "keywords": [
     "shieldbow",
