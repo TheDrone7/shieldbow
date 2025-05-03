@@ -1,4 +1,5 @@
 import { config } from 'dotenv';
+import { sleep } from '.';
 config();
 
 export async function request(url: string) {
@@ -12,6 +13,9 @@ export async function request(url: string) {
   });
 
   if (!response.ok) return Promise.reject(`HTTP error! status: ${response.status}`);
+
+  const appLimit = parseInt(response.headers.get('X-App-Rate-Limit-Count')?.split(':')[0] || '0');
+  if (appLimit > 90) await sleep(1000);
 
   return response.json();
 }
