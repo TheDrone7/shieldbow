@@ -2,6 +2,7 @@ import { sleep } from 'utilities';
 import { accountV1 } from './account';
 import { summonerV4 } from './summoner';
 import { lolChallengesV1 } from './challenges';
+import { championMasteryV4 } from './championMastery';
 
 export async function generateApi() {
   console.log('Generating API structures...\n');
@@ -18,6 +19,11 @@ export async function generateApi() {
 
   console.log('Generating Challenges V1 structures...');
   await lolChallengesV1();
+
+  await sleep(1000);
+
+  console.log('Generating Champion Mastery V4 structures...');
+  await championMasteryV4();
 
   console.log('API structures generated successfully.');
 }
