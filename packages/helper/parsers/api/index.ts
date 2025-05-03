@@ -3,6 +3,7 @@ import { accountV1 } from './account';
 import { summonerV4 } from './summoner';
 import { lolChallengesV1 } from './challenges';
 import { championMasteryV4 } from './championMastery';
+import { leagueV4 } from './league';
 
 export async function generateApi() {
   console.log('Generating API structures...\n');
@@ -24,6 +25,11 @@ export async function generateApi() {
 
   console.log('Generating Champion Mastery V4 structures...');
   await championMasteryV4();
+
+  await sleep(1000);
+
+  console.log('Generating League V4 structures...');
+  await leagueV4();
 
   console.log('API structures generated successfully.');
 }

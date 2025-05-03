@@ -9,3 +9,8 @@ export const PUUID = 'mtAz4KCvblzjQVwpZ6IYFLwes4H5RcxJoGbh398ezh325FikKBCFdO7xRS
 
 export const CHALLENGE_ID = 302103 as const;
 export const LEADERBOARD_LEVEL = 'GRANDMASTER' as const;
+
+export const LEAGUE_QUEUE = 'RANKED_SOLO_5x5' as const;
+export const LEAGUE_TIER = 'EMERALD' as const;
+export const LEAGUE_DIVISION = 'II' as const;
+export const LEAGUE_ID = 'a449aad8-f047-4949-9dd7-3a90f0021e0c' as const;
