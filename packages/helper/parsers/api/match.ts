@@ -95,7 +95,7 @@ export async function matchV5() {
     cherryTimelineStructure = breakdown(cherryTimelineResponse, 'matchId', cherryTimelineStructure);
 
     console.log('Match V5 timelines by ID parsed successfully.');
-  }
+  } else return;
 
   // Save the structure
   writeToFile(
@@ -118,4 +118,44 @@ export async function matchV5() {
   typeOut('structures/api/match/swiftplayTimeline.json', 'swiftMatchTimeline', 'the API');
   typeOut('structures/api/match/cherryTimeline.json', 'cherryMatchTimeline', 'the API');
   console.log('Match V5 types generated successfully.\n');
+
+  // Additionally, track the events in the timeline.
+  const events: { [matchType: string]: { [eventName: string]: string[] } } = {
+    classic: {},
+    aram: {},
+    swiftplay: {},
+    cherry: {}
+  };
+
+  // Classic Match Timeline
+  for (const event of classicTimelineResponse.info.frames.flatMap((frame: any) => frame.events))
+    events.classic[event.type] = Object.keys(event).filter((key) => key !== 'type' && key !== 'timestamp');
+
+  // ARAM Match Timeline
+  for (const event of aramTimelineResponse.info.frames.flatMap((frame: any) => frame.events))
+    events.aram[event.type] = Object.keys(event).filter((key) => key !== 'type' && key !== 'timestamp');
+
+  // Swiftplay Match Timeline
+  for (const event of swiftplayTimelineResponse.info.frames.flatMap((frame: any) => frame.events))
+    events.swiftplay[event.type] = Object.keys(event).filter((key) => key !== 'type' && key !== 'timestamp');
+
+  // Cherry Match Timeline
+  for (const event of cherryTimelineResponse.info.frames.flatMap((frame: any) => frame.events))
+    events.cherry[event.type] = Object.keys(event).filter((key) => key !== 'type' && key !== 'timestamp');
+
+  // Save the events structure
+  writeToFile('extras/matches/allEventFields.json', JSON.stringify(events, null, 2));
+  console.log('Match V5 events tracked successfully.\n');
+
+  // Also save the matches and timelines themselves
+  writeToFile('extras/matches/classicMatch.json', JSON.stringify(classicResponse, null, 2));
+  writeToFile('extras/matches/aramMatch.json', JSON.stringify(aramResponse, null, 2));
+  writeToFile('extras/matches/swiftplayMatch.json', JSON.stringify(swiftplayResponse, null, 2));
+  writeToFile('extras/matches/cherryMatch.json', JSON.stringify(cherryResponse, null, 2));
+
+  writeToFile('extras/matches/classicTimeline.json', JSON.stringify(classicTimelineResponse, null, 2));
+  writeToFile('extras/matches/aramTimeline.json', JSON.stringify(aramTimelineResponse, null, 2));
+  writeToFile('extras/matches/swiftplayTimeline.json', JSON.stringify(swiftplayTimelineResponse, null, 2));
+  writeToFile('extras/matches/cherryTimeline.json', JSON.stringify(cherryTimelineResponse, null, 2));
+  console.log('Match V5 matches and timelines saved successfully.\n');
 }
