@@ -2,12 +2,12 @@
   "name": "@shieldbow/root",
   "private": true,
   "devDependencies": {
-    "@changesets/cli": "^2.27.11",
+    "@changesets/cli": "^2.29.2",
     "@shieldbow/cache": "workspace:^",
     "@shieldbow/ratelimiter": "workspace:^",
     "@shieldbow/web": "workspace:^",
-    "syncpack": "^12.4.0",
-    "turbo": "^2.3.3"
+    "syncpack": "^13.0.4",
+    "turbo": "^2.5.2"
   },
   "scripts": {
     "build": "turbo run build",
