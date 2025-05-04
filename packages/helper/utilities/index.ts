@@ -2,6 +2,7 @@ declare global {
   interface String {
     capitalize(): string;
     toWords(): string;
+    isAlpha(): boolean;
   }
 }
 
@@ -13,6 +14,10 @@ String.prototype.toWords = function (): string {
   return this.replace(/([A-Z])/g, ' $1')
     .trim()
     .toLowerCase();
+};
+
+String.prototype.isAlpha = function (): boolean {
+  return /^[a-zA-Z]+$/.test(this as string);
 };
 
 export async function sleep(ms: number) {

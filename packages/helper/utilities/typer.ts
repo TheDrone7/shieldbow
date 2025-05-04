@@ -26,7 +26,9 @@ export function generateInterfaces(object: CleanStructure, key: string, source: 
     output += generateDocstring(curKey, source);
     output += `export interface I${curKey.capitalize()} {\n`;
 
-    for (const [k, v] of Object.entries(curObject)) {
+    for (const [k, v] of Object.entries(curObject).sort((a, b) =>
+      a[0].toLowerCase().localeCompare(b[0].toLowerCase())
+    )) {
       if (v.substructure && Object.keys(v.substructure).length < 1) continue;
 
       let type = v.type;
@@ -35,9 +37,11 @@ export function generateInterfaces(object: CleanStructure, key: string, source: 
       if (type.includes('object'))
         type = type.replaceAll('object', `I${curKey.capitalize()}${singular(k).capitalize()}`);
 
+      const finalK = k.at(0)?.isAlpha() ? k : `'${k}'`;
+
       // Images are always the same, avoid duplication
       if (k === 'image') type = 'IImage';
-      output += `  ${k}${optional}: ${type};\n`;
+      output += `  ${finalK}${optional}: ${type};\n`;
 
       if (v.substructure && k !== 'image') {
         const newKey = `${curKey}${singular(k).capitalize()}`;
