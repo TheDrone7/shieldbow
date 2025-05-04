@@ -14,3 +14,8 @@ export const LEAGUE_QUEUE = 'RANKED_SOLO_5x5' as const;
 export const LEAGUE_TIER = 'EMERALD' as const;
 export const LEAGUE_DIVISION = 'II' as const;
 export const LEAGUE_ID = 'a449aad8-f047-4949-9dd7-3a90f0021e0c' as const;
+
+export const CHERRY_MATCH_ID = 'NA1_5280030710' as const;
+export const RANKED_MATCH_ID = 'NA1_5280033816' as const;
+export const ARAM_MATCH_ID = 'NA1_5280037841' as const;
+export const SWIFTPLAY_MATCH_ID = 'NA1_5271609967' as const;
