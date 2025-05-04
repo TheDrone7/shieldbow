@@ -1,4 +1,4 @@
-import { GameMap, IDDragonItem, IMerakiItem, IMerakiItemStats } from 'types';
+import { GameMap, IDDragonItem, IMerakiItem, IMerakiItemStats, IDDragonItemStats } from 'types';
 import { Client } from 'client';
 import { Champion, Image } from '.';
 
@@ -101,9 +101,7 @@ export class Item {
   /**
    * The stats provided by this item.
    */
-  readonly stats: {
-    [id: string]: number;
-  };
+  readonly stats: IDDragonItemStats;
   /**
    * The stats provided by this item, as provided by meraki analytics.
    *
