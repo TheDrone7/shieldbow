@@ -11,9 +11,9 @@ export interface IDDragonRuneTreeSlot {
  * Data Dragon Rune Tree interface.
  */
 export interface IDDragonRuneTree {
+  icon: string;
   id: number;
   key: string;
-  icon: string;
   name: string;
   slots: IDDragonRuneTreeSlot[];
 }
