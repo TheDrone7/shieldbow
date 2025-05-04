@@ -5,6 +5,7 @@ import { lolChallengesV1 } from './challenges';
 import { championMasteryV4 } from './championMastery';
 import { leagueV4 } from './league';
 import { lolStatusV4 } from './status';
+import { spectatorV5 } from './spectator';
 
 export async function generateApi() {
   console.log('Generating API structures...\n');
@@ -33,8 +34,14 @@ export async function generateApi() {
   await leagueV4();
 
   await sleep(1000);
+
   console.log('Generating Status V4 structures...');
   await lolStatusV4();
+
+  await sleep(1000);
+
+  console.log('Generating Spectator V5 structures...');
+  await spectatorV5();
 
   console.log('API structures generated successfully.');
 }
