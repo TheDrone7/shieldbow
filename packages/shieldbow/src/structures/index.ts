@@ -7,3 +7,4 @@ export * from './challenges';
 export * from './spectator';
 export * from './clash';
 export * from './status';
+export * from './match';

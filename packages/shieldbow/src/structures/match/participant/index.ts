@@ -2,6 +2,7 @@ import { Collection } from '@discordjs/collection';
 import { Champion, Item, RuneTree, SummonerSpell } from '@shieldbow/web';
 import { Client } from 'client';
 import { IMatchParticipant, PingType } from 'types';
+
 import { ParticipantChampion } from './champion';
 import { ParticipantDamage, ParticipantDamageDealt } from './damage';
 import { ParticipantVision } from './vision';
@@ -462,3 +463,15 @@ export class MatchParticipant {
     return this.#client.accounts.fetch(this.playerId);
   }
 }
+
+export {
+  ParticipantChampion,
+  ParticipantDamage,
+  ParticipantDamageDealt,
+  ParticipantVision,
+  ParticipantMultiKills,
+  ParticipantGold,
+  ParticipantPosition,
+  ParticipantMinions,
+  ParticipantPerks
+};
