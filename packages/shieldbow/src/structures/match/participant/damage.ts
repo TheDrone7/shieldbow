@@ -24,6 +24,7 @@ export class ParticipantDamageDealt {
    * The total damage self-mitigated by the participant.
    */
   readonly selfMitigated: number;
+
   /**
    * Creates a new instance of ParticipantDamageDealt.
    * @param data - The raw match participant data.
@@ -52,6 +53,7 @@ export class ParticipantDamage {
    * The total damage taken.
    */
   readonly taken: number;
+
   /**
    * Creates a new instance of ParticipantDamage.
    * @param data - The raw match participant data.

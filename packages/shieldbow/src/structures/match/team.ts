@@ -3,15 +3,50 @@ import { Client } from 'client';
 import { IMatchParticipant, IMatchTeam, TeamObjective } from 'types';
 import { MatchParticipant } from './participant';
 
+/**
+ * Represents a team in a League of Legends match.
+ */
 export class Team {
+  /**
+   * The unique identifier for the team.
+   */
   readonly id: number;
+  /**
+   * The name of the team (either 'blue' or 'red').
+   * This is determined by the team ID (100 for blue, 200 for red).
+   */
   readonly name: 'blue' | 'red';
+  /**
+   * Indicates whether the team won the match.
+   */
   readonly win: boolean;
+  /**
+   * The champions banned by the team.
+   */
   readonly bans: Champion[];
+  /**
+   * The number of objectives killed by the team.
+   */
   readonly objectiveKills: Record<TeamObjective, number>;
+  /**
+   * Indicates whether the team secured the first objective of each type.
+   */
   readonly firstObjectives: Record<TeamObjective, boolean>;
+  /**
+   * The members of the team.
+   */
   readonly members: MatchParticipant[];
 
+  /**
+   * Creates a new instance of the Team class.
+   * @param client - The client instance used to fetch data.
+   * @param data - The data for the team.
+   * @param participants - The participants in the match.
+   * @param champions - The list of champions.
+   * @param items - The list of items.
+   * @param rTrees - The list of rune trees.
+   * @param spells - The list of summoner spells.
+   */
   constructor(
     client: Client,
     data: IMatchTeam,
