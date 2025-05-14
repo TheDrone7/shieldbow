@@ -2,7 +2,8 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "rootDir": "tests",
-    "noEmit": true
+    "noEmit": true,
+    "isolatedModules": true
   },
   "include": ["src", "tests"]
 }
