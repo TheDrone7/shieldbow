@@ -326,7 +326,6 @@ export class MatchParticipant {
     this.pings = {
       allIn: data.allInPings ?? 0,
       assistMe: data.assistMePings ?? 0,
-      bait: data.baitPings ?? 0,
       basic: data.basicPings ?? 0,
       command: data.commandPings ?? 0,
       danger: data.dangerPings ?? 0,
@@ -337,6 +336,7 @@ export class MatchParticipant {
       needVision: data.needVisionPings ?? 0,
       onMyWay: data.onMyWayPings ?? 0,
       push: data.pushPings ?? 0,
+      retreat: data.retreatPings ?? 0,
       visionCleared: data.visionClearedPings ?? 0
     };
 

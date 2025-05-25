@@ -7,16 +7,15 @@ export interface IMatchParticipant {
   allInPings: number;
   assistMePings: number;
   assists: number;
-  baitPings?: number; // Recently removed.
   baronKills: number;
   basicPings: number;
   bountyLevel: number;
-  challenges?: Record<string, number>; // Recently added
+  challenges: Record<string, number>;
   champExperience: number;
-  champLevel: number;
   championId: number;
   championName: string;
   championTransform: number;
+  champLevel: number;
   commandPings: number;
   consumablesPurchased: number;
   damageDealtToBuildings: number;
@@ -43,8 +42,8 @@ export interface IMatchParticipant {
   holdPings: number;
   individualPosition: string;
   inhibitorKills: number;
-  inhibitorTakedowns: number;
   inhibitorsLost: number;
+  inhibitorTakedowns: number;
   item0: number;
   item1: number;
   item2: number;
@@ -63,7 +62,7 @@ export interface IMatchParticipant {
   magicDamageDealt: number;
   magicDamageDealtToChampions: number;
   magicDamageTaken: number;
-  missions?: Record<string, number>; // Recently added
+  missions?: Record<string, number>;
   needVisionPings: number;
   neutralMinionsKilled: number;
   nexusKills: number;
@@ -102,8 +101,9 @@ export interface IMatchParticipant {
   pushPings: number;
   puuid: string;
   quadraKills: number;
-  riotIdName?: string; // Only in old cherry (v1)
-  riotIdGameName?: string; // Other modes.
+  retreatPings: number;
+  riotIdName?: string;
+  riotIdGameName?: string;
   riotIdTagLine: string;
   role: string;
   sightWardsBoughtInGame: number;

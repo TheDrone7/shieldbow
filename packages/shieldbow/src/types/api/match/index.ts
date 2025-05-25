@@ -1,7 +1,6 @@
 export type PingType =
   | 'allIn'
   | 'assistMe'
-  | 'bait'
   | 'basic'
   | 'command'
   | 'danger'
@@ -12,6 +11,7 @@ export type PingType =
   | 'needVision'
   | 'onMyWay'
   | 'push'
+  | 'retreat'
   | 'visionCleared';
 
 export type { IMatch, IMatchInfo, IMatchMetadata } from './match';
