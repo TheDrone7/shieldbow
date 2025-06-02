@@ -4,3 +4,4 @@ export * from './item';
 export * from './rune';
 export * from './summonerSpell';
 export * from './challenge';
+export * from './augment';
