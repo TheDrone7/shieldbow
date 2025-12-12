@@ -107,3 +107,7 @@ dist
 
 # TernJS port file
 .tern-port
+packages/shieldbow/data/
+
+# Helper output
+packages/helper/output/

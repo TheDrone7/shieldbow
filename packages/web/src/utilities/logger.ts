@@ -56,7 +56,7 @@ export class ShieldbowLogger implements ILogger {
           console.info(messages.join('\n'));
           break;
         case LoggerLevel.TRACE:
-          console.trace(messages.join('\n'));
+          console.debug(messages.join('\n'));
           break;
         case LoggerLevel.WARN:
           console.warn(messages.join('\n'));

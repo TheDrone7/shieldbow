@@ -12,7 +12,6 @@ export default {
     ]
   },
   setupFiles: ['./tests/jest.setup.ts'],
-  testSequencer: './tests/sequencer.js',
   clearMocks: true,
   collectCoverage: true,
   coverageDirectory: 'coverage',

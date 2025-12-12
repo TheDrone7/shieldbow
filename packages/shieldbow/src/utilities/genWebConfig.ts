@@ -1,6 +1,11 @@
 import { ClientConfig } from 'types';
 import { ClientConfig as WebConfig } from '@shieldbow/web';
 
+/**
+ * A utility config that generates a @shieldbow/web config from shieldbow config.
+ * @param config - The shieldbow config.
+ * @returns The @shieldbow/web config.
+ */
 export function genWebConfig(config: ClientConfig): WebConfig {
   return {
     prefetch: config.prefetch,

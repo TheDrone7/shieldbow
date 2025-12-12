@@ -1,1 +1,2 @@
-export { ChampionManager } from './champion';
+export * from './dragon';
+export * from './api';

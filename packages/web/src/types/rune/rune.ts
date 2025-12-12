@@ -2,10 +2,10 @@
  * Data Dragon Rune interface.
  */
 export interface IDDragonRune {
+  icon: string;
   id: number;
   key: string;
-  icon: string;
+  longDesc: string;
   name: string;
   shortDesc: string;
-  longDesc: string;
 }

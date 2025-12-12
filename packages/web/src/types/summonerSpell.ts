@@ -4,26 +4,25 @@ import { IImage } from './image';
  * Raw Summoner Spell Data from Data Dragon
  */
 export interface IDDragonSummonerSpell {
-  id: string;
-  name: string;
-  description: string;
-  tooltip: string;
-  maxrank: number;
   cooldown: number[];
   cooldownBurn: string;
   cost: number[];
   costBurn: string;
-  datavalues: {};
+  costType: string;
+  description: string;
   effect: (null | number[])[];
   effectBurn: (null | string)[];
-  vars: [];
+  id: string;
+  image: IImage;
   key: string;
-  summonerLevel: number;
-  modes: string[];
-  costType: string;
   maxammo: string;
+  maxrank: number;
+  modes: string[];
+  name: string;
   range: number[];
   rangeBurn: string;
-  image: IImage;
   resource: string;
+  summonerLevel: number;
+  tooltip: string;
+  vars: [];
 }

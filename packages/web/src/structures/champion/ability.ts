@@ -116,7 +116,12 @@ export class ChampionSpell {
 
     const spellName = spells.find((s: string) => s.includes(this.id))!;
     const hashedSpell = `{${hash(`characters/${this.champ.id.toLowerCase()}/spells/${spellName.toLowerCase()}`)}}`;
-    const spell = (cDragon[`Characters/${this.champ.id}/Spells/${spellName}`] || cDragon[hashedSpell]).mSpell;
+    const spellKey = Object.keys(cDragon).find(
+      (k) =>
+        k.toLowerCase() === `characters/${this.champ.id.toLowerCase()}/spells/${spellName.toLowerCase()}` ||
+        k === hashedSpell
+    )!;
+    const spell = cDragon[spellKey].mSpell;
 
     this._rawTooltip = dDragon.tooltip;
     for (let i = 0; i < dDragon.effectBurn.length; i++) {

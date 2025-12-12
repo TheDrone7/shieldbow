@@ -6,36 +6,78 @@ import { IImage } from '..';
 export interface IDDragonItemGold {
   base: number;
   purchasable: boolean;
-  total: number;
   sell: number;
+  total: number;
+}
+
+/**
+ * DDragon Item's map availability
+ */
+export type IDDragonItemMap = {
+  [id: string]: boolean;
+};
+
+/**
+ * DDragon Item's stats
+ */
+export interface IDDragonItemStats {
+  FlatArmorMod?: number;
+  FlatCritChanceMod?: number;
+  FlatHPPoolMod?: number;
+  FlatHPRegenMod?: number;
+  FlatMagicDamageMod?: number;
+  FlatMovementSpeedMod?: number;
+  FlatMPPoolMod?: number;
+  FlatPhysicalDamageMod?: number;
+  FlatSpellBlockMod?: number;
+  PercentAttackSpeedMod?: number;
+  PercentLifeStealMod?: number;
+  PercentMovementSpeedMod?: number;
+}
+
+/**
+ * DDragon Item's effects.
+ */
+export interface IDDragonItemEffect {
+  Effect10Amount?: string;
+  Effect11Amount?: string;
+  Effect12Amount?: string;
+  Effect13Amount?: string;
+  Effect14Amount?: string;
+  Effect15Amount?: string;
+  Effect1Amount: string;
+  Effect2Amount?: string;
+  Effect3Amount?: string;
+  Effect4Amount?: string;
+  Effect5Amount?: string;
+  Effect6Amount?: string;
+  Effect7Amount?: string;
+  Effect8Amount?: string;
+  Effect9Amount?: string;
 }
 
 /**
  * DDragon Item
  */
 export interface IDDragonItem {
-  name: string;
-  description: string;
   colloq: string;
-  plaintext: string;
-  image: IImage;
-  gold: IDDragonItemGold;
-  tags: string[];
-  maps: {
-    [id: string]: boolean;
-  };
-  stats: {
-    [id: string]: number;
-  };
   consumed?: boolean;
-  stacks?: number;
-  depth?: number;
   consumeOnFull?: boolean;
-  into?: string[];
+  depth?: number;
+  description: string;
+  effect?: IDDragonItemEffect;
   from?: string[];
-  specialRecipe?: number;
-  inStore?: boolean;
+  gold: IDDragonItemGold;
   hideFromAll?: boolean;
+  image: IImage;
+  inStore?: boolean;
+  into?: string[];
+  maps: IDDragonItemMap;
+  name: string;
+  plaintext: string;
   requiredChampion?: string;
-  requiredAlly?: string;
+  specialRecipe?: number;
+  stacks?: number;
+  stats: IDDragonItemStats;
+  tags: string[];
 }

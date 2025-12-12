@@ -109,7 +109,7 @@ export class ItemManager implements BaseManager<Item> {
     }
   }
 
-  private async _fetchItemsFromDDragon(options: FetchOptions) {
+  protected async _fetchItemsFromDDragon(options: FetchOptions) {
     try {
       this.client.logger?.trace('Fetching items from DDragon');
       const response = await this.client.fetch<{ data: unknown }>(
@@ -121,7 +121,7 @@ export class ItemManager implements BaseManager<Item> {
     }
   }
 
-  private async _fetchItemsFromMeraki() {
+  protected async _fetchItemsFromMeraki() {
     try {
       this.client.logger?.trace('Fetching items from Meraki');
       const response = await this.client.fetch(this.client.generateMerakiUrl('item'));

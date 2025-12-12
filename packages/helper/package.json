@@ -1,0 +1,37 @@
+{
+  "name": "shieldbow-helper",
+  "version": "1.0.0",
+  "description": "A helper for the Shieldbow library to generate types",
+  "main": "index.ts",
+  "scripts": {
+    "start": "ts-node -r tsconfig-paths/register index.ts",
+    "format": "prettier --write \"parsers/**/**.ts\" \"utilities/**/**.ts\" index.ts",
+    "lint": "eslint --fix --color \"parsers/**/**.ts\" \"utilities/**/**.ts\" index.ts"
+  },
+  "keywords": [
+    "shieldbow",
+    "helper",
+    "lol"
+  ],
+  "author": "Harmeet Singh <h@thedrone7.dev> (https://thedrone7.dev)",
+  "license": "UNLICENSED",
+  "packageManager": "pnpm@10.10.0",
+  "private": true,
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "pluralize": "^8.0.0",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "tslib": "^2.8.1",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.26.0",
+    "@types/node": "^22.15.3",
+    "@types/pluralize": "^0.0.33",
+    "eslint": "^9.26.0",
+    "globals": "^16.0.0",
+    "prettier": "^3.5.3"
+  }
+}

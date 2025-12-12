@@ -93,7 +93,7 @@ export class SummonerSpellManager implements BaseManager<SummonerSpell> {
     }
   }
 
-  private async _fetchSpellsFromDDragon(options: FetchOptions) {
+  protected async _fetchSpellsFromDDragon(options: FetchOptions) {
     try {
       this.client.logger?.trace(`Fetching summoner spells from DDragon`);
       const response = await this.client.fetch<{ data: unknown }>(
